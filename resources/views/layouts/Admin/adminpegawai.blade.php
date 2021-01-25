@@ -211,7 +211,7 @@
                                 <a class="nav-link" href="{{ route('masterdatajabatan')}}">
                                     Master Jabatan
                                 </a>
-                                <a class="nav-link" href="invoice.html">
+                                <a class="nav-link" href="{{ route('masterdatajeniscuti') }}">
                                     Master Jenis Cuti
                                 </a>
                             </nav>

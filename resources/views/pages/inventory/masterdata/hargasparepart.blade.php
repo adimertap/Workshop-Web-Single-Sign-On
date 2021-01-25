@@ -83,7 +83,7 @@
                                         </tr>
                                         @empty
                                         <td colspan="7" class="tex-center">
-                                            Data Kosong
+                                            Data Harga Sparepart Kosong
                                         </td>
                                         @endforelse
                                     </tbody>

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Kepegawaian;
+namespace App\Http\Controllers\Kepegawaian\Masterdata;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Kepegawaian\Jabatanrequest;
-use App\Model\Kepegawaian\Jabatan;
+use App\Http\Requests\Kepegawaian\Jeniscutirequest;
+use App\Model\Kepegawaian\Jeniscuti;
 use Illuminate\Http\Request;
 
-class MasterdatajabatanController extends Controller
+class MasterdatajeniscutiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class MasterdatajabatanController extends Controller
      */
     public function index()
     {
-        $jabatan = Jabatan::get();
+        $jeniscuti = Jeniscuti::get();
 
-        return view('pages.kepegawaian.masterdata.jabatan', compact('jabatan'));
+        return view('pages.kepegawaian.masterdata.jeniscuti', compact('jeniscuti'));
     }
 
     /**
@@ -37,14 +37,15 @@ class MasterdatajabatanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Jabatanrequest $request)
+    public function store(Jeniscutirequest $request)
     {
-        $jabatan = new Jabatan;
-        $jabatan->nama_jabatan = $request->nama_jabatan;
+        $jeniscuti = new Jeniscuti;
+        $jeniscuti->nama_cuti = $request->nama_cuti;
+        $jeniscuti->jumlah_hari = $request->jumlah_hari;
         // $rak=Rak::all()
 
-        $jabatan->save();
-        return redirect()->back()->with('messageberhasil','Data Jabatan Berhasil ditambahkan');
+        $jeniscuti->save();
+        return redirect()->back()->with('messageberhasil','Data Jenis Cuti Berhasil ditambahkan');
     }
 
     /**
@@ -76,13 +77,14 @@ class MasterdatajabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Jabatanrequest $request, $id_jabatan)
+    public function update(Jeniscutirequest $request, $id_jenis_cuti)
     {
-        $jabatan = Jabatan::findOrFail($id_jabatan);
-        $jabatan->nama_jabatan = $request->nama_jabatan;
+        $jeniscuti = Jeniscuti::findOrFail($id_jenis_cuti);
+        $jeniscuti->nama_cuti = $request->nama_cuti;
+        $jeniscuti->jumlah_hari = $request->jumlah_hari;
         
-        $jabatan->save();
-        return redirect()->back()->with('messageberhasil','Data Jabatan Berhasil diubah');
+        $jeniscuti->save();
+        return redirect()->back()->with('messageberhasil','Data Jenis Cuti Berhasil diubah');
     }
 
     /**
@@ -91,11 +93,11 @@ class MasterdatajabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_jabatan)
+    public function destroy($id_jenis_cuti)
     {
-        $jabatan = Jabatan::findOrFail($id_jabatan);
-        $jabatan->delete();
+        $jeniscuti = Jeniscuti::findOrFail($id_jenis_cuti);
+        $jeniscuti->delete();
 
-        return redirect()->back()->with('messagehapus','Data Jabatan Berhasil dihapus');
+        return redirect()->back()->with('messagehapus','Data Jenis Cuti Berhasil dihapus');
     }
 }

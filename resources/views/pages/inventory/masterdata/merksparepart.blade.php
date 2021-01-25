@@ -94,7 +94,7 @@
                                         @empty
                                         <tr>
                                             <td colspan="7" class="tex-center">
-                                                Data Kosong
+                                                Data Merk Sparepart Kosong
                                             </td>
                                         </tr>
                                         @endforelse

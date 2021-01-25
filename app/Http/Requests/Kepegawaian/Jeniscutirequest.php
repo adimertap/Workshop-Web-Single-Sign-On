@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Inventory;
+namespace App\Http\Requests\Kepegawaian;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Konversirequest extends FormRequest
+class Jeniscutirequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class Konversirequest extends FormRequest
     public function rules()
     {
         return [
-            'satuan' => 'required',
+            'nama_cuti' => 'required',
+            'jumlah_hari' => 'required',
         ];
     }
 }

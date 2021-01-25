@@ -1,4 +1,4 @@
-@extends('layouts.Admin.admininventory')
+@extends('layouts.Admin.adminpegawai')
 
 @section('content')
 {{-- HEADER --}}
@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Konversi Satuan
+                            Master Data Jenis Cuti
                         </h1>
                     </div>
                 </div>
@@ -19,12 +19,13 @@
     </header>
 
     {{-- MAIN PAGE CONTENT --}}
+
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header">List Satuan Konversi
+                <div class="card-header">List Jenis Cuti
                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
-                        Satuan</button>
+                        Jenis Cuti</button>
                 </div>
             </div>
             <div class="card-body">
@@ -56,38 +57,44 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 5px;">No</th>
+                                                style="width: 20px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 400px;">Satuan Konversi</th>
+                                                style="width: 250px;">Nama Cuti</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 200px;">Jumlah Hari</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 150px;">Actions</th>
+                                                style="width: 77px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($konversi as $item)
+                                        @forelse ($jeniscuti as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                            <td>{{ $item->satuan }}</td>
+                                            <td>{{ $item->nama_cuti }}</td>
+                                            <td>{{ $item->jumlah_hari }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_konversi }}">
+                                                    data-toggle="modal"
+                                                    data-target="#Modaledit-{{ $item->id_jenis_cuti }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_konversi }}">
+                                                    data-toggle="modal"
+                                                    data-target="#Modalhapus-{{ $item->id_jenis_cuti }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
-                                        </tr>
-                                        @empty
+                                            @empty
                                         <tr>
                                             <td colspan="7" class="tex-center">
-                                                Data Konversi Satuan Kosong
+                                                Data Kosong
                                             </td>
                                         </tr>
                                         @endforelse
+
                                     </tbody>
                                 </table>
                             </div>
@@ -99,26 +106,32 @@
     </div>
 </main>
 
-{{-- MODAL TAMBAH --------------------------------------------------------------------------------------------}}
+
+{{-- MODAL TAMBAH --------------------------------------------------------------------------------}}
 <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah Satuan</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Jenis Cuti</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('konversi.store') }}" method="POST">
+            <form action="{{ route('jeniscuti.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="satuan">Satuan Konversi</label>
-                        <input class="form-control" name="satuan" type="text" id="satuan"
-                            placeholder="Input Satuan Konversi" value="{{ old('satuan') }}"></input>
+                        <label class="small mb-1" for="nama_cuti">Nama Cuti</label>
+                        <input class="form-control" name="nama_cuti" type="text" id="nama_cuti"
+                            placeholder="Input Nama Cuti" value="{{ old('nama_cuti') }}"></input>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="jumlah_hari">Jumlah Hari</label>
+                        <textarea class="form-control" name="jumlah_hari" type="text" id="jumlah_hari"
+                            placeholder="Input Jumlah Hari" value="{{ old('jumlah_hari') }}"></textarea>
                     </div>
                 </div>
 
@@ -142,18 +155,18 @@
     </div>
 </div>
 
-{{-- MODAL EDIT --------------------------------------------------------------------------------------------------}}
-@forelse ($konversi as $item)
-<div class="modal fade" id="Modaledit-{{ $item->id_konversi }}" data-backdrop="static" tabindex="-1" role="dialog"
+{{-- MODAL EDIT ---------------------------------------------------------------------------------------------}}
+@forelse ($jeniscuti as $item)
+<div class="modal fade" id="Modaledit-{{ $item->id_jenis_cuti }}" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Satuan</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Jenis Cuti</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('konversi.update', $item->id_konversi) }}" method="POST">
+            <form action="{{ route('jeniscuti.update', $item->id_jenis_cuti) }}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="modal-body">
@@ -161,10 +174,16 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="satuan">Satuan Konversi</label>
-                        <input class="form-control" name="satuan" type="text" id="satuan"
-                            value="{{ $item->satuan }}"></input>
+                        <label class="small mb-1" for="nama_cuti">Nama Cuti</label>
+                        <input class="form-control" name="nama_cuti" type="text" id="nama_cuti"
+                            value="{{ $item->nama_cuti }}"></input>
                     </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="jumlah_hari">Jumlah Hari</label>
+                        <input class="form-control" name="jumlah_hari" type="text" id="jumlah_hari"
+                            value="{{ $item->jumlah_hari }}"></input>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -178,9 +197,8 @@
 
 @endforelse
 
-{{-- MODAL HAPUS ----------------------------------------------------------------------------------}}
-@forelse ($konversi as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id_konversi }}" tabindex="-1" role="dialog"
+@forelse ($jeniscuti as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_jenis_cuti }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -189,10 +207,10 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('konversi.destroy', $item->id_konversi) }}" method="POST" class="d-inline">
+            <form action="{{ route('jeniscuti.destroy', $item->id_jenis_cuti) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Satuan {{ $item->satuan }}?</div>
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Jenis Cuti {{ $item->nama_cuti }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>
@@ -201,12 +219,10 @@
         </div>
     </div>
 </div>
-    
 @empty
-    
+
 @endforelse
 
-</main>
 
 {{-- Callback Modal Jika Validasi Error --}}
 @if (count($errors) > 0)

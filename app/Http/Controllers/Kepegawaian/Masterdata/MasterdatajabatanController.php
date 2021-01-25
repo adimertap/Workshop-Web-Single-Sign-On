@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Inventory\Masterdata;
+namespace App\Http\Controllers\Kepegawaian\Masterdata;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Inventory\Rakrequest;
-use App\Model\Inventory\Rak;
+use App\Http\Requests\Kepegawaian\Jabatanrequest;
+use App\Model\Kepegawaian\Jabatan;
 use Illuminate\Http\Request;
 
-class MasterdatarakController extends Controller
+class MasterdatajabatanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,9 @@ class MasterdatarakController extends Controller
      */
     public function index()
     {
-        $rak = Rak::get();
-        
-        return view('pages.inventory.masterdata.raksparepart', compact('rak'));
-        
+        $jabatan = Jabatan::get();
+
+        return view('pages.kepegawaian.masterdata.jabatan', compact('jabatan'));
     }
 
     /**
@@ -38,17 +37,14 @@ class MasterdatarakController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Rakrequest $request)
+    public function store(Jabatanrequest $request)
     {
-        $rak = new Rak;
-        $rak->kode_rak = $request->kode_rak;
-        $rak->nama_rak = $request->nama_rak;
-        $rak->jenis_rak = $request->jenis_rak;
-        
+        $jabatan = new Jabatan;
+        $jabatan->nama_jabatan = $request->nama_jabatan;
         // $rak=Rak::all()
 
-        $rak->save();
-        return redirect()->back()->with('messageberhasil','Data Rak Berhasil ditambahkan');
+        $jabatan->save();
+        return redirect()->back()->with('messageberhasil','Data Jabatan Berhasil ditambahkan');
     }
 
     /**
@@ -80,15 +76,13 @@ class MasterdatarakController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Rakrequest $request, $id_rak)
+    public function update(Jabatanrequest $request, $id_jabatan)
     {
-        $rak = Rak::findOrFail($id_rak);
-        $rak->kode_rak = $request->kode_rak;
-        $rak->nama_rak = $request->nama_rak;
-        $rak->jenis_rak = $request->jenis_rak;
+        $jabatan = Jabatan::findOrFail($id_jabatan);
+        $jabatan->nama_jabatan = $request->nama_jabatan;
         
-        $rak->save();
-        return redirect()->back()->with('messageberhasil','Data Rak Berhasil diubah');
+        $jabatan->save();
+        return redirect()->back()->with('messageberhasil','Data Jabatan Berhasil diubah');
     }
 
     /**
@@ -97,11 +91,11 @@ class MasterdatarakController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_rak)
+    public function destroy($id_jabatan)
     {
-        $rak = Rak::findOrFail($id_rak);
-        $rak->delete();
+        $jabatan = Jabatan::findOrFail($id_jabatan);
+        $jabatan->delete();
 
-        return redirect()->back()->with('messagehapus','Data Rak Berhasil dihapus');
+        return redirect()->back()->with('messagehapus','Data Jabatan Berhasil dihapus');
     }
 }
