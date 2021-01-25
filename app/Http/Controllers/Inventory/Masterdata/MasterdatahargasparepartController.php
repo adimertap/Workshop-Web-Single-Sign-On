@@ -1,0 +1,112 @@
+<?php
+
+namespace App\Http\Controllers\Inventory\Masterdata;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Inventory\Hargasparepartrequest;
+use App\Model\Inventory\Hargasparepart;
+use App\Model\Inventory\Sparepart;
+use App\Model\Inventory\Supplier;
+use Illuminate\Http\Request;
+
+class MasterdatahargasparepartController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $harga = Hargasparepart::with([
+            'Sparepart', 'Supplier'
+        ])->get();
+
+        $sparepart = Sparepart::all();
+        $supplier = Supplier::all();
+
+        return view('pages.inventory.masterdata.hargasparepart', compact('harga','sparepart','supplier'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Hargasparepartrequest $request)
+    {
+        $harga = new Hargasparepart;
+        $harga->id_sparepart = $request->id_sparepart;
+        $harga->id_supplier = $request->id_supplier;
+        $harga->harga_beli = $request->harga_beli;
+        $harga->harga_jual = $request->harga_jual;
+
+        $harga->save();
+        return redirect()->back()->with('messageberhasil','Data Harga Sparepart Berhasil ditambahkan');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Hargasparepartrequest $request, $id_harga)
+    {
+        $harga = Hargasparepart::findOrFail($id_harga);
+        $harga->harga_beli = $request->harga_beli;
+        $harga->harga_jual = $request->harga_jual;
+
+        $harga->update();
+        return redirect()->back()->with('messageberhasil','Data Harga Sparepart Berhasil diubah');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id_harga)
+    {
+        
+        $harga = Hargasparepart::findOrFail($id_harga);
+        $harga->delete();
+
+        return redirect()->back()->with('messagehapus','Data Harga Sparepart Berhasil dihapus');
+    }
+}
