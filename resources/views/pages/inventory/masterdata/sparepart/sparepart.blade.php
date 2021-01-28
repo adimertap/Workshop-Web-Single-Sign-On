@@ -21,12 +21,11 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header">List Sparepart
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
-                        Sparepart</button>
+                <div class="card-header ">List Sparepart
+                    <a href="{{ route('sparepart.create') }}" class="btn btn-primary"> Tambah Sparepart</a>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body ">
                 <div class="datatable">
                     @if(session('messageberhasil'))
                     <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
@@ -57,22 +56,22 @@
                                                 style="width: 20px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 120px;">Kode</th>
+                                                style="width: 80px;">Kode</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 223px;">Nama Sparepart</th>
+                                                style="width: 230px;">Nama Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
                                                 style="width: 104px;">Jenis Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 97px;">Merk</th>
+                                                style="width: 87px;">Merk</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 50px;">Satuan</th>
+                                                style="width: 40px;">Satuan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Actions</th>
+                                                style="width: 80px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -85,12 +84,15 @@
                                             <td>{{ $item->Merksparepart->merk_sparepart }}</td>
                                             <td>{{ $item->Konversi->satuan }}</td>
                                             <td>
-                                                <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
+                                                <a href="" class="btn btn-secondary btn-datatable" type="button">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="" class="btn btn-primary btn-datatable" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modaledit-{{ $item->id_sparepart }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modalhapus-{{ $item->id_sparepart }}">
                                                     <i class="fas fa-trash"></i>

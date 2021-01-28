@@ -16,6 +16,8 @@ class Sparepart extends Model
         'id_konversi',
         'kode_sparepart',
         'nama_sparepart',
+        'gambar_sparepart',
+        'keterangan'
     ];
 
     protected $hidden =[ 

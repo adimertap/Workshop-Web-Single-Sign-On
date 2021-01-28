@@ -225,7 +225,7 @@
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-briefcase"></i></div>
-                            Absensi dan Cuti
+                            Absensi Pegawai
                             <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
@@ -234,24 +234,7 @@
                                     Absensi Pegawai
                                 </a>
                                 <a class="nav-link " href="invoice.html">
-                                    Cuti
-                                </a>
-                            </nav>
-                        </div>
-
-                        {{-- MANAJEMEN ASET --}}
-                        {{-- Manajemen Aset Side Bar --}}
-                        <div class="sidenav-menu-heading">Approval System</div>
-                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                            data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="nav-link-icon"><i data-feather="check-square"></i></div>
-                            Approval
-                            <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
-                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
-                                <a class="nav-link" href="invoice.html">
-                                    Approval Cuti
+                                    Laporan Absensi
                                 </a>
                             </nav>
                         </div>

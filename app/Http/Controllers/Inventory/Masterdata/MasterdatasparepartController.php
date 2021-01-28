@@ -30,7 +30,7 @@ class MasterdatasparepartController extends Controller
         $konversi = Konversi::all();
 
 
-        return view('pages.inventory.masterdata.sparepart', compact('sparepart','jenis_sparepart','merk_sparepart','konversi'));
+        return view('pages.inventory.masterdata.sparepart.sparepart', compact('sparepart','jenis_sparepart','merk_sparepart','konversi'));
     }
 
     /**
@@ -40,7 +40,11 @@ class MasterdatasparepartController extends Controller
      */
     public function create()
     {
-        // 
+        $jenis_sparepart = Jenissparepart::all();
+        $merk_sparepart = Merksparepart::all();
+        $konversi = Konversi::all();
+
+        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_sparepart','merk_sparepart','konversi')); 
     }
 
     /**
