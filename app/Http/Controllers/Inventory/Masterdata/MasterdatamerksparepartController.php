@@ -57,10 +57,6 @@ class MasterdatamerksparepartController extends Controller
         $merksparepart->save(); 
         return redirect()->back()->with('messageberhasil','Data Merk Berhasil ditambahkan');
         
-
-       
-
-        
         // Cara 2 Agar Semua Field Langsung Terisi
         // Merksparepart::create($request->all());
     }

@@ -109,10 +109,12 @@ Route::prefix('kepegawaian')
 
 // MASTER DATA KEPEGAWAIAN ------------------------------------------------------------------------------------------------
 Route::prefix('kepegawaian/masterdatapegawai')
-->namespace('Kepegawaian')
+->namespace('Kepegawaian\Masterdata')
 ->group(function() {
     Route::get('/', 'MasterdatapegawaiController@index')
         ->name('masterdatapegawai');
+
+    Route::resource('pegawai', 'MasterdatapegawaiController');
 });
 
 Route::prefix('kepegawaian/masterdatajabatan')
@@ -124,11 +126,4 @@ Route::prefix('kepegawaian/masterdatajabatan')
     Route::resource('jabatan', 'MasterdatajabatanController');
 });
 
-Route::prefix('kepegawaian/masterdatajeniscuti')
-->namespace('Kepegawaian\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatajeniscutiController@index')
-        ->name('masterdatajeniscuti');
 
-    Route::resource('jeniscuti', 'MasterdatajeniscutiController');
-});

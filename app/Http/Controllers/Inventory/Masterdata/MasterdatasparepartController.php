@@ -29,7 +29,6 @@ class MasterdatasparepartController extends Controller
         $merk_sparepart = Merksparepart::all();
         $konversi = Konversi::all();
 
-
         return view('pages.inventory.masterdata.sparepart.sparepart', compact('sparepart','jenis_sparepart','merk_sparepart','konversi'));
     }
 
