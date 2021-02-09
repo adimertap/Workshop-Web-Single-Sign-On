@@ -7,6 +7,7 @@ use App\Http\Requests\Kepegawaian\Pegawairequest;
 use App\Model\Kepegawaian\Jabatan;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class MasterdatapegawaiController extends Controller
 {
@@ -62,7 +63,7 @@ class MasterdatapegawaiController extends Controller
         $pegawai->tanggal_masuk = $request->tanggal_masuk;
         
         $pegawai->save();
-        return redirect()->route('pegawai.index');
+        return redirect()->route('pegawai.index')->with('messageberhasil','Data Pegawai Berhasil ditambahkan');
     }
 
     /**
@@ -71,9 +72,10 @@ class MasterdatapegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_pegawai)
     {
-        //
+        
+
     }
 
     /**
@@ -82,9 +84,16 @@ class MasterdatapegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_pegawai)
     {
-        //
+        $item = Pegawai::findOrFail($id_pegawai);
+        $jabatan = Jabatan::all();
+        
+        return view('pages.kepegawaian.masterdata.pegawai.edit',[
+            'item' => $item,
+            'jabatan' => $jabatan
+        ]);
+
     }
 
     /**
@@ -94,9 +103,15 @@ class MasterdatapegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Pegawairequest $request, $id_pegawai)
     {
-        //
+        $item = Pegawai::findOrFail($id_pegawai);
+        $data = $request->all();
+
+        $item->update($data);
+
+        
+        return redirect()->route('pegawai.index')->with('messageberhasil','Data Pegawai Berhasil diubah');
     }
 
     /**
@@ -105,8 +120,11 @@ class MasterdatapegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_pegawai)
     {
-        //
+        $pegawai = Pegawai::findOrFail($id_pegawai);
+        $pegawai->delete();
+
+        return redirect()->route('pegawai.index')->with('messagehapus','Data Pegawai Berhasil dihapus');
     }
 }

@@ -127,3 +127,12 @@ Route::prefix('kepegawaian/masterdatajabatan')
 });
 
 
+// ------------------------------------------------------------------------------------------------------------------------- 
+// MODUL PAYROLL
+// DASHBOARD
+Route::prefix('payroll')
+    ->namespace('payroll')
+    ->group(function() {
+        Route::get('/', 'DashboardpayrollController@index')
+            ->name('dashboardpayroll');
+    });

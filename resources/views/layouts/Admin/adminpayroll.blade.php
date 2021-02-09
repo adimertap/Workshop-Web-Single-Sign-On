@@ -26,7 +26,7 @@
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="{{ route('dashboardpegawai')}}"> <i class="fas fa-users mr-3"></i>Kepegawaian</a>
+        <a class="navbar-brand" href="{{ route('dashboardpegawai')}}"> <i class="fas fa-hand-holding-usd mr-3"></i>Payroll</a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
                 data-feather="menu"></i></button>
 
@@ -161,9 +161,9 @@
                         <div class="dropdown-item-icon"> <i class="fas fa-cubes"></i></div>
                         Sistem Inventory
                     </a>
-                    <a class="dropdown-item" href="{{ route('dashboardpayroll') }}">
-                        <div class="dropdown-item-icon"><i class="fas fa-wallet"></i></div>
-                        Sistem Payroll
+                    <a class="dropdown-item" href="{{ route('dashboardpegawai') }}">
+                        <div class="dropdown-item-icon"><i class="fas fa-user"></i></div>
+                        Sistem Kepegawaian
                     </a>
                     <a class="dropdown-item" href="">
                         <div class="dropdown-item-icon"><i class="fas fa-calculator"></i></div>
@@ -189,9 +189,9 @@
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardpegawai')}}">
+                        <a class="nav-link" href="{{ route('dashboardpayroll') }}">
                             <div class="nav-link-icon"><i class="fas fa-user"></i></div>
-                            Dashboard Pegawai
+                            Dashboard Payroll
                         </a>
 
                         {{-- MASTER DATA --}}
@@ -205,30 +205,30 @@
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('masterdatapegawai')}}">
-                                    Master Data Pegawai
+                                <a class="nav-link" href="invoice.html">
+                                    Master Gaji Pokok
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatajabatan')}}">
-                                    Master Jabatan
+                                <a class="nav-link" href="invoice.html">
+                                    Master Tunjangan
                                 </a>
                             </nav>
                         </div>
 
                         {{-- INVENTORY SYSTEM --}}
                         {{-- Inventory System Side Bar --}}
-                        <div class="sidenav-menu-heading">Aktivitas Pegawai</div>
+                        <div class="sidenav-menu-heading">Penggajian</div>
 
                         {{-- Inventory --}}
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-briefcase"></i></div>
-                            Absensi Pegawai
+                            Penggajian
                             <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
                                 <a class="nav-link " href="invoice.html">
-                                    Absensi Pegawai
+                                    Gaji Pegawai
                                 </a>
                                 <a class="nav-link " href="invoice.html">
                                     Laporan Absensi
