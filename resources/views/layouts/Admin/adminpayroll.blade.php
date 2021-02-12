@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - Kepegawaian</title>
+    <title>Payroll System</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
@@ -26,7 +26,7 @@
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="{{ route('dashboardpegawai')}}"> <i class="fas fa-hand-holding-usd mr-3"></i>Payroll</a>
+        <a class="navbar-brand" href="{{ route('dashboardpayroll')}}"><i class="fas fa-calculator mr-3"></i>Payroll</a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
                 data-feather="menu"></i></button>
 
@@ -165,7 +165,7 @@
                         <div class="dropdown-item-icon"><i class="fas fa-user"></i></div>
                         Sistem Kepegawaian
                     </a>
-                    <a class="dropdown-item" href="">
+                    <a class="dropdown-item" href="{{ route('dashboardaccounting') }}">
                         <div class="dropdown-item-icon"><i class="fas fa-calculator"></i></div>
                         Sistem Accounting
                     </a>
@@ -190,7 +190,7 @@
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
                         <a class="nav-link" href="{{ route('dashboardpayroll') }}">
-                            <div class="nav-link-icon"><i class="fas fa-user"></i></div>
+                            <div class="nav-link-icon"><i class="fas fa-money-bill-wave-alt"></i></div>
                             Dashboard Payroll
                         </a>
 
@@ -205,10 +205,10 @@
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="invoice.html">
+                                <a class="nav-link" href="{{ route('masterdatagajipokok') }}">
                                     Master Gaji Pokok
                                 </a>
-                                <a class="nav-link" href="invoice.html">
+                                <a class="nav-link" href="{{ route('masterdatatunjangan') }}">
                                     Master Tunjangan
                                 </a>
                             </nav>

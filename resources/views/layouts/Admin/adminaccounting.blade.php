@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Inventory System</title>
+    <title>Accounting System</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
@@ -21,27 +21,20 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ url('/node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
-    {{-- <link rel="stylesheet" type="text/css" href="{{ url('/data_tables/datatables.css') }}">
-    <script type="text/javascript" charset="utf8" src="{{ url('/data_tables/datatables.js') }}"></script> --}}
-
-
 
 </head>
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="{{ route('dashboardinventory')}}">
-            <i class="fas fa-boxes mr-3"></i>
-            Inventory System
-        </a>
+        <a class="navbar-brand" href="{{ route('dashboardaccounting')}}"> <i class="fas fa-hand-holding-usd mr-3"></i>Accounting</a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
                 data-feather="menu"></i></button>
+
         <div class="small">
             <i class="fa fa-cogs" aria-hidden="true"></i>
             Bengkel
             <span class="font-weight-500 text-primary">Adi Jaya</span>
         </div>
-        </form>
         <ul class="navbar-nav align-items-center ml-auto">
             <li class="nav-item dropdown no-caret mr-3 d-md-none">
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="searchDropdown" href="#" role="button"
@@ -68,7 +61,7 @@
                     aria-labelledby="navbarDropdownAlerts">
                     <h6 class="dropdown-header dropdown-notifications-header">
                         <i class="mr-2" data-feather="bell"></i>
-                        Pemberitahuan
+                        Alerts Center
                     </h6>
                     <a class="dropdown-item dropdown-notifications-item" href="#!">
                         <div class="dropdown-notifications-item-icon bg-warning"><i data-feather="activity"></i></div>
@@ -164,17 +157,17 @@
                         <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                         Account
                     </a>
+                    <a class="dropdown-item" href="{{ route('dashboardinventory') }}">
+                        <div class="dropdown-item-icon"> <i class="fas fa-cubes"></i></div>
+                        Sistem Inventory
+                    </a>
                     <a class="dropdown-item" href="{{ route('dashboardpegawai') }}">
                         <div class="dropdown-item-icon"><i class="fas fa-user"></i></div>
                         Sistem Kepegawaian
                     </a>
                     <a class="dropdown-item" href="{{ route('dashboardpayroll') }}">
-                        <div class="dropdown-item-icon"><i class="fas fa-wallet"></i></div>
-                        Sistem Payroll
-                    </a>
-                    <a class="dropdown-item" href="{{ route('dashboardaccounting') }}">
                         <div class="dropdown-item-icon"><i class="fas fa-calculator"></i></div>
-                        Sistem Accounting
+                        Sistem Payroll
                     </a>
                     <a class="dropdown-item" href="#!">
                         <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
@@ -196,9 +189,9 @@
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardinventory')}}">
-                            <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
-                            Dashboard
+                        <a class="nav-link" href="">
+                            <div class="nav-link-icon"><i class="fas fa-money-check-alt"></i></div>
+                            Dashboard Accunting
                         </a>
 
                         {{-- MASTER DATA --}}
@@ -208,78 +201,49 @@
                             data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
                             Master Data
-                            <div class="sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
+                            <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('masterdatasparepart')}}">
-                                    Sparepart
+                                <a class="nav-link" href="invoice.html">
+                                    Master Akun
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
-                                    Merk Sparepart
+                                <a class="nav-link" href="invoice.html">
+                                    Master Kelas Akun
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatajenissparepart')}}">
-                                    Jenis Sparepart
+                                <a class="nav-link" href="{{ Route('masterdatafop') }}">
+                                    Master FOP
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatasupplier')}}">
-                                    Supplier
-                                </a>
-                                <a class="nav-link" href="{{ route('masterdatahargasparepart')}}">
-                                    Harga Sparepart
-                                </a>
-                                <a class="nav-link" href="{{ route('masterdatarak')}}">
-                                    Rak
-                                </a>
-                                <a class="nav-link" href="{{ route('masterdatakonversi')}}">
-                                    Konversi
+                                <a class="nav-link" href="invoice.html">
+                                    Master Account Bank
                                 </a>
                             </nav>
                         </div>
 
-                        {{-- INVENTORY SYSTEM --}}
-                        {{-- Inventory System Side Bar --}}
-                        <div class="sidenav-menu-heading">Inventory System</div>
 
-                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                            data-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
-                            <div class="nav-link-icon">
-                                <i class="fas fa-cubes"></i>
-                            </div>
-                            Kelola Stock
-                            <div class="sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
-                        </a>
-
-                        <div class="collapse" id="collapseUtilities" data-parent="#accordionSidenav" style="">
-                            <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link" href="invoice.html">
-                                    Stock Sparepart
-                                </a>
-                                <a class="nav-link" href="invoice.html">
-                                    Stock Opname
-                                </a>
-                                <a class="nav-link" href="invoice.html">
-                                    Kartu Gudang
-                                </a>
-                            </nav>
-                        </div>
-
-                        {{-- Inventory --}}
+                        <div class="sidenav-menu-heading">Account</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
-                            Purchasing
-                            <div class="sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
+                            <div class="nav-link-icon"><i class="fas fa-briefcase"></i></div>
+                            Payable
+                            <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
                                 <a class="nav-link " href="invoice.html">
-                                    Purchase Order
+                                    Pencatatan Invoice
+                                </a>
+                                <a class="nav-link " href="invoice.html">
+                                    PRF
+                                </a>
+                                <a class="nav-link " href="invoice.html">
+                                    Gaji Karyawan
+                                </a>
+                                <a class="nav-link " href="invoice.html">
+                                    Pajak
+                                </a>
+                                <a class="nav-link " href="invoice.html">
+                                    Approve PRF
                                 </a>
                             </nav>
                         </div>
@@ -287,7 +251,7 @@
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
                             <div class="nav-link-icon"><i class="fas fa-box-open"></i></div>
-                            Receiving
+                            Receiveable
                             <div class="sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
@@ -295,56 +259,50 @@
                         <div class="collapse" id="collapseComponents" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav">
                                 <a class="nav-link " href="invoice.html">
-                                    Receiving
-                                </a>
-                                <a class="nav-link" href="invoice.html">
-                                    Retur Pembelian
+                                    Pemasukan dan Piutang
                                 </a>
                             </nav>
                         </div>
 
-                        {{-- Approval --}}
+                        <div class="sidenav-menu-heading">Jurnal dan Laporan</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
                             <div class="nav-link-icon"><i data-feather="check-square"></i></div>
-                            Approval
+                            Jurnal
                             <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseFlows" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav">
                                 <a class="nav-link " href="invoice.html">
-                                    Purchase Order
+                                    Jurnal Harian
                                 </a>
                                 <a class="nav-link " href="invoice.html">
-                                    Purchase Order AP
+                                    Jurnal Pemasukan
                                 </a>
                                 <a class="nav-link" href="invoice.html">
-                                    Stock Opname
+                                    Jurnal Pengeluaran
                                 </a>
                             </nav>
                         </div>
 
-                        {{-- MANAJEMEN ASET --}}
-                        {{-- Manajemen Aset Side Bar --}}
-                        <div class="sidenav-menu-heading">Marketplace</div>
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                                data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
-                                Data Penjualan
-                                <div class="sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down">
-                                    </i></div>
-                            </a>
+                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                            data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
+                            Laporan
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down">
+                                </i></div>
+                        </a>
                         <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
                                 <a class="nav-link" href="invoice.html">
-                                    Penjualan
+                                    Laba Rugi
                                 </a>
                             </nav>
                         </div>
+
                     </div>
                 </div>
-
                 {{-- USER ROLE Side Bar --}}
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
@@ -367,7 +325,7 @@
             <footer class="footer mt-auto footer-light">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6 small">Copyright &copy; SISTEM BENGKEL INVENTORY</div>
+                        <div class="col-md-6 small">Copyright &copy; Your Website 2020</div>
                         <div class="col-md-6 text-md-right small">
                             <a href="#!">Privacy Policy</a>
                             &middot;
@@ -378,7 +336,6 @@
             </footer>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
@@ -394,7 +351,6 @@
     <script src="{{ url('/backend/dist/assets/demo/datatables-demo.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-
 
 
 </body>

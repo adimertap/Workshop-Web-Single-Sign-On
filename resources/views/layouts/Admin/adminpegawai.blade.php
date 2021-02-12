@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - Kepegawaian</title>
+    <title>Kepegawaian System</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
@@ -165,7 +165,7 @@
                         <div class="dropdown-item-icon"><i class="fas fa-wallet"></i></div>
                         Sistem Payroll
                     </a>
-                    <a class="dropdown-item" href="">
+                    <a class="dropdown-item" href="{{ route('dashboardaccounting') }}">
                         <div class="dropdown-item-icon"><i class="fas fa-calculator"></i></div>
                         Sistem Accounting
                     </a>

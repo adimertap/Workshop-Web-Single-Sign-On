@@ -136,3 +136,46 @@ Route::prefix('payroll')
         Route::get('/', 'DashboardpayrollController@index')
             ->name('dashboardpayroll');
     });
+
+// MASTER DATA
+Route::prefix('payroll/masterdatagajipokok')
+->namespace('Payroll\Masterdata')
+->group(function() {
+    Route::get('/', 'MasterdatagajipokokController@index')
+        ->name('masterdatagajipokok');
+
+    Route::resource('gaji-pokok', 'MasterdatagajipokokController');
+});
+
+Route::prefix('payroll/masterdatatunjangan')
+->namespace('Payroll\Masterdata')
+->group(function() {
+    Route::get('/', 'MasterdatatunjanganController@index')
+        ->name('masterdatatunjangan');
+
+    Route::resource('tunjangan', 'MasterdatatunjanganController');
+});
+
+
+
+
+
+// ------------------------------------------------------------------------------------------------------------------------- 
+// MODUL ACCOUNTING
+// DASHBOARD
+Route::prefix('accounting')
+    ->namespace('Accounting')
+    ->group(function() {
+        Route::get('/', 'DashboardaccountingController@index')
+            ->name('dashboardaccounting');
+    });
+
+// MASTER DATA
+Route::prefix('accounting/masterdatafop')
+->namespace('Accounting\Masterdata')
+->group(function() {
+    Route::get('/', 'MasterdatafopController@index')
+        ->name('masterdatafop');
+
+    Route::resource('fop', 'MasterdatafopController');
+});
