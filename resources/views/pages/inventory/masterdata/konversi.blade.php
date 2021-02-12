@@ -118,20 +118,15 @@
                     <div class="form-group">
                         <label class="small mb-1" for="satuan">Satuan Konversi</label>
                         <input class="form-control" name="satuan" type="text" id="satuan"
-                            placeholder="Input Satuan Konversi" value="{{ old('satuan') }}"></input>
+                            placeholder="Input Satuan Konversi" value="{{ old('satuan') }}"
+                            class="form-control @error('satuan') is-invalid @enderror"></input>
+                            @error('satuan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                     </div>
                 </div>
 
                 {{-- Validasi Error --}}
                 @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>Error</strong>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
                 @endif
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>

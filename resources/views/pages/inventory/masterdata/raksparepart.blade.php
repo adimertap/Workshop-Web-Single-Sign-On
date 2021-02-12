@@ -127,34 +127,35 @@
                     <div class="form-group">
                         <label class="small mb-1" for="kode_rak">Kode Rak</label>
                         <input class="form-control" name="kode_rak" type="text" id="kode_rak"
-                            placeholder="Input Kode Rak" value="{{ old('kode_rak') }}">
+                            placeholder="Input Kode Rak" value="{{ old('kode_rak') }}"
+                            class="form-control @error('kode_rak') is-invalid @enderror">
+                        @error('kode_rak')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="nama_rak">Nama Rak</label>
                         <input class="form-control" name="nama_rak" type="text" id="nama_rak"
-                            placeholder="Input Nama Rak" value="{{ old('nama_rak') }}"></input>
+                            placeholder="Input Nama Rak" value="{{ old('nama_rak') }}"
+                            class="form-control @error('nama_rak') is-invalid @enderror"></input>
+                        @error('nama_rak')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="jenis_rak">Jenis Rak</label>
-                        <select name="jenis_rak" id="jenis_rak" class="form-control">
+                        <select name="jenis_rak" id="jenis_rak" class="form-control"
+                            class="form-control @error('jenis_rak') is-invalid @enderror">
                             <option value="{{ old('jenis_rak')}}"> Pilih Jenis Rak</option>
                             <option value="Fast Moving">Fast Moving</option>
                             <option value="Slow Moving">Slow Moving</option>
                             <option value="Sales">Sales</option>
                         </select>
+                        @error('jenis_rak')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
                 </div>
 
                 {{-- Validasi Error --}}
                 @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>Error</strong>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
                 @endif
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -238,9 +239,9 @@
         </div>
     </div>
 </div>
-    
+
 @empty
-    
+
 @endforelse
 
 </main>

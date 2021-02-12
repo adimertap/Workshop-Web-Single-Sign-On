@@ -74,13 +74,11 @@
                                             <td>{{ $item->nama_fop }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modaledit-{{ $item->id_fop }}">
+                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_fop }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modalhapus-{{ $item->id_fop }}">
+                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_fop }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -122,20 +120,15 @@
                         <div class="form-group">
                             <label class="small mb-1" for="nama_fop">Nama Form of Payment</label>
                             <input class="form-control" name="nama_fop" type="text" id="nama_fop"
-                                placeholder="Input Nama FOP" value="{{ old('nama_fop') }}"></input>
+                                placeholder="Input Nama FOP" value="{{ old('nama_fop') }}"
+                                class="form-control @error('nama_fop') is-invalid @enderror" />
+                            @error('nama_fop')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                     </div>
 
                     {{-- Validasi Error --}}
                     @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Error</strong>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
                     @endif
 
                     <div class="modal-footer">

@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-cog"></i></div>
-                            Tambah Data Sparepart
+                            Edit Data Sparepart
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
@@ -43,76 +43,71 @@
             <div class="card-body">
                 <div class="tab-content" id="cardTabContent">
                     <!-- Wizard tab pane item 1-->
-                    <div class="tab-pane py-2 py-xl-2 fade show active" id="wizard1" role="tabpanel"
+                    <div class="tab-pane py-5 py-xl-5 fade show active" id="wizard1" role="tabpanel"
                         aria-labelledby="wizard1-tab">
                         <div class="row justify-content-center">
-                            <div class="col-xxl-6 col-xl-9">
-                                <h3 class="text-primary">Sparepart</h3>
-                                <h5 class="card-title">Input Formulir Sparepart</h5>
+                            <div class="col-xxl-6 col-xl-8">
+                                <h3 class="text-primary">Step 1</h3>
+                                <h5 class="card-title">Input Formulir Identitas Diri</h5>
                                 <form action="{{ route('sparepart.store') }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="kode_sparepart">Kode Sparepart</label>
-                                            <input class="form-control" id="kode_sparepart" type="text"
-                                                name="kode_sparepart" placeholder="Input Kode Sparepart"
-                                                class="form-control @error('kode_sparepart') is-invalid @enderror" />
-                                            @error('kode_sparepart')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
+                                            <input class="form-control" id="kode_sparepart" type="text" name="kode_sparepart"
+                                                value="{{ $item->kode_sparepart }}" />
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="nama_sparepart">Nama Sparepart</label>
-                                            <input class="form-control" id="nama_sparepart" type="text"
-                                                name="nama_sparepart" placeholder="Input Nama Sparepart"
-                                                class="form-control @error('nama_sparepart') is-invalid @enderror" />
-                                            @error('nama_sparepart')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
+                                            <input class="form-control" id="nama_sparepart" type="text" name="nama_sparepart"
+                                            value="{{ $item->nama_sparepart }}"  />
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
-                                            <select class="form-control" name="id_jenis_sparepart"
-                                                class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
-                                                id="id_jenis_sparepart">
-                                                <option>Pilih Jenis</option>
+                                            <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart">
+                                                <option value="{{ $item->Jenissparepart->jenis_sparepart }}">{{ $item->Jenissparepart->jenis_sparepart }}</option>
                                                 @foreach ($jenis_sparepart as $item)
-                                                <option value="{{ $item->id_jenis_sparepart }}">
-                                                    {{ $item->jenis_sparepart }}
+                                                    <option value="{{ $item->id_jenis_spareaprt }}">{{ $item->jenis_sparepart }}
                                                 </option>
                                                 @endforeach
                                             </select>
-                                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div> 
-                                           
-                                            <div class="form-group col-md-6">
-                                                <label class="small mb-1" for="id_merk">Merk Sparepart</label>
-                                                <select class="form-control" name="id_merk" id="id_merk"
-                                                    class="form-control @error('id_merk') is-invalid @enderror">
-                                                    <option>Pilih Merk</option>
-                                                    @foreach ($merk_sparepart as $item)
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1" for="id_merk">Merk Sparepart</label>
+                                            <select class="form-control" name="id_merk" id="id_merk">
+                                                <option value="{{ $item->Merksparepart->merk_sparepart }}">{{ $item->Merksparepart->merk_sparepart }}</option>
+                                                @foreach ($merk_sparepart as $item)
                                                     <option value="{{ $item->id_merk }}">{{ $item->merk_sparepart }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                                @error('id_merk')<div class="text-danger small mb-1">{{ $message }}
-                                                </div> @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="id_konversi">Konversi Satuan</label>
-                                            <select class="form-control" name="id_konversi" id="id_konversi"
-                                                class="form-control @error('id_konversi') is-invalid @enderror">
-                                                <option>Pilih Satuan</option>
-                                                @foreach ($konversi as $item)
-                                                <option value="{{ $item->id_konversi }}">{{ $item->satuan }}
                                                 </option>
                                                 @endforeach
                                             </select>
-                                            @error('id_konversi')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="id_konversi">Konversi Satuan</label>
+                                        <select class="form-control" name="id_konversi" id="id_konversi">
+                                            <option value="{{ $item->Konversi->satuan }}">{{ $item->Konversi->satuan }}</option>
+                                            @foreach ($konversi as $item)
+                                            <option value="{{ $item->id_konversi }}">{{ $item->satuan }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    
+                                    {{-- Validasi Error --}}
+                                    @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        <strong>Error</strong>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
+
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
                                         <button class="btn btn-light" type="button">Previous</button>

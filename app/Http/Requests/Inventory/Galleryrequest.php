@@ -4,7 +4,7 @@ namespace App\Http\Requests\Inventory;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Sparepartrequest extends FormRequest
+class Galleryrequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,8 @@ class Sparepartrequest extends FormRequest
     public function rules()
     {
         return [
-            'id_jenis_sparepart' => 'required|exists:tb_inventory_master_jenis_sparepart,id_jenis_sparepart',
-            'id_merk' => 'required|exists:tb_inventory_master_merk_sparepart,id_merk',
-            'id_konversi' => 'required|exists:tb_inventory_master_konversi,id_konversi',
-            'kode_sparepart' => 'required',
-            'nama_sparepart' => 'required',
+            'id_sparepart' => 'required|integer|exists:tb_inventory_master_sparepart,id_sparepart',
+            'gambar' => 'required|image'
         ];
     }
 }

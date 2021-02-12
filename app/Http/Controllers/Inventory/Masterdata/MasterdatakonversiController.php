@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Konversirequest;
 use App\Model\Inventory\Konversi;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class MasterdatakonversiController extends Controller
 {
     /**
@@ -39,12 +39,11 @@ class MasterdatakonversiController extends Controller
      */
     public function store(Konversirequest $request)
     {
-        $konversi = new Konversi;
-        $konversi->satuan = $request->satuan;
-        // $rak=Rak::all()
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->satuan);
 
-        $konversi->save();
-        return redirect()->back()->with('messageberhasil','Data Satuan Berhasil ditambahkan');
+        Konversi::create($data);
+        return redirect()->route('konversi.index')->with('messageberhasil','Data Konversi Satuan Berhasil ditambahkan');
     }
 
     /**

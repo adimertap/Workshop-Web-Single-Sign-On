@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Jenissparepartrequest;
 use App\Http\Requests\Inventory\Merksparepartrequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class MasterdatajenissparepartController extends Controller
 {
@@ -43,12 +44,11 @@ class MasterdatajenissparepartController extends Controller
      */
     public function store(Jenissparepartrequest $request)
     {
-        $jenissparepart = new Jenissparepart;
-        $jenissparepart->jenis_sparepart = $request->jenis_sparepart;
-        $jenissparepart->keterangan = $request->keterangan;
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->jenis_sparepart);
 
-        $jenissparepart->save();
-        return redirect()->back()->with('messageberhasil','Data Jenis Sparepart Berhasil ditambahkan');
+        Jenissparepart::create($data);
+        return redirect()->route('jenis-sparepart.index')->with('messageberhasil','Data Jenis Sparepart Berhasil ditambahkan');
     }
 
     /**

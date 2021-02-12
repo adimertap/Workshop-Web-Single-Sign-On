@@ -116,12 +116,15 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="id_sparepart">Sparepart</label>
-                            <select class="form-control" name="id_sparepart" id="id_sparepart">
+                            <select class="form-control" name="id_sparepart" id="id_sparepart"
+                            class="form-control @error('id_sparepart') is-invalid @enderror">
                                 <option> Pilih Sparepart</option>
                                 @foreach ($sparepart as $item)
                                 <option value="{{ $item->id_sparepart }}">{{ $item->nama_sparepart }}</option>
                                 @endforeach
                             </select>
+                            @error('id_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="id_merk">Merk Sparepart</label>
@@ -134,34 +137,34 @@
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="id_supplier">Supplier</label>
-                        <select class="form-control" name="id_supplier" id="id_supplier">
+                        <select class="form-control" name="id_supplier" id="id_supplier"
+                        class="form-control @error('id_supplier') is-invalid @enderror">
                             <option> Pilih Supplier</option>
                             @foreach ($supplier as $item)
                             <option value="{{ $item->id_supplier }}">{{ $item->nama_supplier }}</option>
                             @endforeach
                         </select>
+                        @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="harga_beli"> Harga Beli </label>
                         <input class="form-control" name="harga_beli" type="number" id="harga_beli"
-                            placeholder="Input Harga Beli" value="{{ old('harga_beli') }}">
+                            placeholder="Input Harga Beli" value="{{ old('harga_beli') }}"
+                            class="form-control @error('harga_beli') is-invalid @enderror">
+                            @error('harga_beli')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="harga_jual"> Atur Harga Jual </label>
                         <input class="form-control" name="harga_jual" type="number" id="harga_jual"
-                            placeholder="Input Harga Jual" value="{{ old('harga_jual') }}">
+                            placeholder="Input Harga Jual" value="{{ old('harga_jual') }}"
+                            class="form-control @error('harga_jual') is-invalid @enderror">
+                            @error('harga_jual')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                     </div>
-
                     {{-- Validasi Error --}}
                     @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Error</strong>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
                     @endif
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>

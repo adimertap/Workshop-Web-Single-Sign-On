@@ -45,20 +45,11 @@ class MasterdatamerksparepartController extends Controller
      */
     public function store(Merksparepartrequest $request)
     {
-        // Cek nilai store
-        // dd($request->all());
-        
-        // Cara 1 Seleksi Per-Field
-        $merksparepart = new Merksparepart;
-        $merksparepart->kode_merk = $request->kode_merk;
-        $merksparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
-        $merksparepart->merk_sparepart = $request->merk_sparepart;
-       
-        $merksparepart->save(); 
-        return redirect()->back()->with('messageberhasil','Data Merk Berhasil ditambahkan');
-        
-        // Cara 2 Agar Semua Field Langsung Terisi
-        // Merksparepart::create($request->all());
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->merk_sparepart);
+
+        Merksparepart::create($data);
+        return redirect()->route('merk-sparepart.index')->with('messageberhasil','Data Merk Sparepart Berhasil ditambahkan');
     }
 
     /**

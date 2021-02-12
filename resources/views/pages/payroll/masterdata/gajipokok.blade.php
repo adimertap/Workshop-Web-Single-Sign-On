@@ -125,30 +125,28 @@
                         </hr>
                         <div class="form-group">
                             <label class="small mb-1" for="id_jabatan">Pilih Jabatan</label>
-                            <select class="form-control" name="id_jabatan" id="id_jabatan">
+                            <select class="form-control" name="id_jabatan" id="id_jabatan"
+                            class="form-control @error('id_jabatan') is-invalid @enderror">
                                 <option>Pilih Jabatan</option>
                                 @foreach ($jabatan as $item)
                                 <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}</option>
                                 @endforeach
                             </select>
+                            @error('id_jabatan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="besaran_gaji">Besaran Gaji</label>
-                            <textarea class="form-control" name="besaran_gaji" type="number" id="besaran_gaji"
-                                placeholder="Input Besaran Gaji" value="{{ old('besaran_gaji') }}"></textarea>
+                            <input class="form-control" name="besaran_gaji" type="number" id="besaran_gaji"
+                                placeholder="Input Besaran Gaji" value="{{ old('besaran_gaji') }}"
+                                class="form-control @error('besaran_gaji') is-invalid @enderror" />
+                            @error('besaran_gaji')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                     </div>
 
                     {{-- Validasi Error --}}
                     @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Error</strong>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
                     @endif
 
                     <div class="modal-footer">
@@ -186,7 +184,8 @@
                         <div class="form-group">
                             <label class="small mb-1" for="id_jabatan">Jabatan</label>
                             <select class="form-control" name="id_jabatan" id="id_jabatan" readonly>
-                                <option value="{{ $item->jabatan->nama_jabatan }}">{{ $item->jabatan->nama_jabatan }}</option>
+                                <option value="{{ $item->jabatan->nama_jabatan }}">{{ $item->jabatan->nama_jabatan }}
+                                </option>
                                 @foreach ($jabatan as $item)
                                 <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}</option>
                                 @endforeach

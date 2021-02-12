@@ -144,64 +144,78 @@
                     </hr>
                     {{-- Validasi Error --}}
                     @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Error</strong>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <hr>
-                    </hr>
                     @endif
 
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="kode_supplier">Kode Supplier</label>
                             <input class="form-control" name="kode_supplier" type="text" id="kode_supplier"
-                                placeholder="Input Kode Supplier" value="{{ old('kode_supplier') }}">
+                                placeholder="Input Kode Supplier" value="{{ old('kode_supplier') }}"
+                                class="form-control @error('kode_supplier') is-invalid @enderror">
+                                @error('kode_supplier')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="nama_supplier">Nama Supplier</label>
                             <input class="form-control" name="nama_supplier" type="text" id="nama_supplier"
-                                placeholder="Input Nama Supplier" value="{{ old('nama_supplier') }}"></input>
+                                placeholder="Input Nama Supplier" value="{{ old('nama_supplier') }}"
+                                class="form-control @error('nama_supplier') is-invalid @enderror"></input>
+                                @error('nama_supplier')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="nama_sales">Nama Sales</label>
                             <input class="form-control" name="nama_sales" type="text" id="nama_sales"
-                                placeholder="Input Nama Sales" value="{{ old('nama_sales') }}">
+                                placeholder="Input Nama Sales" value="{{ old('nama_sales') }}"
+                                class="form-control @error('nama_sales') is-invalid @enderror">
+                                @error('nama_sales')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="email">Email</label>
                             <input class="form-control" name="email" type="text" id="email"
-                                placeholder="Input Email Supplier" value="{{ old('email') }}"></input>
+                                placeholder="Input Email Supplier" value="{{ old('email') }}"
+                                class="form-control @error('email') is-invalid @enderror"></input>
+                                @error('email')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="telephone">Telephone</label>
                             <input class="form-control" name="telephone" type="number" id="telephone"
-                                placeholder="Input Nomor Telephone" value="{{ old('telephone') }}">
+                                placeholder="Input Nomor Telephone" value="{{ old('telephone') }}"
+                                class="form-control @error('telephone') is-invalid @enderror">
+                                @error('telephone')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="rekening_supplier">Nomor Rekening</label>
                             <input class="form-control" name="rekening_supplier" type="number" id="rekening_supplier"
-                                placeholder="Input Nomor Rekening" value="{{ old('rekening_supplier') }}"></input>
+                                placeholder="Input Nomor Rekening" value="{{ old('rekening_supplier') }}"
+                                class="form-control @error('rekening_supplier') is-invalid @enderror"></input>
+                                @error('rekening_supplier')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="alamat_supplier">Alamat Supplier</label>
                             <input class="form-control" name="alamat_supplier" type="text" id="alamat_supplier"
-                                placeholder="Input Alamat Supplier" value="{{ old('alamat_supplier') }}">
+                                placeholder="Input Alamat Supplier" value="{{ old('alamat_supplier') }}"
+                                class="form-control @error('alamat_supplier') is-invalid @enderror">
+                                @error('alamat_supplier')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="kode_pos">Kode Pos</label>
                             <input class="form-control" name="kode_pos" type="number" id="kode_pos"
-                                placeholder="Input Kode Pos" value="{{ old('kode_pos') }}"></input>
+                                placeholder="Input Kode Pos" value="{{ old('kode_pos') }}"
+                                class="form-control @error('kode_pos') is-invalid @enderror"></input>
+                                @error('kode_pos')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
                         </div>
                     </div>
                 </div>

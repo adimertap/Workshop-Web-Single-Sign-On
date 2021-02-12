@@ -3,9 +3,12 @@
 namespace App\Model\Kepegawaian;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pegawai extends Model
 {
+    use SoftDeletes;
+
     protected $table = "tb_kepeg_master_pegawai";
 
     protected $primaryKey = 'id_pegawai';

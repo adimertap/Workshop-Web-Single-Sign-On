@@ -206,16 +206,16 @@
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                                 <a class="nav-link" href="invoice.html">
-                                    Master Akun
+                                    Akun
                                 </a>
                                 <a class="nav-link" href="invoice.html">
-                                    Master Kelas Akun
+                                    Jenis Transaksi
                                 </a>
                                 <a class="nav-link" href="{{ Route('masterdatafop') }}">
-                                    Master FOP
+                                    FOP
                                 </a>
                                 <a class="nav-link" href="{{ route('masterdatabankaccount') }}">
-                                    Master Account Bank
+                                    Account Bank
                                 </a>
                             </nav>
                         </div>

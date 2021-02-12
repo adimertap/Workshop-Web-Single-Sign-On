@@ -130,30 +130,31 @@
                         <div class="form-group">
                             <label class="small mb-1" for="nama_tunjangan">Nama Tunjangan</label>
                             <input class="form-control" name="nama_tunjangan" type="text" id="nama_tunjangan"
-                                placeholder="Input Nama Tunjangan" value="{{ old('nama_tunjangan') }}"></input>
+                                placeholder="Input Nama Tunjangan" value="{{ old('nama_tunjangan') }}"
+                                class="form-control @error('nama_tunjangan') is-invalid @enderror" />
+                            @error('nama_tunjangan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="jumlah_tunjangan">Besaran Tunjangan</label>
                             <input class="form-control" name="jumlah_tunjangan" type="number" id="jumlah_tunjangan"
-                                placeholder="Input Besaran Tunjangan" value="{{ old('jumlah_tunjangan') }}"></input>
+                                placeholder="Input Besaran Tunjangan" value="{{ old('jumlah_tunjangan') }}"
+                                class="form-control @error('jumlah_tunjangan') is-invalid @enderror" />
+                            @error('jumlah_tunjangan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="keterangan">Keterangan</label>
                             <input class="form-control" name="keterangan" type="text" id="keterangan"
-                                placeholder="Input Keterangan" value="{{ old('keterangan') }}"></input>
+                                placeholder="Input Keterangan" value="{{ old('keterangan') }}"
+                                class="form-control @error('keterangan') is-invalid @enderror" />
+                            @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                     </div>
 
                     {{-- Validasi Error --}}
                     @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Error</strong>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
                     @endif
 
                     <div class="modal-footer">
@@ -186,7 +187,7 @@
                         <div class="form-group">
                             <label class="small mb-1" for="nama_tunjangan">Nama Tunjangan</label>
                             <input class="form-control" name="nama_tunjangan" type="text" id="nama_tunjangan"
-                                 value="{{ $item->nama_tunjangan }}"></input>
+                                value="{{ $item->nama_tunjangan }}"></input>
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="jumlah_tunjangan">Besaran Tunjangan</label>
@@ -225,7 +226,8 @@
                 <form action="{{ route('tunjangan.destroy', $item->id_tunjangan) }}" method="POST" class="d-inline">
                     @csrf
                     @method('delete')
-                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Tunjangan {{ $item->nama_tunjangan }} ?</div>
+                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Tunjangan {{ $item->nama_tunjangan }} ?
+                    </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                         <button class="btn btn-danger" type="submit">Ya! Hapus</button>

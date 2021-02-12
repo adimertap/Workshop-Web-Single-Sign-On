@@ -127,36 +127,37 @@
                         <div class="form-group">
                             <label class="small mb-1" for="kode_merk">Kode Merk</label>
                             <input class="form-control" name="kode_merk" type="text" id="kode_merk"
-                                placeholder="Input Kode Merk" value="{{ old('kode_merk') }}">
+                                placeholder="Input Kode Merk" value="{{ old('kode_merk') }}"
+                                class="form-control @error('kode_merk') is-invalid @enderror">
+                            @error('kode_merk')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
-                            <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart">
-                                <option>Pilih Jenis Sparepart</option>
+                            <select class="form-control" name="id_jenis_sparepart"
+                                class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
+                                id="id_jenis_sparepart">
+                                <option>Pilih Jenis</option>
                                 @foreach ($jenis_sparepart as $item)
-                                <option value="{{ $item->id_jenis_sparepart }}">{{ $item->jenis_sparepart }}</option>
+                                <option value="{{ $item->id_jenis_sparepart }}">
+                                    {{ $item->jenis_sparepart }}
+                                </option>
                                 @endforeach
                             </select>
+                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="merk_sparepart">Merk Sparepart</label>
-                            <textarea class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
-                                placeholder="Input Merk" value="{{ old('merk_sparepart') }}"></textarea>
+                            <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
+                                placeholder="Input Merk" value="{{ old('merk_sparepart') }}"
+                                class="form-control @error('merk_sparepart') is-invalid @enderror"></input>
+                            @error('merk_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                     </div>
-
-                    {{-- Validasi Error --}}
                     @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Error</strong>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
                     @endif
-
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                         <button class="btn btn-primary" type="Submit">Tambah</button>
@@ -197,7 +198,8 @@
                         <div class="form-group">
                             <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
                             <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart">
-                                <option value="{{ $item->jenissparepart->jenis_sparepart }}">{{ $item->jenissparepart->jenis_sparepart }}</option>
+                                <option value="{{ $item->jenissparepart->jenis_sparepart }}">
+                                    {{ $item->jenissparepart->jenis_sparepart }}</option>
                                 @foreach ($jenis_sparepart as $item)
                                 <option value="{{ $item->id_jenis_sparepart }}">
                                     {{ $item->jenis_sparepart }}</option>
@@ -243,7 +245,6 @@
     @empty
 
     @endforelse
-
 
 </main>
 

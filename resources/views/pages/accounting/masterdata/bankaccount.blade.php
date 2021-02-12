@@ -138,44 +138,51 @@
                         <div class="form-group">
                             <label class="small mb-1" for="nama_bank">Nama Bank</label>
                             <input class="form-control" name="nama_bank" type="text" id="nama_bank"
-                                placeholder="Input Nama Bank" value="{{ old('nama_bank') }}"></input>
+                                placeholder="Input Nama Bank" value="{{ old('nama_bank') }}"
+                                class="form-control @error('nama_bank') is-invalid @enderror" />
+                            @error('nama_bank')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="nama_account">Nama Account</label>
                             <input class="form-control" name="nama_account" type="text" id="nama_account"
-                                placeholder="Input Nama Account Bank" value="{{ old('nama_account') }}"></input>
+                                placeholder="Input Nama Account Bank" value="{{ old('nama_account') }}"
+                                class="form-control @error('nama_account') is-invalid @enderror" />
+                            @error('nama_account')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="jenis_account">Jenis Account Bank</label>
-                            <select name="jenis_account" id="jenis_account" class="form-control">
+                            <select name="jenis_account" id="jenis_account" class="form-control"
+                                class="form-control @error('jenis_account') is-invalid @enderror">
                                 <option value="{{ old('jenis_account')}}">Pilih Jenis Account
                                 </option>
                                 <option value="Utang">Account Untuk Utang</option>
                                 <option value="Piutang">Account Untuk Piutang</option>
                             </select>
+                            @error('jenis_account')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="nomor_rekening">Nomor Rekening</label>
                             <input class="form-control" name="nomor_rekening" type="number" id="nomor_rekening"
-                                placeholder="Input Nomor Rekening" value="{{ old('nomor_rekening') }}"></input>
+                                placeholder="Input Nomor Rekening" value="{{ old('nomor_rekening') }}"
+                                class="form-control @error('nomor_rekening') is-invalid @enderror" />
+                            @error('nomor_rekening')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="alamat_account">Alamat Account</label>
                             <input class="form-control" name="alamat_account" type="text" id="alamat_account"
-                                placeholder="Input Alamat Account" value="{{ old('alamat_account') }}"></input>
+                                placeholder="Input Alamat Account" value="{{ old('alamat_account') }}"
+                                class="form-control @error('alamat_account') is-invalid @enderror" />
+                            @error('alamat_account')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                     </div>
 
                     {{-- Validasi Error --}}
                     @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Error</strong>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
                     @endif
 
                     <div class="modal-footer">

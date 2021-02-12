@@ -5,7 +5,7 @@ use App\Http\Requests\Inventory\Supplierrequest;
 use App\Model\Inventory\Supplier;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class MasterdatasupplierController extends Controller
 {
     /**
@@ -39,18 +39,11 @@ class MasterdatasupplierController extends Controller
      */
     public function store(Supplierrequest $request)
     {
-        $supplier = new Supplier;
-        $supplier->kode_supplier = $request->kode_supplier;
-        $supplier->nama_supplier = $request->nama_supplier;
-        $supplier->telephone = $request->telephone;
-        $supplier->alamat_supplier = $request->alamat_supplier;
-        $supplier->rekening_supplier = $request->rekening_supplier;
-        $supplier->email = $request->email;
-        $supplier->kode_pos = $request->kode_pos;
-        $supplier->nama_sales = $request->nama_sales;
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->nama_supplier);
 
-        $supplier->save();
-        return redirect()->back()->with('messageberhasil','Data Supplier Berhasil ditambahkan');
+        Supplier::create($data);
+        return redirect()->route('supplier.index')->with('messageberhasil','Data Supplier Berhasil ditambahkan');
     }
 
     /**

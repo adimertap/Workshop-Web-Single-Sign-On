@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Rakrequest;
 use App\Model\Inventory\Rak;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class MasterdatarakController extends Controller
 {
     /**
@@ -40,15 +40,11 @@ class MasterdatarakController extends Controller
      */
     public function store(Rakrequest $request)
     {
-        $rak = new Rak;
-        $rak->kode_rak = $request->kode_rak;
-        $rak->nama_rak = $request->nama_rak;
-        $rak->jenis_rak = $request->jenis_rak;
-        
-        // $rak=Rak::all()
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->nama_rak);
 
-        $rak->save();
-        return redirect()->back()->with('messageberhasil','Data Rak Berhasil ditambahkan');
+        Rak::create($data);
+        return redirect()->route('rak.index')->with('messageberhasil','Data Rak Berhasil ditambahkan');
     }
 
     /**

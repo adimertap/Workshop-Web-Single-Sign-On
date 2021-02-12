@@ -24,8 +24,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Jabatan
-                    <button class="btn btn-primary" type="button" data-toggle="modal"
-                        data-target="#Modaltambah">Tambah
+                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
                         Data Jabatan</button>
                 </div>
             </div>
@@ -74,22 +73,24 @@
                                             <td>{{ $item->nama_jabatan }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_jabatan }}">
+                                                    data-toggle="modal"
+                                                    data-target="#Modaledit-{{ $item->id_jabatan }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_jabatan }}">
+                                                    data-toggle="modal"
+                                                    data-target="#Modalhapus-{{ $item->id_jabatan }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
-                                        @empty
+                                            @empty
                                         <tr>
                                             <td colspan="7" class="tex-center">
                                                 Data Kosong
                                             </td>
-                                        </tr> 
+                                        </tr>
                                         @endforelse
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
@@ -115,24 +116,20 @@
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
-                    <hr></hr>
+                    <hr>
+                    </hr>
                     <div class="form-group">
                         <label class="small mb-1" for="nama_jabatan">Nama Jabatan</label>
                         <input class="form-control" name="nama_jabatan" type="text" id="nama_jabatan"
-                            placeholder="Input Nama Jabatan" value="{{ old('nama_jabatan') }}"></input>
+                            placeholder="Input Nama Jabatan" value="{{ old('nama_jabatan') }}"
+                            class="form-control @error('nama_jabatan') is-invalid @enderror" />
+                        @error('nama_jabatan')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
                 </div>
 
                 {{-- Validasi Error --}}
                 @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>Error</strong>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
                 @endif
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -176,7 +173,7 @@
     </div>
 </div>
 @empty
-    
+
 @endforelse
 
 @forelse ($jabatan as $item)
@@ -202,7 +199,7 @@
     </div>
 </div>
 @empty
-    
+
 @endforelse
 
 
