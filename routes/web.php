@@ -179,3 +179,12 @@ Route::prefix('accounting/masterdatafop')
 
     Route::resource('fop', 'MasterdatafopController');
 });
+
+Route::prefix('accounting/masterdatabankaccount')
+->namespace('Accounting\Masterdata')
+->group(function() {
+    Route::get('/', 'MasterdatabankaccountController@index')
+        ->name('masterdatabankaccount');
+
+    Route::resource('bank-account', 'MasterdatabankaccountController');
+});

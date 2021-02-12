@@ -214,7 +214,7 @@
                                 <a class="nav-link" href="{{ Route('masterdatafop') }}">
                                     Master FOP
                                 </a>
-                                <a class="nav-link" href="invoice.html">
+                                <a class="nav-link" href="{{ route('masterdatabankaccount') }}">
                                     Master Account Bank
                                 </a>
                             </nav>
