@@ -23,8 +23,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Supplier
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
-                        Supplier</button>
+                    <a href="{{ route('supplier.create') }}" class="btn btn-primary"> Tambah Supplier</a>
                 </div>
             </div>
             <div class="card-body">
@@ -95,10 +94,8 @@
                                                     data-target="#Modaldetail-{{ $item->id_supplier }}">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="" class="btn btn-primary btn-datatable" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modaledit-{{ $item->id_supplier }}">
-                                                    <i class="fas fa-edit"></i>
+                                                <a href="{{ route('supplier.edit',$item->id_supplier) }}" class="btn btn-primary btn-datatable">
+                                                    <i class="fas fa-edit"></i></a>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable" type="button"
                                                     data-toggle="modal"
@@ -124,188 +121,6 @@
         </div>
     </div>
 </main>
-
-
-{{-- MODAL TAMBAH SUPPLIER -----------------------------------------------------------------------}}
-<div class="modal fade" id="Modaltambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLg" aria-hidden="true"
-    aria-labelledby="staticBackdropLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Tambah Supplier</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <form action="{{ route('supplier.store') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
-                    <hr>
-                    </hr>
-                    {{-- Validasi Error --}}
-                    @if (count($errors) > 0)
-                    @endif
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="kode_supplier">Kode Supplier</label>
-                            <input class="form-control" name="kode_supplier" type="text" id="kode_supplier"
-                                placeholder="Input Kode Supplier" value="{{ old('kode_supplier') }}"
-                                class="form-control @error('kode_supplier') is-invalid @enderror">
-                                @error('kode_supplier')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="nama_supplier">Nama Supplier</label>
-                            <input class="form-control" name="nama_supplier" type="text" id="nama_supplier"
-                                placeholder="Input Nama Supplier" value="{{ old('nama_supplier') }}"
-                                class="form-control @error('nama_supplier') is-invalid @enderror"></input>
-                                @error('nama_supplier')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="nama_sales">Nama Sales</label>
-                            <input class="form-control" name="nama_sales" type="text" id="nama_sales"
-                                placeholder="Input Nama Sales" value="{{ old('nama_sales') }}"
-                                class="form-control @error('nama_sales') is-invalid @enderror">
-                                @error('nama_sales')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="email">Email</label>
-                            <input class="form-control" name="email" type="text" id="email"
-                                placeholder="Input Email Supplier" value="{{ old('email') }}"
-                                class="form-control @error('email') is-invalid @enderror"></input>
-                                @error('email')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="telephone">Telephone</label>
-                            <input class="form-control" name="telephone" type="number" id="telephone"
-                                placeholder="Input Nomor Telephone" value="{{ old('telephone') }}"
-                                class="form-control @error('telephone') is-invalid @enderror">
-                                @error('telephone')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="rekening_supplier">Nomor Rekening</label>
-                            <input class="form-control" name="rekening_supplier" type="number" id="rekening_supplier"
-                                placeholder="Input Nomor Rekening" value="{{ old('rekening_supplier') }}"
-                                class="form-control @error('rekening_supplier') is-invalid @enderror"></input>
-                                @error('rekening_supplier')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="alamat_supplier">Alamat Supplier</label>
-                            <input class="form-control" name="alamat_supplier" type="text" id="alamat_supplier"
-                                placeholder="Input Alamat Supplier" value="{{ old('alamat_supplier') }}"
-                                class="form-control @error('alamat_supplier') is-invalid @enderror">
-                                @error('alamat_supplier')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="kode_pos">Kode Pos</label>
-                            <input class="form-control" name="kode_pos" type="number" id="kode_pos"
-                                placeholder="Input Kode Pos" value="{{ old('kode_pos') }}"
-                                class="form-control @error('kode_pos') is-invalid @enderror"></input>
-                                @error('kode_pos')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="Submit">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-{{-- MODAL EDIT ----------------------------------------------------------------------------------------------}}
-@forelse ($supplier as $item)
-<div class="modal fade" id="Modaledit-{{ $item->id_supplier }}" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLg" aria-hidden="true" aria-labelledby="staticBackdropLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Supplier</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <form action="{{ route('supplier.update', $item->id_supplier) }}" method="POST">
-                @method('PUT')
-                @csrf
-                <div class="modal-body">
-                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
-                    <hr>
-                    </hr>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="kode_supplier">Kode Supplier</label>
-                            <input class="form-control" name="kode_supplier" type="text" id="kode_supplier"
-                                placeholder="Input Kode Supplier" value="{{ $item->kode_supplier }}">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="nama_supplier">Nama Supplier</label>
-                            <input class="form-control" name="nama_supplier" type="text" id="nama_supplier"
-                                placeholder="Input Nama Supplier" value="{{ $item->nama_supplier }}"></input>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="nama_sales">Nama Sales</label>
-                            <input class="form-control" name="nama_sales" type="text" id="nama_sales"
-                                placeholder="Input Nama Sales" value="{{ $item->nama_sales }}">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="email">Email</label>
-                            <input class="form-control" name="email" type="text" id="email"
-                                placeholder="Input Email Supplier" value="{{ $item->email }}"></input>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="telephone">Telephone</label>
-                            <input class="form-control" name="telephone" type="number" id="telephone"
-                                placeholder="Input Nomor Telephone" value="{{ $item->telephone }}">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="rekening_supplier">Nomor Rekening</label>
-                            <input class="form-control" name="rekening_supplier" type="number" id="rekening_supplier"
-                                placeholder="Input Nomor Rekening" value="{{ $item->rekening_supplier }}"></input>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="alamat_supplier">Alamat Supplier</label>
-                            <input class="form-control" name="alamat_supplier" type="text" id="alamat_supplier"
-                                placeholder="Input Alamat Supplier" value="{{ $item->alamat_supplier }}">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="kode_pos">Kode Pos</label>
-                            <input class="form-control" name="kode_pos" type="number" id="kode_pos"
-                                placeholder="Input Kode Pos" value="{{ $item->kode_pos }}"></input>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="Submit">Edit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-@empty
-
-@endforelse
 
 {{-- MODAL DELETE --}}
 @forelse ($supplier as $item)

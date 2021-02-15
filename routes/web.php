@@ -95,6 +95,15 @@ Route::prefix('inventory/konversi')
     Route::resource('konversi', 'MasterdatakonversiController');
 });
 
+// KELOLA STOCK ------------------------------------------------------------------------------ STOCK
+Route::prefix('inventory/kelolastock')
+->namespace('Inventory\Kelolastock')
+->group(function() {
+    Route::get('/', 'StocksparepartController@index')
+        ->name('kelolastock');
+    
+    Route::resource('kelola-stock', 'StocksparepartController');
+});
 
 
 // ------------------------------------------------------------------------------------------------------------------------- 

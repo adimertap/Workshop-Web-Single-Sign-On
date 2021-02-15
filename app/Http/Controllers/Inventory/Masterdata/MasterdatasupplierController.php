@@ -18,7 +18,7 @@ class MasterdatasupplierController extends Controller
         $supplier = Supplier::get();
         
         
-        return view('pages.inventory.masterdata.supplier',compact('supplier') );
+        return view('pages.inventory.masterdata.supplier.supplier',compact('supplier') );
     }
 
     /**
@@ -28,7 +28,7 @@ class MasterdatasupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.inventory.masterdata.supplier.create');
     }
 
     /**
@@ -63,9 +63,13 @@ class MasterdatasupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_supplier)
     {
-        //
+        $supplier = Supplier::findOrFail($id_supplier);
+        
+        return view('pages.inventory.masterdata.supplier.edit',[
+            'supplier' => $supplier,
+        ]);
     }
 
     /**
@@ -87,8 +91,8 @@ class MasterdatasupplierController extends Controller
         $supplier->kode_pos = $request->kode_pos;
         $supplier->nama_sales = $request->nama_sales;
 
-        $supplier->save();
-        return redirect()->back()->with('messageberhasil','Data Supplier Berhasil diubah');
+        $supplier->update();
+        return redirect()->route('masterdatasupplier')->with('messageberhasil','Data Supplier Berhasil diubah');
     }
 
     /**

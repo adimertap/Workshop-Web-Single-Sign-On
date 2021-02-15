@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-cog"></i></div>
-                            Edit Data Sparepart
+                            Edit Data Sparepart {{ $item->nama_sparepart }}
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
@@ -98,14 +98,7 @@
                                     
                                     {{-- Validasi Error --}}
                                     @if (count($errors) > 0)
-                                    <div class="alert alert-danger">
-                                        <strong>Error</strong>
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
+                                    
                                     @endif
 
                                     <hr class="my-4" />
