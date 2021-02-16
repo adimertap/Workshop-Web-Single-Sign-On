@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Accounting\Masterdata;
 
 use App\Http\Controllers\Controller;
+use App\Model\Accounting\Jenistransaksi;
 use Illuminate\Http\Request;
 
 class MasterdatajenistransaksiController extends Controller
@@ -14,7 +15,9 @@ class MasterdatajenistransaksiController extends Controller
      */
     public function index()
     {
-        //
+        $jenistransaksi = Jenistransaksi::get();
+
+        return view('pages.accounting.masterdata.jenistransaksi', compact('jenistransaksi'));
     }
 
     /**

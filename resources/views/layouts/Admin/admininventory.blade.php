@@ -255,7 +255,7 @@
 
                         <div class="collapse" id="collapseUtilities" data-parent="#accordionSidenav" style="">
                             <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ route('kelolastock') }}">
+                                <a class="nav-link" href="">
                                     Stock Sparepart
                                 </a>
                                 <a class="nav-link" href="invoice.html">

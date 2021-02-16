@@ -13,7 +13,7 @@ class Jenistransaksirequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class Jenistransaksirequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nama_transaksi' => 'required',
+            'id_akun' => 'required|exists:tb_accounting_master_akun,id_akun',
         ];
     }
 }

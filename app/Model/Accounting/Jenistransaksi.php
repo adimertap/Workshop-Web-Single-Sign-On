@@ -20,4 +20,8 @@ class Jenistransaksi extends Model
     ];
 
     public $timestamps = false;
+
+    public function jenistransaksi(){
+        return $this->belongsTo(Jenistransaksi::class,'id_jenis_transaksi','id_jenis_transaksi');
+    }
 }

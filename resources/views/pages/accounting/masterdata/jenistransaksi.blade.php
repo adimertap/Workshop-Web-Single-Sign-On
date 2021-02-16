@@ -68,17 +68,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($fop as $item)
+                                        @forelse ($jenistransaksi as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                            <td>{{ $item->nama_fop }}</td>
+                                            <td>{{ $item->nama_transaksi }}</td>
+                                            <td>{{ $item-> }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_fop }}">
+                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_jenis_transaksi }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_fop }}">
+                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_jenis_transaksi }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -86,7 +87,7 @@
                                         @empty
                                         <tr>
                                             <td colspan="7" class="tex-center">
-                                                Data Form of Payment Kosong
+                                                Data Jenis Transaksi Kosong
                                             </td>
                                         </tr>
                                         @endforelse
@@ -102,7 +103,7 @@
 
 
     {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
-    <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
+    {{-- <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -125,10 +126,10 @@
                             @error('nama_fop')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{-- Validasi Error --}}
-                    @if (count($errors) > 0)
+                    {{-- @if (count($errors) > 0)
                     @endif
 
                     <div class="modal-footer">
@@ -138,10 +139,10 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
-    @forelse ($fop as $item)
+    {{-- @forelse ($fop as $item)
     <div class="modal fade" id="Modaledit-{{ $item->id_fop }}" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -174,10 +175,10 @@
     </div>
     @empty
 
-    @endforelse
+    @endforelse --}}
 
     {{-- MODAL DELETE ------------------------------------------------------------------------------}}
-    @forelse ($fop as $item)
+    {{-- @forelse ($fop as $item)
     <div class="modal fade" id="Modalhapus-{{ $item->id_fop }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -201,7 +202,7 @@
     </div>
     @empty
 
-    @endforelse
+    @endforelse --}}
 </main>
 {{-- Callback Modal Jika Validasi Error --}}
 @if (count($errors) > 0)
