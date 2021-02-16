@@ -26,7 +26,7 @@
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="{{ route('dashboardaccounting')}}"> <i class="fas fa-hand-holding-usd mr-3"></i>Accounting</a>
+        <a class="navbar-brand" href="{{ route('dashboardaccounting')}}"> <i class="fas fa-hand-holding-usd mr-3"></i>Accounting System</a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
                 data-feather="menu"></i></button>
 
@@ -189,9 +189,9 @@
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('dashboardaccounting') }}">
                             <div class="nav-link-icon"><i class="fas fa-money-check-alt"></i></div>
-                            Dashboard Accunting
+                            Dashboard
                         </a>
 
                         {{-- MASTER DATA --}}
@@ -208,7 +208,7 @@
                                 <a class="nav-link" href="{{ route('masterdataakun') }}">
                                     Set Akun
                                 </a>
-                                <a class="nav-link" href="invoice.html">
+                                <a class="nav-link" href="{{ route('masterdatajenistransaksi') }}">
                                     Jenis Transaksi
                                 </a>
                                 <a class="nav-link" href="{{ Route('masterdatafop') }}">

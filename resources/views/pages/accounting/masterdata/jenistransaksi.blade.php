@@ -61,7 +61,13 @@
                                                 style="width: 30px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 300px;">Form Of Payment</th>
+                                                style="width: 150px;">Akun</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 150px;">Akun Grup</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 300px;">Jenis Transaksi</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Actions</th>
@@ -71,8 +77,9 @@
                                         @forelse ($jenistransaksi as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td>{{ $item->akun->nama_akun }}</td>
+                                            <td>{{ $item->akun->akun_grup }}</td>
                                             <td>{{ $item->nama_transaksi }}</td>
-                                            <td>{{ $item-> }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
                                                     data-toggle="modal" data-target="#Modaledit-{{ $item->id_jenis_transaksi }}">
@@ -103,16 +110,16 @@
 
 
     {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
-    {{-- <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
+    <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Form of Payment</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Jenis Transaksi</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('fop.store') }}" method="POST">
+                <form action="{{ route('jenis-transaksi.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
@@ -139,7 +146,7 @@
                 </form>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
     {{-- @forelse ($fop as $item)

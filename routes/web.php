@@ -49,7 +49,7 @@ Route::prefix('inventory')
             ->name('dashboardinventory');
     });
 
-// MASTERDATA INVENTORY -------------------------------------------------------------------------------------------------
+// MASTERDATA INVENTORY -----------------------------------------------------------------------MASTERDATA INVENTORY
 Route::prefix('inventory/sparepart')
     ->namespace('Inventory\Masterdata')
     ->group(function () {
@@ -114,6 +114,15 @@ Route::prefix('inventory/konversi')
     });
 
 
+// KELOLA STOCK ---------------++++++++++++++++++++++++++++++++++++++++++++------------------ KELOLA STOCK
+Route::prefix('inventory/kelolastock')
+->namespace('Inventory\Kelolastock')
+->group(function () {
+    Route::get('/', 'StocksparepartController@index')
+        ->name('kelolastock');
+
+    Route::resource('kelola-stock', 'StocksparepartController');
+});
 
 // ------------------------------------------------------------------------------------------------------------------------- 
 // MODUL KEPEGAWAIAN
@@ -206,3 +215,21 @@ Route::prefix('accounting/masterdatabankaccount')
 
         Route::resource('bank-account', 'MasterdatabankaccountController');
     });
+
+Route::prefix('accounting/masterdataakun')
+->namespace('Accounting\Masterdata')
+->group(function () {
+    Route::get('/', 'MasterdataakunController@index')
+        ->name('masterdataakun');
+
+    Route::resource('akun', 'MasterdataakunController');
+});
+
+Route::prefix('accounting/masterjenistransaksi')
+->namespace('Accounting\Masterdata')
+->group(function () {
+    Route::get('/', 'MasterdatajenistransaksiController@index')
+        ->name('masterdatajenistransaksi');
+
+    Route::resource('jenis-transaksi', 'MasterdatajenistransaksiController');
+});
