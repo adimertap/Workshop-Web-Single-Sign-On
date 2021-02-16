@@ -13,7 +13,7 @@ class Stockrequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class Stockrequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'qty_min' => 'required|numeric',
+            'qty_stock' => 'required|numeric',
+            'opname_terakhir' => 'required|date',
         ];
     }
 }

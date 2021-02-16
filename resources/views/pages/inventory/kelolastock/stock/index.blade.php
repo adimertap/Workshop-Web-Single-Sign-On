@@ -86,7 +86,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   
+                                    @forelse ($stock as $item )
+                                    <tr role="row" class="odd">
+                                        <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                        <td>{{ $item->Sparepart->kode_sparepart }}</td>
+                                        <td>{{ $item->Sparepart->nama_sparepart }}</td>
+                                        <td>
+                                            <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
+                                                data-toggle="modal" data-target="#Modaledit-{{ $item->id_stock }}">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
+                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_stock }}">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="7" class="tex-center">
+                                            Data Merk Sparepart Kosong
+                                        </td>
+                                    </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

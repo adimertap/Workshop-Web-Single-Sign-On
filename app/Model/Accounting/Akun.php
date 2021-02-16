@@ -13,7 +13,7 @@ class Akun extends Model
     protected $fillable = [
         'kode_akun',
         'nama_akun',
-        'akun_grup',
+        'akun_grup'
     ];
 
     protected $hidden =[ 

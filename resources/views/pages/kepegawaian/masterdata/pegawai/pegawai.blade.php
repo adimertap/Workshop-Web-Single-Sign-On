@@ -87,7 +87,8 @@
                                         <td>{{ $item->jenis_kelamin }}</td>
                                         <td>{{ $item->no_telp }}</td>
                                         <td>
-                                            <a href="" class="btn btn-secondary btn-datatable">
+                                            <a href="{{ route('pegawai.show', $item->id_pegawai) }}"
+                                                class="btn btn-secondary btn-datatable">
                                                 <i class="fas fa-eye"></i>
                                             </a>
                                             <a href="{{ route('pegawai.edit', $item->id_pegawai) }}"

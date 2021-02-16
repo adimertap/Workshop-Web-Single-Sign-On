@@ -227,7 +227,7 @@
                         </a>
                         <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                <a class="nav-link " href="invoice.html">
+                                <a class="nav-link " href="{{ route('absensipegawai') }}">
                                     Absensi Pegawai
                                 </a>
                                 <a class="nav-link " href="invoice.html">

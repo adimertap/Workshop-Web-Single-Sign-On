@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Inventory\Kelolastock;
+namespace App\Http\Controllers\Kepegawaian\Absensi;
 
 use App\Http\Controllers\Controller;
-use App\Model\Inventory\Kelolastock\Stock;
-use App\Model\Inventory\Sparepart;
 use Illuminate\Http\Request;
 
-class StocksparepartController extends Controller
+class AbsensipegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +14,7 @@ class StocksparepartController extends Controller
      */
     public function index()
     {
-
-        $stock = Stock::with([
-            'Sparepart','Rak'])->get();
-        $sparepart = Sparepart::all();
-
-        return view('pages.inventory.kelolastock.stock.index', compact('stock','sparepart'));
+        return view('pages.kepegawaian.absensi.absensi');
     }
 
     /**

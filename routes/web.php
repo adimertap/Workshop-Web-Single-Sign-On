@@ -154,6 +154,22 @@ Route::prefix('kepegawaian/masterdatajabatan')
     });
 
 
+// ABSENSI PEGAWAI ------------------------------------------------------------ ABSENSI
+Route::prefix('kepegawaian/absensi')
+    ->namespace('Kepegawaian\Absensi')
+    ->group(function () {
+        Route::get('/', 'AbsensipegawaiController@index')
+            ->name('absensipegawai');
+
+        Route::resource('absensi', 'AbsensipegawaiController');
+    });
+
+
+
+
+
+
+
 // ------------------------------------------------------------------------------------------------------------------------- 
 // MODUL PAYROLL
 // DASHBOARD

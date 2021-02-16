@@ -74,7 +74,14 @@ class MasterdatapegawaiController extends Controller
      */
     public function show($id_pegawai)
     {
+        $item = Pegawai::findOrFail($id_pegawai);
+        $jabatan = Jabatan::all();
         
+        return view('pages.kepegawaian.masterdata.pegawai.detail',[
+            'item' => $item,
+            'jabatan' => $jabatan
+        ]);
+
 
     }
 
