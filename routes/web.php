@@ -17,10 +17,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// CEK ERROR SENTURY
-Route::get('/debug-sentry', function () {
-    throw new Exception('My first Sentry error!');
-});
+// MODUL FRONT OFFICE
+// DASHBOARD
+Route::prefix('frontoffice')
+    ->namespace('FrontOffice')
+    ->group(function () {
+        Route::get('/', 'DashboardFrontOfficeController@index')
+            ->name('dashboardfrontoffice');
+    });
+
+// MASTER DATA JENIS KENDARAAN
+Route::prefix('frontoffice/jeniskendaraan')
+    ->namespace('FrontOffice\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterDataJenisKendaraanController@index')
+            ->name('masterdatajeniskendaraan');
+
+        Route::resource('jeniskendaraan', 'MasterDataJenisKendaraanController');
+    });
+
 
 
 
@@ -28,85 +43,76 @@ Route::get('/debug-sentry', function () {
 // MODUL INVENTORY
 // DASHBOARD
 Route::prefix('inventory')
-->namespace('Inventory')
-->group(function() {
-    Route::get('/', 'DashboardinventoryController@index')
-        ->name('dashboardinventory');
-});
+    ->namespace('Inventory')
+    ->group(function () {
+        Route::get('/', 'DashboardinventoryController@index')
+            ->name('dashboardinventory');
+    });
 
 // MASTERDATA INVENTORY -------------------------------------------------------------------------------------------------
 Route::prefix('inventory/sparepart')
-->namespace('Inventory\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatasparepartController@index')
-        ->name('masterdatasparepart');
-    
-    Route::resource('sparepart', 'MasterdatasparepartController');
-});
+    ->namespace('Inventory\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatasparepartController@index')
+            ->name('masterdatasparepart');
+
+        Route::resource('sparepart', 'MasterdatasparepartController');
+    });
 
 Route::prefix('inventory/merksparepart')
     ->namespace('Inventory\Masterdata')
-    ->group(function() {
+    ->group(function () {
         Route::get('/', 'MasterdatamerksparepartController@index')
             ->name('masterdatamerksparepart');
-            
+
         Route::resource('merk-sparepart', 'MasterdatamerksparepartController');
     });
 
 Route::prefix('inventory/jenissparepart')
-->namespace('Inventory\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatajenissparepartController@index')
-        ->name('masterdatajenissparepart');
+    ->namespace('Inventory\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatajenissparepartController@index')
+            ->name('masterdatajenissparepart');
 
-    Route::resource('jenis-sparepart', 'MasterdataJenissparepartController');
-});
+        Route::resource('jenis-sparepart', 'MasterdataJenissparepartController');
+    });
 
 Route::prefix('inventory/supplier')
-->namespace('Inventory\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatasupplierController@index')
-        ->name('masterdatasupplier');
-    
-    Route::resource('supplier', 'MasterdatasupplierController');
-});
+    ->namespace('Inventory\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatasupplierController@index')
+            ->name('masterdatasupplier');
+
+        Route::resource('supplier', 'MasterdatasupplierController');
+    });
 
 Route::prefix('inventory/hargasparepart')
-->namespace('Inventory\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatahargasparepartController@index')
-        ->name('masterdatahargasparepart');
+    ->namespace('Inventory\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatahargasparepartController@index')
+            ->name('masterdatahargasparepart');
 
-    Route::resource('hargasparepart', 'MasterdatahargasparepartController');
-});
+        Route::resource('hargasparepart', 'MasterdatahargasparepartController');
+    });
 
 Route::prefix('inventory/rak')
-->namespace('Inventory\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatarakController@index')
-        ->name('masterdatarak');
-    
-    Route::resource('rak', 'MasterdatarakController');
-});
+    ->namespace('Inventory\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatarakController@index')
+            ->name('masterdatarak');
+
+        Route::resource('rak', 'MasterdatarakController');
+    });
 
 Route::prefix('inventory/konversi')
-->namespace('Inventory\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatakonversiController@index')
-        ->name('masterdatakonversi');
-    
-    Route::resource('konversi', 'MasterdatakonversiController');
-});
+    ->namespace('Inventory\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatakonversiController@index')
+            ->name('masterdatakonversi');
 
-// KELOLA STOCK ------------------------------------------------------------------------------ STOCK
-Route::prefix('inventory/kelolastock')
-->namespace('Inventory\Kelolastock')
-->group(function() {
-    Route::get('/', 'StocksparepartController@index')
-        ->name('kelolastock');
-    
-    Route::resource('kelola-stock', 'StocksparepartController');
-});
+        Route::resource('konversi', 'MasterdatakonversiController');
+    });
+
 
 
 // ------------------------------------------------------------------------------------------------------------------------- 
@@ -114,29 +120,29 @@ Route::prefix('inventory/kelolastock')
 // DASHBOARD
 Route::prefix('kepegawaian')
     ->namespace('Kepegawaian')
-    ->group(function() {
+    ->group(function () {
         Route::get('/', 'DashboardpegawaiController@index')
             ->name('dashboardpegawai');
     });
 
 // MASTER DATA KEPEGAWAIAN ------------------------------------------------------------------------------------------------
 Route::prefix('kepegawaian/masterdatapegawai')
-->namespace('Kepegawaian\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatapegawaiController@index')
-        ->name('masterdatapegawai');
+    ->namespace('Kepegawaian\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatapegawaiController@index')
+            ->name('masterdatapegawai');
 
-    Route::resource('pegawai', 'MasterdatapegawaiController');
-});
+        Route::resource('pegawai', 'MasterdatapegawaiController');
+    });
 
 Route::prefix('kepegawaian/masterdatajabatan')
-->namespace('Kepegawaian\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatajabatanController@index')
-        ->name('masterdatajabatan');
+    ->namespace('Kepegawaian\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatajabatanController@index')
+            ->name('masterdatajabatan');
 
-    Route::resource('jabatan', 'MasterdatajabatanController');
-});
+        Route::resource('jabatan', 'MasterdatajabatanController');
+    });
 
 
 // ------------------------------------------------------------------------------------------------------------------------- 
@@ -144,29 +150,29 @@ Route::prefix('kepegawaian/masterdatajabatan')
 // DASHBOARD
 Route::prefix('payroll')
     ->namespace('payroll')
-    ->group(function() {
+    ->group(function () {
         Route::get('/', 'DashboardpayrollController@index')
             ->name('dashboardpayroll');
     });
 
 // MASTER DATA
 Route::prefix('payroll/masterdatagajipokok')
-->namespace('Payroll\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatagajipokokController@index')
-        ->name('masterdatagajipokok');
+    ->namespace('Payroll\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatagajipokokController@index')
+            ->name('masterdatagajipokok');
 
-    Route::resource('gaji-pokok', 'MasterdatagajipokokController');
-});
+        Route::resource('gaji-pokok', 'MasterdatagajipokokController');
+    });
 
 Route::prefix('payroll/masterdatatunjangan')
-->namespace('Payroll\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatatunjanganController@index')
-        ->name('masterdatatunjangan');
+    ->namespace('Payroll\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatatunjanganController@index')
+            ->name('masterdatatunjangan');
 
-    Route::resource('tunjangan', 'MasterdatatunjanganController');
-});
+        Route::resource('tunjangan', 'MasterdatatunjanganController');
+    });
 
 
 
@@ -177,36 +183,26 @@ Route::prefix('payroll/masterdatatunjangan')
 // DASHBOARD
 Route::prefix('accounting')
     ->namespace('Accounting')
-    ->group(function() {
+    ->group(function () {
         Route::get('/', 'DashboardaccountingController@index')
             ->name('dashboardaccounting');
     });
 
 // MASTER DATA
 Route::prefix('accounting/masterdatafop')
-->namespace('Accounting\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatafopController@index')
-        ->name('masterdatafop');
+    ->namespace('Accounting\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatafopController@index')
+            ->name('masterdatafop');
 
-    Route::resource('fop', 'MasterdatafopController');
-});
+        Route::resource('fop', 'MasterdatafopController');
+    });
 
 Route::prefix('accounting/masterdatabankaccount')
-->namespace('Accounting\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdatabankaccountController@index')
-        ->name('masterdatabankaccount');
+    ->namespace('Accounting\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatabankaccountController@index')
+            ->name('masterdatabankaccount');
 
-    Route::resource('bank-account', 'MasterdatabankaccountController');
-});
-
-Route::prefix('accounting/masterdataakun')
-->namespace('Accounting\Masterdata')
-->group(function() {
-    Route::get('/', 'MasterdataakunController@index')
-        ->name('masterdataakun');
-
-    Route::resource('akun', 'MasterdataakunController');
-});
-
+        Route::resource('bank-account', 'MasterdatabankaccountController');
+    });
