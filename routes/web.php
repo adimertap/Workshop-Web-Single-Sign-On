@@ -17,7 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+// CEK ERROR SENTURY
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
 
 
 
@@ -197,3 +200,13 @@ Route::prefix('accounting/masterdatabankaccount')
 
     Route::resource('bank-account', 'MasterdatabankaccountController');
 });
+
+Route::prefix('accounting/masterdataakun')
+->namespace('Accounting\Masterdata')
+->group(function() {
+    Route::get('/', 'MasterdataakunController@index')
+        ->name('masterdataakun');
+
+    Route::resource('akun', 'MasterdataakunController');
+});
+
