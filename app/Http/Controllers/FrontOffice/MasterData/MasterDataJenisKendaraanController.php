@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\MasterDataJenisKendaraan;
 use Illuminate\Http\Request;
 
-class MasterDataFAQ extends Controller
+class MasterDataJenisKendaraanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,10 +41,10 @@ class MasterDataFAQ extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\MasterDataJenisKendaraan  $masterDataJenisKendaraan
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(MasterDataJenisKendaraan $masterDataJenisKendaraan)
     {
         //
     }
@@ -51,10 +52,10 @@ class MasterDataFAQ extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\MasterDataJenisKendaraan  $masterDataJenisKendaraan
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(MasterDataJenisKendaraan $masterDataJenisKendaraan)
     {
         //
     }
@@ -63,10 +64,10 @@ class MasterDataFAQ extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\MasterDataJenisKendaraan  $masterDataJenisKendaraan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, MasterDataJenisKendaraan $masterDataJenisKendaraan)
     {
         //
     }
@@ -74,10 +75,10 @@ class MasterDataFAQ extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\MasterDataJenisKendaraan  $masterDataJenisKendaraan
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(MasterDataJenisKendaraan $masterDataJenisKendaraan)
     {
         //
     }
