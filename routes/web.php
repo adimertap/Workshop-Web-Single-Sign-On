@@ -127,13 +127,13 @@ Route::prefix('inventory/konversi')
 
 // KELOLA STOCK ---------------------------------------------------------------- Kelola Stock
 Route::prefix('inventory/kelolastock')
-->namespace('Inventory\Kelolastock')
-->group(function () {
-    Route::get('/', 'StocksparepartController@index')
-        ->name('kelolastock');
+    ->namespace('Inventory\Kelolastock')
+    ->group(function () {
+        Route::get('/', 'StocksparepartController@index')
+            ->name('kelolastock');
 
-    Route::resource('kelola-stock', 'StocksparepartController');
-});
+        Route::resource('kelola-stock', 'StocksparepartController');
+    });
 
 // --------------------------------------------------------------------------------------------------------KEPEGAWAIAN
 // MODUL KEPEGAWAIAN
@@ -244,19 +244,19 @@ Route::prefix('accounting/masterdatabankaccount')
     });
 
 Route::prefix('accounting/masterdataakun')
-->namespace('Accounting\Masterdata')
-->group(function () {
-    Route::get('/', 'MasterdataakunController@index')
-        ->name('masterdataakun');
+    ->namespace('Accounting\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdataakunController@index')
+            ->name('masterdataakun');
 
-    Route::resource('akun', 'MasterdataakunController');
-});
+        Route::resource('akun', 'MasterdataakunController');
+    });
 
 Route::prefix('accounting/masterjenistransaksi')
-->namespace('Accounting\Masterdata')
-->group(function () {
-    Route::get('/', 'MasterdatajenistransaksiController@index')
-        ->name('masterdatajenistransaksi');
+    ->namespace('Accounting\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatajenistransaksiController@index')
+            ->name('masterdatajenistransaksi');
 
-    Route::resource('jenis-transaksi', 'MasterdatajenistransaksiController');
-});
+        Route::resource('jenis-transaksi', 'MasterdatajenistransaksiController');
+    });
