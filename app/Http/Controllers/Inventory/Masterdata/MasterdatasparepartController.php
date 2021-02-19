@@ -72,7 +72,17 @@ class MasterdatasparepartController extends Controller
      */
     public function show($id_sparepart)
     {
-
+        $sparepart = Sparepart::findOrFail($id_sparepart);
+        $jenis_sparepart = Jenissparepart::all();
+        $merk_sparepart = Merksparepart::all();
+        $konversi = Konversi::all();
+        
+        return view('pages.inventory.masterdata.sparepart.detail',[
+            'item' => $sparepart,
+            'jenis_sparepart' => $jenis_sparepart,
+            'merk_sparepart' => $merk_sparepart,
+            'konversi' => $konversi,
+        ]);
     }
 
     /**
@@ -129,4 +139,25 @@ class MasterdatasparepartController extends Controller
 
         return redirect()->back()->with('messagehapus','Data Sparepart Berhasil dihapus');
     }
+
+    public function gallery(Request $request, $id_sparepart)
+    {
+        $sparepart = Sparepart::findorFail($id_sparepart);
+        $jenis_sparepart = Jenissparepart::all();
+        $merk_sparepart = Merksparepart::all();
+        $konversi = Konversi::all();
+        $gallery = Gallery::with('sparepart')
+            ->where('id_sparepart',$id_sparepart)
+            ->get();
+
+        return view('pages.inventory.masterdata.sparepart.gallery')->with([
+            'sparepart' => $sparepart,
+            'gallery' => $gallery,
+            'jenis_sparepart' => $jenis_sparepart,
+            'merk_sparepart' => $merk_sparepart,
+            'konversi' => $konversi,
+        ]);
+    }
+
+
 }

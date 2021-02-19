@@ -98,7 +98,6 @@
                                     
                                     {{-- Validasi Error --}}
                                     @if (count($errors) > 0)
-                                    
                                     @endif
 
                                     <hr class="my-4" />

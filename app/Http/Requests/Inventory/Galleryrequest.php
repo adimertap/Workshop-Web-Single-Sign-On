@@ -25,7 +25,8 @@ class Galleryrequest extends FormRequest
     {
         return [
             'id_sparepart' => 'required|integer|exists:tb_inventory_master_sparepart,id_sparepart',
-            'gambar' => 'required|image'
+            'photo' => 'required|image',
+            'is_default' => 'boolean'
         ];
     }
 }

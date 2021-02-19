@@ -39,8 +39,7 @@ Route::prefix('frontoffice/jeniskendaraan')
 
 
 
-// ------------------------------------------------------------------------------------------------------------------
-// MODUL INVENTORY
+// MODUL INVENTORY ------------------------------------------------------------------------------------ INVENTORY
 // DASHBOARD
 Route::prefix('inventory')
     ->namespace('Inventory')
@@ -49,14 +48,26 @@ Route::prefix('inventory')
             ->name('dashboardinventory');
     });
 
-// MASTERDATA INVENTORY -----------------------------------------------------------------------MASTERDATA INVENTORY
+// MASTERDATA INVENTORY -------------------------------------------------------- Master Data Inventory
 Route::prefix('inventory/sparepart')
     ->namespace('Inventory\Masterdata')
     ->group(function () {
         Route::get('/', 'MasterdatasparepartController@index')
             ->name('masterdatasparepart');
 
+        Route::get('sparepart/{id_sparepart}/gallery','MasterdatasparepartController@gallery')
+            ->name('sparepart.gallery');
+        
         Route::resource('sparepart', 'MasterdatasparepartController');
+    });
+
+Route::prefix('inventory/gallerysparepart')
+    ->namespace('Inventory\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterdatagalleryController@index')
+            ->name('masterdatagallery');
+
+        Route::resource('gallery', 'MasterdatagalleryController');
     });
 
 Route::prefix('inventory/merksparepart')
@@ -114,7 +125,7 @@ Route::prefix('inventory/konversi')
     });
 
 
-// KELOLA STOCK ---------------++++++++++++++++++++++++++++++++++++++++++++------------------ KELOLA STOCK
+// KELOLA STOCK ---------------------------------------------------------------- Kelola Stock
 Route::prefix('inventory/kelolastock')
 ->namespace('Inventory\Kelolastock')
 ->group(function () {
@@ -124,7 +135,7 @@ Route::prefix('inventory/kelolastock')
     Route::resource('kelola-stock', 'StocksparepartController');
 });
 
-// ------------------------------------------------------------------------------------------------------------------------- 
+// --------------------------------------------------------------------------------------------------------KEPEGAWAIAN
 // MODUL KEPEGAWAIAN
 // DASHBOARD
 Route::prefix('kepegawaian')
@@ -134,7 +145,7 @@ Route::prefix('kepegawaian')
             ->name('dashboardpegawai');
     });
 
-// MASTER DATA KEPEGAWAIAN ------------------------------------------------------------------------------------------------
+// MASTER DATA KEPEGAWAIAN -------------------------------------------------------- Master Data Pegawai
 Route::prefix('kepegawaian/masterdatapegawai')
     ->namespace('Kepegawaian\Masterdata')
     ->group(function () {
@@ -154,7 +165,7 @@ Route::prefix('kepegawaian/masterdatajabatan')
     });
 
 
-// ABSENSI PEGAWAI ------------------------------------------------------------ ABSENSI
+// ABSENSI PEGAWAI ---------------------------------------------------------------- ABSENSI
 Route::prefix('kepegawaian/absensi')
     ->namespace('Kepegawaian\Absensi')
     ->group(function () {
@@ -170,7 +181,7 @@ Route::prefix('kepegawaian/absensi')
 
 
 
-// ------------------------------------------------------------------------------------------------------------------------- 
+// -------------------------------------------------------------------------------------------------------PAYROLL 
 // MODUL PAYROLL
 // DASHBOARD
 Route::prefix('payroll')
@@ -180,7 +191,7 @@ Route::prefix('payroll')
             ->name('dashboardpayroll');
     });
 
-// MASTER DATA
+// MASTER DATA ------------------------------------------------------------ Master Data Payroll
 Route::prefix('payroll/masterdatagajipokok')
     ->namespace('Payroll\Masterdata')
     ->group(function () {
@@ -203,7 +214,7 @@ Route::prefix('payroll/masterdatatunjangan')
 
 
 
-// ------------------------------------------------------------------------------------------------------------------------- 
+// -------------------------------------------------------------------------------------------------------ACCOUNTING
 // MODUL ACCOUNTING
 // DASHBOARD
 Route::prefix('accounting')
@@ -213,7 +224,7 @@ Route::prefix('accounting')
             ->name('dashboardaccounting');
     });
 
-// MASTER DATA
+// MASTER DATA ---------------------------------------------------- Master Data Accounting
 Route::prefix('accounting/masterdatafop')
     ->namespace('Accounting\Masterdata')
     ->group(function () {

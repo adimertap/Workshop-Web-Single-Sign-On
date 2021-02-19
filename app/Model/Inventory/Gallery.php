@@ -12,7 +12,8 @@ class Gallery extends Model
 
     protected $fillable = [
         'id_sparepart',
-        'gambar',
+        'photo',
+        'is_default',
     ];
 
     protected $hidden =[ 
@@ -24,4 +25,10 @@ class Gallery extends Model
     public function sparepart(){
         return $this->belongsTo(Sparepart::class,'id_sparepart','id_sparepart');
     }
+
+    public function getPhotoAttribute($value){
+        return url('storage/' . $value);
+    }
+
+
 }

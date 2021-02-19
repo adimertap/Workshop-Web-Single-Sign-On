@@ -214,8 +214,11 @@
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('masterdatasparepart')}}">
+                                <a class="nav-link" href="{{ route('sparepart.index')}}">
                                     Sparepart
+                                </a>
+                                <a class="nav-link" href="{{ route('masterdatagallery')}}">
+                                    Gallery Sparepart
                                 </a>
                                 <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
                                     Merk Sparepart
