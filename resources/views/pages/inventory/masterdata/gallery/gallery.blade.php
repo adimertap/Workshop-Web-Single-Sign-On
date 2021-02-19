@@ -83,7 +83,8 @@
                                             </td>
                                             <td>{{ $item->is_default ? 'Ya' : 'Tidak' }}</td>
                                             <td>
-                                                <a href="" class="btn btn-secondary btn-datatable" type="button">
+                                                <a href="{{ route('sparepart.gallery', $item->id_sparepart) }}"
+                                                    class="btn btn-secondary btn-datatable" type="button">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
                                                 <a href="{{ route('gallery.edit', $item->id_gallery) }}"

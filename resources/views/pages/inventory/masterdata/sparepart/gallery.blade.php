@@ -10,11 +10,14 @@
                 <h1 class="mb-0">Sparepart {{ $sparepart->nama_sparepart }}</h1>
                 <div class="small">
                     <span class="font-weight-500 text-primary">Detail</span>
-                    · Sparepart · Marketplace
+                    · Sparepart · Marketplace 
                 </div>
             </div>
             <div>
-                <i class="fa fa-cogs" aria-hidden="true"></i>
+                <div class="col-12 col-xl-auto mb-3">
+                    <a href="{{ route('sparepart.index') }}"
+                        class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
+                </div>
             </div>
         </div>
     </div>
@@ -61,10 +64,10 @@
             <div class="card mb-4">
                 <div class="card card-header-actions">
                     <div class="card-header ">List Gallery
-                        <a href="{{ route('gallery.create') }}" class="btn btn-primary"> Tambah Foto</a>
+                        <a href="{{ route('gallery.create') }}" class="btn btn-primary "> Tambah Foto</a>
                     </div>
                 </div>
-                <div class="card-body ">
+                <div class="card-body">
                     <div class="alert alert-info alert-icon" role="alert">
                         <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
@@ -72,7 +75,7 @@
                         <div class="alert-icon-aside">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
-                        <div class="alert-icon-content" class="small">
+                        <div class="alert-icon-content">
                             <h5 class="alert-heading" class="small">Marketplace Info</h5>
                             Foto Sparepart terpajang pada marketplace
                         </div>
@@ -111,14 +114,14 @@
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 200px;">Foto</th>
+                                                    style="width: 230px;">Foto</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Salary: activate to sort column ascending"
                                                     style="width: 40px;">
                                                     Default</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                    style="width: 80px;">
+                                                    style="width: 40px;">
                                                     Actions</th>
                                             </tr>
                                         </thead>
@@ -132,13 +135,6 @@
                                                 </td>
                                                 <td>{{ $item->is_default ? 'Ya' : 'Tidak' }}</td>
                                                 <td>
-                                                    <a href="" class="btn btn-secondary btn-datatable" type="button">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                    <a href="{{ route('gallery.edit', $item->id_gallery) }}"
-                                                        class="btn btn-primary btn-datatable">
-                                                        <i class="fas fa-edit"></i>
-                                                    </a>
                                                     <a href="" class="btn btn-danger btn-datatable" type="button"
                                                         data-toggle="modal"
                                                         data-target="#Modalhapus-{{ $item->id_gallery }}">

@@ -85,7 +85,7 @@
                                             <td>{{ $item->Konversi->satuan }}</td>
                                             <td>
                                                 <a href="{{ route('sparepart.gallery', $item->id_sparepart) }}"
-                                                    class="btn btn-secondary btn-datatable" type="button">
+                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail Sparepart dan Foto">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
                                                 <a href="{{ route('sparepart.edit', $item->id_sparepart) }}"

@@ -135,6 +135,9 @@ class MasterdatasparepartController extends Controller
     public function destroy($id_sparepart)
     {
         $sparepart = Sparepart::findOrFail($id_sparepart);
+        
+        Hargasparepart::where('id_sparepart',$id_sparepart)->delete();
+        Gallery::where('id_sparepart', $id_sparepart)->delete();
         $sparepart->delete();
 
         return redirect()->back()->with('messagehapus','Data Sparepart Berhasil dihapus');
