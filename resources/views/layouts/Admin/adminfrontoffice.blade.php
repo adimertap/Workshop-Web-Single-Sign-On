@@ -30,9 +30,9 @@
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="{{ route('dashboardinventory')}}">
+        <a class="navbar-brand" href="{{ route('dashboardfrontoffice')}}">
             <i class="fas fa-boxes mr-3"></i>
-            Front Office System
+            Front Office System 
         </a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
                 data-feather="menu"></i></button>
@@ -196,7 +196,7 @@
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardinventory')}}">
+                        <a class="nav-link" href="{{ route('dashboardfrontoffice')}}">
                             <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
                             Dashboard
                         </a>
@@ -286,7 +286,7 @@
             <footer class="footer mt-auto footer-light">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6 small">Copyright &copy; SISTEM BENGKEL INVENTORY</div>
+                        <div class="col-md-6 small">Copyright &copy; SISTEM BENGKEL</div>
                         <div class="col-md-6 text-md-right small">
                             <a href="#!">Privacy Policy</a>
                             &middot;

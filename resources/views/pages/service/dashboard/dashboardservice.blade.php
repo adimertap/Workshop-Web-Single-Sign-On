@@ -1,4 +1,4 @@
-@extends('layouts.Admin.adminfrontoffice')
+@extends('layouts.Admin.adminservice')
 
 @section('content')
 <main>
@@ -6,7 +6,7 @@
         <!-- Custom page header alternative example-->
         <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
             <div class="mr-4 mb-3 mb-sm-0">
-                <h1 class="mb-0">Dashboard Front Office</h1>
+                <h1 class="mb-0">Dashboard Service</h1>
                 <div class="small">
                     <span class="font-weight-500 text-primary">Friday</span>
                     · September 20, 2020 · 12:16 PM
@@ -17,7 +17,6 @@
                 Bengkel
                 <span class="font-weight-500 text-primary">Adi Jaya</span>
                 <hr>
-                </hr>
             </div>
         </div>
     </div>
@@ -61,7 +60,7 @@
                                     src="/backend/src/assets/img/freepik/profiles/profile-6.png" alt=""></div>
                             <div class="d-flex flex-column font-weight-bold">
                                 <a class="text-dark line-height-normal mb-1">I Gede Angga Kusuma Putra</a>
-                                    <div class=" small text-muted line-height-normal">Bagian Front Office</div>
+                                    <div class=" small text-muted line-height-normal">Bagian Service</div>
                         </div>
                     </div>
                     <div class="dropdown no-caret">

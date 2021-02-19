@@ -36,6 +36,16 @@ Route::prefix('frontoffice/jeniskendaraan')
         Route::resource('jeniskendaraan', 'MasterDataJenisKendaraanController');
     });
 
+// ------------------------------------------------------------------------
+// MODUL SERVICE
+// DASHBOARD
+Route::prefix('service')
+    ->namespace('Service')
+    ->group(function () {
+        Route::get('/', 'DashboardServiceController@index')
+            ->name('dashboardservice');
+    });
+
 
 
 
