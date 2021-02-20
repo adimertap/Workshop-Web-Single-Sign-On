@@ -29,6 +29,7 @@ class Sparepartrequest extends FormRequest
             'id_konversi' => 'required|exists:tb_inventory_master_konversi,id_konversi',
             'kode_sparepart' => 'required',
             'nama_sparepart' => 'required',
+            'keterangan' => 'required'
         ];
     }
 }

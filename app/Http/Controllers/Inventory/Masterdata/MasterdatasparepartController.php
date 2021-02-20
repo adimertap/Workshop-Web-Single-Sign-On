@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Inventory\Masterdata;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Inventory\Galleryrequest;
 use App\Http\Requests\Inventory\Sparepartrequest;
 use App\Model\Inventory\Gallery;
 use App\Model\Inventory\Hargasparepart;
@@ -58,11 +59,13 @@ class MasterdatasparepartController extends Controller
     public function store(Sparepartrequest $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->nama_sparepart);
+        $data = Sparepart::create($data);
+     
 
-        Sparepart::create($data);
         return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil ditambahkan');
+       
     }
+
 
     /**
      * Display the specified resource.

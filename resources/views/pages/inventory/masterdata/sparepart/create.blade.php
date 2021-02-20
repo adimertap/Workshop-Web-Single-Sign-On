@@ -36,6 +36,15 @@
                             <div class="wizard-step-text-details">Lengkapi formulir berikut</div>
                         </div>
                     </a>
+                    <a class="nav-item nav-link" id="wizard2-tab" href="#wizard2" data-toggle="tab" role="tab"
+                        aria-controls="wizard2" aria-selected="true">
+                        <div class="wizard-step-icon">2</div>
+                        <div class="wizard-step-text">
+                            <div class="wizard-step-text-name">Detail Foto </div>
+                            <div class="wizard-step-text-details">Formulir Detail Identitas</div>
+                        </div>
+                    </a>
+
                 </div>
             </div>
 
@@ -116,8 +125,54 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('masterdatasparepart') }}"
-                                            class="btn btn-light">Kembali</a>
+                                        <a href="{{ route('masterdatasparepart') }}" class="btn btn-light">Kembali</a>
+                                        <button class="btn btn-primary" >Next</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane py-5 py-xl-5 fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
+                        <div class="row justify-content-center">
+                            <div class="col-xxl-6 col-xl-8">
+                                <h3 class="text-primary">Step 2</h3>
+                                <h5 class="card-title">Input Formulir Berikut</h5>
+                                <div class="form-group">
+                                    <label class="small mb-1" for="photo">Foto Sparepart</label>
+                                    <input class="form-control" id="photo" type="file" name="photo"
+                                        value="{{ old('photo') }}" accept="image/*" required
+                                        class="form-control @error('photo') is-invalid @enderror" />
+                                    @error('photo')<div class="text-danger small mb-1">{{ $message }}
+                                    </div> @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="small mb-1" for="keterangan">Keterangan Marketplace</label>
+                                    <textarea class="form-control" name="keterangan" id="keterangan" cols="20" rows="10" placeholder="Input Keterangan"
+                                        class="form-control @error('keterangan') is-invalid @enderror"></textarea>
+                                    @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
+                                    </div> @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="small mb-1" for="is_default">Jadikan Default</label>
+                                    <br>
+                                    <label>
+                                        <input type="radio" name="is_default" value="1"
+                                            class="custom-control custom-radio" @error('is_default') is-invalid
+                                            @enderror" checked /> Ya
+                                    </label>
+                                    &nbsp;
+                                    <label>
+                                        <input type="radio" name="is_default" value="0"
+                                            class="custom-control custom-radio" @error('is_default') is-invalid
+                                            @enderror" /> Tidak
+                                    </label>
+                                    @error('is_default')
+                                    <div class="text-danger small mb-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <hr class="my-4" />
+                                    <div class="d-flex justify-content-between">
+                                        <a href="{{ route('masterdatasparepart') }}" class="btn btn-light">Kembali</a>
                                         <button class="btn btn-primary" type="Submit">Submit</button>
                                     </div>
                                 </form>

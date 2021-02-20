@@ -16,6 +16,7 @@ class Sparepart extends Model
         'id_konversi',
         'kode_sparepart',
         'nama_sparepart',
+        'keterangan',
     ];
 
     protected $hidden =[ 
@@ -39,7 +40,4 @@ class Sparepart extends Model
     public function Gallery(){
         return $this->hasMany(Gallery::class,'id_sparepart','id_sparepart');
     }
-    
-
-
 }
