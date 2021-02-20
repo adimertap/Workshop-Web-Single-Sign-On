@@ -39,21 +39,42 @@
                         <input class="form-control form-control-sm" id="nama_sparepart" type="text"
                             name="nama_sparepart" value="{{ $sparepart->nama_sparepart }}" readonly />
                     </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="id_jenis_spareprat">Jenis Sparepart</label>
-                        <input class="form-control form-control-sm" id="id_jenis_spareprat" type="text"
-                            name="id_jenis_spareprat" value="{{ $sparepart->jenissparepart->jenis_sparepart }}"
-                            readonly />
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="id_jenis_spareprat">Jenis Sparepart</label>
+                            <input class="form-control form-control-sm" id="id_jenis_spareprat" type="text"
+                                name="id_jenis_spareprat" value="{{ $sparepart->jenissparepart->jenis_sparepart }}"
+                                readonly />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="id_merk">Merk Sparepart</label>
+                            <input class="form-control form-control-sm" id="id_merk" type="text" name="id_merk"
+                                value="{{ $sparepart->Merksparepart->merk_sparepart }}" readonly />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="id_merk">Merk Sparepart</label>
-                        <input class="form-control form-control-sm" id="id_merk" type="text" name="id_merk"
-                            value="{{ $sparepart->Merksparepart->merk_sparepart }}" readonly />
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="id_rak">Lokasi Rak </label>
+                            <input class="form-control form-control-sm" id="id_rak" type="text" name="id_rak"
+                                value="{{ $sparepart->Rak->nama_rak }}" readonly />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="id_konversi">Satuan </label>
+                            <input class="form-control form-control-sm" id="id_konversi" type="text" name="id_konversi"
+                                value="{{ $sparepart->Konversi->satuan }}" readonly />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="id_konversi">Satuan </label>
-                        <input class="form-control form-control-sm" id="id_konversi" type="text" name="id_konversi"
-                            value="{{ $sparepart->Konversi->satuan }}" readonly />
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="stock">Stock </label>
+                            <input class="form-control form-control-sm" id="stock" type="text" name="stock"
+                                value="{{ $sparepart->stock }}" readonly /> 
+                        </div>
+                        <div class="form-group col-md-6">
+                            <i class="fas fa-exclamation-triangle mr-1"></i> <label class="small mb-1" for="stock_min">Minimal Stock </label>
+                            <input class="form-control form-control-sm" id="stock_min" type="text" name="stock_min"
+                                value="{{ $sparepart->stock_min }}" readonly />
+                        </div>
                     </div>
                     <hr class="my-4" />
                 </div>
@@ -131,7 +152,9 @@
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
                                                 <td>
-                                                    <img src="{{ url($item->photo) }}" alt="" style="width: 200px"/>
+                                                    <img src="{{ asset('/image/'.$item['photo']) }}" alt="" style="width: 200px"/>
+                                                    <img src="{{ url($item->photo) }}" alt="">
+
                                                 </td>
                                                 <td>{{ $item->is_default ? 'Ya' : 'Tidak' }}</td>
                                                 <td>

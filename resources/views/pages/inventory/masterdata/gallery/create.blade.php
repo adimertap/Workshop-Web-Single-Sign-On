@@ -69,9 +69,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="small mb-1" for="photo">Foto Sparepart</label>
-                                        <input class="form-control" id="photo" type="file" name="photo"
-                                            value="{{ old('photo') }}" accept="image/*" required
-                                            class="form-control @error('photo') is-invalid @enderror" />
+                                        <input class="form-control" id="photo" type="file" name="photo[]"
+                                            value="{{ old('photo') }}" accept="image/*" multiple="multiple" 
+                                            class="form-control @error('photo') is-invalid @enderror">
                                         @error('photo')<div class="text-danger small mb-1">{{ $message }}
                                         </div> @enderror
                                     </div>

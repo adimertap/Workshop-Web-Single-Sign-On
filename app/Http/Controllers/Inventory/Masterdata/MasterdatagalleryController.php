@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventory\Masterdata;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Galleryrequest;
+use App\Http\Requests\Inventory\Sparepartrequest;
 use App\Model\Inventory\Gallery;
 use App\Model\Inventory\Sparepart;
 use Illuminate\Http\Request;
@@ -47,13 +48,15 @@ class MasterdatagalleryController extends Controller
      */
     public function store(Galleryrequest $request)
     {
+    
         $data = $request->all();
         $data['photo'] = $request->file('photo')->store(
             'backend/src/assets/img','public'
         );
 
         Gallery::create($data);
-        return redirect()->route('gallery.index');
+        return redirect()->route('sparepart.index')->with('messageberhasil', 'Data Foto Sparepart Berhasil ditambahkan');
+
     }
 
     /**

@@ -14,9 +14,12 @@ class Sparepart extends Model
         'id_merk',
         'id_jenis_sparepart',
         'id_konversi',
+        'id_rak',
         'kode_sparepart',
         'nama_sparepart',
         'keterangan',
+        'stock',
+        'stock_min'
     ];
 
     protected $hidden =[ 
@@ -35,6 +38,10 @@ class Sparepart extends Model
 
     public function Konversi(){
         return $this->belongsTo(Konversi::class,'id_konversi','id_konversi');
+    }
+
+    public function Rak(){
+        return $this->belongsTo(Rak::class,'id_rak','id_rak');
     }
 
     public function Gallery(){

@@ -26,9 +26,9 @@ class Gallery extends Model
         return $this->belongsTo(Sparepart::class,'id_sparepart','id_sparepart');
     }
 
-    public function getPhotoAttribute($value){
-        return url('storage/' . $value);
-    }
+    // public function getPhotoAttribute($value){
+    //     return url('storage/' . $value);
+    // }
 
 
 }

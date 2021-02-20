@@ -21,10 +21,6 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ url('/node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
-    {{-- <link rel="stylesheet" type="text/css" href="{{ url('/data_tables/datatables.css') }}">
-    <script type="text/javascript" charset="utf8" src="{{ url('/data_tables/datatables.js') }}"></script> --}}
-
-
 
 </head>
 
@@ -217,9 +213,6 @@
                                 <a class="nav-link" href="{{ route('sparepart.index')}}">
                                     Sparepart
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatagallery')}}">
-                                    Gallery Sparepart
-                                </a>
                                 <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
                                     Merk Sparepart
                                 </a>
@@ -258,9 +251,6 @@
 
                         <div class="collapse" id="collapseUtilities" data-parent="#accordionSidenav" style="">
                             <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ route('kelolastock') }}">
-                                    Stock Sparepart
-                                </a>
                                 <a class="nav-link" href="invoice.html">
                                     Stock Opname
                                 </a>
@@ -330,14 +320,14 @@
                         {{-- MANAJEMEN ASET --}}
                         {{-- Manajemen Aset Side Bar --}}
                         <div class="sidenav-menu-heading">Marketplace</div>
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                                data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
-                                Data Penjualan
-                                <div class="sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down">
-                                    </i></div>
-                            </a>
+                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                            data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
+                            Data Penjualan
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down">
+                                </i></div>
+                        </a>
                         <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
                                 <a class="nav-link" href="invoice.html">
@@ -398,8 +388,5 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
-
-
 </body>
-
 </html>

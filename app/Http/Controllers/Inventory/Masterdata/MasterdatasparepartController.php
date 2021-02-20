@@ -9,6 +9,7 @@ use App\Model\Inventory\Hargasparepart;
 use App\Model\Inventory\Jenissparepart;
 use App\Model\Inventory\Konversi;
 use App\Model\Inventory\Merksparepart;
+use App\Model\Inventory\Rak;
 use App\Model\Inventory\Sparepart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -25,14 +26,15 @@ class MasterdatasparepartController extends Controller
     {
 
         $sparepart = Sparepart::with([
-            'Jenissparepart', 'Merksparepart','Konversi','Gallery'
+            'Jenissparepart', 'Merksparepart','Konversi','Gallery','Rak'
         ])->get();
 
         $jenis_sparepart = Jenissparepart::all();
         $merk_sparepart = Merksparepart::all();
         $konversi = Konversi::all();
+        $rak = Rak::all();
 
-        return view('pages.inventory.masterdata.sparepart.sparepart', compact('sparepart','jenis_sparepart','merk_sparepart','konversi','Gallery'));
+        return view('pages.inventory.masterdata.sparepart.sparepart', compact('sparepart','jenis_sparepart','merk_sparepart','konversi','Gallery','rak'));
     }
 
     /**
@@ -46,8 +48,9 @@ class MasterdatasparepartController extends Controller
         $merk_sparepart = Merksparepart::all();
         $konversi = Konversi::all();
         $gallery = Gallery::all();
+        $rak = Rak::all();
 
-        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_sparepart','merk_sparepart','konversi','gallery')); 
+        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_sparepart','merk_sparepart','konversi','gallery','rak')); 
     }
 
     /**
@@ -58,12 +61,38 @@ class MasterdatasparepartController extends Controller
      */
     public function store(Sparepartrequest $request)
     {
-        $data = $request->all();
-        $data = Sparepart::create($data);
+        // $data = $request->all();
+        // $data = Sparepart::create($data);
      
-
-        return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil ditambahkan');
+        // return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil diubah');
        
+        if($request->hasfile('photo'))
+        {
+            foreach($request->file('photo') as $image)
+            {
+                $name=$image->getClientOriginalName();
+                $image->move(public_path().'/image/', $name); 
+                $data[] = $name; 
+            }
+        }
+
+        $sparepart = new Sparepart;
+        $sparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
+        $sparepart->id_merk = $request->id_merk;
+        $sparepart->id_konversi = $request->id_konversi;
+        $sparepart->id_rak = $request->id_rak;
+        $sparepart->kode_sparepart = $request->kode_sparepart;
+        $sparepart->nama_sparepart = $request->nama_sparepart;
+        $sparepart->stock = $request->stock;
+        $sparepart->stock_min = $request->stock_min;
+        $sparepart->save();
+
+        $gallery = new Gallery;
+        $gallery->photo = $name;
+        $gallery->id_sparepart = $sparepart->id_sparepart;
+        $gallery->save();
+
+        return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil diubah');
     }
 
 
@@ -79,12 +108,14 @@ class MasterdatasparepartController extends Controller
         $jenis_sparepart = Jenissparepart::all();
         $merk_sparepart = Merksparepart::all();
         $konversi = Konversi::all();
-        
+        $rak = Rak::all();
+
         return view('pages.inventory.masterdata.sparepart.detail',[
             'item' => $sparepart,
             'jenis_sparepart' => $jenis_sparepart,
             'merk_sparepart' => $merk_sparepart,
             'konversi' => $konversi,
+            'rak' => $rak,
         ]);
     }
 
@@ -100,12 +131,14 @@ class MasterdatasparepartController extends Controller
         $jenis_sparepart = Jenissparepart::all();
         $merk_sparepart = Merksparepart::all();
         $konversi = Konversi::all();
+        $rak = Rak::all();
         
         return view('pages.inventory.masterdata.sparepart.edit',[
             'item' => $sparepart,
             'jenis_sparepart' => $jenis_sparepart,
             'merk_sparepart' => $merk_sparepart,
             'konversi' => $konversi,
+            'rak' => $rak,
         ]);
     }
 
@@ -122,8 +155,11 @@ class MasterdatasparepartController extends Controller
         $sparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
         $sparepart->id_merk = $request->id_merk;
         $sparepart->id_konversi = $request->id_konversi;
+        $sparepart->id_rak = $request->id_rak;
         $sparepart->kode_sparepart = $request->kode_sparepart;
         $sparepart->nama_sparepart = $request->nama_sparepart;
+        $sparepart->stock = $request->stock;
+        $sparepart->stock_min = $request->stock_min;
 
         $sparepart->update();
         return redirect()->back()->with('messageberhasil','Data Sparepart Berhasil diubah');
@@ -152,6 +188,7 @@ class MasterdatasparepartController extends Controller
         $jenis_sparepart = Jenissparepart::all();
         $merk_sparepart = Merksparepart::all();
         $konversi = Konversi::all();
+        $rak = Rak::all();
         $gallery = Gallery::with('sparepart')
             ->where('id_sparepart',$id_sparepart)
             ->get();
@@ -162,6 +199,7 @@ class MasterdatasparepartController extends Controller
             'jenis_sparepart' => $jenis_sparepart,
             'merk_sparepart' => $merk_sparepart,
             'konversi' => $konversi,
+            'rak' => $rak,
         ]);
     }
 
