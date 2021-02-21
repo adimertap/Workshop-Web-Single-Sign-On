@@ -125,14 +125,14 @@ Route::prefix('inventory/konversi')
     });
 
 
-// KELOLA STOCK ---------------------------------------------------------------- Kelola Stock
-Route::prefix('inventory/kelolastock')
-    ->namespace('Inventory\Kelolastock')
+// PURCHASE ORDER ---------------------------------------------------------------- Purchase Order
+Route::prefix('inventory/pembelian')
+    ->namespace('Inventory\Purchase')
     ->group(function () {
-        Route::get('/', 'StocksparepartController@index')
-            ->name('kelolastock');
+        Route::get('/', 'PurchaseorderController@index')
+            ->name('purchaseorder');
 
-        Route::resource('kelola-stock', 'StocksparepartController');
+        Route::resource('purchase-order', 'PurchaseorderController');
     });
 
 // --------------------------------------------------------------------------------------------------------KEPEGAWAIAN
