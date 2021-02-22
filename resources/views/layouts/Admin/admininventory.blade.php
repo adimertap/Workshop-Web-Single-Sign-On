@@ -305,7 +305,7 @@
                         </a>
                         <div class="collapse" id="collapseFlows" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link " href="invoice.html">
+                                <a class="nav-link " href="{{ route('approvalpo') }}">
                                     Purchase Order
                                 </a>
                                 <a class="nav-link " href="invoice.html">
