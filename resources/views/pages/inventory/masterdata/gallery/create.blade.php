@@ -69,33 +69,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="small mb-1" for="photo">Foto Sparepart</label>
-                                        <input class="form-control" id="photo" type="file" name="photo[]"
+                                        <input class="form-control" id="photo" type="file" name="photo"
                                             value="{{ old('photo') }}" accept="image/*" multiple="multiple" 
                                             class="form-control @error('photo') is-invalid @enderror">
                                         @error('photo')<div class="text-danger small mb-1">{{ $message }}
                                         </div> @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label class="small mb-1" for="is_default">Jadikan Default</label>
-                                        <br>
-                                        <label>
-                                            <input type="radio" name="is_default" value="1"
-                                                class="custom-control custom-radio" @error('is_default') is-invalid
-                                                @enderror" checked/> Ya
-                                        </label>
-                                        &nbsp;
-                                        <label>
-                                            <input type="radio" name="is_default" value="0"
-                                                class="custom-control custom-radio" @error('is_default') is-invalid
-                                                @enderror" /> Tidak
-                                        </label>
-                                        @error('is_default')
-                                        <div class="text-danger small mb-1">{{ $message }}</div>
-                                        @enderror
-                                    </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('masterdatagallery') }}" class="btn btn-light">Kembali</a>
+                                        <a href="{{ route('masterdatasparepart') }}" class="btn btn-light">Kembali</a>
                                         <button class="btn btn-primary" type="Submit">Tambah Foto Sparepart</button>
                                     </div>
                                 </form>

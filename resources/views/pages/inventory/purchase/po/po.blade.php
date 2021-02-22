@@ -28,7 +28,7 @@
     <div class="card mb-4">
         <div class="card card-header-actions">
             <div class="card-header ">List Pembelian
-                <a href="{{ route('sparepart.create') }}" class="btn btn-primary"> Tambah Pembelian</a>
+                <a href="{{ route('purchase-order.create') }}" class="btn btn-sm btn-primary"> Tambah Pembelian</a>
             </div>
         </div>
         <div class="card-body ">
@@ -49,7 +49,7 @@
                     </button>
                 </div>
                 @endif
-                
+
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
@@ -63,16 +63,16 @@
                                             No</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 60px;">Kode PO</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 100px;">Pegawai</th>
+                                            style="width: 50px;">Kode PO</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 150px;">Supplier</th>
+                                            style="width: 150px;">Pegawai</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Office: activate to sort column ascending"
+                                            style="width: 100px;">Supplier</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Start date: activate to sort column ascending"
-                                            style="width: 70px;">Tanggal</th>
+                                            style="width: 50px;">Tanggal</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
                                             style="width: 40px;">Approve</th>
@@ -81,36 +81,60 @@
                                             style="width: 20px;">Approve AP</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 20px;">Cetak</th>
+                                            style="width: 10px;">Cetak</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
-                                            style="width: 100px;">Actions</th>
+                                            style="width: 90px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @forelse ($sparepart as $item)
+                                    @forelse ($po as $item)
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                        <td>{{ $item->kode_sparepart }}</td>
-                                        <td>{{ $item->nama_sparepart }}</td>
-                                        <td>{{ $item->Jenissparepart->jenis_sparepart }}</td>
-                                        <td>{{ $item->Merksparepart->merk_sparepart }}</td>
-                                        <td>{{ $item->Konversi->satuan }}</td>
-                                        <td>{{ $item->stock }}</td>
-                                        <td>{{ $item->stock_min}}</td>
+                                        <td>{{ $item->kode_po }}</td>
+                                        <td>{{ $item->Pegawai->nama_pegawai }}</td>
+                                        <td>{{ $item->Supplier->nama_supplier }}</td>
+                                        <td>{{ $item->tanggal_po }}</td>
                                         <td>
-                                            <a href="{{ route('sparepart.gallery', $item->id_sparepart) }}"
+                                            @if($item->approve_po == 'Approved')
+                                            <span class="badge badge-success">
+                                                @elseif($item->approve_po == 'Not Approved')
+                                                <span class="badge badge-danger">
+                                                    @else
+                                                    <span>
+                                                        @endif
+                                                        {{ $item->approve_po }}
+                                                    </span>
+                                        </td>
+                                        <td>
+                                            @if($item->approve_ap == 'Approved')
+                                            <span class="badge badge-success">
+                                                @elseif($item->approve_ap == 'Not Approved')
+                                                <span class="badge badge-danger">
+                                                    @else
+                                                    <span>
+                                                        @endif
+                                                        {{ $item->approve_ap }}
+                                                    </span>
+                                        </td>
+                                        <td>
+                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                            data-placement="top" title="" data-original-title="Cetak PO">
+                                                <i class="fas fa-print"></i></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('purchase-order.show', $item->id_po) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title=""
-                                                data-original-title="Detail Sparepart dan Foto">
+                                                data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('sparepart.edit', $item->id_sparepart) }}"
-                                                class="btn btn-primary btn-datatable">
+                                            <a href="" class="btn btn-primary btn-datatable"data-toggle="tooltip"
+                                            data-placement="top" title="" data-original-title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_sparepart }}">
+                                            <a href="" class="btn btn-danger btn-datatable" type="button" 
+                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
@@ -118,10 +142,10 @@
                                     @empty
                                     <tr>
                                         <td colspan="7" class="tex-center">
-                                            Data Sparepart Kosong
+                                            Data Pembelian Kosong
                                         </td>
                                     </tr>
-                                    @endforelse --}}
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -132,9 +156,9 @@
     </div>
 </div>
 </main>
-{{-- 
-@forelse ($sparepart as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
+
+@forelse ($po as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_po }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -143,10 +167,11 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('sparepart.destroy', $item->id_sparepart) }}" method="POST" class="d-inline">
+            <form action="{{ route('purchase-order.destroy', $item->id_po) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Sparepart {{ $item->nama_sparepart }}?</div>
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pembelian {{ $item->kode_po }} pada tanggal
+                    {{ $item->tanggal_po }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>
@@ -155,19 +180,7 @@
         </div>
     </div>
 </div>
-@empty --}}
+@empty
 
-{{-- @endforelse
-@if (count($errors) > 0)
-<button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open
-    Modal</button>
-@endif --}}
-
-{{-- Script Open Modal Callback --}}
-<script>
-    $(document).ready(function () {
-        $('#validasierror').click();
-    });
-
-</script>
+@endforelse
 @endsection

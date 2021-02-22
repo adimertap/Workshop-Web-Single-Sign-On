@@ -71,11 +71,11 @@
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="nama_lengkap">Nama Lengkap</label>
-                                            <input class="form-control" id="nama_lengkap" type="text"
-                                                name="nama_lengkap" placeholder="Input Nama Lengkap"
-                                                class="form-control @error('nama_lengkap') is-invalid @enderror" />
-                                            @error('nama_lengkap')<div class="text-danger small mb-1">{{ $message }}
+                                            <label class="small mb-1" for="nama_pegawai">Nama Lengkap</label>
+                                            <input class="form-control" id="nama_pegawai" type="text"
+                                                name="nama_pegawai" placeholder="Input Nama Lengkap"
+                                                class="form-control @error('nama_pegawai') is-invalid @enderror" />
+                                            @error('nama_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
@@ -94,8 +94,8 @@
                                                 class="form-control @error('id_jabatan') is-invalid @enderror">
                                                 <option>Pilih Jabatan</option>
                                                 @foreach ($jabatan as $item)
-                                                <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}
-                                                </option>
+                                                    <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             @error('id_jabatan')<div class="text-danger small mb-1">{{ $message }}

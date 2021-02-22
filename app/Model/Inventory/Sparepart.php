@@ -45,6 +45,10 @@ class Sparepart extends Model
     }
 
     public function Gallery(){
-        return $this->hasMany(Gallery::class,'id_sparepart','id_sparepart');
+        return $this->hasMany(Gallery::class,'id_sparepart');
+    }
+
+    public function Hargasparepart(){
+        return $this->hasMany(Hargasparepart::class,'id_harga');
     }
 }

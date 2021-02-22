@@ -13,7 +13,6 @@ class Gallery extends Model
     protected $fillable = [
         'id_sparepart',
         'photo',
-        'is_default',
     ];
 
     protected $hidden =[ 

@@ -81,7 +81,7 @@
                                     @forelse ($pegawai as $item)
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                        <td>{{ $item->nama_lengkap }}</td>
+                                        <td>{{ $item->nama_pegawai }}</td>
                                         <td>{{ $item->jabatan->nama_jabatan }}</td>
                                         <td>{{ $item->alamat }}</td>
                                         <td>{{ $item->jenis_kelamin }}</td>

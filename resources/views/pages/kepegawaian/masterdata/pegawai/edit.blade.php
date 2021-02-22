@@ -33,7 +33,7 @@
                         <div class="wizard-step-icon"><i class="fas fa-user"></i></div>
                         <div class="wizard-step-text">
                             <div class="wizard-step-text-name">Ubah Data Indentitas Pegawai </div>
-                            <div class="wizard-step-text-details">{{ $item->nama_lengkap }} | {{ $item->jabatan->nama_jabatan }}</div>
+                            <div class="wizard-step-text-details">{{ $item->nama_pegawai }} | {{ $item->jabatan->nama_jabatan }}</div>
                         </div>
                     </a>
                 </div>
@@ -62,9 +62,9 @@
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="nama_lengkap">Nama Lengkap</label>
-                                            <input class="form-control" id="nama_lengkap" type="text"
-                                                name="nama_lengkap" value="{{ $item->nama_lengkap }}" />
+                                            <label class="small mb-1" for="nama_pegawai">Nama Lengkap</label>
+                                            <input class="form-control" id="nama_pegawai" type="text"
+                                                name="nama_pegawai" value="{{ $item->nama_pegawai }}" />
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="nama_panggilan">Nama Panggilan</label>

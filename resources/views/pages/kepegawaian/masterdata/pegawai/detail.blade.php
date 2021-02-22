@@ -9,7 +9,7 @@
             <div class="mr-4 mb-3 mb-sm-0">
                 <h1 class="mb-0">Detail Pegawai </h1>
                 <div class="small">
-                   {{ $item->nama_lengkap }} · Jabatan {{ $item->jabatan->nama_jabatan }}
+                   {{ $item->nama_pegawai }} · Jabatan {{ $item->jabatan->nama_jabatan }}
                 </div>
             </div>
             <div class="col-12 col-xl-auto mb-3">
@@ -27,7 +27,7 @@
                         <img class="img-account-profile rounded-circle mb-2"
                             src="/backend/src/assets/img/freepik/profiles/profile-6.png" alt="">
                         <div class="small font-italic text-muted mb-4">Profile Pegawai</div>
-                        <div class="font-weight-500 text-primary">{{ $item->nama_lengkap }}</div>
+                        <div class="font-weight-500 text-primary">{{ $item->nama_pegawai }}</div>
                         <span class="small text-muted line-height-normal">{{ $item->nama_panggilan }} · {{ $item->jabatan->nama_jabatan }}</span>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                                                 </div>
                                                 <div class="col">
                                                     <label class="small text-muted line-height-normal">:
-                                                        {{ $item->nama_lengkap }}
+                                                        {{ $item->nama_pegawai }}
                                                 </div>
                                             </div>
                                             <div class="row">

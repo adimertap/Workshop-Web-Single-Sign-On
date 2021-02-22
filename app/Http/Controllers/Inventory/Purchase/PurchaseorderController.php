@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Inventory\Purchase;
 
 use App\Http\Controllers\Controller;
+use App\Model\Accounting\Akun;
+use App\Model\Inventory\Purchase\PO;
+use App\Model\Inventory\Supplier;
+use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
 
 class PurchaseorderController extends Controller
@@ -14,7 +18,11 @@ class PurchaseorderController extends Controller
      */
     public function index()
     {
-        return view('pages.inventory.purchase.po.po');
+        $po = PO::with([
+            'Akun','Supplier','Pegawai'
+        ])->get();
+
+        return view('pages.inventory.purchase.po.po', compact('po'));
     }
 
     /**
@@ -44,9 +52,13 @@ class PurchaseorderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_po)
     {
-        //
+        $po = PO::with('Detail.Sparepart')->findOrFail($id_po);
+
+        return view('pages.inventory.purchase.po.detail')->with([
+            'po' => $po
+        ]);
     }
 
     /**
@@ -78,8 +90,12 @@ class PurchaseorderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_po)
     {
-        //
+        $PO = PO::findOrFail($id_po);
+        
+        $PO->delete();
+
+        return redirect()->back()->with('messagehapus','Data Pembelian Berhasil dihapus');
     }
 }

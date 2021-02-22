@@ -48,7 +48,7 @@ class MasterdatapegawaiController extends Controller
     {
         $pegawai = new Pegawai;
         $pegawai->id_jabatan = $request->id_jabatan;
-        $pegawai->nama_lengkap = $request->nama_lengkap;
+        $pegawai->nama_pegawai = $request->nama_pegawai;
         $pegawai->nama_panggilan = $request->nama_panggilan;
         $pegawai->tempat_lahir = $request->tempat_lahir;
         $pegawai->tanggal_lahir = $request->tanggal_lahir;

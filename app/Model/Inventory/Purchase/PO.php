@@ -2,6 +2,9 @@
 
 namespace App\Model\Inventory\Purchase;
 
+use App\Model\Accounting\Akun;
+use App\Model\Inventory\Supplier;
+use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -15,14 +18,15 @@ class PO extends Model
     protected $primaryKey = 'id_po';
 
     protected $fillable = [
+        'kode_po',
         'id_pegawai',
         'id_akun',
         'id_supplier',
-        'kode_po',
         'tanggal_po',
         'approve_po',
         'approve_ap',
-        'keterangan'
+        'keterangan',
+        
     ];
 
     protected $hidden =[ 
@@ -32,4 +36,24 @@ class PO extends Model
     ];
 
     public $timestamps = true;
+
+    public function Detail()
+    {
+        return $this->hasMany(POdetail::class,'id_po');
+    }
+
+    public function Akun()
+    {
+        return $this->belongsTo(Akun::class,'id_akun','id_akun');
+    }
+
+    public function Supplier()
+    {
+        return $this->belongsTo(Supplier::class,'id_supplier','id_supplier');
+    }
+
+    public function Pegawai()
+    {
+        return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
+    }
 }

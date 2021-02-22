@@ -48,14 +48,31 @@ class MasterdatagalleryController extends Controller
      */
     public function store(Galleryrequest $request)
     {
-    
-        $data = $request->all();
-        $data['photo'] = $request->file('photo')->store(
-            'backend/src/assets/img','public'
-        );
+        
+          $image = new Gallery;
+  
+          if ($request->file('photo')) {
+            $imagePath = $request->file('photo');
+            $imageName = $imagePath->getClientOriginalName();
+           
+            $imagePath->move(public_path().'/image/', $imageName); 
+            $data[] = $imageName;
+          }
+  
+          $image->photo = $imageName;
+          $image->id_sparepart = $request->id_sparepart;
+          $image->save();
+  
+          return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil diubah');
 
-        Gallery::create($data);
-        return redirect()->route('sparepart.index')->with('messageberhasil', 'Data Foto Sparepart Berhasil ditambahkan');
+
+        // $data = $request->all();
+        // $data['photo'] = $request->file('photo')->store(
+        //     'backend/src/assets/img','public'
+        // );
+
+        // Gallery::create($data);
+        // return redirect()->route('sparepart.index')->with('messageberhasil', 'Data Foto Sparepart Berhasil ditambahkan');
 
     }
 

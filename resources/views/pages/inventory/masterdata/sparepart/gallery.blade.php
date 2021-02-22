@@ -137,10 +137,6 @@
                                                     aria-label="Start date: activate to sort column ascending"
                                                     style="width: 230px;">Foto</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                    style="width: 40px;">
-                                                    Default</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Actions: activate to sort column ascending"
                                                     style="width: 40px;">
                                                     Actions</th>
@@ -152,11 +148,9 @@
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
                                                 <td>
-                                                    <img src="{{ asset('/image/'.$item['photo']) }}" alt="" style="width: 200px"/>
+                                                    <img src="{{ asset('/image/'.$item['photo']) }}" alt="" style="width: 300px"/>
                                                     <img src="{{ url($item->photo) }}" alt="">
-
                                                 </td>
-                                                <td>{{ $item->is_default ? 'Ya' : 'Tidak' }}</td>
                                                 <td>
                                                     <a href="" class="btn btn-danger btn-datatable" type="button"
                                                         data-toggle="modal"
