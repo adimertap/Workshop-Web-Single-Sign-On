@@ -1,26 +1,25 @@
 <?php
 
-namespace App\Model\Inventory\Rcv;
+namespace App\Model\Inventory\Retur;
 
-use App\Model\Inventory\Rak;
 use App\Model\Inventory\Sparepart;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Rcvdetail extends Model
+class Returdetail extends Model
 {
     use SoftDeletes;
 
-    protected $table = "tb_inventory_detrcv";
+    protected $table = "tb_inventory_detretur";
 
-    protected $primaryKey = 'id_detail_rcv';
+    protected $primaryKey = 'id_detail_retur';
 
     protected $fillable = [
-        'id_rcv',
+        'id_retur',
         'id_sparepart',
-        'id_rak',
-        'jumlah_po',
-        'jumlah_rcv',
+        'jumlah_retur',
+        'harga_beli',
+        'keterangan',
 
     ];
 
@@ -32,18 +31,13 @@ class Rcvdetail extends Model
 
     public $timestamps = true;
 
-    public function Rcv()
+    public function Retur()
     {
-        return $this->belongsTo(Rcv::class, 'id_rcv','id_rcv');
+        return $this->belongsTo(Retur::class, 'id_retur','id_retur');
     }
 
     public function Sparepart()
     {
         return $this->belongsTo(Sparepart::class, 'id_sparepart','id_sparepart');
-    }
-
-    public function Rak()
-    {
-        return $this->belongsTo(Rak::class, 'id_rak','id_rak');
     }
 }

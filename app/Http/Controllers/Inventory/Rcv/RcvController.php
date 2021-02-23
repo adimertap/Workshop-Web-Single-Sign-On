@@ -49,9 +49,13 @@ class RcvController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_rcv)
     {
-        //
+        $rcv = Rcv::with('Detail.Sparepart.Rak')->findOrFail($id_rcv);
+
+        return view('pages.inventory.rcv.detail')->with([
+            'rcv' => $rcv
+        ]);
     }
 
     /**
@@ -83,8 +87,12 @@ class RcvController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_rcv)
     {
-        //
+        $rcv = Rcv::findOrFail($id_rcv);
+        
+        $rcv->delete();
+
+        return redirect()->back()->with('messagehapus','Data Penerimaan Berhasil dihapus');
     }
 }

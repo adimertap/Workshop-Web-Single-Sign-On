@@ -1,36 +1,31 @@
 <?php
 
-namespace App\Model\Inventory\Rcv;
+namespace App\Model\Inventory\Retur;
 
 use App\Model\Accounting\Akun;
-use App\Model\Accounting\Fop;
-use App\Model\Inventory\Purchase\PO;
+use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Rcv extends Model
+class Retur extends Model
 {
     use SoftDeletes;
 
-    protected $table = "tb_inventory_rcv";
+    protected $table = "tb_inventory_retur";
 
-    protected $primaryKey = 'id_rcv';
+    protected $primaryKey = 'id_retur';
 
     protected $fillable = [
-        'id_po',
+        'id_rcv',
         'id_pegawai',
         'id_supplier',
         'id_akun',
-        'id_fop',
-        'kode_rcv',
-        'no_do',
+        'kode_retur',
         'no_faktur',
+        'tanggal_retur',
         'status',
-        'tanggal_rcv',
-        'total_pembayaran',
-        
     ];
 
     protected $hidden =[ 
@@ -43,12 +38,12 @@ class Rcv extends Model
 
     public function Detail()
     {
-        return $this->hasMany(Rcvdetail::class,'id_rcv');
+        return $this->hasMany(Returdetail::class,'id_retur');
     }
 
-    public function PO()
+    public function Rcv()
     {
-        return $this->belongsTo(PO::class,'id_po','id_po');
+        return $this->belongsTo(Rcv::class,'id_rcv','id_rcv');
     }
 
     public function Pegawai()
@@ -64,14 +59,5 @@ class Rcv extends Model
     public function Akun()
     {
         return $this->belongsTo(Akun::class,'id_akun','id_akun');
-    }
-
-    public function FOP()
-    {
-        return $this->belongsTo(Fop::class,'id_fop','id_fop');
-    }
-
-    
-
-   
+    }    
 }
