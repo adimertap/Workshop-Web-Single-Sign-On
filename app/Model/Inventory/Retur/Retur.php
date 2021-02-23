@@ -23,7 +23,6 @@ class Retur extends Model
         'id_supplier',
         'id_akun',
         'kode_retur',
-        'no_faktur',
         'tanggal_retur',
         'status',
     ];

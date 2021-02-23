@@ -158,7 +158,16 @@ Route::prefix('inventory/receiving')
 
     });
 
+// RETUR ---------------------------------------------------------------------- Retur
+Route::prefix('inventory/retur')
+    ->namespace('Inventory\Retur')
+    ->group(function () {
+        Route::get('/', 'ReturController@index')
+            ->name('Retur');
+        
+        Route::resource('Retur', 'ReturController');
 
+    });
 
 
 

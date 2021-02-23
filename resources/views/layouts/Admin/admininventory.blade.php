@@ -290,7 +290,7 @@
                                 <a class="nav-link " href="{{ route('Receive') }}">
                                     Receiving
                                 </a>
-                                <a class="nav-link" href="invoice.html">
+                                <a class="nav-link" href="{{ route('Retur') }}">
                                     Retur Pembelian
                                 </a>
                             </nav>
