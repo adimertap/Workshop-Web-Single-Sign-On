@@ -23,8 +23,8 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Rak
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
-                        Rak</button>
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">
+                        Tambah Rak</button>
                 </div>
             </div>
             <div class="card-body">

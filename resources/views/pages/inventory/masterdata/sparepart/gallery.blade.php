@@ -91,7 +91,7 @@
                 <div class="card-body">
                     <div class="alert alert-info alert-icon" role="alert">
                         <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                            <span aria-hidden="true"></span>
                         </button>
                         <div class="alert-icon-aside">
                             <i class="fas fa-mobile-alt"></i>

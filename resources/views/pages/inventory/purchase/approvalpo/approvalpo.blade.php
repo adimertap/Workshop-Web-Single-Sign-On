@@ -67,6 +67,9 @@
                                             colspan="1" aria-label="Start date: activate to sort column ascending"
                                             style="width: 50px;">Tanggal</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Start date: activate to sort column ascending"
+                                            style="width: 50px;">Approval AP</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
                                             style="width: 90px;">Actions</th>
                                     </tr>
@@ -79,6 +82,19 @@
                                         <td>{{ $item->Pegawai->nama_pegawai }}</td>
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
                                         <td>{{ $item->tanggal_po }}</td>
+                                        <td>
+                                            @if($item->approve_po == 'Approved')
+                                                <span class="badge badge-success">
+                                            @elseif($item->approve_po == 'Not Approved')
+                                                <span class="badge badge-danger">
+                                            @elseif($item->approve_po == 'Pending')
+                                                <span class="badge badge-secondary">
+                                            @else
+                                                <span>
+                                            @endif
+                                                {{ $item->approve_po }}
+                                                </span>
+                                        </td>
                                         <td>
                                             @if($item->approve_po == 'Pending')
                                             <a href="{{ route('approval-po.show', $item->id_po) }}"

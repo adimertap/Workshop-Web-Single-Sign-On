@@ -23,7 +23,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Satuan Konversi
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
                         Satuan</button>
                 </div>
             </div>

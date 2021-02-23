@@ -287,7 +287,7 @@
                         </a>
                         <div class="collapse" id="collapseComponents" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link " href="invoice.html">
+                                <a class="nav-link " href="{{ route('Receive') }}">
                                     Receiving
                                 </a>
                                 <a class="nav-link" href="invoice.html">

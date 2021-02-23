@@ -97,25 +97,29 @@
                                         <td>{{ $item->tanggal_po }}</td>
                                         <td>
                                             @if($item->approve_po == 'Approved')
-                                            <span class="badge badge-success">
-                                                @elseif($item->approve_po == 'Not Approved')
+                                                <span class="badge badge-success">
+                                            @elseif($item->approve_po == 'Not Approved')
                                                 <span class="badge badge-danger">
-                                                    @else
-                                                    <span>
-                                                        @endif
-                                                        {{ $item->approve_po }}
-                                                    </span>
+                                            @elseif($item->approve_po == 'Pending')
+                                                <span class="badge badge-secondary">
+                                            @else
+                                                <span>
+                                            @endif
+                                                {{ $item->approve_po }}
+                                                </span>
                                         </td>
                                         <td>
                                             @if($item->approve_ap == 'Approved')
-                                            <span class="badge badge-success">
-                                                @elseif($item->approve_ap == 'Not Approved')
+                                                <span class="badge badge-success">
+                                            @elseif($item->approve_ap == 'Not Approved')
                                                 <span class="badge badge-danger">
-                                                    @else
-                                                    <span>
-                                                        @endif
-                                                        {{ $item->approve_ap }}
-                                                    </span>
+                                            @elseif($item->approve_ap == 'Pending')
+                                                <span class="badge badge-secondary">
+                                            @else
+                                                <span>
+                                            @endif
+                                                {{ $item->approve_ap }}
+                                                </span>
                                         </td>
                                         <td>
                                             <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"

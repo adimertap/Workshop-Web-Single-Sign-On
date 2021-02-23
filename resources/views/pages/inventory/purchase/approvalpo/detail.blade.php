@@ -15,7 +15,7 @@
             </div>
             <div>
                 <div class="col-12 col-xl-auto mb-3">
-                    <a href="{{ route('purchase-order.index') }}"
+                    <a href="{{ route('approvalpo') }}"
                         class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
                 </div>
             </div>

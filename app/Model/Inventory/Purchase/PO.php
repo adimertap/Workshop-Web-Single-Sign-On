@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PO extends Model
 {
-
     use SoftDeletes;
 
     protected $table = "tb_inventory_po";

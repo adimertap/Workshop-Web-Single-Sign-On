@@ -147,6 +147,21 @@ Route::prefix('inventory/approvalpembelian')
             ->name('po-status');
     });
 
+// RECEIVING ------------------------------------------------------------------- Receiving
+Route::prefix('inventory/receiving')
+    ->namespace('Inventory\Rcv')
+    ->group(function () {
+        Route::get('/', 'RcvController@index')
+            ->name('Receive');
+        
+        Route::resource('Rcv', 'RcvController');
+
+    });
+
+
+
+
+
 // --------------------------------------------------------------------------------------------------------KEPEGAWAIAN
 // MODUL KEPEGAWAIAN
 // DASHBOARD

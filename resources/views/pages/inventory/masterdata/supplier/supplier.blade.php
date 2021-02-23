@@ -23,7 +23,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Supplier
-                    <a href="{{ route('supplier.create') }}" class="btn btn-primary"> Tambah Supplier</a>
+                    <a href="{{ route('supplier.create') }}" class="btn btn-sm btn-primary"> Tambah Supplier</a>
                 </div>
             </div>
             <div class="card-body">

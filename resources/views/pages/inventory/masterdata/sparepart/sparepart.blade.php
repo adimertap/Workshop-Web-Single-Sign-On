@@ -22,7 +22,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header ">List Sparepart
-                    <a href="{{ route('sparepart.create') }}" class="btn btn-primary"> Tambah Sparepart</a>
+                    <a href="{{ route('sparepart.create') }}" class="btn btn-sm btn-primary"> Tambah Sparepart</a>
                 </div>
             </div>
             <div class="card-body ">
