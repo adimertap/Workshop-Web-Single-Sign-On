@@ -29,8 +29,8 @@ class POrequest extends FormRequest
             'id_supplier' => 'required|exists:tb_inventory_master_supplier,id_supplier',
             'kode_po' => 'required',
             'tanggal_po' => 'required|date',
-            'approve_po' => 'required|string|in:Approved,Not Approved',
-            'approve_ap' => 'required|string|in:Approved,Not Approved',
+            'approve_po' => 'required|string|in:Approved,Not Approved,Pending',
+            'approve_ap' => 'required|string|in:Approved,Not Approved,Pending',
             'keterangan' => 'required',
         ];
     }

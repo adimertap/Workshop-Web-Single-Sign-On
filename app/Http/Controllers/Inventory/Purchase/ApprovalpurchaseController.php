@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Inventory\Purchase;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Inventory\Purchase\POrequest;
 use App\Model\Inventory\Purchase\PO;
 use Illuminate\Http\Request;
 
@@ -90,5 +91,18 @@ class ApprovalpurchaseController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function setStatus(Request $request, $id_po)
+    {
+        $request->validate([
+            'status' => 'required|in:Approved,Not Approved,Pending'
+        ]);
+
+        $item = PO::findOrFail($id_po);
+        $item->approve_po = $request->status;
+
+        $item->save();
+        return redirect()->route('approvalpo');
     }
 }

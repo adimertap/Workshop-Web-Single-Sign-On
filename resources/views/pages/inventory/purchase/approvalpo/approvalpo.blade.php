@@ -80,22 +80,31 @@
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
                                         <td>{{ $item->tanggal_po }}</td>
                                         <td>
+                                            @if($item->approve_po == 'Pending')
                                             <a href="{{ route('approval-po.show', $item->id_po) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href=""
+                                            <a href="{{ route('po-status', $item->id_po) }}?status=Approved"
                                                 class="btn btn-success btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Setujui Data">
                                                 <i class="fas fa-check"></i>
                                             </a>
-                                            <a href=""
+                                            <a href="{{ route('po-status', $item->id_po) }}?status=Not Approved"
                                                 class="btn btn-danger btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Tolak Data">
                                                 <i class="fas fa-times"></i>
                                             </a>
-                                            
+                                            @elseif($item->approve_po == 'Not Approved')
+                                                <span class="badge badge-danger">
+                                            @elseif($item->approve_po == 'Approved')
+                                                <span class="badge badge-success">
+                                            @else
+                                            <span>
+                                                @endif
+                                                {{ $item->approve_po }}
+                                            </span>
                                         </td>
                                     </tr>
                                     @empty

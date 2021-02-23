@@ -148,7 +148,7 @@
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
                                                 <td>
-                                                    <img src="{{ asset('/image/'.$item['photo']) }}" alt="" style="width: 300px"/>
+                                                    <img src="{{ asset('/image/'.$item['photo']) }}" alt="" style="width: 200px"/>
                                                     <img src="{{ url($item->photo) }}" alt="">
                                                 </td>
                                                 <td>

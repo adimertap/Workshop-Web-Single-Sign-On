@@ -134,13 +134,17 @@ Route::prefix('inventory/pembelian')
 
         Route::resource('purchase-order', 'PurchaseorderController');
     });
+
 Route::prefix('inventory/approvalpembelian')
     ->namespace('Inventory\Purchase')
     ->group(function () {
         Route::get('/', 'ApprovalpurchaseController@index')
             ->name('approvalpo');
-
+        
         Route::resource('approval-po', 'ApprovalpurchaseController');
+
+        Route::get('PO/{id_po}/set-status', 'ApprovalpurchaseController@setStatus')
+            ->name('po-status');
     });
 
 // --------------------------------------------------------------------------------------------------------KEPEGAWAIAN
