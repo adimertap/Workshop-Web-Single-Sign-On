@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Inventory\Purchase;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Inventory\Purchase\POrequest;
 use App\Model\Inventory\Purchase\PO;
 use Illuminate\Http\Request;
 
@@ -100,6 +101,7 @@ class ApprovalpurchaseAPController extends Controller
 
         $item = PO::findOrFail($id_po);
         $item->approve_ap = $request->status;
+        $item->keterangan_ap = $request->keterangan_ap;
 
         $item->save();
         return redirect()->route('approvalpoap');

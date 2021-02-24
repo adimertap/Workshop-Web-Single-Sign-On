@@ -31,7 +31,8 @@ class POrequest extends FormRequest
             'tanggal_po' => 'required|date',
             'approve_po' => 'required|string|in:Approved,Not Approved,Pending',
             'approve_ap' => 'required|string|in:Approved,Not Approved,Pending',
-            'keterangan' => 'required',
+            'keterangan_owner' => 'required',
+            'keterangan_ap' => 'required',
         ];
     }
 }

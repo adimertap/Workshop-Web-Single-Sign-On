@@ -143,7 +143,7 @@ Route::prefix('inventory/approvalpembelian')
         
         Route::resource('approval-po', 'ApprovalpurchaseController');
 
-        Route::get('PO/{id_po}/set-status', 'ApprovalpurchaseController@setStatus')
+        Route::post('PO/{id_po}/set-status', 'ApprovalpurchaseController@setStatus')
             ->name('po-status');
     });
 
@@ -155,7 +155,7 @@ Route::prefix('inventory/approvalappembelian')
     
     Route::resource('approval-po-ap', 'ApprovalpurchaseAPController');
 
-    Route::get('PO/{id_po}/set-status', 'ApprovalpurchaseAPController@setStatus')
+    Route::post('PO/{id_po}/set-status', 'ApprovalpurchaseAPController@setStatus')
         ->name('po-status-ap');
 });
 

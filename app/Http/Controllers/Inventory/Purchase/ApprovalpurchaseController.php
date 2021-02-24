@@ -101,7 +101,8 @@ class ApprovalpurchaseController extends Controller
 
         $item = PO::findOrFail($id_po);
         $item->approve_po = $request->status;
-
+        $item->keterangan_owner = $request->keterangan_owner;
+        
         $item->save();
         return redirect()->route('approvalpo');
     }

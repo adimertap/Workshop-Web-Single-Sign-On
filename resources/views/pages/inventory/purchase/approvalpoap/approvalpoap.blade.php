@@ -1,4 +1,4 @@
-@extends('layouts.Admin.admininventory')
+@extends('layouts.Admin.adminaccounting')
 
 @section('content')
 {{-- HEADER --}}
@@ -102,25 +102,30 @@
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('po-status-ap', $item->id_po) }}?status=Approved"
-                                                class="btn btn-success btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Setujui Data">
+                                            <a href="" class="btn btn-success btn-datatable" type="button"
+                                                data-toggle="modal"
+                                                data-target="#Modalkonfirmasisetuju-{{ $item->id_po }}">
                                                 <i class="fas fa-check"></i>
                                             </a>
-                                            <a href="{{ route('po-status-ap', $item->id_po) }}?status=Not Approved"
-                                                class="btn btn-danger btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Tolak Data">
+                                            <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                data-toggle="modal"
+                                                data-target="#Modalkonfirmasitolak-{{ $item->id_po }}">
                                                 <i class="fas fa-times"></i>
                                             </a>
+                                            {{-- <a href="{{ route('po-status', $item->id_po) }}?status=Not Approved"
+                                            class="btn btn-danger btn-datatable" data-toggle="tooltip"
+                                            data-placement="top" title="" data-original-title="Tolak Data">
+                                            <i class="fas fa-times"></i>
+                                            </a> --}}
                                             @elseif($item->approve_ap == 'Not Approved')
-                                                <span class="badge badge-danger">
-                                            @elseif($item->approve_ap == 'Approved')
+                                            <span class="badge badge-danger">
+                                                @elseif($item->approve_ap == 'Approved')
                                                 <span class="badge badge-success">
-                                            @else
-                                            <span>
-                                                @endif
-                                                {{ $item->approve_ap }}
-                                            </span>
+                                                    @else
+                                                    <span>
+                                                        @endif
+                                                        {{ $item->approve_ap }}
+                                                    </span>
                                         </td>
                                     </tr>
                                     @empty
@@ -141,30 +146,73 @@
 </div>
 </main>
 
+
 @forelse ($po as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id_po }}" tabindex="-1" role="dialog"
+<div class="modal fade" id="Modalkonfirmasisetuju-{{ $item->id_po }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Setujui Data</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('purchase-order.destroy', $item->id_po) }}" method="POST" class="d-inline">
+            <form action="{{ route('po-status-ap', $item->id_po) }}?status=Approved" method="POST" class="d-inline">
                 @csrf
-                @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pembelian {{ $item->kode_po }} pada tanggal
-                    {{ $item->tanggal_po }}?</div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="small mb-1" for="keterangan_ap">Masukan Keterangan Setuju</label>
+                        <textarea class="form-control" name="keterangan_ap" type="text" id="keterangan_ap"
+                            placeholder="Input Keterangan" value="{{ old('keterangan_ap') }}"></textarea>
+                    </div>
+                    <div class="form-group">Apakah Anda Yakin Menyetujui Pembelian {{ $item->kode_po }} pada tanggal
+                        {{ $item->tanggal_po }}?</div>
+                </div>
+
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                    <button class="btn btn-success" type="submit">Ya! Approve</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 @empty
-
 @endforelse
+
+
+@forelse ($po as $item)
+<div class="modal fade" id="Modalkonfirmasitolak-{{ $item->id_po }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Tolak Data</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('po-status-ap', $item->id_po) }}?status=Not Approved" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="small mb-1" for="keterangan_ap">Masukan Keterangan Menolak</label>
+                        <textarea class="form-control" name="keterangan_ap" type="text" id="keterangan_ap"
+                            placeholder="Input Keterangan" value="{{ old('keterangan_ap') }}"></textarea>
+                    </div>
+                    <div class="form-group">Apakah Anda Yakin Menolak Data Pembelian {{ $item->kode_po }} pada tanggal
+                        {{ $item->tanggal_po }}?</div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">Ya! Tolak</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+@endforelse
+
+
 @endsection

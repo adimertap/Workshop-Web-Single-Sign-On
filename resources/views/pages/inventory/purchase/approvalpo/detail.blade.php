@@ -50,11 +50,6 @@
                         <input class="form-control form-control-sm" id="id_akun" type="text"
                             name="id_akun" value="{{ $po->Akun->nama_akun }}" readonly />
                     </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="keterangan">Keterangan Pembelian</label>
-                        <input class="form-control form-control-sm" id="keterangan" type="text"
-                            name="keterangan" value="{{ $po->keterangan }}" readonly />
-                    </div>
                     <hr class="my-4" />
                 </div>
             </div>

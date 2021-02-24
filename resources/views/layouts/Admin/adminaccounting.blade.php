@@ -219,8 +219,6 @@
                                 </a>
                             </nav>
                         </div>
-
-
                         <div class="sidenav-menu-heading">Account</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -244,6 +242,9 @@
                                 </a>
                                 <a class="nav-link " href="invoice.html">
                                     Approve PRF
+                                </a>
+                                <a class="nav-link " href="{{ route('approvalpoap') }}">
+                                    Approve Purchase Order
                                 </a>
                             </nav>
                         </div>
