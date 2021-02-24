@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Approval Owner Pembelian Sparepart
+                            Approval AP Pembelian Sparepart
                         </h1>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                                             style="width: 50px;">Tanggal</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Start date: activate to sort column ascending"
-                                            style="width: 50px;">Approval AP</th>
+                                            style="width: 50px;">Approval Owner</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
                                             style="width: 90px;">Actions</th>
@@ -83,43 +83,43 @@
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
                                         <td>{{ $item->tanggal_po }}</td>
                                         <td>
-                                            @if($item->approve_ap == 'Approved')
+                                            @if($item->approve_po == 'Approved')
                                                 <span class="badge badge-success">
-                                            @elseif($item->approve_ap == 'Not Approved')
+                                            @elseif($item->approve_po == 'Not Approved')
                                                 <span class="badge badge-danger">
-                                            @elseif($item->approve_ap == 'Pending')
+                                            @elseif($item->approve_po == 'Pending')
                                                 <span class="badge badge-secondary">
                                             @else
                                                 <span>
                                             @endif
-                                                {{ $item->approve_ap }}
+                                                {{ $item->approve_po }}
                                                 </span>
                                         </td>
                                         <td>
-                                            @if($item->approve_po == 'Pending')
+                                            @if($item->approve_ap == 'Pending')
                                             <a href="{{ route('approval-po.show', $item->id_po) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('po-status', $item->id_po) }}?status=Approved"
+                                            <a href="{{ route('po-status-ap', $item->id_po) }}?status=Approved"
                                                 class="btn btn-success btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Setujui Data">
                                                 <i class="fas fa-check"></i>
                                             </a>
-                                            <a href="{{ route('po-status', $item->id_po) }}?status=Not Approved"
+                                            <a href="{{ route('po-status-ap', $item->id_po) }}?status=Not Approved"
                                                 class="btn btn-danger btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Tolak Data">
                                                 <i class="fas fa-times"></i>
                                             </a>
-                                            @elseif($item->approve_po == 'Not Approved')
+                                            @elseif($item->approve_ap == 'Not Approved')
                                                 <span class="badge badge-danger">
-                                            @elseif($item->approve_po == 'Approved')
+                                            @elseif($item->approve_ap == 'Approved')
                                                 <span class="badge badge-success">
                                             @else
                                             <span>
                                                 @endif
-                                                {{ $item->approve_po }}
+                                                {{ $item->approve_ap }}
                                             </span>
                                         </td>
                                     </tr>

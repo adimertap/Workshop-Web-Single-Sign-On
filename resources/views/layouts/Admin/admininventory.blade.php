@@ -308,7 +308,7 @@
                                 <a class="nav-link " href="{{ route('approvalpo') }}">
                                     Purchase Order
                                 </a>
-                                <a class="nav-link " href="invoice.html">
+                                <a class="nav-link " href="{{ route('approvalpoap') }}">
                                     Purchase Order AP
                                 </a>
                                 <a class="nav-link" href="invoice.html">

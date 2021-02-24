@@ -147,6 +147,18 @@ Route::prefix('inventory/approvalpembelian')
             ->name('po-status');
     });
 
+Route::prefix('inventory/approvalappembelian')
+->namespace('Inventory\Purchase')
+->group(function () {
+    Route::get('/', 'ApprovalpurchaseAPController@index')
+        ->name('approvalpoap');
+    
+    Route::resource('approval-po-ap', 'ApprovalpurchaseAPController');
+
+    Route::get('PO/{id_po}/set-status', 'ApprovalpurchaseAPController@setStatus')
+        ->name('po-status-ap');
+});
+
 // RECEIVING ------------------------------------------------------------------- Receiving
 Route::prefix('inventory/receiving')
     ->namespace('Inventory\Rcv')
