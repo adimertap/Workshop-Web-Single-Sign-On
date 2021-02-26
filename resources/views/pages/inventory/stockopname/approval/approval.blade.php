@@ -1,4 +1,4 @@
-@extends('layouts.Admin.adminaccounting')
+@extends('layouts.Admin.admininventory')
 
 @section('content')
 {{-- HEADER --}}
@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Approval AP Pembelian Sparepart
+                            Approval Stock Opname
                         </h1>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
 <div class="container-fluid">
     <div class="card mb-4">
         <div class="card card-header-actions">
-            <div class="card-header ">List Pembelian</div>
+            <div class="card-header ">List Opname</div>
         </div>
         <div class="card-body ">
             <div class="datatable">
@@ -56,60 +56,40 @@
                                             No</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 50px;">Kode PO</th>
+                                            style="width: 50px;">Kode Opname</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
                                             style="width: 150px;">Pegawai</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 100px;">Supplier</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Start date: activate to sort column ascending"
-                                            style="width: 50px;">Tanggal</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Start date: activate to sort column ascending"
-                                            style="width: 50px;">Approval Owner</th>
+                                            style="width: 100px;">Tanggal</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
                                             style="width: 90px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($po as $item)
+                                    @forelse ($opname as $item)
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                        <td>{{ $item->kode_po }}</td>
+                                        <td>{{ $item->kode_opname }}</td>
                                         <td>{{ $item->Pegawai->nama_pegawai }}</td>
-                                        <td>{{ $item->Supplier->nama_supplier }}</td>
-                                        <td>{{ $item->tanggal_po }}</td>
+                                        <td>{{ $item->tanggal_opname }}</td>
                                         <td>
-                                            @if($item->approve_po == 'Approved')
-                                                <span class="badge badge-success">
-                                            @elseif($item->approve_po == 'Not Approved')
-                                                <span class="badge badge-danger">
-                                            @elseif($item->approve_po == 'Pending')
-                                                <span class="badge badge-secondary">
-                                            @else
-                                                <span>
-                                            @endif
-                                                {{ $item->approve_po }}
-                                                </span>
-                                        </td>
-                                        <td>
-                                            @if($item->approve_ap == 'Pending')
-                                            <a href="{{ route('approval-po.show', $item->id_po) }}"
+                                            @if($item->approve == 'Pending')
+                                            <a href="{{ route('approval-opname.show', $item->id_opname) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                             <a href="" class="btn btn-success btn-datatable" type="button"
                                                 data-toggle="modal"
-                                                data-target="#Modalkonfirmasisetuju-{{ $item->id_po }}">
+                                                data-target="#Modalkonfirmasisetuju-{{ $item->id_opname }}">
                                                 <i class="fas fa-check"></i>
                                             </a>
                                             <a href="" class="btn btn-danger btn-datatable" type="button"
                                                 data-toggle="modal"
-                                                data-target="#Modalkonfirmasitolak-{{ $item->id_po }}">
+                                                data-target="#Modalkonfirmasitolak-{{ $item->id_opname }}">
                                                 <i class="fas fa-times"></i>
                                             </a>
                                             {{-- <a href="{{ route('po-status', $item->id_po) }}?status=Not Approved"
@@ -117,21 +97,21 @@
                                             data-placement="top" title="" data-original-title="Tolak Data">
                                             <i class="fas fa-times"></i>
                                             </a> --}}
-                                            @elseif($item->approve_ap == 'Not Approved')
+                                            @elseif($item->approve == 'Not Approved')
                                             <span class="badge badge-danger">
-                                                @elseif($item->approve_ap == 'Approved')
+                                                @elseif($item->approve == 'Approved')
                                                 <span class="badge badge-success">
                                                     @else
                                                     <span>
                                                         @endif
-                                                        {{ $item->approve_ap }}
+                                                        {{ $item->approve }}
                                                     </span>
                                         </td>
                                     </tr>
                                     @empty
                                     <tr>
                                         <td colspan="7" class="tex-center">
-                                            Data Pembelian Kosong
+                                            Data Opname Kosong
                                         </td>
                                     </tr>
                                     @endforelse
@@ -146,8 +126,8 @@
 </div>
 </main>
 
-@forelse ($po as $item)
-<div class="modal fade" id="Modalkonfirmasisetuju-{{ $item->id_po }}" tabindex="-1" role="dialog"
+@forelse ($opname as $item)
+<div class="modal fade" id="Modalkonfirmasisetuju-{{ $item->id_opname }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -156,16 +136,16 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('po-status-ap', $item->id_po) }}?status=Approved" method="POST" class="d-inline">
+            <form action="{{ route('approval-opname-status', $item->id_opname) }}?status=Approved" method="POST" class="d-inline">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="small mb-1" for="keterangan_ap">Masukan Keterangan Setuju</label>
-                        <textarea class="form-control" name="keterangan_ap" type="text" id="keterangan_ap"
-                            placeholder="Input Keterangan" value="{{ old('keterangan_ap') }}"></textarea>
+                        <label class="small mb-1" for="keterangan">Masukan Keterangan Setuju</label>
+                        <textarea class="form-control" name="keterangan" type="text" id="keterangan"
+                            placeholder="Input Keterangan" value="{{ old('keterangan') }}"></textarea>
                     </div>
-                    <div class="form-group">Apakah Anda Yakin Menyetujui Pembelian {{ $item->kode_po }} pada tanggal
-                        {{ $item->tanggal_po }}?</div>
+                    <div class="form-group">Apakah Anda Yakin Menyetujui Opname {{ $item->kode_opname }} pada tanggal
+                        {{ $item->tanggal_opname }}?</div>
                 </div>
 
                 <div class="modal-footer">
@@ -179,9 +159,8 @@
 @empty
 @endforelse
 
-
-@forelse ($po as $item)
-<div class="modal fade" id="Modalkonfirmasitolak-{{ $item->id_po }}" tabindex="-1" role="dialog"
+@forelse ($opname as $item)
+<div class="modal fade" id="Modalkonfirmasitolak-{{ $item->id_opname }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -190,16 +169,16 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('po-status-ap', $item->id_po) }}?status=Not Approved" method="POST" class="d-inline">
+            <form action="{{ route('approval-opname-status', $item->id_opname) }}?status=Not Approved" method="POST" class="d-inline">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="small mb-1" for="keterangan_ap">Masukan Keterangan Menolak</label>
-                        <textarea class="form-control" name="keterangan_ap" type="text" id="keterangan_ap"
-                            placeholder="Input Keterangan" value="{{ old('keterangan_ap') }}"></textarea>
+                        <label class="small mb-1" for="keterangan">Masukan Keterangan Menolak</label>
+                        <textarea class="form-control" name="keterangan" type="text" id="keterangan"
+                            placeholder="Input Keterangan" value="{{ old('keterangan') }}"></textarea>
                     </div>
-                    <div class="form-group">Apakah Anda Yakin Menolak Data Pembelian {{ $item->kode_po }} pada tanggal
-                        {{ $item->tanggal_po }}?</div>
+                    <div class="form-group">Apakah Anda Yakin Menolak Data Opname {{ $item->kode_opname }} pada tanggal
+                        {{ $item->tanggal_opname }}?</div>
                 </div>
 
                 <div class="modal-footer">
@@ -212,6 +191,5 @@
 </div>
 @empty
 @endforelse
-
 
 @endsection

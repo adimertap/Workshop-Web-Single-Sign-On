@@ -67,9 +67,9 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
                                             <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart">
-                                                <option value="{{ $item->Jenissparepart->jenis_sparepart }}">{{ $item->Jenissparepart->jenis_sparepart }}</option>
+                                                <option value="{{ $item->Jenisparepart->jenis_sparepart }}">{{ $item->Jenisparepart->jenis_sparepart }}</option>
                                                 @foreach ($jenis_sparepart as $item)
-                                                    <option value="{{ $item->id_jenis_spareaprt }}">{{ $item->jenis_sparepart }}
+                                                    <option value="{{ $item->id_jenis_sparepart }}">{{ $item->jenis_sparepart }}
                                                 </option>
                                                 @endforeach
                                             </select>
@@ -77,7 +77,7 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_merk">Merk Sparepart</label>
                                             <select class="form-control" name="id_merk" id="id_merk">
-                                                <option value="{{ $item->Merksparepart->merk_sparepart }}">{{ $item->Merksparepart->merk_sparepart }}</option>
+                                                <option value="{{ $merk_sparepart->Merksparepart->merk_sparepart }}">{{ $merk_sparepart->Merksparepart->merk_sparepart }}</option>
                                                 @foreach ($merk_sparepart as $item)
                                                     <option value="{{ $item->id_merk }}">{{ $item->merk_sparepart }}
                                                 </option>
@@ -88,7 +88,7 @@
                                     <div class="form-group">
                                         <label class="small mb-1" for="id_konversi">Konversi Satuan</label>
                                         <select class="form-control" name="id_konversi" id="id_konversi">
-                                            <option value="{{ $item->Konversi->satuan }}">{{ $item->Konversi->satuan }}</option>
+                                            <option value="{{ $konversi->Konversi->satuan }}">{{ $konversi->Konversi->satuan }}</option>
                                             @foreach ($konversi as $item)
                                             <option value="{{ $item->id_konversi }}">{{ $item->satuan }}
                                             </option>

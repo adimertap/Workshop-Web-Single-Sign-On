@@ -24,6 +24,7 @@ class PO extends Model
         'tanggal_po',
         'approve_po',
         'approve_ap',
+        'status',
         'keterangan_owner',
         'keterangan_ap',
         

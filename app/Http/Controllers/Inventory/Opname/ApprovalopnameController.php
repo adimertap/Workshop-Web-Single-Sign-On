@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Inventory\Purchase;
+namespace App\Http\Controllers\Inventory\Opname;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Inventory\Purchase\POrequest;
-use App\Model\Inventory\Purchase\PO;
+use App\Model\Inventory\Stockopname\Opname;
 use Illuminate\Http\Request;
 
-class ApprovalpurchaseAPController extends Controller
+class ApprovalopnameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +15,11 @@ class ApprovalpurchaseAPController extends Controller
      */
     public function index()
     {
-        $po = PO::with([
-            'Akun','Supplier','Pegawai'
+        $opname = Opname::with([
+            'Pegawai',
         ])->get();
 
-        return view('pages.inventory.purchase.approvalpoap.approvalpoap', compact('po'));
+        return view('pages.inventory.stockopname.approval.approval', compact('opname'));
     }
 
     /**
@@ -50,12 +49,12 @@ class ApprovalpurchaseAPController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_po)
+    public function show($id_opname)
     {
-        $po = PO::with('Detail.Sparepart.Hargasparepart')->findOrFail($id_po);
+        $opname = Opname::with('Detail.Sparepart.Rak')->findOrFail($id_opname);
 
-        return view('pages.inventory.purchase.approvalpo.detail')->with([
-            'po' => $po
+        return view('pages.inventory.stockopname.approval.detailapproval')->with([
+            'opname' => $opname
         ]);
     }
 
@@ -93,17 +92,17 @@ class ApprovalpurchaseAPController extends Controller
         //
     }
 
-    public function setStatus(Request $request, $id_po)
+    public function setStatus(Request $request, $id_opname)
     {
         $request->validate([
             'status' => 'required|in:Approved,Not Approved,Pending'
         ]);
 
-        $item = PO::findOrFail($id_po);
-        $item->approve_ap = $request->status;
-        $item->keterangan_ap = $request->keterangan_ap;
+        $item = Opname::findOrFail($id_opname);
+        $item->approve = $request->status;
+        $item->keterangan = $request->keterangan;
 
         $item->save();
-        return redirect()->route('approvalpoap');
+        return redirect()->route('approval-opname.index');
     }
 }

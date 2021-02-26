@@ -172,7 +172,7 @@
                                                 <td>{{ $detail->Sparepart->nama_sparepart }}</td>
                                                 <td>{{ $detail->qty_po }}</td>
                                                 <td>{{ $detail->qty_rcv }}</td>
-                                                <td>{{ $detail->qty_rcv }}</td>
+                                                <td>{{ $detail->Sparepart->Hargasparepart->harga_beli }}</td>
                                                 <td>{{ $detail->Sparepart->Rak->nama_rak }}</td>
                                             </tr>
                                             @empty

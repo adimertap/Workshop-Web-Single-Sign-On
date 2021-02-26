@@ -49,6 +49,7 @@ class Sparepart extends Model
     }
 
     public function Hargasparepart(){
-        return $this->hasMany(Hargasparepart::class,'id_harga');
+        return $this->belongsTo(Hargasparepart::class,'id_sparepart','id_sparepart');
     }
+
 }

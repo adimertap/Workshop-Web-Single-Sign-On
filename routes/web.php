@@ -133,6 +133,9 @@ Route::prefix('inventory/pembelian')
             ->name('purchaseorder');
 
         Route::resource('purchase-order', 'PurchaseorderController');
+
+        Route::get('PO/{id_po}/set-status', 'PurchaseorderController@setStatus')
+        ->name('po-status-kirim');
     });
 
 Route::prefix('inventory/approvalpembelian')
@@ -181,6 +184,28 @@ Route::prefix('inventory/retur')
 
     });
 
+// OPNAME ---------------------------------------------------------------------- Stock Opname
+Route::prefix('inventory/Stockopname')
+    ->namespace('Inventory\Opname')
+    ->group(function () {
+        Route::get('/', 'OpnameController@index')
+            ->name('Opname');
+        
+        Route::resource('Opname', 'OpnameController');
+
+    });
+
+Route::prefix('inventory/approvalopname')
+->namespace('Inventory\Opname')
+->group(function () {
+    Route::get('/', 'ApprovalopnameController@index')
+        ->name('approvalopname');
+    
+    Route::resource('approval-opname', 'ApprovalopnameController');
+
+    Route::post('Opname/{id_opname}/set-status', 'ApprovalopnameController@setStatus')
+        ->name('approval-opname-status');
+});
 
 
 // --------------------------------------------------------------------------------------------------------KEPEGAWAIAN

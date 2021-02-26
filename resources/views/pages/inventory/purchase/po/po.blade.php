@@ -41,6 +41,14 @@
                     </button>
                 </div>
                 @endif
+                @if(session('messagekirim'))
+                <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
+                    {{ session('messagekirim') }}
+                    <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                @endif
                 @if(session('messagehapus'))
                 <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
                     {{ session('messagehapus') }}
@@ -63,28 +71,28 @@
                                             No</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 50px;">Kode PO</th>
+                                            style="width: 20px;">Kode PO</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 150px;">Pegawai</th>
+                                            style="width: 130px;">Pegawai</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 100px;">Supplier</th>
+                                            style="width: 70px;">Supplier</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Start date: activate to sort column ascending"
                                             style="width: 50px;">Tanggal</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 40px;">Approve</th>
+                                            style="width: 20px;">Approve</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
                                             style="width: 20px;">Approve AP</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 10px;">Cetak</th>
+                                            style="width: 40px;">Cetak & Kirim</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
-                                            style="width: 90px;">Actions</th>
+                                            style="width: 70px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -97,35 +105,54 @@
                                         <td>{{ $item->tanggal_po }}</td>
                                         <td>
                                             @if($item->approve_po == 'Approved')
-                                                <span class="badge badge-success">
-                                            @elseif($item->approve_po == 'Not Approved')
+                                            <span class="badge badge-success">
+                                                @elseif($item->approve_po == 'Not Approved')
                                                 <span class="badge badge-danger">
-                                            @elseif($item->approve_po == 'Pending')
-                                                <span class="badge badge-secondary">
-                                            @else
-                                                <span>
-                                            @endif
-                                                {{ $item->approve_po }}
-                                                </span>
+                                                    @elseif($item->approve_po == 'Pending')
+                                                    <span class="badge badge-secondary">
+                                                        @else
+                                                        <span>
+                                                            @endif
+                                                            {{ $item->approve_po }}
+                                                        </span>
                                         </td>
                                         <td>
                                             @if($item->approve_ap == 'Approved')
-                                                <span class="badge badge-success">
-                                            @elseif($item->approve_ap == 'Not Approved')
+                                            <span class="badge badge-success">
+                                                @elseif($item->approve_ap == 'Not Approved')
                                                 <span class="badge badge-danger">
-                                            @elseif($item->approve_ap == 'Pending')
-                                                <span class="badge badge-secondary">
-                                            @else
-                                                <span>
-                                            @endif
-                                                {{ $item->approve_ap }}
-                                                </span>
+                                                    @elseif($item->approve_ap == 'Pending')
+                                                    <span class="badge badge-secondary">
+                                                        @else
+                                                        <span>
+                                                            @endif
+                                                            {{ $item->approve_ap }}
+                                                        </span>
                                         </td>
                                         <td>
+                                            @if($item->approve_po == 'Pending')
+                                            <span class="font-size-300" style="font-size: 12px;">Menunggu Approval</span>
+                                            @elseif($item->approve_po == 'Not Approved')
+                                            <span class="font-size-300" style="font-size: 12px;">Data diTolak</span> 
+                                            @elseif($item->approve_po == 'Approved')
                                             <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                            data-placement="top" title="" data-original-title="Cetak PO">
+                                                data-placement="top" title="" data-original-title="Cetak PO">
                                                 <i class="fas fa-print"></i></i>
                                             </a>
+                                            <a href="{{ route('po-status-kirim', $item->id_po) }}?status=Dikirim" class="btn btn-dark btn-datatable" data-toggle="tooltip"
+                                            data-placement="top" title="" data-original-title="Kirim ke Supplier">
+                                                <i class="fas fa-share-square"></i>
+                                            </a>
+                                            @elseif($item->status == 'Dikirim')
+                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Cetak PO">
+                                                <i class="fas fa-print"></i></i>
+                                            </a>
+                                            @else
+                                            <span>
+                                                @endif
+                                            </span>
+
                                         </td>
                                         <td>
                                             <a href="{{ route('purchase-order.show', $item->id_po) }}"
@@ -133,14 +160,35 @@
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="" class="btn btn-primary btn-datatable"data-toggle="tooltip"
-                                            data-placement="top" title="" data-original-title="Edit">
+                                            @if($item->approve_po == 'Pending')
+                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="" class="btn btn-danger btn-datatable" type="button" 
+                                            <a href="" class="btn btn-danger btn-datatable" type="button"
                                                 data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
+                                            {{-- <a href="{{ route('po-status', $item->id_po) }}?status=Not Approved"
+                                            class="btn btn-danger btn-datatable" data-toggle="tooltip"
+                                            data-placement="top" title="" data-original-title="Tolak Data">
+                                            <i class="fas fa-times"></i>
+                                            </a> --}}
+                                            @elseif($item->approve_po == 'Not Approved')
+                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                            @elseif($item->approve_po == 'Approved')
+                                            </a>
+                                            @else
+                                            <span>
+                                                @endif
+                                            </span>
                                         </td>
                                     </tr>
                                     @empty

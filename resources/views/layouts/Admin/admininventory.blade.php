@@ -251,7 +251,7 @@
 
                         <div class="collapse" id="collapseUtilities" data-parent="#accordionSidenav" style="">
                             <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link" href="invoice.html">
+                                <a class="nav-link" href="{{ route('Opname') }}">
                                     Stock Opname
                                 </a>
                                 <a class="nav-link" href="invoice.html">
@@ -308,7 +308,7 @@
                                 <a class="nav-link " href="{{ route('approvalpo') }}">
                                     Purchase Order
                                 </a>
-                                <a class="nav-link" href="invoice.html">
+                                <a class="nav-link" href="{{ route('approvalopname') }}">
                                     Stock Opname
                                 </a>
                             </nav>

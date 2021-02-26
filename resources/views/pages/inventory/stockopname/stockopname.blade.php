@@ -1,33 +1,37 @@
-@extends('layouts.Admin.adminpegawai')
+@extends('layouts.Admin.admininventory')
 
 @section('content')
 {{-- HEADER --}}
 <main>
-    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
-        <div class="container-fluid">
-            <div class="page-header-content">
-                <div class="row align-items-center justify-content-between pt-3">
-                    <div class="col-auto mb-3">
-                        <h1 class="page-header-title">
-                            <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Data Pegawai
-                        </h1>
-                    </div>
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Stock Opname</h1>
+                <div class="small">
+                    <span class="font-weight-500 text-primary">Friday</span>
+                    · September 20, 2020 · 12:16 PM
                 </div>
             </div>
+            <div class="small">
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+                Bengkel
+                <span class="font-weight-500 text-primary">Adi Jaya</span>
+                <hr>
+                </hr>
+            </div>
         </div>
-    </header>
+    </div>
 </main>
-{{-- MAIN PAGE CONTENT --}}
 
 <div class="container-fluid">
     <div class="card mb-4">
         <div class="card card-header-actions">
-            <div class="card-header">List Pegawai
-                <a href="{{ route('pegawai.create') }}" class="btn btn-sm btn-primary"> Tambah Pegawai</a>
+            <div class="card-header ">List Opname
+                <a href="{{ route('Opname.create') }}" class="btn btn-sm btn-primary"> Tambah Opname Stock</a>
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body ">
             <div class="datatable">
                 @if(session('messageberhasil'))
                 <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
@@ -55,48 +59,57 @@
                                     <tr role="row">
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-sort="ascending"
-                                            aria-label="Name: activate to sort column descending" style="width: 10px;">
+                                            aria-label="Name: activate to sort column descending" style="width: 20px;">
                                             No</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 180px;">Nama Pegawai</th>
+                                            style="width: 50px;">Kode Opname</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 80px;">Jabatan</th>
+                                            style="width: 150px;">Pegawai</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Age: activate to sort column ascending"
-                                            style="width: 170px;">Alamat</th>
+                                            colspan="1" aria-label="Office: activate to sort column ascending"
+                                            style="width: 100px;">Tanggal</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 60px;">Jenis Kelamin</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 90px;">No Telephone</th>
+                                            colspan="1" aria-label="Start date: activate to sort column ascending"
+                                            style="width: 50px;">Approve</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
                                             style="width: 90px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($pegawai as $item)
+                                    @forelse ($opname as $item)
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                        <td>{{ $item->nama_pegawai }}</td>
-                                        <td>{{ $item->jabatan->nama_jabatan }}</td>
-                                        <td>{{ $item->alamat }}</td>
-                                        <td>{{ $item->jenis_kelamin }}</td>
-                                        <td>{{ $item->no_telp }}</td>
+                                        <td>{{ $item->kode_opname }}</td>
+                                        <td>{{ $item->Pegawai->nama_pegawai }}</td>
+                                        <td>{{ $item->tanggal_opname }}</td>
                                         <td>
-                                            <a href="{{ route('pegawai.show', $item->id_pegawai) }}"
-                                                class="btn btn-secondary btn-datatable">
-                                                <i class="fas fa-eye"></i>
+                                            @if($item->approve == 'Approved')
+                                                <span class="badge badge-success">
+                                            @elseif($item->approve == 'Not Approved')
+                                                <span class="badge badge-danger">
+                                            @elseif($item->approve == 'Pending')
+                                                <span class="badge badge-secondary">
+                                            @else
+                                                <span>
+                                            @endif
+                                                {{ $item->approve }}
+                                                </span>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('Opname.show', $item->id_opname) }}"
+                                                class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Detail">
+                                                <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('pegawai.edit', $item->id_pegawai) }}"
-                                                class="btn btn-primary btn-datatable">
+                                            <a href="{{ route('Opname.edit', $item->id_opname) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_pegawai }}">
+                                            <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_opname }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
@@ -104,7 +117,7 @@
                                     @empty
                                     <tr>
                                         <td colspan="7" class="tex-center">
-                                            Data Pegawai Kosong
+                                            Data Opname Kosong
                                         </td>
                                     </tr>
                                     @endforelse
@@ -117,9 +130,10 @@
         </div>
     </div>
 </div>
+</main>
 
-@forelse ($pegawai as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id_pegawai }}" tabindex="-1" role="dialog"
+@forelse ($opname as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_opname }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -128,11 +142,11 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('pegawai.destroy', $item->id_pegawai) }}" method="POST" class="d-inline">
+            <form action="{{ route('Opname.destroy', $item->id_opname) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pegawai Atas Nama {{ $item->nama_lengkap }}?
-                </div>
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Opname {{ $item->kode_opname }} pada tanggal
+                    {{ $item->tanggal_opname }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>
@@ -144,6 +158,4 @@
 @empty
 
 @endforelse
-
-
 @endsection

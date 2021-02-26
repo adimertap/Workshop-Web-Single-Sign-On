@@ -84,23 +84,37 @@
                                                     aria-label="Name: activate to sort column descending"
                                                     style="width: 20px;">No</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1"aria-label="Start date: activate to sort column ascending"
+                                                    colspan="1"
+                                                    aria-label="Start date: activate to sort column ascending"
                                                     style="width: 230px;">Sparepart</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1"aria-label="Start date: activate to sort column ascending"
+                                                    colspan="1"
+                                                    aria-label="Start date: activate to sort column ascending"
+                                                    style="width: 230px;">Merk Sparepart</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="Start date: activate to sort column ascending"
                                                     style="width: 230px;">Qty</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1"aria-label="Start date: activate to sort column ascending"
+                                                    colspan="1"
+                                                    aria-label="Start date: activate to sort column ascending"
+                                                    style="width: 230px;">Satuan</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="Start date: activate to sort column ascending"
                                                     style="width: 230px;">Harga Sparepart</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @forelse ($po->Detail as $detail)
                                             <tr role="row" class="odd">
-                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
+                                                </th>
                                                 <td>{{ $detail->Sparepart->nama_sparepart }}</td>
-                                                <td>{{ $detail->Sparepart->nama_sparepart }}</td>
+                                                <td>{{ $detail->Sparepart->Merksparepart->merk_sparepart }}</td>
                                                 <td>{{ $detail->qty }}</td>
+                                                <td>{{ $detail->Sparepart->Konversi->satuan }}</td>
+                                                <td>{{ $detail->Sparepart->Hargasparepart->harga_beli }}</td>
                                             </tr>
                                             @empty
                                             <tr>

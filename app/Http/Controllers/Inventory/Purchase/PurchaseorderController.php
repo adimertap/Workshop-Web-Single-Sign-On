@@ -54,7 +54,7 @@ class PurchaseorderController extends Controller
      */
     public function show($id_po)
     {
-        $po = PO::with('Detail.Sparepart')->findOrFail($id_po);
+        $po = PO::with('Detail.Sparepart.Hargasparepart')->findOrFail($id_po);
 
         return view('pages.inventory.purchase.po.detail')->with([
             'po' => $po
@@ -97,5 +97,18 @@ class PurchaseorderController extends Controller
         $PO->delete();
 
         return redirect()->back()->with('messagehapus','Data Pembelian Berhasil dihapus');
+    }
+
+    public function setStatus(Request $request, $id_po)
+    {
+        $request->validate([
+            'status' => 'required|in:Dikirim,Diterima'
+        ]);
+
+        $item = PO::findOrFail($id_po);
+        $item->status = $request->status;
+ 
+        $item->save();
+        return redirect()->route('purchase-order.index')->with('messagekirim','Data Pembelian Berhasil dikirim ke Supplier');
     }
 }

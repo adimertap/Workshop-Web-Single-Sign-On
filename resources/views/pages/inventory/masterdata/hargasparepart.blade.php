@@ -66,7 +66,7 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->Sparepart->nama_sparepart }}</td>
-                                            <td>{{ $item->Sparepart->id_merk }}</td>
+                                            <td>{{ $item->Sparepart->Merksparepart->merk_sparepart }}</td>
                                             <td>{{ $item->supplier->nama_supplier }}</td>
                                             <td>{{ $item->harga_beli}}</td>
                                             <td>{{ $item->harga_jual}}</td>
