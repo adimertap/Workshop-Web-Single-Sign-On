@@ -214,22 +214,22 @@
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('masterdatasparepart')}}">
+                                <a class="nav-link" href="{{ route('masterdatajeniskendaraan')}}">
                                     Jenis Kendaraan
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
+                                <a class="nav-link" href="{{ route('masterdatajenisperbaikan')}}">
                                     Jenis Perbaikan
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatajenissparepart')}}">
+                                <a class="nav-link" href="{{ route('masterdatadiskon')}}">
                                     Diskon
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatasupplier')}}">
+                                <a class="nav-link" href="{{ route('masterdatapitstop')}}">
                                     Pitstop
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatahargasparepart')}}">
+                                <a class="nav-link" href="{{ route('masterdatareminder')}}">
                                     Reminder
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatarak')}}">
+                                <a class="nav-link" href="{{ route('masterdatafaq')}}">
                                     FAQ
                                 </a>
                             </nav>

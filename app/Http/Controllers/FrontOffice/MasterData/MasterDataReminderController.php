@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontOffice\Masterdata;
 
-use App\MasterDataReminder;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\FrontOffice\MasterDataReminder;
 
 class MasterDataReminderController extends Controller
 {
@@ -14,7 +15,9 @@ class MasterDataReminderController extends Controller
      */
     public function index()
     {
-        //
+        $reminder = MasterDataReminder::get();
+
+        return view('pages.frontoffice.masterdata.reminder.main', compact('reminder'));
     }
 
     /**

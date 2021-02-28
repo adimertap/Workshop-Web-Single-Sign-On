@@ -196,7 +196,7 @@
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardinventory')}}">
+                        <a class="nav-link" href="{{ route('dashboardpointofsales')}}">
                             <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
                             Dashboard
                         </a>
@@ -214,10 +214,10 @@
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('masterdatasparepart')}}">
+                                <a class="nav-link" href="{{ route('pembayaranservice')}}">
                                     Layanan Service
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
+                                <a class="nav-link" href="{{ route('pembayaransparepart')}}">
                                     Penjualan Sparepart
                                 </a>
                                 </a>
@@ -236,10 +236,10 @@
                         </a>
                         <div class="collapse" id="collapseLaporan" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('masterdatasparepart')}}">
+                                <a class="nav-link" href="{{ route('laporanservice')}}">
                                     Laporan Service
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
+                                <a class="nav-link" href="{{ route('laporansparepart')}}">
                                     Laporan Penjualan Sparepart
                                 </a>
                                 </a>
@@ -259,7 +259,7 @@
         </div>
 
 
-        <div id="layoutSidenav_content">
+        <div id="layoutSidenav_content" style="background-color: white">
 
             {{-- MASTER CONTENT --}}
             {{-- Konten di dalam Masing-Masing Fitur --}}
