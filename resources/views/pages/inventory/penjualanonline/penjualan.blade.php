@@ -7,7 +7,7 @@
         <!-- Custom page header alternative example-->
         <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
             <div class="mr-4 mb-3 mb-sm-0">
-                <h1 class="mb-0">Penerimaan Pembelian Sparepart</h1>
+                <h1 class="mb-0">Penjualan Sparepart Online</h1>
                 <div class="small">
                     <span class="font-weight-500 text-primary">Friday</span>
                     · September 20, 2020 · 12:16 PM
@@ -23,52 +23,11 @@
         </div>
     </div>
 </main>
-<div class="container-fluid">
-    <div class="card mb-4">
-        <div class="card card-header-actions h-100">
-            <div class="card-header">
-                Daftar Pembelian Yang Belum Datang
-            </div>
-            <div class="card-body">
-                <div class="timeline timeline-xs">
-                    <!-- Timeline Item 1-->
-                    @forelse ($po as $item)
-                        <div class="timeline-item">
-                            <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-text">New</div>
-                                <div class="timeline-item-marker-indicator bg-green"></div>
-                            </div>
-                            <div class="timeline-item-content">
-                                Pembelian Baru! {{ $item->tanggal_po }}
-                                <a class="font-weight-bold text-dark" href="{{ route('purchase-order.show',$item->id_po) }}" data-toggle="tooltip"
-                                data-placement="top" title="" data-original-title="Cek Detail Pembelian" >Order {{ $item->kode_po }}</a>
-                                Pada Supplier {{ $item->Supplier->nama_supplier }}
-                            </div>
-                        </div>
-                    @empty
-                    <div class="timeline-item">
-                        <div class="timeline-item-marker">
-                            <div class="timeline-item-marker-text">Empty</div>
-                            <div class="timeline-item-marker-indicator bg-red"></div>
-                        </div>
-                        <div class="timeline-item-content">
-                            Sementara Tidak ada Data Pembelian
-                        </div>
-                    </div>
-                    @endforelse
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="container-fluid">
     <div class="card mb-4">
         <div class="card card-header-actions">
-            <div class="card-header ">List Penerimaan
-                <a href="{{ route('Rcv.create') }}" class="btn btn-sm btn-primary"> Tambah Penerimaan</a>
-            </div>
+            <div class="card-header ">List Penjualan </div>
         </div>
         <div class="card-body ">
             <div class="datatable">
@@ -102,60 +61,66 @@
                                             No</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 50px;">Kode Rcv</th>
+                                            style="width: 50px;">Kode Transaksi</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 150px;">Pegawai</th>
+                                            style="width: 150px;">Tanggal Transaksi</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 100px;">Supplier</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Start date: activate to sort column ascending"
-                                            style="width: 50px;">Nomor Do</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 40px;">Tanggal</th>
+                                            style="width: 70px;">Status</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
-                                            style="width: 90px;">Actions</th>
+                                            style="width: 180px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($rcv as $item)
+                                    {{-- @forelse ($retur as $item)
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                        <td>{{ $item->kode_rcv }}</td>
+                                        <td>{{ $item->kode_retur }}</td>
                                         <td>{{ $item->Pegawai->nama_pegawai }}</td>
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
-                                        <td>{{ $item->no_do }}</td>
-                                        <td>{{ $item->tanggal_rcv }}</td>
+                                        <td>{{ $item->tanggal_retur }}</td>
                                         <td>
-                                            <a href="{{ route('Rcv.show', $item->id_rcv) }}"
+                                            @if($item->status == 'Aktif')
+                                                <span class="badge badge-success">
+                                            @elseif($item->status == 'Tidak Aktif')
+                                                <span class="badge badge-danger">
+                                            @else
+                                                <span>
+                                            @endif
+                                                {{ $item->status }}
+                                                </span>
+                                        </td>
+                                        <td>
+                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                            data-placement="top" title="" data-original-title="Cetak PO">
+                                                <i class="fas fa-print"></i></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('Retur.show', $item->id_retur) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Edit">
+                                            <a href="" class="btn btn-primary btn-datatable"data-toggle="tooltip"
+                                            data-placement="top" title="" data-original-title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_rcv }}">
+                                            <a href="" class="btn btn-danger btn-datatable" type="button" 
+                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_retur }}">
                                                 <i class="fas fa-trash"></i>
-                                            </a>
-                                            <a href="" class="btn btn-info btn-datatable" data-toggle="tooltip"
-                                            data-placement="top" title="" data-original-title="Cetak Data Rcv">
-                                                <i class="fas fa-print"></i></i>
                                             </a>
                                         </td>
                                     </tr>
                                     @empty
                                     <tr>
                                         <td colspan="7" class="tex-center">
-                                            Data Penerimaan Kosong
+                                            Data Retur Kosong
                                         </td>
                                     </tr>
-                                    @endforelse
+                                    @endforelse --}}
                                 </tbody>
                             </table>
                         </div>
@@ -166,9 +131,9 @@
     </div>
 </div>
 </main>
-
-@forelse ($rcv as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id_rcv }}" tabindex="-1" role="dialog"
+{{-- 
+@forelse ($retur as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_retur }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -177,11 +142,11 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('Rcv.destroy', $item->id_rcv) }}" method="POST" class="d-inline">
+            <form action="{{ route('purchase-order.destroy', $item->id_retur) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Penerimaan {{ $item->kode_rcv }} pada tanggal
-                    {{ $item->tanggal_rcv }}?</div>
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pembelian {{ $item->kode_retur }} pada tanggal
+                    {{ $item->tanggal_retur }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>
@@ -192,5 +157,5 @@
 </div>
 @empty
 
-@endforelse
+@endforelse --}}
 @endsection

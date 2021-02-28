@@ -76,17 +76,6 @@
             <div class="card mb-4">
                 <div class="card card-header-actions">
                     <div class="card-header ">List Sparepart
-                        @if($po->approve_po == 'Pending')
-                        <a href="{{ route('purchase-order.edit',$po->id_po) }}" class="btn btn-sm btn-primary "> Edit
-                            Data Pembelian</a>
-                        @elseif($po->approve_po == 'Not Approved')
-                        <a href="{{ route('purchase-order.edit',$po->id_po) }}" class="btn btn-sm btn-primary "> Edit
-                            Data Pembelian</a>
-                        @elseif($po->approve_po == 'Approved')
-                        @else
-                        <span>
-                            @endif
-                        </span>
                     </div>
                 </div>
                 <div class="card-body">

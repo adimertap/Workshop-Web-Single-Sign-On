@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Inventory\Rcv;
+namespace App\Http\Controllers\Inventory\Kartugudang;
 
 use App\Http\Controllers\Controller;
-use App\Model\Inventory\Purchase\PO;
-use App\Model\Inventory\Rcv\Rcv;
+use App\Model\Inventory\Sparepart;
 use Illuminate\Http\Request;
 
-class RcvController extends Controller
+class KartugudangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +15,11 @@ class RcvController extends Controller
      */
     public function index()
     {
-        $rcv = Rcv::with([
-            'PO','Pegawai','Supplier','Akun','FOP'
+        $sparepart = Sparepart::with([
+            'Jenissparepart', 'Merksparepart','Konversi','Gallery','Rak'
         ])->get();
 
-        $po = PO::where([['status', '=', 'Dikirim']])->get();
-        
-        return view('pages.inventory.rcv.rcv', compact('rcv','po'));
+        return view('pages.inventory.kartugudang.kartugudang', compact('sparepart'));
     }
 
     /**
@@ -52,13 +49,9 @@ class RcvController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_rcv)
+    public function show($id)
     {
-        $rcv = Rcv::with('Detail.Sparepart.Rak')->findOrFail($id_rcv);
-
-        return view('pages.inventory.rcv.detail')->with([
-            'rcv' => $rcv
-        ]);
+        //
     }
 
     /**
@@ -90,12 +83,8 @@ class RcvController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_rcv)
+    public function destroy($id)
     {
-        $rcv = Rcv::findOrFail($id_rcv);
-        
-        $rcv->delete();
-
-        return redirect()->back()->with('messagehapus','Data Penerimaan Berhasil dihapus');
+        //
     }
 }

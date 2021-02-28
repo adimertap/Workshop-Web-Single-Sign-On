@@ -254,7 +254,7 @@
                                 <a class="nav-link" href="{{ route('Opname') }}">
                                     Stock Opname
                                 </a>
-                                <a class="nav-link" href="invoice.html">
+                                <a class="nav-link" href="{{ route('Kartu-gudang') }}">
                                     Kartu Gudang
                                 </a>
                             </nav>
@@ -327,7 +327,7 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
-                                <a class="nav-link" href="invoice.html">
+                                <a class="nav-link" href="{{ route('Penjualan-Online') }}">
                                     Penjualan
                                 </a>
                             </nav>

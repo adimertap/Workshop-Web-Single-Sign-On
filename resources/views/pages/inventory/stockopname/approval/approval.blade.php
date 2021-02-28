@@ -131,7 +131,7 @@
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-success-soft">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Setujui Data</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
@@ -164,7 +164,7 @@
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-danger-soft">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Tolak Data</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>

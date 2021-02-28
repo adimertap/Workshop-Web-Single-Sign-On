@@ -207,7 +207,35 @@ Route::prefix('inventory/approvalopname')
         ->name('approval-opname-status');
 });
 
+// PENJUALAN ONLINE ---------------------------------------------------------------------- Penjualan Online
+Route::prefix('inventory/Penjualanonline')
+    ->namespace('Inventory\Penjualan')
+    ->group(function () {
+        Route::get('/', 'PenjualanController@index')
+            ->name('Penjualan-Online');
+        
+        Route::resource('Penjualan-Online', 'PenjualanController');
 
+    });
+
+// KARTU GUDANG --------------------------------------------------------------------------- Kartu Gudang
+Route::prefix('inventory/Kartugudang')
+    ->namespace('Inventory\Kartugudang')
+    ->group(function () {
+        Route::get('/', 'KartugudangController@index')
+            ->name('Kartu-gudang');
+        
+        Route::resource('Kartu-gudang', 'KartugudangController');
+
+    });
+
+
+
+
+
+
+
+    
 // --------------------------------------------------------------------------------------------------------KEPEGAWAIAN
 // MODUL KEPEGAWAIAN
 // DASHBOARD

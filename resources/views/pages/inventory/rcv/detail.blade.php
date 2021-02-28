@@ -58,9 +58,9 @@
                                 value="{{ $rcv->no_do }}" readonly />
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="no_faktur">No. Faktur</label>
+                            <label class="small mb-1" for="no_faktur">No. PO</label>
                             <input class="form-control form-control-sm" id="no_faktur" type="text" name="no_faktur"
-                                value="{{ $rcv->no_faktur }}" readonly />
+                                value="{{ $rcv->PO->kode_po }}" readonly />
                         </div>
                     </div>
                     <div class="form-group">

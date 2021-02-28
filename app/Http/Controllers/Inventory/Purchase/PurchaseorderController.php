@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inventory\Purchase;
 use App\Http\Controllers\Controller;
 use App\Model\Accounting\Akun;
 use App\Model\Inventory\Purchase\PO;
+use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
@@ -32,7 +33,15 @@ class PurchaseorderController extends Controller
      */
     public function create()
     {
-        //
+        $po = PO::with([
+            'Akun','Supplier','Pegawai'
+        ])->get();
+
+
+        $supplier = Supplier::all();
+        $sparepart = Sparepart::all();
+
+        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier'));
     }
 
     /**
