@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Accounting\Masterdata;
+namespace App\Http\Controllers\PointOfSales;
 
 use App\Http\Controllers\Controller;
-use App\MasterDataFAQ;
 use Illuminate\Http\Request;
 
-class MasterDataFAQController extends Controller
+class DashboardPOSController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class MasterDataFAQController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.pointofsales.dashboard.dashboardpointofsales');
     }
 
     /**
@@ -42,10 +41,10 @@ class MasterDataFAQController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\MasterDataFAQ  $masterDataFAQ
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(MasterDataFAQ $masterDataFAQ)
+    public function show($id)
     {
         //
     }
@@ -53,10 +52,10 @@ class MasterDataFAQController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\MasterDataFAQ  $masterDataFAQ
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(MasterDataFAQ $masterDataFAQ)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +64,10 @@ class MasterDataFAQController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\MasterDataFAQ  $masterDataFAQ
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterDataFAQ $masterDataFAQ)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +75,10 @@ class MasterDataFAQController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\MasterDataFAQ  $masterDataFAQ
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterDataFAQ $masterDataFAQ)
+    public function destroy($id)
     {
         //
     }

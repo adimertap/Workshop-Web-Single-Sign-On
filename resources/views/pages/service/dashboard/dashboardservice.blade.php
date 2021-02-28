@@ -34,10 +34,8 @@
                 </div>
                 <div class="card-body">
                     <div class="text-center">
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 13rem;"
-                            src="/backend/src/assets/img/ilustrasi/inventoryilustration.jpg" alt="">
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 13rem;"
-                            src="/backend/src/assets/img/ilustrasi/logistic.jpg" alt="">
+                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                            src="/backend/src/assets/img/service.jpg" alt="">>
                     </div>
                     <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Selamat Datang, I Gede Angga Kusuma Putra</h2>
                     <p></p>

@@ -46,7 +46,25 @@ Route::prefix('service')
             ->name('dashboardservice');
     });
 
+// ------------------------------------------------------------------------
+// MODUL POS
+// DASHBOARD
+Route::prefix('pos')
+    ->namespace('PointOfSales')
+    ->group(function () {
+        Route::get('/', 'DashboardPOSController@index')
+            ->name('dashboardpointofsales');
+    });
 
+// ------------------------------------------------------------------------
+// MODUL SSO
+// DASHBOARD
+Route::prefix('sso')
+    ->namespace('SingleSignOn')
+    ->group(function () {
+        Route::get('/', 'DashboardSSOController@index')
+            ->name('dashboardsso');
+    });
 
 
 // ------------------------------------------------------------------------------------------------------------------

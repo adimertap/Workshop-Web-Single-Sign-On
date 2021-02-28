@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>SSO System</title>
+    <title>Single Sign On System</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
@@ -32,7 +32,7 @@
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
         <a class="navbar-brand" href="{{ route('dashboardinventory')}}">
             <i class="fas fa-boxes mr-3"></i>
-            SSO System
+            Single Sign On System
         </a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
                 data-feather="menu"></i></button>
@@ -193,21 +193,15 @@
                 <div class="sidenav-menu">
                     <div class="nav accordion" id="accordionSidenav">
 
-                        {{-- DASHBOARD --}}
-                        {{-- Dashboard Side Bar--}}
-                        <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardinventory')}}">
-                            <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
-                            Dashboard
-                        </a>
+                        
 
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
-                        <div class="sidenav-menu-heading">Master Data</div>
+                        <div class="sidenav-menu-heading">Management</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
-                            Master Data
+                            Management
                             <div class="sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
@@ -215,51 +209,27 @@
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                                 <a class="nav-link" href="{{ route('masterdatasparepart')}}">
-                                    Jenis Kendaraan
+                                    Role
                                 </a>
                                 <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
-                                    Jenis Perbaikan
+                                    Menu
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatajenissparepart')}}">
-                                    Diskon
+                                <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
+                                    Sub Menu
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatasupplier')}}">
-                                    Pitstop
+                                <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
+                                    User
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatahargasparepart')}}">
-                                    Reminder
-                                </a>
-                                <a class="nav-link" href="{{ route('masterdatarak')}}">
-                                    FAQ
                                 </a>
                             </nav>
                         </div>
 
-                        {{-- FRONTOFFICE SYSTEM --}}
-                        <div class="sidenav-menu-heading">SSO System</div>
-
-                        <a class="nav-link collapsed" href="# "  aria-expanded="false" aria-controls="collapseUtilities">
-                            <div class="nav-link-icon">
-                                <i class="fas fa-cubes"></i>
-                            </div>
-                            Pelayanan Service
-                        </a>
-
-                        {{-- Inventory --}}
-                        <a class="nav-link collapsed" href="#"  aria-expanded="false" aria-controls="collapsePages">
-                            <div class="nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
-                            Penjualan Sparepart
-                        </a>
-
-                        <a class="nav-link collapsed" href="javascript:void(0);"  aria-expanded="false" aria-controls="collapseComponents">
-                            <div class="nav-link-icon"><i class="fas fa-box-open"></i></div>
-                            Customer Terdaftar
-                        </a>
-
-                        {{-- Approval --}}
-                        <a class="nav-link collapsed" href="#" aria-expanded="false" aria-controls="collapseFlows">
-                            <div class="nav-link-icon"><i data-feather="check-square"></i></div>
-                            Customer Care
+                        {{-- DASHBOARD --}}
+                        {{-- Dashboard Side Bar--}}
+                        <div class="sidenav-menu-heading">Dashboard</div>
+                        <a class="nav-link" href="{{ route('dashboardinventory')}}">
+                            <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                            Dashboard
                         </a>
                     </div>
                 </div>
@@ -268,7 +238,7 @@
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">User Role:</div>
-                        <div class="sidenav-footer-title">Bagian SSO</div>
+                        <div class="sidenav-footer-title">Bagian Single Sign On</div>
                     </div>
                 </div>
             </nav>

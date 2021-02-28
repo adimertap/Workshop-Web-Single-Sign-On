@@ -203,11 +203,11 @@
 
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
-                        <div class="sidenav-menu-heading">Master Data</div>
+                        <div class="sidenav-menu-heading">Pembayaran</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
-                            Master Data
+                            Pembayaran
                             <div class="sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
@@ -215,52 +215,36 @@
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                                 <a class="nav-link" href="{{ route('masterdatasparepart')}}">
-                                    Jenis Kendaraan
+                                    Layanan Service
                                 </a>
                                 <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
-                                    Jenis Perbaikan
+                                    Penjualan Sparepart
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatajenissparepart')}}">
-                                    Diskon
-                                </a>
-                                <a class="nav-link" href="{{ route('masterdatasupplier')}}">
-                                    Pitstop
-                                </a>
-                                <a class="nav-link" href="{{ route('masterdatahargasparepart')}}">
-                                    Reminder
-                                </a>
-                                <a class="nav-link" href="{{ route('masterdatarak')}}">
-                                    FAQ
                                 </a>
                             </nav>
                         </div>
 
-                        {{-- FRONTOFFICE SYSTEM --}}
-                        <div class="sidenav-menu-heading">Point of Sales System</div>
-
-                        <a class="nav-link collapsed" href="# "  aria-expanded="false" aria-controls="collapseUtilities">
-                            <div class="nav-link-icon">
-                                <i class="fas fa-cubes"></i>
+                        {{-- Master Data Side Bar --}}
+                        <div class="sidenav-menu-heading">Laporan</div>
+                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                            data-target="#collapseLaporan" aria-expanded="false" aria-controls="collapseLaporan">
+                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            Laporan
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
                             </div>
-                            Pelayanan Service
                         </a>
-
-                        {{-- Inventory --}}
-                        <a class="nav-link collapsed" href="#"  aria-expanded="false" aria-controls="collapsePages">
-                            <div class="nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
-                            Penjualan Sparepart
-                        </a>
-
-                        <a class="nav-link collapsed" href="javascript:void(0);"  aria-expanded="false" aria-controls="collapseComponents">
-                            <div class="nav-link-icon"><i class="fas fa-box-open"></i></div>
-                            Customer Terdaftar
-                        </a>
-
-                        {{-- Approval --}}
-                        <a class="nav-link collapsed" href="#" aria-expanded="false" aria-controls="collapseFlows">
-                            <div class="nav-link-icon"><i data-feather="check-square"></i></div>
-                            Customer Care
-                        </a>
+                        <div class="collapse" id="collapseLaporan" data-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                                <a class="nav-link" href="{{ route('masterdatasparepart')}}">
+                                    Laporan Service
+                                </a>
+                                <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
+                                    Laporan Penjualan Sparepart
+                                </a>
+                                </a>
+                            </nav>
+                        </div>
                     </div>
                 </div>
 
