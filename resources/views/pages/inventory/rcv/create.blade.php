@@ -3,19 +3,23 @@
 @section('content')
 {{-- HEADER --}}
 <main>
-    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
-        <div class="container-fluid">
-            <div class="page-header-content">
-                <div class="row align-items-center justify-content-between pt-3">
-                    <div class="col-auto mb-3">
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container">
+            <div class="page-header-content pt-4">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-4">
                         <h1 class="page-header-title">
-                            <div class="page-header-icon"><i class="fas fa-cog"></i></div>
-                            Tambah Data Sparepart
+                            <div class="page-header-icon" style="color: white"><i class="fas fa-dolly-flatbed"></i>
+                            </div>
+                            <div class="page-header-subtitle" style="color: white">Tambah Data Penerimaan</div>
                         </h1>
+                        <div class="small">
+                            <span class="font-weight-500">Receiving</span>
+                            · Tambah · Data
+                        </div>
                     </div>
-                    <div class="col-12 col-xl-auto mb-3">
-                        <a href="{{ route('sparepart.index') }}"
-                            class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
+                    <div class="col-12 col-xl-auto">
+                        <a href="{{ route('Receive') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
                     </div>
                 </div>
             </div>
@@ -23,16 +27,16 @@
     </header>
 
 
-    <div class="container">
+    <div class="container mt-n10">
         <div class="card">
             <div class="card-header border-bottom">
                 <div class="nav nav-pills nav-justified flex-column flex-xl-row nav-wizard" id="cardTab" role="tablist">
                     <!-- Wizard navigation item 1-->
                     <a class="nav-item nav-link active" id="wizard1-tab" href="#wizard1" data-toggle="tab" role="tab"
                         aria-controls="wizard1" aria-selected="true">
-                        <div class="wizard-step-icon"><i class="fas fa-plus"></i></div>
+                        <div class="wizard-step-icon">1</div>
                         <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Formulir Sparepart</div>
+                            <div class="wizard-step-text-name">Formulir Penerimaan</div>
                             <div class="wizard-step-text-details">Lengkapi formulir berikut</div>
                         </div>
                     </a>
@@ -40,8 +44,16 @@
                         aria-controls="wizard2" aria-selected="true">
                         <div class="wizard-step-icon">2</div>
                         <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Detail Foto </div>
-                            <div class="wizard-step-text-details">Formulir Detail Identitas</div>
+                            <div class="wizard-step-text-name">Detail Pembelian Sparepart</div>
+                            <div class="wizard-step-text-details">Formulir Detail Sparepart</div>
+                        </div>
+                    </a>
+                    <a class="nav-item nav-link" id="wizard3-tab" href="#wizard3" data-toggle="tab" role="tab"
+                        aria-controls="wizard3" aria-selected="true">
+                        <div class="wizard-step-icon">3</div>
+                        <div class="wizard-step-text">
+                            <div class="wizard-step-text-name">Konfirmasi Penerimaan</div>
+                            <div class="wizard-step-text-details">Notification and account options</div>
                         </div>
                     </a>
 
@@ -56,106 +68,80 @@
                         aria-labelledby="wizard1-tab">
                         <div class="row justify-content-center">
                             <div class="col-xxl-6 col-xl-9">
-                                <h3 class="text-primary">Sparepart</h3>
-                                <h5 class="card-title">Input Formulir Sparepart</h5>
-                                <form action="{{ route('sparepart.store') }}" method="POST"
-                                    enctype="multipart/form-data">
+                                <h3 class="text-primary">Step 1</h3>
+                                <h5 class="card-title">Input Formulir Penerimaan</h5>
+                                <form action="{{ route('Rcv.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="row">
+                                    <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="kode_sparepart">Kode Sparepart</label>
-                                            <input class="form-control" id="kode_sparepart" type="text"
-                                                name="kode_sparepart" placeholder="Input Kode Sparepart"
-                                                value="{{ old('kode_sparepart') }}"
-                                                class="form-control @error('kode_sparepart') is-invalid @enderror" />
-                                            @error('kode_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                                            <label class="small mb-1" for="kode_rcv">Kode Receiving</label>
+                                            <input class="form-control" id="kode_rcv" type="text" name="kode_rcv"
+                                                placeholder="Input Kode Receiving" value="{{ old('kode_rcv') }}"
+                                                class="form-control @error('kode_rcv') is-invalid @enderror" />
+                                            @error('kode_rcv')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="nama_sparepart">Nama Sparepart</label>
-                                            <input class="form-control" id="nama_sparepart" type="text"
-                                                name="nama_sparepart" placeholder="Input Nama Sparepart"
-                                                value="{{ old('nama_sparepart') }}"
-                                                class="form-control @error('nama_sparepart') is-invalid @enderror" />
-                                            @error('nama_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                                            <label class="small mb-1" for="id_pegawai">Pegawai</label>
+                                            <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
+                                                placeholder="Input Nama Pegawai" value="{{ old('id_pegawai') }}"
+                                                class="form-control @error('id_pegawai') is-invalid @enderror" />
+                                            @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
-                                            <select class="form-control" name="id_jenis_sparepart"
-                                                class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
-                                                id="id_jenis_sparepart">
-                                                <option>Pilih Jenis</option>
-                                                @foreach ($jenis_sparepart as $item)
-                                                <option value="{{ $item->id_jenis_sparepart }}">
-                                                    {{ $item->jenis_sparepart }}
+                                            <label class="small mb-1" for="id_supplier">Supplier</label>
+                                            <select class="form-control" name="id_supplier" id="id_supplier"
+                                                class="form-control @error('id_supplier') is-invalid @enderror">
+                                                <option>Pilih Supplier</option>
+                                                @foreach ($supplier as $item)
+                                                <option value="{{ $item->id_supplier }}">{{ $item->nama_supplier }}
                                                 </option>
                                                 @endforeach
                                             </select>
-                                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">
-                                                {{ $message }}
+                                            @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_merk">Merk Sparepart</label>
-                                            <select class="form-control" name="id_merk" id="id_merk"
-                                                class="form-control @error('id_merk') is-invalid @enderror">
-                                                <option>Pilih Merk</option>
-                                                @foreach ($merk_sparepart as $item)
-                                                <option value="{{ $item->id_merk }}">{{ $item->merk_sparepart }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            @error('id_merk')<div class="text-danger small mb-1">{{ $message }}
+                                            <label class="small mb-1" for="no_do">Nomor DO</label>
+                                            <input class="form-control" id="no_do" type="text" name="no_do"
+                                                placeholder="Input Nomor Delivery Order" value="{{ old('no_do') }}"
+                                                class="form-control @error('no_do') is-invalid @enderror" />
+                                            @error('no_do')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_konversi">Konversi Satuan</label>
-                                            <select class="form-control" name="id_konversi" id="id_konversi"
-                                                class="form-control @error('id_konversi') is-invalid @enderror">
-                                                <option>Pilih Satuan</option>
-                                                @foreach ($konversi as $item)
-                                                <option value="{{ $item->id_konversi }}">{{ $item->satuan }}
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1" for="id_akun">Akun</label>
+                                            <select class="form-control" name="id_akun" id="id_akun"
+                                                class="form-control @error('id_akun') is-invalid @enderror">
+                                                <option>Pilih Akun</option>
+                                                @foreach ($akun as $item)
+                                                <option value="{{ $item->id_akun }}">{{ $item->nama_akun }}
                                                 </option>
                                                 @endforeach
                                             </select>
-                                            @error('id_konversi')<div class="text-danger small mb-1">{{ $message }}
+                                            @error('id_akun')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_rak">Tempat Rak</label>
-                                            <select class="form-control" name="id_rak" id="id_rak"
-                                                class="form-control @error('id_rak') is-invalid @enderror">
-                                                <option>Pilih Rak</option>
-                                                @foreach ($rak as $item)
-                                                <option value="{{ $item->id_rak }}">{{ $item->nama_rak }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1" for="tanggal_rcv">Tanggal Receive</label>
+                                            <input class="form-control" id="tanggal_rcv" type="date" name="tanggal_rcv"
+                                                placeholder="Input Tanggal Receive" value="{{ old('tanggal_rcv') }}"
+                                                class="form-control @error('tanggal_rcv') is-invalid @enderror" />
+                                            @error('tanggal_rcv')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="stock">Stock</label>
-                                            <input class="form-control" id="stock" type="text" name="stock"
-                                                placeholder="Input Stock Sparepart" value="{{ old('stock') }}""
-                                                class=" form-control @error('stock') is-invalid @enderror" />
-                                            @error('stock')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="stock_min">Stock Min</label>
-                                            <input class="form-control" id="stock_min" type="text" name="stock_min"
-                                                placeholder="Input Nama Sparepart" value="{{ old('stock_min') }}""
-                                                class=" form-control @error('stock_min') is-invalid @enderror" />
-                                            @error('stock_min')<div class="text-danger small mb-1">{{ $message }}
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1" for="total_pembayaran">Total Pembayaran</label>
+                                            <input class="form-control" id="total_pembayaran" type="number"
+                                                name="total_pembayaran" placeholder="Input Total Pembayaran"
+                                                value="{{ old('total_pembayaran') }}"
+                                                class="form-control @error('total_pembayaran') is-invalid @enderror" />
+                                            @error('total_pembayaran')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
@@ -168,39 +154,135 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane py-5 py-xl-5 fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
-                        <div class="row justify-content-center">
-                            <div class="col-xxl-6 col-xl-8">
-                                <h3 class="text-primary">Step 2</h3>
-                                <h5 class="card-title">Input Formulir Berikut</h5>
-                                <div class="form-group">
-                                    <label class="small mb-1" for="photo">Foto Sparepart</label>
-                                    <input class="form-control" id="photo" type="file" name="photo[]"
-                                        value="{{ old('photo') }}" accept="image/*" multiple="multiple"
-                                        class="form-control @error('photo') is-invalid @enderror">
-                                    @error('photo')<div class="text-danger small mb-1">{{ $message }}
-                                    </div> @enderror
+                    {{-- CARD 2 --}}
+                    <div class="tab-pane fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
+                        <h3 class="text-primary">Step 2</h3>
+                        <h5 class="card-title">Input Jumlah Penerimaan Sparepart</h5>
+                        <div class="datatable">
+                            <div id="dataTable_wrapperr" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-11">
+                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
+                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">
+                                                        No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 40px;">
+                                                        Kode Sparepart</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 120px;">Sparepart</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 80px;">
+                                                        Merk Sparepart</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 50px;">
+                                                        Jumlah dipesan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 70px;">
+                                                        Jumlah diterima</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 50px;">
+                                                        Satuan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 100px;">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="small mb-1" for="keterangan">Keterangan Marketplace</label>
-                                    <textarea class="form-control" name="keterangan" id="keterangan" cols="20" rows="10"
-                                        placeholder="Input Keterangan" value="{{ old('keterangan') }}"
-                                        class="form-control @error('keterangan') is-invalid @enderror"></textarea>
-                                    @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
-                                    </div> @enderror
-                                </div>
-                                <hr class="my-4" />
-                                <div class="d-flex justify-content-between">
-                                    <a href="{{ route('masterdatasparepart') }}" class="btn btn-light">Kembali</a>
-                                    <button class="btn btn-primary" type="Submit">Submit</button>
-                                </div>
-                                </form>
                             </div>
                         </div>
                     </div>
+
+                    <div class="tab-pane fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
+                        <h3 class="text-primary">Step 3</h3>
+                        <h5 class="card-title">Konfirmasi Jumlah Penerimaan Sparepart</h5>
+                        <div class="datatable">
+                            <div id="dataTable_wrapperr" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
+                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">
+                                                        No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 40px;">
+                                                        Kode Sparepart</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 120px;">Sparepart</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 80px;">
+                                                        Merk Sparepart</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 70px;">
+                                                        Jumlah diterima</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 50px;">
+                                                        Satuan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 100px;">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-light" type="button">Previous</button>
+                            <button class="btn btn-primary" type="button">Submit</button>
+                        </div>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 </main>
 
 <script>

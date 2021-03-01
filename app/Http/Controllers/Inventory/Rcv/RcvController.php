@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Inventory\Rcv;
 
 use App\Http\Controllers\Controller;
+use App\Model\Accounting\Akun;
 use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Rcv\Rcv;
+use App\Model\Inventory\Supplier;
+use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
 
 class RcvController extends Controller
@@ -36,7 +39,12 @@ class RcvController extends Controller
             'PO','Pegawai','Supplier','Akun','FOP'
         ])->get();
         
-        return view('pages.inventory.rcv.create', compact('rcv'));
+        $pegawai = Pegawai::all();
+        $po = PO::all();
+        $supplier = Supplier::all();
+        $akun = Akun::all();
+
+        return view('pages.inventory.rcv.create', compact('rcv','pegawai','po','supplier','akun'));
     }
 
     /**

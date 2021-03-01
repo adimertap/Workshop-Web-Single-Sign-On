@@ -194,7 +194,7 @@
         <div class="row">
             <div class="col-xxl-4 col-xl-3 mb-4">
                 <!-- Dashboard example card 1-->
-                <a class="card lift h-100" href="{{ route('dashboardinventory') }}">
+                <a class="card lift h-100" href="{{ route('dashboardfrontoffice') }}">
                     <div class="card-body d-flex justify-content-center flex-column">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="mr-3">
@@ -209,7 +209,7 @@
             </div>
             <div class="col-xxl-4 col-xl-3 mb-4">
                 <!-- Dashboard example card 2-->
-                <a class="card lift h-100" href="{{ route('dashboardpegawai') }}">
+                <a class="card lift h-100" href="{{ route('dashboardservice') }}">
                     <div class="card-body d-flex justify-content-center flex-column">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="mr-3">
@@ -224,7 +224,7 @@
             </div>
             <div class="col-xxl-4 col-xl-3 mb-4">
                 <!-- Dashboard example card 3-->
-                <a class="card lift h-100" href="{{ route('dashboardpayroll') }}">
+                <a class="card lift h-100" href="{{ route('dashboardpointofsales') }}">
                     <div class="card-body d-flex justify-content-center flex-column">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="mr-3">

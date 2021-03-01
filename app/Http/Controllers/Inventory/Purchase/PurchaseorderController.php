@@ -37,11 +37,11 @@ class PurchaseorderController extends Controller
             'Akun','Supplier','Pegawai'
         ])->get();
 
-
+        $akun = Akun::all();    
         $supplier = Supplier::all();
         $sparepart = Sparepart::all();
 
-        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier'));
+        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','akun'));
     }
 
     /**
