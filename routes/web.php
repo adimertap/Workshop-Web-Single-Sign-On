@@ -36,7 +36,135 @@ Route::prefix('frontoffice/jeniskendaraan')
         Route::resource('jeniskendaraan', 'MasterDataJenisKendaraanController');
     });
 
+// MASTER DATA JENIS PERBAIKAN
+Route::prefix('frontoffice/jenisperbaikan')
+    ->namespace('FrontOffice\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterDataJenisPerbaikanController@index')
+            ->name('masterdatajenisperbaikan');
 
+        Route::resource('jenisperbaikan', 'MasterDataJenisPerbaikanController');
+    });
+
+// MASTER DATA DISKON
+Route::prefix('frontoffice/diskon')
+    ->namespace('FrontOffice\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterDataDiskonController@index')
+            ->name('masterdatadiskon');
+
+        Route::resource('diskon', 'MasterDataDiskonController');
+    });
+
+// MASTER DATA PITSTOP
+Route::prefix('frontoffice/pitstop')
+    ->namespace('FrontOffice\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterDataPitstopController@index')
+            ->name('masterdatapitstop');
+
+        Route::resource('pitstop', 'MasterDataPitstopController');
+    });
+
+// MASTER DATA REMINDER
+Route::prefix('frontoffice/reminder')
+    ->namespace('FrontOffice\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterDataReminderController@index')
+            ->name('masterdatareminder');
+
+        Route::resource('reminder', 'MasterDataReminderController');
+    });
+
+// MASTER DATA FAQ
+Route::prefix('frontoffice/faq')
+    ->namespace('FrontOffice\Masterdata')
+    ->group(function () {
+        Route::get('/', 'MasterDataFAQController@index')
+            ->name('masterdatafaq');
+
+        Route::resource('faq', 'MasterDataFAQController');
+    });
+
+// ------------------------------------------------------------------------
+// MODUL SERVICE
+// DASHBOARD
+Route::prefix('service')
+    ->namespace('Service')
+    ->group(function () {
+        Route::get('/', 'DashboardServiceController@index')
+            ->name('dashboardservice');
+    });
+
+// ------------------------------------------------------------------------
+// MODUL POS
+// DASHBOARD
+Route::prefix('pos')
+    ->namespace('PointOfSales')
+    ->group(function () {
+        Route::get('/', 'DashboardPOSController@index')
+            ->name('dashboardpointofsales');
+    });
+
+// PEMBAYARAN LAYANAN SERVICE
+Route::prefix('pos/pembayaranservice')
+    ->namespace('PointOfSales\Pembayaran')
+    ->group(function () {
+        Route::get('/', 'PembayaranServiceController@index')
+            ->name('pembayaranservice');
+
+        Route::resource('pembayaranservice', 'PembayaranServiceController');
+    });
+
+// PEMBAYARAN PENJUALAN SPAREPART
+Route::prefix('pos/pembayaransparepart')
+    ->namespace('PointOfSales\Pembayaran')
+    ->group(function () {
+        Route::get('/', 'PembayaranSparepartController@index')
+            ->name('pembayaransparepart');
+
+        Route::resource('pembayaransparepart', 'PembayaranSparepartController');
+    });
+
+// PEMBAYARAN PENJUALAN SPAREPART
+Route::prefix('pos/laporanservice')
+    ->namespace('PointOfSales\Laporan')
+    ->group(function () {
+        Route::get('/', 'LaporanServiceController@index')
+            ->name('laporanservice');
+
+        Route::resource('laporanservice', 'LaporanServiceController');
+    });
+
+// PEMBAYARAN PENJUALAN SPAREPART
+Route::prefix('pos/laporansparepart')
+    ->namespace('PointOfSales\Laporan')
+    ->group(function () {
+        Route::get('/', 'LaporanSparepartController@index')
+            ->name('laporansparepart');
+
+        Route::resource('laporansparepart', 'LaporanSparepartController');
+    });
+
+// PEMBAYARAN PENJUALAN SPAREPART
+Route::prefix('pos/pembayaransparepart')
+    ->namespace('PointOfSales\Pembayaran')
+    ->group(function () {
+        Route::get('/', 'PembayaranSparepartController@index')
+            ->name('pembayaransparepart');
+
+        Route::resource('pembayaran', 'PembayaranSparepartController');
+    });
+
+// ------------------------------------------------------------------------
+// MODUL SSO
+// DASHBOARD
+Route::prefix('sso')
+    ->namespace('SingleSignOn')
+    ->group(function () {
+        Route::get('/', 'DashboardSSOController@index')
+            ->name('dashboardsso');
+    });
 
 
 // MODUL INVENTORY ------------------------------------------------------------------------------------ INVENTORY

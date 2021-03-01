@@ -30,9 +30,9 @@
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="{{ route('dashboardinventory')}}">
+        <a class="navbar-brand" href="{{ route('dashboardfrontoffice')}}">
             <i class="fas fa-boxes mr-3"></i>
-            Front Office System
+            Front Office System 
         </a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
                 data-feather="menu"></i></button>
@@ -196,7 +196,7 @@
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardinventory')}}">
+                        <a class="nav-link" href="{{ route('dashboardfrontoffice')}}">
                             <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
                             Dashboard
                         </a>
@@ -214,22 +214,22 @@
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('masterdatasparepart')}}">
+                                <a class="nav-link" href="{{ route('masterdatajeniskendaraan')}}">
                                     Jenis Kendaraan
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
+                                <a class="nav-link" href="{{ route('masterdatajenisperbaikan')}}">
                                     Jenis Perbaikan
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatajenissparepart')}}">
+                                <a class="nav-link" href="{{ route('masterdatadiskon')}}">
                                     Diskon
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatasupplier')}}">
+                                <a class="nav-link" href="{{ route('masterdatapitstop')}}">
                                     Pitstop
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatahargasparepart')}}">
+                                <a class="nav-link" href="{{ route('masterdatareminder')}}">
                                     Reminder
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatarak')}}">
+                                <a class="nav-link" href="{{ route('masterdatafaq')}}">
                                     FAQ
                                 </a>
                             </nav>
@@ -286,7 +286,7 @@
             <footer class="footer mt-auto footer-light">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6 small">Copyright &copy; SISTEM BENGKEL INVENTORY</div>
+                        <div class="col-md-6 small">Copyright &copy; SISTEM BENGKEL</div>
                         <div class="col-md-6 text-md-right small">
                             <a href="#!">Privacy Policy</a>
                             &middot;

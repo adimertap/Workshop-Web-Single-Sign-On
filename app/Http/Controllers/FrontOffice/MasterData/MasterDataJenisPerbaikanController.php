@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontOffice\Masterdata;
 
-use App\MasterDataJenisPerbaikan;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\FrontOffice\MasterDataJenisPerbaikan;
 
 class MasterDataJenisPerbaikanController extends Controller
 {
@@ -14,7 +15,9 @@ class MasterDataJenisPerbaikanController extends Controller
      */
     public function index()
     {
-        //
+        $jenisperbaikan = MasterDataJenisPerbaikan::get();
+
+        return view('pages.frontoffice.masterdata.jenis_perbaikan.main', compact('jenisperbaikan'));
     }
 
     /**

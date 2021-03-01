@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\FrontOffice\Masterdata;
+namespace App\Http\Controllers\PointOfSales\Pembayaran;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\FrontOffice\MasterDataPitstop;
 
-class MasterDataPitstopController extends Controller
+class PembayaranSparepartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class MasterDataPitstopController extends Controller
      */
     public function index()
     {
-        $pitstop = MasterDataPitstop::get();
-
-        return view('pages.frontoffice.masterdata.pitstop.main', compact('pitstop'));
+        return view('pages.pointofsales.pembayaran.pembayaran_sparepart');
     }
 
     /**
@@ -44,10 +41,10 @@ class MasterDataPitstopController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\MasterDataPitstop  $masterDataPitstop
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(MasterDataPitstop $masterDataPitstop)
+    public function show($id)
     {
         //
     }
@@ -55,10 +52,10 @@ class MasterDataPitstopController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\MasterDataPitstop  $masterDataPitstop
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(MasterDataPitstop $masterDataPitstop)
+    public function edit($id)
     {
         //
     }
@@ -67,10 +64,10 @@ class MasterDataPitstopController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\MasterDataPitstop  $masterDataPitstop
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterDataPitstop $masterDataPitstop)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,10 +75,10 @@ class MasterDataPitstopController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\MasterDataPitstop  $masterDataPitstop
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterDataPitstop $masterDataPitstop)
+    public function destroy($id)
     {
         //
     }

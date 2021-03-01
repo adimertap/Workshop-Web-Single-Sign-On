@@ -1,4 +1,4 @@
-@extends('layouts.Admin.adminfrontoffice')
+@extends('layouts.Admin.adminpointofsales')
 
 @section('content')
 <main>
@@ -6,7 +6,7 @@
         <!-- Custom page header alternative example-->
         <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
             <div class="mr-4 mb-3 mb-sm-0">
-                <h1 class="mb-0">Dashboard Front Office</h1>
+                <h1 class="mb-0">Dashboard Point of Sales</h1>
                 <div class="small">
                     <span class="font-weight-500 text-primary">Friday</span>
                     · September 20, 2020 · 12:16 PM
@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                            src="/backend/src/assets/img/FrontDesk.png" alt="">
+                            src="/backend/src/assets/img/pos.jpg" alt="">
                     </div>
                     <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Selamat Datang, I Gede Angga Kusuma Putra</h2>
                     <p></p>
@@ -59,7 +59,7 @@
                                     src="/backend/src/assets/img/freepik/profiles/profile-6.png" alt=""></div>
                             <div class="d-flex flex-column font-weight-bold">
                                 <a class="text-dark line-height-normal mb-1">I Gede Angga Kusuma Putra</a>
-                                    <div class=" small text-muted line-height-normal">Bagian Front Office</div>
+                                    <div class=" small text-muted line-height-normal">Bagian Point of Sales</div>
                         </div>
                     </div>
                     <div class="dropdown no-caret">

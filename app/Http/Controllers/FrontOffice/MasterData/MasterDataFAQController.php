@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontOffice\Masterdata;
 
-use App\MasterDataFAQ;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\FrontOffice\MasterDataFAQ;
 
 class MasterDataFAQController extends Controller
 {
@@ -14,7 +15,9 @@ class MasterDataFAQController extends Controller
      */
     public function index()
     {
-        //
+        $faq = MasterDataFAQ::get();
+
+        return view('pages.frontoffice.masterdata.faq.main', compact('faq'));
     }
 
     /**

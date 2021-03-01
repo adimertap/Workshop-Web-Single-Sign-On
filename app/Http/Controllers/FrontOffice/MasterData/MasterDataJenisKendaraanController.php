@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontOffice\Masterdata;
 
-use App\MasterDataJenisKendaraan;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\FrontOffice\MasterDataJenisKendaraan;
 
 class MasterDataJenisKendaraanController extends Controller
 {
@@ -14,7 +15,9 @@ class MasterDataJenisKendaraanController extends Controller
      */
     public function index()
     {
-        //
+        $jeniskendaraan = MasterDataJenisKendaraan::get();
+
+        return view('pages.frontoffice.masterdata.jenis_kendaraan.main', compact('jeniskendaraan'));
     }
 
     /**
@@ -44,7 +47,7 @@ class MasterDataJenisKendaraanController extends Controller
      * @param  \App\MasterDataJenisKendaraan  $masterDataJenisKendaraan
      * @return \Illuminate\Http\Response
      */
-    public function show(MasterDataJenisKendaraan $masterDataJenisKendaraan)
+    public function show($masterDataJenisKendaraan)
     {
         //
     }
@@ -55,7 +58,7 @@ class MasterDataJenisKendaraanController extends Controller
      * @param  \App\MasterDataJenisKendaraan  $masterDataJenisKendaraan
      * @return \Illuminate\Http\Response
      */
-    public function edit(MasterDataJenisKendaraan $masterDataJenisKendaraan)
+    public function edit($masterDataJenisKendaraan)
     {
         //
     }
@@ -67,7 +70,7 @@ class MasterDataJenisKendaraanController extends Controller
      * @param  \App\MasterDataJenisKendaraan  $masterDataJenisKendaraan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterDataJenisKendaraan $masterDataJenisKendaraan)
+    public function update(Request $request, $masterDataJenisKendaraan)
     {
         //
     }
@@ -78,7 +81,7 @@ class MasterDataJenisKendaraanController extends Controller
      * @param  \App\MasterDataJenisKendaraan  $masterDataJenisKendaraan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterDataJenisKendaraan $masterDataJenisKendaraan)
+    public function destroy($masterDataJenisKendaraan)
     {
         //
     }
