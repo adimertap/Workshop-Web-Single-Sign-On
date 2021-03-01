@@ -71,12 +71,12 @@
                             <div class="form-group col-md-4">
                                 <label class="small mb-1" for="approve_po">Approve Owner</label>
                                 <input class="form-control" id="approve_po" type="tex" name="approve_po"
-                                    value="{{ $item->approve_po }}" readonly>
+                                    value="Pending" readonly>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="small mb-1" for="approve_ap">Approve AP</label>
                                 <input class="form-control" id="approve_ap" type="text" name="approve_ap"
-                                    value="{{ $item->approve_ap }}" readonly>
+                                    value="Pending" readonly>
                             </div>
 
                         </div>

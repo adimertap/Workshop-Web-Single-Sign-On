@@ -32,7 +32,11 @@ class RcvController extends Controller
      */
     public function create()
     {
-        //
+        $rcv = Rcv::with([
+            'PO','Pegawai','Supplier','Akun','FOP'
+        ])->get();
+        
+        return view('pages.inventory.rcv.create', compact('rcv'));
     }
 
     /**
@@ -69,7 +73,7 @@ class RcvController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

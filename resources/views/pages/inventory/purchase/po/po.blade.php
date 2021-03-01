@@ -139,14 +139,10 @@
                                                 data-placement="top" title="" data-original-title="Cetak PO">
                                                 <i class="fas fa-print"></i></i>
                                             </a>
-                                            <a href="{{ route('po-status-kirim', $item->id_po) }}?status=Dikirim" class="btn btn-dark btn-datatable" data-toggle="tooltip"
-                                            data-placement="top" title="" data-original-title="Kirim ke Supplier">
+                                            <a href="" class="btn btn-dark btn-datatable" type="button"
+                                                data-toggle="modal"
+                                                data-target="#Modalkirimsupplier-{{ $item->id_po }}">
                                                 <i class="fas fa-share-square"></i>
-                                            </a>
-                                            @elseif($item->status == 'Dikirim')
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Cetak PO">
-                                                <i class="fas fa-print"></i></i>
                                             </a>
                                             @else
                                             <span>
@@ -234,5 +230,31 @@
 </div>
 @empty
 
+@endforelse
+
+{{-- MODAL DIKIRIM --}}
+@forelse ($po as $item)
+<div class="modal fade" id="Modalkirimsupplier-{{ $item->id_po }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info-soft">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Pengiriman Data Pembelian</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('po-status-kirim', $item->id_po) }}?status=Dikirim" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body">Pengiriman Data Pembelian pada supplier {{ $item->Supplier->nama_supplier }} dengan kode {{ $item->kode_po }} pada tanggal
+                    {{ $item->tanggal_po }}</div>
+                <div class="modal-footer ">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Kirim</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
 @endforelse
 @endsection

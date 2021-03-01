@@ -23,20 +23,39 @@
     </div>
 </main>
 <div class="container-fluid">
-    <div class="card card-waves mb-4 mt-5">
-        <div class="card-body p-5">
-            <div class="row align-items-center justify-content-between">
-                <div class="col">
-                    <h2 class="text-primary">Welcome back, your dashboard is ready!</h2>
-                    <p class="text-gray-700">Great job, your affiliate dashboard is ready to go! You can view sales,
-                        generate links, prepare coupons, and download affiliate reports using this dashboard.</p>
-                    <a class="btn btn-primary btn-sm px-3 py-2" href="#!">
-                        Get Started
-                        
-                    </a>
+    <div class="alert alert-secondary alert-icon" role="alert">
+        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <div class="alert-icon-aside">
+            <i data-feather="feather"></i>
+        </div>
+        <div class="alert-icon-content">
+            <h6 class="alert-heading">Danger Icon Alert</h6>
+            This alert uses an icon from Feather Icons!
+        </div>
+    </div>
+    <div class="alert alert-danger" role="alert">
+        <p style="font-size: 14px;">Pemberitahuan!</p>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <div class="row align-items-center">
+                        <div class="col-xl-8 col-xxl-12">
+                            <div class="text-center px-4 mb-4 mb-xl-0 mb-xxl-6">
+                                <h1 class="text-primary">Selamat Datang!</h1>
+
+
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"
+                                src="/backend/src/assets/img/freepik/absen.png" style="max-width: 12rem;"></div>
+                    </div>
                 </div>
-                <div class="col d-none d-lg-block mt-xxl-n4"><img class="img-fluid px-xl-4 mt-xxl-n5"
-                        src="assets/img/freepik/statistics-pana.svg"></div>
             </div>
         </div>
     </div>
