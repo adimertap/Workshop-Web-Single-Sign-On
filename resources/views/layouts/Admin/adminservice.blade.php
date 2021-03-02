@@ -196,7 +196,7 @@
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardservice')}}">
+                        <a class="nav-link" href="{{route('dashboardservice')}}">
                             <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
                             Dashboard
                         </a>
@@ -204,7 +204,7 @@
                         {{-- Service Advisor --}}
                         {{-- Service Advisor --}}
                         <div class="sidenav-menu-heading">Service Advisor</div>
-                        <a class="nav-link collapsed" href="# "  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('penerimaanservice')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-cubes"></i>
                             </div>
@@ -214,22 +214,22 @@
                         {{-- FRONTOFFICE SYSTEM --}}
                         <div class="sidenav-menu-heading">Service System</div>
 
-                        <a class="nav-link collapsed" href="# "  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('stoksparepart')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-cubes"></i>
                             </div>
                             Stok Sparepart
                         </a>
 
-                        <a class="nav-link collapsed" href="# "  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('jadwalmekanik')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-cubes"></i>
                             </div>
-                            Jadwal Pegawai
+                            Jadwal Mekanik
                         </a>
 
                         {{-- Inventory --}}
-                        <a class="nav-link collapsed" href="#"  aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="{{route('pengerjaanservice')}}"  aria-expanded="false" aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
                             Pengerjaan Service
                         </a>

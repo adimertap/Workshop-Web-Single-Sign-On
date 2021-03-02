@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Inventory System</title>
+    <title>Login SSO</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
@@ -33,14 +33,14 @@
                         <div class="col-lg-5">
                             <!-- Basic login form-->
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">Login</h3></div>
+                                <div class="card-header justify-content-center"><h3 class="font-weight-light my-4 text-center">Login Single Sign-On</h3></div>
                                 <div class="card-body">
                                     <!-- Login form-->
                                     <form>
-                                        <!-- Form Group (email address)-->
+                                        <!-- Form Group (Username address)-->
                                         <div class="form-group">
-                                            <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                            <input class="form-control py-4" id="inputEmailAddress" type="email" placeholder="Enter email address" />
+                                            <label class="small mb-1" for="inputUsernameAddress">Username</label>
+                                            <input class="form-control py-4" id="inputUsernameAddress" type="text" placeholder="Enter username" />
                                         </div>
                                         <!-- Form Group (password)-->
                                         <div class="form-group">
@@ -55,9 +55,8 @@
                                             </div>
                                         </div>
                                         <!-- Form Group (login box)-->
-                                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small" href="auth-password-basic.html">Forgot Password?</a>
-                                            <a class="btn btn-primary" href="{{route('dashboardsso')}}">Login</a>
+                                        <div class="d-grid col-8 mx-auto">
+                                            <a class="btn btn-primary btn-block " href="{{route('dashboardsso')}}">Login</a>
                                         </div>
                                     </form>
                                 </div>

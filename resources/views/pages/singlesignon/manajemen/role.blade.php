@@ -1,4 +1,4 @@
-@extends('layouts.Admin.adminpointofsales')
+@extends('layouts.Admin.adminsinglesignon')
 
 @section('content')
 {{-- HEADER --}}
@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Laporan Service
+                            Manajemen Role/Jabatan
                         </h1>
                     </div>
                 </div>
@@ -23,7 +23,9 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header">Laporan Service
+                <div class="card-header">List Role/Jabatan
+                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                        Data</button>
                 </div>
             </div>
             <div class="card-body">
@@ -59,23 +61,14 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Kode Transaksi</th>
+                                                style="width: 20px;">Role/Jabatan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Nama Customer</th>
+                                                style="width: 20px;">Hak Akses Menu</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Tanggal</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Jam</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Harga</th>
+                                                colspan="1" aria-label="Actions: activate to sort column ascending"
+                                                style="width: 77px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>

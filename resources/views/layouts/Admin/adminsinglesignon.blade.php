@@ -208,16 +208,13 @@
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('masterdatasparepart')}}">
+                                <a class="nav-link" href="{{ route('manajemenrole')}}">
                                     Role
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
-                                    Menu
+                                <a class="nav-link" href="{{ route('manajemenhakakses')}}">
+                                    Hak Akses
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
-                                    Sub Menu
-                                </a>
-                                <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
+                                <a class="nav-link" href="{{ route('manajemenuser')}}">
                                     User
                                 </a>
                                 </a>
@@ -227,7 +224,7 @@
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardinventory')}}">
+                        <a class="nav-link" href="{{ route('dashboardsso')}}">
                             <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
                             Dashboard
                         </a>

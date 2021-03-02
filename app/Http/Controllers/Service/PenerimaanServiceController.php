@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\PointOfSales\Laporan;
+namespace App\Http\Controllers\Service;
 
 use App\Http\Controllers\Controller;
+use App\Model\Service\PenerimaanService;
 use Illuminate\Http\Request;
 
-class LaporanServiceController extends Controller
+class PenerimaanServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class LaporanServiceController extends Controller
      */
     public function index()
     {
-        return view('pages.pointofsales.laporan.laporan_service');
+        return view('pages.service.penerimaan_service.main');
     }
 
     /**
@@ -41,10 +42,10 @@ class LaporanServiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\PenerimaanService  $penerimaanService
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(PenerimaanService $penerimaanService)
     {
         //
     }
@@ -52,10 +53,10 @@ class LaporanServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\PenerimaanService  $penerimaanService
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(PenerimaanService $penerimaanService)
     {
         //
     }
@@ -64,10 +65,10 @@ class LaporanServiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\PenerimaanService  $penerimaanService
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, PenerimaanService $penerimaanService)
     {
         //
     }
@@ -75,10 +76,10 @@ class LaporanServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\PenerimaanService  $penerimaanService
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PenerimaanService $penerimaanService)
     {
         //
     }

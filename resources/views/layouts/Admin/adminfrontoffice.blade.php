@@ -238,7 +238,7 @@
                         {{-- FRONTOFFICE SYSTEM --}}
                         <div class="sidenav-menu-heading">Front Office System</div>
 
-                        <a class="nav-link collapsed" href="# "  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('pelayananservice')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-cubes"></i>
                             </div>
@@ -246,18 +246,18 @@
                         </a>
 
                         {{-- Inventory --}}
-                        <a class="nav-link collapsed" href="#"  aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="{{route('penjualansparepart')}}"  aria-expanded="false" aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
                             Penjualan Sparepart
                         </a>
 
-                        <a class="nav-link collapsed" href="javascript:void(0);"  aria-expanded="false" aria-controls="collapseComponents">
+                        <a class="nav-link collapsed" href="{{route('customerterdaftar')}}"  aria-expanded="false" aria-controls="collapseComponents">
                             <div class="nav-link-icon"><i class="fas fa-box-open"></i></div>
                             Customer Terdaftar
                         </a>
 
                         {{-- Approval --}}
-                        <a class="nav-link collapsed" href="#" aria-expanded="false" aria-controls="collapseFlows">
+                        <a class="nav-link collapsed" href="{{route('customercare')}}" aria-expanded="false" aria-controls="collapseFlows">
                             <div class="nav-link-icon"><i data-feather="check-square"></i></div>
                             Customer Care
                         </a>

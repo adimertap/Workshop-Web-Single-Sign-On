@@ -90,6 +90,56 @@ Route::prefix('frontoffice/faq')
         Route::resource('faq', 'MasterDataFAQController');
     });
 
+//  DATA PELAYANAN SERVICE
+Route::prefix('frontoffice/pelayananservice')
+    ->namespace('FrontOffice')
+    ->group(function () {
+        Route::get('/', 'PelayananServiceController@index')
+            ->name('pelayananservice');
+
+        Route::resource('pelayananservice', 'PelayananServiceController');
+    });
+
+//  DATA CUSTOMER BENGKEL
+Route::prefix('frontoffice/customerterdaftar')
+    ->namespace('FrontOffice')
+    ->group(function () {
+        Route::get('/', 'CustomerBengkelController@index')
+            ->name('customerterdaftar');
+
+        Route::resource('customerterdaftar', 'CustomerBengkelController');
+    });
+
+//  DATA PENJUALAN SPAREPART
+Route::prefix('frontoffice/penjualansparepart')
+    ->namespace('FrontOffice')
+    ->group(function () {
+        Route::get('/', 'PenjualanSparepartController@index')
+            ->name('penjualansparepart');
+
+        Route::resource('penjualansparepart', 'PenjualanSparepartController');
+    });
+
+//  DATA CUSTOMER CARE
+Route::prefix('frontoffice/customercare')
+    ->namespace('FrontOffice')
+    ->group(function () {
+        Route::get('/', 'CustomerCareController@index')
+            ->name('customercare');
+
+        Route::resource('customercare', 'CustomerCareController');
+    });
+
+//  DATA PELAYANAN SERVICE
+Route::prefix('frontoffice/pelayananservice')
+    ->namespace('FrontOffice')
+    ->group(function () {
+        Route::get('/', 'PelayananServiceController@index')
+            ->name('pelayananservice');
+
+        Route::resource('pelayananservice', 'PelayananServiceController');
+    });
+
 // ------------------------------------------------------------------------
 // MODUL SERVICE
 // DASHBOARD
@@ -99,6 +149,47 @@ Route::prefix('service')
         Route::get('/', 'DashboardServiceController@index')
             ->name('dashboardservice');
     });
+
+// PENERIMAANSERVICE
+Route::prefix('service/penerimaanservice')
+    ->namespace('Service')
+    ->group(function () {
+        Route::get('/', 'PenerimaanServiceController@index')
+            ->name('penerimaanservice');
+
+        Route::resource('penerimaanservice', 'PenerimaanServiceController');
+    });
+
+// PENERIMAANSERVICE
+Route::prefix('service/jadwalmekanik')
+    ->namespace('Service')
+    ->group(function () {
+        Route::get('/', 'JadwalMekanikController@index')
+            ->name('jadwalmekanik');
+
+        Route::resource('jadwalmekanik', 'JadwalMekanikController');
+    });
+
+// STOK SPAREPART
+Route::prefix('service/stoksparepart')
+    ->namespace('Service')
+    ->group(function () {
+        Route::get('/', 'StokSparepartController@index')
+            ->name('stoksparepart');
+
+        Route::resource('stoksparepart', 'StokSparepartController');
+    });
+
+// PENGERJAAN SERVICE
+Route::prefix('service/pengerjaanservice')
+    ->namespace('Service')
+    ->group(function () {
+        Route::get('/', 'PengerjaanServiceController@index')
+            ->name('pengerjaanservice');
+
+        Route::resource('pengerjaanservice', 'PengerjaanServiceController');
+    });
+
 
 // ------------------------------------------------------------------------
 // MODUL POS
@@ -168,6 +259,36 @@ Route::prefix('sso')
     ->group(function () {
         Route::get('/', 'DashboardSSOController@index')
             ->name('dashboardsso');
+    });
+
+// MANAJEMEN ROLE
+Route::prefix('sso/role')
+    ->namespace('SingleSignOn\Manajemen')
+    ->group(function () {
+        Route::get('/', 'ManajemenRoleController@index')
+            ->name('manajemenrole');
+
+        Route::resource('role', 'ManajemenRoleController');
+    });
+
+// MANAJEMEN HAK Akses
+Route::prefix('sso/hakakses')
+    ->namespace('SingleSignOn\Manajemen')
+    ->group(function () {
+        Route::get('/', 'ManajemenHakAksesController@index')
+            ->name('manajemenhakakses');
+
+        Route::resource('hakakses', 'ManajemenHakAksesController');
+    });
+
+// MANAJEMEN ROLE
+Route::prefix('sso/user')
+    ->namespace('SingleSignOn\Manajemen')
+    ->group(function () {
+        Route::get('/', 'ManajemenUserController@index')
+            ->name('manajemenuser');
+
+        Route::resource('user', 'ManajemenUserController');
     });
 
 
