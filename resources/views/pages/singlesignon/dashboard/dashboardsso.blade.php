@@ -1,128 +1,158 @@
 @extends('layouts.Admin.adminsinglesignon')
 
 @section('content')
+
 <main>
-    <div class="container mt-3">
-        <!-- Custom page header alternative example-->
-        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
-            <div class="mr-4 mb-3 mb-sm-0">
-                <h1 class="mb-0">Dashboard Single Sign On</h1>
-                <div class="small">
-                    <span class="font-weight-500 text-primary">Friday</span>
-                    · September 20, 2020 · 12:16 PM
+        <div class="container mt-3">
+            <!-- Custom page header alternative example-->
+            <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+                <div class="mr-4 mb-3 mb-sm-0">
+                    <h1 class="mb-0">Dashboard Bengkel</h1>
+                    <div class="small">
+                        <span class="font-weight-500 text-primary">Welcome</span>
+                        · Page · Bengkel
+                    </div>
                 </div>
             </div>
-            <div class="small">
-                <i class="fa fa-cogs" aria-hidden="true"></i>
-                Bengkel
-                <span class="font-weight-500 text-primary">Adi Jaya</span>
-                <hr>
-                </hr>
+        </div>
+    </main>
+    <div class="container">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <h5 class="alert-heading">Informasi, Simak dengan Baik</h5>
+            Getting Started, Seluruh panduan kami berikan pada link berikut <a class="alert-link" href="javascript:void(0);">Panduan Pengguaan Sistem</a>
+        </div>
+    </div>
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-4 col-xl-3 mb-4">
+                <!-- Dashboard example card 1-->
+                <a class="card lift h-100" href="{{ route('dashboardfrontoffice') }}">
+                    <div class="card-body d-flex justify-content-center flex-column">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-3">
+                                <h5>Front Office<i class="mdi mdi-office-building-marker-outline:"></i></h5>
+                                <div class="text-muted">Pengelolaan Office Bengkel</div>
+                            </div>
+                            <img class="card-img-top" src="/backend/src/assets/img/freepik/browser-stats-pana.svg"
+                                alt="..." style="width: 5rem;">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xxl-4 col-xl-3 mb-4">
+                <!-- Dashboard example card 2-->
+                <a class="card lift h-100" href="{{ route('dashboardservice') }}">
+                    <div class="card-body d-flex justify-content-center flex-column">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-3">
+                                <h5>Service</h5>
+                                <div class="text-muted">Pengelolaan Service Bengkel</div>
+                            </div>
+                            <img class="card-img-top" src="/backend/src/assets/img/freepik/processing-pana.svg"
+                                alt="..." style="width: 5rem;">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xxl-4 col-xl-3 mb-4">
+                <!-- Dashboard example card 3-->
+                <a class="card lift h-100" href="{{ route('dashboardpointofsales') }}">
+                    <div class="card-body d-flex justify-content-center flex-column">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-3">
+                                <h5>Point Of Sales</h5>
+                                <div class="text-muted">Pengelolaan Penjualan Bengkel</div>
+                            </div>
+                            <img class="card-img-top" src="/backend/src/assets/img/freepik/windows-pana.svg" alt="..."
+                                style="width: 5rem;">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xxl-4 col-xl-3 mb-4">
+                <!-- Dashboard example card 3-->
+                <a class="card lift h-100" href="{{ route('dashboardaccounting') }}">
+                    <div class="card-body d-flex justify-content-center flex-column">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-3">
+                                <h5>Marketplace</h5>
+                                <div class="text-muted">Marketplace Bengkel</div>
+                            </div>
+                            <img class="card-img-top" src="/backend/src/assets/img/freepik/windows-pana.svg" alt="..."
+                                style="width: 5rem;">
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
-</main>
-<!-- Main page content-->
-<div class="container-fluid">
-    <!-- Content Row -->
-    <div class="row">
-        <div class="col-lg-8">
-
-            <!-- Illustrations -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Getting Started</h6>
-                </div>
-                <div class="card-body">
-                    <div class="text-center">
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 20rem;"
-                            src="/backend/src/assets/img/sso.jpg" alt="">
+    {{-- BARIS 2 --}}
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-4 col-xl-3 mb-4">
+                <!-- Dashboard example card 1-->
+                <a class="card lift h-100" href="{{ route('dashboardinventory') }}">
+                    <div class="card-body d-flex justify-content-center flex-column">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-3">
+                                <h5>Inventory</h5>
+                                <div class="text-muted">Pengelolaan Persediaan Barang</div>
+                            </div>
+                            <img class="card-img-top" src="/backend/src/assets/img/ilustrasi/inventoryilustration.jpg" alt="..."
+                                style="width: 5rem;">
+                        </div>
                     </div>
-                    <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Selamat Datang, I Gede Angga Kusuma Putra</h2>
-                    <p></p>
-                    <p style="text-align: center">Add some quality, svg illustrations to your project courtesy of <a
-                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated
-                        collection of beautiful svg images that you can use completely free and without attribution!</p>
-                </div>
+                </a>
             </div>
-        </div>
-
-        {{-- Profile  --}}
-        <div class="col-lg-4">
-            <div class="card mb-4">
-                <div class="card-header">Profile Pegawai</div>
-                <div class="card-body">
-                    <!-- Row Profile 1-->
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <div class="d-flex align-items-center flex-shrink-0 mr-3">
-                            <div class="avatar avatar-xl mr-3 bg-gray-200"><img class="avatar-img img-fluid"
-                                    src="/backend/src/assets/img/freepik/profiles/profile-6.png" alt=""></div>
-                            <div class="d-flex flex-column font-weight-bold">
-                                <a class="text-dark line-height-normal mb-1">I Gede Angga Kusuma Putra</a>
-                                    <div class=" small text-muted line-height-normal">Bagian Single Sign On</div>
-                        </div>
-                    </div>
-                    <div class="dropdown no-caret">
-                        <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownPeople1"
-                            type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-more-vertical">
-                                <circle cx="12" cy="12" r="1"></circle>
-                                <circle cx="12" cy="5" r="1"></circle>
-                                <circle cx="12" cy="19" r="1"></circle>
-                            </svg></button>
-                        <div class="dropdown-menu dropdown-menu-right animated--fade-in-up"
-                            aria-labelledby="dropdownPeople1" style="">
-                            <a class="dropdown-item"
-                                href="https://themes.startbootstrap.com/sb-admin-pro/dashboard-2.html#!">Lihat
-                                Profile</a>
-                            <a class="dropdown-item"
-                                href="https://themes.startbootstrap.com/sb-admin-pro/dashboard-2.html#!">Edit
-                                Profile</a>
-                        </div>
-                    </div>
-                </div>
-
-                <form>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">NIP
+            <div class="col-xxl-4 col-xl-3 mb-4">
+                <!-- Dashboard example card 2-->
+                <a class="card lift h-100" href="{{ route('dashboardpegawai') }}">
+                    <div class="card-body d-flex justify-content-center flex-column">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-3">
+                                <h5>Kepegawaian</h5>
+                                <div class="text-muted">Pengelolaan Human Resources</div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <label class="small text-muted line-height-normal">: 192003994982
+                            <img class="card-img-top" src="/backend/src/assets/img/freepik/windows-pana.svg" alt="..."
+                                style="width: 5rem;">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">Alamat
+                </a>
+            </div>
+            <div class="col-xxl-4 col-xl-3 mb-4">
+                <!-- Dashboard example card 3-->
+                <a class="card lift h-100" href="{{ route('dashboardpayroll') }}">
+                    <div class="card-body d-flex justify-content-center flex-column">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-3">
+                                <h5>Payroll</h5>
+                                <div class="text-muted">Pengelolaan Gaji Pegawai</div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <label class="small text-muted line-height-normal">: Jl. Denpasar
+                            <img class="card-img-top" src="/backend/src/assets/img/freepik/processing-pana.svg"
+                            alt="..." style="width: 5rem;">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">Telephone
+                </a>
+            </div>
+            <div class="col-xxl-4 col-xl-3 mb-4">
+                <!-- Dashboard example card 3-->
+                <a class="card lift h-100" href="{{ route('dashboardaccounting') }}">
+                    <div class="card-body d-flex justify-content-center flex-column">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-3">
+                                <h5>Accounting</h5>
+                                <div class="text-muted">Pengelolaan Keuangan Bengkel</div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <label class="small text-muted line-height-normal">: 083117270179
+                            
+                            <img class="card-img-top" src="/backend/src/assets/img/freepik/browser-stats-pana.svg"
+                            alt="..." style="width: 5rem;">
                         </div>
                     </div>
-                </form>
+                </a>
             </div>
         </div>
     </div>
-</div>
-
-{{-- CARD  --}}
-{{-- CARD MENU --}}
-</div>
 
 @endsection
