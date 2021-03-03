@@ -197,7 +197,7 @@
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
                         <a class="nav-link" href="{{ route('dashboardfrontoffice')}}">
-                            <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                            <div class="nav-link-icon"><i class="fas fa-columns"></i></div>
                             Dashboard
                         </a>
 
@@ -240,7 +240,7 @@
 
                         <a class="nav-link collapsed" href="{{route('pelayananservice')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
-                                <i class="fas fa-cubes"></i>
+                                <i class="fas fa-cog"></i>
                             </div>
                             Pelayanan Service
                         </a>
@@ -252,7 +252,7 @@
                         </a>
 
                         <a class="nav-link collapsed" href="{{route('customerterdaftar')}}"  aria-expanded="false" aria-controls="collapseComponents">
-                            <div class="nav-link-icon"><i class="fas fa-box-open"></i></div>
+                            <div class="nav-link-icon"><i class="fas fa-users"></i></div>
                             Customer Terdaftar
                         </a>
 

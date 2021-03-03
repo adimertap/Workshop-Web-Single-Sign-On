@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Data FAQ
+                            Data Hadir Mekanik
                         </h1>
                     </div>
                 </div>
@@ -23,9 +23,7 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header">List FAQ
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
-                        Data</button>
+                <div class="card-header">List Mekanik
                 </div>
             </div>
             <div class="card-body">
@@ -61,14 +59,11 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Pertanyaan</th>
+                                                style="width: 20px;">Kode Pegawai</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Jawaban</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Actions</th>
+                                                style="width: 20px;">Nama Mekanik</th>
                                         </tr>
                                     </thead>
                                     <tbody>

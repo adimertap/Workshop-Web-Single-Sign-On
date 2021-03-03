@@ -197,7 +197,7 @@
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
                         <a class="nav-link" href="{{ route('dashboardpointofsales')}}">
-                            <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                            <div class="nav-link-icon"><i class="fas fa-columns"></i></div>
                             Dashboard
                         </a>
 
@@ -206,7 +206,7 @@
                         <div class="sidenav-menu-heading">Pembayaran</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
-                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            <div class="nav-link-icon"><i class="fas fa-credit-card"></i></div>
                             Pembayaran
                             <div class="sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
@@ -228,7 +228,7 @@
                         <div class="sidenav-menu-heading">Laporan</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseLaporan" aria-expanded="false" aria-controls="collapseLaporan">
-                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            <div class="nav-link-icon"><i class="fas fa-file"></i></div>
                             Laporan
                             <div class="sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>

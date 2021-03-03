@@ -225,7 +225,7 @@
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
                         <a class="nav-link" href="{{ route('dashboardsso')}}">
-                            <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                            <div class="nav-link-icon"><i class="fas fa-columns"></i></div>
                             Dashboard
                         </a>
                     </div>

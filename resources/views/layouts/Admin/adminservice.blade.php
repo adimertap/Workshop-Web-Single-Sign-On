@@ -206,7 +206,7 @@
                         <div class="sidenav-menu-heading">Service Advisor</div>
                         <a class="nav-link collapsed" href="{{route('penerimaanservice')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
-                                <i class="fas fa-cubes"></i>
+                                <i class="fas fa-handshake"></i>
                             </div>
                             Penerimaan Service
                         </a>
@@ -223,14 +223,14 @@
 
                         <a class="nav-link collapsed" href="{{route('jadwalmekanik')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
-                                <i class="fas fa-cubes"></i>
+                                <i class="fas fa-user"></i>
                             </div>
                             Jadwal Mekanik
                         </a>
 
                         {{-- Inventory --}}
                         <a class="nav-link collapsed" href="{{route('pengerjaanservice')}}"  aria-expanded="false" aria-controls="collapsePages">
-                            <div class="nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                            <div class="nav-link-icon"><i class="fas fa-cogs"></i></div>
                             Pengerjaan Service
                         </a>
                     </div>
