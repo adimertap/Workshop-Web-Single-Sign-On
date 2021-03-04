@@ -40,9 +40,9 @@ class RcvController extends Controller
         ])->get();
         
         $pegawai = Pegawai::all();
-        $po = PO::all();
         $supplier = Supplier::all();
         $akun = Akun::all();
+        $po = PO::where([['status', '=', 'Dikirim']])->get();
 
         return view('pages.inventory.rcv.create', compact('rcv','pegawai','po','supplier','akun'));
     }

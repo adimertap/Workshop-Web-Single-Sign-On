@@ -156,133 +156,170 @@
 
                     {{-- CARD 2 --}}
                     <div class="tab-pane fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
-                        <h3 class="text-primary">Step 2</h3>
-                        <h5 class="card-title">Input Jumlah Penerimaan Sparepart</h5>
-                        <div class="datatable">
-                            <div id="dataTable_wrapperr" class="dataTables_wrapper dt-bootstrap4">
-                                <div class="row justify-content-center">
-                                    <div class="col-sm-11">
-                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
-                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                            style="width: 100%;">
-                                            <thead>
-                                                <tr role="row">
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">
-                                                        No</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 40px;">
-                                                        Kode Sparepart</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 120px;">Sparepart</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 80px;">
-                                                        Merk Sparepart</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 50px;">
-                                                        Jumlah dipesan</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 70px;">
-                                                        Jumlah diterima</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 50px;">
-                                                        Satuan</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 100px;">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                
-                                            </tbody>
-                                        </table>
+                        <div class="card card-icon">
+                            <div class="row no-gutters">
+                                <div class="col-auto card-icon-aside bg-primary">
+                                    <i class="fa fa-cogs" style="color: white"></i>
+                                </div>
+                                <div class="col">
+                                    <div class="card-body py-5">
+                                        <h3 class="text-primary">Step 2</h3>
+                                        <h5 class="card-title">Pesanan Sparepart PO</h5>
+
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1" for="id_po">Pembelian</label>
+                                            <select class="form-control" name="id_po" id="id_po"
+                                                class="form-control @error('id_po') is-invalid @enderror">
+                                                <option>Pilih Pembelian</option>
+                                                @foreach ($po as $item)
+                                                <option value="{{ $item->id_po }}">{{ $item->kode_po }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+
+
+
+
+
+                                            <div class="datatable">
+                                                <div id="dataTable_wrapperr" class="dataTables_wrapper dt-bootstrap4">
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-sm-12">
+                                                            <table class="table table-bordered table-hover dataTable"
+                                                                id="dataTable" width="100%" cellspacing="0" role="grid"
+                                                                aria-describedby="dataTable_info" style="width: 100%;">
+                                                                <thead>
+                                                                    <tr role="row">
+                                                                        <th class="sorting" tabindex="0"
+                                                                            aria-controls="dataTable" rowspan="1"
+                                                                            colspan="1" aria-sort="ascending"
+                                                                            aria-label="Name: activate to sort column descending"
+                                                                            style="width: 20px;">
+                                                                            No</th>
+                                                                        <th class="sorting" tabindex="0"
+                                                                            aria-controls="dataTable" rowspan="1"
+                                                                            colspan="1"
+                                                                            aria-label="Start date: activate to sort column ascending"
+                                                                            style="width: 40px;">
+                                                                            Kode Sparepart</th>
+                                                                        <th class="sorting" tabindex="0"
+                                                                            aria-controls="dataTable" rowspan="1"
+                                                                            colspan="1"
+                                                                            aria-label="Start date: activate to sort column ascending"
+                                                                            style="width: 120px;">Sparepart</th>
+                                                                        <th class="sorting" tabindex="0"
+                                                                            aria-controls="dataTable" rowspan="1"
+                                                                            colspan="1"
+                                                                            aria-label="Start date: activate to sort column ascending"
+                                                                            style="width: 80px;">
+                                                                            Merk Sparepart</th>
+                                                                        <th class="sorting" tabindex="0"
+                                                                            aria-controls="dataTable" rowspan="1"
+                                                                            colspan="1"
+                                                                            aria-label="Start date: activate to sort column ascending"
+                                                                            style="width: 50px;">
+                                                                            Jumlah dipesan</th>
+                                                                        <th class="sorting" tabindex="0"
+                                                                            aria-controls="dataTable" rowspan="1"
+                                                                            colspan="1"
+                                                                            aria-label="Start date: activate to sort column ascending"
+                                                                            style="width: 70px;">
+                                                                            Jumlah diterima</th>
+                                                                        <th class="sorting" tabindex="0"
+                                                                            aria-controls="dataTable" rowspan="1"
+                                                                            colspan="1"
+                                                                            aria-label="Start date: activate to sort column ascending"
+                                                                            style="width: 50px;">
+                                                                            Satuan</th>
+                                                                        <th class="sorting" tabindex="0"
+                                                                            aria-controls="dataTable" rowspan="1"
+                                                                            colspan="1"
+                                                                            aria-label="Start date: activate to sort column ascending"
+                                                                            style="width: 100px;">Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="tab-pane fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
-                        <h3 class="text-primary">Step 3</h3>
-                        <h5 class="card-title">Konfirmasi Jumlah Penerimaan Sparepart</h5>
-                        <div class="datatable">
-                            <div id="dataTable_wrapperr" class="dataTables_wrapper dt-bootstrap4">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
-                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                            style="width: 100%;">
-                                            <thead>
-                                                <tr role="row">
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">
-                                                        No</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 40px;">
-                                                        Kode Sparepart</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 120px;">Sparepart</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 80px;">
-                                                        Merk Sparepart</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 70px;">
-                                                        Jumlah diterima</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 50px;">
-                                                        Satuan</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 100px;">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                        <div class="tab-pane fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
+                            <h3 class="text-primary">Step 3</h3>
+                            <h5 class="card-title">Konfirmasi Jumlah Penerimaan Sparepart</h5>
+                            <div class="datatable">
+                                <div id="dataTable_wrapperr" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered table-hover dataTable" id="dataTable"
+                                                width="100%" cellspacing="0" role="grid"
+                                                aria-describedby="dataTable_info" style="width: 100%;">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                                            aria-label="Name: activate to sort column descending"
+                                                            style="width: 20px;">
+                                                            No</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Start date: activate to sort column ascending"
+                                                            style="width: 40px;">
+                                                            Kode Sparepart</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Start date: activate to sort column ascending"
+                                                            style="width: 120px;">Sparepart</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Start date: activate to sort column ascending"
+                                                            style="width: 80px;">
+                                                            Merk Sparepart</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Start date: activate to sort column ascending"
+                                                            style="width: 70px;">
+                                                            Jumlah diterima</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Start date: activate to sort column ascending"
+                                                            style="width: 50px;">
+                                                            Satuan</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Start date: activate to sort column ascending"
+                                                            style="width: 100px;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <hr class="my-4">
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-light" type="button">Previous</button>
+                                <button class="btn btn-primary" type="button">Submit</button>
+                            </div>
                         </div>
-                        <hr class="my-4">
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-light" type="button">Previous</button>
-                            <button class="btn btn-primary" type="button">Submit</button>
-                        </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
-    </div>
 </main>
 
 <script>
