@@ -28,7 +28,7 @@
     <div class="card mb-4">
         <div class="card card-header-actions">
             <div class="card-header ">List Retur
-                <a href="{{ route('Retur') }}" class="btn btn-sm btn-primary"> Tambah Retur</a>
+                <a href="{{ route('Retur.create') }}" class="btn btn-sm btn-primary"> Tambah Retur</a>
             </div>
         </div>
         <div class="card-body ">

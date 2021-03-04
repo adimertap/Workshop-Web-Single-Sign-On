@@ -30,6 +30,7 @@ class Rcv extends Model
         'status',
         'tanggal_rcv',
         'total_pembayaran',
+        'status_bayar'
         
     ];
 

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Inventory\Retur;
 
 use App\Http\Controllers\Controller;
+use App\Model\Accounting\Akun;
+use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Retur\Retur;
+use App\Model\Inventory\Supplier;
+use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
 
 class ReturController extends Controller
@@ -29,7 +33,16 @@ class ReturController extends Controller
      */
     public function create()
     {
-        //
+        $retur = Retur::with([
+            'Rcv','Pegawai','Supplier','Akun'
+        ])->get();
+        
+        $rcv = Rcv::all();
+        $supplier = Supplier::all();
+        $akun = Akun::all();
+        $pegawai = Pegawai::all();
+
+        return view('pages.inventory.retur.create', compact('rcv','pegawai','supplier','akun'));
     }
 
     /**

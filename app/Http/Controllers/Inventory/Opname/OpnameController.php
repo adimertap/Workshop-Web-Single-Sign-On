@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inventory\Opname;
 use App\Http\Controllers\Controller;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Stockopname\Opname;
+use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
 
 class OpnameController extends Controller
@@ -30,7 +31,14 @@ class OpnameController extends Controller
      */
     public function create()
     {
-        //
+        $opname = Opname::with([
+            'Pegawai',
+        ])->get();
+
+        $sparepart = Sparepart::all();
+        $pegawai = Pegawai::all();
+
+        return view('pages.inventory.stockopname.create', compact('opname','pegawai', 'sparepart'));
     }
 
     /**

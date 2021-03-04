@@ -11,15 +11,15 @@
                         <h1 class="page-header-title">
                             <div class="page-header-icon" style="color: white"><i class="fas fa-dolly-flatbed"></i>
                             </div>
-                            <div class="page-header-subtitle" style="color: white">Tambah Data Penerimaan</div>
+                            <div class="page-header-subtitle" style="color: white">Tambah Data Retur</div>
                         </h1>
                         <div class="small">
-                            <span class="font-weight-500">Receiving</span>
+                            <span class="font-weight-500">Retur</span>
                             · Tambah · Data
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
-                        <a href="{{ route('Receive') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
+                        <a href="{{ route('Retur') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                         aria-controls="wizard1" aria-selected="true">
                         <div class="wizard-step-icon">1</div>
                         <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Formulir Penerimaan</div>
+                            <div class="wizard-step-text-name">Formulir Retur</div>
                             <div class="wizard-step-text-details">Lengkapi formulir berikut</div>
                         </div>
                     </a>
@@ -44,7 +44,7 @@
                         aria-controls="wizard2" aria-selected="true">
                         <div class="wizard-step-icon">2</div>
                         <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Detail Pembelian Sparepart</div>
+                            <div class="wizard-step-text-name">Detail Sparepart Retur</div>
                             <div class="wizard-step-text-details">Formulir Detail Sparepart</div>
                         </div>
                     </a>
@@ -52,7 +52,7 @@
                         aria-controls="wizard3" aria-selected="true">
                         <div class="wizard-step-icon">3</div>
                         <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Konfirmasi Penerimaan</div>
+                            <div class="wizard-step-text-name">Konfirmasi Retur</div>
                             <div class="wizard-step-text-details">Notification and account options</div>
                         </div>
                     </a>
@@ -69,16 +69,16 @@
                         <div class="row justify-content-center">
                             <div class="col-xxl-6 col-xl-9">
                                 <h3 class="text-primary">Step 1</h3>
-                                <h5 class="card-title">Input Formulir Penerimaan</h5>
-                                <form action="{{ route('Rcv.store') }}" method="POST" enctype="multipart/form-data">
+                                <h5 class="card-title">Input Formulir Retur</h5>
+                                <form action="{{ route('Retur.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="kode_rcv">Kode Receiving</label>
-                                            <input class="form-control" id="kode_rcv" type="text" name="kode_rcv"
-                                                placeholder="Input Kode Receiving" value="{{ old('kode_rcv') }}"
-                                                class="form-control @error('kode_rcv') is-invalid @enderror" />
-                                            @error('kode_rcv')<div class="text-danger small mb-1">{{ $message }}
+                                            <label class="small mb-1" for="kode_retur">Kode Retur</label>
+                                            <input class="form-control" id="kode_retur" type="text" name="kode_retur"
+                                                placeholder="Input Kode Retur" value="{{ old('kode_retur') }}"
+                                                class="form-control @error('kode_retur') is-invalid @enderror" />
+                                            @error('kode_retur')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
@@ -105,16 +105,16 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="no_do">Nomor DO</label>
-                                            <input class="form-control" id="no_do" type="text" name="no_do"
-                                                placeholder="Input Nomor Delivery Order" value="{{ old('no_do') }}"
-                                                class="form-control @error('no_do') is-invalid @enderror" />
-                                            @error('no_do')<div class="text-danger small mb-1">{{ $message }}
+                                            <label class="small mb-1" for="tanggal_retur">Tanggal Retur</label>
+                                            <input class="form-control" id="tanggal_retur" type="date" name="tanggal_retur"
+                                                placeholder="Input Tanggal Retur" value="{{ old('tanggal_retur') }}"
+                                                class="form-control @error('tanggal_retur') is-invalid @enderror" />
+                                            @error('tanggal_retur')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_akun">Akun</label>
                                             <select class="form-control" name="id_akun" id="id_akun"
                                                 class="form-control @error('id_akun') is-invalid @enderror">
@@ -127,27 +127,16 @@
                                             @error('id_akun')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
-                                        <div class="form-group col-md-4">
-                                            <label class="small mb-1" for="tanggal_rcv">Tanggal Receive</label>
-                                            <input class="form-control" id="tanggal_rcv" type="date" name="tanggal_rcv"
-                                                placeholder="Input Tanggal Receive" value="{{ old('tanggal_rcv') }}"
-                                                class="form-control @error('tanggal_rcv') is-invalid @enderror" />
-                                            @error('tanggal_rcv')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label class="small mb-1" for="total_pembayaran">Total Pembayaran</label>
-                                            <input class="form-control" id="total_pembayaran" type="number"
-                                                name="total_pembayaran" placeholder="Input Total Pembayaran"
-                                                value="{{ old('total_pembayaran') }}"
-                                                class="form-control @error('total_pembayaran') is-invalid @enderror" />
-                                            @error('total_pembayaran')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1" for="status">Status</label>
+                                            <input class="form-control" id="status" type="text"
+                                                name="status" 
+                                                value="Tidak Aktif" readonly>
                                         </div>
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('masterdatasparepart') }}" class="btn btn-light">Kembali</a>
+                                        <a href="{{ route('Retur') }}" class="btn btn-light">Kembali</a>
                                         <button class="btn btn-primary">Next</button>
                                     </div>
                             </div>
@@ -164,14 +153,14 @@
                                 <div class="col">
                                     <div class="card-body">
                                         <h3 class="text-primary">Step 2</h3>
-                                        <h5 class="card-title">Pesanan Sparepart PO</h5>
+                                        <h5 class="card-title">Retur Sparepart</h5>
                                         <div class="form-group col-md-6 mb-7">
-                                            <label class="" for="id_po">Pembelian / Purchase Order</label>
-                                            <select class="form-control" name="id_po" id="id_po"
-                                                class="form-control @error('id_po') is-invalid @enderror">
-                                                <option>Pilih Pembelian</option>
-                                                @foreach ($po as $item)
-                                                <option value="{{ $item->id_po }}">{{ $item->kode_po }}
+                                            <label class="" for="id_rcv">Penerimaan / Receiving</label>
+                                            <select class="form-control" name="id_rcv" id="id_rcv"
+                                                class="form-control @error('id_rcv') is-invalid @enderror">
+                                                <option>Pilih Receiving</option>
+                                                @foreach ($rcv as $item)
+                                                <option value="{{ $item->id_rcv }}">{{ $item->kode_rcv }}
                                                 </option>
                                                 @endforeach
                                             </select>
@@ -250,7 +239,7 @@
 
                     <div class="tab-pane fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
                         <h3 class="text-primary">Step 3</h3>
-                        <h5 class="card-title">Konfirmasi Jumlah Penerimaan Sparepart</h5>
+                        <h5 class="card-title">Konfirmasi Jumlah Retur Sparepart</h5>
                         <div class="datatable">
                             <div id="dataTable_wrapperr" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
