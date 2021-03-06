@@ -241,7 +241,7 @@
                                 <a class="nav-link " href="{{ route('pajak') }}">
                                     Pajak
                                 </a>
-                                <a class="nav-link " href="invoice.html">
+                                <a class="nav-link " href="{{ route('approval-prf') }}">
                                     Approve PRF
                                 </a>
                                 <a class="nav-link " href="{{ route('approvalpoap') }}">

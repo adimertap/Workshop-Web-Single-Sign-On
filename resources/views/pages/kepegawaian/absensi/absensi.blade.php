@@ -53,19 +53,7 @@
                     <p style="text-align: center">Pilih pegawai yang akan dilakukan absensi <a target="_blank"
                             rel="nofollow" href="https://undraw.co/">Daftar Pegawai</a> Klik presensi untuk melakukan
                         absensi kepada pegawai bengkel
-                        <div class="text-center">
-                            <div class="form-group">
-                                <label class="" for="id_pegawai">Pegawai</label>
-                                <select class="form-control" name="id_pegawai" id="id_pegawai"
-                                    class="form-control @error('id_pegawai') is-invalid @enderror">
-                                    <option>Pilih Pegawai</option>
-                                    @foreach ($pegawai as $item)
-                                    <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+
                         {{-- <hr class="my-4" /> --}}
                         {{-- <div class="d-flex justify-content-between">
                         <button class="btn btn-primary">Presensi Masuk</button>
@@ -73,8 +61,8 @@
                     </div> --}}
 
                 </div>
-                <button class="btn btn-secondary" type="button" data-toggle="modal"
-                data-target="#Modaltambah">Presensi</button>
+                <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#Modaltambah">Mulai
+                    Absensi !</button>
             </div>
         </div>
         <div class="col-lg-8">
@@ -145,11 +133,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="Modaltambah" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="Modaltambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-secondary-soft">
+            <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Presensi Pegawai</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
@@ -158,9 +146,29 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="small mb-1" for="jumlah_real">Masukan Stock Real</label>
-                        <input class="form-control" name="jumlah_real" type="text" id="jumlah_real"
-                            placeholder="Input Stock Real" value="{{ old('jumlah_real') }}"></input>
+                        <label class="" for="id_pegawai">Pegawai</label>
+                        <select class="form-control" name="id_pegawai" id="id_pegawai"
+                            class="form-control @error('id_pegawai') is-invalid @enderror">
+                            <option>Pilih Pegawai</option>
+                            @foreach ($pegawai as $item)
+                            <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="absensi">Absensi</label>
+                        <select name="absensi" id="absensi" class="form-control"
+                            class="form-control @error('absensi') is-invalid @enderror">
+                            <option value="{{ old('absensi')}}"> Pilih Absen Pegawai</option>
+                            <option value="Masuk">Masuk</option>
+                            <option value="Ijin">Ijin</option>
+                            <option value="Sakit">Sakit</option>
+                            <option value="Cuti">Cuti</option>
+                            <option value="Alpha">Alpha</option>
+                        </select>
+                        @error('absensi')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="keterangan">Masukan Keterangan</label>
@@ -171,7 +179,7 @@
 
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="submit" >Tambah</button>
+                    <button class="btn btn-success" type="submit">Tambah</button>
                 </div>
             </form>
         </div>

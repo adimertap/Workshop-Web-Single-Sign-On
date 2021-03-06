@@ -482,7 +482,6 @@ Route::prefix('inventory/Kartugudang')
 
 
 
-
 // --------------------------------------------------------------------------------------------------------KEPEGAWAIAN
 // MODUL KEPEGAWAIAN
 // DASHBOARD
@@ -524,11 +523,6 @@ Route::prefix('kepegawaian/absensi')
     });
 
 
-
-
-
-
-
 // -------------------------------------------------------------------------------------------------------PAYROLL 
 // MODUL PAYROLL
 // DASHBOARD
@@ -557,8 +551,6 @@ Route::prefix('payroll/masterdatatunjangan')
 
         Route::resource('tunjangan', 'MasterdatatunjanganController');
     });
-
-
 
 
 
@@ -609,8 +601,8 @@ Route::prefix('accounting/masterjenistransaksi')
         Route::resource('jenis-transaksi', 'MasterdatajenistransaksiController');
     });
 
-// PAYABLE ----------------------------------------------------------------------------------------------PAYABLE
-// PRF ---------------------------------------------------------------------- ---PRF
+// PAYABLE ---------------------------------------------------------------------------------------------- PAYABLE
+// PRF ---------------------------------------------------------------------------- PRF
 Route::prefix('accounting/Prf')
     ->namespace('Accounting\Payable')
     ->group(function () {
@@ -620,8 +612,20 @@ Route::prefix('accounting/Prf')
         Route::resource('prf', 'PrfController');
     });
 
+// Approval Prf ----------------------------------------------------------------- Approval PRF
+Route::prefix('accounting/ApprovalPRF')
+    ->namespace('Accounting\Payable')
+    ->group(function () {
+        Route::get('/', 'ApprovalprfController@index')
+            ->name('approval-prf');
 
-// PAJAK ---------------------------------------------------------------------- Pajak
+        Route::resource('approval-prf', 'ApprovalprfController');
+
+        Route::post('Prf/{id_prf}/set-status', 'ApprovalprfController@setStatus')
+            ->name('approval-prf-status');
+    });
+
+// PAJAK -------------------------------------------------------------------------- Pajak
 Route::prefix('accounting/Pajak')
     ->namespace('Accounting\Payable')
     ->group(function () {
