@@ -67,32 +67,29 @@
                                     <tr role="row">
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-sort="ascending"
-                                            aria-label="Name: activate to sort column descending" style="width: 20px;">
+                                            aria-label="Name: activate to sort column descending" style="width: 10px;">
                                             No</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 20px;">Kode</th>
+                                            style="width: 10px;">Kode</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 90px;">Nama Pajak</th>
+                                            style="width: 120px;">Deskripsi Pajak</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 50px;">Tanggal Bayar</th>
+                                            style="width: 20px;">Tanggal Bayar</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Start date: activate to sort column ascending"
                                             style="width: 50px;">Pegawai</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 150px;">Deskripsi</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 20px;">Total Pajak</th>
+                                            style="width: 50px;">Total Pajak</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
                                             style="width: 40px;">Status Jurnal</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
-                                            style="width: 90px;">Actions</th>
+                                            style="width: 70px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -100,11 +97,10 @@
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                         <td>{{ $item->kode_pajak }}</td>
-                                        <td>{{ $item->Jenistransaksi->nama_transaksi }}</td>
+                                        <td>{{ $item->deskripsi_pajak }}</td>
                                         <td>{{ $item->tanggal_bayar }}</td>
                                         <td>{{ $item->Pegawai->nama_pegawai }}</td>
-                                        <td>{{ $item->deskripsi_pajak }}</td>
-                                        <td>{{ $item->total_pajak }}</td>
+                                        <td>Rp. {{ number_format($item->total_pajak,0,',','.') }}</td>
                                         <td>
                                             @if($item->status_jurnal == 'Pending')
                                             <span class="badge badge-danger">

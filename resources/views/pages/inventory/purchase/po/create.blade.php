@@ -133,7 +133,7 @@
                                                 value="Pending" readonly>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label class="small mb-1" for="approve_ap">Approval</label>
+                                            <label class="small mb-1" for="approve_ap">Approval AP</label>
                                             <input class="form-control" id="approve_ap" type="text" name="approve_ap"
                                                 value="Pending" readonly>
                                         </div>
@@ -259,6 +259,38 @@
             </div>
         </div>
 </main>
+
+@forelse ($po as $item)
+<div class="modal fade" id="Modaltambah-{{ $item->id_po }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary-soft">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Detail Quantity</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="small mb-1" for="jumlah_real">Masukan Quantity Pesanan</label>
+                        <input class="form-control" name="jumlah_real" type="text" id="jumlah_real"
+                            placeholder="Input Stock Real" value="{{ old('jumlah_real') }}"></input>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+@endforelse
+
 
 <script>
     $(document).ready(function () {

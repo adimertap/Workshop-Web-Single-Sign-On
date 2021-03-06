@@ -98,7 +98,7 @@
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                         <td>{{ $item->kode_prf }}</td>
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
-                                        <td>{{ $item->total_bayar }}</td>
+                                        <td>Rp. {{ number_format($item->total_bayar,0,',','.') }}</td>
                                         <td>{{ $item->status_prf }}</td>
                                         <td>{{ $item->tanggal_bayar }}</td>
                                         <td>

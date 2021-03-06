@@ -18,10 +18,12 @@ class MasterdatagajipokokController extends Controller
     public function index()
     {
         $gajipokok = Mastergajipokok::with([
-            'jabatan'])->get();
+            'Jabatan'])->get();
+
         $jabatan = Jabatan::all();
         // // Cek nilai merksparepart -> array
         // // dd($merksparepart); 
+        
         
         return view('pages.payroll.masterdata.gajipokok',compact('gajipokok','jabatan'));
     }

@@ -82,7 +82,7 @@
                         <div class="col">
                             <span class="small line-height-normal text-primary">: Rp. </span>
                             <label class="small line-height-normal">
-                                {{ $pajak->total_pajak}}
+                                {{ number_format($pajak->total_pajak,0,',','.') }}
                         </div>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
                                                 <td>{{ $detail->data_pajak }}</td>
-                                                <td>{{ $detail->nilai_pajak }}</td>
+                                                <td>Rp. {{ number_format($detail->nilai_pajak,0,',','.') }}</td>
                                                 <td>{{ $detail->keterangan }}</td>
                                             </tr>
                                             @empty

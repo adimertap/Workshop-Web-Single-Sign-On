@@ -25,7 +25,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Gaji Pokok
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
                         Data Gaji</button>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->jabatan->nama_jabatan }}</td>
-                                            <td>{{ $item->besaran_gaji }}</td>
+                                            <td>Rp. {{ number_format($item->besaran_gaji,0,',','.') }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
                                                     data-toggle="modal"
@@ -173,23 +173,14 @@
                     @method('PUT')
                     @csrf
                     <div class="modal-body">
-                        <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                        <label class="small mb-1">Nama Jabatan : {{ $item->Jabatan->nama_jabatan }}</label>
                         <hr>
                         </hr>
+                        
                         <div class="form-group">
                             <label class="small" for="besaran_gaji">Besaran Gaji</label>
                             <input class="form-control" name="besaran_gaji" type="text" id="besaran_gaji"
                                 value="{{ $item->besaran_gaji }}" />
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="id_jabatan">Jabatan</label>
-                            <select class="form-control" name="id_jabatan" id="id_jabatan" readonly>
-                                <option value="{{ $item->jabatan->nama_jabatan }}">{{ $item->jabatan->nama_jabatan }}
-                                </option>
-                                @foreach ($jabatan as $item)
-                                <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}</option>
-                                @endforeach
-                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">

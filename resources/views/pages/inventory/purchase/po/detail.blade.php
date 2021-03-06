@@ -132,7 +132,7 @@
                                                 <td>{{ $detail->Sparepart->Merksparepart->merk_sparepart }}</td>
                                                 <td>{{ $detail->qty }}</td>
                                                 <td>{{ $detail->Sparepart->Konversi->satuan }}</td>
-                                                <td>{{ $detail->Sparepart->Hargasparepart->harga_beli }}</td>
+                                                <td>Rp. {{ number_format($detail->Sparepart->Hargasparepart->harga_beli,0,',','.') }}</td>
                                             </tr>
                                             @empty
                                             <tr>

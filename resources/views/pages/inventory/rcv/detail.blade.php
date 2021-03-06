@@ -104,7 +104,7 @@
                         <div class="col">
                             <span class="small line-height-normal text-primary">: Rp. </span>
                             <label class="small line-height-normal">
-                                {{ $rcv->total_pembayaran}}
+                                {{ number_format($rcv->total_pembayaran,0,',','.')}}
                         </div>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
                                                 <td>{{ $detail->Sparepart->nama_sparepart }}</td>
                                                 <td>{{ $detail->qty_po }}</td>
                                                 <td>{{ $detail->qty_rcv }}</td>
-                                                <td>{{ $detail->Sparepart->Hargasparepart->harga_beli }}</td>
+                                                <td>Rp. {{ number_format($detail->Sparepart->Hargasparepart->harga_beli,0,',','.') }}</td>
                                                 <td>{{ $detail->Sparepart->Rak->nama_rak }}</td>
                                             </tr>
                                             @empty

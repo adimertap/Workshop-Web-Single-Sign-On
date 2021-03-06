@@ -124,7 +124,7 @@
                                                 </th>
                                                 <td>{{ $detail->Sparepart->nama_sparepart }}</td>
                                                 <td>{{ $detail->qty_retur }}</td>
-                                                <td>{{ $detail->harga_beli }}</td>
+                                                <td>Rp. {{ number_format($detail->harga_beli,0,',','.') }}</td>
                                                 <td>{{ $detail->keterangan }}</td>
                                             </tr>
                                             @empty

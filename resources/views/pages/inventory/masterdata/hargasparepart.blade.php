@@ -68,8 +68,8 @@
                                             <td>{{ $item->Sparepart->nama_sparepart }}</td>
                                             <td>{{ $item->Sparepart->Merksparepart->merk_sparepart }}</td>
                                             <td>{{ $item->supplier->nama_supplier }}</td>
-                                            <td>{{ $item->harga_beli}}</td>
-                                            <td>{{ $item->harga_jual}}</td>
+                                            <td>Rp. {{ number_format($item->harga_beli,0,',','.') }}</td>
+                                            <td>Rp. {{ number_format($item->harga_jual,0,',','.') }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
                                                     data-toggle="modal" data-target="#Modaledit-{{ $item->id_harga }}">

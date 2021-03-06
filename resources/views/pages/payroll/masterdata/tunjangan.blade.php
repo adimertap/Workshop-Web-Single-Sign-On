@@ -25,7 +25,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Tunjangan
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
                         Data Tunjangan</button>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->nama_tunjangan }}</td>
-                                            <td>{{ $item->jumlah_tunjangan }}</td>
+                                            <td>Rp. {{ number_format($item->jumlah_tunjangan,0,',','.') }}</td>
                                             <td>{{ $item->keterangan }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
