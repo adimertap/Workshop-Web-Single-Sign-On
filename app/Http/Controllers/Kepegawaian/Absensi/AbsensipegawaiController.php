@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Kepegawaian\Absensi;
 
 use App\Http\Controllers\Controller;
+use App\Model\Kepegawaian\Absensi;
+use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
 
 class AbsensipegawaiController extends Controller
@@ -14,7 +16,13 @@ class AbsensipegawaiController extends Controller
      */
     public function index()
     {
-        return view('pages.kepegawaian.absensi.absensi');
+        $absensi = Absensi::with([
+            'Pegawai',
+        ])->get();
+
+        $pegawai = Pegawai::all();
+
+        return view('pages.kepegawaian.absensi.absensi', compact('absensi','pegawai'));
     }
 
     /**

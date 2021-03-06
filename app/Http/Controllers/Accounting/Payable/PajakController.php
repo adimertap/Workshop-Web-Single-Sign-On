@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Inventory\Opname;
+namespace App\Http\Controllers\Accounting\Payable;
 
 use App\Http\Controllers\Controller;
-use App\Model\Inventory\Sparepart;
-use App\Model\Inventory\Stockopname\Opname;
-use App\Model\Kepegawaian\Pegawai;
+use App\Http\Controllers\Inventory\Accounting\Payable\Pajak;
+use App\Model\Accounting\Payable\Bayarpajak;
+use App\Model\Accounting\Payable\Pajak as PayablePajak;
+use App\Model\Accounting\Payable\Pajakdetail;
+use App\Model\Accounting\Payable\Pembayaranpajak;
 use Illuminate\Http\Request;
 
-class OpnameController extends Controller
+class PajakController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +19,13 @@ class OpnameController extends Controller
      */
     public function index()
     {
-        $opname = Opname::with([
-            'Pegawai',
+        $pajak = Bayarpajak::with([
+            'Pegawai','Jenistransaksi'
         ])->get();
 
-        return view('pages.inventory.stockopname.stockopname', compact('opname'));
+        return view('pages.accounting.payable.pajak.pajak', compact('pajak'));
     }
-// 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -31,14 +33,7 @@ class OpnameController extends Controller
      */
     public function create()
     {
-        $opname = Opname::with([
-            'Pegawai',
-        ])->get();
-
-        $sparepart = Sparepart::all();
-        $pegawai = Pegawai::all();
-
-        return view('pages.inventory.stockopname.create', compact('opname','pegawai', 'sparepart'));
+        //
     }
 
     /**
@@ -58,13 +53,14 @@ class OpnameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_opname)
+    public function show($id_pajak)
     {
-        $opname = Opname::with('Detail.Sparepart.Rak')->findOrFail($id_opname);
+        $pajak = Bayarpajak::with('Detail')->findOrFail($id_pajak);
 
-        return view('pages.inventory.stockopname.detail')->with([
-            'opname' => $opname
+        return view('pages.accounting.payable.pajak.detail')->with([
+            'pajak' => $pajak
         ]);
+
     }
 
     /**

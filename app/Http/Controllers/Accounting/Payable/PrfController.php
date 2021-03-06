@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Inventory\Opname;
+namespace App\Http\Controllers\Accounting\Payable;
 
 use App\Http\Controllers\Controller;
-use App\Model\Inventory\Sparepart;
-use App\Model\Inventory\Stockopname\Opname;
-use App\Model\Kepegawaian\Pegawai;
+use App\Model\Accounting\Prf\Prf;
 use Illuminate\Http\Request;
 
-class OpnameController extends Controller
+class PrfController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +15,13 @@ class OpnameController extends Controller
      */
     public function index()
     {
-        $opname = Opname::with([
-            'Pegawai',
+        $prf = Prf::with([
+            'Jenistransaksi','Supplier','FOP','Akunbank'
         ])->get();
 
-        return view('pages.inventory.stockopname.stockopname', compact('opname'));
+        return view('pages.accounting.payable.prf.prf', compact('prf'));
     }
-// 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -31,14 +29,7 @@ class OpnameController extends Controller
      */
     public function create()
     {
-        $opname = Opname::with([
-            'Pegawai',
-        ])->get();
-
-        $sparepart = Sparepart::all();
-        $pegawai = Pegawai::all();
-
-        return view('pages.inventory.stockopname.create', compact('opname','pegawai', 'sparepart'));
+        //
     }
 
     /**
@@ -58,13 +49,9 @@ class OpnameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_opname)
+    public function show($id)
     {
-        $opname = Opname::with('Detail.Sparepart.Rak')->findOrFail($id_opname);
-
-        return view('pages.inventory.stockopname.detail')->with([
-            'opname' => $opname
-        ]);
+        //
     }
 
     /**

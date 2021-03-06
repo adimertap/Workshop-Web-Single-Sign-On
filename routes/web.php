@@ -608,3 +608,25 @@ Route::prefix('accounting/masterjenistransaksi')
 
         Route::resource('jenis-transaksi', 'MasterdatajenistransaksiController');
     });
+
+// PAYABLE ----------------------------------------------------------------------------------------------PAYABLE
+// PRF ---------------------------------------------------------------------- ---PRF
+Route::prefix('accounting/Prf')
+    ->namespace('Accounting\Payable')
+    ->group(function () {
+        Route::get('/', 'PrfController@index')
+            ->name('prf');
+
+        Route::resource('prf', 'PrfController');
+    });
+
+
+// PAJAK ---------------------------------------------------------------------- Pajak
+Route::prefix('accounting/Pajak')
+    ->namespace('Accounting\Payable')
+    ->group(function () {
+        Route::get('/', 'PajakController@index')
+            ->name('pajak');
+
+        Route::resource('pajak', 'PajakController');
+    });

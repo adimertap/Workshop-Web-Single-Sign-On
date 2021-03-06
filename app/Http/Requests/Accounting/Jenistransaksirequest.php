@@ -25,7 +25,7 @@ class Jenistransaksirequest extends FormRequest
     {
         return [
             'nama_transaksi' => 'required',
-            'id_akun' => 'required|exists:tb_accounting_master_akun,id_akun',
+            'id_akun' => 'exists:tb_accounting_master_akun,id_akun',
         ];
     }
 }

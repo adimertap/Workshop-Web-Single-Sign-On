@@ -232,13 +232,13 @@
                                 <a class="nav-link " href="invoice.html">
                                     Pencatatan Invoice
                                 </a>
-                                <a class="nav-link " href="invoice.html">
+                                <a class="nav-link " href="{{ route('prf') }}">
                                     PRF
                                 </a>
                                 <a class="nav-link " href="invoice.html">
                                     Gaji Karyawan
                                 </a>
-                                <a class="nav-link " href="invoice.html">
+                                <a class="nav-link " href="{{ route('pajak') }}">
                                     Pajak
                                 </a>
                                 <a class="nav-link " href="invoice.html">

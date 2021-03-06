@@ -207,10 +207,10 @@
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                                 <a class="nav-link" href="{{ route('masterdatapegawai')}}">
-                                    Master Data Pegawai
+                                    Pegawai
                                 </a>
                                 <a class="nav-link" href="{{ route('masterdatajabatan')}}">
-                                    Master Jabatan
+                                    Jabatan
                                 </a>
                             </nav>
                         </div>

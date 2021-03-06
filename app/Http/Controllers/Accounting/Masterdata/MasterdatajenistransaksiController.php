@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Accounting\Masterdata;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Accounting\Jenistransaksirequest;
 use App\Model\Accounting\Jenistransaksi;
 use Illuminate\Http\Request;
 
@@ -15,10 +16,10 @@ class MasterdatajenistransaksiController extends Controller
      */
     public function index()
     {
-        $jenistransaksi = Jenistransaksi::with([
+        $jenis_transaksi = Jenistransaksi::with([
             'akun'])->get();
 
-        return view('pages.accounting.masterdata.jenistransaksi', compact('jenistransaksi','akun'));
+        return view('pages.accounting.masterdata.jenistransaksi', compact('jenis_transaksi','akun'));
     }
 
     /**
@@ -37,9 +38,15 @@ class MasterdatajenistransaksiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Jenistransaksirequest $request)
     {
-        //
+        $jenis_transaksi = new Jenistransaksi;
+        $jenis_transaksi->nama_transaksi = $request->nama_transaksi;
+        
+        // $rak=Rak::all()
+
+        $jenis_transaksi->save();
+        return redirect()->back()->with('messageberhasil','Data Jenis Transaksi Berhasil ditambahkan');
     }
 
     /**
@@ -71,9 +78,13 @@ class MasterdatajenistransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Jenistransaksirequest $request, $id_jenis_transaksi)
     {
-        //
+        $jenis_transaksi = Jenistransaksi::findOrFail($id_jenis_transaksi);
+        $jenis_transaksi->nama_transaksi = $request->nama_transaksi;
+        
+        $jenis_transaksi->update();
+        return redirect()->back()->with('messageberhasil','Data Jenis Transaksi Berhasil diubah');
     }
 
     /**
@@ -82,8 +93,11 @@ class MasterdatajenistransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_jenis_transaksi)
     {
-        //
+        $jenis_transaksi = Jenistransaksi::findOrFail($id_jenis_transaksi);
+        $jenis_transaksi->delete();
+
+        return redirect()->back()->with('messagehapus','Data Jenis Transaksi Berhasil dihapus');
     }
 }
