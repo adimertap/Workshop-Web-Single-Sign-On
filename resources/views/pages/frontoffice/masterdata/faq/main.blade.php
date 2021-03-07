@@ -82,7 +82,63 @@
             </div>
         </div>
     </div>
-</main>
 
+    {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
+    <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Merk Sparepart</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="#" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                        <hr>
+                        </hr>
+                        <div class="form-group">
+                            <label class="small mb-1" for="kode_merk">Kode Merk</label>
+                            <input class="form-control" name="kode_merk" type="text" id="kode_merk"
+                                placeholder="Input Kode Merk" value="#"
+                                class="form-control @error('kode_merk') is-invalid @enderror">
+                            @error('kode_merk')<div class="text-danger small mb-1">#
+                            </div> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
+                            <select class="form-control" name="id_jenis_sparepart"
+                                class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
+                                id="id_jenis_sparepart">
+                                <option>Pilih Jenis</option>
+                                <option value="#">
+                                    #
+                                </option>
+                            </select>
+                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">#
+                            </div> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="merk_sparepart">Merk Sparepart</label>
+                            <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
+                                placeholder="Input Merk" value="#"
+                                class="form-control @error('merk_sparepart') is-invalid @enderror"></input>
+                            @error('merk_sparepart')<div class="text-danger small mb-1">#
+                            </div> @enderror
+                        </div>
+                    </div>
+                    @if (count($errors) > 0)
+                    @endif
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="Submit">Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
 
 @endsection
