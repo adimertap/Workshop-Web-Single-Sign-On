@@ -91,11 +91,11 @@ class ApprovalprfController extends Controller
     public function setStatus(Request $request, $id_prf)
     {
         $request->validate([
-            'status_prf' => 'required|in:Approved,Not Approved,Pending'
+            'status' => 'required|in:Approved,Not Approved,Pending'
         ]);
 
         $item = Prf::findOrFail($id_prf);
-        $item->status_prf = $request->status_prf;
+        $item->status_prf = $request->status;
 
         $item->save();
         return redirect()->route('approval-prf');

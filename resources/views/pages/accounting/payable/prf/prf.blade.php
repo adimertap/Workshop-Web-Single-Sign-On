@@ -99,7 +99,19 @@
                                         <td>{{ $item->kode_prf }}</td>
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
                                         <td>Rp. {{ number_format($item->total_bayar,0,',','.') }}</td>
-                                        <td>{{ $item->status_prf }}</td>
+                                        <td>
+                                            @if($item->status_prf == 'Approved')
+                                            <span class="badge badge-success">
+                                                @elseif($item->status_prf == 'Not Approved')
+                                                <span class="badge badge-danger">
+                                                    @elseif($item->status_prf == 'Pending')
+                                                    <span class="badge badge-secondary">
+                                                        @else
+                                                        <span>
+                                                            @endif
+                                                            {{ $item->status_prf }}
+                                                        </span>
+                                        </td>
                                         <td>{{ $item->tanggal_bayar }}</td>
                                         <td>
                                             @if($item->status_jurnal == 'Pending')

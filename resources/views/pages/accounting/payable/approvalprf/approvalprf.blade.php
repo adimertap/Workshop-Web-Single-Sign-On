@@ -74,7 +74,7 @@
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                         <td>{{ $item->kode_prf }}</td>
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
-                                        <td>{{ $item->total_bayar }}</td>
+                                        <td>Rp. {{ number_format($item->total_bayar,0,',','.') }}</td>
                                         <td>
                                             @if($item->status_prf == 'Pending')
                                             <a href="{{ route('approval-prf.show', $item->id_prf) }}"
@@ -141,7 +141,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">Apakah Anda Yakin Menyetujui Pembayaran {{ $item->kode_prf }} dengan total
-                        biaya {{ $item->total_bayar }}?</div>
+                        biaya Rp. {{ number_format($item->total_bayar,0,',','.') }}?</div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -169,7 +169,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">Apakah Anda Yakin Menyetujui Pembayaran {{ $item->kode_prf }} dengan total
-                        biaya {{ $item->total_bayar }}?</div>
+                        biaya Rp. {{ number_format($item->total_bayar,0,',','.') }}?</div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>

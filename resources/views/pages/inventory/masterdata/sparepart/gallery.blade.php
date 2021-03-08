@@ -85,7 +85,7 @@
             <div class="card mb-4">
                 <div class="card card-header-actions">
                     <div class="card-header ">List Gallery
-                        <a href="{{ route('gallery.create') }}" class="btn btn-primary "> Tambah Foto</a>
+                        <a href="{{ route('gallery.create') }}" class="btn btn-sm btn-primary "> Tambah Foto</a>
                     </div>
                 </div>
                 <div class="card-body">

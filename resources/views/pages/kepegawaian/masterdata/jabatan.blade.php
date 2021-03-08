@@ -24,7 +24,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Jabatan
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
                         Data Jabatan</button>
                 </div>
             </div>
@@ -108,7 +108,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah Jabatan</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Jabatan</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>

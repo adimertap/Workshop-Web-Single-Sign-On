@@ -71,10 +71,7 @@
         <div class="col-lg-8">
             <div class="card mb-4">
                 <div class="card card-header-actions">
-                    <div class="card-header ">List Sparepart
-                        <a href="{{ route('Retur.edit',$retur->id_retur) }}" class="btn btn-sm btn-primary "> Edit
-                            Data Retur</a>
-                    </div>
+                    <div class="card-header ">List Sparepart</div>
                 </div>
                 <div class="card-body">
                     <div class="alert alert-info alert-icon" role="alert">

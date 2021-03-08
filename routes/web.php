@@ -552,6 +552,15 @@ Route::prefix('payroll/masterdatatunjangan')
         Route::resource('tunjangan', 'MasterdatatunjanganController');
     });
 
+// GAJI PEGAWAI ----------------------------------------------------------- Gaji Pegawai
+Route::prefix('payroll/Gajipegawai')
+    ->namespace('Payroll\Gajipegawai')
+    ->group(function () {
+        Route::get('/', 'GajipegawaiController@index')
+            ->name('gaji-pegawai');
+
+        Route::resource('gaji-pegawai', 'GajipegawaiController');
+    });
 
 
 // -------------------------------------------------------------------------------------------------------ACCOUNTING

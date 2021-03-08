@@ -77,10 +77,10 @@
                                             No</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 80px;">Kode</th>
+                                            style="width: 60px;">Kode</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 180px;">Nama Sparepart</th>
+                                            style="width: 200px;">Nama Sparepart</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
                                             style="width: 70px;">Jenis Sparepart</th>
@@ -98,7 +98,7 @@
                                             style="width: 20px;">Min Stock</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
-                                            style="width: 100px;">Actions</th>
+                                            style="width: 60px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -113,20 +113,16 @@
                                         <td>{{ $item->stock }}</td>
                                         <td>{{ $item->stock_min}}</td>
                                         <td>
-                                            <a href="{{ route('sparepart.gallery', $item->id_sparepart) }}"
+                                            <a href="{{ route('Kartu-gudang.show', $item->id_sparepart) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title=""
-                                                data-original-title="Detail Sparepart dan Foto">
+                                                data-original-title="Sparepart Report">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('sparepart.edit', $item->id_sparepart) }}"
-                                                class="btn btn-primary btn-datatable">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_sparepart }}">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
+                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                            data-placement="top" title="" data-original-title="Cetak Sparepart Report">
+                                            <i class="fas fa-print"></i></i>
+                                        </a>
                                         </td>
                                     </tr>
                                     @empty

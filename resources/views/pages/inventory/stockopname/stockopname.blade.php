@@ -97,6 +97,7 @@
                                             @endif
                                                 {{ $item->approve }}
                                                 </span>
+                                                {{--  --}}
                                         </td>
                                         <td>
                                             <a href="{{ route('Opname.show', $item->id_opname) }}"

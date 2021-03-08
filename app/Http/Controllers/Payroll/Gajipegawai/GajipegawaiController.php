@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Inventory\Kartugudang;
+namespace App\Http\Controllers\Payroll\Gajipegawai;
 
 use App\Http\Controllers\Controller;
-use App\Model\Inventory\Jenissparepart;
-use App\Model\Inventory\Konversi;
-use App\Model\Inventory\Merksparepart;
-use App\Model\Inventory\Rak;
-use App\Model\Inventory\Sparepart;
+use App\Model\Inventory\Retur\Retur;
 use Illuminate\Http\Request;
 
-class KartugudangController extends Controller
+class GajipegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +15,7 @@ class KartugudangController extends Controller
      */
     public function index()
     {
-        $sparepart = Sparepart::with([
-            'Jenissparepart', 'Merksparepart','Konversi','Gallery','Rak'
-        ])->get();
-
-        return view('pages.inventory.kartugudang.kartugudang', compact('sparepart'));
+        return view('pages.payroll.gajipegawai.gajipegawai');
     }
 
     /**
@@ -33,7 +25,7 @@ class KartugudangController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.payroll.gajipegawai.create');
     }
 
     /**
@@ -53,21 +45,9 @@ class KartugudangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_sparepart)
+    public function show($id)
     {
-        $sparepart = Sparepart::findOrFail($id_sparepart);
-        // $jenis_sparepart = Jenissparepart::all();
-        // $merk_sparepart = Merksparepart::all();
-        // $konversi = Konversi::all();
-        // $rak = Rak::all();
-
-        return view('pages.inventory.kartugudang.detail',[
-            'item' => $sparepart,
-            // 'jenis_sparepart' => $jenis_sparepart,
-            // 'merk_sparepart' => $merk_sparepart,
-            // 'konversi' => $konversi,
-            // 'rak' => $rak,
-        ]);
+        //
     }
 
     /**
