@@ -97,7 +97,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Merk Sparepart</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Jenis Perbaikan</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -108,32 +108,40 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="kode_merk">Kode Merk</label>
-                            <input class="form-control" name="kode_merk" type="text" id="kode_merk"
-                                placeholder="Input Kode Merk" value="#"
-                                class="form-control @error('kode_merk') is-invalid @enderror">
-                            @error('kode_merk')<div class="text-danger small mb-1">#
+                            <label class="small mb-1" for="kode_perbaikan">Kode Jenis Perbaikan</label>
+                            <input class="form-control" name="kode_perbaikan" type="text" id="kode_perbaikan"
+                                placeholder="Input Kode Jenis Perbaikan" 
+                                class="form-control @error('kode_perbaikan') is-invalid @enderror">
+                            @error('kode_perbaikan')<div class="text-danger small mb-1">#
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
-                            <select class="form-control" name="id_jenis_sparepart"
-                                class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
-                                id="id_jenis_sparepart">
-                                <option>Pilih Jenis</option>
-                                <option value="#">
-                                    #
-                                </option>
+                            <label class="small mb-1" for="nama_perbaikan">Nama Jenis Perbaikan</label>
+                            <input class="form-control" name="nama_perbaikan" type="text" id="nama_perbaikan"
+                                placeholder="Input Nama Jenis Perbaikan"
+                                class="form-control @error('nama_perbaikan') is-invalid @enderror">
+                            @error('nama_perbaikan')<div class="text-danger small mb-1">#
+                            </div> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="group_jenis_perbaikan">Group Jenis Perbaikan</label>
+                            <select class="form-control" name="group_jenis_perbaikan"
+                                class="form-control @error('group_jenis_perbaikan') is-invalid @enderror"
+                                id="group_jenis_perbaikan">
+                                <option>Pilih Group Perbaikan</option>
+                                <option value="#">Light Repair</option>
+                                <option value="#">Heavy Repair</option>
                             </select>
-                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">#
+                            @error('group_jenis_perbaikan')<div class="text-danger small mb-1">#
                             </div> @enderror
                         </div>
+                        
                         <div class="form-group">
-                            <label class="small mb-1" for="merk_sparepart">Merk Sparepart</label>
-                            <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
-                                placeholder="Input Merk" value="#"
-                                class="form-control @error('merk_sparepart') is-invalid @enderror"></input>
-                            @error('merk_sparepart')<div class="text-danger small mb-1">#
+                            <label class="small mb-1" for="harga_perbaikan">Harga Perbaikan</label>
+                            <input class="form-control" name="harga_perbaikan" type="text" id="harga_perbaikan"
+                                placeholder="Input Harga Perbaikan"
+                                class="form-control @error('harga_perbaikan') is-invalid @enderror">
+                            @error('harga_perbaikan')<div class="text-danger small mb-1">#
                             </div> @enderror
                         </div>
                     </div>

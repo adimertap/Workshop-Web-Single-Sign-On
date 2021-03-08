@@ -97,7 +97,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Merk Sparepart</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Diskon</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -108,32 +108,35 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="kode_merk">Kode Merk</label>
-                            <input class="form-control" name="kode_merk" type="text" id="kode_merk"
-                                placeholder="Input Kode Merk" value="#"
-                                class="form-control @error('kode_merk') is-invalid @enderror">
-                            @error('kode_merk')<div class="text-danger small mb-1">#
+                            <label class="small mb-1" for="nama_diskon">Nama Diskon</label>
+                            <input class="form-control" name="nama_diskon" type="text" id="nama_diskon"
+                                placeholder="Input Nama Diskon"
+                                class="form-control @error('nama_diskon') is-invalid @enderror">
+                            @error('nama_diskon')<div class="text-danger small mb-1">#
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
-                            <select class="form-control" name="id_jenis_sparepart"
-                                class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
-                                id="id_jenis_sparepart">
-                                <option>Pilih Jenis</option>
-                                <option value="#">
-                                    #
-                                </option>
-                            </select>
-                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">#
+                            <label class="small mb-1" for="jumlah_diskon">Jumlah Diskon</label>
+                            <input class="form-control" name="jumlah_diskon" type="text" id="jumlah_diskon"
+                                placeholder="Input Nama Diskon"
+                                class="form-control @error('jumlah_diskon') is-invalid @enderror">
+                            @error('jumlah_diskon')<div class="text-danger small mb-1">#
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="merk_sparepart">Merk Sparepart</label>
-                            <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
-                                placeholder="Input Merk" value="#"
-                                class="form-control @error('merk_sparepart') is-invalid @enderror"></input>
-                            @error('merk_sparepart')<div class="text-danger small mb-1">#
+                            <label class="small mb-1" for="tanggal_mulai">Tanggal Mulai</label>
+                            <input class="form-control" name="tanggal_mulai" type="date" id="tanggal_mulai"
+                                placeholder="Tanggal Mulai"
+                                class="form-control @error('tanggal_mulai') is-invalid @enderror"></input>
+                            @error('tanggal_mulai')<div class="text-danger small mb-1">#
+                            </div> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="tanggal_selesai">Tanggal Selesai</label>
+                            <input class="form-control" name="tanggal_selesai" type="date" id="tanggal_selesai"
+                                placeholder="Tanggal Selesai"
+                                class="form-control @error('tanggal_selesai') is-invalid @enderror"></input>
+                            @error('tanggal_selesai')<div class="text-danger small mb-1">#
                             </div> @enderror
                         </div>
                     </div>

@@ -80,7 +80,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @forelse ($kendaraan as $item)
+                                        <tr role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td>{{ $item->kode_kendaraan }}</td>
+                                            <td>{{ $item->nama_kendaraan }}</td>
+                                            <td>{{ $item->jenis_kendaraan }}</td>
+                                            <td>{{ $item->merk_kendaraan }}</td>
+                                            <td>
+                                                <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
+                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_jenis_kendaraan }}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
+                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_jenis_kendaraan }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="7" class="text-center">
+                                                Data Jenis Kendaraan Kosong
+                                            </td>
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -101,7 +125,7 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{ route('jeniskendaraan.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
@@ -110,38 +134,38 @@
                         <div class="form-group">
                             <label class="small mb-1" for="kode_kendaraan">Kode Kendaraan</label>
                             <input class="form-control" name="kode_kendaraan" type="text" id="kode_kendaraan"
-                                placeholder="Input Kode Merk" value="Masukkan Kode Kendaraan"
+                                placeholder="Input Kode Merk" value="{{ old('kode_kendaraan') }}"
                                 class="form-control @error('kode_kendaraan') is-invalid @enderror">
-                            @error('kode_kendaraan')<div class="text-danger small mb-1">#
+                            @error('kode_kendaraan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="nama_kendaraan">Nama Kendaraan</label>
                             <input class="form-control" name="nama_kendaraan" type="text" id="nama_kendaraan"
-                                placeholder="Input Kode Merk" value="Masukkan Nama Kendaraan"
+                                placeholder="Input Kode Merk" value="{{ old('nama_kendaraan') }}"
                                 class="form-control @error('nama_kendaraan') is-invalid @enderror">
-                            @error('nama_kendaraan')<div class="text-danger small mb-1">#
+                            @error('nama_kendaraan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="id_jenis_kendaraan">Jenis Kendaraan</label>
-                            <select class="form-control" name="id_jenis_kendaraan"
-                                class="form-control @error('id_jenis_kendaraan') is-invalid @enderror"
-                                id="id_jenis_kendaraan">
-                                <option>Pilih Jenis Kendaraan</option>
-                                <option value="#">Motor</option>
-                                <option value="#">Mobil</option>
-                                <option value="#">Sepeda</option>
+                            <label class="small mb-1" for="jenis_kendaraan">Jenis Kendaraan</label>
+                            <select class="form-control" name="jenis_kendaraan"
+                                class="form-control @error('jenis_kendaraan') is-invalid @enderror"
+                                id="jenis_kendaraan">
+                                <option value="{{old('jenis_kendaraan')}}">Pilih Jenis Kendaraan</option>
+                                <option value="Motor">Motor</option>
+                                <option value="Mobil">Mobil</option>
+                                <option value="Sepeda">Sepeda</option>
                             </select>
-                            @error('id_jenis_kendaraan')<div class="text-danger small mb-1">#
+                            @error('jenis_kendaraan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="merk_kendaraan">Merk Kendaraan</label>
                             <input class="form-control" name="merk_kendaraan" type="text" id="merk_kendaraan"
-                                placeholder="Input Kode Merk" value="Masukkan Merk Kendaraan"
+                                placeholder="Input Kode Merk" value="{{ old('merk_kendaraan') }}"
                                 class="form-control @error('merk_kendaraan') is-invalid @enderror">
-                            @error('merk_kendaraan')<div class="text-danger small mb-1">
+                            @error('merk_kendaraan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
                     </div>
@@ -155,7 +179,103 @@
             </div>
         </div>
     </div>
+
+    {{-- MODAL EDIT --}}
+    @forelse ($kendaraan as $item)
+    <div class="modal fade" id="Modaledit-{{ $item->id_jenis_kendaraan }}" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Jenis Kendaraan</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('jeniskendaraan.update', $item->id_jenis_kendaraan) }}" method="POST">
+                    @method('PUT')
+                    @csrf
+                    <div class="modal-body">
+                        <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                        <hr>
+                        </hr>
+                        <div class="form-group">
+                            <label class="small mb-1" for="kode_kendaraan">Kode Kendaraan</label>
+                            <input class="form-control" name="kode_kendaraan" type="text" id="kode_kendaraan"
+                                value="{{ $item->kode_kendaraan }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="nama_kendaraan">Nama Kendaraan</label>
+                            <input class="form-control" name="nama_kendaraan" type="text" id="nama_kendaraan"
+                                value="{{ $item->nama_kendaraan }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="jenis_kendaraan">Jenis Kendaraan</label>
+                            <select name="jenis_kendaraan" id="jenis_kendaraan" class="form-control">
+                                <option value="{{ $item->jenis_kendaraan }}">{{ $item->jenis_kendaraan }}</option>
+                                <option value="Motor">Motor</option>
+                                <option value="Mobil">Mobil</option>
+                                <option value="Sepeda">Sepeda</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="merk_kendaraan">Merk Kendaraan</label>
+                            <input class="form-control" name="merk_kendaraan" type="text" id="merk_kendaraan"
+                                value="{{ $item->merk_kendaraan }}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="Submit">Ubah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @empty
+
+    @endforelse
+
+    {{-- MODAL DELETE --}}
+    @forelse ($kendaraan as $item)
+    <div class="modal fade" id="Modalhapus-{{ $item->id_jenis_kendaraan }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('jeniskendaraan.destroy', $item->id_jenis_kendaraan) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('delete')
+                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Kendaraan {{ $item->nama_jenis_kendaraan }}?</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @empty
+
+    @endforelse
 </main>
 
+{{-- Callback Modal Jika Validasi Error --}}
+@if (count($errors) > 0)
+<button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open
+    Modal</button>
+@endif
+
+{{-- Script Open Modal Callback --}}
+<script>
+    $(document).ready(function () {
+        $('#validasierror').click();
+    });
+
+</script>
 
 @endsection

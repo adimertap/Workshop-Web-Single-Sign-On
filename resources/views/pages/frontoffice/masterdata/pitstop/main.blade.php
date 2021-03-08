@@ -61,11 +61,11 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Nama Pitstop</th>
+                                                style="width: 20px;">Kode Pitstop</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Jenis Pitstop</th>
+                                                style="width: 20px;">Nama Pitstop</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Actions</th>
@@ -89,7 +89,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Merk Sparepart</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Pitstop</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -100,32 +100,19 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="kode_merk">Kode Merk</label>
-                            <input class="form-control" name="kode_merk" type="text" id="kode_merk"
-                                placeholder="Input Kode Merk" value="#"
-                                class="form-control @error('kode_merk') is-invalid @enderror">
-                            @error('kode_merk')<div class="text-danger small mb-1">#
+                            <label class="small mb-1" for="kode_pitstop">Kode Pitstop</label>
+                            <input class="form-control" name="kode_pitstop" type="text" id="kode_pitstop"
+                                placeholder="Input Kode Pitstop"
+                                class="form-control @error('kode_pitstop') is-invalid @enderror">
+                            @error('kode_pitstop')<div class="text-danger small mb-1">#
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
-                            <select class="form-control" name="id_jenis_sparepart"
-                                class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
-                                id="id_jenis_sparepart">
-                                <option>Pilih Jenis</option>
-                                <option value="#">
-                                    #
-                                </option>
-                            </select>
-                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">#
-                            </div> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="merk_sparepart">Merk Sparepart</label>
-                            <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
-                                placeholder="Input Merk" value="#"
-                                class="form-control @error('merk_sparepart') is-invalid @enderror"></input>
-                            @error('merk_sparepart')<div class="text-danger small mb-1">#
+                            <label class="small mb-1" for="nama_pitstop">Nama Pitstop</label>
+                            <input class="form-control" name="nama_pitstop" type="text" id="nama_pitstop"
+                                placeholder="Input Nama Pitstop"
+                                class="form-control @error('nama_pitstop') is-invalid @enderror">
+                            @error('nama_pitstop')<div class="text-danger small mb-1">#
                             </div> @enderror
                         </div>
                     </div>

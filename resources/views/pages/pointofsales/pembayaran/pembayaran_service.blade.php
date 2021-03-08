@@ -3,48 +3,44 @@
 @section('content')
 {{-- HEADER --}}
 <main>
-    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
-        <div class="container-fluid">
-            <div class="page-header-content">
-                <div class="row align-items-center justify-content-between pt-3">
-                    <div class="col-auto mb-3">
-                        <h1 class="page-header-title">
-                            <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Layanan service
-                        </h1>
-                    </div>
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Kode Transaksi SA001</h1>
+                <div class="small">
+                    <span class="font-weight-500 text-primary">Detail</span>
+                    · Pembayaran · Service
                 </div>
             </div>
         </div>
-    </header>
-
-    {{-- MAIN PAGE CONTENT --}}
+    </div>
 
     <div class="container-fluid">
-        <div class="col-12">
-            <h2 class="text-center">LAYANAN SERVICE</h2>
-            <div class="row mt-3">
-                <h5>Kode SPT : SPT001</h5>
-            </div>
-            <div class="row">
-                <h5>Nama Customer : Angga</h5>
-            </div>
-            <div class="row">
-                <h5>Nama Mekanik : Adim</h5>
-            </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">Detail Transaksi Service
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="small mb-1" for="kode_spt">Kode SPT</label>
+                            <input class="form-control form-control-sm" id="kode_spt" type="text" name="kode_opname"
+                                value="SPT-001" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="nama_customer">Nama Customer</label>
+                            <input class="form-control form-control-sm" id="nama_customer" type="text" name="nama_customer"
+                                value="Angga" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="kode_mekanik">Kode Mekanik</label>
+                            <input class="form-control form-control-sm" id="kode_mekanik" type="text" name="kode_mekanik"
+                                value="Angga" readonly />
+                        </div>
+                        <hr class="my-4" />
 
-            <div class="row mt-4">
-                <div class="col-6">
-                    <table class="table">
-                        <thead>
-                            <th>Daftar Service</th>
-                            <th>Harga</th>
-                        </thead>
-                        <tbody>
-                            <tr>Ganti Oli</tr>
-                            <tr>20000</tr>
-                        </tbody>
-                    </table>
+                    </div>
                 </div>
             </div>
         </div>

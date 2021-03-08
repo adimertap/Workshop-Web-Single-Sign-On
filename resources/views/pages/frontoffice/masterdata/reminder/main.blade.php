@@ -93,7 +93,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Merk Sparepart</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Reminder</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -104,32 +104,27 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="kode_merk">Kode Merk</label>
-                            <input class="form-control" name="kode_merk" type="text" id="kode_merk"
-                                placeholder="Input Kode Merk" value="#"
-                                class="form-control @error('kode_merk') is-invalid @enderror">
-                            @error('kode_merk')<div class="text-danger small mb-1">#
+                            <label class="small mb-1" for="nama_reminder">Nama Reminder</label>
+                            <input class="form-control" name="nama_reminder" type="text" id="nama_reminder"
+                                placeholder="Input Nama Reminder"
+                                class="form-control @error('nama_reminder') is-invalid @enderror">
+                            @error('nama_reminder')<div class="text-danger small mb-1">#
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
-                            <select class="form-control" name="id_jenis_sparepart"
-                                class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
-                                id="id_jenis_sparepart">
-                                <option>Pilih Jenis</option>
-                                <option value="#">
-                                    #
-                                </option>
-                            </select>
-                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">#
+                            <label class="small mb-1" for="masa_berlaku">Masa Berlaku</label>
+                            <input class="form-control" name="masa_berlaku" type="text" id="masa_berlaku"
+                                placeholder="Input Masa Berlaku"
+                                class="form-control @error('masa_berlaku') is-invalid @enderror">
+                            @error('masa_berlaku')<div class="text-danger small mb-1">#
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="merk_sparepart">Merk Sparepart</label>
-                            <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
-                                placeholder="Input Merk" value="#"
-                                class="form-control @error('merk_sparepart') is-invalid @enderror"></input>
-                            @error('merk_sparepart')<div class="text-danger small mb-1">#
+                            <label class="small mb-1" for="km_berlaku">KM Berlaku</label>
+                            <input class="form-control" name="km_berlaku" type="text" id="km_berlaku"
+                                placeholder="Input KM Berlaku"
+                                class="form-control @error('km_berlaku') is-invalid @enderror">
+                            @error('km_berlaku')<div class="text-danger small mb-1">#
                             </div> @enderror
                         </div>
                     </div>

@@ -9,8 +9,10 @@
     <meta name="author" content="" />
     <title>Front Office System</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
+    <link href="{{ asset('node_modules\air-datepicker\dist\css\datepicker.min.css')}}" rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}">
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ url('/node_modules/air-datepicker/dist/css/datepicker.css') }}">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet"
@@ -22,11 +24,8 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ url('/node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
-    {{-- <link rel="stylesheet" type="text/css" href="{{ url('/data_tables/datatables.css') }}">
-    <script type="text/javascript" charset="utf8" src="{{ url('/data_tables/datatables.js') }}"></script> --}}
-
-
-
+    <script src="{{ asset('node_modules\air-datepicker\dist\js\datepicker.min.js') }}"></script>
+    <script src="{{ asset('node_modules\air-datepicker\dist\js\i18n\datepicker.en.js') }}"></script>
 </head>
 
 <body class="nav-fixed">
@@ -306,6 +305,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
     <script src="{{ url('/backend/dist/assets/demo/datatables-demo.js')}}"></script>
+    <script src="{{ url('/node_modules/air-datepicker/dist/js/datepicker.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" crossorigin="anonymous"></script>
     <script src="{{ url('/backend/dist/assets/demo/date-range-picker-demo.js')}}"></script>
