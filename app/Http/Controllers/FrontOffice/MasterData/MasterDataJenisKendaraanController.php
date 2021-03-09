@@ -99,6 +99,6 @@ class MasterDataJenisKendaraanController extends Controller
         $kendaraan = MasterDataJenisKendaraan::findOrFail($id_jenis_kendaraan);
         $kendaraan->delete();
 
-        return redirect()->back()->with('messagehapus', 'Data Merk Berhasil dihapus');
+        return redirect()->back()->with('messagehapus', 'Data Jenis Kendaraan Berhasil dihapus');
     }
 }
