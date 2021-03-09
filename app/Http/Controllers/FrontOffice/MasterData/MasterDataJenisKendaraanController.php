@@ -41,7 +41,6 @@ class MasterDataJenisKendaraanController extends Controller
     public function store(JenisKendaraanrequest $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->jenis_kendaraan);
 
         MasterDataJenisKendaraan::create($data);
         return redirect()->route('jeniskendaraan.index')->with('messageberhasil', 'Data Jenis Kendaraan Berhasil ditambahkan');

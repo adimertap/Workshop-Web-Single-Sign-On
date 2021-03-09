@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontOffice\Masterdata;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FrontOffice\MasterData\Diskonrequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataDiskon;
 
@@ -36,9 +37,12 @@ class MasterDataDiskonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Diskonrequest $request)
     {
-        //
+        $data = $request->all();
+
+        MasterDataDiskon::create($data);
+        return redirect()->route('diskon.index')->with('messageberhasil', 'Data Jenis Kendaraan Berhasil ditambahkan');
     }
 
     /**
@@ -70,9 +74,16 @@ class MasterDataDiskonController extends Controller
      * @param  \App\MasterDataDiskon  $masterDataDiskon
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterDataDiskon $masterDataDiskon)
+    public function update(Diskonrequest $request, $id_diskon)
     {
-        //
+        $diskon = MasterDataDiskon::findOrFail($id_diskon);
+        $diskon->nama_diskon = $request->nama_diskon;
+        $diskon->jumlah_diskon = $request->jumlah_diskon;
+        $diskon->tanggal_mulai = $request->tanggal_mulai;
+        $diskon->tanggal_selesai = $request->tanggal_selesai;
+
+        $diskon->update();
+        return redirect()->back()->with('messageberhasil', 'Data Diskon Berhasil diubah');
     }
 
     /**
@@ -81,8 +92,11 @@ class MasterDataDiskonController extends Controller
      * @param  \App\MasterDataDiskon  $masterDataDiskon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterDataDiskon $masterDataDiskon)
+    public function destroy($id_diskon)
     {
-        //
+        $diskon = MasterDataDiskon::findOrFail($id_diskon);
+        $diskon->delete();
+
+        return redirect()->back()->with('messagehapus', 'Data Jenis Diskon Berhasil dihapus');
     }
 }

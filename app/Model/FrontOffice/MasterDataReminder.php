@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class MasterDataReminder extends Model
 {
-    protected $table = "tb_fo_master_jenis_kendaraan";
+    protected $table = "tb_fo_master_reminder";
 
-    protected $primaryKey = 'id_jenis_kendaraan';
+    protected $primaryKey = 'id_master_reminder';
 
     protected $fillable = [
-        'kode_kendaraan', 'nama_kendaraan', 'warna_kendaraan', 'jenis_kendaraan', 'merk_kendaraan'
+        'nama_reminder', 'masa_berlaku', 'km_berlaku'
     ];
 
     protected $hidden = [];

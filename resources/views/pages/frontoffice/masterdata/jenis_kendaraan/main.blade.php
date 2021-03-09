@@ -201,12 +201,16 @@
                         <div class="form-group">
                             <label class="small mb-1" for="kode_kendaraan">Kode Kendaraan</label>
                             <input class="form-control" name="kode_kendaraan" type="text" id="kode_kendaraan"
-                                value="{{ $item->kode_kendaraan }}">
+                                value="{{ $item->kode_kendaraan }}" placeholder="Input Kode Kendaraan">
+                            @error('kode_kendaraan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="nama_kendaraan">Nama Kendaraan</label>
                             <input class="form-control" name="nama_kendaraan" type="text" id="nama_kendaraan"
-                                value="{{ $item->nama_kendaraan }}">
+                                value="{{ $item->nama_kendaraan }}" placeholder="Input Nama Kendaraan">
+                            @error('nama_kendaraan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="jenis_kendaraan">Jenis Kendaraan</label>
@@ -216,11 +220,15 @@
                                 <option value="Mobil">Mobil</option>
                                 <option value="Sepeda">Sepeda</option>
                             </select>
+                            @error('jenis_kendaraan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="merk_kendaraan">Merk Kendaraan</label>
                             <input class="form-control" name="merk_kendaraan" type="text" id="merk_kendaraan"
-                                value="{{ $item->merk_kendaraan }}">
+                                value="{{ $item->merk_kendaraan }}" placeholder="Input Merk Kendaraan">
+                            @error('merk_kendaraan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                     </div>
                     <div class="modal-footer">

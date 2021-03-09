@@ -224,7 +224,7 @@
                                     Diskon
                                 </a>
                                 <a class="nav-link" href="{{ route('masterdatapitstop')}}">
-                                    Pitstop
+                                    Pit Stop
                                 </a>
                                 <a class="nav-link" href="{{ route('masterdatareminder')}}">
                                     Reminder

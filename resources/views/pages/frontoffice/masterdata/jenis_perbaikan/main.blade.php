@@ -201,12 +201,16 @@
                         <div class="form-group">
                             <label class="small mb-1" for="kode_jenis_perbaikan">Kode Jenis Perbaikan</label>
                             <input class="form-control" name="kode_jenis_perbaikan" type="text" id="kode_jenis_perbaikan"
-                                value="{{ $item->kode_jenis_perbaikan }}">
+                                value="{{ $item->kode_jenis_perbaikan }}" placeholder="Input Kode Jenis Perbaikan">
+                            @error('kode_jenis_perbaikan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="nama_jenis_perbaikan">Nama Jenis Perbaikan</label>
                             <input class="form-control" name="nama_jenis_perbaikan" type="text" id="nama_jenis_perbaikan"
-                                value="{{ $item->nama_jenis_perbaikan }}">
+                                value="{{ $item->nama_jenis_perbaikan }}" placeholder="Input Nama Jenis Perbaikan">
+                            @error('nama_jenis_perbaikan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="group_jenis_perbaikan">Group Jenis Perbaikan</label>
@@ -216,11 +220,15 @@
                                 <option value="Mobil">Mobil</option>
                                 <option value="Sepeda">Sepeda</option>
                             </select>
+                            @error('group_jenis_perbaikan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="harga_jenis_perbaikan">Harga Jenis Perbaikan</label>
                             <input class="form-control" name="harga_jenis_perbaikan" type="text" id="harga_jenis_perbaikan"
-                                value="{{ $item->harga_jenis_perbaikan }}">
+                                value="{{ $item->harga_jenis_perbaikan }}" placeholder="Input Harga Jenis Perbaikan">
+                            @error('harga_jenis_perbaikan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
