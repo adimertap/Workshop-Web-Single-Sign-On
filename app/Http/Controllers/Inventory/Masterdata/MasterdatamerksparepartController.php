@@ -20,6 +20,7 @@ class MasterdatamerksparepartController extends Controller
 
         $merksparepart = Merksparepart::with([
             'jenissparepart'])->get();
+            
         $jenis_sparepart = Jenissparepart::all();
         // // Cek nilai merksparepart -> array
         // // dd($merksparepart); 

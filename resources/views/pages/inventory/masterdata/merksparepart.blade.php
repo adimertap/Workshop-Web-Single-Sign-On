@@ -31,6 +31,7 @@
             </div>
             <div class="card-body">
                 <div class="datatable">
+                    
                     @if(session('messageberhasil'))
                     <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
                         {{ session('messageberhasil') }}
@@ -178,7 +179,7 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('merk-sparepart.update', $item->id_merk) }}" method="POST">
+                <form action="{{ route('merk-sparepart.update',$item->id_merk) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="modal-body">

@@ -3,9 +3,12 @@
 namespace App\Model\Inventory;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Merksparepart extends Model
 {
+
+    
 
     protected $table = "tb_inventory_master_merk_sparepart";
 
