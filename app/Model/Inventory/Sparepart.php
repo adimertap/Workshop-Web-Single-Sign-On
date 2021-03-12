@@ -2,6 +2,8 @@
 
 namespace App\Model\Inventory;
 
+use App\Model\Inventory\Purchase\PO;
+use App\Model\Inventory\Stockopname\Opname;
 use Illuminate\Database\Eloquent\Model;
 
 class Sparepart extends Model
@@ -49,7 +51,15 @@ class Sparepart extends Model
     }
 
     public function Hargasparepart(){
-        return $this->belongsTo(Hargasparepart::class,'id_sparepart','id_sparepart');
+        return $this->belongsTo(Hargasparepart::class,'id_harga','id_harga');
+    }
+
+    public function PO(){
+        return $this->belongsToMany(PO::class, 'tb_inventory_detpo','id_sparepart','id_po');
+    }
+
+    public function Opname(){
+        return $this->belongsToMany(Opname::class, 'tb_inventory_detopname','id_sparepart','id_opname');
     }
 
 }

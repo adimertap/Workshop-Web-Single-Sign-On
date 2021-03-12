@@ -70,7 +70,8 @@
                             <div class="col-xxl-6 col-xl-9">
                                 <h3 class="text-primary">Step 1</h3>
                                 <h5 class="card-title">Input Formulir Pembelian</h5>
-                                <form action="{{ route('Rcv.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('purchase-order.store') }}" id="form1" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
@@ -83,9 +84,14 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_pegawai">Pegawai</label>
-                                            <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
-                                                placeholder="Input Nama Pegawai" value="{{ old('id_pegawai') }}"
-                                                class="form-control @error('id_pegawai') is-invalid @enderror" />
+                                            <select class="form-control" name="id_pegawai" id="id_pegawai"
+                                                class="form-control @error('id_supplier') is-invalid @enderror">
+                                                <option>Pilih Pegawai</option>
+                                                @foreach ($pegawai as $item)
+                                                <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
+                                                </option>
+                                                @endforeach
+                                            </select>
                                             @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
@@ -149,11 +155,11 @@
 
                     {{-- CARD 2 --}}
                     <div class="tab-pane fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
-                        
+
                         {{-- <h5 class="card-title">Input Jumlah Penerimaan Sparepart</h5> --}}
                         <div class="card card-icon">
                             <div class="row no-gutters">
-                                <div class="col-auto card-icon-aside bg-primary">
+                                <div class="col-auto card-icon-aside bg-primary-soft">
                                     <i class="fa fa-cogs" style="color: white"></i>
                                 </div>
                                 <div class="col">
@@ -164,45 +170,54 @@
                                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                                 <div class="row">
                                                     <div class="col-sm-12">
-                                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
-                                                            width="100%" cellspacing="0" role="grid"
+                                                        <table class="table table-bordered table-hover dataTable"
+                                                            id="dataTable" width="100%" cellspacing="0" role="grid"
                                                             aria-describedby="dataTable_info" style="width: 100%;">
                                                             <thead>
                                                                 <tr role="row">
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
                                                                         aria-label="Name: activate to sort column descending"
                                                                         style="width: 20px;">No</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Position: activate to sort column ascending"
                                                                         style="width: 80px;">Kode</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Position: activate to sort column ascending"
                                                                         style="width: 180px;">Nama Sparepart</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Office: activate to sort column ascending"
                                                                         style="width: 70px;">Jenis Sparepart</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Start date: activate to sort column ascending"
                                                                         style="width: 70px;">Merk</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Salary: activate to sort column ascending"
                                                                         style="width: 40px;">Satuan</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Salary: activate to sort column ascending"
                                                                         style="width: 20px;">Stock</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Salary: activate to sort column ascending"
                                                                         style="width: 20px;">Min Stock</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Actions: activate to sort column ascending"
                                                                         style="width: 100px;">Actions</th>
                                                                 </tr>
@@ -214,15 +229,16 @@
                                                                         {{ $loop->iteration}}</th>
                                                                     <td>{{ $item->kode_sparepart }}</td>
                                                                     <td>{{ $item->nama_sparepart }}</td>
-                                                                    <td>{{ $item->Jenissparepart->jenis_sparepart }}</td>
+                                                                    <td>{{ $item->Jenissparepart->jenis_sparepart }}
+                                                                    </td>
                                                                     <td>{{ $item->Merksparepart->merk_sparepart }}</td>
                                                                     <td>{{ $item->Konversi->satuan }}</td>
                                                                     <td>{{ $item->stock }}</td>
-                                                                    <td>{{ $item->stock_min}}</td>
+                                                                    <td>{{ $item->Hargasparepart->harga_beli}}</td>
                                                                     <td>
                                                                         <a href="" class="btn btn-success btn-datatable"
                                                                             type="button" data-toggle="modal"
-                                                                            data-target="#Modalhapus-{{ $item->id_sparepart }}">
+                                                                            data-target="#Modaltambah-{{ $item->id_sparepart }}">
                                                                             <i class="fas fa-plus"></i>
                                                                         </a>
                                                                     </td>
@@ -245,44 +261,143 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="tab-pane fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
-
+                        <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
+                                class="fas fa-times"></i>
+                            Anda belum memasukan sparepart!
+                            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="card card-icon">
+                            <div class="row no-gutters">
+                                <div class="col-auto card-icon-aside bg-success-soft">
+                                    <i class="fa fa-cogs" style="color: white"></i>
+                                </div>
+                                <div class="col">
+                                    <div class="card-body py-5">
+                                        <h3 class="text-primary">Step 3</h3>
+                                        <h5 class="card-title">Konfirmasi Pembelian</h5>
+                                        <div class="datatable">
+                                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-bordered table-hover dataTable"
+                                                            id="dataTablekonfirmasi" width="100%" cellspacing="0" role="grid"
+                                                            aria-describedby="dataTable_info" style="width: 100%;">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending"
+                                                                        style="width: 20px;">No</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
+                                                                        aria-label="Position: activate to sort column ascending"
+                                                                        style="width: 80px;">Kode</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
+                                                                        aria-label="Position: activate to sort column ascending"
+                                                                        style="width: 180px;">Nama Sparepart</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
+                                                                        aria-label="Office: activate to sort column ascending"
+                                                                        style="width: 70px;">Jenis Sparepart</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
+                                                                        aria-label="Start date: activate to sort column ascending"
+                                                                        style="width: 70px;">Merk</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
+                                                                        aria-label="Salary: activate to sort column ascending"
+                                                                        style="width: 40px;">Satuan</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
+                                                                        aria-label="Salary: activate to sort column ascending"
+                                                                        style="width: 20px;">Quantity</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
+                                                                        aria-label="Actions: activate to sort column ascending"
+                                                                        style="width: 100px;">Actions</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                               
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <hr class="my-4">
                         <div class="d-flex justify-content-between">
                             <button class="btn btn-light" type="button">Previous</button>
-                            <button class="btn btn-primary" type="button">Submit</button>
+                            <button class="btn btn-primary" type="button" data-toggle="modal"
+                                data-target="#Modalsumbit">Submit</button>
                         </div>
-                    </div>
-                    </form>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+{{-- MODAL KONFIRMASI --}}
+<div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success-soft">
+                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Form Pembelian</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">Apakah Form yang Anda inputkan sudah benar?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="button"
+                        onclick="tambahsparepart(event,{{ $sparepart }})">Ya!Sudah</button>
                 </div>
             </div>
         </div>
-</main>
+    </div>
+</div>
 
-@forelse ($po as $item)
-<div class="modal fade" id="Modaltambah-{{ $item->id_po }}" tabindex="-1" role="dialog"
+{{-- MODAL TAMBAH SPAREPART --}}
+@forelse ($sparepart as $item)
+<div class="modal fade" id="Modaltambah-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary-soft">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Detail Quantity</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Jumlah Pesanan</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="" method="POST" class="d-inline">
-                @csrf
+            <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="small mb-1" for="jumlah_real">Masukan Quantity Pesanan</label>
-                        <input class="form-control" name="jumlah_real" type="text" id="jumlah_real"
-                            placeholder="Input Stock Real" value="{{ old('jumlah_real') }}"></input>
+                        <label class="small mb-1" for="qty">Masukan Quantity Pesanan</label>
+                        <input class="form-control" name="qty" type="text" id="qty" placeholder="Input Jumlah Pesanan"
+                            value="{{ old('qty') }}"></input>
                     </div>
                 </div>
-
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="submit">Tambah</button>
+                    <button class="btn btn-success" type="button" data-dismiss="modal">Tambah</button>
                 </div>
             </form>
         </div>
@@ -291,13 +406,71 @@
 @empty
 @endforelse
 
-
 <script>
+    function tambahsparepart(event, sparepart) {
+        event.preventDefault()
+        var form1 = $('#form1')
+        var kode_po = form1.find('input[name="kode_po"]').val()
+        var id_supplier = $('#id_supplier').val()
+        var id_akun = $('#id_akun').val()
+        var id_pegawai = $('#id_pegawai').val()
+        var tanggal_po = form1.find('input[name="tanggal_po"]').val()
+        var approve_po = form1.find('input[name="approve_po"]').val()
+        var approve_ap = form1.find('input[name="approve_ap"]').val()
+        var dataform2 = []
+        var _token = form1.find('input[name="_token"]').val()
+
+        for (var i = 0; i < sparepart.length; i++) {
+            var form = $('#form-' + sparepart[i].id_sparepart)
+            var qty = form.find('input[name="qty"]').val()
+
+            if (qty == 0 | qty == '') {
+                continue
+            } else {
+                var id_sparepart = sparepart[i].id_sparepart
+                var obj = {
+                    id_sparepart: id_sparepart,
+                    qty: qty
+                }
+                dataform2.push(obj)
+            }
+        }
+
+        if (dataform2.length == 0) {
+            var alert = $('#alertsparepartkosong').show()
+        } else {
+            var data = {
+                _token: _token,
+                kode_po: kode_po,
+                id_supplier: id_supplier,
+                id_akun: id_akun,
+                id_pegawai: id_pegawai,
+                tanggal_po: tanggal_po,
+                approve_po: approve_po,
+                approve_ap: approve_ap,
+                sparepart: dataform2
+            }
+
+            $.ajax({
+                method: 'post',
+                url: '/inventory/pembelian/purchase-order',
+                data: data,
+                success: function (response) {
+                    console.log(response)
+                    $('#dataTablekonfirmasi tbody').append('<tr><td>'+id_sparepart+'</td><td>'+dataform2+'</td></tr>')
+                }
+            });
+        }
+
+// dataTablekonfirmasi
+    }
+
     $(document).ready(function () {
-        $('#validasierror').click();
+        $('#tambahsparepart').click();
     });
 
 </script>
+
 
 
 @endsection

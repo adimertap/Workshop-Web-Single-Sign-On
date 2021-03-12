@@ -2,6 +2,7 @@
 
 namespace App\Model\Inventory\Stockopname;
 
+use App\Model\Inventory\Sparepart;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,9 +31,9 @@ class Opname extends Model
 
     public $timestamps = true;
 
-    public function Detail()
+    public function Detailsparepart()
     {
-        return $this->hasMany(Opnamedetail::class,'id_opname');
+        return $this->belongsToMany(Sparepart::class,'tb_inventory_detopname','id_opname','id_sparepart');
     }
 
     public function Pegawai()

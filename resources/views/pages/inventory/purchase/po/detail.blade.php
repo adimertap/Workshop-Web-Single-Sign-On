@@ -124,15 +124,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($po->Detail as $detail)
+                                            {{--  --}}
+                                            @forelse ($po->Detailsparepart as $detail)
                                             <tr role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
-                                                <td>{{ $detail->Sparepart->nama_sparepart }}</td>
-                                                <td>{{ $detail->Sparepart->Merksparepart->merk_sparepart }}</td>
+                                                <td>{{ $detail->nama_sparepart }}</td>
+                                                <td>{{ $detail->Merksparepart->merk_sparepart }}</td>
                                                 <td>{{ $detail->qty }}</td>
-                                                <td>{{ $detail->Sparepart->Konversi->satuan }}</td>
-                                                <td>Rp. {{ number_format($detail->Sparepart->Hargasparepart->harga_beli,0,',','.') }}</td>
+                                                <td>{{ $detail->Konversi->satuan }}</td>
+                                                <td>Rp. {{ number_format($detail->Hargasparepart->harga_beli,0,',','.') }}</td>
                                             </tr>
                                             @empty
                                             <tr>

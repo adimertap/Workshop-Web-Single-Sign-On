@@ -49,7 +49,12 @@ class OpnameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $opname = Opname::create($data);
+        $opname->Detailsparepart()->sync($request->sparepart);
+
+        return $request;
     }
 
     /**
@@ -60,7 +65,7 @@ class OpnameController extends Controller
      */
     public function show($id_opname)
     {
-        $opname = Opname::with('Detail.Sparepart.Rak')->findOrFail($id_opname);
+        $opname = Opname::with('Detailsparepart')->findOrFail($id_opname);
 
         return view('pages.inventory.stockopname.detail')->with([
             'opname' => $opname

@@ -70,7 +70,8 @@
                             <div class="col-xxl-6 col-xl-9">
                                 <h3 class="text-primary">Step 1</h3>
                                 <h5 class="card-title">Input Formulir Opname</h5>
-                                <form action="{{ route('Retur.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('Opname.store') }}" id="form1" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
@@ -83,33 +84,38 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_pegawai">Pegawai</label>
-                                            <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
-                                                placeholder="Input Nama Pegawai" value="{{ old('id_pegawai') }}"
-                                                class="form-control @error('id_pegawai') is-invalid @enderror" />
+                                            <select class="form-control" name="id_pegawai" id="id_pegawai"
+                                                class="form-control @error('id_supplier') is-invalid @enderror">
+                                                <option>Pilih Pegawai</option>
+                                                @foreach ($pegawai as $item)
+                                                <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
+                                                </option>
+                                                @endforeach
+                                            </select>
                                             @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="status">Status</label>
-                                            <input class="form-control" id="status" type="text"
-                                                name="status" 
-                                                value="Not Approved" readonly>
+                                            <label class="small mb-1" for="approve">Approval</label>
+                                            <input class="form-control" id="approve" type="text" name="approve"
+                                                value="Pending" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="tanggal_opname">Tanggal Opname</label>
-                                            <input class="form-control" id="tanggal_opname" type="date" name="tanggal_opname"
-                                                placeholder="Input Tanggal Opname" value="{{ old('tanggal_opname') }}"
+                                            <input class="form-control" id="tanggal_opname" type="date"
+                                                name="tanggal_opname" placeholder="Input Tanggal Opname"
+                                                value="{{ old('tanggal_opname') }}"
                                                 class="form-control @error('tanggal_opname') is-invalid @enderror" />
                                             @error('tanggal_opname')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="small mb-1" for="">Keterangan</label>
+                                        <label class="small mb-1" for="keterangan">Keterangan</label>
                                         <textarea class="form-control" id="keterangan" type="text" name="keterangan"
-                                            placeholder="Input Kode Opname" value="{{ old('keterangan') }}"
+                                            placeholder="Input Keterangan Opname" value="{{ old('keterangan') }}"
                                             class="form-control @error('keterangan') is-invalid @enderror"> </textarea>
                                         @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
                                         </div> @enderror
@@ -125,8 +131,6 @@
 
                     {{-- CARD 2 --}}
                     <div class="tab-pane fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
-                        
-                        {{-- <h5 class="card-title">Input Jumlah Penerimaan Sparepart</h5> --}}
                         <div class="card card-icon">
                             <div class="row no-gutters">
                                 <div class="col-auto card-icon-aside bg-primary">
@@ -140,37 +144,44 @@
                                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                                 <div class="row">
                                                     <div class="col-sm-12">
-                                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
-                                                            width="100%" cellspacing="0" role="grid"
+                                                        <table class="table table-bordered table-hover dataTable"
+                                                            id="dataTable" width="100%" cellspacing="0" role="grid"
                                                             aria-describedby="dataTable_info" style="width: 100%;">
                                                             <thead>
                                                                 <tr role="row">
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
                                                                         aria-label="Name: activate to sort column descending"
                                                                         style="width: 20px;">No</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Position: activate to sort column ascending"
                                                                         style="width: 80px;">Kode</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Position: activate to sort column ascending"
                                                                         style="width: 180px;">Nama Sparepart</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Office: activate to sort column ascending"
                                                                         style="width: 70px;">Jenis Sparepart</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Start date: activate to sort column ascending"
                                                                         style="width: 70px;">Merk</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Salary: activate to sort column ascending"
                                                                         style="width: 40px;">Satuan</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
                                                                         aria-label="Actions: activate to sort column ascending"
                                                                         style="width: 100px;">Actions</th>
                                                                 </tr>
@@ -182,7 +193,8 @@
                                                                         {{ $loop->iteration}}</th>
                                                                     <td>{{ $item->kode_sparepart }}</td>
                                                                     <td>{{ $item->nama_sparepart }}</td>
-                                                                    <td>{{ $item->Jenissparepart->jenis_sparepart }}</td>
+                                                                    <td>{{ $item->Jenissparepart->jenis_sparepart }}
+                                                                    </td>
                                                                     <td>{{ $item->Merksparepart->merk_sparepart }}</td>
                                                                     <td>{{ $item->Konversi->satuan }}</td>
                                                                     <td>
@@ -213,6 +225,13 @@
                     </div>
 
                     <div class="tab-pane fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
+                        <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
+                                class="fas fa-times"></i>
+                            Anda belum memasukan sparepart!
+                            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
                         <h3 class="text-primary">Step 3</h3>
                         <h5 class="card-title">Konfirmasi Jumlah Retur Sparepart</h5>
                         <div class="datatable">
@@ -270,7 +289,8 @@
                         <hr class="my-4">
                         <div class="d-flex justify-content-between">
                             <button class="btn btn-light" type="button">Previous</button>
-                            <button class="btn btn-primary" type="button">Submit</button>
+                            <button class="btn btn-primary" type="button" data-toggle="modal"
+                                data-target="#Modalsumbit">Submit</button>
                         </div>
                     </div>
                     </form>
@@ -279,6 +299,27 @@
         </div>
     </div>
 </main>
+
+<div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success-soft">
+                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Form Pembelian</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">Apakah Form yang Anda inputkan sudah benar?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="button"
+                        onclick="tambahsparepart(event,{{ $sparepart }})">Ya!Sudah</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @forelse ($sparepart as $item)
 <div class="modal fade" id="Modaltambah-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
@@ -290,8 +331,7 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="" method="POST" class="d-inline">
-                @csrf
+            <form action="" id="form-{{ $item->id_sparepart }}" method="POST" class="d-inline">
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="small mb-1" for="jumlah_real">Masukan Stock Real</label>
@@ -299,15 +339,14 @@
                             placeholder="Input Stock Real" value="{{ old('jumlah_real') }}"></input>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="keterangan">Masukan Keterangan</label>
-                        <textarea class="form-control" name="keterangan" type="text" id="keterangan"
-                            placeholder="Input Keterangan" value="{{ old('keterangan') }}"></textarea>
+                        <label class="small mb-1" for="keterangan_detail">Masukan Keterangan</label>
+                        <input class="form-control" name="keterangan_detail" type="text" id="keterangan_detail"
+                            placeholder="Input Keterangan" value="{{ old('keterangan_detail') }}"></input>
                     </div>
                 </div>
-
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="submit">Tambah</button>
+                    <button class="btn btn-success" type="button" data-dismiss="modal">Tambah</button>
                 </div>
             </form>
         </div>
@@ -316,10 +355,59 @@
 @empty
 @endforelse
 
-
 <script>
+    function tambahsparepart(event, sparepart) {
+        event.preventDefault()
+        var form1 = $('#form1')
+        var kode_opname = form1.find('input[name="kode_opname"]').val()
+        var id_pegawai = $('#id_pegawai').val()
+        var tanggal_opname = form1.find('input[name="tanggal_opname"]').val()
+        var approve = form1.find('input[name="approve"]').val()
+        var keterangan = form1.find('input[name="keterangan"]').val()
+        var dataform2 = []
+        var _token = form1.find('input[name="_token"]').val()
+
+        for (var i = 0; i < sparepart.length; i++) {
+            var form = $('#form-' + sparepart[i].id_sparepart)
+            var jumlah_real = form.find('input[name="jumlah_real"]').val()
+            var keterangan_detail = form.find('input[name="keterangan_detail"]').val()
+
+            if (jumlah_real == 0 | jumlah_real == '') {
+                continue
+            } else {
+                var id_sparepart = sparepart[i].id_sparepart
+                var obj = {
+                    id_sparepart: id_sparepart,
+                    jumlah_real: jumlah_real,
+                    keterangan_detail: keterangan_detail
+                }
+                dataform2.push(obj)
+            }
+        }
+
+        if (dataform2.length == 0) {
+            var alert = $('#alertsparepartkosong').show()
+        } else {
+            var data = {
+                _token: _token,
+                kode_opname: kode_opname,
+                id_pegawai: id_pegawai,
+                tanggal_opname: tanggal_opname,
+                approve: approve,
+                keterangan: keterangan,
+                sparepart: dataform2
+            }
+
+            $.ajax({
+                method: 'post',
+                url: '/inventory/Stockopname/Opname',
+                data: data,
+            })
+        }
+    }
+
     $(document).ready(function () {
-        $('#validasierror').click();
+        $('#tambahsparepart').click();
     });
 
 </script>

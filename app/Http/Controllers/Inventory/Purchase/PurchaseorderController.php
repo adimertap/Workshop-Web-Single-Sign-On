@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inventory\Purchase;
 use App\Http\Controllers\Controller;
 use App\Model\Accounting\Akun;
 use App\Model\Inventory\Purchase\PO;
+use App\Model\Inventory\Purchase\POdetail;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
@@ -40,8 +41,9 @@ class PurchaseorderController extends Controller
         $akun = Akun::all();    
         $supplier = Supplier::all();
         $sparepart = Sparepart::all();
+        $pegawai = Pegawai::all();
 
-        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','akun'));
+        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','akun','pegawai'));
     }
 
     /**
@@ -52,7 +54,13 @@ class PurchaseorderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $po = PO::create($data);
+        $po->Detailsparepart()->sync($request->sparepart);
+
+        // return $request;
+        return response()->json($request);
     }
 
     /**
@@ -63,7 +71,8 @@ class PurchaseorderController extends Controller
      */
     public function show($id_po)
     {
-        $po = PO::with('Detail.Sparepart.Hargasparepart')->findOrFail($id_po);
+        $po = PO::with('Detailsparepart')->findOrFail($id_po);
+        // dd($po);
 
         return view('pages.inventory.purchase.po.detail')->with([
             'po' => $po
@@ -103,6 +112,7 @@ class PurchaseorderController extends Controller
     {
         $PO = PO::findOrFail($id_po);
         
+        POdetail::where('id_po', $id_po)->delete();
         $PO->delete();
 
         return redirect()->back()->with('messagehapus','Data Pembelian Berhasil dihapus');

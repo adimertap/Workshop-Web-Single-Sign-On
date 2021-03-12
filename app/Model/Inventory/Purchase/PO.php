@@ -3,6 +3,7 @@
 namespace App\Model\Inventory\Purchase;
 
 use App\Model\Accounting\Akun;
+use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
@@ -38,9 +39,9 @@ class PO extends Model
 
     public $timestamps = true;
 
-    public function Detail()
+    public function Detailsparepart()
     {
-        return $this->hasMany(POdetail::class,'id_po');
+        return $this->belongsToMany(Sparepart::class,'tb_inventory_detpo','id_po','id_sparepart');
     }
 
     public function Akun()

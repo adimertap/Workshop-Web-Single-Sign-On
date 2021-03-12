@@ -59,10 +59,7 @@
         <div class="col-lg-8">
             <div class="card mb-4">
                 <div class="card card-header-actions">
-                    <div class="card-header ">List Sparepart
-                        <a href="{{ route('Opname.edit',$opname->id_opname) }}" class="btn btn-sm btn-primary "> Edit
-                            Data Opname</a>
-                    </div>
+                    <div class="card-header ">List Sparepart</div>
                 </div>
                 <div class="card-body">
                     <div class="alert alert-info alert-icon" role="alert">
@@ -114,12 +111,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($opname->Detail as $detail)
+                                            @forelse ($opname->Detailsparepart as $detail)
                                             <tr role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
-                                                <td>{{ $detail->Sparepart->nama_sparepart }}</td>
-                                                <td>{{ $detail->Sparepart->Rak->nama_rak }}</td>
+                                                <td>{{ $detail->nama_sparepart }}</td>
+                                                <td>{{ $detail->Rak->nama_rak }}</td>
                                                 <td>{{ $detail->jumlah_real }}</td>
                                                 <td>
                                                     @if($opname->approve == 'Pending')

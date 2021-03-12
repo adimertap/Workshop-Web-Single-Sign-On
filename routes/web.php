@@ -386,7 +386,7 @@ Route::prefix('inventory/pembelian')
 
         Route::resource('purchase-order', 'PurchaseorderController');
 
-        Route::get('PO/{id_po}/set-status', 'PurchaseorderController@setStatus')
+        Route::post('PO/{id_po}/set-status', 'PurchaseorderController@setStatus')
             ->name('po-status-kirim');
     });
 
