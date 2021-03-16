@@ -128,10 +128,7 @@
                         <div class="form-group">
                             <label class="small mb-1" for="kode_merk">Kode Merk</label>
                             <input class="form-control" name="kode_merk" type="text" id="kode_merk"
-                                placeholder="Input Kode Merk" value="{{ old('kode_merk') }}"
-                                class="form-control @error('kode_merk') is-invalid @enderror">
-                            @error('kode_merk')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                                placeholder="Input Kode Merk" value="{{ $kode_merk }}" readonly>
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>

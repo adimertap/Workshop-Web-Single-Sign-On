@@ -8,6 +8,7 @@ use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class PO extends Model
 {
@@ -57,5 +58,11 @@ class PO extends Model
     public function Pegawai()
     {
         return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
+    }
+
+    public static function getId(){
+        // return $this->orderBy('id_sparepart')->take(1)->get();
+        return $getId = DB::table('tb_inventory_po')->orderBy('id_po','DESC')->take(1)->get();
+
     }
 }

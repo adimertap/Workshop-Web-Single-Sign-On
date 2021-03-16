@@ -4,6 +4,7 @@ namespace App\Model\Inventory;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Merksparepart extends Model
 {
@@ -32,5 +33,11 @@ class Merksparepart extends Model
 
     public function jenissparepart(){
         return $this->belongsTo(Jenissparepart::class,'id_jenis_sparepart','id_jenis_sparepart');
+    }
+
+    public static function getId(){
+        // return $this->orderBy('id_sparepart')->take(1)->get();
+        return $getId = DB::table('tb_inventory_master_merk_sparepart')->orderBy('id_merk','DESC')->take(1)->get();
+
     }
 }

@@ -17,8 +17,15 @@ class MasterdatarakController extends Controller
     public function index()
     {
         $rak = Rak::get();
+        $id = Rak::getId();
+        foreach($id as $value);
+        $idlama = $value->id_rak;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
+
+        $kode_rak = 'RK/'.$idbaru.'/'.$blt;
         
-        return view('pages.inventory.masterdata.raksparepart', compact('rak'));
+        return view('pages.inventory.masterdata.raksparepart', compact('rak','kode_rak'));
         
     }
 
@@ -40,10 +47,20 @@ class MasterdatarakController extends Controller
      */
     public function store(Rakrequest $request)
     {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->nama_rak);
+        $id = Rak::getId();
+        foreach($id as $value);
+        $idlama = $value->id_rak;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
 
-        Rak::create($data);
+        $kode_rak = 'RK/'.$idbaru.'/'.$blt;
+
+        $rak = new Rak;
+        $rak->kode_rak = $kode_rak;
+        $rak->nama_rak = $request->nama_rak;
+        $rak->jenis_rak = $request->jenis_rak;
+        $rak->save();
+
         return redirect()->route('rak.index')->with('messageberhasil','Data Rak Berhasil ditambahkan');
     }
 
@@ -78,6 +95,7 @@ class MasterdatarakController extends Controller
      */
     public function update(Rakrequest $request, $id_rak)
     {
+
         $rak = Rak::findOrFail($id_rak);
         $rak->kode_rak = $request->kode_rak;
         $rak->nama_rak = $request->nama_rak;

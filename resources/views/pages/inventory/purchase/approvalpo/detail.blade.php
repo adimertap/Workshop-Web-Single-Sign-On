@@ -10,12 +10,12 @@
                 <h1 class="mb-0">Detail Pembelian {{ $po->kode_po }}</h1>
                 <div class="small">
                     <span class="font-weight-500 text-primary">Detail</span>
-                    · Pembelian · Sparepart 
+                    · Pembelian · Sparepart
                 </div>
             </div>
             <div>
                 <div class="col-12 col-xl-auto mb-3">
-                    <a href="{{ route('approvalpo') }}"
+                    <a href="{{ route('approval-po.index') }}"
                         class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
                 </div>
             </div>
@@ -32,23 +32,40 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label class="small mb-1" for="kode_po">Kode Pembelian</label>
-                        <input class="form-control form-control-sm" id="kode_po" type="text"
-                            name="kode_po" value="{{ $po->kode_po }}" readonly />
+                        <input class="form-control form-control-sm" id="kode_po" type="text" name="kode_po"
+                            value="{{ $po->kode_po }}" readonly />
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="id_pegawai">Pegawai</label>
-                        <input class="form-control form-control-sm" id="id_pegawai" type="text"
-                            name="id_pegawai" value="{{ $po->Pegawai->nama_pegawai }}" readonly />
+                        <input class="form-control form-control-sm" id="id_pegawai" type="text" name="id_pegawai"
+                            value="{{ $po->Pegawai->nama_pegawai }}" readonly />
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="tanggal_po">Tanggal Pembelian</label>
-                        <input class="form-control form-control-sm" id="tanggal_po" type="date"
-                            name="tanggal_po" value="{{ $po->tanggal_po }}" readonly />
+                        <input class="form-control form-control-sm" id="tanggal_po" type="date" name="tanggal_po"
+                            value="{{ $po->tanggal_po }}" readonly />
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="approve_po">Approve Owner</label>
+                            <input class="form-control form-control-sm" id="approve_po" type="text" name="approve_po"
+                                value="{{ $po->approve_po }}" readonly />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="approve_ap">Approve AP</label>
+                            <input class="form-control form-control-sm" id="approve_ap" type="text" name="approve_ap"
+                                value="{{ $po->approve_ap }}" readonly />
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="id_akun">Akun</label>
-                        <input class="form-control form-control-sm" id="id_akun" type="text"
-                            name="id_akun" value="{{ $po->Akun->nama_akun }}" readonly />
+                        <input class="form-control form-control-sm" id="id_akun" type="text" name="id_akun"
+                            value="{{ $po->Akun->nama_akun }}" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="keterangan">Keterangan Pembelian</label>
+                        <input class="form-control form-control-sm" id="keterangan" type="text" name="keterangan"
+                            value="{{ $po->keterangan }}" readonly />
                     </div>
                     <hr class="my-4" />
                 </div>
@@ -58,7 +75,8 @@
         <div class="col-lg-8">
             <div class="card mb-4">
                 <div class="card card-header-actions">
-                    <div class="card-header ">List Sparepart</div>
+                    <div class="card-header ">List Sparepart
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="alert alert-info alert-icon" role="alert">
@@ -67,7 +85,7 @@
                         </div>
                         <div class="alert-icon-content">
                             <h5 class="alert-heading" class="small">Sparepart Info</h5>
-                            Sparepart Pesanan Pembelian 
+                            Sparepart Pesanan Pembelian
                         </div>
                     </div>
                     <div class="datatable">
@@ -106,15 +124,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($po->Detail as $detail)
+                                            {{--  --}}
+                                            @forelse ($po->Detailsparepart as $detail)
                                             <tr role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
-                                                <td>{{ $detail->Sparepart->nama_sparepart }}</td>
-                                                <td>{{ $detail->Sparepart->Merksparepart->merk_sparepart }}</td>
-                                                <td>{{ $detail->qty }}</td>
-                                                <td>{{ $detail->Sparepart->Konversi->satuan }}</td>
-                                                <td>{{ $detail->Sparepart->Hargasparepart->harga_beli }}</td>
+                                                <td>{{ $detail->nama_sparepart }}</td>
+                                                <td>{{ $detail->Merksparepart->merk_sparepart }}</td>
+                                                <td>{{ $detail->detPO->qty }}</td>
+                                                <td>{{ $detail->Konversi->satuan }}</td>
+                                                <td>Rp. {{ number_format($detail->Hargasparepart->harga_beli,0,',','.') }}</td>
                                             </tr>
                                             @empty
                                             <tr>

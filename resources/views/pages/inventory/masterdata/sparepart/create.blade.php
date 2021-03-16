@@ -66,10 +66,7 @@
                                             <label class="small mb-1" for="kode_sparepart">Kode Sparepart</label>
                                             <input class="form-control" id="kode_sparepart" type="text"
                                                 name="kode_sparepart" placeholder="Input Kode Sparepart"
-                                                value="{{ old('kode_sparepart') }}"
-                                                class="form-control @error('kode_sparepart') is-invalid @enderror" />
-                                            @error('kode_sparepart')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
+                                                value="{{ $kode_sparepart }}" readonly/>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="nama_sparepart">Nama Sparepart</label>
@@ -144,15 +141,15 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="stock">Stock</label>
-                                            <input class="form-control" id="stock" type="text" name="stock"
+                                            <input class="form-control" id="stock" type="number" name="stock"
                                                 placeholder="Input Stock Sparepart" value="{{ old('stock') }}""
                                                 class=" form-control @error('stock') is-invalid @enderror" />
                                             @error('stock')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="stock_min">Stock Min</label>
-                                            <input class="form-control" id="stock_min" type="text" name="stock_min"
+                                            <label class="small mb-1" for="stock_min">Stock Minimum</label>
+                                            <input class="form-control" id="stock_min" type="number" name="stock_min"
                                                 placeholder="Input Nama Sparepart" value="{{ old('stock_min') }}""
                                                 class=" form-control @error('stock_min') is-invalid @enderror" />
                                             @error('stock_min')<div class="text-danger small mb-1">{{ $message }}

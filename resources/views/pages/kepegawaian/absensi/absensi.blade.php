@@ -2,7 +2,7 @@
 
 @section('content')
 <main>
-    <div class="container mt-5">
+    <div class="container mt-3">
         <!-- Custom page header alternative example-->
         <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
             <div class="mr-4 mb-3 mb-sm-0">
@@ -51,7 +51,7 @@
                     </div>
                     <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Menu Absensi</h2>
                     <p style="text-align: center">Pilih pegawai yang akan dilakukan absensi <a target="_blank"
-                            rel="nofollow" href="https://undraw.co/">Daftar Pegawai</a> Klik presensi untuk melakukan
+                            rel="nofollow" href="{{ route('pegawai.index') }}">Daftar Pegawai</a> Klik presensi untuk melakukan
                         absensi kepada pegawai bengkel
 
                         {{-- <hr class="my-4" /> --}}
@@ -179,7 +179,7 @@
 
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="submit">Tambah</button>
+                    <button class="btn btn-primary" type="submit">Tambah</button>
                 </div>
             </form>
         </div>

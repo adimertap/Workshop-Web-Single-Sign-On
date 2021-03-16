@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Inventory\Jenissparepart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use PhpParser\Node\Expr\New_;
 
 class MasterdatamerksparepartController extends Controller
 {
@@ -22,10 +23,17 @@ class MasterdatamerksparepartController extends Controller
             'jenissparepart'])->get();
             
         $jenis_sparepart = Jenissparepart::all();
+        $id = Merksparepart::getId();
+        foreach($id as $value);
+        $idlama = $value->id_merk;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
+
+        $kode_merk = 'MRK/'.$idbaru.'/'.$blt;
         // // Cek nilai merksparepart -> array
         // // dd($merksparepart); 
 
-        return view('pages.inventory.masterdata.merksparepart',compact('merksparepart','jenis_sparepart'));
+        return view('pages.inventory.masterdata.merksparepart',compact('merksparepart','jenis_sparepart','kode_merk'));
     }
 
     /**
@@ -46,10 +54,20 @@ class MasterdatamerksparepartController extends Controller
      */
     public function store(Merksparepartrequest $request)
     {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->merk_sparepart);
+        $id = Merksparepart::getId();
+        foreach($id as $value);
+        $idlama = $value->id_merk;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
 
-        Merksparepart::create($data);
+        $kode_merk = 'MRK/'.$idbaru.'/'.$blt;
+
+        $merksparepart = new Merksparepart;
+        $merksparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
+        $merksparepart->kode_merk = $kode_merk;
+        $merksparepart->merk_sparepart = $request->merk_sparepart;
+
+        $merksparepart->save();
         return redirect()->route('merk-sparepart.index')->with('messageberhasil','Data Merk Sparepart Berhasil ditambahkan');
     }
 

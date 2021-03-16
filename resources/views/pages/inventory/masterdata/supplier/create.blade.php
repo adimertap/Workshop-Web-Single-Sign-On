@@ -61,11 +61,7 @@
                                             <label class="small mb-1" for="kode_supplier">Kode Supplier</label>
                                             <input class="form-control" name="kode_supplier" type="text"
                                                 id="kode_supplier" placeholder="Input Kode Supplier"
-                                                value="{{ old('kode_supplier') }}"
-                                                class="form-control @error('kode_supplier') is-invalid @enderror">
-                                            @error('kode_supplier')<div class="text-danger small mb-1">
-                                                {{ $message }}
-                                            </div> @enderror
+                                                value="{{ $kode_supplier }}" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="nama_supplier">Nama Supplier</label>

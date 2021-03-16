@@ -18,7 +18,15 @@ class MasterdatabankaccountController extends Controller
     {
         $bankaccount = Bankaccount::get();
 
-        return view('pages.accounting.masterdata.bankaccount', compact('bankaccount'));
+        $id = Bankaccount::getId();
+        foreach($id as $value);
+        $idlama = $value->id_bank_account;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
+
+        $kode_bank = 'BANK/'.$idbaru.'/'.$blt;
+
+        return view('pages.accounting.masterdata.bankaccount', compact('bankaccount','kode_bank'));
     }
 
     /**
@@ -39,14 +47,24 @@ class MasterdatabankaccountController extends Controller
      */
     public function store(Bankaccountrequest $request)
     {
+        
+        $id = Bankaccount::getId();
+        foreach($id as $value);
+        $idlama = $value->id_bank_account;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
+
+        $kode_bank = 'BANK/'.$idbaru.'/'.$blt;
+
         $bankaccount = new Bankaccount;
         $bankaccount->nama_bank = $request->nama_bank;
+        $bankaccount->kode_bank = $kode_bank;
         $bankaccount->nama_account = $request->nama_account;
         $bankaccount->jenis_account = $request->jenis_account;
         $bankaccount->nomor_rekening = $request->nomor_rekening;
         $bankaccount->alamat_account = $request->alamat_account;
         // $rak=Rak::all()
-
+        
         $bankaccount->save();
         return redirect()->back()->with('messageberhasil','Data Bank Account Berhasil ditambahkan');
     }

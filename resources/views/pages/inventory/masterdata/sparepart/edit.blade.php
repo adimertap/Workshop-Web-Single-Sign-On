@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-cog"></i></div>
-                            Edit Data Sparepart {{ $item->nama_sparepart }}
+                            Edit Data Sparepart
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
@@ -47,29 +47,33 @@
                         aria-labelledby="wizard1-tab">
                         <div class="row justify-content-center">
                             <div class="col-xxl-6 col-xl-8">
-                                <h3 class="text-primary">Step 1</h3>
-                                <h5 class="card-title">Input Formulir Identitas Diri</h5>
-                                <form action="{{ route('sparepart.store') }}" method="POST">
+                                <h3 class="text-primary">{{ $item->nama_sparepart }}</h3>
+                                <h5 class="card-title">Ubah Data Sparepart</h5>
+                                <form action="{{ route('sparepart.update',$item->id_sparepart) }}" method="POST">
+                                    @method('PUT')
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="kode_sparepart">Kode Sparepart</label>
-                                            <input class="form-control" id="kode_sparepart" type="text" name="kode_sparepart"
-                                                value="{{ $item->kode_sparepart }}" />
+                                            <input class="form-control" id="kode_sparepart" type="text"
+                                                name="kode_sparepart" value="{{ $kode_sparepart }}" readonly/>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="nama_sparepart">Nama Sparepart</label>
-                                            <input class="form-control" id="nama_sparepart" type="text" name="nama_sparepart"
-                                            value="{{ $item->nama_sparepart }}"  />
+                                            <input class="form-control" id="nama_sparepart" type="text"
+                                                name="nama_sparepart" value="{{ $item->nama_sparepart }}" />
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
-                                            <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart">
-                                                <option value="{{ $item->Jenisparepart->jenis_sparepart }}">{{ $item->Jenisparepart->jenis_sparepart }}</option>
-                                                @foreach ($jenis_sparepart as $item)
-                                                    <option value="{{ $item->id_jenis_sparepart }}">{{ $item->jenis_sparepart }}
+                                            <select class="form-control" name="id_jenis_sparepart"
+                                                id="id_jenis_sparepart">
+                                                <option value="{{ $item->Jenissparepart->jenis_sparepart }}">
+                                                    {{ $item->Jenissparepart->jenis_sparepart }}</option>
+                                                @foreach ($jenis_sparepart as $jenissparepart)
+                                                <option value="{{ $jenissparepart->id_jenis_sparepart }}">
+                                                    {{ $jenissparepart->jenis_sparepart }}
                                                 </option>
                                                 @endforeach
                                             </select>
@@ -77,29 +81,54 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_merk">Merk Sparepart</label>
                                             <select class="form-control" name="id_merk" id="id_merk">
-                                                <option value="{{ $merk_sparepart->Merksparepart->merk_sparepart }}">{{ $merk_sparepart->Merksparepart->merk_sparepart }}</option>
-                                                @foreach ($merk_sparepart as $item)
-                                                    <option value="{{ $item->id_merk }}">{{ $item->merk_sparepart }}
+                                                <option value="{{ $item->Merksparepart->merk_sparepart }}">
+                                                    {{ $item->Merksparepart->merk_sparepart }}</option>
+                                                @foreach ($merk_sparepart as $merksparepart)
+                                                <option value="{{ $merksparepart->id_merk }}">
+                                                    {{ $merksparepart->merk_sparepart }}
                                                 </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="small mb-1" for="id_konversi">Konversi Satuan</label>
-                                        <select class="form-control" name="id_konversi" id="id_konversi">
-                                            <option value="{{ $konversi->Konversi->satuan }}">{{ $konversi->Konversi->satuan }}</option>
-                                            @foreach ($konversi as $item)
-                                            <option value="{{ $item->id_konversi }}">{{ $item->satuan }}
-                                            </option>
-                                            @endforeach
-                                        </select>
+                                    <div class="row"> 
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1" for="id_konversi">Konversi Satuan</label>
+                                            <select class="form-control" name="id_konversi" id="id_konversi">
+                                                <option value="{{ $item->Konversi->satuan }}">
+                                                    {{ $item->Konversi->satuan }}</option>
+                                                @foreach ($konversi as $konversisatuan)
+                                                <option value="{{ $konversisatuan->id_konversi }}">
+                                                    {{ $konversisatuan->satuan }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1" for="id_rak">Tempat Rak</label>
+                                            <select class="form-control" name="id_rak" id="id_rak">
+                                                <option value="{{ $item->Rak->nama_rak }}">
+                                                    {{ $item->Rak->nama_rak }}</option>
+                                                @foreach ($rak as $raks)
+                                                <option value="{{ $raks->id_rak }}">
+                                                    {{ $raks->nama_rak }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                    
-                                    {{-- Validasi Error --}}
-                                    @if (count($errors) > 0)
-                                    @endif
-
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1" for="stock">Stock</label>
+                                            <input class="form-control" id="stock" type="text" name="stock"
+                                                value="{{ $item->stock }}"/>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1" for="stock_min">Stock Min</label>
+                                            <input class="form-control" id="stock_min" type="text" name="stock_min"
+                                                value="{{ $item->stock_min }}" />
+                                        </div>
+                                    </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
                                         <button class="btn btn-light" type="button">Previous</button>
@@ -112,13 +141,8 @@
                 </div>
             </div>
         </div>
+    </div>
 </main>
 
-<script>
-    $(document).ready(function () {
-        $('#validasierror').click();
-    });
-
-</script>
 
 @endsection

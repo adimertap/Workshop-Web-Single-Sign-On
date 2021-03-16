@@ -25,7 +25,7 @@ class Merksparepartrequest extends FormRequest
     {
         return [
             'id_jenis_sparepart' => 'required|exists:tb_inventory_master_jenis_sparepart,id_jenis_sparepart',
-            'kode_merk' => 'required',
+            // 'kode_merk' => 'required',
     	    'merk_sparepart' => 'required'
         ];
     }

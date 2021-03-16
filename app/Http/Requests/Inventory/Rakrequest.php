@@ -24,7 +24,7 @@ class Rakrequest extends FormRequest
     public function rules()
     {
         return [
-            'kode_rak' => 'required',
+            // 'kode_rak' => 'required',
             'nama_rak' => 'required',
             'jenis_rak' => 'required|string|in:Fast Moving,Slow Moving,Sales',
         ];

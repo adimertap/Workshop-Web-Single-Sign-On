@@ -17,8 +17,15 @@ class MasterdatafopController extends Controller
     public function index()
     {
         $fop = Fop::get();
+        $id = Fop::getId();
+        foreach($id as $value);
+        $idlama = $value->id_fop;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
 
-        return view('pages.accounting.masterdata.fop', compact('fop'));
+        $kode_fop = 'FOP/'.$idbaru.'/'.$blt;
+
+        return view('pages.accounting.masterdata.fop', compact('fop','kode_fop'));
     }
 
     /**
@@ -39,8 +46,17 @@ class MasterdatafopController extends Controller
      */
     public function store(Foprequest $request)
     {
+        $id = Fop::getId();
+        foreach($id as $value);
+        $idlama = $value->id_fop;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
+
+        $kode_fop = 'FOP/'.$idbaru.'/'.$blt;
+
         $fop = new Fop;
         $fop->nama_fop = $request->nama_fop;
+        $fop->kode_fop = $kode_fop;
         
         // $rak=Rak::all()
 

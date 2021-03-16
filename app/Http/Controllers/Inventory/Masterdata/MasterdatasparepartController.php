@@ -50,7 +50,15 @@ class MasterdatasparepartController extends Controller
         $gallery = Gallery::all();
         $rak = Rak::all();
 
-        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_sparepart','merk_sparepart','konversi','gallery','rak')); 
+        $id = Sparepart::getId();
+        foreach($id as $value);
+        $idlama = $value->id_sparepart;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
+
+        $kode_sparepart = 'SP/'.$idbaru.'/'.$blt;
+
+        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_sparepart','merk_sparepart','konversi','gallery','rak','kode_sparepart')); 
     }
 
     /**
@@ -76,12 +84,20 @@ class MasterdatasparepartController extends Controller
             }
         }
 
+        $id = Sparepart::getId();
+        foreach($id as $value);
+        $idlama = $value->id_sparepart;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
+
+        $kode_sparepart = 'SP/'.$idbaru.'/'.$blt;
+
         $sparepart = new Sparepart;
         $sparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
         $sparepart->id_merk = $request->id_merk;
         $sparepart->id_konversi = $request->id_konversi;
         $sparepart->id_rak = $request->id_rak;
-        $sparepart->kode_sparepart = $request->kode_sparepart;
+        $sparepart->kode_sparepart = $kode_sparepart;
         $sparepart->nama_sparepart = $request->nama_sparepart;
         $sparepart->stock = $request->stock;
         $sparepart->stock_min = $request->stock_min;
@@ -92,7 +108,7 @@ class MasterdatasparepartController extends Controller
         $gallery->id_sparepart = $sparepart->id_sparepart;
         $gallery->save();
 
-        return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil diubah');
+        return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil ditambah');
     }
 
 
@@ -127,18 +143,27 @@ class MasterdatasparepartController extends Controller
      */
     public function edit($id_sparepart)
     {
-        $sparepart = Sparepart::findOrFail($id_sparepart);
+        $item = Sparepart::findOrFail($id_sparepart);
         $jenis_sparepart = Jenissparepart::all();
         $merk_sparepart = Merksparepart::all();
         $konversi = Konversi::all();
         $rak = Rak::all();
+
+        $id = Sparepart::getId();
+        foreach($id as $value);
+        $idlama = $value->id_sparepart;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
+
+        $kode_sparepart = 'SP/'.$idbaru.'/'.$blt;
         
         return view('pages.inventory.masterdata.sparepart.edit',[
-            'item' => $sparepart,
+            'item' => $item,
             'jenis_sparepart' => $jenis_sparepart,
             'merk_sparepart' => $merk_sparepart,
             'konversi' => $konversi,
             'rak' => $rak,
+            'kode_sparepart' => $kode_sparepart
         ]);
         //
     }
@@ -153,17 +178,20 @@ class MasterdatasparepartController extends Controller
     public function update(Sparepartrequest $request, $id_sparepart)
     {
         $sparepart = Sparepart::findOrFail($id_sparepart);
-        $sparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
-        $sparepart->id_merk = $request->id_merk;
-        $sparepart->id_konversi = $request->id_konversi;
-        $sparepart->id_rak = $request->id_rak;
-        $sparepart->kode_sparepart = $request->kode_sparepart;
-        $sparepart->nama_sparepart = $request->nama_sparepart;
-        $sparepart->stock = $request->stock;
-        $sparepart->stock_min = $request->stock_min;
+        // $sparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
+        // $sparepart->id_merk = $request->id_merk;
+        // $sparepart->id_konversi = $request->id_konversi;
+        // $sparepart->id_rak = $request->id_rak;
+        // $sparepart->kode_sparepart = $request->kode_sparepart;
+        // $sparepart->nama_sparepart = $request->nama_sparepart;
+        // $sparepart->stock = $request->stock;
+        // $sparepart->stock_min = $request->stock_min;
+        
+        // $sparepart->update();
+        $data = $request->all();
 
-        $sparepart->update();
-        return redirect()->back()->with('messageberhasil','Data Sparepart Berhasil diubah');
+        $sparepart->update($data);
+        return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil diubah');
     }
 
     /**

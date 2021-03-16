@@ -35,10 +35,18 @@ class OpnameController extends Controller
             'Pegawai',
         ])->get();
 
+        $id = Opname::getId();
+        foreach($id as $value);
+        $idlama = $value->id_opname;
+        $idbaru = $idlama + 1;
+        $blt = date('d-m-Y');
+
+        $kode_opname = 'OPNAME-'.$idbaru.'/'.$blt;
+
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
 
-        return view('pages.inventory.stockopname.create', compact('opname','pegawai', 'sparepart'));
+        return view('pages.inventory.stockopname.create', compact('opname','pegawai', 'sparepart', 'kode_opname'));
     }
 
     /**
@@ -49,9 +57,22 @@ class OpnameController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $id = Opname::getId();
+        foreach($id as $value);
+        $idlama = $value->id_opname;
+        $idbaru = $idlama + 1;
+        $blt = date('d-m-Y');
 
-        $opname = Opname::create($data);
+        $kode_opname = 'OPNAME-'.$idbaru.'/'.$blt;
+
+        $opname = new Opname;
+        $opname->id_pegawai = $request->id_pegawai;
+        $opname->kode_opname = $kode_opname;
+        $opname->tanggal_opname = $request->tanggal_opname;
+        $opname->keterangan = $request->keterangan;
+        $opname->approve =  $request->approve;
+
+        $opname->save();
         $opname->Detailsparepart()->sync($request->sparepart);
 
         return $request;

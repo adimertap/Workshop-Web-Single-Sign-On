@@ -56,10 +56,10 @@
                                                 style="width: 20px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 50px;">Kode</th>
+                                                style="width: 80px;">Kode</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 150px;">Nama Sparepart</th>
+                                                style="width: 100px;">Nama Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
                                                 style="width: 70px;">Jenis Sparepart</th>

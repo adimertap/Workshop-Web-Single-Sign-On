@@ -61,6 +61,9 @@
                                                 style="width: 30px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 70px;">Kode FOP</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 300px;">Form Of Payment</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
@@ -71,6 +74,7 @@
                                         @forelse ($fop as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td>{{ $item->kode_fop }}</td>
                                             <td>{{ $item->nama_fop }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
@@ -117,6 +121,11 @@
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
                         <hr>
                         </hr>
+                        <div class="form-group">
+                            <label class="small mb-1" for="kode_fop">Kode FOP</label>
+                            <input class="form-control" name="kode_fop" type="text" id="kode_fop"
+                                placeholder="Input Nama FOP" value="{{ $kode_fop }}" readonly/>
+                        </div>
                         <div class="form-group">
                             <label class="small mb-1" for="nama_fop">Nama Form of Payment</label>
                             <input class="form-control" name="nama_fop" type="text" id="nama_fop"

@@ -38,12 +38,20 @@ class PurchaseorderController extends Controller
             'Akun','Supplier','Pegawai'
         ])->get();
 
+        $id = PO::getId();
+        foreach($id as $value);
+        $idlama = $value->id_po;
+        $idbaru = $idlama + 1;
+        $blt = date('d-m-Y');
+
+        $kode_po = 'PO-'.$idbaru.'/'.$blt;
+
         $akun = Akun::all();    
         $supplier = Supplier::all();
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
 
-        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','akun','pegawai'));
+        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','akun','pegawai','kode_po'));
     }
 
     /**
@@ -54,11 +62,29 @@ class PurchaseorderController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $id = PO::getId();
+        foreach($id as $value);
+        $idlama = $value->id_po;
+        $idbaru = $idlama + 1;
+        $blt = date('d-m-Y');
 
-        $po = PO::create($data);
+        $kode_po = 'PO-'.$idbaru.'/'.$blt;
+
+        $po = new PO;
+        $po->kode_po = $kode_po;
+        $po->id_pegawai = $request->id_pegawai;
+        $po->id_akun = $request->id_akun;
+        $po->id_supplier = $request->id_supplier;
+        $po->tanggal_po = $request->tanggal_po;
+        $po->approve_po = $request->approve_po;
+        $po->approve_ap = $request->approve_ap;
+        $po->status = $request->status;
+        $po->keterangan_owner = $request->keterangan_owner;
+        $po->keterangan_ap = $request->keterangan_ap;
+
+        $po->save();
         $po->Detailsparepart()->sync($request->sparepart);
-
+        
         // return $request;
         return response()->json($request);
     }

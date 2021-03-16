@@ -3,6 +3,7 @@
 namespace App\Model\Inventory;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Jenissparepart extends Model
 {
@@ -28,4 +29,5 @@ class Jenissparepart extends Model
     public function Mastermerk(){
         return $this->hasMany(Merksparepart::class, 'id_merk','id_merk');
     }
+
 }

@@ -18,6 +18,7 @@ class MasterdatasupplierController extends Controller
         $supplier = Supplier::get();
         
         
+        
         return view('pages.inventory.masterdata.supplier.supplier',compact('supplier') );
     }
 
@@ -28,7 +29,15 @@ class MasterdatasupplierController extends Controller
      */
     public function create()
     {
-        return view('pages.inventory.masterdata.supplier.create');
+        $id = Supplier::getId();
+        foreach($id as $value);
+        $idlama = $value->id_supplier;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
+
+        $kode_supplier = 'SUP/'.$idbaru.'/'.$blt;
+
+        return view('pages.inventory.masterdata.supplier.create',compact('kode_supplier'));
     }
 
     /**
@@ -39,10 +48,25 @@ class MasterdatasupplierController extends Controller
      */
     public function store(Supplierrequest $request)
     {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->nama_supplier);
+        $id = Supplier::getId();
+        foreach($id as $value);
+        $idlama = $value->id_supplier;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
 
-        Supplier::create($data);
+        $kode_supplier = 'SUP/'.$idbaru.'/'.$blt;
+
+        $supplier = new Supplier;
+        $supplier->kode_supplier = $kode_supplier;
+        $supplier->nama_supplier = $request->nama_supplier;
+        $supplier->telephone = $request->telephone;
+        $supplier->alamat_supplier = $request->alamat_supplier;
+        $supplier->rekening_supplier = $request->rekening_supplier;
+        $supplier->email = $request->email;
+        $supplier->kode_pos = $request->kode_pos;
+        $supplier->nama_sales = $request->nama_sales;
+        $supplier->save();
+
         return redirect()->route('supplier.index')->with('messageberhasil','Data Supplier Berhasil ditambahkan');
     }
 
@@ -67,8 +91,17 @@ class MasterdatasupplierController extends Controller
     {
         $supplier = Supplier::findOrFail($id_supplier);
         
+        $id = Supplier::getId();
+        foreach($id as $value);
+        $idlama = $value->id_supplier;
+        $idbaru = $idlama + 1;
+        $blt = date('m-Y');
+
+        $kode_supplier = 'SUP/'.$idbaru.'/'.$blt;
+
         return view('pages.inventory.masterdata.supplier.edit',[
             'supplier' => $supplier,
+            'kode_supplier' => $kode_supplier
         ]);
     }
 

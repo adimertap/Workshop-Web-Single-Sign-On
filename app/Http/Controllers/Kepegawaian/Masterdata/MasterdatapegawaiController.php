@@ -34,7 +34,7 @@ class MasterdatapegawaiController extends Controller
             'jabatan'])->get();
 
         $jabatan = Jabatan::all();
-
+        
         return view('pages.kepegawaian.masterdata.pegawai.create', compact('pegawai','jabatan')); 
     }
 
@@ -63,7 +63,8 @@ class MasterdatapegawaiController extends Controller
         $pegawai->tanggal_masuk = $request->tanggal_masuk;
         
         $pegawai->save();
-        return redirect()->route('pegawai.index')->with('messageberhasil','Data Pegawai Berhasil ditambahkan');
+
+        return redirect()->route('masterdatapegawai')->with('messageberhasil','Data Pegawai Berhasil ditambahkan');
     }
 
     /**
@@ -81,7 +82,6 @@ class MasterdatapegawaiController extends Controller
             'item' => $item,
             'jabatan' => $jabatan
         ]);
-
 
     }
 

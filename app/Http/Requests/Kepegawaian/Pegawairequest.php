@@ -24,7 +24,7 @@ class Pegawairequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_lengkap' => 'required',
+            'nama_pegawai' => 'required',
             'nama_panggilan' => 'required',
             'id_jabatan' => 'required|exists:tb_kepeg_master_jabatan,id_jabatan',
             'tempat_lahir' => 'required',

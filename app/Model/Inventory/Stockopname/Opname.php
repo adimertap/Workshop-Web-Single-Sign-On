@@ -6,6 +6,7 @@ use App\Model\Inventory\Sparepart;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Opname extends Model
 {
@@ -39,5 +40,11 @@ class Opname extends Model
     public function Pegawai()
     {
         return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
-    }  
+    }
+    
+    public static function getId(){
+        // return $this->orderBy('id_sparepart')->take(1)->get();
+        return $getId = DB::table('tb_inventory_opname')->orderBy('id_opname','DESC')->take(1)->get();
+
+    }
 }

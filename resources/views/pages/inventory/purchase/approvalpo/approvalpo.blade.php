@@ -59,16 +59,16 @@
                                             style="width: 50px;">Kode PO</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 150px;">Pegawai</th>
+                                            style="width: 120px;">Pegawai</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 100px;">Supplier</th>
+                                            style="width: 90px;">Supplier</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Start date: activate to sort column ascending"
                                             style="width: 50px;">Tanggal</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Start date: activate to sort column ascending"
-                                            style="width: 50px;">Approval AP</th>
+                                            style="width: 30px;">Approval AP</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
                                             style="width: 90px;">Actions</th>

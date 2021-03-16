@@ -18,6 +18,7 @@ class MasterdatajenistransaksiController extends Controller
     {
         $jenis_transaksi = Jenistransaksi::with([
             'akun'])->get();
+        
 
         return view('pages.accounting.masterdata.jenistransaksi', compact('jenis_transaksi','akun'));
     }

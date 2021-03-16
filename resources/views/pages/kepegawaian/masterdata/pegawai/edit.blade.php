@@ -77,8 +77,8 @@
                                             <label class="small mb-1" for="id_jabatan">Jabatan</label>
                                             <select class="form-control" name="id_jabatan" id="id_jabatan">
                                                 <option value="{{ $item->jabatan->nama_jabatan }}">{{ $item->jabatan->nama_jabatan }}</option>
-                                                @foreach ($jabatan as $item)
-                                                    <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}
+                                                @foreach ($jabatan as $jabatan)
+                                                    <option value="{{ $jabatan->id_jabatan }}">{{ $jabatan->nama_jabatan }}
                                                 </option>
                                                 @endforeach
                                             </select>
@@ -118,7 +118,7 @@
                                         <div class="form-group col-md-6 mb-0">
                                             <label class="small mb-1" for="agama">Agama</label>
                                             <select name="agama" id="agama" class="form-control">
-                                                <option value="{{ $item->agama }}"></option>
+                                                <option value="{{ $item->agama }}">{{ $item->agama }}</option>
                                                 <option value="Hindu">Hindu</option>
                                                 <option value="Islam">Islam</option>
                                                 <option value="Budha">Budha</option>
@@ -132,7 +132,7 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="status_perkawinan">Status Perkawinan</label>
                                             <select name="status_perkawinan" id="status_perkawinan" class="form-control">
-                                                <option value="{{ $item->status_perkawinan }}"></option>
+                                                <option value="{{ $item->status_perkawinan }}">{{ $item->status_perkawinan }}</option>
                                                 <option value="lajang">Lajang</option>
                                                 <option value="Sudah Menikah">Sudah Menikah</option>
                                             </select>
@@ -142,7 +142,7 @@
                                                 Terakhir</label>
                                             <select name="pendidikan_terakhir" id="pendidikan_terakhir"
                                                 class="form-control">
-                                                <option value="{{ $item->pendidikan_terakhir }}"></option>
+                                                <option value="{{ $item->pendidikan_terakhir }}">{{ $item->pendidikan_terakhir }}</option>
                                                 <option value="SLTP">SLTP</option>
                                                 <option value="SLTA">SLTA</option>
                                                 <option value="STM/SMK">STM/SMK</option>

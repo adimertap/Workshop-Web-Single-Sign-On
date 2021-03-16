@@ -2,7 +2,7 @@
 
 @section('content')
 <main>
-    <div class="container mt-5">
+    <div class="container mt-4">
         <!-- Custom page header alternative example-->
         <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
             <div class="mr-4 mb-3 mb-sm-0">
@@ -40,12 +40,12 @@
                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 13rem;"
                             src="/backend/src/assets/img/ilustrasi/logistic.jpg" alt="">
                     </div>
-                    <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Selamat Datang, I Putu Adi
-                        Merta Pratama</h2>
+                    <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Selamat Datang</h2>
                     <p></p>
-                    <p style="text-align: center">Add some quality, svg illustrations to your project courtesy of <a
-                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated
-                        collection of beautiful svg images that you can use completely free and without attribution!</p>
+                    <p style="text-align: center">Selamat Datang, Cek <a
+                            target="_blank" rel="nofollow" href="{{ route('sparepart.index') }}">Daftar Sparepart</a>,
+                        Terdapat 3 Menu utama dalam inventory diantaranya yakni master data, inventory system serta data
+                        penjualan online sparepart!</p>
                 </div>
             </div>
         </div>
@@ -77,11 +77,9 @@
                             </svg></button>
                         <div class="dropdown-menu dropdown-menu-right animated--fade-in-up"
                             aria-labelledby="dropdownPeople1" style="">
-                            <a class="dropdown-item"
-                                href="https://themes.startbootstrap.com/sb-admin-pro/dashboard-2.html#!">Lihat
+                            <a class="dropdown-item" href="{{ route('dashboardpegawai') }}">Lihat
                                 Profile</a>
-                            <a class="dropdown-item"
-                                href="https://themes.startbootstrap.com/sb-admin-pro/dashboard-2.html#!">Edit
+                            <a class="dropdown-item" href="{{ route('dashboardpegawai') }}">Edit
                                 Profile</a>
                         </div>
                     </div>
@@ -134,7 +132,7 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <div class="small font-weight-bold text-primary mb-1">Sparepart Akan Habis</div>
-                        <div class="h6">Jumlah : 20</div>
+                        <div class="h6">Total : 20</div>
                     </div>
                     <div class="ml-2"><svg class="svg-inline--fa fa-dollar-sign fa-w-9 fa-2x text-gray-200"
                             aria-hidden="true" focusable="false" data-prefix="fas" data-icon="dollar-sign" role="img"
@@ -144,17 +142,16 @@
                             </path>
                         </svg><!-- <i class="fas fa-dollar-sign fa-2x text-gray-200"></i> -->
                     </div>
+
                 </div>
-            </div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small stretched-link" href="#">Cek Disini</a>
-                <div class="small"><svg class="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true"
-                        focusable="false" data-prefix="fas" data-icon="angle-right" role="img"
-                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
-                        <path fill="currentColor"
-                            d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
-                        </path>
-                    </svg><!-- <i class="fas fa-angle-right"></i> -->
+                <div class="text-xs font-weight-bold text-success d-inline-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-trending-up mr-1">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                    Hari ini +2
                 </div>
             </div>
         </div>
@@ -166,7 +163,7 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <div class="small font-weight-bold text-secondary mb-1">Daftar Stock Opname</div>
-                        <div class="h6">Jumlah : 3 </div>
+                        <div class="h6">Total: {{ $opname_daftar }}</div>
                     </div>
                     <div class="ml-2"><svg class="svg-inline--fa fa-tag fa-w-16 fa-2x text-gray-200" aria-hidden="true"
                             focusable="false" data-prefix="fas" data-icon="tag" role="img"
@@ -177,16 +174,14 @@
                         </svg><!-- <i class="fas fa-tag fa-2x text-gray-200"></i> -->
                     </div>
                 </div>
-            </div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small stretched-link" href="#">Cek Disini</a>
-                <div class="small"><svg class="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true"
-                        focusable="false" data-prefix="fas" data-icon="angle-right" role="img"
-                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
-                        <path fill="currentColor"
-                            d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
-                        </path>
-                    </svg><!-- <i class="fas fa-angle-right"></i> -->
+                <div class="text-xs font-weight-bold text-success d-inline-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-trending-up mr-1">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                    Hari ini +3
                 </div>
             </div>
         </div>
@@ -198,7 +193,7 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <div class="small font-weight-bold text-success mb-1">Daftar PO Belum Datang</div>
-                        <div class="h6">Jumlah : 3</div>
+                        <div class="h6">Total: {{ $po_belum_datang }}</div>
                     </div>
                     <div class="ml-2"><svg class="svg-inline--fa fa-mouse-pointer fa-w-10 fa-2x text-gray-200"
                             aria-hidden="true" focusable="false" data-prefix="fas" data-icon="mouse-pointer" role="img"
@@ -209,16 +204,14 @@
                         </svg><!-- <i class="fas fa-mouse-pointer fa-2x text-gray-200"></i> -->
                     </div>
                 </div>
-            </div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small stretched-link" href="#">Cek Disini</a>
-                <div class="small"><svg class="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true"
-                        focusable="false" data-prefix="fas" data-icon="angle-right" role="img"
-                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
-                        <path fill="currentColor"
-                            d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
-                        </path>
-                    </svg><!-- <i class="fas fa-angle-right"></i> -->
+                <div class="text-xs font-weight-bold text-success d-inline-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-trending-up mr-1">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                    Hari ini +1
                 </div>
             </div>
         </div>
@@ -229,8 +222,97 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <div class="small font-weight-bold text-info mb-1">Purchasing Belum Approve</div>
-                        <div class="h6">Jumlah : 1</div>
+                        <div class="small font-weight-bold text-info mb-1">Penjualan Online</div>
+                        <div class="h6">Total: {{ $po_belum_datang }}</div>
+                    </div>
+                    <div class="ml-2"><svg class="svg-inline--fa fa-percentage fa-w-12 fa-2x text-gray-200"
+                            aria-hidden="true" focusable="false" data-prefix="fas" data-icon="percentage" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                                d="M109.25 173.25c24.99-24.99 24.99-65.52 0-90.51-24.99-24.99-65.52-24.99-90.51 0-24.99 24.99-24.99 65.52 0 90.51 25 25 65.52 25 90.51 0zm256 165.49c-24.99-24.99-65.52-24.99-90.51 0-24.99 24.99-24.99 65.52 0 90.51 24.99 24.99 65.52 24.99 90.51 0 25-24.99 25-65.51 0-90.51zm-1.94-231.43l-22.62-22.62c-12.5-12.5-32.76-12.5-45.25 0L20.69 359.44c-12.5 12.5-12.5 32.76 0 45.25l22.62 22.62c12.5 12.5 32.76 12.5 45.25 0l274.75-274.75c12.5-12.49 12.5-32.75 0-45.25z">
+                            </path>
+                        </svg><!-- <i class="fas fa-percentage fa-2x text-gray-200"></i> -->
+                    </div>
+                </div>
+                <div class="text-xs font-weight-bold text-success d-inline-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-trending-up mr-1">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                    Hari ini +1
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{{-- CARD LINE 2 --}}
+<div class="row">
+    <div class="col-md-6">
+        <!-- Dashboard info widget 2-->
+        <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-secondary h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <div class="small font-weight-bold text-secondary mb-1">Opname Approval</div>
+                        <div class="small">
+                            <span class="font-weight-400 text-primary">Pending</span>
+                            Jumlah : {{ $opname_pending }}
+                        </div>
+                        <div class="small">
+                            <span class="font-weight-400 text-primary">Approved</span>
+                            Jumlah : {{ $opname_approve }}
+                        </div>
+                        <div class="small">
+                            <span class="font-weight-400 text-primary">Not Approved</span>
+                            Jumlah : {{ $opname_tolak }}
+                        </div>
+                    </div>
+                    <div class="ml-2"><svg class="svg-inline--fa fa-tag fa-w-16 fa-2x text-gray-200" aria-hidden="true"
+                            focusable="false" data-prefix="fas" data-icon="tag" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                                d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z">
+                            </path>
+                        </svg><!-- <i class="fas fa-tag fa-2x text-gray-200"></i> -->
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small stretched-link" href="{{ route('approval-po.index') }}">Cek disini</a>
+                <div class="small"><svg class="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true"
+                        focusable="false" data-prefix="fas" data-icon="angle-right" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                            d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
+                        </path>
+                    </svg><!-- <i class="fas fa-angle-right"></i> -->
+                </div>
+            </div> --}}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <!-- Dashboard info widget 4-->
+        <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-info h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <div class="small font-weight-bold text-info mb-1">Purchasing Approval</div>
+                        <div class="small">
+                            <span class="font-weight-400 text-primary">Pending</span>
+                            Jumlah : {{ $po_pending }}
+                        </div>
+                        <div class="small">
+                            <span class="font-weight-400 text-primary">Approve</span>
+                            Jumlah : {{ $po_approve }}
+                        </div>
+                        <div class="small">
+                            <span class="font-weight-400 text-primary">Not Approved</span>
+                            Jumlah : {{ $po_tolak }}
+                        </div>
                     </div>
                     <div class="ml-2"><svg class="svg-inline--fa fa-percentage fa-w-12 fa-2x text-gray-200"
                             aria-hidden="true" focusable="false" data-prefix="fas" data-icon="percentage" role="img"
@@ -242,8 +324,8 @@
                     </div>
                 </div>
             </div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small stretched-link" href="#">Cek Disini</a>
+            {{-- <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small stretched-link" href="{{ route('approval-po.index') }}">Cek disini</a>
                 <div class="small"><svg class="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true"
                         focusable="false" data-prefix="fas" data-icon="angle-right" role="img"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
@@ -252,10 +334,10 @@
                         </path>
                     </svg><!-- <i class="fas fa-angle-right"></i> -->
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
-</div>
+
 </div>
 
 @endsection

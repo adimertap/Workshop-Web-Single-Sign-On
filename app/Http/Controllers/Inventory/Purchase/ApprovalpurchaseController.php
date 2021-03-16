@@ -52,7 +52,8 @@ class ApprovalpurchaseController extends Controller
      */
     public function show($id_po)
     {
-        $po = PO::with('Detail.Sparepart.Hargasparepart')->findOrFail($id_po);
+        $po = PO::with('Detailsparepart')->findOrFail($id_po);
+        // dd($po);
 
         return view('pages.inventory.purchase.approvalpo.detail')->with([
             'po' => $po

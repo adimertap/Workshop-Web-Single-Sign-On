@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Model\Inventory\Purchase\PO;
+use App\Model\Inventory\Stockopname\Opname;
 use Illuminate\Http\Request;
 
 class DashboardinventoryController extends Controller
@@ -14,7 +16,19 @@ class DashboardinventoryController extends Controller
      */
     public function index()
     {
-        return view('pages.inventory.dashboard.dashboardinventory');
+
+
+        return view('pages.inventory.dashboard.dashboardinventory',[
+            'po_daftar' => PO::count(),
+            'po_belum_datang' => PO::where('status','Dikirim')->count(),
+            'po_pending' => PO::where('approve_po','Pending')->count(),
+            'po_approve' => PO::where('approve_po','Approved')->count(),
+            'po_tolak' => PO::where('approve_po','Not Approved')->count(),
+            'opname_daftar' => Opname::count(),
+            'opname_pending' => Opname::where('approve','Pending')->count(),
+            'opname_approve' => Opname::where('approve','Approved')->count(),
+            'opname_tolak' => Opname::where('approve','Not Approved')->count()
+        ]);
     }
 
     /**

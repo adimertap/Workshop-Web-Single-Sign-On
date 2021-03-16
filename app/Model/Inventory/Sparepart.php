@@ -3,8 +3,10 @@
 namespace App\Model\Inventory;
 
 use App\Model\Inventory\Purchase\PO;
+use App\Model\Inventory\Purchase\POdetail;
 use App\Model\Inventory\Stockopname\Opname;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Sparepart extends Model
 {
@@ -25,10 +27,12 @@ class Sparepart extends Model
     ];
 
     protected $hidden =[ 
-    
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function Jenissparepart(){
         return $this->belongsTo(Jenissparepart::class,'id_jenis_sparepart','id_jenis_sparepart');
@@ -51,15 +55,21 @@ class Sparepart extends Model
     }
 
     public function Hargasparepart(){
-        return $this->belongsTo(Hargasparepart::class,'id_harga','id_harga');
+        return $this->hasOne(Hargasparepart::class,'id_sparepart');
     }
 
     public function PO(){
         return $this->belongsToMany(PO::class, 'tb_inventory_detpo','id_sparepart','id_po');
     }
 
+
     public function Opname(){
         return $this->belongsToMany(Opname::class, 'tb_inventory_detopname','id_sparepart','id_opname');
     }
 
+    public static function getId(){
+        // return $this->orderBy('id_sparepart')->take(1)->get();
+        return $getId = DB::table('tb_inventory_master_sparepart')->orderBy('id_sparepart','DESC')->take(1)->get();
+
+    }
 }

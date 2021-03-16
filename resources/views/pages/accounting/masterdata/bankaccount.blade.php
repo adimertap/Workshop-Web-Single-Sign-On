@@ -61,6 +61,9 @@
                                                 style="width: 20px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 40px;">Kode Bank</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 80px;">Nama Bank</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
@@ -83,6 +86,7 @@
                                         @forelse ($bankaccount as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td>{{ $item->kode_bank }}</td>
                                             <td>{{ $item->nama_bank }}</td>
                                             <td>{{ $item->nama_account }}</td>
                                             <td>{{ $item->jenis_account }}</td>
@@ -135,13 +139,20 @@
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
                         <hr>
                         </hr>
-                        <div class="form-group">
-                            <label class="small mb-1" for="nama_bank">Nama Bank</label>
-                            <input class="form-control" name="nama_bank" type="text" id="nama_bank"
-                                placeholder="Input Nama Bank" value="{{ old('nama_bank') }}"
-                                class="form-control @error('nama_bank') is-invalid @enderror" />
-                            @error('nama_bank')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1" for="kode_bank">Kode Bank</label>
+                                <input class="form-control" name="kode_bank" type="text" id="kode_bank"
+                                    placeholder="Input Nama Bank" value="{{ $kode_bank }}" readonly/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1" for="nama_bank">Nama Bank</label>
+                                <input class="form-control" name="nama_bank" type="text" id="nama_bank"
+                                    placeholder="Input Nama Bank" value="{{ old('nama_bank') }}"
+                                    class="form-control @error('nama_bank') is-invalid @enderror" />
+                                @error('nama_bank')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="nama_account">Nama Account</label>

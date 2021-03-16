@@ -77,10 +77,8 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="kode_opname">Kode Opname</label>
                                             <input class="form-control" id="kode_opname" type="text" name="kode_opname"
-                                                placeholder="Input Kode Opname" value="{{ old('kode_opname') }}"
-                                                class="form-control @error('kode_opname') is-invalid @enderror" />
-                                            @error('kode_opname')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
+                                                placeholder="Input Kode Opname" value="{{ $kode_opname }}"
+                                                readonly/>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_pegawai">Pegawai</label>

@@ -22,7 +22,6 @@
         </div>
     </header>
 
-
     <div class="container">
         <div class="card">
             <div class="card-header border-bottom">
@@ -94,8 +93,8 @@
                                                 class="form-control @error('id_jabatan') is-invalid @enderror">
                                                 <option>Pilih Jabatan</option>
                                                 @foreach ($jabatan as $item)
-                                                    <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}
-                                                    </option>
+                                                <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}
+                                                </option>
                                                 @endforeach
                                             </select>
                                             @error('id_jabatan')<div class="text-danger small mb-1">{{ $message }}
@@ -243,20 +242,14 @@
                                     <button class="btn btn-light" type="button">Previous</button>
                                     <button class="btn btn-primary" type="Submit">Submit</button>
                                 </div>
-                                </form>
+                            </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </main>
-
-<script>
-    $(document).ready(function () {
-        $('#validasierror').click();
-    });
-
-</script>
 
 @endsection
