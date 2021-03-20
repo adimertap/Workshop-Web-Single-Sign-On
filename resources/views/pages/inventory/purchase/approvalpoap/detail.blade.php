@@ -1,4 +1,4 @@
-@extends('layouts.Admin.admininventory')
+@extends('layouts.Admin.adminaccounting')
 
 @section('content')
 {{-- HEADER --}}
@@ -15,7 +15,7 @@
             </div>
             <div>
                 <div class="col-12 col-xl-auto mb-3">
-                    <a href="{{ route('purchase-order.index') }}"
+                    <a href="{{ route('approval-po-ap.index') }}"
                         class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
                 </div>
             </div>
@@ -76,17 +76,6 @@
                         <div class="col">
                             <label class="small line-height-normal">:
                                 {{ $po->keterangan_owner }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">Keterangan AP
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label class="small line-height-normal">:
-                                {{ $po->keterangan_ap }}
                         </div>
                     </div>
                 </div>

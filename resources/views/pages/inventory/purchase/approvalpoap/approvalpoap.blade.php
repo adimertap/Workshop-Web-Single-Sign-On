@@ -97,7 +97,7 @@
                                         </td>
                                         <td>
                                             @if($item->approve_ap == 'Pending')
-                                            <a href="{{ route('approval-po.show', $item->id_po) }}"
+                                            <a href="{{ route('approval-po-ap.show', $item->id_po) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>

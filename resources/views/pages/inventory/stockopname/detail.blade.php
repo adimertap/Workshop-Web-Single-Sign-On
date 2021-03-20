@@ -52,6 +52,21 @@
                         </div>
                     </div>
                     <hr class="my-4" />
+                    <div class="small mb-2">
+                        <span class="font-weight-500 text-primary">Approval</span>
+                        Keterangan
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="d-flex flex-column font-weight-bold">
+                                <label class="small text-muted line-height-normal">Keterangan
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label class="small line-height-normal">:
+                                {{ $opname->keterangan }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -124,7 +139,7 @@
                                                     @elseif($opname->approve == 'Not Approved')
                                                     {{ $opname->approve }}
                                                     @elseif($opname->approve == 'Approved')
-                                                    {{ $detail->Sparepart->stock }}
+                                                    {{ $opname->approve }}
                                                     @else
                                                     <span>
                                                         @endif

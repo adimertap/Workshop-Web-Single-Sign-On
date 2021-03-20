@@ -21,9 +21,9 @@ class MasterdatarakController extends Controller
         foreach($id as $value);
         $idlama = $value->id_rak;
         $idbaru = $idlama + 1;
-        $blt = date('m-Y');
+        $blt = date('m');
 
-        $kode_rak = 'RK/'.$idbaru.'/'.$blt;
+        $kode_rak = 'RKSP-'.$idbaru.'/'.$blt;
         
         return view('pages.inventory.masterdata.raksparepart', compact('rak','kode_rak'));
         
@@ -51,9 +51,9 @@ class MasterdatarakController extends Controller
         foreach($id as $value);
         $idlama = $value->id_rak;
         $idbaru = $idlama + 1;
-        $blt = date('m-Y');
+        $blt = date('m');
 
-        $kode_rak = 'RK/'.$idbaru.'/'.$blt;
+        $kode_rak = 'RKSP-'.$idbaru.'/'.$blt;
 
         $rak = new Rak;
         $rak->kode_rak = $kode_rak;

@@ -186,7 +186,7 @@
                         <div class="form-group">
                             <label class="small" for="kode_merk">Kode Merk</label>
                             <input class="form-control" name="kode_merk" type="text" id="kode_merk"
-                                value="{{ $item->kode_merk }}">
+                                value="{{ $item->kode_merk }}" readonly>
                         </div>
                         <div class="form-group">
                             <label class="small" for="merk_sparepart">Merk Sparepart</label>

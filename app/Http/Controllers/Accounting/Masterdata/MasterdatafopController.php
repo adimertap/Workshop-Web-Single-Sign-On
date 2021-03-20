@@ -21,9 +21,9 @@ class MasterdatafopController extends Controller
         foreach($id as $value);
         $idlama = $value->id_fop;
         $idbaru = $idlama + 1;
-        $blt = date('m-Y');
+        $blt = date('m');
 
-        $kode_fop = 'FOP/'.$idbaru.'/'.$blt;
+        $kode_fop = 'AKFOP-'.$idbaru.'/'.$blt;
 
         return view('pages.accounting.masterdata.fop', compact('fop','kode_fop'));
     }
@@ -50,9 +50,9 @@ class MasterdatafopController extends Controller
         foreach($id as $value);
         $idlama = $value->id_fop;
         $idbaru = $idlama + 1;
-        $blt = date('m-Y');
+        $blt = date('m');
 
-        $kode_fop = 'FOP/'.$idbaru.'/'.$blt;
+        $kode_fop = 'AKFOP-'.$idbaru.'/'.$blt;
 
         $fop = new Fop;
         $fop->nama_fop = $request->nama_fop;

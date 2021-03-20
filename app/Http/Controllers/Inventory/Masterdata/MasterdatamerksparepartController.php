@@ -27,9 +27,9 @@ class MasterdatamerksparepartController extends Controller
         foreach($id as $value);
         $idlama = $value->id_merk;
         $idbaru = $idlama + 1;
-        $blt = date('m-Y');
+        $blt = date('m');
 
-        $kode_merk = 'MRK/'.$idbaru.'/'.$blt;
+        $kode_merk = 'MRKSP-'.$idbaru.'/'.$blt;
         // // Cek nilai merksparepart -> array
         // // dd($merksparepart); 
 
@@ -58,9 +58,9 @@ class MasterdatamerksparepartController extends Controller
         foreach($id as $value);
         $idlama = $value->id_merk;
         $idbaru = $idlama + 1;
-        $blt = date('m-Y');
+        $blt = date('m');
 
-        $kode_merk = 'MRK/'.$idbaru.'/'.$blt;
+        $kode_merk = 'MRKSP-'.$idbaru.'/'.$blt;
 
         $merksparepart = new Merksparepart;
         $merksparepart->id_jenis_sparepart = $request->id_jenis_sparepart;

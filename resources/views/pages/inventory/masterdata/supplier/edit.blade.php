@@ -62,7 +62,7 @@
                                             <label class="small mb-1" for="kode_supplier">Kode Supplier</label>
                                             <input class="form-control" name="kode_supplier" type="text"
                                                 id="kode_supplier" placeholder="Input Kode Supplier"
-                                                value="{{ $kode_supplier }}" readonly>
+                                                value="{{ $supplier->kode_supplier }}" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="nama_supplier">Nama Supplier</label>

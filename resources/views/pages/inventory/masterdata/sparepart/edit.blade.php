@@ -56,7 +56,7 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="kode_sparepart">Kode Sparepart</label>
                                             <input class="form-control" id="kode_sparepart" type="text"
-                                                name="kode_sparepart" value="{{ $kode_sparepart }}" readonly/>
+                                                name="kode_sparepart" value="{{ $item->kode_sparepart }}" readonly/>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="nama_sparepart">Nama Sparepart</label>
@@ -131,7 +131,7 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <button class="btn btn-light" type="button">Previous</button>
+                                        <button class="btn btn-light" type="button">Back</button>
                                         <button class="btn btn-primary" type="Submit">Submit</button>
                                     </div>
                                 </form>

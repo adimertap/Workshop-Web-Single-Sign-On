@@ -54,9 +54,9 @@ class MasterdatasparepartController extends Controller
         foreach($id as $value);
         $idlama = $value->id_sparepart;
         $idbaru = $idlama + 1;
-        $blt = date('m-Y');
+        $blt = date('m');
 
-        $kode_sparepart = 'SP/'.$idbaru.'/'.$blt;
+        $kode_sparepart = 'SP-'.$idbaru.'/'.$blt;
 
         return view('pages.inventory.masterdata.sparepart.create', compact('jenis_sparepart','merk_sparepart','konversi','gallery','rak','kode_sparepart')); 
     }
@@ -88,9 +88,9 @@ class MasterdatasparepartController extends Controller
         foreach($id as $value);
         $idlama = $value->id_sparepart;
         $idbaru = $idlama + 1;
-        $blt = date('m-Y');
+        $blt = date('m');
 
-        $kode_sparepart = 'SP/'.$idbaru.'/'.$blt;
+        $kode_sparepart = 'SP-'.$idbaru.'/'.$blt;
 
         $sparepart = new Sparepart;
         $sparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
@@ -148,14 +148,6 @@ class MasterdatasparepartController extends Controller
         $merk_sparepart = Merksparepart::all();
         $konversi = Konversi::all();
         $rak = Rak::all();
-
-        $id = Sparepart::getId();
-        foreach($id as $value);
-        $idlama = $value->id_sparepart;
-        $idbaru = $idlama + 1;
-        $blt = date('m-Y');
-
-        $kode_sparepart = 'SP/'.$idbaru.'/'.$blt;
         
         return view('pages.inventory.masterdata.sparepart.edit',[
             'item' => $item,
@@ -163,7 +155,6 @@ class MasterdatasparepartController extends Controller
             'merk_sparepart' => $merk_sparepart,
             'konversi' => $konversi,
             'rak' => $rak,
-            'kode_sparepart' => $kode_sparepart
         ]);
         //
     }

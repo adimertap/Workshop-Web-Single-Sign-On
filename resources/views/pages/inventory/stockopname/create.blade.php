@@ -400,6 +400,9 @@
                 method: 'post',
                 url: '/inventory/Stockopname/Opname',
                 data: data,
+                success: function (response) {
+                    console.log(response)
+                }
             })
         }
     }

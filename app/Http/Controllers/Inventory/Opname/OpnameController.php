@@ -7,6 +7,7 @@ use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Stockopname\Opname;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Null_;
 
 class OpnameController extends Controller
 {
@@ -41,10 +42,12 @@ class OpnameController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('d-m-Y');
 
-        $kode_opname = 'OPNAME-'.$idbaru.'/'.$blt;
+        $kode_opname = 'OP-'.$idbaru.'/'.$blt;
+    
 
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
+        
 
         return view('pages.inventory.stockopname.create', compact('opname','pegawai', 'sparepart', 'kode_opname'));
     }
@@ -63,7 +66,7 @@ class OpnameController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('d-m-Y');
 
-        $kode_opname = 'OPNAME-'.$idbaru.'/'.$blt;
+        $kode_opname = 'OP-'.$idbaru.'/'.$blt;
 
         $opname = new Opname;
         $opname->id_pegawai = $request->id_pegawai;

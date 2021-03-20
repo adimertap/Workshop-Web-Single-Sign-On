@@ -22,9 +22,9 @@ class MasterdatabankaccountController extends Controller
         foreach($id as $value);
         $idlama = $value->id_bank_account;
         $idbaru = $idlama + 1;
-        $blt = date('m-Y');
+        $blt = date('m');
 
-        $kode_bank = 'BANK/'.$idbaru.'/'.$blt;
+        $kode_bank = 'AKBA/'.$idbaru.'/'.$blt;
 
         return view('pages.accounting.masterdata.bankaccount', compact('bankaccount','kode_bank'));
     }
@@ -52,9 +52,9 @@ class MasterdatabankaccountController extends Controller
         foreach($id as $value);
         $idlama = $value->id_bank_account;
         $idbaru = $idlama + 1;
-        $blt = date('m-Y');
+        $blt = date('m');
 
-        $kode_bank = 'BANK/'.$idbaru.'/'.$blt;
+        $kode_bank = 'AKBA/'.$idbaru.'/'.$blt;
 
         $bankaccount = new Bankaccount;
         $bankaccount->nama_bank = $request->nama_bank;

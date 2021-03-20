@@ -17,8 +17,6 @@ class MasterdatasupplierController extends Controller
     {
         $supplier = Supplier::get();
         
-        
-        
         return view('pages.inventory.masterdata.supplier.supplier',compact('supplier') );
     }
 
@@ -33,9 +31,9 @@ class MasterdatasupplierController extends Controller
         foreach($id as $value);
         $idlama = $value->id_supplier;
         $idbaru = $idlama + 1;
-        $blt = date('m-Y');
+        $blt = date('m');
 
-        $kode_supplier = 'SUP/'.$idbaru.'/'.$blt;
+        $kode_supplier = 'SUP-'.$idbaru.'/'.$blt;
 
         return view('pages.inventory.masterdata.supplier.create',compact('kode_supplier'));
     }
@@ -52,9 +50,9 @@ class MasterdatasupplierController extends Controller
         foreach($id as $value);
         $idlama = $value->id_supplier;
         $idbaru = $idlama + 1;
-        $blt = date('m-Y');
+        $blt = date('m');
 
-        $kode_supplier = 'SUP/'.$idbaru.'/'.$blt;
+        $kode_supplier = 'SUP-'.$idbaru.'/'.$blt;
 
         $supplier = new Supplier;
         $supplier->kode_supplier = $kode_supplier;
@@ -90,18 +88,9 @@ class MasterdatasupplierController extends Controller
     public function edit($id_supplier)
     {
         $supplier = Supplier::findOrFail($id_supplier);
-        
-        $id = Supplier::getId();
-        foreach($id as $value);
-        $idlama = $value->id_supplier;
-        $idbaru = $idlama + 1;
-        $blt = date('m-Y');
-
-        $kode_supplier = 'SUP/'.$idbaru.'/'.$blt;
-
+    
         return view('pages.inventory.masterdata.supplier.edit',[
             'supplier' => $supplier,
-            'kode_supplier' => $kode_supplier
         ]);
     }
 

@@ -62,12 +62,22 @@
                         <input class="form-control form-control-sm" id="id_akun" type="text" name="id_akun"
                             value="{{ $po->Akun->nama_akun }}" readonly />
                     </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="keterangan">Keterangan Pembelian</label>
-                        <input class="form-control form-control-sm" id="keterangan" type="text" name="keterangan"
-                            value="{{ $po->keterangan }}" readonly />
-                    </div>
                     <hr class="my-4" />
+                    <div class="small mb-2">
+                        <span class="font-weight-500 text-primary">Approval</span>
+                        Keterangan
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="d-flex flex-column font-weight-bold">
+                                <label class="small text-muted line-height-normal">Keterangan AP
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label class="small line-height-normal">:
+                                {{ $po->keterangan_ap }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -131,7 +141,7 @@
                                                 </th>
                                                 <td>{{ $detail->nama_sparepart }}</td>
                                                 <td>{{ $detail->Merksparepart->merk_sparepart }}</td>
-                                                <td>{{ $detail->detPO->qty }}</td>
+                                                <td>{{ $detail->qty }}</td>
                                                 <td>{{ $detail->Konversi->satuan }}</td>
                                                 <td>Rp. {{ number_format($detail->Hargasparepart->harga_beli,0,',','.') }}</td>
                                             </tr>

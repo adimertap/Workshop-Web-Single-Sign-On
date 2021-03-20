@@ -308,9 +308,11 @@
                             <nav class="sidenav-menu-nested nav">
                                 <a class="nav-link " href="{{ route('approvalpo') }}">
                                     Purchase Order
+                                    <span class="badge badge-primary-soft text-primary ml-auto">New</span>
                                 </a>
                                 <a class="nav-link" href="{{ route('approvalopname') }}">
                                     Stock Opname
+                                    <span class="badge badge-primary-soft text-primary ml-auto">New</span>
                                 </a>
                             </nav>
                         </div>
