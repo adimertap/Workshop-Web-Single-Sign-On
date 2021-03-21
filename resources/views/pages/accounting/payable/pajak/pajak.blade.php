@@ -28,7 +28,7 @@
     <div class="card mb-4">
         <div class="card card-header-actions">
             <div class="card-header ">List Pajak
-                <a href="{{ route('purchase-order.create') }}" class="btn btn-sm btn-primary"> Tambah Pembayaran</a>
+                <a href="{{ route('pajak.create') }}" class="btn btn-sm btn-primary"> Tambah Pembayaran</a>
             </div>
         </div>
         <div class="card-body ">
@@ -145,6 +145,7 @@
     </div>
 </div>
 </main>
+
 
 {{-- Script Open Modal Callback --}}
 <script>

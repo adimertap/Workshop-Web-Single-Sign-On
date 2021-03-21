@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Accounting\Payable;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Inventory\Accounting\Payable\Pajak;
+use App\Model\Accounting\Jenistransaksi;
 use App\Model\Accounting\Payable\Bayarpajak;
 use App\Model\Accounting\Payable\Pajak as PayablePajak;
 use App\Model\Accounting\Payable\Pajakdetail;
 use App\Model\Accounting\Payable\Pembayaranpajak;
+use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
 
 class PajakController extends Controller
@@ -33,7 +35,18 @@ class PajakController extends Controller
      */
     public function create()
     {
-        //
+        $jenis_transaksi = Jenistransaksi::all();
+        $pegawai = Pegawai::all();
+
+        $id = Bayarpajak::getId();
+        foreach($id as $value);
+        $idlama = $value->id_pajak;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+
+        $kode_pajak = 'AKPJ-'.$idbaru.'/'.$blt;
+
+        return view('pages.accounting.payable.pajak.create', compact('jenis_transaksi','pegawai','kode_pajak')); 
     }
 
     /**

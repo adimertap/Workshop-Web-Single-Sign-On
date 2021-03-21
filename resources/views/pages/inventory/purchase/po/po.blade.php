@@ -156,6 +156,7 @@
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
+                                            
                                             @if($item->approve_po == 'Pending')
                                             <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Edit">

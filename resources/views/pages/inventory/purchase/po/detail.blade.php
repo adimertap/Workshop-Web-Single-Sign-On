@@ -64,8 +64,23 @@
                     </div>
                     <hr class="my-4" />
                     <div class="small mb-2">
-                        <span class="font-weight-500 text-primary">Approval</span>
-                        Keterangan
+                        <span class="font-weight-500 text-primary">Total</span>
+                        Biaya Keseluruhan
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="d-flex flex-column font-weight-bold">
+                                <label class="small text-muted line-height-normal">Total
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label class="small line-height-normal">:
+                                Rp. 
+                        </div>
+                    </div>
+                    <div class="small mb-2">
+                        <span class="font-weight-500 text-primary">Keterangan</span>
+                        Approval
                     </div>
                     <div class="row">
                         <div class="col-md-7">
@@ -137,11 +152,15 @@
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Satuan</th>
+                                                    style="width: 60px;">Satuan</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
                                                     style="width: 230px;">Harga Sparepart</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="Start date: activate to sort column ascending"
+                                                    style="width: 230px;">Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -155,6 +174,7 @@
                                                 <td>{{ $detail->qty }}</td>
                                                 <td>{{ $detail->Konversi->satuan }}</td>
                                                 <td>Rp. {{ number_format($detail->Hargasparepart->harga_beli,0,',','.') }}</td>
+                                                <td>Rp. </td>
                                             </tr>
                                             @empty
                                             <tr>

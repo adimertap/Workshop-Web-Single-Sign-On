@@ -10,6 +10,7 @@ use App\Model\Inventory\Rcv\Rcvdetail;
 use App\Model\Inventory\Supplier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Prf extends Model
 {
@@ -23,6 +24,8 @@ class Prf extends Model
         'id_supplier',
         'id_akun_bank',
         'id_fop',
+        'id_jenis_transaksi',
+        'id_pegawai',
         'kode_prf',
         'tanggal_prf',
         'tanggal_bayar',
@@ -64,5 +67,11 @@ class Prf extends Model
     public function Jenistransaksi()
     {
         return $this->belongsTo(Jenistransaksi::class,'id_jenis_transaksi','id_jenis_transaksi');
+    }
+    
+    public static function getId(){
+        // return $this->orderBy('id_sparepart')->take(1)->get();
+        return $getId = DB::table('tb_accounting_prf')->orderBy('id_prf','DESC')->take(1)->get();
+
     }
 }

@@ -76,28 +76,6 @@
                     <div class="row">
                         <div class="col-md-7">
                             <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">Pembayaran Melalui
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label class="small line-height-normal">:
-                                {{ $rcv->FOP->nama_fop }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">No. Rekening Supplier
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label class="small line-height-normal">:
-                                {{ $rcv->Supplier->rekening_supplier }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="d-flex flex-column font-weight-bold">
                                 <label class="small text-muted line-height-normal">Total Pembayaran
                             </div>
                         </div>

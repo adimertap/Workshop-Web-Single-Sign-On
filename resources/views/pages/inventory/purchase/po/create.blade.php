@@ -77,7 +77,7 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="kode_po">Kode Pembelian</label>
                                             <input class="form-control" id="kode_po" type="text" name="kode_po"
-                                                placeholder="Input Kode Receiving" value="{{ $kode_po }}" readonly/>
+                                                placeholder="Input Kode Receiving" value="{{ $kode_po }}" readonly />
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_pegawai">Pegawai</label>
@@ -152,7 +152,7 @@
 
                     {{-- CARD 2 --}}
                     <div class="tab-pane fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
-                       
+
                         {{-- <h5 class="card-title">Input Jumlah Penerimaan Sparepart</h5> --}}
                         <div class="card card-icon">
                             <div class="row no-gutters">
@@ -221,17 +221,25 @@
                                                             </thead>
                                                             <tbody>
                                                                 @forelse ($sparepart as $item)
-                                                                <tr role="row" class="odd">
+                                                                <tr id="item-{{ $item->id_sparepart }}" role="row"
+                                                                    class="odd">
                                                                     <th scope="row" class="small" class="sorting_1">
                                                                         {{ $loop->iteration}}</th>
-                                                                    <td>{{ $item->kode_sparepart }}</td>
-                                                                    <td>{{ $item->nama_sparepart }}</td>
-                                                                    <td>{{ $item->Jenissparepart->jenis_sparepart }}
+                                                                    <td class="kode_sparepart">
+                                                                        {{ $item->kode_sparepart }}</td>
+                                                                    <td class="nama_sparepart">
+                                                                        {{ $item->nama_sparepart }}</td>
+                                                                    <td class="jenis_sparepart">
+                                                                        {{ $item->Jenissparepart->jenis_sparepart }}
                                                                     </td>
-                                                                    <td>{{ $item->Merksparepart->merk_sparepart }}</td>
-                                                                    <td>{{ $item->Konversi->satuan }}</td>
-                                                                    <td>{{ $item->stock }}</td>
-                                                                    <td>Rp. {{ number_format($item->Hargasparepart->harga_beli,0,',','.') }}</td>
+                                                                    <td class="merk_sparepart">
+                                                                        {{ $item->Merksparepart->merk_sparepart }}</td>
+                                                                    <td class="satuan">{{ $item->Konversi->satuan }}
+                                                                    </td>
+                                                                    <td class="stock">{{ $item->stock }}</td>
+                                                                    <td class="harga_beli">Rp.
+                                                                        {{ number_format($item->Hargasparepart->harga_beli,2,',','.') }}
+                                                                    </td>
                                                                     <td>
                                                                         <a href="" class="btn btn-success btn-datatable"
                                                                             type="button" data-toggle="modal"
@@ -267,12 +275,12 @@
                             </button>
                         </div>
                         <div class="alert alert-success" id="alerttambah" role="alert" style="display:none"> <i
-                            class="fas fa-check"></i>
-                        Berhasil! Anda berhasil menambahkan sparepart!
-                        <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
+                                class="fas fa-check"></i>
+                            Berhasil! Anda berhasil menambahkan sparepart!
+                            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
                         <div class="card card-icon">
                             <div class="row no-gutters">
                                 <div class="col-auto card-icon-aside bg-primary">
@@ -283,12 +291,98 @@
                                         <h3 class="text-primary">Step 3</h3>
                                         <h5 class="card-title">Konfirmasi Pembelian</h5>
                                         <div class="datatable">
+                                            <div class="small mb-2">
+                                                <span class="font-weight-500 text-primary">Detail</span>
+                                                PO
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="d-flex flex-column font-weight-bold">
+                                                        <label class="small text-muted line-height-normal">Kode PO
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="small line-height-normal">: {{ $kode_po }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="d-flex flex-column font-weight-bold">
+                                                        <label class="small text-muted line-height-normal">Pegawai
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="small line-height-normal">: <span
+                                                            id="detailpegawai"></span>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="d-flex flex-column font-weight-bold">
+                                                        <label class="small text-muted line-height-normal">Supplier
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="small line-height-normal">: <span
+                                                            id="detailsupplier"></span>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="d-flex flex-column font-weight-bold">
+                                                        <label class="small text-muted line-height-normal">Tanggal Rcv
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="small line-height-normal">: <span
+                                                            id="detailtanggal"></span>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="d-flex flex-column font-weight-bold">
+                                                        <label class="small text-muted line-height-normal">Akun
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="small line-height-normal">: <span
+                                                            id="detailakun"></span>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="d-flex flex-column font-weight-bold">
+                                                        <label class="small text-muted line-height-normal">Approval
+                                                            Owner
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="small line-height-normal">: Pending
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="d-flex flex-column font-weight-bold">
+                                                        <label class="small text-muted line-height-normal">Approval AP
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="small line-height-normal">: Pending
+
+                                                </div>
+                                            </div>
                                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <table class="table table-bordered table-hover dataTable"
-                                                            id="dataTablekonfirmasi" width="100%" cellspacing="0" role="grid"
-                                                            aria-describedby="dataTable_info" style="width: 100%;">
+                                                            id="dataTablekonfirmasi" width="100%" cellspacing="0"
+                                                            role="grid" aria-describedby="dataTable_info"
+                                                            style="width: 100%;">
                                                             <thead>
                                                                 <tr role="row">
                                                                     <th class="sorting" tabindex="0"
@@ -325,7 +419,17 @@
                                                                         aria-controls="dataTable" rowspan="1"
                                                                         colspan="1"
                                                                         aria-label="Salary: activate to sort column ascending"
+                                                                        style="width: 40px;">Harga Beli</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
+                                                                        aria-label="Salary: activate to sort column ascending"
                                                                         style="width: 20px;">Quantity</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
+                                                                        aria-label="Salary: activate to sort column ascending"
+                                                                        style="width: 20px;">Total</th>
                                                                     <th class="sorting" tabindex="0"
                                                                         aria-controls="dataTable" rowspan="1"
                                                                         colspan="1"
@@ -333,8 +437,8 @@
                                                                         style="width: 100px;">Actions</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody>
-                                                               
+                                                            <tbody id='konfirmasi'>
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -351,11 +455,11 @@
                             <button class="btn btn-primary" type="button" data-toggle="modal"
                                 data-target="#Modalsumbit">Submit</button>
                         </div>
+                    </div>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
-    </div>
 </main>
 
 {{-- MODAL KONFIRMASI --}}
@@ -401,7 +505,8 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="button" data-dismiss="modal">Tambah</button>
+                    <button class="btn btn-success" onclick="konfirmsparepart(event, {{ $item->id_sparepart }})"
+                        type="button" data-dismiss="modal">Tambah</button>
                 </div>
             </form>
         </div>
@@ -409,6 +514,26 @@
 </div>
 @empty
 @endforelse
+
+<template id="template">
+    <tr role="row" class="odd">
+        <td class="kode_sparepart"></td>
+        <td class="nama_sparepart"></td>
+        <td class="jenis_sparepart"></td>
+        <td class="merk_sparepart"></td>
+        <td class="satuan"></td>
+        <td class="harga_beli"></td>
+        <td class="qty"></td>
+        <td class="total"></td> 
+        <td>
+            <a href="" class="btn btn-success btn-datatable"
+                type="button" data-toggle="modal"
+                data-target="">
+                <i class="fas fa-plus"></i>
+            </a>
+        </td>
+    </tr>
+</template>
 
 <script>
     function tambahsparepart(event, sparepart) {
@@ -438,7 +563,7 @@
                 }
                 dataform2.push(obj)
             }
-            
+
         }
 
         if (dataform2.length == 0) {
@@ -461,18 +586,87 @@
                 url: '/inventory/pembelian/purchase-order',
                 data: data,
                 success: function (response) {
-                    console.log(response)
-                    var alert = $('#alerttambah').show()
-                    $('#dataTablekonfirmasi tbody').append('<tr><td>'+id_sparepart+'</td><td>'+dataform2+'</td></tr>')
-                }, 
+                    window.location.href='/inventory/pembelian/purchase-order'
+                    
+                },
             });
         }
 
-// dataTablekonfirmasi
+        // dataTablekonfirmasi
     }
 
+    function konfirmsparepart(event, id_sparepart) {
+        var form = $('#form-' + id_sparepart)
+        var qty = form.find('input[name="qty"]').val()
+        if (qty == 0 | qty == '') {
+            alert('Quantity Kosong')
+        } else {
+            alert('Berhasil Menambahkan Sparepart')
+            var data = $('#item-'+id_sparepart)
+            var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
+            var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
+            var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
+            var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
+            var satuan = $(data.find('.satuan')[0]).text()
+            var harga_beli = $(data.find('.harga_beli')[0]).text()
+            var template = $($('#template').html())
+            var splitqty = harga_beli.split('Rp.')[1].replace('.','').replace(',00','')
+            var total = new Intl.NumberFormat('id',{
+                style: 'currency',
+                currency: 'IDR'
+            }).format(qty*splitqty)
+
+            $('#dataTablekonfirmasi').DataTable().row.add([
+                kode_sparepart,nama_sparepart,jenis_sparepart,merk_sparepart,satuan,harga_beli,qty,total
+            ]).draw();
+        }
+
+
+    }
+
+
     $(document).ready(function () {
-        $('#tambahsparepart').click();
+        $('#id_pegawai').on('change', function () {
+            var select = $(this).find('option:selected')
+            var textpegawai = select.text()
+            if (textpegawai == 'Pilih Pegawai') {
+                $('#detailpegawai').html('');
+            } else {
+                $('#detailpegawai').html(textpegawai);
+            }
+        })
+        $('#id_supplier').on('change', function () {
+            var select = $(this).find('option:selected')
+            var textsupplier = select.text()
+            if (textsupplier == 'Pilih Supplier') {
+                $('#detailsupplier').html('');
+            } else {
+                $('#detailsupplier').html(textsupplier);
+            }
+        })
+        $('#id_akun').on('change', function () {
+            var select = $(this).find('option:selected')
+            var textakun = select.text()
+            if (textakun == 'Pilih Akun') {
+                $('#detailakun').html('');
+            } else {
+                $('#detailakun').html(textakun);
+            }
+        })
+        $('#tanggal_po').on('change', function () {
+            var select = $(this)
+            var textdate = select.val()
+            var splitdate = textdate.split('-')
+            console.log(splitdate)
+            var datefix = new Date(splitdate[0], splitdate[1] - 1, splitdate[2])
+            var formatindodate = new Intl.DateTimeFormat('id', {
+                dateStyle: 'long'
+            }).format(datefix)
+            $('#detailtanggal').html(formatindodate);
+
+        })
+
+        $('#dataTablekonfirmasi').DataTable();
     });
 
 </script>

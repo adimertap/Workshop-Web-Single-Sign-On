@@ -6,6 +6,7 @@ use App\Model\Accounting\Jenistransaksi;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Bayarpajak extends Model
 {
@@ -47,4 +48,11 @@ class Bayarpajak extends Model
     {
         return $this->belongsTo(Jenistransaksi::class,'id_jenis_transaksi','id_jenis_transaksi');
     }
+
+    public static function getId(){
+        // return $this->orderBy('id_sparepart')->take(1)->get();
+        return $getId = DB::table('tb_accounting_pajak')->orderBy('id_pajak','DESC')->take(1)->get();
+
+    }
+
 }

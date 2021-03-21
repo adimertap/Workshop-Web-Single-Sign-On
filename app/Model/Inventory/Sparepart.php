@@ -62,7 +62,6 @@ class Sparepart extends Model
         return $this->belongsToMany(PO::class, 'tb_inventory_detpo','id_sparepart','id_po');
     }
 
-
     public function Opname(){
         return $this->belongsToMany(Opname::class, 'tb_inventory_detopname','id_sparepart','id_opname');
     }
