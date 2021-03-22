@@ -30,12 +30,14 @@ class MasterdatagalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($idSparePart)
     {
-        $sparepart = Sparepart::all();
+        $sparepart = Sparepart::find($idSparePart);
+        // $sparepart = Sparepart::all();
 
         return view('pages.inventory.masterdata.gallery.create')->with([
             'sparepart' => $sparepart
+            
         ]);
 
     }
@@ -48,7 +50,6 @@ class MasterdatagalleryController extends Controller
      */
     public function store(Galleryrequest $request)
     {
-        
           $image = new Gallery;
   
           if ($request->file('photo')) {
@@ -61,9 +62,11 @@ class MasterdatagalleryController extends Controller
   
           $image->photo = $imageName;
           $image->id_sparepart = $request->id_sparepart;
+        //   $image->id_sparepart = $idSparePart;
+          
           $image->save();
   
-          return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil diubah');
+          return redirect()->route('sparepart.gallery', $request->id_sparepart)->with('messageberhasil','Data Sparepart Berhasil diubah');
 
 
         // $data = $request->all();

@@ -21,7 +21,7 @@
             </div>
         </div>
     </header>
-
+{{--  --}}
 
     <div class="container">
         <div class="card">
@@ -53,7 +53,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label class="small mb-1" for="id_sparepart">Sparepart</label>
-                                        <select class="form-control" name="id_sparepart"
+                                        {{-- <select class="form-control" name="id_sparepart"
                                             class="form-control @error('id_sparepart') is-invalid @enderror"
                                             id="id_sparepart">
                                             <option>Pilih Sparepart</option>
@@ -62,7 +62,9 @@
                                                 {{ $item->nama_sparepart }}
                                             </option>
                                             @endforeach
-                                        </select>
+                                        </select> --}}
+                                        <input type="hidden" name="id_sparepart" value="{{ $sparepart->id_sparepart }}">
+                                        <input type="text" value="{{ $sparepart->nama_sparepart }}" class="form-control" disabled>
                                         @error('id_sparepart')<div class="text-danger small mb-1">
                                             {{ $message }}
                                         </div> @enderror

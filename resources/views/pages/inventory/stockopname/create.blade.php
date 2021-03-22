@@ -77,8 +77,7 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="kode_opname">Kode Opname</label>
                                             <input class="form-control" id="kode_opname" type="text" name="kode_opname"
-                                                placeholder="Input Kode Opname" value="{{ $kode_opname }}"
-                                                readonly/>
+                                                placeholder="Input Kode Opname" value="{{ $kode_opname }}" readonly />
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_pegawai">Pegawai</label>
@@ -110,14 +109,6 @@
                                             </div> @enderror
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="small mb-1" for="keterangan">Keterangan</label>
-                                        <textarea class="form-control" id="keterangan" type="text" name="keterangan"
-                                            placeholder="Input Keterangan Opname" value="{{ old('keterangan') }}"
-                                            class="form-control @error('keterangan') is-invalid @enderror"> </textarea>
-                                        @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
-                                        </div> @enderror
-                                    </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
                                         <a href="{{ route('Opname') }}" class="btn btn-light">Kembali</a>
@@ -129,157 +120,243 @@
 
                     {{-- CARD 2 --}}
                     <div class="tab-pane fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
-                        <div class="card card-icon">
-                            <div class="row no-gutters">
-                                <div class="col-auto card-icon-aside bg-primary">
-                                    <i class="fa fa-cogs" style="color: white"></i>
-                                </div>
-                                <div class="col">
-                                    <div class="card-body py-5">
-                                        <h3 class="text-primary">Step 2</h3>
-                                        <h5 class="card-title">Pilih Sparepart yang akan dibeli</h5>
-                                        <div class="datatable">
-                                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <table class="table table-bordered table-hover dataTable"
-                                                            id="dataTable" width="100%" cellspacing="0" role="grid"
-                                                            aria-describedby="dataTable_info" style="width: 100%;">
-                                                            <thead>
-                                                                <tr role="row">
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1" aria-sort="ascending"
-                                                                        aria-label="Name: activate to sort column descending"
-                                                                        style="width: 20px;">No</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1"
-                                                                        aria-label="Position: activate to sort column ascending"
-                                                                        style="width: 80px;">Kode</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1"
-                                                                        aria-label="Position: activate to sort column ascending"
-                                                                        style="width: 180px;">Nama Sparepart</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1"
-                                                                        aria-label="Office: activate to sort column ascending"
-                                                                        style="width: 70px;">Jenis Sparepart</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1"
-                                                                        aria-label="Start date: activate to sort column ascending"
-                                                                        style="width: 70px;">Merk</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1"
-                                                                        aria-label="Salary: activate to sort column ascending"
-                                                                        style="width: 40px;">Satuan</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1"
-                                                                        aria-label="Actions: activate to sort column ascending"
-                                                                        style="width: 100px;">Actions</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                @forelse ($sparepart as $item)
-                                                                <tr role="row" class="odd">
-                                                                    <th scope="row" class="small" class="sorting_1">
-                                                                        {{ $loop->iteration}}</th>
-                                                                    <td>{{ $item->kode_sparepart }}</td>
-                                                                    <td>{{ $item->nama_sparepart }}</td>
-                                                                    <td>{{ $item->Jenissparepart->jenis_sparepart }}
-                                                                    </td>
-                                                                    <td>{{ $item->Merksparepart->merk_sparepart }}</td>
-                                                                    <td>{{ $item->Konversi->satuan }}</td>
-                                                                    <td>
-                                                                        <a href="" class="btn btn-success btn-datatable"
-                                                                            type="button" data-toggle="modal"
-                                                                            data-target="#Modaltambah-{{ $item->id_sparepart }}">
-                                                                            <i class="fas fa-plus"></i>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                                @empty
-                                                                <tr>
-                                                                    <td colspan="7" class="tex-center">
-                                                                        Data Sparepart Kosong
-                                                                    </td>
-                                                                </tr>
-                                                                @endforelse
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
+                        <div class="card-body">
+                            <h3 class="text-primary">Step 2</h3>
+                            <h5 class="card-title">Pilih Sparepart yang akan dibeli</h5>
+                            <div class="datatable">
+                                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered table-hover dataTable" id="dataTable"
+                                                width="100%" cellspacing="0" role="grid"
+                                                aria-describedby="dataTable_info" style="width: 100%;">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                                            aria-label="Name: activate to sort column descending"
+                                                            style="width: 20px;">No</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Position: activate to sort column ascending"
+                                                            style="width: 60px;">Kode</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Position: activate to sort column ascending"
+                                                            style="width: 150px;">Nama Sparepart</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 50px;">Jenis Sparepart</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Start date: activate to sort column ascending"
+                                                            style="width: 50px;">Merk</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Salary: activate to sort column ascending"
+                                                            style="width: 20px;">Satuan</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Actions: activate to sort column ascending"
+                                                            style="width: 20px;">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @forelse ($sparepart as $item)
+                                                    <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
+                                                        <th scope="row" class="small" class="sorting_1">
+                                                            {{ $loop->iteration}}</th>
+                                                        <td class="kode_sparepart">
+                                                            {{ $item->kode_sparepart }}</td>
+                                                        <td class="nama_sparepart">
+                                                            {{ $item->nama_sparepart }}</td>
+                                                        <td class="jenis_sparepart">
+                                                            {{ $item->Jenissparepart->jenis_sparepart }}
+                                                        </td>
+                                                        <td class="merk_sparepart">
+                                                            {{ $item->Merksparepart->merk_sparepart }}</td>
+                                                        <td class="satuan">{{ $item->Konversi->satuan }}
+                                                        </td>
+                                                        <td>
+                                                            <a href="" class="btn btn-success btn-datatable"
+                                                                type="button" data-toggle="modal"
+                                                                data-target="#Modaltambah-{{ $item->id_sparepart }}">
+                                                                <i class="fas fa-plus"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @empty
+                                                    <tr>
+                                                        <td colspan="7" class="tex-center">
+                                                            Data Sparepart Kosong
+                                                        </td>
+                                                    </tr>
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <hr class="my-4" />
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ route('purchaseorder') }}" class="btn btn-light">Kembali</a>
+                            <button class="btn btn-primary">Next</button>
+                        </div>
                     </div>
 
                     <div class="tab-pane fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
-                        <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
-                                class="fas fa-times"></i>
-                            Anda belum memasukan sparepart!
+                        <div class="alert alert-success" id="alerttambah" role="alert" style="display:none"> <i
+                                class="fas fa-check"></i>
+                            Berhasil! Anda berhasil menambahkan sparepart!
                             <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <h3 class="text-primary">Step 3</h3>
-                        <h5 class="card-title">Konfirmasi Jumlah Retur Sparepart</h5>
-                        <div class="datatable">
-                            <div id="dataTable_wrapperr" class="dataTables_wrapper dt-bootstrap4">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
-                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                            style="width: 100%;">
-                                            <thead>
-                                                <tr role="row">
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">
-                                                        No</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 40px;">
-                                                        Kode Sparepart</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 120px;">Sparepart</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 80px;">
-                                                        Merk Sparepart</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 70px;">
-                                                        Jumlah diterima</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 50px;">
-                                                        Satuan</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 100px;">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                        <div class="card-body">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
+                                    <h3 class="text-primary">Step 3</h3>
+                                    <h5 class="card-title">Konfirmasi Pembelian</h5>
+                                </div>
+                                <div class="col-12 col-lg-auto text-center text-lg-right">
+                                    <div class="h3 text-white">PO</div>
+                                    #{{ $kode_opname }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="table-responsive col-md-6">
+                                    <table class="table table-borderless mb-0">
+                                        <thead class="border-bottom">
+                                            <tr class="small text-uppercase text-muted">
+                                                <th scope="col">STEP 3</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="border-bottom">
+                                                <td>
+                                                    <div class="font-weight-bold">Kode Opname</div>
+                                                    <div class="small text-muted d-none d-md-block">
+                                                        {{ $kode_opname }}</div>
+                                                </td>
+                                            </tr>
+                                            <tr class="border-bottom">
+                                                <td>
+                                                    <div class="font-weight-bold">Approval Owner</div>
+                                                    <div class="small text-muted d-none d-md-block">Pending</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {{-- 2 --}}
+                                <div class="table-responsive col-md-6">
+                                    <table class="table table-borderless mb-0">
+                                        <thead class="border-bottom">
+                                            <tr class="small text-uppercase text-muted">
+                                                <th scope="col">Konfirmasi Formulir</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="border-bottom">
+                                                <td>
+                                                    <div class="font-weight-bold">Tanggal Opname</div>
+                                                    <div class="small text-muted d-none d-md-block"><span
+                                                            id="detailtanggal"></span></div>
+                                                </td>
+                                            </tr>
+                                            <tr class="border-bottom">
+                                                <td>
+                                                    <div class="font-weight-bold">Pegawai</div>
+                                                    <div class="small text-muted d-none d-md-block"><span
+                                                            id="detailpegawai"></span></div>
+                                                </td>
+                                            </tr>
+                                            <tr class="border-bottom">
+                                                <td>
+                                                    <div class="font-weight-bold">Total Item</div>
+                                                    <div class="small text-muted d-none d-md-block"> Tes </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none">
+                                <i class="fas fa-times"></i>
+                                Error! Anda belum menambahkan sparepart!
+                                <button class="close" type="button" onclick="$(this).parent().hide()"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                        </div>
 
-                                            </tbody>
-                                        </table>
+                        {{-- CARD CONFIRM --}}
+                        <div class="card-footer p-4 p-lg-5 border-top-0">
+                            <div class="datatable">
+                                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered table-hover dataTable"
+                                                id="dataTablekonfirmasi" width="100%" cellspacing="0" role="grid"
+                                                aria-describedby="dataTable_info" style="width: 100%;">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                                            aria-label="Name: activate to sort column descending"
+                                                            style="width: 20px;">
+                                                            No</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Position: activate to sort column ascending"
+                                                            style="width: 80px;">
+                                                            Kode</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Position: activate to sort column ascending"
+                                                            style="width: 180px;">
+                                                            Nama Sparepart</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 70px;">
+                                                            Jenis Sparepart</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Start date: activate to sort column ascending"
+                                                            style="width: 70px;">
+                                                            Merk</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Salary: activate to sort column ascending"
+                                                            style="width: 40px;">
+                                                            Satuan</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Salary: activate to sort column ascending"
+                                                            style="width: 40px;">
+                                                            Stock Real</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Salary: activate to sort column ascending"
+                                                            style="width: 20px;">
+                                                            Keterangan</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Actions: activate to sort column ascending"
+                                                            style="width: 100px;">
+                                                            Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id='konfirmasi'>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -291,8 +368,8 @@
                                 data-target="#Modalsumbit">Submit</button>
                         </div>
                     </div>
-                    </form>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -344,7 +421,8 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="button" data-dismiss="modal">Tambah</button>
+                    <button class="btn btn-success" onclick="konfirmsparepart(event, {{ $item->id_sparepart }})"
+                        type="button" data-dismiss="modal">Tambah</button>
                 </div>
             </form>
         </div>
@@ -352,6 +430,24 @@
 </div>
 @empty
 @endforelse
+
+<template id="template">
+    <tr role="row" class="odd">
+        <td class="kode_sparepart"></td>
+        <td class="kode_sparepart"></td>
+        <td class="nama_sparepart"></td>
+        <td class="jenis_sparepart"></td>
+        <td class="merk_sparepart"></td>
+        <td class="satuan"></td>
+        <td class="jumlah_real"></td>
+        <td class="keterangan_detail"></td>
+        <td>
+            <a href="" class="btn btn-success btn-datatable" type="button" data-toggle="modal" data-target="">
+                <i class="fas fa-plus"></i>
+            </a>
+        </td>
+    </tr>
+</template>
 
 <script>
     function tambahsparepart(event, sparepart) {
@@ -401,15 +497,63 @@
                 url: '/inventory/Stockopname/Opname',
                 data: data,
                 success: function (response) {
-                    console.log(response)
+                    window.location.href = '/inventory/Stockopname/Opname'
                 }
             })
         }
     }
 
+    function konfirmsparepart(event, id_sparepart) {
+        var form = $('#form-' + id_sparepart)
+        var jumlah_real = form.find('input[name="jumlah_real"]').val()
+        var keterangan_detail = form.find('input[name="keterangan_detail"]').val()
+
+        if (jumlah_real == 0 | jumlah_real == '') {
+            alert('Quantity Kosong')
+        } else {
+            alert('Berhasil Menambahkan Sparepart')
+            var data = $('#item-' + id_sparepart)
+            var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
+            var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
+            var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
+            var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
+            var satuan = $(data.find('.satuan')[0]).text()
+            var template = $($('#template').html())
+
+       
+            $('#dataTablekonfirmasi').DataTable().row.add([
+                kode_sparepart, kode_sparepart, nama_sparepart, jenis_sparepart, merk_sparepart, satuan,
+                jumlah_real, keterangan_detail
+            ]).draw();
+        }
+    }
+
+
     $(document).ready(function () {
-        $('#tambahsparepart').click();
+        $('#id_pegawai').on('change', function () {
+            var select = $(this).find('option:selected')
+            var textpegawai = select.text()
+            if (textpegawai == 'Pilih Pegawai') {
+                $('#detailpegawai').html('');
+            } else {
+                $('#detailpegawai').html(textpegawai);
+            }
+        })
+        $('#tanggal_opname').on('change', function () {
+            var select = $(this)
+            var textdate = select.val()
+            var splitdate = textdate.split('-')
+            console.log(splitdate)
+            var datefix = new Date(splitdate[0], splitdate[1] - 1, splitdate[2])
+            var formatindodate = new Intl.DateTimeFormat('id', {
+                dateStyle: 'long'
+            }).format(datefix)
+            $('#detailtanggal').html(formatindodate);
+        })
+
+        $('#dataTablekonfirmasi').DataTable();
     });
+
 
 </script>
 

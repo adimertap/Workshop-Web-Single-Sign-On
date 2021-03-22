@@ -61,13 +61,13 @@
                                                 style="width: 20px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 40px;">Kode Bank</th>
+                                                style="width: 80px;">Kode Bank</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 80px;">Nama Bank</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 170px;">Nama Account</th>
+                                                style="width: 120px;">Nama Account</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 100px;">Jenis Account</th>
@@ -76,7 +76,7 @@
                                                 style="width: 120px;">Nomor Rekening</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 150px;">Alamat Account</th>
+                                                style="width: 120px;">Alamat Account</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 75px;">Actions</th>

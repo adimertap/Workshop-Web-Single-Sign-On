@@ -319,7 +319,8 @@ Route::prefix('inventory/gallerysparepart')
         Route::get('/', 'MasterdatagalleryController@index')
             ->name('masterdatagallery');
 
-        Route::resource('gallery', 'MasterdatagalleryController');
+        Route::resource('gallery', 'MasterdatagalleryController')->except('create');
+        Route::get('gallery/create/{idsparepart}', 'MasterdatagalleryController@create')->name('gallery.create');
     });
 
 Route::prefix('inventory/merksparepart')
