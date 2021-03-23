@@ -51,7 +51,7 @@ class ApprovalopnameController extends Controller
      */
     public function show($id_opname)
     {
-        $opname = Opname::with('Detail.Sparepart.Rak')->findOrFail($id_opname);
+        $opname = Opname::with('Detailsparepart')->findOrFail($id_opname);
 
         return view('pages.inventory.stockopname.approval.detailapproval')->with([
             'opname' => $opname

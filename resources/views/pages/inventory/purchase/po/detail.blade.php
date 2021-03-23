@@ -75,117 +75,101 @@
                         </div>
                         <div class="col">
                             <label class="small line-height-normal">:
-                                Rp. 
+                                Rp.
                         </div>
                     </div>
+                    <hr class="my-2" />
                     <div class="small mb-2">
-                        <span class="font-weight-500 text-primary">Keterangan</span>
+                        <span class="font-weight-500 text-secondary">Keterangan</span>
                         Approval
                     </div>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">Keterangan Owner
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label class="small line-height-normal">:
-                                {{ $po->keterangan_owner }}
-                        </div>
+                    <label class="small">
+                        - {{ $po->keterangan_owner }}
+                    </label>
+                    <hr class="my-2" />
+                    <div class="small mb-2">
+                        <span class="font-weight-500 text-secondary">Keterangan</span>
+                        Approval
                     </div>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">Keterangan AP
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label class="small line-height-normal">:
-                                {{ $po->keterangan_ap }}
-                        </div>
-                    </div>
-                </div>
+                    <label class="small">
+                        - {{ $po->keterangan_ap }}
+                    </label>
             </div>
         </div>
+    </div>
 
-        <div class="col-lg-8">
-            <div class="card mb-4">
-                <div class="card card-header-actions">
-                    <div class="card-header ">List Sparepart
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card card-header-actions">
+                <div class="card-header ">List Sparepart
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info alert-icon" role="alert">
+                    <div class="alert-icon-aside">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="alert-icon-content">
+                        <h5 class="alert-heading" class="small">Sparepart Info</h5>
+                        Sparepart Pesanan Pembelian
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="alert alert-info alert-icon" role="alert">
-                        <div class="alert-icon-aside">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <div class="alert-icon-content">
-                            <h5 class="alert-heading" class="small">Sparepart Info</h5>
-                            Sparepart Pesanan Pembelian
-                        </div>
-                    </div>
-                    <div class="datatable">
-                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="table table-bordered table-hover dataTable" id="dataTable"
-                                        width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                        style="width: 100%;">
-                                        <thead>
-                                            <tr role="row">
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-sort="ascending"
-                                                    aria-label="Name: activate to sort column descending"
-                                                    style="width: 20px;">No</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Sparepart</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Merk Sparepart</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Qty</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 60px;">Satuan</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Harga Sparepart</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {{--  --}}
-                                            @forelse ($po->Detailsparepart as $detail)
-                                            <tr role="row" class="odd">
-                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
-                                                </th>
-                                                <td>{{ $detail->nama_sparepart }}</td>
-                                                <td>{{ $detail->Merksparepart->merk_sparepart }}</td>
-                                                <td>{{ $detail->qty }}</td>
-                                                <td>{{ $detail->Konversi->satuan }}</td>
-                                                <td>Rp. {{ number_format($detail->Hargasparepart->harga_beli,0,',','.') }}</td>
-                                                <td>Rp. </td>
-                                            </tr>
-                                            @empty
-                                            <tr>
-                                                <td colspan="7" class="tex-center">
-                                                    Data Sparepart Kosong
-                                                </td>
-                                            </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
-                                </div>
+                <div class="datatable">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
+                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                style="width: 230px;">Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                style="width: 230px;">Merk Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                style="width: 230px;">Qty</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                style="width: 60px;">Satuan</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                style="width: 230px;">Harga Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                style="width: 230px;">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{--  --}}
+                                        @forelse ($po->Detailsparepart as $detail)
+                                        <tr role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
+                                            </th>
+                                            <td>{{ $detail->nama_sparepart }}</td>
+                                            <td>{{ $detail->Merksparepart->merk_sparepart }}</td>
+                                            <td>{{ $detail->qty }}</td>
+                                            <td>{{ $detail->Konversi->satuan }}</td>
+                                            <td>Rp.
+                                                {{ number_format($detail->Hargasparepart->harga_beli,0,',','.') }}
+                                            </td>
+                                            <td>Rp. </td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="7" class="tex-center">
+                                                Data Sparepart Kosong
+                                            </td>
+                                        </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -193,6 +177,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </main>
 

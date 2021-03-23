@@ -53,6 +53,9 @@
                         </div>
                     </div>
                     <hr class="my-4" />
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Tampilkan Jumlah Sistem</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,12 +115,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($opname->Detail as $detail)
+                                            @forelse ($opname->Detailsparepart as $detail)
                                             <tr role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
-                                                <td>{{ $detail->Sparepart->nama_sparepart }}</td>
-                                                <td>{{ $detail->Sparepart->Rak->nama_rak }}</td>
+                                                <td>{{ $detail->nama_sparepart }}</td>
+                                                <td>{{ $detail->Rak->nama_rak }}</td>
                                                 <td>{{ $detail->jumlah_real }}</td>
                                                 <td>
                                                     @if($opname->approve == 'Pending')

@@ -64,20 +64,12 @@
                     </div>
                     <hr class="my-4" />
                     <div class="small mb-2">
-                        <span class="font-weight-500 text-primary">Approval</span>
-                        Keterangan
+                        <span class="font-weight-500 text-secondary">Keterangan</span>
+                        AP
                     </div>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">Keterangan AP
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label class="small line-height-normal">:
-                                {{ $po->keterangan_ap }}
-                        </div>
-                    </div>
+                    <label class="small">
+                        - {{ $po->keterangan_ap }}
+                    </label>
                 </div>
             </div>
         </div>
