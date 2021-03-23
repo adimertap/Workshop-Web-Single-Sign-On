@@ -142,7 +142,7 @@
                         <div class="form-group">
                             <label class="small mb-1" for="nama_kendaraan">Nama Kendaraan</label>
                             <input class="form-control" name="nama_kendaraan" type="text" id="nama_kendaraan"
-                                placeholder="Input Kode Kondaraan" value="{{ old('nama_kendaraan') }}"
+                                placeholder="Input Nama Kondaraan" value="{{ old('nama_kendaraan') }}"
                                 class="form-control @error('nama_kendaraan') is-invalid @enderror">
                             @error('nama_kendaraan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
@@ -163,7 +163,7 @@
                         <div class="form-group">
                             <label class="small mb-1" for="merk_kendaraan">Merk Kendaraan</label>
                             <input class="form-control" name="merk_kendaraan" type="text" id="merk_kendaraan"
-                                placeholder="Input Kode Kendaraan" value="{{ old('merk_kendaraan') }}"
+                                placeholder="Input Merk Kendaraan" value="{{ old('merk_kendaraan') }}"
                                 class="form-control @error('merk_kendaraan') is-invalid @enderror">
                             @error('merk_kendaraan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror

@@ -608,3 +608,7 @@ Route::prefix('accounting/masterjenistransaksi')
 
         Route::resource('jenis-transaksi', 'MasterdatajenistransaksiController');
     });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

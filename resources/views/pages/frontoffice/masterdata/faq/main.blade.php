@@ -160,7 +160,7 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{ route('faq.update', $item->id_faq) }}" method="POST">
                     @method('PUT')
                     @csrf
                     
