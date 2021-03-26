@@ -75,7 +75,7 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->jabatan->nama_jabatan }}</td>
-                                            <td>Rp. {{ number_format($item->besaran_gaji,0,',','.') }}</td>
+                                            <td>Rp. {{ number_format($item->besaran_gaji,2,',','.') }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
                                                     data-toggle="modal"

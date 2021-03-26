@@ -523,6 +523,13 @@ Route::prefix('kepegawaian/absensi')
         Route::resource('absensi', 'AbsensipegawaiController');
     });
 
+// LAPORAN ABSENSI --------------------------------------------------------------- Laporan Absensi
+Route::prefix('kepegawaian/LaporanAbsensi')
+->namespace('Kepegawaian\Absensi')
+->group(function () {
+    Route::get('/', 'LaporanabsensiController@index')
+        ->name('laporanabsensi');
+});
 
 // -------------------------------------------------------------------------------------------------------PAYROLL 
 // MODUL PAYROLL

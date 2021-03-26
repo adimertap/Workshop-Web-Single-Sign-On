@@ -78,7 +78,7 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->nama_tunjangan }}</td>
-                                            <td>Rp. {{ number_format($item->jumlah_tunjangan,0,',','.') }}</td>
+                                            <td>Rp. {{ number_format($item->jumlah_tunjangan,2,',','.') }}</td>
                                             <td>{{ $item->keterangan }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"

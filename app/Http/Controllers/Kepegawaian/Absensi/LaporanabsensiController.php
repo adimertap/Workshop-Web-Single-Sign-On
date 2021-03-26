@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Kepegawaian\Absensi;
 
 use App\Http\Controllers\Controller;
 use App\Model\Kepegawaian\Absensi;
-use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
 
-class AbsensipegawaiController extends Controller
+class LaporanabsensiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +18,8 @@ class AbsensipegawaiController extends Controller
         $absensi = Absensi::with([
             'Pegawai',
         ])->get();
-        $blt = date('d/m/Y');
 
-        $pegawai = Pegawai::all();
-
-        return view('pages.kepegawaian.absensi.absensi', compact('absensi','pegawai','blt'));
+        return view('pages.kepegawaian.absensi.laporanabsensi', compact('absensi'));
     }
 
     /**
@@ -44,17 +40,7 @@ class AbsensipegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $absensi = new Absensi;
-        $absensi->id_pegawai = $request->id_pegawai;
-        $absensi->tanggal_absensi = $request->tanggal_absensi;
-        $absensi->absensi = $request->absensi;
-        $absensi->keterangan = $request->keterangan;
-
-        $absensi->save();
-        $absensi->sync($request->pegawai);
-        
-        // return $request;
-        return response()->json($request);
+        //
     }
 
     /**
