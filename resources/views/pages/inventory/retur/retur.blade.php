@@ -94,18 +94,18 @@
                                         <td>{{ $item->tanggal_retur }}</td>
                                         <td>
                                             @if($item->status == 'Aktif')
-                                                <span class="badge badge-success">
-                                            @elseif($item->status == 'Tidak Aktif')
+                                            <span class="badge badge-success">
+                                                @elseif($item->status == 'Tidak Aktif')
                                                 <span class="badge badge-danger">
-                                            @else
-                                                <span>
-                                            @endif
-                                                {{ $item->status }}
-                                                </span>
+                                                    @else
+                                                    <span>
+                                                        @endif
+                                                        {{ $item->status }}
+                                                    </span>
                                         </td>
                                         <td>
                                             <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                            data-placement="top" title="" data-original-title="Cetak PO">
+                                                data-placement="top" title="" data-original-title="Cetak PO">
                                                 <i class="fas fa-print"></i></i>
                                             </a>
                                         </td>
@@ -115,11 +115,11 @@
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="" class="btn btn-primary btn-datatable"data-toggle="tooltip"
-                                            data-placement="top" title="" data-original-title="Edit">
+                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="" class="btn btn-danger btn-datatable" type="button" 
+                                            <a href="" class="btn btn-danger btn-datatable" type="button"
                                                 data-toggle="modal" data-target="#Modalhapus-{{ $item->id_retur }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
@@ -142,6 +142,7 @@
     </div>
 </div>
 </main>
+
 
 @forelse ($retur as $item)
 <div class="modal fade" id="Modalhapus-{{ $item->id_retur }}" tabindex="-1" role="dialog"
@@ -169,4 +170,7 @@
 @empty
 
 @endforelse
+
+
+
 @endsection

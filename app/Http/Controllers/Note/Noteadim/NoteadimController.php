@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Inventory\Retur;
+namespace App\Http\Controllers\Note\Noteadim;
 
 use App\Http\Controllers\Controller;
-use App\Model\Accounting\Akun;
-use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Retur\Retur;
-use App\Model\Inventory\Supplier;
-use App\Model\Kepegawaian\Pegawai;
+use App\Model\Note\noteadim\Adim;
 use Illuminate\Http\Request;
 
-class ReturController extends Controller
+class NoteadimController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,14 +16,9 @@ class ReturController extends Controller
      */
     public function index()
     {
-        $retur = Retur::with([
-            'Rcv','Pegawai','Supplier','Akun'
-        ])->get();
-        
-        $supplier = Supplier::all();
+        $note = Adim::get();
 
-
-        return view('pages.inventory.retur.retur', compact('retur','supplier'));
+        return view('notesadim.notes', compact('note'));
     }
 
     /**
@@ -36,16 +28,7 @@ class ReturController extends Controller
      */
     public function create()
     {
-        $retur = Retur::with([
-            'Rcv','Pegawai','Supplier','Akun'
-        ])->get();
-        
-        $rcv = Rcv::all();
-        $supplier = Supplier::all();
-        $akun = Akun::all();
-        $pegawai = Pegawai::all();
-
-        return view('pages.inventory.retur.create', compact('rcv','pegawai','supplier','akun'));
+        //
     }
 
     /**
@@ -65,13 +48,9 @@ class ReturController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_retur)
+    public function show($id)
     {
-        $retur = Retur::with('Detail.Sparepart')->findOrFail($id_retur);
-
-        return view('pages.inventory.retur.detail')->with([
-            'retur' => $retur
-        ]);
+        //
     }
 
     /**
@@ -103,12 +82,8 @@ class ReturController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_retur)
+    public function destroy($id)
     {
-        $retur = Retur::findOrFail($id_retur);
-        
-        $retur->delete();
-
-        return redirect()->back()->with('messagehapus','Data Retur Berhasil dihapus');
+        //
     }
 }

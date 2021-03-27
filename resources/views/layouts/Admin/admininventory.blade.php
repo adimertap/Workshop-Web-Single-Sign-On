@@ -161,6 +161,10 @@
                         <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                         Account
                     </a>
+                    <a class="dropdown-item" href="{{ route('Note') }}">
+                        <div class="dropdown-item-icon"><i class="fas fa-clipboard"></i></div>
+                        Catatan Progress
+                    </a>
                     <a class="dropdown-item" href="{{ route('dashboardpegawai') }}">
                         <div class="dropdown-item-icon"><i class="fas fa-user"></i></div>
                         Sistem Kepegawaian

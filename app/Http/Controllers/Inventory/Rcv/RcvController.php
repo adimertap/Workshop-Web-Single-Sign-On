@@ -20,7 +20,7 @@ class RcvController extends Controller
     public function index()
     {
         $rcv = Rcv::with([
-            'PO','Pegawai','Supplier','Akun','FOP'
+            'PO','Pegawai','Supplier','Akun'
         ])->get();
 
         $po = PO::where([['status', '=', 'Dikirim']])->get();
@@ -36,15 +36,24 @@ class RcvController extends Controller
     public function create()
     {
         $rcv = Rcv::with([
-            'PO','Pegawai','Supplier','Akun','FOP'
+            'PO','Pegawai','Supplier','Akun'
         ])->get();
         
+        $id = Rcv::getId();
+        foreach($id as $value);
+        $idlama = $value->id_rcv;
+        $idbaru = $idlama + 1;
+        $blt = date('d-m-Y');
+
+        $kode_rcv = 'RCV-'.$idbaru.'/'.$blt;
+
+
         $pegawai = Pegawai::all();
         $supplier = Supplier::all();
         $akun = Akun::all();
         $po = PO::where([['status', '=', 'Dikirim']])->get();
 
-        return view('pages.inventory.rcv.create', compact('rcv','pegawai','po','supplier','akun'));
+        return view('pages.inventory.rcv.create', compact('rcv','pegawai','po','supplier','akun', 'kode_rcv'));
     }
 
     /**

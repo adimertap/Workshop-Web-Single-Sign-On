@@ -651,3 +651,15 @@ Route::prefix('accounting/Pajak')
 
         Route::resource('pajak', 'PajakController');
     });
+
+
+
+// NOTES ADIM
+Route::prefix('Note/Noteadim')
+    ->namespace('Note\Noteadim')
+    ->group(function () {
+        Route::get('/', 'NoteadimController@index')
+            ->name('Note');
+
+        Route::resource('Note-adim', 'NoteadimController');
+    });

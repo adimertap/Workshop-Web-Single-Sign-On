@@ -251,6 +251,7 @@
                         </div>
                     </div>
 
+                    {{-- CARD 3 --}}
                     <div class="tab-pane fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
                         <div class="alert alert-success" id="alerttambah" role="alert" style="display:none"> <i
                                 class="fas fa-check"></i>
@@ -602,7 +603,7 @@
                 harga_beli, qty, total
             ]).draw();
         }
-
+        
 
     }
 

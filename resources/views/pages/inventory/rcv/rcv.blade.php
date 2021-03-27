@@ -33,18 +33,19 @@
                 <div class="timeline timeline-xs">
                     <!-- Timeline Item 1-->
                     @forelse ($po as $item)
-                        <div class="timeline-item">
-                            <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-text">New</div>
-                                <div class="timeline-item-marker-indicator bg-green"></div>
-                            </div>
-                            <div class="timeline-item-content">
-                                Pembelian Baru! {{ $item->tanggal_po }}
-                                <a class="font-weight-bold text-dark" href="{{ route('purchase-order.show',$item->id_po) }}" data-toggle="tooltip"
-                                data-placement="top" title="" data-original-title="Cek Detail Pembelian" >Order {{ $item->kode_po }}</a>
-                                Pada Supplier {{ $item->Supplier->nama_supplier }}
-                            </div>
+                    <div class="timeline-item">
+                        <div class="timeline-item-marker">
+                            <div class="timeline-item-marker-text">New</div>
+                            <div class="timeline-item-marker-indicator bg-green"></div>
                         </div>
+                        <div class="timeline-item-content">
+                            Pembelian Baru! {{ $item->tanggal_po }}
+                            <a class="font-weight-bold text-dark" href="{{ route('purchase-order.show',$item->id_po) }}"
+                                data-toggle="tooltip" data-placement="top" title=""
+                                data-original-title="Cek Detail Pembelian">Order {{ $item->kode_po }}</a>
+                            Pada Supplier {{ $item->Supplier->nama_supplier }}
+                        </div>
+                    </div>
                     @empty
                     <div class="timeline-item">
                         <div class="timeline-item-marker">
@@ -56,7 +57,6 @@
                         </div>
                     </div>
                     @endforelse
-                    
                 </div>
             </div>
         </div>
@@ -66,8 +66,10 @@
 <div class="container-fluid">
     <div class="card mb-4">
         <div class="card card-header-actions">
-            <div class="card-header ">List Penerimaan
-                <a href="{{ route('Rcv.create') }}" class="btn btn-sm btn-primary"> Tambah Penerimaan</a>
+            <div class="card-header">List Penerimaan
+                <a href="" class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">
+                    Tambah Penerimaan
+                </a>
             </div>
         </div>
         <div class="card-body ">
@@ -102,10 +104,10 @@
                                             No</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 50px;">Kode Rcv</th>
+                                            style="width: 80px;">Kode Rcv</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 150px;">Pegawai</th>
+                                            style="width: 100px;">Pegawai</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
                                             style="width: 100px;">Supplier</th>
@@ -144,7 +146,7 @@
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                             <a href="" class="btn btn-info btn-datatable" data-toggle="tooltip"
-                                            data-placement="top" title="" data-original-title="Cetak Data Rcv">
+                                                data-placement="top" title="" data-original-title="Cetak Data Rcv">
                                                 <i class="fas fa-print"></i></i>
                                             </a>
                                         </td>
@@ -167,6 +169,131 @@
 </div>
 </main>
 
+{{-- MODAL TAMBAH --}}
+<div class="modal fade" id="Modaltambah" tabindex="-1" role="dialog" data-backdrop="static"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Data Penerimaan</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('Rcv.store') }}" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="small text-muted d-none d-md-block"><span
+                        id="detailkodepo"></span></div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="kode_po">Kode PO</label>
+                            <div class="input-group input-group-joined">
+                                <input class="form-control" type="text" placeholder="Masukan Kode PO"
+                                    aria-label="Search"  id="detailkodepo">
+                                <div class="input-group-append">
+                                    <a href="" class="input-group-text" type="button" data-toggle="modal"
+                                        data-target="#Modalpo">
+                                        <i class="fas fa-folder-open"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="no_do">Perusahaan</label>
+                            <input class="form-control" id="no_do" type="text" name="no_do"
+                                placeholder="Input Nama Perusahaan" value="{{ old('no_do') }}"
+                                class="form-control @error('no_do') is-invalid @enderror" />
+                            @error('no_do')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="no_do">Nomor DO</label>
+                            <input class="form-control" id="no_do" type="text" name="no_do"
+                                placeholder="Input Nomor Delivery" value="{{ old('no_do') }}"
+                                class="form-control @error('no_do') is-invalid @enderror" />
+                            @error('no_do')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="tanggal_rcv">Tanggal Receive</label>
+                            <input class="form-control" id="tanggal_rcv" type="date" name="tanggal_rcv"
+                                placeholder="Input Tanggal Receive" value="{{ old('tanggal_rcv') }}"
+                                class="form-control @error('tanggal_rcv') is-invalid @enderror" />
+                            @error('tanggal_rcv')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <a href="{{ route('Rcv.create') }}" class="btn btn-success" type="submit">
+                        Selanjutnya!
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{-- MODAL PO --}}
+<div class="modal fade" id="Modalpo" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered " role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light ">
+                <h5 class="modal-title">Pilih Kode Pembelian/ PO</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                        <thead class="border-bottom">
+                            <tr class="small text-uppercase text-muted">
+                                <th scope="col">Kode PO</th>
+                                <th scope="col">Supplier</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($po as $item)
+                            <tr id="item-{{ $item->id_po }}" class="border-bottom">
+                                <td class="kode_sparepart">
+                                    <div class="font-weight-bold">{{ $item->kode_po }}</div>
+                                </td>
+                                <td class="nama_supplier">
+                                    <div class="small text-muted d-none d-md-block">{{ $item->Supplier->nama_supplier }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-success btn-sm btn-datatable"
+                                        onclick="tambahpo(event, {{ $item->id_po }})" type="button"
+                                        data-dismiss="modal">Tambah
+                                    </button>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="7" class="tex-center">
+                                    Data Sparepart Kosong
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{-- MODAL HAPUS --}}
 @forelse ($rcv as $item)
 <div class="modal fade" id="Modalhapus-{{ $item->id_rcv }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -193,4 +320,22 @@
 @empty
 
 @endforelse
+
+<script>
+    function tambahpo(event, id_po) {
+        var data = $('#item-' + id_po)
+        var kode_po = $(data.find('.kode_po')[0]).text()
+        var nama_supplier = $(data.find('.nama_supplier')[0]).text()
+        alert('Berhasil Menambahkan Data PO')
+
+        console.log(kode_po);
+    }
+    
+
+</script>
+
+
+
+
+
 @endsection

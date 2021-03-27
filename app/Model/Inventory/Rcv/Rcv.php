@@ -9,6 +9,7 @@ use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Rcv extends Model
 {
@@ -23,15 +24,12 @@ class Rcv extends Model
         'id_pegawai',
         'id_supplier',
         'id_akun',
-        'id_fop',
         'kode_rcv',
         'no_do',
-        'no_faktur',
         'status',
         'tanggal_rcv',
         'total_pembayaran',
         'status_bayar'
-        
     ];
 
     protected $hidden =[ 
@@ -41,6 +39,11 @@ class Rcv extends Model
     ];
 
     public $timestamps = true;
+
+    public function Detailrcv()
+    {
+        return $this->belongsToMany(PO::class,'tb_inventory_detrcv','id_rcv','id_po');
+    }
 
     public function Detail()
     {
@@ -67,12 +70,11 @@ class Rcv extends Model
         return $this->belongsTo(Akun::class,'id_akun','id_akun');
     }
 
-    public function FOP()
-    {
-        return $this->belongsTo(Fop::class,'id_fop','id_fop');
-    }
+    public static function getId(){
+        // return $this->orderBy('id_sparepart')->take(1)->get();
+        return $getId = DB::table('tb_inventory_rcv')->orderBy('id_rcv','DESC')->take(1)->get();
 
-    
+    }
 
    
 }

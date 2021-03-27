@@ -158,6 +158,10 @@
                         <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                         Account
                     </a>
+                    <a class="dropdown-item" href="{{ route('Note') }}">
+                        <div class="dropdown-item-icon"><i class="fas fa-clipboard"></i></div>
+                        Catatan Progress
+                    </a>
                     <a class="dropdown-item" href="{{ route('dashboardinventory') }}">
                         <div class="dropdown-item-icon"> <i class="fas fa-cubes"></i></div>
                         Sistem Inventory
