@@ -127,7 +127,7 @@
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                         <td>{{ $item->kode_rcv }}</td>
-                                        <td>{{ $item->Pegawai->nama_pegawai }}</td>
+                                        <td>{{ $item->Pegawai->nama_pegawai ?? '' }}</td>
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
                                         <td>{{ $item->no_do }}</td>
                                         <td>{{ $item->tanggal_rcv }}</td>
@@ -137,7 +137,7 @@
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('Rcv.edit', $item->id_rcv) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
@@ -179,19 +179,17 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('Rcv.store') }}" method="POST" class="d-inline">
+            <form action="{{ route('Rcv.store') }}" method="POST" id="form1" class="d-inline">
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
                     <hr>
                     </hr>
-                    <div class="small text-muted d-none d-md-block"><span
-                        id="detailkodepo"></span></div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="kode_po">Kode PO</label>
                             <div class="input-group input-group-joined">
-                                <input class="form-control" type="text" placeholder="Masukan Kode PO"
+                                <input class="form-control" type="text" placeholder="Masukan Kode PO" 
                                     aria-label="Search"  id="detailkodepo">
                                 <div class="input-group-append">
                                     <a href="" class="input-group-text" type="button" data-toggle="modal"
@@ -202,11 +200,11 @@
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="no_do">Perusahaan</label>
-                            <input class="form-control" id="no_do" type="text" name="no_do"
-                                placeholder="Input Nama Perusahaan" value="{{ old('no_do') }}"
-                                class="form-control @error('no_do') is-invalid @enderror" />
-                            @error('no_do')<div class="text-danger small mb-1">{{ $message }}
+                            <label class="small mb-1" for="id_supplier">Perusahaan</label>
+                            <input class="form-control" id="detailsupplier" type="text" name="id_supplier" 
+                                placeholder="Input Nama Perusahaan" value="{{ old('id_supplier') }}"
+                                class="form-control @error('id_supplier') is-invalid @enderror" />
+                            @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
                     </div>
@@ -232,9 +230,8 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <a href="{{ route('Rcv.create') }}" class="btn btn-success" type="submit">
-                        Selanjutnya!
-                    </a>
+                    <button class="btn btn-success" onclick="submit1()"type="button" >Selanjutnya!</button>
+                    
                 </div>
             </form>
         </div>
@@ -263,12 +260,11 @@
                         <tbody>
                             @forelse ($po as $item)
                             <tr id="item-{{ $item->id_po }}" class="border-bottom">
-                                <td class="kode_sparepart">
-                                    <div class="font-weight-bold">{{ $item->kode_po }}</div>
+                                <td>
+                                    <div class="font-weight-bold kode_po">{{ $item->kode_po }}</div>
                                 </td>
-                                <td class="nama_supplier">
-                                    <div class="small text-muted d-none d-md-block">{{ $item->Supplier->nama_supplier }}
-                                    </div>
+                                <td>
+                                    <div class="small text-muted d-none d-md-block nama_supplier">{{ $item->Supplier->nama_supplier }}</div>
                                 </td>
                                 <td>
                                     <button class="btn btn-success btn-sm btn-datatable"
@@ -322,13 +318,47 @@
 @endforelse
 
 <script>
+    // FUNGSI TAMBAH PO
     function tambahpo(event, id_po) {
         var data = $('#item-' + id_po)
+        var _token = $('#form1').find('input[name="_token"]').val()
         var kode_po = $(data.find('.kode_po')[0]).text()
         var nama_supplier = $(data.find('.nama_supplier')[0]).text()
         alert('Berhasil Menambahkan Data PO')
 
-        console.log(kode_po);
+        $('#detailkodepo').val(kode_po)
+        $('#detailsupplier').val(nama_supplier)
+        console.log(kode_po);  
+    }
+
+    // FUNGSI TAMBAH AJAX
+    function submit1(){
+        var _token = $('#form1').find('input[name="_token"]').val()
+        var no_do = $('#no_do').val()
+        var tanggal_rcv = $('#tanggal_rcv').val()
+        var kode_po = $('#detailkodepo').val()
+        var nama_supplier = $('#detailsupplier').val()
+        var data = {
+                _token: _token,
+                kode_po: kode_po,
+                nama_supplier: nama_supplier,
+                no_do: no_do,
+                tanggal_rcv: tanggal_rcv   
+            }
+           
+            $.ajax({
+                method: 'post',
+                url: '/inventory/receiving',
+                data: data,
+                success: function (response) {
+                    window.location.href = '/inventory/receiving/'+response.id_rcv+'/edit'
+                },
+                error:function(error){
+                    console.log(error)
+                }
+
+            });
+          
     }
     
 

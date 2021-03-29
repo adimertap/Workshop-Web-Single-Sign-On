@@ -42,7 +42,7 @@ class PO extends Model
 
     public function Detailsparepart()
     {
-        return $this->belongsToMany(Sparepart::class,'tb_inventory_detpo','id_po','id_sparepart');
+        return $this->belongsToMany(Sparepart::class,'tb_inventory_detpo','id_po','id_sparepart')->withPivot('qty');
     }
 
     public function Akun()

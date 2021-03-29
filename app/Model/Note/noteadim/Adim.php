@@ -14,6 +14,7 @@ class Adim extends Model
        'tanggal',
        'modul',
        'catatan',
+       'progress',
        'status'
     ];
 

@@ -16,6 +16,7 @@ class MasterdatarakController extends Controller
      */
     public function index()
     {
+        // 
         $rak = Rak::get();
         $id = Rak::getId();
         foreach($id as $value);

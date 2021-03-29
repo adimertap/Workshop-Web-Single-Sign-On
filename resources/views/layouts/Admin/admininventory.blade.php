@@ -65,7 +65,7 @@
                     aria-labelledby="navbarDropdownAlerts">
                     <h6 class="dropdown-header dropdown-notifications-header">
                         <i class="mr-2" data-feather="bell"></i>
-                        Pemberitahuan
+                        Alerts Center
                     </h6>
                     <a class="dropdown-item dropdown-notifications-item" href="#!">
                         <div class="dropdown-notifications-item-icon bg-warning"><i data-feather="activity"></i></div>
@@ -292,7 +292,7 @@
                         </a>
                         <div class="collapse" id="collapseComponents" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link " href="{{ route('Receive') }}">
+                                <a class="nav-link " href="{{ route('Rcv.index') }}">
                                     Receiving
                                 </a>
                                 <a class="nav-link" href="{{ route('Retur') }}">

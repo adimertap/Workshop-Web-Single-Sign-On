@@ -39,7 +39,15 @@ class NoteadimController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $note = new Adim;
+        $note->tanggal = $request->tanggal;
+        $note->modul = $request->modul;
+        $note->catatan = $request->catatan;
+        $note->progress = $request->progress;
+        $note->status = $request->status;
+        $note->save();
+
+        return redirect()->route('Note-adim.index')->with('messageberhasil','Yeay Data Progress Harian Berhasil ditambahkan');
     }
 
     /**
@@ -71,9 +79,13 @@ class NoteadimController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_catatan)
     {
-        //
+        $note = Adim::findOrFail($id_catatan);
+        $note->progress = $request->progress;
+        
+        $note->save();
+        return redirect()->back()->with('messageberhasil','Data Progress Berhasil diubah');
     }
 
     /**
@@ -82,8 +94,24 @@ class NoteadimController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_catatan)
     {
-        //
+        $note = Adim::findOrFail($id_catatan);
+        $note->delete();
+
+        return redirect()->back()->with('messagehapus','Data Catatan Berhasil dihapus');
+    }
+
+    public function setStatus(Request $request, $id_catatan)
+    {
+        $request->validate([
+            'statuspengerjaan' => 'required|in:On Progress,Sudah Selesai'
+        ]);
+
+        $note = Adim::findOrFail($id_catatan);
+        $note->status = $request->statuspengerjaan;
+        
+        $note->save();
+        return redirect()->route('Note-adim.index');
     }
 }

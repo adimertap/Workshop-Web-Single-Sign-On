@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Inventory\Rcv;
 use App\Http\Controllers\Controller;
 use App\Model\Accounting\Akun;
 use App\Model\Inventory\Purchase\PO;
+use App\Model\Inventory\Rak;
 use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\New_;
 
 class RcvController extends Controller
 {
@@ -35,25 +37,7 @@ class RcvController extends Controller
      */
     public function create()
     {
-        $rcv = Rcv::with([
-            'PO','Pegawai','Supplier','Akun'
-        ])->get();
-        
-        $id = Rcv::getId();
-        foreach($id as $value);
-        $idlama = $value->id_rcv;
-        $idbaru = $idlama + 1;
-        $blt = date('d-m-Y');
 
-        $kode_rcv = 'RCV-'.$idbaru.'/'.$blt;
-
-
-        $pegawai = Pegawai::all();
-        $supplier = Supplier::all();
-        $akun = Akun::all();
-        $po = PO::where([['status', '=', 'Dikirim']])->get();
-
-        return view('pages.inventory.rcv.create', compact('rcv','pegawai','po','supplier','akun', 'kode_rcv'));
     }
 
     /**
@@ -64,7 +48,20 @@ class RcvController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $po = PO::where('kode_po',$request->kode_po)->first();
+        $id_po = $po->id_po;
+        $id_supplier = $po->id_supplier;
+
+
+        $rcv = Rcv::create([
+            'id_po'=>$id_po,
+            'id_supplier'=>$id_supplier,
+            'no_do'=>$request->no_do,
+            
+            'tanggal_rcv'=>$request->tanggal_rcv,
+        ]);
+        
+        return $rcv;
     }
 
     /**
@@ -90,7 +87,23 @@ class RcvController extends Controller
      */
     public function edit($id)
     {
-        
+        $rcv = Rcv::with([
+            'PO','Pegawai','Supplier','Akun','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart.Hargasparepart'
+        ])->find($id);
+        $id = Rcv::getId();
+        $blt = date('d-m-Y');
+
+        $kode_rcv = 'RCV-'.$rcv->id_rcv.'/'.$blt;
+
+
+        $pegawai = Pegawai::all();
+        $supplier = Supplier::all();
+        $akun = Akun::all();
+        $po = PO::where([['status', '=', 'Dikirim']])->get();
+        $rak = Rak::all();
+
+
+        return view('pages.inventory.rcv.create', compact('rcv','pegawai','po','supplier','akun', 'kode_rcv','rak'));
     }
 
     /**

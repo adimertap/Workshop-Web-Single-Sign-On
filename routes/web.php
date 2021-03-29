@@ -416,13 +416,12 @@ Route::prefix('inventory/approvalappembelian')
     });
 
 // RECEIVING ------------------------------------------------------------------- Receiving
-Route::prefix('inventory/receiving')
+Route::prefix('inventory')
     ->namespace('Inventory\Rcv')
     ->group(function () {
-        Route::get('/', 'RcvController@index')
-            ->name('Receive');
 
-        Route::resource('Rcv', 'RcvController');
+
+        Route::resource('receiving', 'RcvController',['names'=>'Rcv']);
     });
 
 // RETUR ---------------------------------------------------------------------- Retur
@@ -662,4 +661,7 @@ Route::prefix('Note/Noteadim')
             ->name('Note');
 
         Route::resource('Note-adim', 'NoteadimController');
+
+        Route::post('Note/{id_catatan}/set-status', 'NoteadimController@setStatus')
+            ->name('status-catatan');
     });

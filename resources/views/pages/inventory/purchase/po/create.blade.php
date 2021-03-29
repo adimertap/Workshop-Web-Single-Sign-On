@@ -603,11 +603,9 @@
                 harga_beli, qty, total
             ]).draw();
         }
-        
-
     }
 
-
+// 
     $(document).ready(function () {
         $('#id_pegawai').on('change', function () {
             var select = $(this).find('option:selected')
