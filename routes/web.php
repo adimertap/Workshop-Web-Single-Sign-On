@@ -419,8 +419,6 @@ Route::prefix('inventory/approvalappembelian')
 Route::prefix('inventory')
     ->namespace('Inventory\Rcv')
     ->group(function () {
-
-
         Route::resource('receiving', 'RcvController',['names'=>'Rcv']);
     });
 
@@ -513,13 +511,14 @@ Route::prefix('kepegawaian/masterdatajabatan')
 
 
 // ABSENSI PEGAWAI ---------------------------------------------------------------- ABSENSI
-Route::prefix('kepegawaian/absensi')
+Route::prefix('kepegawaian')
     ->namespace('Kepegawaian\Absensi')
     ->group(function () {
-        Route::get('/', 'AbsensipegawaiController@index')
-            ->name('absensipegawai');
 
         Route::resource('absensi', 'AbsensipegawaiController');
+
+        Route::get('Absensi/{id_absensi}', 'AbsensipegawaiController@pulang')
+            ->name('absensipulang');
     });
 
 // LAPORAN ABSENSI --------------------------------------------------------------- Laporan Absensi

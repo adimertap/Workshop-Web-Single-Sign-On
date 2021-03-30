@@ -137,7 +137,8 @@
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('Rcv.edit', $item->id_rcv) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('Rcv.edit', $item->id_rcv) }}"
+                                                class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
@@ -189,8 +190,8 @@
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="kode_po">Kode PO</label>
                             <div class="input-group input-group-joined">
-                                <input class="form-control" type="text" placeholder="Masukan Kode PO" 
-                                    aria-label="Search"  id="detailkodepo">
+                                <input class="form-control" type="text" placeholder="Masukan Kode PO"
+                                    aria-label="Search" id="detailkodepo">
                                 <div class="input-group-append">
                                     <a href="" class="input-group-text" type="button" data-toggle="modal"
                                         data-target="#Modalpo">
@@ -201,7 +202,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="id_supplier">Perusahaan</label>
-                            <input class="form-control" id="detailsupplier" type="text" name="id_supplier" 
+                            <input class="form-control" id="detailsupplier" type="text" name="id_supplier"
                                 placeholder="Input Nama Perusahaan" value="{{ old('id_supplier') }}"
                                 class="form-control @error('id_supplier') is-invalid @enderror" />
                             @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
@@ -230,8 +231,8 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" onclick="submit1()"type="button" >Selanjutnya!</button>
-                    
+                    <button class="btn btn-success" onclick="submit1()" type="button">Selanjutnya!</button>
+
                 </div>
             </form>
         </div>
@@ -264,7 +265,8 @@
                                     <div class="font-weight-bold kode_po">{{ $item->kode_po }}</div>
                                 </td>
                                 <td>
-                                    <div class="small text-muted d-none d-md-block nama_supplier">{{ $item->Supplier->nama_supplier }}</div>
+                                    <div class="small text-muted d-none d-md-block nama_supplier">
+                                        {{ $item->Supplier->nama_supplier }}</div>
                                 </td>
                                 <td>
                                     <button class="btn btn-success btn-sm btn-datatable"
@@ -328,39 +330,38 @@
 
         $('#detailkodepo').val(kode_po)
         $('#detailsupplier').val(nama_supplier)
-        console.log(kode_po);  
+        console.log(kode_po);
     }
 
     // FUNGSI TAMBAH AJAX
-    function submit1(){
+    function submit1() {
         var _token = $('#form1').find('input[name="_token"]').val()
         var no_do = $('#no_do').val()
         var tanggal_rcv = $('#tanggal_rcv').val()
         var kode_po = $('#detailkodepo').val()
         var nama_supplier = $('#detailsupplier').val()
         var data = {
-                _token: _token,
-                kode_po: kode_po,
-                nama_supplier: nama_supplier,
-                no_do: no_do,
-                tanggal_rcv: tanggal_rcv   
-            }
-           
-            $.ajax({
-                method: 'post',
-                url: '/inventory/receiving',
-                data: data,
-                success: function (response) {
-                    window.location.href = '/inventory/receiving/'+response.id_rcv+'/edit'
-                },
-                error:function(error){
-                    console.log(error)
-                }
+            _token: _token,
+            kode_po: kode_po,
+            nama_supplier: nama_supplier,
+            no_do: no_do,
+            tanggal_rcv: tanggal_rcv
+        }
 
-            });
-          
+        $.ajax({
+            method: 'post',
+            url: '/inventory/receiving',
+            data: data,
+            success: function (response) {
+                window.location.href = '/inventory/receiving/' + response.id_rcv + '/edit'
+            },
+            error: function (error) {
+                console.log(error)
+            }
+
+        });
+
     }
-    
 
 </script>
 

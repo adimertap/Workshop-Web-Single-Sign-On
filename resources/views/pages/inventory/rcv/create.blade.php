@@ -450,7 +450,6 @@
                     <h6>Detail Pesanan</h6>
                     <div class="small mb-2">
                         <span class="font-weight-500 text-primary">{{ $item->nama_sparepart }}</span>
-
                     </div>
                     <div class="row">
                         <div class="col-md-7">

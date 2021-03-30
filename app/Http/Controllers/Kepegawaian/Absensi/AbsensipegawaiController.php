@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Kepegawaian\Absensi;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class AbsensipegawaiController extends Controller
 {
@@ -18,8 +19,9 @@ class AbsensipegawaiController extends Controller
     {
         $absensi = Absensi::with([
             'Pegawai',
-        ])->get();
-        $blt = date('d/m/Y');
+        ])->whereDate('tanggal_absensi', Carbon::today())->get();
+
+        $blt = date('D, d/m/Y');
 
         $pegawai = Pegawai::all();
 
@@ -44,17 +46,20 @@ class AbsensipegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $absensi = new Absensi;
-        $absensi->id_pegawai = $request->id_pegawai;
-        $absensi->tanggal_absensi = $request->tanggal_absensi;
-        $absensi->absensi = $request->absensi;
-        $absensi->keterangan = $request->keterangan;
 
-        $absensi->save();
-        $absensi->sync($request->pegawai);
+
+        $absensi = Absensi::create([
+            'id_pegawai'=>$request->id_pegawai,
+            'tanggal_absensi'=>Carbon::today(),
+            'absensi'=>$request->absensi,
+            'keterangan'=>$request->keterangan,
+            'jam_masuk' => Carbon::now()->format('H:i:s')
+        ]);
         
-        // return $request;
-        return response()->json($request);
+        $absensi->save();
+
+        return redirect()->back()->with('messageberhasil','Berhasil Melakukan Absensi');
+
     }
 
     /**
@@ -100,5 +105,21 @@ class AbsensipegawaiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function pulang(Request $request, $id_absensi)
+    {
+        $request->validate([
+            'status' => 'required|in:Absen_Pagi,Masuk,Alpha,Ijin,Sakit,Cuti'
+        ]);
+
+        $absensi = Absensi::findOrFail($id_absensi);
+        $absensi->absensi = $request->status;
+        $absensi->jam_pulang = Carbon::now()->format('H:i:s');
+
+        $absensi->update();
+
+        return redirect()->back()->with('messageberhasil','Berhasil Melakukan Absensi');
+
     }
 }

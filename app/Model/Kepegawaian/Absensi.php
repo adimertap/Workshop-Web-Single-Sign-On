@@ -4,6 +4,7 @@ namespace App\Model\Kepegawaian;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 class Absensi extends Model
 {
@@ -35,5 +36,6 @@ class Absensi extends Model
     {
         return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
     }
+
 
 }
