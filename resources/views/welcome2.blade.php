@@ -37,16 +37,27 @@
                                 <div class="card-header justify-content-center"><h3 class="font-weight-light my-4 text-center">Login Single Sign-On</h3></div>
                                 <div class="card-body">
                                     <!-- Login form-->
-                                    <form>
+                                    <form method="POST" action="{{ route('dashboardsso') }}"> 
                                         <!-- Form Group (Username address)-->
                                         <div class="form-group">
-                                            <label class="small mb-1" for="inputUsernameAddress">Username</label>
-                                            <input class="form-control py-4" id="inputUsernameAddress" type="text" placeholder="Enter username" />
+                                            <label class="small mb-1" for="email">{{ __('E-Mail Address') }}</label>
+                                            <input class="form-control py-4 @error('email') is-invalid @enderror" id="email" type="email" placeholder="Enter Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus/>
+                                                @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                         </div>
                                         <!-- Form Group (password)-->
                                         <div class="form-group">
-                                            <label class="small mb-1" for="inputPassword">Password</label>
-                                            <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />
+                                            <label class="small mb-1" for="password">{{ __('Password') }}</label>
+                                            <input class="form-control py-4  @error('password') is-invalid @enderror" id="password" type="password" placeholder="Enter Password" name="password" required autocomplete="current-password" />
+                                        
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                         <!-- Form Group (remember password checkbox)-->
                                         <div class="form-group">
@@ -57,7 +68,13 @@
                                         </div>
                                         <!-- Form Group (login box)-->
                                         <div class="d-grid col-8 mx-auto">
-                                            <a class="btn btn-primary btn-block " href="{{route('dashboardsso')}}">Login</a>
+                                            <button type="submit" class="btn btn-primary btn-block"> {{ __('Login') }}</button>
+                                            
+                                            @if (Route::has('password.request'))
+                                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                    {{ __('Forgot Your Password?') }}
+                                                </a>
+                                            @endif
                                         </div>
                                     </form>
                                 </div>

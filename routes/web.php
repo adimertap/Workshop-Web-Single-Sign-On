@@ -14,8 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome2');
 });
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware('role:super_admin')->get('/dashboard', function () {
+    return ('dashboard');
+})->name('dashboard');
 
 // MODUL FRONT OFFICE
 // DASHBOARD
