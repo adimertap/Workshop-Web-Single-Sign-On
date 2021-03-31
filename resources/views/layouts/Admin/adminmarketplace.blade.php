@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Payroll System</title>
+    <title>Marketplace System</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}">
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
@@ -27,15 +27,18 @@
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="{{ route('dashboardpayroll')}}"><i class="fas fa-calculator mr-3"></i>Payroll</a>
+        <a class="navbar-brand" href="{{ route('dashboardinventory')}}">
+            <i class="fas fa-boxes mr-3"></i>
+            Marketplace Admin
+        </a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
                 data-feather="menu"></i></button>
-
         <div class="small">
             <i class="fa fa-cogs" aria-hidden="true"></i>
             Bengkel
             <span class="font-weight-500 text-primary">Adi Jaya</span>
         </div>
+        </form>
         <ul class="navbar-nav align-items-center ml-auto">
             <li class="nav-item dropdown no-caret mr-3 d-md-none">
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="searchDropdown" href="#" role="button"
@@ -158,17 +161,21 @@
                         <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                         Account
                     </a>
-                    <a class="dropdown-item" href="{{ route('Note-adim.index') }}">
+                    <a class="dropdown-item" href="{{ route('Note') }}">
                         <div class="dropdown-item-icon"><i class="fas fa-clipboard"></i></div>
                         Catatan Progress
                     </a>
                     <a class="dropdown-item" href="{{ route('dashboardinventory') }}">
-                        <div class="dropdown-item-icon"> <i class="fas fa-cubes"></i></div>
+                        <div class="dropdown-item-icon"><i class="fas fa-user"></i></div>
                         Sistem Inventory
                     </a>
                     <a class="dropdown-item" href="{{ route('dashboardpegawai') }}">
                         <div class="dropdown-item-icon"><i class="fas fa-user"></i></div>
                         Sistem Kepegawaian
+                    </a>
+                    <a class="dropdown-item" href="{{ route('dashboardpayroll') }}">
+                        <div class="dropdown-item-icon"><i class="fas fa-wallet"></i></div>
+                        Sistem Payroll
                     </a>
                     <a class="dropdown-item" href="{{ route('dashboardaccounting') }}">
                         <div class="dropdown-item-icon"><i class="fas fa-calculator"></i></div>
@@ -194,59 +201,68 @@
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
                         <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardpayroll') }}">
-                            <div class="nav-link-icon"><i class="fas fa-money-bill-wave-alt"></i></div>
-                            Dashboard Payroll
+                        <a class="nav-link" href="{{ route('dashboardmarketplace')}}">
+                            <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                            Dashboard
+                        </a>
+                        <a class="nav-link" href="{{ route('dashboardinventory')}}">
+                            <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                            Marketplace
                         </a>
 
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
-                        <div class="sidenav-menu-heading">Master Data</div>
+                        <div class="sidenav-menu-heading">Data Penjualan</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
-                            Master Data
-                            <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            Pengiriman
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('masterdatagajipokok') }}">
-                                    Master Gaji Pokok
+                                <a class="nav-link" href="{{ route('Penjualan-Online.index')}}">
+                                    Pengiriman Barang
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatatunjangan') }}">
-                                    Master Tunjangan
+                                <a class="nav-link" href="{{ route('sparepart.index')}}">
+                                    Laporan Pengiriman
                                 </a>
                             </nav>
                         </div>
 
                         {{-- INVENTORY SYSTEM --}}
                         {{-- Inventory System Side Bar --}}
-                        <div class="sidenav-menu-heading">Penggajian</div>
+                        <div class="sidenav-menu-heading">Sparepart</div>
 
-                        {{-- Inventory --}}
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                            data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="nav-link-icon"><i class="fas fa-briefcase"></i></div>
-                            Penggajian
-                            <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            data-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
+                            <div class="nav-link-icon">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            Daftar Sparepart
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
                         </a>
-                        <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
-                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                <a class="nav-link " href="{{ route('gaji-pegawai.index') }}">
-                                    Gaji Pegawai
-                                </a>
-                                <a class="nav-link " href="invoice.html">
-                                    Laporan Absensi
+
+                        <div class="collapse" id="collapseUtilities" data-parent="#accordionSidenav" style="">
+                            <nav class="sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ route('sparepart.index') }}">
+                                    Daftar Sparepart
                                 </a>
                             </nav>
                         </div>
                     </div>
                 </div>
+                       
+
                 {{-- USER ROLE Side Bar --}}
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">User Role:</div>
-                        <div class="sidenav-footer-title">Owner</div>
+                        <div class="sidenav-footer-title">Bagian Gudang</div>
                     </div>
                 </div>
             </nav>
@@ -275,6 +291,7 @@
             </footer>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
@@ -291,7 +308,5 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
-
 </body>
-
 </html>

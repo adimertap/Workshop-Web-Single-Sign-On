@@ -73,7 +73,7 @@
             </div>
             <div class="col-xxl-4 col-xl-3 mb-4">
                 <!-- Dashboard example card 3-->
-                <a class="card lift h-100" href="{{ route('dashboardaccounting') }}">
+                <a class="card lift h-100" href="{{ route('dashboardmarketplace') }}">
                     <div class="card-body d-flex justify-content-center flex-column">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="mr-3">

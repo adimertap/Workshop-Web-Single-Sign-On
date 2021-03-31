@@ -232,6 +232,7 @@
                             <option value="Inventory">Inventory</option>
                             <option value="Kepegawaian">Kepegawaian</option>
                             <option value="Payroll">Payroll</option>
+                            <option value="Admin Marketplace">Admin Marketplace</option>
                         </select>
                     </div>
                     <div class="form-group">

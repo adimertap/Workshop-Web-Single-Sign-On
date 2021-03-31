@@ -1,4 +1,4 @@
-@extends('layouts.Admin.admininventory')
+@extends('layouts.Admin.adminmarketplace')
 
 @section('content')
 {{-- HEADER --}}

@@ -28,7 +28,9 @@
     <div class="card mb-4">
         <div class="card card-header-actions">
             <div class="card-header ">List Penggajian
-                <a href="{{ route('gaji-pegawai.create') }}" class="btn btn-sm btn-primary"> Tambah Data Gaji</a>
+                <a href="" class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">
+                    Tambah Data Gaji
+                </a>
             </div>
         </div>
         <div class="card-body ">
@@ -93,31 +95,138 @@
     </div>
 </div>
 </main>
-{{-- 
-@forelse ($rcv as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id_rcv }}" tabindex="-1" role="dialog"
-aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                    aria-hidden="true">×</span></button>
-        </div>
-        <form action="{{ route('Rcv.destroy', $item->id_rcv) }}" method="POST" class="d-inline">
-            @csrf
-            @method('delete')
-            <div class="modal-body">Apakah Anda Yakin Menghapus Data Penerimaan {{ $item->kode_rcv }} pada tanggal
-                {{ $item->tanggal_rcv }}?</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+
+{{-- MODAL TAMBAH --}}
+<div class="modal fade" id="Modaltambah" tabindex="-1" role="dialog" data-backdrop="static"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Data Gaji Pegawai</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
             </div>
-        </form>
+            <form action="{{ route('gaji-pegawai.store') }}" method="POST" id="form1" class="d-inline">
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="tahun_gaji">Tahun Bayar</label>
+                            <input class="form-control" id="tahun_gaji" type="date" name="tanggal_rcv"
+                                placeholder="Input Tanggal Receive" value="{{ old('tahun_gaji') }}"
+                                class="form-control @error('tahun_gaji') is-invalid @enderror" />
+                            @error('tahun_gaji')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="bulan_gaji">Bulan Bayar</label>
+                            <input class="form-control" id="bulan_gaji" type="date" name="bulan_gaji"
+                                placeholder="Input Tanggal Receive" value="{{ old('bulan_gaji') }}"
+                                class="form-control @error('bulan_gaji') is-invalid @enderror" />
+                            @error('bulan_gaji')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="nama_pegawai">Pilih Pegawai</label>
+                            <div class="input-group input-group-joined">
+                                <input class="form-control" type="text" placeholder="Pilih Pegawai" aria-label="Search"
+                                    id="detailpegawai">
+                                <div class="input-group-append">
+                                    <a href="" class="input-group-text" type="button" data-toggle="modal"
+                                        data-target="#Modalpegawai">
+                                        <i class="fas fa-folder-open"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="id_jabatan">Jabatan</label>
+                            <input class="form-control" id="detailjabatan" type="text" name="id_jabatan"
+                                placeholder="Input Jabatan Pegawai" value="{{ old('id_jabatan') }}"
+                                class="form-control @error('id_jabatan') is-invalid @enderror" />
+                            @error('id_jabatan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" onclick="submit1()" type="button">Selanjutnya!</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-</div>
-@empty
 
-@endforelse --}}
+<div class="modal fade" id="Modalpegawai" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered " role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light ">
+                <h5 class="modal-title">Pilih Pegawai</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                        <thead class="border-bottom">
+                            <tr class="small text-uppercase text-muted">
+                                <th scope="col">Nama Pegawai</th>
+                                <th scope="col">Jabatan</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($pegawai as $item)
+                            <tr id="item-{{ $item->id_pegawai }}" class="border-bottom">
+                                <td>
+                                    <div class="font-weight-bold kode_po">{{ $item->nama_pegawai }}</div>
+                                </td>
+                                <td>
+                                    <div class="small text-muted d-none d-md-block nama_supplier">
+                                        {{ $item->Jabatan->nama_jabatan }}</div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-success btn-sm btn-datatable"
+                                        onclick="tambahpegawai(event, {{ $item->id_pegawai }})" type="button"
+                                        data-dismiss="modal">Tambah
+                                    </button>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="7" class="tex-center">
+                                    Data Pegawai Kosong
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function tambahpegawai(event, id_pegawai) {
+        var data = $('#item-' + id_pegawai)
+        var _token = $('#form1').find('input[name="_token"]').val()
+        var nama_pegawai = $(data.find('.nama_pegawai')[0]).text()
+        var nama_jabatan = $(data.find('.nama_jabatan')[0]).text()
+        alert('Berhasil Menambahkan Data Pegawai')
+        
+        $('#detailpegawai').val(nama_pegawai)
+        $('#detailjabatan').val(nama_jabatan)
+        console.log(nama_pegawai);
+    }
+
+</script>
+
 @endsection

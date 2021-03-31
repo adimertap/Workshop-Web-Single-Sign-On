@@ -25,7 +25,8 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Gaji Pokok
-                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
+                        data-target="#Modaltambah">Tambah
                         Data Gaji</button>
                 </div>
             </div>
@@ -105,122 +106,123 @@
             </div>
         </div>
     </div>
+</main>
 
-
-    {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
-    <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Gaji Pokok</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                </div>
-                <form action="{{ route('gaji-pokok.store') }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <label class="small mb-1">Isikan Form Dibawah Ini</label>
-                        <hr>
-                        </hr>
-                        <div class="form-group">
-                            <label class="small mb-1" for="id_jabatan">Pilih Jabatan</label>
-                            <select class="form-control" name="id_jabatan" id="id_jabatan"
+{{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
+<div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Gaji Pokok</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('gaji-pokok.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="form-group">
+                        <label class="small mb-1" for="id_jabatan">Pilih Jabatan</label>
+                        <select class="form-control" name="id_jabatan" id="id_jabatan"
                             class="form-control @error('id_jabatan') is-invalid @enderror">
-                                <option>Pilih Jabatan</option>
-                                @foreach ($jabatan as $item)
-                                <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}</option>
-                                @endforeach
-                            </select>
-                            @error('id_jabatan')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="besaran_gaji">Besaran Gaji</label>
-                            <input class="form-control" name="besaran_gaji" type="number" id="besaran_gaji"
-                                placeholder="Input Besaran Gaji" value="{{ old('besaran_gaji') }}"
-                                class="form-control @error('besaran_gaji') is-invalid @enderror" />
-                            @error('besaran_gaji')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
-                        </div>
+                            <option>Pilih Jabatan</option>
+                            @foreach ($jabatan as $item)
+                            <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}</option>
+                            @endforeach
+                        </select>
+                        @error('id_jabatan')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
-
-                    {{-- Validasi Error --}}
-                    @if (count($errors) > 0)
-                    @endif
-
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="Submit">Tambah</button>
+                    <div class="form-group">
+                        <label class="small mb-1" for="besaran_gaji">Besaran Gaji</label>
+                        <input class="form-control" name="besaran_gaji" type="number" id="besaran_gaji"
+                            placeholder="Input Besaran Gaji" value="{{ old('besaran_gaji') }}"
+                            class="form-control @error('besaran_gaji') is-invalid @enderror" />
+                        @error('besaran_gaji')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
-    @forelse ($gajipokok as $item)
-    <div class="modal fade" id="Modaledit-{{ $item->id_gaji_pokok }}" data-backdrop="static" tabindex="-1" role="dialog"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Gaji Pokok</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('gaji-pokok.update', $item->id_gaji_pokok) }}" method="POST">
-                    @method('PUT')
-                    @csrf
-                    <div class="modal-body">
-                        <label class="small mb-1">Nama Jabatan : {{ $item->Jabatan->nama_jabatan }}</label>
-                        <hr>
-                        </hr>
-                        
-                        <div class="form-group">
-                            <label class="small" for="besaran_gaji">Besaran Gaji</label>
-                            <input class="form-control" name="besaran_gaji" type="text" id="besaran_gaji"
-                                value="{{ $item->besaran_gaji }}" />
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="Submit">Ubah</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    @empty
 
-    @endforelse
+                {{-- Validasi Error --}}
+                @if (count($errors) > 0)
+                @endif
 
-    {{-- MODAL DELETE ------------------------------------------------------------------------------}}
-    @forelse ($gajipokok as $item)
-    <div class="modal fade" id="Modalhapus-{{ $item->id_gaji_pokok }}" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="Submit">Tambah</button>
                 </div>
-                <form action="{{ route('gaji-pokok.destroy', $item->id_gaji_pokok) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('delete')
-                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Gaji Pokok ini ?</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-danger" type="submit">Ya! Hapus</button>
-                    </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
-    @empty
+</div>
 
-    @endforelse
+{{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
+@forelse ($gajipokok as $item)
+<div class="modal fade" id="Modaledit-{{ $item->id_gaji_pokok }}" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Gaji Pokok</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('gaji-pokok.update', $item->id_gaji_pokok) }}" method="POST">
+                @method('PUT')
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Nama Jabatan : {{ $item->Jabatan->nama_jabatan }}</label>
+                    <hr>
+                    </hr>
+
+                    <div class="form-group">
+                        <label class="small" for="besaran_gaji">Besaran Gaji</label>
+                        <input class="form-control" name="besaran_gaji" type="text" id="besaran_gaji"
+                            value="{{ $item->besaran_gaji }}" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="Submit">Ubah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+
+@endforelse
+
+{{-- MODAL DELETE ------------------------------------------------------------------------------}}
+@forelse ($gajipokok as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_gaji_pokok }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger-soft">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('gaji-pokok.destroy', $item->id_gaji_pokok) }}" method="POST" class="d-inline">
+                @csrf
+                @method('delete')
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Gaji Pokok
+                    {{ $item->Jabatan->nama_jabatan }} ?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+
+@endforelse
 </main>
 {{-- Callback Modal Jika Validasi Error --}}
 @if (count($errors) > 0)

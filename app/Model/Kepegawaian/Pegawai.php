@@ -2,6 +2,7 @@
 
 namespace App\Model\Kepegawaian;
 
+use App\Model\Payroll\Mastergajipokok;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -39,4 +40,5 @@ class Pegawai extends Model
     public function jabatan(){
         return $this->belongsTo(Jabatan::class,'id_jabatan','id_jabatan');
     }
+
 }

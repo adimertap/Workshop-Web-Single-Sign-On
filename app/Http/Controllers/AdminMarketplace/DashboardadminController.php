@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Payroll\Gajipegawai;
+namespace App\Http\Controllers\AdminMarketplace;
 
 use App\Http\Controllers\Controller;
-use App\Model\Inventory\Retur\Retur;
-use App\Model\Kepegawaian\Pegawai;
-use App\Model\Payroll\Gajipegawai;
 use Illuminate\Http\Request;
 
-class GajipegawaiController extends Controller
+class DashboardadminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,14 +14,7 @@ class GajipegawaiController extends Controller
      */
     public function index()
     {
-
-        $gaji = Gajipegawai::with([
-            'Pegawai','Akun',
-        ])->get();
-
-        $pegawai = Pegawai::all();
-
-        return view('pages.payroll.gajipegawai.gajipegawai', compact('gaji','pegawai'));
+       return view('pages.adminmarketplace.dashboardadminmarketplace');
     }
 
     /**
@@ -34,7 +24,7 @@ class GajipegawaiController extends Controller
      */
     public function create()
     {
-        return view('pages.payroll.gajipegawai.create');
+        //
     }
 
     /**

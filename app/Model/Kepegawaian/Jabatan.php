@@ -2,6 +2,7 @@
 
 namespace App\Model\Kepegawaian;
 
+use App\Model\Payroll\Mastergajipokok;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -15,6 +16,7 @@ class Jabatan extends Model
 
     protected $fillable = [
         'nama_jabatan',
+        'id_gaji_pokok'
     ];
 
     protected $hidden =[ 
@@ -22,4 +24,8 @@ class Jabatan extends Model
     ];
 
     public $timestamps = false;
+
+    public function Gajipokok(){
+        return $this->belongsTo(Mastergajipokok::class,'id_gaji_pokok','id_gaji_pokok');
+    }
 }

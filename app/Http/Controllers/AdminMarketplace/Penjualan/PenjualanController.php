@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Inventory\Penjualan;
+namespace App\Http\Controllers\AdminMarketplace\Penjualan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        return view('pages.inventory.penjualanonline.penjualan');
+        return view('pages.adminmarketplace.penjualanonline.penjualan');
     }
 
     /**

@@ -301,41 +301,24 @@
                             </nav>
                         </div>
 
-                        {{-- Approval --}}
-                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                            data-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
-                            <div class="nav-link-icon"><i data-feather="check-square"></i></div>
-                            Approval
-                            <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseFlows" data-parent="#accordionSidenav">
-                            <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link " href="{{ route('approvalpo') }}">
-                                    Purchase Order
-                                    <span class="badge badge-primary-soft text-primary ml-auto">New</span>
-                                </a>
-                                <a class="nav-link" href="{{ route('approvalopname') }}">
-                                    Stock Opname
-                                    <span class="badge badge-primary-soft text-primary ml-auto">New</span>
-                                </a>
-                            </nav>
-                        </div>
-
                         {{-- MANAJEMEN ASET --}}
                         {{-- Manajemen Aset Side Bar --}}
-                        <div class="sidenav-menu-heading">Marketplace</div>
+                        <div class="sidenav-menu-heading">Approval</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
-                            Data Penjualan
+                            <div class="nav-link-icon"><i data-feather="check-square"></i></div>
+                            Approval Data
                             <div class="sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down">
                                 </i></div>
                         </a>
                         <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
-                                <a class="nav-link" href="{{ route('Penjualan-Online') }}">
-                                    Penjualan
+                                <a class="nav-link" href="{{ route('approvalpo') }}">
+                                    Purchase Order
+                                </a>
+                                <a class="nav-link" href="{{ route('approvalopname') }}">
+                                    Stock Opname
                                 </a>
                             </nav>
                         </div>

@@ -454,15 +454,6 @@ Route::prefix('inventory/approvalopname')
             ->name('approval-opname-status');
     });
 
-// PENJUALAN ONLINE ---------------------------------------------------------------------- Penjualan Online
-Route::prefix('inventory/Penjualanonline')
-    ->namespace('Inventory\Penjualan')
-    ->group(function () {
-        Route::get('/', 'PenjualanController@index')
-            ->name('Penjualan-Online');
-
-        Route::resource('Penjualan-Online', 'PenjualanController');
-    });
 
 // KARTU GUDANG --------------------------------------------------------------------------- Kartu Gudang
 Route::prefix('inventory/Kartugudang')
@@ -559,12 +550,9 @@ Route::prefix('payroll/masterdatatunjangan')
     });
 
 // GAJI PEGAWAI ----------------------------------------------------------- Gaji Pegawai
-Route::prefix('payroll/Gajipegawai')
+Route::prefix('payroll')
     ->namespace('Payroll\Gajipegawai')
     ->group(function () {
-        Route::get('/', 'GajipegawaiController@index')
-            ->name('gaji-pegawai');
-
         Route::resource('gaji-pegawai', 'GajipegawaiController');
     });
 
@@ -650,8 +638,7 @@ Route::prefix('accounting/Pajak')
         Route::resource('pajak', 'PajakController');
     });
 
-
-
+// CATATAN ADIM -------------------------------------------------------------------- Catatan Adim
 // NOTES ADIM
 Route::prefix('Note/Noteadim')
     ->namespace('Note\Noteadim')
@@ -663,4 +650,23 @@ Route::prefix('Note/Noteadim')
 
         Route::post('Note/{id_catatan}/set-status', 'NoteadimController@setStatus')
             ->name('status-catatan');
+    });
+
+
+// MODUL ADMIN MARKETPLACE ------------------------------------------------------------ ADM. Marketplace
+Route::prefix('AdminMarketplace')
+    ->namespace('AdminMarketplace')
+    ->group(function () {
+        Route::get('/', 'DashboardadminController@index')
+            ->name('dashboardmarketplace');
+    });
+
+// PENJUALAN ONLINE ---------------------------------------------------------------------- Penjualan Online
+Route::prefix('AdminMarketplace/Penjualan')
+    ->namespace('AdminMarketplace\Penjualan')
+    ->group(function () {
+        Route::get('/', 'PenjualanController@index')
+            ->name('Penjualan-Online');
+
+        Route::resource('Penjualan-Online', 'PenjualanController');
     });
