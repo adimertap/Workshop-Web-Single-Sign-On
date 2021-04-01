@@ -32,7 +32,7 @@ class Merksparepart extends Model
     // }
 
     public function jenissparepart(){
-        return $this->belongsTo(Jenissparepart::class,'id_jenis_sparepart','id_jenis_sparepart');
+        return $this->belongsTo(Jenissparepart::class,'id_jenis_sparepart','id_jenis_sparepart')->withTrashed();
     }
 
     public static function getId(){

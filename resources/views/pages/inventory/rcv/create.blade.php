@@ -477,8 +477,8 @@
                             <select class="form-control" name="id_rak" id="id_akun"
                                 class="form-control @error('id_rak') is-invalid @enderror">
                                 <option>Pilih Rak</option>
-                                @foreach ($rak as $item)
-                                <option value="{{ $item->id_rak }}">{{ $item->nama_rak }}
+                                @foreach ($rak as $rakitem)
+                                <option value="{{ $rakitem->id_rak }}">{{ $rakitem->nama_rak }}
                                 </option>
                                 @endforeach
                             </select>
@@ -606,7 +606,7 @@
         var qty_rcv = form.find('input[name="qty_rcv"]').val()
         var id_rak = $('#id_rak').val()
         var keterangan = form.find('input[name="keterangan"]').val()
-
+        console.log(form)
         if (qty_rcv == 0 | qty_rcv == '') {
             alert('Quantity Kosong')
         } else {

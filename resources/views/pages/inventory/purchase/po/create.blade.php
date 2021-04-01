@@ -498,23 +498,18 @@
 @empty
 @endforelse
 
-<template id="template">
-    <tr role="row" class="odd">
-        <td class="kode_sparepart"></td>
-        <td class="kode_sparepart"></td>
-        <td class="nama_sparepart"></td>
-        <td class="jenis_sparepart"></td>
-        <td class="merk_sparepart"></td>
-        <td class="satuan"></td>
-        <td class="harga_beli"></td>
-        <td class="qty"></td>
-        <td class="total"></td>
-        <td>
-            <a href="" class="btn btn-success btn-datatable" type="button" data-toggle="modal" data-target="">
-                <i class="fas fa-plus"></i>
-            </a>
-        </td>
-    </tr>
+<template id="template_delete_button">
+    <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
+        <i class="fas fa-trash"></i>
+    </button>
+</template>
+
+<template id="template_add_button">
+    <button class="btn btn-success btn-datatable"
+        type="button" data-toggle="modal"
+        data-target="#Modaltambah">
+        <i class="fas fa-plus"></i>
+    </button>
 </template>
 
 <script>
@@ -591,21 +586,37 @@
             var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
             var satuan = $(data.find('.satuan')[0]).text()
             var harga_beli = $(data.find('.harga_beli')[0]).text()
-            var template = $($('#template').html())
+            var template = $($('#template_delete_button').html())
             var splitqty = harga_beli.split('Rp.')[1].replace('.', '').replace(',00', '')
             var total = new Intl.NumberFormat('id', {
                 style: 'currency',
                 currency: 'IDR'
             }).format(qty * splitqty)
+        //    Delete Data di Table Konfirmasi sebelum di add
+            var table =  $('#dataTablekonfirmasi').DataTable()
+            // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
+            var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
+            table.row(row).remove().draw();
 
             $('#dataTablekonfirmasi').DataTable().row.add([
-                kode_sparepart, kode_sparepart, nama_sparepart, jenis_sparepart, merk_sparepart, satuan,
-                harga_beli, qty, total
+                kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart, jenis_sparepart, merk_sparepart, satuan,
+                harga_beli, qty, total,
             ]).draw();
         }
     }
 
-// 
+    function hapussparepart(element){
+        var table =  $('#dataTablekonfirmasi').DataTable()
+        // Akses Parent Sampai <tr></tr>
+        var row = $(element).parent().parent()
+        table.row(row).remove().draw();
+        // draw() Reset Ulang Table
+        var table =  $('#dataTable').DataTable()
+ 
+
+    }
+
+    // 
     $(document).ready(function () {
         $('#id_pegawai').on('change', function () {
             var select = $(this).find('option:selected')
@@ -647,7 +658,23 @@
 
         })
 
-        $('#dataTablekonfirmasi').DataTable();
+        var template = $('#template_delete_button').html()
+        $('#dataTablekonfirmasi').DataTable({ 
+            "columnDefs":[
+                {
+                    "targets": -1,
+                    "data": null,
+                    "defaultContent": template
+                },
+                {
+                    "targets": 0,
+                    "data": null,
+                    'render': function(data, type, row, meta){
+                    return meta.row+1
+                    }
+                }
+            ]
+        });
     });
 
 </script>

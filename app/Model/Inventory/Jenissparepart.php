@@ -3,10 +3,14 @@
 namespace App\Model\Inventory;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
 class Jenissparepart extends Model
 {
+
+    use SoftDeletes;
+    
     protected $table = "tb_inventory_master_jenis_sparepart";
 
     protected $primaryKey = 'id_jenis_sparepart';

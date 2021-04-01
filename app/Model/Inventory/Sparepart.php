@@ -35,7 +35,7 @@ class Sparepart extends Model
     public $timestamps = true;
 
     public function Jenissparepart(){
-        return $this->belongsTo(Jenissparepart::class,'id_jenis_sparepart','id_jenis_sparepart');
+        return $this->belongsTo(Jenissparepart::class,'id_jenis_sparepart','id_jenis_sparepart')->withTrashed();
     }
 
     public function Merksparepart(){
