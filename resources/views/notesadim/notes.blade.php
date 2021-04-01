@@ -135,7 +135,8 @@
                                                     <i class="fas fa-check"></i>
                                                 </a>
                                                 <a href="" class="btn btn-primary btn-datatable" type="button"
-                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_catatan }}">
+                                                    data-toggle="modal"
+                                                    data-target="#Modaledit-{{ $item->id_catatan }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable" type="button"
@@ -325,6 +326,7 @@
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                         <button class="btn btn-primary" type="Submit">Ubah</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>
@@ -332,5 +334,7 @@
 @empty
 
 @endforelse
+
+
 
 @endsection

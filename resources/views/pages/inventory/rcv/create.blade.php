@@ -113,6 +113,14 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
+                                            <label class="small mb-1" for="tanggal_rcv">Tanggal Receive</label>
+                                            <input class="form-control" id="tanggal_rcv" type="date" name="tanggal_rcv"
+                                                placeholder="Input Tanggal Receive" value="{{ $rcv->tanggal_rcv }}"
+                                                class="form-control @error('tanggal_rcv') is-invalid @enderror" />
+                                            @error('tanggal_rcv')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="id_akun">Akun</label>
                                             <select class="form-control" name="id_akun" id="id_akun"
                                                 class="form-control @error('id_akun') is-invalid @enderror">
@@ -123,14 +131,6 @@
                                                 @endforeach
                                             </select>
                                             @error('id_akun')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label class="small mb-1" for="tanggal_rcv">Tanggal Receive</label>
-                                            <input class="form-control" id="tanggal_rcv" type="date" name="tanggal_rcv"
-                                                placeholder="Input Tanggal Receive" value="{{ $rcv->tanggal_rcv }}"
-                                                class="form-control @error('tanggal_rcv') is-invalid @enderror" />
-                                            @error('tanggal_rcv')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-4">
@@ -445,7 +445,7 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="" id="form-{{ $item->id_sparepart }}" method="POST" class="d-inline">
+            <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
                 <div class="modal-body">
                     <h6>Detail Pesanan</h6>
                     <div class="small mb-2">
@@ -468,7 +468,7 @@
                     <hr class="my-4">
                     <div class="form-group">
                         <label class="small mb-1" for="qty_rcv">Masukan Quantity Sparepart diterima</label>
-                        <input class="form-control" name="qty_rcv" type="text" id="qty_rcv"
+                        <input class="form-control" name="qty_rcv" type="number" id="qty_rcv"
                             placeholder="Input Quantity diterima" value="{{ old('qty_rcv') }}"></input>
                     </div>
                     <div class="row">
@@ -487,7 +487,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="harga_diterima">Harga diterima</label>
-                            <input class="form-control" name="harga_diterima" type="text" id="harga_diterima"
+                            <input class="form-control" name="harga_diterima" type="number" id="harga_diterima"
                                 placeholder="Input Harga Beli diterima" value="{{ old('harga_diterima') }}"></input>
                         </div>
                     </div>
@@ -550,7 +550,6 @@
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
 
-        Detail
         for (var i = 0; i < sparepart.length; i++) {
             var form = $('#form-' + sparepart[i].id_sparepart)
             var qty_rcv = form.find('input[name="qty_rcv"]').val()
@@ -612,6 +611,10 @@
             alert('Quantity Kosong')
         } else {
             alert('Berhasil Menambahkan Sparepart')
+           
+
+            console.log(qty_rcv)
+
             var data = $('#item-' + id_sparepart)
             var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
             var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
@@ -620,15 +623,17 @@
             var satuan = $(data.find('.satuan')[0]).text()
             var harga_beli = $(data.find('.harga_beli')[0]).text()
             var template = $($('#template').html())
-            var splitqty = harga_beli.split('Rp.')[1].replace('.', '').replace(',00', '')
-            var total = new Intl.NumberFormat('id', {
-                style: 'currency',
-                currency: 'IDR'
-            }).format(qty * splitqty)
+            // var splitqty = harga_beli.split('Rp.')[1].replace('.', '').replace(',00', '')
+            // var total = new Intl.NumberFormat('id', {
+            //     style: 'currency',
+            //     currency: 'IDR'
+            // }).format(qty_rcv * splitqty)
+
+            
 
             $('#dataTablekonfirmasi').DataTable().row.add([
                 kode_sparepart, kode_sparepart, nama_sparepart, jenis_sparepart, merk_sparepart, satuan,
-                harga_beli, qty, total
+                harga_beli, qty_rcv
             ]).draw();
         }
     }

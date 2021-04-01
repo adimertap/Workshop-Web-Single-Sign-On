@@ -52,7 +52,6 @@ class RcvController extends Controller
         $id_po = $po->id_po;
         $id_supplier = $po->id_supplier;
 
-
         $rcv = Rcv::create([
             'id_po'=>$id_po,
             'id_supplier'=>$id_supplier,

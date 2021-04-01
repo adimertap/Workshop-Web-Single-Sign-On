@@ -28,7 +28,9 @@
     <div class="card mb-4">
         <div class="card card-header-actions">
             <div class="card-header ">List Retur
-                <a href="{{ route('Retur.create') }}" class="btn btn-sm btn-primary"> Tambah Retur</a>
+                <a href="" class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">
+                    Tambah Retur
+                </a>
             </div>
         </div>
         <div class="card-body ">
@@ -89,8 +91,8 @@
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                         <td>{{ $item->kode_retur }}</td>
-                                        <td>{{ $item->Pegawai->nama_pegawai }}</td>
-                                        <td>{{ $item->Supplier->nama_supplier }}</td>
+                                        <td>{{ $item->Pegawai->nama_pegawai ?? '' }}</td>
+                                        <td>{{ $item->Supplier->nama_supplier ?? '' }}</td>
                                         <td>{{ $item->tanggal_retur }}</td>
                                         <td>
                                             @if($item->status == 'Aktif')
@@ -110,7 +112,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('Retur.show', $item->id_retur) }}"
+                                            <a href="{{ route('retur.show', $item->id_retur) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
@@ -144,6 +146,106 @@
 </main>
 
 
+{{-- MODAL TAMBAH --}}
+<div class="modal fade" id="Modaltambah" tabindex="-1" role="dialog" data-backdrop="static"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Data Retur</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('retur.store') }}" method="POST" id="form1" class="d-inline">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="small mb-1" for="id_supplier">Pilih Supplier</label>
+                        <div class="input-group input-group-joined">
+                            <input class="form-control" type="text" placeholder="Pilih Supplier" aria-label="Search"
+                                id="detailsupplier">
+                            <div class="input-group-append">
+                                <a href="" class="input-group-text" type="button" data-toggle="modal"
+                                    data-target="#Modalsupplier">
+                                    <i class="fas fa-folder-open"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="tanggal_retur">Tanggal Retur</label>
+                        <input class="form-control" id="tanggal_retur" type="date" name="tanggal_retur"
+                            placeholder="Input Tanggal Receive" value="{{ old('tanggal_retur') }}"
+                            class="form-control @error('tanggal_retur') is-invalid @enderror" />
+                        @error('tanggal_retur')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" onclick="submit1()" type="button">Selanjutnya!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{-- MODAL PO --}}
+<div class="modal fade" id="Modalsupplier" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header bg-light ">
+                <h5 class="modal-title">Pilih Suppleir</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                        <thead class="border-bottom">
+                            <tr class="small text-uppercase text-muted">
+                                <th scope="col">Nama Supplier</th>
+                                <th scope="col">Telephone</th>
+                                <th scope="col">Alamat</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($supplier as $item)
+                            <tr id="item-{{ $item->id_supplier }}" class="border-bottom">
+                                <td>
+                                    <div class="font-weight-bold nama_supplier">{{ $item->nama_supplier }}</div>
+                                </td>
+                                <td>
+                                    <div class="small text-muted d-none d-md-block telephone">{{ $item->telephone }}</div>
+                                </td>
+                                <td>
+                                    <div class="small text-muted d-none d-md-block alamat_supplier">{{ $item->alamat_supplier }}</div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-success btn-sm btn-datatable"
+                                        onclick="tambahsupplier(event, {{ $item->id_supplier }})" type="button"
+                                        data-dismiss="modal">Tambah
+                                    </button>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="7" class="tex-center">
+                                    Data Supplier Kosong
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @forelse ($retur as $item)
 <div class="modal fade" id="Modalhapus-{{ $item->id_retur }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -170,6 +272,45 @@
 @empty
 
 @endforelse
+
+
+<script>
+    function tambahsupplier(event, id_supplier) {
+        var data = $('#item-' + id_supplier)
+        var _token = $('#form1').find('input[name="_token"]').val()
+        var nama_supplier = $(data.find('.nama_supplier')[0]).text()
+        alert('Berhasil Menambahkan Data PO')
+
+        $('#detailsupplier').val(nama_supplier)
+        console.log(nama_supplier);
+    }
+
+    function submit1() {
+        var _token = $('#form1').find('input[name="_token"]').val()
+        var nama_supplier = $('#detailsupplier').val()
+        var tanggal_retur = $('#tanggal_retur').val()
+        var data = {
+            _token: _token,
+            nama_supplier: nama_supplier,
+            tanggal_retur: tanggal_retur
+        }
+
+        $.ajax({
+            method: 'post',
+            url: '/inventory/retur',
+            data: data,
+            success: function (response) {
+                window.location.href = '/inventory/retur/' + response.id_retur + '/edit'
+            },
+            error: function (error) {
+                console.log(error)
+            }
+
+        });
+
+    }
+
+</script>
 
 
 

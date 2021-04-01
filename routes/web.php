@@ -423,13 +423,11 @@ Route::prefix('inventory')
     });
 
 // RETUR ---------------------------------------------------------------------- Retur
-Route::prefix('inventory/retur')
+Route::prefix('inventory')
     ->namespace('Inventory\Retur')
     ->group(function () {
-        Route::get('/', 'ReturController@index')
-            ->name('Retur');
 
-        Route::resource('Retur', 'ReturController');
+        Route::resource('retur', 'ReturController');
     });
 
 // OPNAME ---------------------------------------------------------------------- Stock Opname

@@ -201,12 +201,9 @@
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="id_supplier">Perusahaan</label>
+                            <label class="small mb-1" for="id_supplier">Supplier</label>
                             <input class="form-control" id="detailsupplier" type="text" name="id_supplier"
-                                placeholder="Input Nama Perusahaan" value="{{ old('id_supplier') }}"
-                                class="form-control @error('id_supplier') is-invalid @enderror" />
-                            @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                                placeholder="" value="{{ old('id_supplier') }}" readonly>
                         </div>
                     </div>
                     <div class="row">
@@ -227,12 +224,10 @@
                             </div> @enderror
                         </div>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-success" onclick="submit1()" type="button">Selanjutnya!</button>
-
                 </div>
             </form>
         </div>
@@ -265,8 +260,7 @@
                                     <div class="font-weight-bold kode_po">{{ $item->kode_po }}</div>
                                 </td>
                                 <td>
-                                    <div class="small text-muted d-none d-md-block nama_supplier">
-                                        {{ $item->Supplier->nama_supplier }}</div>
+                                    <div class="small text-muted d-none d-md-block nama_supplier">{{ $item->Supplier->nama_supplier }}</div>
                                 </td>
                                 <td>
                                     <button class="btn btn-success btn-sm btn-datatable"

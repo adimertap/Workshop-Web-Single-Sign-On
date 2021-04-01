@@ -146,7 +146,16 @@
                                                         @endif
                                                     </span>
                                                 </td>
-                                                <td>{{ $item->jam_masuk }}</td>
+                                                <td>
+                                                    @if($item->absensi == 'Absen_Pagi' | $item->absensi =='Masuk')
+                                                    {{ $item->jam_masuk }}
+                                                    @elseif ($item->absensi == 'Ijin' | $item->absensi == 'Sakit' |
+                                                    $item->absensi == 'Cuti' | $item->absensi == 'Alpha')
+                                                    @else
+                                                    <span>
+                                                        @endif
+                                                    </span>
+                                                </td>
                                                 <td id="item-{{ $item->id_pegawai }}">
                                                     @if($item->absensi == 'Absen_Pagi')
                                                     {{-- <button class="btn btn-secondary btn-sm" id="pulang"
@@ -157,7 +166,7 @@
                                                         class="btn btn-secondary btn-sm"> Pulang!
                                                     </a>
                                                     @elseif($item->absensi == 'Masuk')
-                                                        {{ $item->jam_pulang }}
+                                                    {{ $item->jam_pulang }}
                                                     @else
                                                     <span>
                                                         @endif
@@ -258,13 +267,7 @@
 </template>
 
 <script>
-    function pualng(event) {
-        event.PreventDefault()
-        var data = $('#item-' + id_pegawai)
-        var _token = $('#form1').find('input[name="_token"]').val()
-
-    }
-
+    // On Change Absensi Field
     $(document).ready(function () {
         $('#absensi').on('change', function () {
             var select = $(this).find('option:selected')
@@ -281,47 +284,7 @@
 
     });
 
-
-    // function tambahpegawai(event, pegawai) {
-    //     event.preventDefault()
-    //     var form1 = $('#form1')
-    //     var id_pegawai = $('#id_pegawai').val()
-    //     var absensi = $('#absensi').val()
-    //     var keterangan = form1.find('input[name="keterangan"]').val()
-    //     var data = []
-    //     var _token = form1.find('input[name="_token"]').val()
-
-    //     $.ajax({
-    //         method: 'post',
-    //         url: '/kepegawaian/absensi',
-    //         data: {
-    //             _token: _token,
-    //             id_pegawai: id_pegawai,
-    //             absensi: absensi,
-    //             keterangan: keterangan,
-    //         },
-    //         success: function (response) {
-    //             console.log(response)
-
-
-
-
-    //             $('#dataTable tbody').append('<tr><td>' + id_pegawai + '</td><td>' + absensi + '</td><td>' +
-    //                     absensi + '</td><td>' + absensi + '</td><td>' + keterangan + '</td></tr>'),
-    //                 $('#form1')[0].reset();
-    //         },
-    //         error: function (error) {
-    //             console.log(error)
-    //         }
-
-    //     });
-
-
-
-
-    //     // dataTablekonfirmasi
-    // }
-
+    // Waktu
     setInterval(displayclock, 500);
 
     function displayclock() {
@@ -360,10 +323,5 @@
     }
 
 </script>
-
-
-
-
-
 
 @endsection

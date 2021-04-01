@@ -146,9 +146,9 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="id_jabatan">Jabatan</label>
-                            <input class="form-control" id="detailjabatan" type="text" name="id_jabatan"
-                                placeholder="Input Jabatan Pegawai" value="{{ old('id_jabatan') }}"
-                                class="form-control @error('id_jabatan') is-invalid @enderror" />
+                            <input class="form-control" id="detailjabatan" type="text" name="id_jabatan" placeholder=""
+                                value="{{ old('id_jabatan') }}"
+                                class="form-control @error('id_jabatan') is-invalid @enderror" readonly />
                             @error('id_jabatan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
@@ -186,15 +186,14 @@
                             @forelse ($pegawai as $item)
                             <tr id="item-{{ $item->id_pegawai }}" class="border-bottom">
                                 <td>
-                                    <div class="font-weight-bold kode_po">{{ $item->nama_pegawai }}</div>
+                                    <div class="font-weight-bold nama_pegawai">{{ $item->nama_pegawai }}</div>
                                 </td>
                                 <td>
-                                    <div class="small text-muted d-none d-md-block nama_supplier">
-                                        {{ $item->Jabatan->nama_jabatan }}</div>
+                                    <div class="small text-muted d-none d-md-block nama_jabatan">{{ $item->jabatan->nama_jabatan }}</div>
                                 </td>
                                 <td>
                                     <button class="btn btn-success btn-sm btn-datatable"
-                                        onclick="tambahpegawai(event, {{ $item->id_pegawai }})" type="button"
+                                        onclick="tambahpo(event, {{ $item->id_pegawai }})" type="button"
                                         data-dismiss="modal">Tambah
                                     </button>
                                 </td>
@@ -202,7 +201,7 @@
                             @empty
                             <tr>
                                 <td colspan="7" class="tex-center">
-                                    Data Pegawai Kosong
+                                    Tidak ada Data Pegawai
                                 </td>
                             </tr>
                             @endforelse
@@ -213,18 +212,18 @@
         </div>
     </div>
 </div>
+</main>
 
 <script>
-    function tambahpegawai(event, id_pegawai) {
+    function tambahpo(event, id_pegawai) {
         var data = $('#item-' + id_pegawai)
         var _token = $('#form1').find('input[name="_token"]').val()
         var nama_pegawai = $(data.find('.nama_pegawai')[0]).text()
         var nama_jabatan = $(data.find('.nama_jabatan')[0]).text()
-        alert('Berhasil Menambahkan Data Pegawai')
-        
+
         $('#detailpegawai').val(nama_pegawai)
         $('#detailjabatan').val(nama_jabatan)
-        console.log(nama_pegawai);
+        console.log(data);
     }
 
 </script>

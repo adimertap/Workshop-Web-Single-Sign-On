@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
-                        <a href="{{ route('Retur') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
+                        <a href="{{ route('retur.index') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                             <div class="col-xxl-6 col-xl-9">
                                 <h3 class="text-primary">Step 1</h3>
                                 <h5 class="card-title">Input Formulir Retur</h5>
-                                <form action="{{ route('Retur.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('retur.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
@@ -136,7 +136,7 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('Retur') }}" class="btn btn-light">Kembali</a>
+                                        <a href="{{ route('retur.index') }}" class="btn btn-light">Kembali</a>
                                         <button class="btn btn-primary">Next</button>
                                     </div>
                             </div>

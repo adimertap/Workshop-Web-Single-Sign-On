@@ -53,16 +53,6 @@
                                     @csrf
                                     <div class="form-group">
                                         <label class="small mb-1" for="id_sparepart">Sparepart</label>
-                                        {{-- <select class="form-control" name="id_sparepart"
-                                            class="form-control @error('id_sparepart') is-invalid @enderror"
-                                            id="id_sparepart">
-                                            <option>Pilih Sparepart</option>
-                                            @foreach ($sparepart as $item)
-                                            <option value="{{ $item->id_sparepart }}">
-                                                {{ $item->nama_sparepart }}
-                                            </option>
-                                            @endforeach
-                                        </select> --}}
                                         <input type="hidden" name="id_sparepart" value="{{ $sparepart->id_sparepart }}">
                                         <input type="text" value="{{ $sparepart->nama_sparepart }}" class="form-control" disabled>
                                         @error('id_sparepart')<div class="text-danger small mb-1">
@@ -79,7 +69,7 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('masterdatasparepart') }}" class="btn btn-light">Kembali</a>
+                                        <a href="{{ route('sparepart.gallery', $sparepart->id_sparepart) }}" class="btn btn-light">Kembali</a>
                                         <button class="btn btn-primary" type="Submit">Tambah Foto Sparepart</button>
                                     </div>
                                 </form>

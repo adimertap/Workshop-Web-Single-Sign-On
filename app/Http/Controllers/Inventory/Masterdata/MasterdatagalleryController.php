@@ -69,14 +69,6 @@ class MasterdatagalleryController extends Controller
           return redirect()->route('sparepart.gallery', $request->id_sparepart)->with('messageberhasil','Data Sparepart Berhasil diubah');
 
 
-        // $data = $request->all();
-        // $data['photo'] = $request->file('photo')->store(
-        //     'backend/src/assets/img','public'
-        // );
-
-        // Gallery::create($data);
-        // return redirect()->route('sparepart.index')->with('messageberhasil', 'Data Foto Sparepart Berhasil ditambahkan');
-
     }
 
     /**

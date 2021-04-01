@@ -47,6 +47,7 @@ class AbsensipegawaiController extends Controller
     public function store(Request $request)
     {
 
+        
 
         $absensi = Absensi::create([
             'id_pegawai'=>$request->id_pegawai,

@@ -22,7 +22,7 @@ class GajipegawaiController extends Controller
             'Pegawai','Akun',
         ])->get();
 
-        $pegawai = Pegawai::all();
+        $pegawai = Pegawai::get();
 
         return view('pages.payroll.gajipegawai.gajipegawai', compact('gaji','pegawai'));
     }

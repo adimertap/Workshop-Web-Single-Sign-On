@@ -295,7 +295,7 @@
                                 <a class="nav-link " href="{{ route('Rcv.index') }}">
                                     Receiving
                                 </a>
-                                <a class="nav-link" href="{{ route('Retur') }}">
+                                <a class="nav-link" href="{{ route('retur.index') }}">
                                     Retur Pembelian
                                 </a>
                             </nav>

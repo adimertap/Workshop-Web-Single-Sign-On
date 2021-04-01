@@ -36,16 +36,7 @@ class ReturController extends Controller
      */
     public function create()
     {
-        $retur = Retur::with([
-            'Rcv','Pegawai','Supplier','Akun'
-        ])->get();
-        
-        $rcv = Rcv::all();
-        $supplier = Supplier::all();
-        $akun = Akun::all();
-        $pegawai = Pegawai::all();
-
-        return view('pages.inventory.retur.create', compact('rcv','pegawai','supplier','akun'));
+       
     }
 
     /**
@@ -56,7 +47,15 @@ class ReturController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supplier = Supplier::where('nama_supplier',$request->nama_supplier)->first();
+        $id_supplier = $supplier->id_supplier;
+
+        $retur = Retur::create([
+            'id_supplier'=>$id_supplier,
+            'tanggal_retur'=>$request->tanggal_retur,
+        ]);
+        
+        return $retur;
     }
 
     /**
@@ -82,7 +81,16 @@ class ReturController extends Controller
      */
     public function edit($id)
     {
-        //
+        $retur = Retur::with([
+            'Rcv','Pegawai','Supplier','Akun'
+        ])->get();
+        
+        $rcv = Rcv::all();
+        $supplier = Supplier::all();
+        $akun = Akun::all();
+        $pegawai = Pegawai::all();
+
+        return view('pages.inventory.retur.create', compact('rcv','pegawai','supplier','akun'));
     }
 
     /**
