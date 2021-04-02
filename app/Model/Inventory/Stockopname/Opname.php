@@ -34,7 +34,7 @@ class Opname extends Model
 
     public function Detailsparepart()
     {
-        return $this->belongsToMany(Sparepart::class,'tb_inventory_detopname','id_opname','id_sparepart');
+        return $this->belongsToMany(Sparepart::class,'tb_inventory_detopname','id_opname','id_sparepart')->withPivot('jumlah_real','keterangan_detail');
     }
 
     public function Pegawai()

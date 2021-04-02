@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
-                        <a href="{{ route('Opname') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
+                        <a href="{{ route('Opname.index') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('Opname') }}" class="btn btn-light">Kembali</a>
+                                        <a href="{{ route('Opname.index') }}" class="btn btn-light">Kembali</a>
                                         <button class="btn btn-primary">Next</button>
                                     </div>
                             </div>
@@ -431,22 +431,16 @@
 @empty
 @endforelse
 
-<template id="template">
-    <tr role="row" class="odd">
-        <td class="kode_sparepart"></td>
-        <td class="kode_sparepart"></td>
-        <td class="nama_sparepart"></td>
-        <td class="jenis_sparepart"></td>
-        <td class="merk_sparepart"></td>
-        <td class="satuan"></td>
-        <td class="jumlah_real"></td>
-        <td class="keterangan_detail"></td>
-        <td>
-            <a href="" class="btn btn-success btn-datatable" type="button" data-toggle="modal" data-target="">
-                <i class="fas fa-plus"></i>
-            </a>
-        </td>
-    </tr>
+<template id="template_delete_button">
+    <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
+        <i class="fas fa-trash"></i>
+    </button>
+</template>
+
+<template id="template_add_button">
+    <button class="btn btn-success btn-datatable" type="button" data-toggle="modal" data-target="#Modaltambah">
+        <i class="fas fa-plus"></i>
+    </button>
 </template>
 
 <script>
@@ -494,10 +488,10 @@
 
             $.ajax({
                 method: 'post',
-                url: '/inventory/Stockopname/Opname',
+                url: '/inventory/Opname',
                 data: data,
                 success: function (response) {
-                    window.location.href = '/inventory/Stockopname/Opname'
+                    window.location.href = '/inventory/Opname'
                 }
             })
         }
@@ -518,16 +512,29 @@
             var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
             var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
             var satuan = $(data.find('.satuan')[0]).text()
-            var template = $($('#template').html())
+            var template = $($('#template_delete_button').html())
 
+            var table = $('#dataTablekonfirmasi').DataTable()
+            // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
+            var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
+            table.row(row).remove().draw();
        
             $('#dataTablekonfirmasi').DataTable().row.add([
-                kode_sparepart, kode_sparepart, nama_sparepart, jenis_sparepart, merk_sparepart, satuan,
+                kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart, jenis_sparepart, merk_sparepart, satuan,
                 jumlah_real, keterangan_detail
             ]).draw();
         }
     }
 
+    function hapussparepart(element) {
+        var table = $('#dataTablekonfirmasi').DataTable()
+        // Akses Parent Sampai <tr></tr>
+        var row = $(element).parent().parent()
+        table.row(row).remove().draw();
+        alert('Data Sparepart Berhasil di Hapus')
+        // draw() Reset Ulang Table
+        var table = $('#dataTable').DataTable()
+    }
 
     $(document).ready(function () {
         $('#id_pegawai').on('change', function () {
@@ -551,7 +558,22 @@
             $('#detailtanggal').html(formatindodate);
         })
 
-        $('#dataTablekonfirmasi').DataTable();
+        var template = $('#template_delete_button').html()
+        $('#dataTablekonfirmasi').DataTable({
+            "columnDefs": [{
+                    "targets": -1,
+                    "data": null,
+                    "defaultContent": template
+                },
+                {
+                    "targets": 0,
+                    "data": null,
+                    'render': function (data, type, row, meta) {
+                        return meta.row + 1
+                    }
+                }
+            ]
+        });
     });
 
 

@@ -431,12 +431,10 @@ Route::prefix('inventory')
     });
 
 // OPNAME ---------------------------------------------------------------------- Stock Opname
-Route::prefix('inventory/Stockopname')
+Route::prefix('inventory')
     ->namespace('Inventory\Opname')
     ->group(function () {
-        Route::get('/', 'OpnameController@index')
-            ->name('Opname');
-
+       
         Route::resource('Opname', 'OpnameController');
     });
 

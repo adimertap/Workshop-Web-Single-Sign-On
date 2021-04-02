@@ -29,7 +29,7 @@ class Hargasparepart extends Model
     }
 
     public function Supplier(){
-        return $this->belongsTo(Supplier::class,'id_supplier','id_supplier');
+        return $this->belongsTo(Supplier::class,'id_supplier','id_supplier')->withTrashed();
     }
 
 }

@@ -263,8 +263,8 @@
                         <div class="card-body">
                             <div class="row justify-content-between align-items-center">
                                 <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
-                                    <h3 class="text-primary">Step 3</h3>
-                                    <h5 class="card-title">Konfirmasi Pembelian</h5>
+                                    <h3 class="text-primary">Detail</h3>
+                                    <h5 class="card-title">Pembelian</h5>
                                 </div>
                                 <div class="col-12 col-lg-auto text-center text-lg-right">
                                     <div class="h3 text-white">PO</div>
@@ -457,15 +457,16 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">Apakah Form yang Anda inputkan sudah benar?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="button"
-                        onclick="tambahsparepart(event,{{ $sparepart }})">Ya!Sudah</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="button"
+                    onclick="tambahsparepart(event,{{ $sparepart }})">Ya!Sudah</button>
             </div>
         </div>
     </div>
 </div>
+
 
 {{-- MODAL TAMBAH SPAREPART --}}
 @forelse ($sparepart as $item)
@@ -505,9 +506,7 @@
 </template>
 
 <template id="template_add_button">
-    <button class="btn btn-success btn-datatable"
-        type="button" data-toggle="modal"
-        data-target="#Modaltambah">
+    <button class="btn btn-success btn-datatable" type="button" data-toggle="modal" data-target="#Modaltambah">
         <i class="fas fa-plus"></i>
     </button>
 </template>
@@ -592,28 +591,28 @@
                 style: 'currency',
                 currency: 'IDR'
             }).format(qty * splitqty)
-        //    Delete Data di Table Konfirmasi sebelum di add
-            var table =  $('#dataTablekonfirmasi').DataTable()
+            //Delete Data di Table Konfirmasi sebelum di add
+            var table = $('#dataTablekonfirmasi').DataTable()
             // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
             var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
             table.row(row).remove().draw();
 
             $('#dataTablekonfirmasi').DataTable().row.add([
-                kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart, jenis_sparepart, merk_sparepart, satuan,
+                kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
+                jenis_sparepart, merk_sparepart, satuan,
                 harga_beli, qty, total,
             ]).draw();
         }
     }
 
-    function hapussparepart(element){
-        var table =  $('#dataTablekonfirmasi').DataTable()
+    function hapussparepart(element) {
+        var table = $('#dataTablekonfirmasi').DataTable()
         // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
         table.row(row).remove().draw();
+        alert('Data Sparepart Berhasil di Hapus')
         // draw() Reset Ulang Table
-        var table =  $('#dataTable').DataTable()
- 
-
+        var table = $('#dataTable').DataTable()
     }
 
     // 
@@ -659,9 +658,8 @@
         })
 
         var template = $('#template_delete_button').html()
-        $('#dataTablekonfirmasi').DataTable({ 
-            "columnDefs":[
-                {
+        $('#dataTablekonfirmasi').DataTable({
+            "columnDefs": [{
                     "targets": -1,
                     "data": null,
                     "defaultContent": template
@@ -669,8 +667,8 @@
                 {
                     "targets": 0,
                     "data": null,
-                    'render': function(data, type, row, meta){
-                    return meta.row+1
+                    'render': function (data, type, row, meta) {
+                        return meta.row + 1
                     }
                 }
             ]

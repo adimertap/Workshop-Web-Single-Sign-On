@@ -256,7 +256,7 @@
 
                         <div class="collapse" id="collapseUtilities" data-parent="#accordionSidenav" style="">
                             <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ route('Opname') }}">
+                                <a class="nav-link" href="{{ route('Opname.index') }}">
                                     Stock Opname
                                 </a>
                                 <a class="nav-link" href="{{ route('Kartu-gudang') }}">

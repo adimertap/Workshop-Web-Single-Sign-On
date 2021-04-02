@@ -15,7 +15,7 @@
             </div>
             <div>
                 <div class="col-12 col-xl-auto mb-3">
-                    <a href="{{ route('Opname') }}" class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
+                    <a href="{{ route('Opname.index') }}" class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@
                                                 </th>
                                                 <td>{{ $detail->nama_sparepart }}</td>
                                                 <td>{{ $detail->Rak->nama_rak }}</td>
-                                                <td>{{ $detail->jumlah_real }}</td>
+                                                <td>{{ $detail->pivot->jumlah_real }}</td>
                                                 <td>
                                                     @if($opname->approve == 'Pending')
                                                     Menunggu Approval
@@ -148,7 +148,7 @@
                                                         @endif
                                                     </span>
                                                 </td>
-                                                <td>{{ $detail->keterangan_detail }}</td>
+                                                <td>{{ $detail->pivot->keterangan_detail }}</td>
                                             </tr>
                                             @empty
                                             <tr>
