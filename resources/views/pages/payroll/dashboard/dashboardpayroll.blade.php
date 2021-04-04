@@ -27,7 +27,7 @@
             <div class="card-body p-5">
                 <div class="row align-items-center justify-content-between">
                     <div class="col">
-                        <h2 class="text-primary">Selamat Datang, Adim</h2>
+                        <h2 class="text-primary">Selamat Datang, {{ Auth::user()->name }}</h2>
                         <p class="text-gray-700">Penggajian Bulan September Belum Dilakukan</p>
                     </div>
 

@@ -42,7 +42,7 @@
                     </div>
                     <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Selamat Datang</h2>
                     <p></p>
-                    <p style="text-align: center">Selamat Datang, Cek <a
+                    <p style="text-align: center">Selamat Datang, {{ Auth::user()->name }} <a
                             target="_blank" rel="nofollow" href="{{ route('sparepart.index') }}">Daftar Sparepart</a>,
                         Terdapat 3 Menu utama dalam inventory diantaranya yakni master data, inventory system serta data
                         penjualan online sparepart!</p>

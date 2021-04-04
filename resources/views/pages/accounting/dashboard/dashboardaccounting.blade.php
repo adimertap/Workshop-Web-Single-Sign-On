@@ -40,8 +40,7 @@
                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 13rem;"
                             src="/backend/src/assets/img/ilustrasi/logistic.jpg" alt="">
                     </div>
-                    <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Selamat Datang, I Putu Adi
-                        Merta Pratama</h2>
+                    <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Selamat Datang, {{ Auth::user()->name }}</h2>
                     <p></p>
                     <p style="text-align: center">Add some quality, svg illustrations to your project courtesy of <a
                             target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated
@@ -61,7 +60,7 @@
                             <div class="avatar avatar-xl mr-3 bg-gray-200"><img class="avatar-img img-fluid"
                                     src="/backend/src/assets/img/freepik/profiles/profile-6.png" alt=""></div>
                             <div class="d-flex flex-column font-weight-bold">
-                                <a class="text-dark line-height-normal mb-1" ">I Putu Adi Merta Pratama</a>
+                                <a class="text-dark line-height-normal mb-1" ">{{ Auth::user()->name }}</a>
                                     <div class=" small text-muted line-height-normal">Bagian Gudang</div>
                         </div>
                     </div>
