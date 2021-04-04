@@ -142,7 +142,7 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('pajak') }}" class="btn btn-light">Kembali</a>
+                                        <a href="{{ route('prf.index') }}" class="btn btn-light">Kembali</a>
                                         <button class="btn btn-primary">Next</button>
                                     </div>
                             </div>

@@ -242,7 +242,7 @@
                                 <a class="nav-link " href="invoice.html">
                                     Gaji Karyawan
                                 </a>
-                                <a class="nav-link " href="{{ route('pajak') }}">
+                                <a class="nav-link " href="{{ route('pajak.index') }}">
                                     Pajak
                                 </a>
                                 <a class="nav-link " href="{{ route('approval-prf') }}">

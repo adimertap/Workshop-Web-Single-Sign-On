@@ -419,7 +419,10 @@ Route::prefix('inventory/approvalappembelian')
 Route::prefix('inventory')
     ->namespace('Inventory\Rcv')
     ->group(function () {
+
         Route::resource('receiving', 'RcvController',['names'=>'Rcv']);
+        Route::get('/post', 'RcvController@post')
+            ->name('Rcvstoreawal');
     });
 
 // RETUR ---------------------------------------------------------------------- Retur
@@ -625,11 +628,9 @@ Route::prefix('accounting/ApprovalPRF')
     });
 
 // PAJAK -------------------------------------------------------------------------- Pajak
-Route::prefix('accounting/Pajak')
+Route::prefix('accounting')
     ->namespace('Accounting\Payable')
     ->group(function () {
-        Route::get('/', 'PajakController@index')
-            ->name('pajak');
 
         Route::resource('pajak', 'PajakController');
     });

@@ -17,7 +17,7 @@ class Pajakdetail extends Model
         'id_pajak',
         'data_pajak',
         'nilai_pajak',
-        'keterangan',
+        'keterangan_pajak'
     ];
 
     protected $hidden =[ 

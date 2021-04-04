@@ -48,6 +48,8 @@ class RcvController extends Controller
      */
     public function store(Request $request)
     {
+
+    
         $po = PO::where('kode_po',$request->kode_po)->first();
         $id_po = $po->id_po;
         $id_supplier = $po->id_supplier;
@@ -56,7 +58,6 @@ class RcvController extends Controller
             'id_po'=>$id_po,
             'id_supplier'=>$id_supplier,
             'no_do'=>$request->no_do,
-            
             'tanggal_rcv'=>$request->tanggal_rcv,
         ]);
         
@@ -131,4 +132,23 @@ class RcvController extends Controller
 
         return redirect()->back()->with('messagehapus','Data Penerimaan Berhasil dihapus');
     }
+
+    public function post(Request $request)
+    {
+        return 'cccc';
+        $po = PO::where('kode_po',$request->kode_po)->first();
+        $id_po = $po->id_po;
+        $id_supplier = $po->id_supplier;
+
+        $rcv = Rcv::create([
+            'id_po'=>$id_po,
+            'id_supplier'=>$id_supplier,
+            'no_do'=>$request->no_do,
+            'tanggal_rcv'=>$request->tanggal_rcv,
+        ]);
+        
+        return $rcv;
+    }
+
 }
+

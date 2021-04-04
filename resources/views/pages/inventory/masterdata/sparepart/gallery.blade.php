@@ -10,13 +10,12 @@
                 <h1 class="mb-0">Sparepart {{ $sparepart->nama_sparepart }}</h1>
                 <div class="small">
                     <span class="font-weight-500 text-primary">Detail</span>
-                    · Sparepart · Marketplace 
+                    · Sparepart · Marketplace
                 </div>
             </div>
             <div>
                 <div class="col-12 col-xl-auto mb-3">
-                    <a href="{{ route('sparepart.index') }}"
-                        class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
+                    <a href="{{ route('sparepart.index') }}" class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
                 </div>
             </div>
         </div>
@@ -38,6 +37,11 @@
                         <label class="small mb-1" for="nama_sparepart">Nama Sparepart</label>
                         <input class="form-control form-control-sm" id="nama_sparepart" type="text"
                             name="nama_sparepart" value="{{ $sparepart->nama_sparepart }}" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="id_supplier">Supplier</label>
+                        <input class="form-control form-control-sm" id="id_supplier" type="text" name="id_supplier"
+                            value="{{ $sparepart->Supplier->nama_supplier }}" readonly />
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
@@ -68,10 +72,11 @@
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="stock">Stock </label>
                             <input class="form-control form-control-sm" id="stock" type="text" name="stock"
-                                value="{{ $sparepart->stock }}" readonly /> 
+                                value="{{ $sparepart->stock }}" readonly />
                         </div>
                         <div class="form-group col-md-6">
-                            <i class="fas fa-exclamation-triangle mr-1"></i> <label class="small mb-1" for="stock_min">Minimal Stock </label>
+                            <i class="fas fa-exclamation-triangle mr-1"></i> <label class="small mb-1"
+                                for="stock_min">Minimal Stock </label>
                             <input class="form-control form-control-sm" id="stock_min" type="text" name="stock_min"
                                 value="{{ $sparepart->stock_min }}" readonly />
                         </div>
@@ -85,7 +90,8 @@
             <div class="card mb-4">
                 <div class="card card-header-actions">
                     <div class="card-header ">List Gallery
-                        <a href="{{ route('gallery.create', $sparepart->id_sparepart) }}" class="btn btn-sm btn-primary "> Tambah Foto</a>
+                        <a href="{{ route('gallery.create', $sparepart->id_sparepart) }}"
+                            class="btn btn-sm btn-primary "> Tambah Foto</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -148,7 +154,8 @@
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
                                                 <td>
-                                                    <img src="{{ asset('/image/'.$item['photo']) }}" alt="" style="width: 200px"/>
+                                                    <img src="{{ asset('/image/'.$item['photo']) }}" alt=""
+                                                        style="width: 200px" />
                                                     <img src="{{ url($item->photo) }}" alt="">
                                                 </td>
                                                 <td>

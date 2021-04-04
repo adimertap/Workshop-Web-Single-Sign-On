@@ -35,6 +35,11 @@ class PajakController extends Controller
      */
     public function create()
     {
+
+        $pajak = Bayarpajak::with([
+            'Detail',
+        ])->get();
+
         $jenis_transaksi = Jenistransaksi::all();
         $pegawai = Pegawai::all();
 
@@ -46,7 +51,7 @@ class PajakController extends Controller
 
         $kode_pajak = 'AKPJ-'.$idbaru.'/'.$blt;
 
-        return view('pages.accounting.payable.pajak.create', compact('jenis_transaksi','pegawai','kode_pajak')); 
+        return view('pages.accounting.payable.pajak.create', compact('jenis_transaksi','pegawai','kode_pajak','pajak')); 
     }
 
     /**

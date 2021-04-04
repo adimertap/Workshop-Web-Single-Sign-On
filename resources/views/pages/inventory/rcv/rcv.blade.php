@@ -344,7 +344,7 @@
 
         $.ajax({
             method: 'post',
-            url: '/inventory/receiving',
+            url: "/inventory/receiving",
             data: data,
             success: function (response) {
                 window.location.href = '/inventory/receiving/' + response.id_rcv + '/edit'

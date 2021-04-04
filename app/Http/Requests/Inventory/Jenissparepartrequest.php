@@ -25,7 +25,8 @@ class Jenissparepartrequest extends FormRequest
     {
         return [
             'jenis_sparepart' => 'required',
-    	    'keterangan' => 'required'
+    	    'keterangan' => 'required',
+            'fungsi' => 'required|string|in:MOTOR,MOBIL',
         ];
     }
 }

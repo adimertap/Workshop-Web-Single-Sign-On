@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Merksparepart extends Model
 {
 
-    
+    use SoftDeletes;
 
     protected $table = "tb_inventory_master_merk_sparepart";
 
@@ -22,6 +22,9 @@ class Merksparepart extends Model
     ];
 
     protected $hidden =[ 
+        'created_at',
+        'updated_at',
+        'deleted_at'
 
     ];
 

@@ -17,7 +17,8 @@ class Jenissparepart extends Model
 
     protected $fillable = [
     	'jenis_sparepart',
-    	'keterangan'
+    	'keterangan',
+        'fungsi'
     ];
 
     protected $hidden =[ 
