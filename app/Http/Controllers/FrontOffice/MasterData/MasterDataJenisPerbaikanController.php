@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\FrontOffice\Masterdata;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FrontOffice\MasterData\JenisPerbaikanrequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataJenisPerbaikan;
+use Illuminate\Support\Str;
 
 class MasterDataJenisPerbaikanController extends Controller
 {
@@ -36,9 +38,13 @@ class MasterDataJenisPerbaikanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JenisPerbaikanrequest $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->group_jenis_perbaikan);
+
+        MasterDataJenisPerbaikan::create($data);
+        return redirect()->route('jenisperbaikan.index')->with('messageberhasil', 'Data Jenis Perbaikan Berhasil ditambahkan');
     }
 
     /**
@@ -58,9 +64,9 @@ class MasterDataJenisPerbaikanController extends Controller
      * @param  \App\MasterDataJenisPerbaikan  $masterDataJenisPerbaikan
      * @return \Illuminate\Http\Response
      */
-    public function edit(MasterDataJenisPerbaikan $masterDataJenisPerbaikan)
+    public function edit($masterDataJenisPerbaikan)
     {
-        //
+        // 
     }
 
     /**
@@ -70,9 +76,16 @@ class MasterDataJenisPerbaikanController extends Controller
      * @param  \App\MasterDataJenisPerbaikan  $masterDataJenisPerbaikan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterDataJenisPerbaikan $masterDataJenisPerbaikan)
+    public function update(JenisPerbaikanrequest $request, $id_jenis_perbaikan)
     {
-        //
+        $jenisperbaikan = MasterDataJenisperbaikan::findOrFail($id_jenis_perbaikan);
+        $jenisperbaikan->kode_jenis_perbaikan = $request->kode_jenis_perbaikan;
+        $jenisperbaikan->nama_jenis_perbaikan = $request->nama_jenis_perbaikan;
+        $jenisperbaikan->group_jenis_perbaikan = $request->group_jenis_perbaikan;
+        $jenisperbaikan->harga_jenis_perbaikan = $request->harga_jenis_perbaikan;
+
+        $jenisperbaikan->update();
+        return redirect()->back()->with('messageberhasil', 'Data perbaikan Berhasil diubah');
     }
 
     /**
@@ -81,8 +94,11 @@ class MasterDataJenisPerbaikanController extends Controller
      * @param  \App\MasterDataJenisPerbaikan  $masterDataJenisPerbaikan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterDataJenisPerbaikan $masterDataJenisPerbaikan)
+    public function destroy($id_jenis_perbaikan)
     {
-        //
+        $jenisperbaikan = MasterDataJenisPerbaikan::findOrFail($id_jenis_perbaikan);
+        $jenisperbaikan->delete();
+
+        return redirect()->back()->with('messagehapus', 'Data Merk Berhasil dihapus');
     }
 }

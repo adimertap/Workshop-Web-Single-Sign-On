@@ -11,7 +11,7 @@ class MasterDataPitstop extends Model
     protected $primaryKey = 'id_pitstop';
 
     protected $fillable = [
-        'nama_pitstop', 'jenis_pitstop'
+        'nama_pitstop', 'kode_pitstop'
     ];
 
     protected $hidden = [];

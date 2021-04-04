@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontOffice\Masterdata;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FrontOffice\MasterData\Pitstoprequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataPitstop;
 
@@ -36,9 +37,12 @@ class MasterDataPitstopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Pitstoprequest $request)
     {
-        //
+        $data = $request->all();
+
+        MasterDataPitstop::create($data);
+        return redirect()->route('pitstop.index')->with('messageberhasil', 'Data Pit Stop Berhasil ditambahkan');
     }
 
     /**
@@ -70,9 +74,14 @@ class MasterDataPitstopController extends Controller
      * @param  \App\MasterDataPitstop  $masterDataPitstop
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterDataPitstop $masterDataPitstop)
+    public function update(Pitstoprequest $request, $id_pitstop)
     {
-        //
+        $pitstop = MasterDataPitstop::findOrFail($id_pitstop);
+        $pitstop->kode_pitstop = $request->kodepitstop;
+        $pitstop->nama_pitstop = $request->nama_pitstop;
+
+        $pitstop->update();
+        return redirect()->back()->with('messageberhasil', 'Data Pit Stop Berhasil diubah');
     }
 
     /**
@@ -81,8 +90,11 @@ class MasterDataPitstopController extends Controller
      * @param  \App\MasterDataPitstop  $masterDataPitstop
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterDataPitstop $masterDataPitstop)
+    public function destroy($id_pitstop)
     {
-        //
+        $pitstop = MasterDataPitstop::findOrFail($id_pitstop);
+        $pitstop->delete();
+
+        return redirect()->back()->with('messagehapus', 'Data Pit Stop Berhasil dihapus');
     }
 }

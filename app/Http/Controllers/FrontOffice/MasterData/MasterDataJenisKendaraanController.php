@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\FrontOffice\Masterdata;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FrontOffice\MasterData\JenisKendaraanrequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataJenisKendaraan;
+use Illuminate\Support\Str;
 
 class MasterDataJenisKendaraanController extends Controller
 {
@@ -15,9 +17,9 @@ class MasterDataJenisKendaraanController extends Controller
      */
     public function index()
     {
-        $jeniskendaraan = MasterDataJenisKendaraan::get();
+        $kendaraan = MasterDataJenisKendaraan::get();
 
-        return view('pages.frontoffice.masterdata.jenis_kendaraan.main', compact('jeniskendaraan'));
+        return view('pages.frontoffice.masterdata.jenis_kendaraan.main', compact('kendaraan'));
     }
 
     /**
@@ -36,9 +38,12 @@ class MasterDataJenisKendaraanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JenisKendaraanrequest $request)
     {
-        //
+        $data = $request->all();
+
+        MasterDataJenisKendaraan::create($data);
+        return redirect()->route('jeniskendaraan.index')->with('messageberhasil', 'Data Jenis Kendaraan Berhasil ditambahkan');
     }
 
     /**
@@ -70,9 +75,16 @@ class MasterDataJenisKendaraanController extends Controller
      * @param  \App\MasterDataJenisKendaraan  $masterDataJenisKendaraan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $masterDataJenisKendaraan)
+    public function update(JenisKendaraanrequest $request, $id_jenis_kendaraan)
     {
-        //
+        $kendaraan = MasterDataJenisKendaraan::findOrFail($id_jenis_kendaraan);
+        $kendaraan->kode_kendaraan = $request->kode_kendaraan;
+        $kendaraan->nama_kendaraan = $request->nama_kendaraan;
+        $kendaraan->jenis_kendaraan = $request->jenis_kendaraan;
+        $kendaraan->merk_kendaraan = $request->merk_kendaraan;
+
+        $kendaraan->update();
+        return redirect()->back()->with('messageberhasil', 'Data Kendaraan Berhasil diubah');
     }
 
     /**
@@ -81,8 +93,11 @@ class MasterDataJenisKendaraanController extends Controller
      * @param  \App\MasterDataJenisKendaraan  $masterDataJenisKendaraan
      * @return \Illuminate\Http\Response
      */
-    public function destroy($masterDataJenisKendaraan)
+    public function destroy($id_jenis_kendaraan)
     {
-        //
+        $kendaraan = MasterDataJenisKendaraan::findOrFail($id_jenis_kendaraan);
+        $kendaraan->delete();
+
+        return redirect()->back()->with('messagehapus', 'Data Jenis Kendaraan Berhasil dihapus');
     }
 }

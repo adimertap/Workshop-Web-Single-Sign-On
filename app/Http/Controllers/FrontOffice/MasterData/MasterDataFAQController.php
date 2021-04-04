@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontOffice\Masterdata;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FrontOffice\MasterData\Faqrequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataFAQ;
 
@@ -36,9 +37,12 @@ class MasterDataFAQController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Faqrequest $request)
     {
-        //
+        $data = $request->all();
+
+        MasterDataFAQ::create($data);
+        return redirect()->route('faq.index')->with('messageberhasil', 'Data FAQ Berhasil ditambahkan');
     }
 
     /**
@@ -70,9 +74,14 @@ class MasterDataFAQController extends Controller
      * @param  \App\MasterDataFAQ  $masterDataFAQ
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterDataFAQ $masterDataFAQ)
+    public function update(Faqrequest $request, $id_faq)
     {
-        //
+        $faq = MasterDataFAQ::findOrFail($id_faq);
+        $faq->pertanyaan_faq = $request->pertanyaan_faq;
+        $faq->jawaban_faq = $request->jawaban_faq;
+
+        $faq->update();
+        return redirect()->back()->with('messageberhasil', 'Data FAQ Berhasil diubah');
     }
 
     /**
@@ -81,8 +90,11 @@ class MasterDataFAQController extends Controller
      * @param  \App\MasterDataFAQ  $masterDataFAQ
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterDataFAQ $masterDataFAQ)
+    public function destroy($id_faq)
     {
-        //
+        $faq = MasterDataFAQ::findOrFail($id_faq);
+        $faq->delete();
+
+        return redirect()->back()->with('messagehapus', 'Data FAQ Berhasil dihapus');
     }
 }

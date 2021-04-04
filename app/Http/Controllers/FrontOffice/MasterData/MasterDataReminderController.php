@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontOffice\Masterdata;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FrontOffice\MasterData\Reminderrequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataReminder;
 
@@ -36,9 +37,12 @@ class MasterDataReminderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Reminderrequest $request)
     {
-        //
+        $data = $request->all();
+
+        MasterDataReminder::create($data);
+        return redirect()->route('reminder.index')->with('messageberhasil', 'Data Reminder Berhasil ditambahkan');
     }
 
     /**
@@ -70,9 +74,15 @@ class MasterDataReminderController extends Controller
      * @param  \App\MasterDataReminder  $masterDataReminder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterDataReminder $masterDataReminder)
+    public function update(Reminderrequest $request, $id_master_reminder)
     {
-        //
+        $reminder = MasterDataReminder::findOrFail($id_master_reminder);
+        $reminder->nama_reminder = $request->nama_reminder;
+        $reminder->masa_berlaku = $request->masa_berlaku;
+        $reminder->km_berlaku = $request->km_berlaku;
+
+        $reminder->update();
+        return redirect()->back()->with('messageberhasil', 'Data Reminder Berhasil diubah');
     }
 
     /**
@@ -81,8 +91,11 @@ class MasterDataReminderController extends Controller
      * @param  \App\MasterDataReminder  $masterDataReminder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterDataReminder $masterDataReminder)
+    public function destroy($id_master_reminder)
     {
-        //
+        $reminder = MasterDataReminder::findOrFail($id_master_reminder);
+        $reminder->delete();
+
+        return redirect()->back()->with('messagehapus', 'Data Reminder Berhasil dihapus');
     }
 }
