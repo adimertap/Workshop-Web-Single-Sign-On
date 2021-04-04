@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::SSO;
 
     /**
      * Create a new controller instance.
@@ -41,10 +41,20 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if ($user->hasRole('super_admin')) {
-            return redirect()->route('dashboard');
-        }
+        // if ($user->hasRole('super_admin')) {
+        //     return redirect()->route('dashboard');
+        // }
 
-        return redirect()->route('home');
+        // return redirect()->route('sso');
+    }
+
+    public function showLoginForm()
+    {
+        return view('pages.singlesignon.login');
+    }
+
+    public function username()
+    {
+        return 'username';
     }
 }

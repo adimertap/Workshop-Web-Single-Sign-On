@@ -13,290 +13,297 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome2');
-});
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::middleware('role:super_admin')->get('/dashboard', function () {
-    return ('dashboard');
-})->name('dashboard');
-
-// MODUL FRONT OFFICE
-// DASHBOARD
-Route::prefix('frontoffice')
-    ->namespace('FrontOffice')
-    ->group(function () {
-        Route::get('/', 'DashboardFrontOfficeController@index')
-            ->name('dashboardfrontoffice');
-    });
-
-// MASTER DATA JENIS KENDARAAN
-Route::prefix('frontoffice/jeniskendaraan')
-    ->namespace('FrontOffice\Masterdata')
-    ->group(function () {
-        Route::get('/', 'MasterDataJenisKendaraanController@index')
-            ->name('masterdatajeniskendaraan');
-
-        Route::resource('jeniskendaraan', 'MasterDataJenisKendaraanController');
-    });
+Auth::routes();
 
 
-// MASTER DATA JENIS PERBAIKAN
-Route::prefix('frontoffice/jenisperbaikan')
-    ->namespace('FrontOffice\Masterdata')
-    ->group(function () {
-        Route::get('/', 'MasterDataJenisPerbaikanController@index')
-            ->name('masterdatajenisperbaikan');
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/', 'Auth\LoginController@login')->name('login');
 
-        Route::resource('jenisperbaikan', 'MasterDataJenisPerbaikanController');
-    });
+Route::group(
+    ['middleware' => 'auth'],
+    function () {
+        // MODUL FRONT OFFICE
+        // DASHBOARD
+        Route::prefix('frontoffice')
+            ->namespace('FrontOffice')
+            ->group(function () {
+                Route::get('/', 'DashboardFrontOfficeController@index')
+                    ->name('dashboardfrontoffice');
+            });
 
-// MASTER DATA DISKON
-Route::prefix('frontoffice/diskon')
-    ->namespace('FrontOffice\Masterdata')
-    ->group(function () {
-        Route::get('/', 'MasterDataDiskonController@index')
-            ->name('masterdatadiskon');
+        // MASTER DATA JENIS KENDARAAN
+        Route::prefix('frontoffice/jeniskendaraan')
+            ->namespace('FrontOffice\Masterdata')
+            ->group(function () {
+                Route::get('/', 'MasterDataJenisKendaraanController@index')
+                    ->name('masterdatajeniskendaraan');
 
-        Route::resource('diskon', 'MasterDataDiskonController');
-    });
-
-
-// MASTER DATA PITSTOP
-Route::prefix('frontoffice/pitstop')
-    ->namespace('FrontOffice\Masterdata')
-    ->group(function () {
-        Route::get('/', 'MasterDataPitstopController@index')
-            ->name('masterdatapitstop');
-
-        Route::resource('pitstop', 'MasterDataPitstopController');
-    });
+                Route::resource('jeniskendaraan', 'MasterDataJenisKendaraanController');
+            });
 
 
-// MASTER DATA REMINDER
-Route::prefix('frontoffice/reminder')
-    ->namespace('FrontOffice\Masterdata')
-    ->group(function () {
-        Route::get('/', 'MasterDataReminderController@index')
-            ->name('masterdatareminder');
+        // MASTER DATA JENIS PERBAIKAN
+        Route::prefix('frontoffice/jenisperbaikan')
+            ->namespace('FrontOffice\Masterdata')
+            ->group(function () {
+                Route::get('/', 'MasterDataJenisPerbaikanController@index')
+                    ->name('masterdatajenisperbaikan');
 
-        Route::resource('reminder', 'MasterDataReminderController');
-    });
+                Route::resource('jenisperbaikan', 'MasterDataJenisPerbaikanController');
+            });
 
-// MASTER DATA FAQ
-Route::prefix('frontoffice/faq')
-    ->namespace('FrontOffice\Masterdata')
-    ->group(function () {
-        Route::get('/', 'MasterDataFAQController@index')
-            ->name('masterdatafaq');
+        // MASTER DATA DISKON
+        Route::prefix('frontoffice/diskon')
+            ->namespace('FrontOffice\Masterdata')
+            ->group(function () {
+                Route::get('/', 'MasterDataDiskonController@index')
+                    ->name('masterdatadiskon');
 
-        Route::resource('faq', 'MasterDataFAQController');
-    });
-
-//  DATA PELAYANAN SERVICE
-Route::prefix('frontoffice/pelayananservice')
-    ->namespace('FrontOffice')
-    ->group(function () {
-        Route::get('/', 'PelayananServiceController@index')
-            ->name('pelayananservice');
-
-        Route::resource('pelayananservice', 'PelayananServiceController');
-    });
-
-//  DATA CUSTOMER BENGKEL
-Route::prefix('frontoffice/customerterdaftar')
-    ->namespace('FrontOffice')
-    ->group(function () {
-        Route::get('/', 'CustomerBengkelController@index')
-            ->name('customerterdaftar');
-
-        Route::resource('customerterdaftar', 'CustomerBengkelController');
-    });
-
-//  DATA PENJUALAN SPAREPART
-Route::prefix('frontoffice/penjualansparepart')
-    ->namespace('FrontOffice')
-    ->group(function () {
-        Route::get('/', 'PenjualanSparepartController@index')
-            ->name('penjualansparepart');
-
-        Route::resource('penjualansparepart', 'PenjualanSparepartController');
-    });
-
-//  DATA CUSTOMER CARE
-Route::prefix('frontoffice/customercare')
-    ->namespace('FrontOffice')
-    ->group(function () {
-        Route::get('/', 'CustomerCareController@index')
-            ->name('customercare');
-
-        Route::resource('customercare', 'CustomerCareController');
-    });
-
-//  DATA PELAYANAN SERVICE
-Route::prefix('frontoffice/pelayananservice')
-    ->namespace('FrontOffice')
-    ->group(function () {
-        Route::get('/', 'PelayananServiceController@index')
-            ->name('pelayananservice');
-
-        Route::resource('pelayananservice', 'PelayananServiceController');
-    });
-
-// ------------------------------------------------------------------------
-// MODUL SERVICE
-// DASHBOARD
-Route::prefix('service')
-    ->namespace('Service')
-    ->group(function () {
-        Route::get('/', 'DashboardServiceController@index')
-            ->name('dashboardservice');
-    });
-
-// PENERIMAANSERVICE
-Route::prefix('service/penerimaanservice')
-    ->namespace('Service')
-    ->group(function () {
-        Route::get('/', 'PenerimaanServiceController@index')
-            ->name('penerimaanservice');
-
-        Route::resource('penerimaanservice', 'PenerimaanServiceController');
-    });
-
-// PENERIMAANSERVICE
-Route::prefix('service/jadwalmekanik')
-    ->namespace('Service')
-    ->group(function () {
-        Route::get('/', 'JadwalMekanikController@index')
-            ->name('jadwalmekanik');
-
-        Route::resource('jadwalmekanik', 'JadwalMekanikController');
-    });
-
-// STOK SPAREPART
-Route::prefix('service/stoksparepart')
-    ->namespace('Service')
-    ->group(function () {
-        Route::get('/', 'StokSparepartController@index')
-            ->name('stoksparepart');
-
-        Route::resource('stoksparepart', 'StokSparepartController');
-    });
-
-// PENGERJAAN SERVICE
-Route::prefix('service/pengerjaanservice')
-    ->namespace('Service')
-    ->group(function () {
-        Route::get('/', 'PengerjaanServiceController@index')
-            ->name('pengerjaanservice');
-
-        Route::resource('pengerjaanservice', 'PengerjaanServiceController');
-    });
+                Route::resource('diskon', 'MasterDataDiskonController');
+            });
 
 
-// ------------------------------------------------------------------------
-// MODUL POS
-// DASHBOARD
-Route::prefix('pos')
-    ->namespace('PointOfSales')
-    ->group(function () {
-        Route::get('/', 'DashboardPOSController@index')
-            ->name('dashboardpointofsales');
-    });
+        // MASTER DATA PITSTOP
+        Route::prefix('frontoffice/pitstop')
+            ->namespace('FrontOffice\Masterdata')
+            ->group(function () {
+                Route::get('/', 'MasterDataPitstopController@index')
+                    ->name('masterdatapitstop');
 
-// PEMBAYARAN LAYANAN SERVICE
-Route::prefix('pos/pembayaranservice')
-    ->namespace('PointOfSales\Pembayaran')
-    ->group(function () {
-        Route::get('/', 'PembayaranServiceController@index')
-            ->name('pembayaranservice');
+                Route::resource('pitstop', 'MasterDataPitstopController');
+            });
 
-        Route::resource('pembayaranservice', 'PembayaranServiceController');
-    });
 
-// PEMBAYARAN PENJUALAN SPAREPART
-Route::prefix('pos/pembayaransparepart')
-    ->namespace('PointOfSales\Pembayaran')
-    ->group(function () {
-        Route::get('/', 'PembayaranSparepartController@index')
-            ->name('pembayaransparepart');
+        // MASTER DATA REMINDER
+        Route::prefix('frontoffice/reminder')
+            ->namespace('FrontOffice\Masterdata')
+            ->group(function () {
+                Route::get('/', 'MasterDataReminderController@index')
+                    ->name('masterdatareminder');
 
-        Route::resource('pembayaransparepart', 'PembayaranSparepartController');
-    });
+                Route::resource('reminder', 'MasterDataReminderController');
+            });
 
-// PEMBAYARAN PENJUALAN SPAREPART
-Route::prefix('pos/laporanservice')
-    ->namespace('PointOfSales\Laporan')
-    ->group(function () {
-        Route::get('/', 'LaporanServiceController@index')
-            ->name('laporanservice');
+        // MASTER DATA FAQ
+        Route::prefix('frontoffice/faq')
+            ->namespace('FrontOffice\Masterdata')
+            ->group(function () {
+                Route::get('/', 'MasterDataFAQController@index')
+                    ->name('masterdatafaq');
 
-        Route::resource('laporanservice', 'LaporanServiceController');
-    });
+                Route::resource('faq', 'MasterDataFAQController');
+            });
 
-// PEMBAYARAN PENJUALAN SPAREPART
-Route::prefix('pos/laporansparepart')
-    ->namespace('PointOfSales\Laporan')
-    ->group(function () {
-        Route::get('/', 'LaporanSparepartController@index')
-            ->name('laporansparepart');
+        //  DATA PELAYANAN SERVICE
+        Route::prefix('frontoffice/pelayananservice')
+            ->namespace('FrontOffice')
+            ->group(function () {
+                Route::get('/', 'PelayananServiceController@index')
+                    ->name('pelayananservice');
 
-        Route::resource('laporansparepart', 'LaporanSparepartController');
-    });
+                Route::resource('pelayananservice', 'PelayananServiceController');
+            });
 
-// PEMBAYARAN PENJUALAN SPAREPART
-Route::prefix('pos/pembayaransparepart')
-    ->namespace('PointOfSales\Pembayaran')
-    ->group(function () {
-        Route::get('/', 'PembayaranSparepartController@index')
-            ->name('pembayaransparepart');
+        //  DATA CUSTOMER BENGKEL
+        Route::prefix('frontoffice/customerterdaftar')
+            ->namespace('FrontOffice')
+            ->group(function () {
+                Route::get('/', 'CustomerBengkelController@index')
+                    ->name('customerterdaftar');
 
-        Route::resource('pembayaran', 'PembayaranSparepartController');
-    });
+                Route::resource('customerterdaftar', 'CustomerBengkelController');
+            });
 
-// ------------------------------------------------------------------------
-// MODUL SSO
-// DASHBOARD
-Route::prefix('sso')
-    ->namespace('SingleSignOn')
-    ->group(function () {
-        Route::get('/', 'DashboardSSOController@index')
-            ->name('dashboardsso');
-    });
+        //  DATA PENJUALAN SPAREPART
+        Route::prefix('frontoffice/penjualansparepart')
+            ->namespace('FrontOffice')
+            ->group(function () {
+                Route::get('/', 'PenjualanSparepartController@index')
+                    ->name('penjualansparepart');
 
-// MANAJEMEN ROLE
-Route::prefix('sso/role')
-    ->namespace('SingleSignOn\Manajemen')
-    ->group(function () {
-        Route::get('/', 'ManajemenRoleController@index')
-            ->name('manajemenrole');
+                Route::resource('penjualansparepart', 'PenjualanSparepartController');
+            });
 
-        Route::resource('role', 'ManajemenRoleController');
-    });
+        //  DATA CUSTOMER CARE
+        Route::prefix('frontoffice/customercare')
+            ->namespace('FrontOffice')
+            ->group(function () {
+                Route::get('/', 'CustomerCareController@index')
+                    ->name('customercare');
 
-// MANAJEMEN HAK Akses
-Route::prefix('sso/hakakses')
-    ->namespace('SingleSignOn\Manajemen')
-    ->group(function () {
-        Route::get('/', 'ManajemenHakAksesController@index')
-            ->name('manajemenhakakses');
+                Route::resource('customercare', 'CustomerCareController');
+            });
 
-        Route::resource('hakakses', 'ManajemenHakAksesController');
-    });
+        //  DATA PELAYANAN SERVICE
+        Route::prefix('frontoffice/pelayananservice')
+            ->namespace('FrontOffice')
+            ->group(function () {
+                Route::get('/', 'PelayananServiceController@index')
+                    ->name('pelayananservice');
 
-// MANAJEMEN ROLE
-Route::prefix('sso/user')
-    ->namespace('SingleSignOn\Manajemen')
-    ->group(function () {
-        Route::get('/', 'ManajemenUserController@index')
-            ->name('manajemenuser');
+                Route::resource('pelayananservice', 'PelayananServiceController');
+            });
 
-        Route::resource('user', 'ManajemenUserController');
-    });
+        // ------------------------------------------------------------------------
+        // MODUL SERVICE
+        // DASHBOARD
+        Route::prefix('service')
+            ->namespace('Service')
+            ->group(function () {
+                Route::get('/', 'DashboardServiceController@index')
+                    ->name('dashboardservice');
+            });
+
+        // PENERIMAANSERVICE
+        Route::prefix('service/penerimaanservice')
+            ->namespace('Service')
+            ->group(function () {
+                Route::get('/', 'PenerimaanServiceController@index')
+                    ->name('penerimaanservice');
+
+                Route::resource('penerimaanservice', 'PenerimaanServiceController');
+            });
+
+        // PENERIMAANSERVICE
+        Route::prefix('service/jadwalmekanik')
+            ->namespace('Service')
+            ->group(function () {
+                Route::get('/', 'JadwalMekanikController@index')
+                    ->name('jadwalmekanik');
+
+                Route::resource('jadwalmekanik', 'JadwalMekanikController');
+            });
+
+        // STOK SPAREPART
+        Route::prefix('service/stoksparepart')
+            ->namespace('Service')
+            ->group(function () {
+                Route::get('/', 'StokSparepartController@index')
+                    ->name('stoksparepart');
+
+                Route::resource('stoksparepart', 'StokSparepartController');
+            });
+
+        // PENGERJAAN SERVICE
+        Route::prefix('service/pengerjaanservice')
+            ->namespace('Service')
+            ->group(function () {
+                Route::get('/', 'PengerjaanServiceController@index')
+                    ->name('pengerjaanservice');
+
+                Route::resource('pengerjaanservice', 'PengerjaanServiceController');
+            });
+
+
+        // ------------------------------------------------------------------------
+        // MODUL POS
+        // DASHBOARD
+        Route::prefix('pos')
+            ->namespace('PointOfSales')
+            ->group(function () {
+                Route::get('/', 'DashboardPOSController@index')
+                    ->name('dashboardpointofsales');
+            });
+
+        // PEMBAYARAN LAYANAN SERVICE
+        Route::prefix('pos/pembayaranservice')
+            ->namespace('PointOfSales\Pembayaran')
+            ->group(function () {
+                Route::get('/', 'PembayaranServiceController@index')
+                    ->name('pembayaranservice');
+
+                Route::resource('pembayaranservice', 'PembayaranServiceController');
+            });
+
+        // PEMBAYARAN PENJUALAN SPAREPART
+        Route::prefix('pos/pembayaransparepart')
+            ->namespace('PointOfSales\Pembayaran')
+            ->group(function () {
+                Route::get('/', 'PembayaranSparepartController@index')
+                    ->name('pembayaransparepart');
+
+                Route::resource('pembayaransparepart', 'PembayaranSparepartController');
+            });
+
+        // PEMBAYARAN PENJUALAN SPAREPART
+        Route::prefix('pos/laporanservice')
+            ->namespace('PointOfSales\Laporan')
+            ->group(function () {
+                Route::get('/', 'LaporanServiceController@index')
+                    ->name('laporanservice');
+
+                Route::resource('laporanservice', 'LaporanServiceController');
+            });
+
+        // PEMBAYARAN PENJUALAN SPAREPART
+        Route::prefix('pos/laporansparepart')
+            ->namespace('PointOfSales\Laporan')
+            ->group(function () {
+                Route::get('/', 'LaporanSparepartController@index')
+                    ->name('laporansparepart');
+
+                Route::resource('laporansparepart', 'LaporanSparepartController');
+            });
+
+        // PEMBAYARAN PENJUALAN SPAREPART
+        Route::prefix('pos/pembayaransparepart')
+            ->namespace('PointOfSales\Pembayaran')
+            ->group(function () {
+                Route::get('/', 'PembayaranSparepartController@index')
+                    ->name('pembayaransparepart');
+
+                Route::resource('pembayaran', 'PembayaranSparepartController');
+            });
+
+        // ------------------------------------------------------------------------
+        // MODUL SSO
+        // DASHBOARD
+        Route::prefix('sso')
+            ->namespace('SingleSignOn')
+            ->group(function () {
+                Route::get('/', 'DashboardSSOController@index')
+                    ->name('dashboardsso');
+            });
+
+        // MANAJEMEN ROLE
+        Route::prefix('sso/role')
+            ->namespace('SingleSignOn\Manajemen')
+            ->group(function () {
+                Route::get('/', 'ManajemenRoleController@index')
+                    ->name('manajemenrole');
+
+                Route::resource('role', 'ManajemenRoleController');
+            });
+
+        // MANAJEMEN HAK Akses
+        Route::prefix('sso/hakakses')
+            ->namespace('SingleSignOn\Manajemen')
+            ->group(function () {
+                Route::get('/', 'ManajemenHakAksesController@index')
+                    ->name('manajemenhakakses');
+
+                Route::resource('hakakses', 'ManajemenHakAksesController');
+            });
+
+        // MANAJEMEN ROLE
+        Route::prefix('sso/user')
+            ->namespace('SingleSignOn\Manajemen')
+            ->group(function () {
+                Route::get('/', 'ManajemenUserController@index')
+                    ->name('manajemenuser');
+
+                Route::resource('user', 'ManajemenUserController');
+            });
+    }
+);
+
+
+
 
 
 // MODUL INVENTORY ------------------------------------------------------------------------------------ INVENTORY
+
 // DASHBOARD
 Route::prefix('inventory')
     ->namespace('Inventory')
@@ -613,7 +620,3 @@ Route::prefix('accounting/masterjenistransaksi')
 
         Route::resource('jenis-transaksi', 'MasterdatajenistransaksiController');
     });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
