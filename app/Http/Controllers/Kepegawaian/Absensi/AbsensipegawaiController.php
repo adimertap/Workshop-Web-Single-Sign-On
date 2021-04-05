@@ -21,6 +21,7 @@ class AbsensipegawaiController extends Controller
             'Pegawai',
         ])->whereDate('tanggal_absensi', Carbon::today())->get();
 
+
         $blt = date('D, d/m/Y');
 
         $pegawai = Pegawai::all();

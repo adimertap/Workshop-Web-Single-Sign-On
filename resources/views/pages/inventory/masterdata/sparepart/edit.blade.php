@@ -92,19 +92,7 @@
                                         </div>
                                     </div>
                                     <div class="row"> 
-                                        <div class="form-group col-md-4">
-                                            <label class="small mb-1" for="id_supplier">Supplier</label>
-                                            <select class="form-control" name="id_supplier" id="id_supplier">
-                                                <option value="{{ $item->Supplier->id_supplier }}">
-                                                    {{ $item->Supplier->nama_supplier }}</option>
-                                                @foreach ($supplier as $supplieritem)
-                                                <option value="{{ $supplieritem->id_supplier }}">
-                                                    {{ $supplieritem->nama_supplier }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_konversi">Konversi Satuan</label>
                                             <select class="form-control" name="id_konversi" id="id_konversi">
                                                 <option value="{{ $item->Konversi->id_konversi }}">
@@ -116,7 +104,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_rak">Tempat Rak</label>
                                             <select class="form-control" name="id_rak" id="id_rak">
                                                 <option value="{{ $item->Rak->id_rak }}">

@@ -19,7 +19,6 @@ class Sparepart extends Model
         'id_jenis_sparepart',
         'id_konversi',
         'id_rak',
-        'id_supplier',
         'kode_sparepart',
         'nama_sparepart',
         'keterangan',

@@ -155,7 +155,7 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-light">
                 <h5 class="modal-title" id="staticBackdropLabel">Detail Supplier</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span>
@@ -239,6 +239,8 @@
                                 <label class="small text-muted line-height-normal">: {{ $item->rekening_supplier }}
                             </div>
                         </div>
+                        <hr>
+                        </hr>
                     </form>
                 </div>
             </div>

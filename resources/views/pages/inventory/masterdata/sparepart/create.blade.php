@@ -110,20 +110,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-md-4">
-                                            <label class="small mb-1" for="id_supplier">Supplier</label>
-                                            <select class="form-control" name="id_supplier" id="id_supplier"
-                                                class="form-control @error('id_supplier') is-invalid @enderror">
-                                                <option>Pilih Supplier</option>
-                                                @foreach ($supplier as $item)
-                                                <option value="{{ $item->id_supplier }}">{{ $item->nama_supplier }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_konversi">Konversi Satuan</label>
                                             <select class="form-control" name="id_konversi" id="id_konversi"
                                                 class="form-control @error('id_konversi') is-invalid @enderror">
@@ -136,7 +123,7 @@
                                             @error('id_konversi')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_rak">Tempat Rak</label>
                                             <select class="form-control" name="id_rak" id="id_rak"
                                                 class="form-control @error('id_rak') is-invalid @enderror">

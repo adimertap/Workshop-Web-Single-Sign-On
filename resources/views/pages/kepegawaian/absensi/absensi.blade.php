@@ -133,6 +133,7 @@
                                                 </th>
                                                 <td>{{ $item->Pegawai->nama_pegawai }}</td>
                                                 <td>{{ $item->Pegawai->jabatan->nama_jabatan }}</td>
+                                                
                                                 <td>
                                                     @if($item->absensi == 'Absen_Pagi')
                                                     <span> Masuk </span>

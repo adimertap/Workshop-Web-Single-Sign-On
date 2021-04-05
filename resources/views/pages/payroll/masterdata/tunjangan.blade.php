@@ -125,8 +125,7 @@
                     @csrf
                     <div class="modal-body">
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
-                        <hr>
-                        </hr>
+                        <hr></hr>
                         <div class="form-group">
                             <label class="small mb-1" for="nama_tunjangan">Nama Tunjangan</label>
                             <input class="form-control" name="nama_tunjangan" type="text" id="nama_tunjangan"
@@ -136,7 +135,17 @@
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="jumlah_tunjangan">Besaran Tunjangan</label>
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
+                                    <label class="small mb-1" for="jumlah_tunjangan">Besaran Tunjangan</label>
+                                </div>
+                                <div class="col-12 col-lg-auto text-center text-lg-right">
+                                    <div class="small text-lg-right">
+                                        <span class="font-weight-500 text-primary">Nominal : </span>
+                                        <span id="detailtunjangan"></span>
+                                    </div>
+                                </div>
+                            </div>
                             <input class="form-control" name="jumlah_tunjangan" type="number" id="jumlah_tunjangan"
                                 placeholder="Input Besaran Tunjangan" value="{{ old('jumlah_tunjangan') }}"
                                 class="form-control @error('jumlah_tunjangan') is-invalid @enderror" />
@@ -192,7 +201,7 @@
                         <div class="form-group">
                             <label class="small mb-1" for="jumlah_tunjangan">Besaran Tunjangan</label>
                             <input class="form-control" name="jumlah_tunjangan" type="number" id="jumlah_tunjangan"
-                                value="{{ $item->jumlah_tunjangan }}"></input>
+                                value="{{ number_format($item->jumlah_tunjangan,0,',','.') }}"></input>
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="keterangan">Keterangan</label>
@@ -250,8 +259,17 @@
 <script>
     $(document).ready(function () {
         $('#validasierror').click();
-    });
 
+        $('#jumlah_tunjangan').on('input', function () {
+            var nominal = $(this).val()
+            var nominal_fix = new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(nominal)
+
+            $('#detailtunjangan').html(nominal_fix);
+        })
+    });
 </script>
 
 @endsection

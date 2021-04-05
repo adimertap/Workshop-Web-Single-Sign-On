@@ -28,7 +28,7 @@ class Pajakdetail extends Model
 
     public $timestamps = true;
 
-    public function Pajak()
+    public function pajak()
     {
         return $this->belongsTo(Pajak::class, 'id_pajak','id_pajak');
     }

@@ -38,11 +38,6 @@
                         <input class="form-control form-control-sm" id="nama_sparepart" type="text"
                             name="nama_sparepart" value="{{ $sparepart->nama_sparepart }}" readonly />
                     </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="id_supplier">Supplier</label>
-                        <input class="form-control form-control-sm" id="id_supplier" type="text" name="id_supplier"
-                            value="{{ $sparepart->Supplier->nama_supplier }}" readonly />
-                    </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="id_jenis_spareprat">Jenis Sparepart</label>

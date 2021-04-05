@@ -34,9 +34,9 @@ class Bayarpajak extends Model
 
     public $timestamps = true;
 
-    public function Detail()
+    public function detailpajak()
     {
-        return $this->hasMany(Pajakdetail::class,'id_pajak');
+        return $this->hasMany(Pajakdetail::class, 'id_pajak');
     }
 
     public function Pegawai()

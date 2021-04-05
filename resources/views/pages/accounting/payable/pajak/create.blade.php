@@ -174,6 +174,14 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @forelse ($pajak as $item)
+                                                    <tr>
+                                                        {{-- <td>{{ $item->detailpajak->data_pajak }}</td> --}}
+                                                    </tr>
+                                                        
+                                                    @empty
+                                                        
+                                                    @endforelse
 
                                                 </tbody>
                                             </table>
@@ -368,7 +376,7 @@
     </div>
 </div>
 
-{{-- MODAL KONFIRMASI --}}
+
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -435,98 +443,116 @@
                 }
                 dataform2.push(obj)
 
-                console.log(obj)
+                // console.log(obj)
             }
 
+        }
+        if (dataform2.length == 0) {
+            var alert = $('#alertsparepartkosong').show()
+        } else {
+            var data = {
+                _token: _token,
+                kode_pajak: kode_pajak,
+                id_pegawai: id_pegawai,
+                tanggal_bayar: tanggal_bayar,
+                deskripsi_pajak: deskripsi_pajak,
+                pajak: dataform2
+            }
+
+            $.ajax({
+                method: 'post',
+                url: '/accounting/pajak',
+                data: data,
+                success: function (response) {
+                    window.location.href = '/accounting/pajak'
+                    console.log(response)
+
+                },
+            });
         }
     }
 
+    function tambahpajak(event) {
+        event.preventDefault()
+        var _token = $('#form2').find('input[name="_token"]').val()
+        var data_pajak = $('#form2').find('input[name="data_pajak"]').val()
+        var nilai_pajak = $('#form2').find('input[name="nilai_pajak"]').val()
+        var nilai_pajak_fix = new Intl.NumberFormat('id', {
+            style: 'currency',
+            currency: 'IDR'
+        }).format(nilai_pajak)
+        var keterangan_pajak = $('#form2').find('textarea[name="keterangan_pajak"]').val()
 
+        if (nilai_pajak == 0 | nilai_pajak == '' | data_pajak == '') {
+            alert('Data Inputan Ada yang belum terisi')
+        } else {
+            alert('Berhasil Menambahkan Data Pajak')
+            $('#dataTablekonfirmasi').DataTable().row.add([
+                data_pajak, data_pajak, nilai_pajak_fix, keterangan_pajak
+            ]).draw();
+        }
+    }
 
+    function hapussparepart(element) {
+        var table = $('#dataTablekonfirmasi').DataTable()
+        var row = $(element).parent().parent()
+        table.row(row).remove().draw();
+        alert('Data Pajak Berhasil di Hapus')
+    }
 
-
-
-        function tambahpajak(event) {
-            event.preventDefault()
-            var _token = $('#form2').find('input[name="_token"]').val()
-            var data_pajak = $('#form2').find('input[name="data_pajak"]').val()
-            var nilai_pajak = $('#form2').find('input[name="nilai_pajak"]').val()
-            var nilai_pajak_fix = new Intl.NumberFormat('id', {
+    $(document).ready(function () {
+        $('#nilai_pajak').on('input', function () {
+            var nominal = $(this).val()
+            var nominal_fix = new Intl.NumberFormat('id', {
                 style: 'currency',
                 currency: 'IDR'
-            }).format(nilai_pajak)
-            var keterangan_pajak = $('#form2').find('textarea[name="keterangan_pajak"]').val()
+            }).format(nominal)
 
-            if (nilai_pajak == 0 | nilai_pajak == '' | data_pajak == '') {
-                alert('Data Inputan Ada yang belum terisi')
+            $('#detailnominalpajak').html(nominal_fix);
+        })
+        $('#id_pegawai').on('change', function () {
+            var select = $(this).find('option:selected')
+            var textpegawai = select.text()
+            if (textpegawai == 'Pilih Pegawai') {
+                $('#detailpegawai').html('');
             } else {
-                alert('Berhasil Menambahkan Data Pajak')
-                $('#dataTablekonfirmasi').DataTable().row.add([
-                    data_pajak, data_pajak, nilai_pajak_fix, keterangan_pajak
-                ]).draw();
+                $('#detailpegawai').html(textpegawai);
             }
-        }
+        })
+        $('#deskripsi_pajak').on('change', function () {
+            var deskripsi = $(this).val()
 
-        function hapussparepart(element) {
-            var table = $('#dataTablekonfirmasi').DataTable()
-            var row = $(element).parent().parent()
-            table.row(row).remove().draw();
-            alert('Data Pajak Berhasil di Hapus')
-        }
+            $('#detaildeskripsi').html(deskripsi);
+        })
+        $('#tanggal_bayar').on('change', function () {
+            var select = $(this)
+            var textdate = select.val()
+            var splitdate = textdate.split('-')
+            console.log(splitdate)
+            var datefix = new Date(splitdate[0], splitdate[1] - 1, splitdate[2])
+            var formatindodate = new Intl.DateTimeFormat('id', {
+                dateStyle: 'long'
+            }).format(datefix)
+            $('#detailtanggalbayar').html(formatindodate);
+        })
 
-        $(document).ready(function () {
-            $('#nilai_pajak').on('input', function () {
-                var nominal = $(this).val()
-                var nominal_fix = new Intl.NumberFormat('id', {
-                    style: 'currency',
-                    currency: 'IDR'
-                }).format(nominal)
-
-                $('#detailnominalpajak').html(nominal_fix);
-            })
-            $('#id_pegawai').on('change', function () {
-                var select = $(this).find('option:selected')
-                var textpegawai = select.text()
-                if (textpegawai == 'Pilih Pegawai') {
-                    $('#detailpegawai').html('');
-                } else {
-                    $('#detailpegawai').html(textpegawai);
-                }
-            })
-            $('#deskripsi_pajak').on('change', function () {
-                var deskripsi = $(this).val()
-
-                $('#detaildeskripsi').html(deskripsi);
-            })
-            $('#tanggal_bayar').on('change', function () {
-                var select = $(this)
-                var textdate = select.val()
-                var splitdate = textdate.split('-')
-                console.log(splitdate)
-                var datefix = new Date(splitdate[0], splitdate[1] - 1, splitdate[2])
-                var formatindodate = new Intl.DateTimeFormat('id', {
-                    dateStyle: 'long'
-                }).format(datefix)
-                $('#detailtanggalbayar').html(formatindodate);
-            })
-
-            var template = $('#template_delete_button').html()
-            $('#dataTablekonfirmasi').DataTable({
-                "columnDefs": [{
-                        "targets": -1,
-                        "data": null,
-                        "defaultContent": template
-                    },
-                    {
-                        "targets": 0,
-                        "data": null,
-                        'render': function (data, type, row, meta) {
-                            return meta.row + 1
-                        }
+        var template = $('#template_delete_button').html()
+        $('#dataTablekonfirmasi').DataTable({
+            "columnDefs": [{
+                    "targets": -1,
+                    "data": null,
+                    "defaultContent": template
+                },
+                {
+                    "targets": 0,
+                    "data": null,
+                    'render': function (data, type, row, meta) {
+                        return meta.row + 1
                     }
-                ]
-            });
+                }
+            ]
         });
+    });
 
 </script>
 

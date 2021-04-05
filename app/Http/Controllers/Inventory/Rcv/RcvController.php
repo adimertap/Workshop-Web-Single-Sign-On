@@ -48,12 +48,11 @@ class RcvController extends Controller
      */
     public function store(Request $request)
     {
-
-    
         $po = PO::where('kode_po',$request->kode_po)->first();
         $id_po = $po->id_po;
         $id_supplier = $po->id_supplier;
 
+        // 
         $rcv = Rcv::create([
             'id_po'=>$id_po,
             'id_supplier'=>$id_supplier,

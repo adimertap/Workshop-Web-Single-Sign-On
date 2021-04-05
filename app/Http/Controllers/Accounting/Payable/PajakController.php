@@ -37,7 +37,7 @@ class PajakController extends Controller
     {
 
         $pajak = Bayarpajak::with([
-            'Detail',
+            'detailpajak',
         ])->get();
 
         $jenis_transaksi = Jenistransaksi::all();
@@ -62,7 +62,28 @@ class PajakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'aaa';
+
+        $id = Bayarpajak::getId();
+        foreach($id as $value);
+        $idlama = $value->id_pajak;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+
+        $kode_pajak = 'AKPJ-'.$idbaru.'/'.$blt;
+
+        $pajak = new Bayarpajak;
+        $pajak->kode_pajak = $kode_pajak;
+        $pajak->id_pegawai = $request->id_pegawai;
+        $pajak->tanggal_bayar = $request->tanggal_bayar;
+        $pajak->deskripsi_pajak = $request->deskripsi_pajak;
+       
+
+        $pajak->save();
+        $pajak->Detail()->sync($request->pajak);
+        
+        // return $request;
+        return response()->json($request);
     }
 
     /**

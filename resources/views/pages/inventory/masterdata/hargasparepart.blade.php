@@ -46,16 +46,16 @@
                                                 style="width: 150px;">Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 100px;">Merk Sparepart</th>
+                                                style="width: 70px;">Merk Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 140px;">Supplier</th>
+                                                style="width: 90px;">Supplier</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 50px;">Harga Beli</th>
+                                                style="width: 80px;">Harga Beli</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 50px;">Harga Jual</th>
+                                                style="width: 80px;">Harga Jual</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 60px;">Actions</th>
@@ -68,8 +68,8 @@
                                             <td>{{ $item->Sparepart->nama_sparepart }}</td>
                                             <td>{{ $item->Sparepart->Merksparepart->merk_sparepart }}</td>
                                             <td>{{ $item->supplier->nama_supplier }}</td>
-                                            <td>Rp. {{ number_format($item->harga_beli,0,',','.') }}</td>
-                                            <td>Rp. {{ number_format($item->harga_jual,0,',','.') }}</td>
+                                            <td>Rp. {{ number_format($item->harga_beli,2,',','.') }}</td>
+                                            <td>Rp. {{ number_format($item->harga_jual,2,',','.') }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
                                                     data-toggle="modal" data-target="#Modaledit-{{ $item->id_harga }}">
@@ -148,7 +148,17 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="harga_beli"> Harga Beli </label>
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
+                                <label class="small mb-1" for="harga_beli">Harga Beli</label>
+                            </div>
+                            <div class="col-12 col-lg-auto text-center text-lg-right">
+                                <div class="small text-lg-right">
+                                    <span class="font-weight-500 text-primary">Harga Beli: </span>
+                                    <span id="detailhargabeli"></span>
+                                </div>
+                            </div>
+                        </div>
                         <input class="form-control" name="harga_beli" type="number" id="harga_beli"
                             placeholder="Input Harga Beli" value="{{ old('harga_beli') }}"
                             class="form-control @error('harga_beli') is-invalid @enderror">
@@ -156,7 +166,17 @@
                             </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="harga_jual"> Atur Harga Jual </label>
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
+                                <label class="small mb-1" for="harga_jual">Harga Jual</label>
+                            </div>
+                            <div class="col-12 col-lg-auto text-center text-lg-right">
+                                <div class="small text-lg-right">
+                                    <span class="font-weight-500 text-primary">Harga Jual: </span>
+                                    <span id="detailhargajual"></span>
+                                </div>
+                            </div>
+                        </div>
                         <input class="form-control" name="harga_jual" type="number" id="harga_jual"
                             placeholder="Input Harga Jual" value="{{ old('harga_jual') }}"
                             class="form-control @error('harga_jual') is-invalid @enderror">
@@ -253,6 +273,28 @@
 <script>
     $(document).ready(function () {
         $('#validasierror').click();
+
+        $('#harga_beli').on('input', function () {
+            var harga_beli = $(this).val()
+            var harga_beli_fix = new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(harga_beli)
+
+            $('#detailhargabeli').html(harga_beli_fix);
+        })
+
+        $('#harga_jual').on('input', function () {
+            var harga_jual = $(this).val()
+            var harga_jual_fix = new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(harga_jual)
+
+            $('#detailhargajual').html(harga_jual_fix);
+        })
+
+        
     });
 
 </script>

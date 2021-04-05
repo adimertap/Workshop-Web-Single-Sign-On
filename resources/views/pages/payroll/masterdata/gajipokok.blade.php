@@ -137,7 +137,17 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="besaran_gaji">Besaran Gaji</label>
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
+                                <label class="small mb-1" for="besaran_gaji">Besaran Gaji</label>
+                            </div>
+                            <div class="col-12 col-lg-auto text-center text-lg-right">
+                                <div class="small text-lg-right">
+                                    <span class="font-weight-500 text-primary">Nominal : </span>
+                                    <span id="detailbesarangaji"></span>
+                                </div>
+                            </div>
+                        </div>
                         <input class="form-control" name="besaran_gaji" type="number" id="besaran_gaji"
                             placeholder="Input Besaran Gaji" value="{{ old('besaran_gaji') }}"
                             class="form-control @error('besaran_gaji') is-invalid @enderror" />
@@ -175,13 +185,11 @@
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Nama Jabatan : {{ $item->Jabatan->nama_jabatan }}</label>
-                    <hr>
-                    </hr>
-
+                    <hr></hr>
                     <div class="form-group">
                         <label class="small" for="besaran_gaji">Besaran Gaji</label>
                         <input class="form-control" name="besaran_gaji" type="text" id="besaran_gaji"
-                            value="{{ $item->besaran_gaji }}" />
+                            value="{{ number_format($item->besaran_gaji,0,',','.') }}" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -234,6 +242,16 @@
 <script>
     $(document).ready(function () {
         $('#validasierror').click();
+
+        $('#besaran_gaji').on('input', function () {
+            var nominal = $(this).val()
+            var nominal_fix = new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(nominal)
+
+            $('#detailbesarangaji').html(nominal_fix);
+        })
     });
 
 </script>
