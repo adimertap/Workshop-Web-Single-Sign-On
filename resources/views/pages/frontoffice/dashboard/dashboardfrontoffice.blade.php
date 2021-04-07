@@ -58,7 +58,7 @@
                             <div class="avatar avatar-xl mr-3 bg-gray-200"><img class="avatar-img img-fluid"
                                     src="/backend/src/assets/img/freepik/profiles/profile-6.png" alt=""></div>
                             <div class="d-flex flex-column font-weight-bold">
-                                <a class="text-dark line-height-normal mb-1">I Gede Angga Kusuma Putra</a>
+                                <a class="text-dark line-height-normal mb-1">{{ Auth::user()->name }}</a>
                                     <div class=" small text-muted line-height-normal">Bagian Front Office</div>
                         </div>
                     </div>

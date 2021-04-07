@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label class="small text-muted line-height-normal">: I Putu Adi Merta Pratama
+                                <label class="small text-muted line-height-normal">: {{ Auth::user()->name }}
                             </div>
                         </div>
                         <div class="row">
