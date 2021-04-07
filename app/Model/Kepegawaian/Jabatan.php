@@ -20,12 +20,14 @@ class Jabatan extends Model
     ];
 
     protected $hidden =[ 
-    
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function Gajipokok(){
-        return $this->belongsTo(Mastergajipokok::class,'id_gaji_pokok','id_gaji_pokok');
+        return $this->hasOne(Mastergajipokok::class,'id_jabatan');
     }
 }

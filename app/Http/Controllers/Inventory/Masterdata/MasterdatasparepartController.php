@@ -72,8 +72,11 @@ class MasterdatasparepartController extends Controller
        
         if($request->hasfile('photo'))
         {
+            
+
             foreach($request->file('photo') as $image)
             {
+                
                 $name=$image->getClientOriginalName();
                 $image->move(public_path().'/image/', $name); 
                 $data[] = $name; 
@@ -194,11 +197,6 @@ class MasterdatasparepartController extends Controller
     public function gallery(Request $request, $id_sparepart)
     {
         $sparepart = Sparepart::findorFail($id_sparepart);
-        $jenis_sparepart = Jenissparepart::all();
-        $merk_sparepart = Merksparepart::all();
-        $konversi = Konversi::all();
-        $supplier = Supplier::all();
-        $rak = Rak::all();
         $gallery = Gallery::with('sparepart')
             ->where('id_sparepart',$id_sparepart)
             ->get();
@@ -206,11 +204,6 @@ class MasterdatasparepartController extends Controller
         return view('pages.inventory.masterdata.sparepart.gallery')->with([
             'sparepart' => $sparepart,
             'gallery' => $gallery,
-            'jenis_sparepart' => $jenis_sparepart,
-            'merk_sparepart' => $merk_sparepart,
-            'konversi' => $konversi,
-            'rak' => $rak,
-            'supplier' =>$supplier,
         ]);
     }
 

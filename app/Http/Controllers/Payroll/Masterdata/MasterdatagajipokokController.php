@@ -46,6 +46,7 @@ class MasterdatagajipokokController extends Controller
      */
     public function store(Mastergajipokokrequest $request)
     {
+
         $gajipokok = new Mastergajipokok;
         $gajipokok->id_jabatan = $request->id_jabatan;
         $gajipokok->besaran_gaji = $request->besaran_gaji;
@@ -83,11 +84,11 @@ class MasterdatagajipokokController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Mastergajipokokrequest $request, $id_gaji_pokok)
+    public function update(Request $request, $id_gaji_pokok)
     {
+
         $gajipokok = Mastergajipokok::findOrFail($id_gaji_pokok);
-        $gajipokok->id_jabatan = $request->id_jabatan;
-        $gajipokok->besaran_gaji = $request->besaran_gaji;
+        $gajipokok->besaran_gaji = $request->nominal;
 
         $gajipokok->update();
         return redirect()->back()->with('messageberhasil','Data Gaji Pokok Berhasil diubah');

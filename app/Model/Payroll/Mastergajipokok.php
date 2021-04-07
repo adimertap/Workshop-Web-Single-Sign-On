@@ -23,6 +23,6 @@ class Mastergajipokok extends Model
     public $timestamps = false;
 
     public function Jabatan(){
-        return $this->belongsTo(Jabatan::class,'id_jabatan','id_jabatan');
+        return $this->belongsTo(Jabatan::class,'id_jabatan','id_jabatan')->withTrashed();
     }
 }

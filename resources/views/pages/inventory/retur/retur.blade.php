@@ -251,15 +251,15 @@
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-danger-soft">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('purchase-order.destroy', $item->id_retur) }}" method="POST" class="d-inline">
+            <form action="{{ route('Retur.destroy', $item->id_retur) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pembelian {{ $item->kode_retur }} pada tanggal
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Retur {{ $item->kode_retur }} pada tanggal
                     {{ $item->tanggal_retur }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>

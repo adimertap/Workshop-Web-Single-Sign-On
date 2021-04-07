@@ -24,8 +24,8 @@ class Jenissparepartrequest extends FormRequest
     public function rules()
     {
         return [
-            'jenis_sparepart' => 'required',
-    	    'keterangan' => 'required',
+            'jenis_sparepart' => 'required|unique:tb_inventory_master_jenis_sparepart,jenis_sparepart|min:3|max:30',
+    	    'keterangan' => 'min:4|max:300',
             'fungsi' => 'required|string|in:MOTOR,MOBIL',
         ];
     }

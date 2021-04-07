@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Accounting\Akun;
 use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Retur\Retur;
+use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;

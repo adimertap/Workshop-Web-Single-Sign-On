@@ -3,9 +3,12 @@
 namespace App\Model\Payroll;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Mastertunjangan extends Model
 {
+    use SoftDeletes;
+
     protected $table = "tb_payroll_master_tunjangan";
 
     protected $primaryKey = 'id_tunjangan';
@@ -17,9 +20,11 @@ class Mastertunjangan extends Model
     ];
 
     protected $hidden =[ 
-    
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
 }

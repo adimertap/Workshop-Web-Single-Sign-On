@@ -24,7 +24,7 @@ class Konversirequest extends FormRequest
     public function rules()
     {
         return [
-            'satuan' => 'required',
+            'satuan' => 'required|unique:tb_inventory_master_konversi,satuan',
         ];
     }
 }

@@ -28,11 +28,32 @@ class Sparepartrequest extends FormRequest
             'id_merk' => 'required|exists:tb_inventory_master_merk_sparepart,id_merk',
             'id_konversi' => 'required|exists:tb_inventory_master_konversi,id_konversi',
             'id_rak' => 'required|exists:tb_inventory_master_rak,id_rak',
-            'id_supplier' => 'required|exists:tb_inventory_master_supplier,id_supplier',
-            'nama_sparepart' => 'required',
-            // 'keterangan' => 'required',
-            'stock' => 'required|numeric',
-            'stock_min' => 'required|numeric'
+            'nama_sparepart' => 'required|unique:tb_inventory_master_sparepart,nama_sparepart|min:5|max:50',
+            'stock' => 'required|min:1|max:20',
+            'stock_min' => 'required|min:1|max:20',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'id_jenis_sparepart.required' => 'Error! Anda Belum Mengisi Jenis Sparepart',
+            'id_merk.required' => 'Error! Anda Belum Mengisi Merk Sparepart',
+            'id_konversi.required' => 'Error! Anda Belum Mengisi Satuan Konversi Sparepart',
+            'id_rak.required' => 'Error! Anda Belum Mengisi Penempatan Rak Sparepart',
+            'nama_sparepart.required' => 'Error! Anda Belum Mengisi Nama Sparepart',
+            'stock.required' => 'Error! Anda Belum Mengisi Stock Sparepart',
+            'stock_min.required' => 'Error! Anda Belum Mengisi Stock Minimum Sparepart',
+
+            'nama_sparepart.unique' => 'Error! Nama Sparepart Sudah Ada',
+            'nama_sparepart.min' => 'Error! Character Minimal :min digit',
+            'nama_sparepart.max' => 'Error! Character Maximal :max digit',
+
+            'stock.min' => 'Error! Nominal Minimal :min digit',
+            'stock.max' => 'Error! Nominal Maximal :max digit',
+
+            'stock_min.min' => 'Error! Nominal Minimal :min digit',
+            'stock_min.max' => 'Error! Nominal Maximal :max digit',
+            
         ];
     }
 }

@@ -431,13 +431,11 @@ Route::group(
         });
 
         // RETUR ---------------------------------------------------------------------- Retur
-        Route::prefix('inventory/retur')
+        Route::prefix('inventory')
         ->namespace('Inventory\Retur')
         ->group(function () {
-        Route::get('/', 'ReturController@index')
-        ->name('Retur');
-
-        Route::resource('Retur', 'ReturController');
+       
+            Route::resource('Retur', 'ReturController');
         });
 
         // OPNAME ---------------------------------------------------------------------- Stock Opname
@@ -482,9 +480,6 @@ Route::group(
         Route::resource('Kartu-gudang', 'KartugudangController');
         });
 
-
-
-
         // MODUL INVENTORY ------------------------------------------------------------------------------------ INVENTORY
         // DASHBOARD
         Route::prefix('inventory')
@@ -495,7 +490,7 @@ Route::group(
         });
 
         // MASTERDATA INVENTORY -------------------------------------------------------- Master Data Inventory
-        Route::prefix('inventory/sparepart')
+        Route::prefix('Inventory')
         ->namespace('Inventory\Masterdata')
         ->group(function () {
         Route::get('/', 'MasterdatasparepartController@index')

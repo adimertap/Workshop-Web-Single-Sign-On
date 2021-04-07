@@ -25,7 +25,16 @@ class Galleryrequest extends FormRequest
     {
         return [
             'id_sparepart' => 'required|integer|exists:tb_inventory_master_sparepart,id_sparepart',
-            'photo' => 'required|image|mimes:jpeg,png,jpg|max:1024',
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'photo.required' => 'Error! Anda Belum Memasukan File Foto Sparepart',
+            'photo.mimes' => 'Error! File diTerima dalam bentuk JPEG, PNG, JPG',
+            'photo.max' => 'Error! Size File Maximal :max',
         ];
     }
 }

@@ -25,7 +25,7 @@ class Rakrequest extends FormRequest
     {
         return [
             // 'kode_rak' => 'required',
-            'nama_rak' => 'required',
+            'nama_rak' => 'required|unique:tb_inventory_master_rak,nama_rak|min:3|max:30',
             'jenis_rak' => 'required|string|in:Fast Moving,Slow Moving,Sales',
         ];
     }

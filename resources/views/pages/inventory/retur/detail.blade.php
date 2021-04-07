@@ -15,7 +15,7 @@
             </div>
             <div>
                 <div class="col-12 col-xl-auto mb-3">
-                    <a href="{{ route('Retur') }}" class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
+                    <a href="{{ route('retur.index') }}" class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
                 </div>
             </div>
         </div>

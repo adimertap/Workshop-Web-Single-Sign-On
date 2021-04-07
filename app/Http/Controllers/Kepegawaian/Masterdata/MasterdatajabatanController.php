@@ -16,7 +16,9 @@ class MasterdatajabatanController extends Controller
      */
     public function index()
     {
-        $jabatan = Jabatan::get();
+        $jabatan = Jabatan::with([
+            'Gajipokok'
+        ])->get();
 
         return view('pages.kepegawaian.masterdata.jabatan', compact('jabatan'));
     }

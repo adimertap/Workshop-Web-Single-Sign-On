@@ -185,13 +185,18 @@
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Nama Jabatan : {{ $item->Jabatan->nama_jabatan }}</label>
-                    <hr></hr>
+                    <hr>
+                    </hr>
                     <div class="form-group">
                         <label class="small" for="besaran_gaji">Besaran Gaji</label>
                         <input class="form-control" name="besaran_gaji" type="text" id="besaran_gaji"
-                            value="{{ number_format($item->besaran_gaji,0,',','.') }}" />
+                            value="{{ $item->besaran_gaji }}"
+                            class="form-control @error('besaran_gaji') is-invalid @enderror" />
+                        @error('besaran_gaji')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
                 </div>
+               
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-primary" type="Submit">Ubah</button>

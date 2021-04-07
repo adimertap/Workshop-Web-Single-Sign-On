@@ -25,13 +25,13 @@ class SupplierRequest extends FormRequest
     {
         return [
             // 'kode_supplier' => 'required',
-            'nama_supplier'  => 'required',
-            'telephone'  => 'required',
-            'alamat_supplier'  => 'required',
+            'nama_supplier'  => 'required|unique:tb_inventory_master_supplier,nama_supplier',
+            'telephone'  => 'required|min:13|max:15',
+            'alamat_supplier'  => 'required|min:10|max:40',
             'rekening_supplier'  => 'required',
-            'email' => 'required',
-            'kode_pos' => 'required',
-            'nama_sales' => 'required',
+            'email' => 'required|email',
+            'kode_pos' => 'required|min:3|max:10',
+            'nama_sales' => 'required|min:3|max:10',
         ];
     }
 }

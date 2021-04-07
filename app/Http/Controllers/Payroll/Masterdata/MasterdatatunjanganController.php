@@ -78,7 +78,7 @@ class MasterdatatunjanganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Mastertunjanganrequest $request, $id_tunjangan)
+    public function update(Request $request, $id_tunjangan)
     {
         $tunjangan = Mastertunjangan::findOrFail($id_tunjangan);
         $tunjangan->nama_tunjangan = $request->nama_tunjangan;

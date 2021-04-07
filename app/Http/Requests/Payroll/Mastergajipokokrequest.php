@@ -24,8 +24,18 @@ class Mastergajipokokrequest extends FormRequest
     public function rules()
     {
         return [
-            'id_jabatan' => 'required|exists:tb_kepeg_master_jabatan,id_jabatan',
-            'besaran_gaji' => 'required|numeric',
+            'id_jabatan' => 'required|unique:tb_payroll_master_gaji_pokok,id_jabatan',
+            'besaran_gaji' => 'required|min:4',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'id_jabatan.unique' => 'Error! Jabatan sudah terisi',
+            'besaran_gaji.required' => 'Error! Anda Belum Mengisi Besaran Gaji',
+            'besaran_gaji.min' => 'Error! Nominal Minimal :min digit'
+            
         ];
     }
 }

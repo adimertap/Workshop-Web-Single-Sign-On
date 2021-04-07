@@ -26,8 +26,8 @@ class Hargasparepartrequest extends FormRequest
         return [
             'id_sparepart' =>'required',
             'id_supplier' =>'required',
-            'harga_beli' =>'required',
-            'harga_jual' =>'required',
+            'harga_beli' =>'required|min:3|max:12',
+            'harga_jual' =>'required|min:3|max:12',
         ];
     }
 }
