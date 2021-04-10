@@ -42,6 +42,7 @@ class PajakController extends Controller
 
         $jenis_transaksi = Jenistransaksi::all();
         $pegawai = Pegawai::all();
+        $detailpajak = Pajakdetail::all();
 
         $id = Bayarpajak::getId();
         foreach($id as $value);
@@ -51,7 +52,7 @@ class PajakController extends Controller
 
         $kode_pajak = 'AKPJ-'.$idbaru.'/'.$blt;
 
-        return view('pages.accounting.payable.pajak.create', compact('jenis_transaksi','pegawai','kode_pajak','pajak')); 
+        return view('pages.accounting.payable.pajak.create', compact('jenis_transaksi','pegawai','kode_pajak','pajak', 'detailpajak')); 
     }
 
     /**

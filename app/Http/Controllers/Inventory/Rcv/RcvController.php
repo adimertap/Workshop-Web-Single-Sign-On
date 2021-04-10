@@ -89,11 +89,11 @@ class RcvController extends Controller
         $rcv = Rcv::with([
             'PO','Pegawai','Supplier','Akun','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart.Hargasparepart'
         ])->find($id);
+        
         $id = Rcv::getId();
         $blt = date('d-m-Y');
 
         $kode_rcv = 'RCV-'.$rcv->id_rcv.'/'.$blt;
-
 
         $pegawai = Pegawai::all();
         $supplier = Supplier::all();

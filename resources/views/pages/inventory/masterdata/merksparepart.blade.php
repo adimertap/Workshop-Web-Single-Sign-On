@@ -63,13 +63,13 @@
                                                 style="width: 30px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 160px;">Kode Merk</th>
+                                                style="width: 80px;">Kode Merk</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 200px;">Jenis Sparepart</th>
+                                                style="width: 150px;">Jenis Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 300px;">Merk Sparepart</th>
+                                                style="width: 200px;">Merk Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Actions</th>
@@ -190,21 +190,22 @@
                             value="{{ $item->kode_merk }}" readonly>
                     </div>
                     <div class="form-group">
+                        <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
+                        <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart">
+                            <option value="{{ $item->jenissparepart->id_jenis_sparepart }}">
+                                {{ $item->jenissparepart->jenis_sparepart }}</option>
+                            @foreach ($jenis_sparepart as $items)
+                            <option value="{{ $items->id_jenis_sparepart }}">
+                                {{ $items->jenis_sparepart }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label class="small" for="merk_sparepart">Merk Sparepart</label>
                         <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
                             value="{{ $item->merk_sparepart }}" />
                     </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
-                        <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart">
-                            <option value="{{ $item->jenissparepart->jenis_sparepart }}">
-                                {{ $item->jenissparepart->jenis_sparepart }}</option>
-                            @foreach ($jenis_sparepart as $item)
-                            <option value="{{ $item->id_jenis_sparepart }}">
-                                {{ $item->jenis_sparepart }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>

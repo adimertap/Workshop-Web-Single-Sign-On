@@ -2,7 +2,6 @@
 
 namespace App\Model\Payroll;
 
-use App\Model\Accounting\Akun;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,12 +16,11 @@ class Gajipegawai extends Model
 
     protected $fillable = [
         'id_pegawai',
-        'id_akun',
-        'kode_bayar',
         'bulan_gaji',
         'tahun_gaji',
+        'gaji_diterima',
         'keterangan',
-        'status'
+        'status_diterima'
     ];
 
     protected $hidden =[ 
@@ -33,18 +31,13 @@ class Gajipegawai extends Model
 
     public $timestamps = true;
 
-    public function Detailgaji()
+    public function Detailtunjangan()
     {
-        return $this->belongsToMany(Pegawai::class,'tb_payroll_detgaji','id_gaji_pegawai','id_pegawai');
+        return $this->belongsToMany(Mastertunjangan::class,'tb_payroll_det_gaji','id_gaji_pegawai','id_tunjangan');
     }
 
     public function Pegawai(){
         return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
     }
-
-    public function Akun(){
-        return $this->belongsTo(Akun::class,'id_akun','id_akun');
-    }
-
 
 }

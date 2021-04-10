@@ -134,18 +134,19 @@
                             <h5 class="card-title">Tambah Data Pajak</h5>
                             <hr>
                             <div class="row justify-content-center">
-                                <div class="col-xxl-10 col-sm-10">
+                                <div class="col-xxl-12 col-sm-12">
                                     <div class="form-group col-md-4">
-                                        <label class="small mb-1" for="deskripsi_pajak">Tambah Data Pajak</label>
+                                        <label class="small mb-1" for="deskripsi_pajak">Tambah Data</label>
                                         <button class="form-control btn btn-secondary" type="button" data-toggle="modal"
                                             data-target="#Modaltambahpajak">Tambah Data Pajak</button>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="datatable">
-                                <div id="dataTable_wrapperr" class="dataTables_wrapper dt-bootstrap4">
-                                    <div class="row justify-content-center">
-                                        <div class="col-sm-10">
+                                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
                                             <table class="table table-bordered table-hover dataTable"
                                                 id="dataTablekonfirmasi" width="100%" cellspacing="0" role="grid"
                                                 aria-describedby="dataTable_info" style="width: 100%;">
@@ -154,34 +155,31 @@
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1" aria-sort="ascending"
                                                             aria-label="Name: activate to sort column descending"
-                                                            style="width: 20px;">No</th>
+                                                            style="width: 20px;">
+                                                            No</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Position: activate to sort column ascending"
-                                                            style="width: 100px;">Data Pajak</th>
+                                                            style="width: 80px;">
+                                                            Data Pajak</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Position: activate to sort column ascending"
-                                                            style="width: 120px;">Nilai Pajak</th>
+                                                            style="width: 180px;">
+                                                            Kode Pajak</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
-                                                            aria-label="Position: activate to sort column ascending"
-                                                            style="width: 180px;">Keterangan Pajak</th>
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 70px;">
+                                                            Nilai Pajak</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
-                                                            aria-label="Actions: activate to sort column ascending"
-                                                            style="width: 30px;">Action</th>
+                                                            aria-label="Start date: activate to sort column ascending"
+                                                            style="width: 70px;">
+                                                            Keterangan Pajak</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    @forelse ($pajak as $item)
-                                                    <tr>
-                                                        {{-- <td>{{ $item->detailpajak->data_pajak }}</td> --}}
-                                                    </tr>
-                                                        
-                                                    @empty
-                                                        
-                                                    @endforelse
+                                                <tbody id='konfirmasi'>
 
                                                 </tbody>
                                             </table>
@@ -189,6 +187,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <hr class="my-4">
                         <div class="d-flex justify-content-between">
@@ -308,6 +307,7 @@
     </div>
 </main>
 
+
 <div class="modal fade" id="Modaltambahpajak" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -390,7 +390,8 @@
                 <div class="form-group">Apakah Form yang Anda inputkan sudah benar?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" onclick="submit(event,{{ $pajak }})" type="button">Ya!Sudah</button>
+                    <button class="btn btn-primary" onclick="submit(event,{{ $pajak }})"
+                        type="button">Ya!Sudah</button>
                 </div>
             </div>
         </div>
@@ -420,16 +421,15 @@
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
 
-
         for (var i = 0; i < pajak.length; i++) {
-            var form1 = $('#form2')
-            var data_pajak = $('#form2').find('input[name="data_pajak"]').val()
-            var nilai_pajak = $('#form2').find('input[name="nilai_pajak"]').val()
+            var form2 = $('#form2')
+            var data_pajak = form2.find('input[name="data_pajak"]').val()
+            var nilai_pajak = form2.find('input[name="nilai_pajak"]').val()
             var nilai_pajak_fix = new Intl.NumberFormat('id', {
                 style: 'currency',
                 currency: 'IDR'
             }).format(nilai_pajak)
-            var keterangan_pajak = $('#form2').find('textarea[name="keterangan_pajak"]').val()
+            var keterangan_pajak = form2.find('textarea[name="keterangan_pajak"]').val()
 
             if (nilai_pajak_fix == 0 | nilai_pajak_fix == '') {
                 continue
@@ -443,52 +443,52 @@
                 }
                 dataform2.push(obj)
 
-                // console.log(obj)
+                console.log(obj)
             }
 
         }
-        if (dataform2.length == 0) {
-            var alert = $('#alertsparepartkosong').show()
-        } else {
-            var data = {
-                _token: _token,
-                kode_pajak: kode_pajak,
-                id_pegawai: id_pegawai,
-                tanggal_bayar: tanggal_bayar,
-                deskripsi_pajak: deskripsi_pajak,
-                pajak: dataform2
-            }
+        // if (dataform2.length == 0) {
+        //     var alert = $('#alertsparepartkosong').show()
+        // } else {
+        //     var data = {
+        //         _token: _token,
+        //         kode_pajak: kode_pajak,
+        //         id_pegawai: id_pegawai,
+        //         tanggal_bayar: tanggal_bayar,
+        //         deskripsi_pajak: deskripsi_pajak,
+        //         pajak: dataform2
+        //     }
 
-            $.ajax({
-                method: 'post',
-                url: '/accounting/pajak',
-                data: data,
-                success: function (response) {
-                    window.location.href = '/accounting/pajak'
-                    console.log(response)
+        //     $.ajax({
+        //         method: 'post',
+        //         url: '/accounting/pajak',
+        //         data: data,
+        //         success: function (response) {
+        //             window.location.href = '/accounting/pajak'
+        //             console.log(response)
 
-                },
-            });
-        }
+        //         },
+        //     });
+        // }
     }
 
     function tambahpajak(event) {
-        event.preventDefault()
-        var _token = $('#form2').find('input[name="_token"]').val()
-        var data_pajak = $('#form2').find('input[name="data_pajak"]').val()
-        var nilai_pajak = $('#form2').find('input[name="nilai_pajak"]').val()
+        var form = $('#form2')
+        var _token = form.find('input[name="_token"]').val()
+        var data_pajak = form.find('input[name="data_pajak"]').val()
+        var nilai_pajak = form.find('input[name="nilai_pajak"]').val()
         var nilai_pajak_fix = new Intl.NumberFormat('id', {
             style: 'currency',
             currency: 'IDR'
         }).format(nilai_pajak)
-        var keterangan_pajak = $('#form2').find('textarea[name="keterangan_pajak"]').val()
+        var keterangan_pajak = form.find('textarea[name="keterangan_pajak"]').val()
 
         if (nilai_pajak == 0 | nilai_pajak == '' | data_pajak == '') {
             alert('Data Inputan Ada yang belum terisi')
         } else {
             alert('Berhasil Menambahkan Data Pajak')
             $('#dataTablekonfirmasi').DataTable().row.add([
-                data_pajak, data_pajak, nilai_pajak_fix, keterangan_pajak
+                data_pajak, data_pajak, nilai_pajak_fix, keterangan_pajak,
             ]).draw();
         }
     }

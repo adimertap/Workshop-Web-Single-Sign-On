@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Data Pegawai
+                            Master Data Pegawai 
                         </h1>
                     </div>
                 </div>

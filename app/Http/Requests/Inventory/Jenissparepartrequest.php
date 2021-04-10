@@ -29,4 +29,18 @@ class Jenissparepartrequest extends FormRequest
             'fungsi' => 'required|string|in:MOTOR,MOBIL',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'jenis_sparepart.required' => 'Error! Anda Belum Mengisi Jenis Sparepart',
+            'jenis_sparepart.unique' => 'Error! Jenis Sparepart Sudah Ada',
+            'jenis_sparepart.min' => 'Error! Character Minimal :min digit',
+            'jenis_sparepart.max' => 'Error! Character Maximal :max digit',
+            'fungsi.required' => 'Error! Anda Belum Memilih Fungsi Jenis Sparepart',
+            'keterangan.min' => 'Error! Character Minimal :min digit',
+            'keterangan.max' => 'Error! Character Maximal :max digit'
+
+        ];
+    }
 }

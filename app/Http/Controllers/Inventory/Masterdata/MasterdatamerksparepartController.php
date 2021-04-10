@@ -101,7 +101,7 @@ class MasterdatamerksparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Merksparepartrequest $request, $id_merk)
+    public function update(Request $request, $id_merk)
     {
         $merksparepart = Merksparepart::findOrFail($id_merk);
         $merksparepart->id_jenis_sparepart = $request->id_jenis_sparepart;

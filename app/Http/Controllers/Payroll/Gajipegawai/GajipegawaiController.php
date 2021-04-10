@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Model\Inventory\Retur\Retur;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\Payroll\Gajipegawai;
+use App\Model\Payroll\Mastertunjangan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class GajipegawaiController extends Controller
@@ -19,12 +21,17 @@ class GajipegawaiController extends Controller
     {
 
         $gaji = Gajipegawai::with([
-            'Pegawai','Akun',
+            'Pegawai'
         ])->get();
 
-        $pegawai = Pegawai::get();
 
-        return view('pages.payroll.gajipegawai.gajipegawai', compact('gaji','pegawai'));
+        $tahun_bayar = Carbon::now()->format('Y');
+        $pegawai = Pegawai::with([
+            'Jabatan.Gajipokok'
+        ])->get();
+       
+
+        return view('pages.payroll.gajipegawai.gajipegawai', compact('gaji','pegawai','tahun_bayar'));
     }
 
     /**
@@ -45,7 +52,16 @@ class GajipegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pegawai = Pegawai::where('nama_pegawai',$request->nama_pegawai)->first();
+        $id_pegawai = $pegawai->id_pegawai;
+
+        $gaji = Gajipegawai::create([
+            'id_pegawai'=>$id_pegawai,
+            'bulan_gaji'=>$request->bulan_gaji,
+            'tahun_gaji'=>$request->tahun_gaji,
+        ]);
+        
+        return $gaji;
     }
 
     /**
@@ -67,7 +83,15 @@ class GajipegawaiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $gaji = Gajipegawai::with([
+            'Pegawai','Pegawai.Jabatan.Gajipokok',
+        ])->find($id);
+
+        $seluruhpegawai = Pegawai::all();
+        $tunjangan = Mastertunjangan::all();
+        $today = Carbon::now()->format('D, d/m/Y');
+
+        return view('pages.payroll.gajipegawai.create', compact('gaji','seluruhpegawai','tunjangan','today'));
     }
 
     /**

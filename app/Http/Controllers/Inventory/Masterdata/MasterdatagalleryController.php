@@ -66,7 +66,7 @@ class MasterdatagalleryController extends Controller
           
           $image->save();
   
-          return redirect()->route('sparepart.gallery', $request->id_sparepart)->with('messageberhasil','Data Sparepart Berhasil diubah');
+          return redirect()->route('sparepart.gallery', $request->id_sparepart)->with('messageberhasil','Foto Berhasil ditambahkan');
 
 
     }
@@ -117,5 +117,8 @@ class MasterdatagalleryController extends Controller
         $gallery->delete();
 
         return redirect()->back()->with('messagehapus','Data Foto Sparepart Berhasil dihapus');
+
+        
     }
+    
 }
