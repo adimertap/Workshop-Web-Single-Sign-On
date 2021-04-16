@@ -159,17 +159,23 @@
             <form action="{{ route('retur.store') }}" method="POST" id="form1" class="d-inline">
                 @csrf
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label class="small mb-1" for="id_supplier">Pilih Supplier</label>
-                        <div class="input-group input-group-joined">
-                            <input class="form-control" type="text" placeholder="Pilih Supplier" aria-label="Search"
-                                id="detailsupplier">
-                            <div class="input-group-append">
-                                <a href="" class="input-group-text" type="button" data-toggle="modal"
-                                    data-target="#Modalsupplier">
-                                    <i class="fas fa-folder-open"></i>
-                                </a>
+                    <div class="row">
+                        <div class="form-group col-md-7">
+                            <label class="small mb-1" for="id_supplier">Pilih Supplier</label>
+                            <div class="input-group input-group-joined">
+                                <input class="form-control" type="text" placeholder="Pilih Supplier" aria-label="Search"
+                                    id="detailsupplier">
+                                <div class="input-group-append">
+                                    <a href="" class="input-group-text" type="button" data-toggle="modal"
+                                        data-target="#Modalsupplier">
+                                        <i class="fas fa-folder-open"></i>
+                                    </a>
+                                </div>
                             </div>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label class="small mb-1" for="no_telp">No. Telp</label>
+                            <input class="form-control" id="detailtelp" type="text" name="no_telp" readonly>
                         </div>
                     </div>
                     <div class="form-group">
@@ -218,10 +224,12 @@
                                     <div class="font-weight-bold nama_supplier">{{ $item->nama_supplier }}</div>
                                 </td>
                                 <td>
-                                    <div class="small text-muted d-none d-md-block telephone">{{ $item->telephone }}</div>
+                                    <div class="small text-muted d-none d-md-block telephone">{{ $item->telephone }}
+                                    </div>
                                 </td>
                                 <td>
-                                    <div class="small text-muted d-none d-md-block alamat_supplier">{{ $item->alamat_supplier }}</div>
+                                    <div class="small text-muted d-none d-md-block alamat_supplier">
+                                        {{ $item->alamat_supplier }}</div>
                                 </td>
                                 <td>
                                     <button class="btn btn-success btn-sm btn-datatable"
@@ -274,14 +282,18 @@
 @endforelse
 
 
+
 <script>
     function tambahsupplier(event, id_supplier) {
         var data = $('#item-' + id_supplier)
         var _token = $('#form1').find('input[name="_token"]').val()
         var nama_supplier = $(data.find('.nama_supplier')[0]).text()
-        alert('Berhasil Menambahkan Data PO')
+        var no_telp = $(data.find('.telephone')[0]).text()
+        alert('Berhasil Menambahkan Data Supplier')
+        // $("#toast").toast("show");
 
         $('#detailsupplier').val(nama_supplier)
+        $('#detailtelp').val(no_telp)
         console.log(nama_supplier);
     }
 

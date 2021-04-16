@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Kepegawaian\Absensi;
 use App\Http\Controllers\Controller;
 use App\Model\Kepegawaian\Absensi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LaporanabsensiController extends Controller
 {
@@ -15,11 +16,13 @@ class LaporanabsensiController extends Controller
      */
     public function index()
     {
+       
         $absensi = Absensi::with([
             'Pegawai',
         ])->get();
-
         return view('pages.kepegawaian.absensi.laporanabsensi', compact('absensi'));
+
+        
     }
 
     /**
@@ -87,4 +90,5 @@ class LaporanabsensiController extends Controller
     {
         //
     }
+
 }

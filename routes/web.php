@@ -681,8 +681,8 @@ Route::group(
         Route::prefix('kepegawaian/LaporanAbsensi')
         ->namespace('Kepegawaian\Absensi')
         ->group(function () {
-        Route::get('/', 'LaporanabsensiController@index')
-        ->name('laporanabsensi');
+            Route::get('/', 'LaporanabsensiController@index')
+                ->name('laporanabsensi');
         });
 
         // -------------------------------------------------------------------------------------------------------PAYROLL 

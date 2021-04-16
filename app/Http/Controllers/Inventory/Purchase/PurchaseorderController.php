@@ -42,7 +42,7 @@ class PurchaseorderController extends Controller
         foreach($id as $value);
         $idlama = $value->id_po;
         $idbaru = $idlama + 1;
-        $blt = date('d-m-Y');
+        $blt = date('m');
 
         $kode_po = 'PO-'.$idbaru.'/'.$blt;
 
@@ -66,7 +66,7 @@ class PurchaseorderController extends Controller
         foreach($id as $value);
         $idlama = $value->id_po;
         $idbaru = $idlama + 1;
-        $blt = date('d-m-Y');
+        $blt = date('m');
 
         $kode_po = 'PO-'.$idbaru.'/'.$blt;
 

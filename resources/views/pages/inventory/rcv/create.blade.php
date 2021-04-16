@@ -74,12 +74,12 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="kode_rcv">Kode Receiving</label>
                                             <input class="form-control" id="kode_rcv" type="text" name="kode_rcv"
                                                 placeholder="Input Kode Receiving" value="{{ $kode_rcv }}" readonly>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="id_pegawai">Pegawai</label>
                                             <select class="form-control" name="id_pegawai" id="id_pegawai"
                                                 class="form-control @error('id_supplier') is-invalid @enderror">
@@ -90,6 +90,14 @@
                                                 @endforeach
                                             </select>
                                             @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1" for="tanggal_rcv">Tanggal Receive</label>
+                                            <input class="form-control" id="tanggal_rcv" type="date" name="tanggal_rcv"
+                                                placeholder="Input Tanggal Receive" value="{{ $rcv->tanggal_rcv }}"
+                                                class="form-control @error('tanggal_rcv') is-invalid @enderror" />
+                                            @error('tanggal_rcv')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
@@ -111,32 +119,9 @@
                                                 placeholder="Input Nomor Delivery Order" value="{{ $rcv->no_do }}">
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="tanggal_rcv">Tanggal Receive</label>
-                                            <input class="form-control" id="tanggal_rcv" type="date" name="tanggal_rcv"
-                                                placeholder="Input Tanggal Receive" value="{{ $rcv->tanggal_rcv }}"
-                                                class="form-control @error('tanggal_rcv') is-invalid @enderror" />
-                                            @error('tanggal_rcv')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_akun">Akun</label>
-                                            <select class="form-control" name="id_akun" id="id_akun"
-                                                class="form-control @error('id_akun') is-invalid @enderror">
-                                                <option>Pilih Akun</option>
-                                                @foreach ($akun as $item)
-                                                <option value="{{ $item->id_akun }}">{{ $item->nama_akun }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            @error('id_akun')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                    </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('masterdatasparepart') }}" class="btn btn-light">Kembali</a>
+                                        <a href="{{ route('Rcv.index') }}" class="btn btn-light">Kembali</a>
                                         <button class="btn btn-primary">Next</button>
                                     </div>
                             </div>
@@ -209,7 +194,11 @@
                                                             {{ $item->Merksparepart->merk_sparepart }}</td>
                                                         <td class="qty">{{ $item->pivot->qty }}</td>
                                                         <td class="satuan">{{ $item->Konversi->satuan }}</td>
-                                                        <td class="harga_beli">{{ $item->Hargasparepart->harga_beli }}
+                                                        <td>@if ($item->Hargasparepart == '')
+                                                            <div class="small text-muted d-none d-md-block">Tidak ada data</div>
+                                                                @else
+                                                            <div class="harga_beli">Rp.{{ number_format($item->Hargasparepart->harga_beli,2,',','.') }}/{{ $item->Konversi->satuan }}</div>
+                                                                @endif
                                                         </td>
                                                         <td>
                                                             <a href="" class="btn btn-success btn-datatable"
@@ -220,7 +209,7 @@
                                                         </td>
                                                     </tr>
                                                     @empty
-
+                                                       
                                                     @endforelse
                                                 </tbody>
                                             </table>
@@ -317,13 +306,6 @@
                                                     <div class="font-weight-bold">Nomor DO/Delivery Order</div>
                                                     <div class="small text-muted d-none d-md-block">
                                                         <span>{{ $rcv->no_do }}</span></div>
-                                                </td>
-                                            </tr>
-                                            <tr class="border-bottom">
-                                                <td>
-                                                    <div class="font-weight-bold">Akun</div>
-                                                    <div class="small text-muted d-none d-md-block"><span
-                                                            id="detailakun"></span></div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -555,7 +537,6 @@
         var kode_po = form1.find('input[name="kode_po"]').val()
         var no_do = form1.find('input[name="no_do"]').val()
         var id_supplier = $('#id_supplier').val()
-        var id_akun = $('#id_akun').val()
         var id_pegawai = $('#id_pegawai').val()
         var tanggal_rcv = form1.find('input[name="tanggal_rcv"]').val()
         var dataform2 = []
@@ -593,7 +574,6 @@
                 kode_rcv: kode_rcv,
                 kode_po: kode_po,
                 id_supplier: id_supplier,
-                id_akun: id_akun,
                 id_pegawai: id_pegawai,
                 tanggal_rcv: tanggal_rcv,
                 sparepart: dataform2
@@ -683,15 +663,6 @@
                 $('#detailpegawai').html('');
             } else {
                 $('#detailpegawai').html(textpegawai);
-            }
-        })
-        $('#id_akun').on('change', function () {
-            var select = $(this).find('option:selected')
-            var textakun = select.text()
-            if (textakun == 'Pilih Akun') {
-                $('#detailakun').html('');
-            } else {
-                $('#detailakun').html(textakun);
             }
         })
 

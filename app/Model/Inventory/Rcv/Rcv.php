@@ -23,7 +23,6 @@ class Rcv extends Model
         'id_po',
         'id_pegawai',
         'id_supplier',
-        'id_akun',
         'kode_rcv',
         'no_do',
         'status',
@@ -63,11 +62,6 @@ class Rcv extends Model
     public function Supplier()
     {
         return $this->belongsTo(Supplier::class,'id_supplier','id_supplier');
-    }
-
-    public function Akun()
-    {
-        return $this->belongsTo(Akun::class,'id_akun','id_akun');
     }
 
     public static function getId(){

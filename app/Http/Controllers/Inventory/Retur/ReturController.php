@@ -83,15 +83,22 @@ class ReturController extends Controller
     public function edit($id)
     {
         $retur = Retur::with([
-            'Rcv','Pegawai','Supplier','Akun'
-        ])->get();
-        
-        $rcv = Rcv::all();
+            'Rcv','Pegawai','Supplier','Akun','Detailretur.Hargasparepart'
+        ])->find($id);
+
+        // Generate Code Manggil Fungsi getId()
+        $id = Retur::getId();
+        $blt = date('m');
+        $kode_retur = 'RTR-'.$retur->id_retur.'/'.$blt;
+
+        // Panggil
         $supplier = Supplier::all();
         $akun = Akun::all();
         $pegawai = Pegawai::all();
 
-        return view('pages.inventory.retur.create', compact('rcv','pegawai','supplier','akun'));
+        
+
+        return view('pages.inventory.retur.create', compact('retur','pegawai','supplier','akun','kode_retur','sparepart'));
     }
 
     /**

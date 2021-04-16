@@ -143,7 +143,7 @@
                             <label class="small mb-1" for="tahun_gaji">Tahun Bayar</label>
                             <input class="form-control" id="tahun_gaji" type="input" name="tanggal_rcv"
                                 value="{{ $tahun_bayar }}"
-                                class="form-control @error('tahun_gaji') is-invalid @enderror" readonly />
+                                class="form-control @error('tahun_gaji') is-invalid @enderror" />
                             @error('tahun_gaji')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>

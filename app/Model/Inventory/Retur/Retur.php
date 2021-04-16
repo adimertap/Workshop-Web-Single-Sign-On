@@ -4,10 +4,12 @@ namespace App\Model\Inventory\Retur;
 
 use App\Model\Accounting\Akun;
 use App\Model\Inventory\Rcv\Rcv;
+use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Retur extends Model
 {
@@ -35,9 +37,9 @@ class Retur extends Model
 
     public $timestamps = true;
 
-    public function Detail()
+    public function Detailretur()
     {
-        return $this->hasMany(Returdetail::class,'id_retur');
+        return $this->belongsToMany(Sparepart::class,'tb_inventory_detretur','id_retur','id_sparepart');
     }
 
     public function Rcv()
@@ -59,4 +61,10 @@ class Retur extends Model
     {
         return $this->belongsTo(Akun::class,'id_akun','id_akun');
     }    
+
+    public static function getId(){
+        // return $this->orderBy('id_sparepart')->take(1)->get();
+        return $getId = DB::table('tb_inventory_retur')->orderBy('id_retur','DESC')->take(1)->get();
+
+    }
 }
