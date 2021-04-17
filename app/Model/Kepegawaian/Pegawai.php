@@ -41,6 +41,9 @@ class Pegawai extends Model
         return $this->belongsTo(Jabatan::class,'id_jabatan','id_jabatan')->withTrashed();
     }
 
+    public function absensi(){
+        return $this->hasMany(Absensi::class,'id_pegawai');
+    }
    
 
 }

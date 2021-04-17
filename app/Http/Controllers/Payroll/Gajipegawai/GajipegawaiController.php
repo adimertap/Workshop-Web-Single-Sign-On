@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Payroll\Gajipegawai;
 use App\Http\Controllers\Controller;
 use App\Model\Inventory\Retur\Retur;
 use App\Model\Kepegawaian\Pegawai;
+use App\Model\Payroll\Detailgaji;
 use App\Model\Payroll\Gajipegawai;
 use App\Model\Payroll\Mastertunjangan;
 use Carbon\Carbon;
@@ -84,7 +85,7 @@ class GajipegawaiController extends Controller
     public function edit($id)
     {
         $gaji = Gajipegawai::with([
-            'Pegawai','Pegawai.Jabatan.Gajipokok',
+            'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi'
         ])->find($id);
 
         $seluruhpegawai = Pegawai::all();
@@ -112,8 +113,26 @@ class GajipegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_gaji_pegawai)
     {
-        //
+        $gaji = Gajipegawai::findOrFail($id_gaji_pegawai);
+        
+        Detailgaji::where('id_gaji_pegawai', $id_gaji_pegawai)->delete();
+        $gaji->delete();
+
+        return redirect()->back()->with('messagehapus','Data Pembayaran Gaji Pegawai Berhasil dihapus');
+    }
+
+    public function setStatus(Request $request, $id_gaji_pegawai)
+    {
+        $request->validate([
+            'status' => 'required|in:Belum Dibayarkan,Dibayarkan'
+        ]);
+
+        $item = Gajipegawai::findOrFail($id_gaji_pegawai);
+        $item->status_diterima = $request->status;
+
+        $item->save();
+        return redirect()->route('gaji-pegawai.index')->with('messagebayar','Slip Gaji Pegawai berhasil Dibayarkan');
     }
 }

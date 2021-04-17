@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-</main>
+
 
 <div class="container-fluid">
     <div class="card mb-4">
@@ -36,20 +36,28 @@
         <div class="card-body ">
             <div class="datatable">
                 @if(session('messageberhasil'))
-                <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                    {{ session('messageberhasil') }}
-                    <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
+                    <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
+                        {{ session('messageberhasil') }}
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                @endif
+                @if(session('messagebayar'))
+                    <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
+                        {{ session('messagebayar') }}
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
                 @endif
                 @if(session('messagehapus'))
-                <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
-                    {{ session('messagehapus') }}
-                    <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
+                    <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
+                        {{ session('messagehapus') }}
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
                 @endif
 
                 {{-- TABLE --}}
@@ -96,9 +104,56 @@
                                         <td>{{ $item->Pegawai->nama_pegawai }}</td>
                                         <td>{{ $item->Pegawai->Jabatan->nama_jabatan }}</td>
                                         <td>{{ $item->bulan_gaji }}</td>
-                                        <td>{{ $item->bulan_gaji }}</td>
+                                        <td> @if($item->status_diterima == 'Belum Dibayarkan')
+                                            <span class="badge badge-danger">
+                                                @elseif($item->status_diterima == 'Dibayarkan')
+                                                <span class="badge badge-success">
+                                                    @else
+                                                    <span>
+                                                        @endif
+                                                        {{ $item->status_diterima }}
+                                                    </span>
                                         <td>
-                                            Tes
+                                            @if($item->status_diterima == 'Belum Dibayarkan')
+                                            <a href="" class="btn btn-success btn-datatable" type="button"
+                                                data-toggle="modal" data-target="#Modalbayar-{{ $item->id_gaji_pegawai }}">
+                                                <i class="fas fa-check"></i>
+                                            </a>
+                                            <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Cetak Slip">
+                                                <i class="fas fa-print"></i></i>
+                                            </a>
+                                            <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Detail Slip">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Edit Slip">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                            @elseif ($item->status_diterima == 'Dibayarkan')
+                                            <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Cetak Slip">
+                                                <i class="fas fa-print"></i></i>
+                                            </a>
+                                            <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Detail Slip">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Edit Slip">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                            @else
+                                            @endif
                                         </td>
                                     </tr>
                                     @empty
@@ -129,7 +184,7 @@
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
-                        <div class="alert alert-danger" id="alertdatakosong" role="alert" style="display:none"> <i
+                    <div class="alert alert-danger" id="alertdatakosong" role="alert" style="display:none"> <i
                             class="fas fa-times"></i>
                         Error! Terdapat Data yang Masih Kosong!
                         <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
@@ -168,7 +223,6 @@
                             @error('bulan_gaji')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-
                     </div>
                     <div class="row">
                         <div class="form-group col-md-5">
@@ -233,39 +287,39 @@
                         </thead>
                         <tbody>
                             @forelse ($pegawai as $item)
-                            <tr id="item-{{ $item->id_pegawai }}" class="border-bottom">
-                                <td>
-                                    <div class="font-weight-bold nama_pegawai">{{ $item->nama_pegawai }}</div>
-                                </td>
-                                <td>
-                                    <div class="small text-muted d-none d-md-block nama_jabatan">{{ $item->jabatan->nama_jabatan }}</div>
-                                </td>
-                                <td>
-                                    @if ($item->jabatan->gajipokok == '')
-                                    <div class="small text-muted d-none d-md-block">Tidak ada data
-                                        <a href="{{ route('gaji-pokok.index') }}"
-                                            class="btn btn-light btn-sm btn-datatable" type="button">
-                                            <i class="fas fa-plus"></i>
-                                        </a>
-                                    </div>
-                                    @else
-                                    <div class="small text-muted d-none d-md-block gaji_pokok">Rp.{{ number_format($item->jabatan->gajipokok->besaran_gaji,2,',','.') }}</div>
-                                    @endif
+                                <tr id="item-{{ $item->id_pegawai }}" class="border-bottom">
+                                    <td>
+                                        <div class="font-weight-bold nama_pegawai">{{ $item->nama_pegawai }}</div>
+                                    </td>
+                                    <td>
+                                        <div class="small text-muted d-none d-md-block nama_jabatan">{{ $item->jabatan->nama_jabatan }}</div>
+                                    </td>
+                                    <td>
+                                        @if ($item->jabatan->gajipokok == '')
+                                        <div class="small text-muted d-none d-md-block">Tidak ada data
+                                            <a href="{{ route('gaji-pokok.index') }}"
+                                                class="btn btn-light btn-sm btn-datatable" type="button">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                        @else
+                                        <div class="small text-muted d-none d-md-block gaji_pokok">Rp.{{ number_format($item->jabatan->gajipokok->besaran_gaji,2,',','.') }}</div>
+                                        @endif
 
-                                </td>
-                                <td>
-                                    <button class="btn btn-success btn-sm btn-datatable"
-                                        onclick="tambahpo(event, {{ $item->id_pegawai }})" type="button"
-                                        data-dismiss="modal">Tambah
-                                    </button>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm btn-datatable"
+                                            onclick="tambahpo(event, {{ $item->id_pegawai }})" type="button"
+                                            data-dismiss="modal">Tambah
+                                        </button>
+                                    </td>
+                                </tr>
                             @empty
-                            <tr>
-                                <td colspan="7" class="tex-center">
-                                    Tidak ada Data Pegawai
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td colspan="7" class="tex-center">
+                                        Tidak ada Data Pegawai
+                                    </td>
+                                </tr>
                             @endforelse
                         </tbody>
                     </table>
@@ -274,7 +328,59 @@
         </div>
     </div>
 </div>
-</main>
+
+@forelse ($gaji as $item)
+<div class="modal fade" id="Modalbayar-{{ $item->id_gaji_pegawai }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info-soft">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Pengiriman Data Pembelian</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('gaji-pegawai-status', $item->id_gaji_pegawai) }}?status=Dibayarkan" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body text-center">Apakah Anda Yakin untuk Melakukan Pembayaran Gaji Pegawai <span class="font-weight-700">{{ $item->Pegawai->nama_pegawai }}</span>, bulan {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }}?</div>
+                <div class="modal-footer ">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Bayar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+@endforelse
+
+@forelse ($gaji as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_gaji_pegawai }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger-soft">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('gaji-pegawai.destroy', $item->id_gaji_pegawai) }}" method="POST" class="d-inline">
+                @csrf
+                @method('delete')
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pembayaran Gaji Pegawai <span class="font-weight-700">{{ $item->Pegawai->nama_pegawai }}</span>, bulan {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }}?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+
+@endforelse
+
+
+
 
 <script>
     function tambahpo(event, id_pegawai) {
@@ -303,7 +409,8 @@
             nama_pegawai: nama_pegawai,
         }
 
-        if (gaji_pokok == 0 | gaji_pokok == '' | bulan_gaji == 0 | bulan_gaji == '' | tahun_gaji == 0 | tahun_gaji == 'Pilih Bulan Gaji' | nama_pegawai == 0 | nama_pegawai == '') {
+        if (gaji_pokok == 0 | gaji_pokok == '' | bulan_gaji == 0 | bulan_gaji == '' | tahun_gaji == 0 | tahun_gaji ==
+            'Pilih Bulan Gaji' | nama_pegawai == 0 | nama_pegawai == '') {
             var alert = $('#alertdatakosong').show()
         } else {
 

@@ -718,7 +718,10 @@ Route::group(
         Route::prefix('payroll')
         ->namespace('Payroll\Gajipegawai')
         ->group(function () {
-        Route::resource('gaji-pegawai', 'GajipegawaiController');
+            Route::resource('gaji-pegawai', 'GajipegawaiController');
+
+            Route::post('gaji-pegawai/{id_gaji_pegawai}/set-status', 'GajipegawaiController@setStatus')
+                ->name('gaji-pegawai-status');
         });
 
 

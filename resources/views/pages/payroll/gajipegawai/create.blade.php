@@ -78,8 +78,7 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="tahun_gaji">Tahun Gaji</label>
                                             <input class="form-control" id="tahun_gaji" type="text" name="tahun_gaji"
-                                                placeholder="Input Tahun Gaji" value="{{ $gaji->tahun_gaji }}"
-                                                readonly />
+                                                placeholder="Input Tahun Gaji" value="{{ $gaji->tahun_gaji }}" />
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="bulan_gaji">Bulan Gaji</label>
@@ -107,11 +106,12 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="nama_pegawai">Pilih Pegawai</label>
                                             <div class="input-group input-group-joined">
-                                                <input class="form-control" type="text" placeholder="Pilih Pegawai" aria-label="Search"
-                                                    id="detailpegawai" value="{{ $gaji->Pegawai->nama_pegawai }}">
+                                                <input class="form-control" type="text" placeholder="Pilih Pegawai"
+                                                    aria-label="Search" id="detailpegawai"
+                                                    value="{{ $gaji->Pegawai->nama_pegawai }}">
                                                 <div class="input-group-append">
-                                                    <a href="" class="input-group-text" type="button" data-toggle="modal"
-                                                        data-target="#Modalpegawai">
+                                                    <a href="" class="input-group-text" type="button"
+                                                        data-toggle="modal" data-target="#Modalpegawai">
                                                         <i class="fas fa-folder-open"></i>
                                                     </a>
                                                 </div>
@@ -153,8 +153,23 @@
                     <div class="tab-pane fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
                         <div class="tab-pane py-2 py-xl-2 fade show active" id="wizard1" role="tabpanel"
                             aria-labelledby="wizard1-tab">
-                            <h3 class="text-primary">Step 2</h3>
-                            <h5 class="card-title">Tambah Data Gaji Pegawai</h5>
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
+                                    <h3 class="text-primary">Step 2</h3>
+                                    <h5 class="card-title">Tambah Data Gaji Pegawai</h5>
+
+                                </div>
+                                <div class="col-12 col-lg-auto text-center text-lg-right">
+                                    
+                                    <h5 class="small mb-1">Laporan Absensi Pegawai</h5>
+                                    <a href="" class="btn btn-secondary btn-sm" type="button" data-toggle="modal"
+                                        data-target="#Modalabsensi">
+                                        Lihat Absensi
+                                    </a>
+                             
+                                </div>
+                            </div>
+
                             <hr>
 
                             <div class="row">
@@ -310,17 +325,22 @@
                                     <div class="row justify-content-between align-items-center">
                                         <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
                                             <!-- Invoice branding-->
-                                            <div class="h2 mb-0" id="detailpegawai2">{{ $gaji->Pegawai->nama_pegawai }}</div>
-                                            Pembayaran bulan <span id="detailbulangaji">{{ $gaji->bulan_gaji }}</span>,Tahun <span>{{ $gaji->tahun_gaji }}</span>
-                                            
+                                            <div class="h2 mb-0" id="detailpegawai2">{{ $gaji->Pegawai->nama_pegawai }}
+                                            </div>
+                                            Pembayaran bulan <span
+                                                id="detailbulangaji">{{ $gaji->bulan_gaji }}</span>,Tahun <span
+                                                id="detailtahungaji">{{ $gaji->tahun_gaji }}</span>
+
                                         </div>
                                         <div class="col-12 col-lg-auto text-center text-lg-right">
                                             <!-- Invoice details-->
                                             <div class="h5">{{ $today }}</div>
-                                            Jabatan<span id="detailjabatan2">{{ $gaji->Pegawai->Jabatan->nama_jabatan }}</span>
+                                            Jabatan<span
+                                                id="detailjabatan2">{{ $gaji->Pegawai->Jabatan->nama_jabatan }}</span>
                                             <br />
                                             <div class="small text-muted">Alamat {{ $gaji->Pegawai->alamat }}</div>
-                                            No.Telp <div class="small text-muted" id="detailnotelp">{{ $gaji->Pegawai->no_telp }}</div>
+                                            No.Telp <div class="small text-muted" id="detailnotelp">
+                                                {{ $gaji->Pegawai->no_telp }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -407,9 +427,11 @@
                                                 <!-- Invoice - sent to info-->
                                                 <div class="small text-muted text-uppercase font-weight-700 mb-2">Kepada
                                                 </div>
-                                                <div class="h6 mb-1" id="detailpegawai3">{{ $gaji->Pegawai->nama_pegawai }}"</div>
+                                                <div class="h6 mb-1" id="detailpegawai3">
+                                                    {{ $gaji->Pegawai->nama_pegawai }}"</div>
                                                 <div class="small">Alias {{ $gaji->Pegawai->nama_panggilan }}</div>
-                                                <div class="small" id="detailjabatan3">{{ $gaji->Pegawai->Jabatan->nama_jabatan }}</div>
+                                                <div class="small" id="detailjabatan3">
+                                                    {{ $gaji->Pegawai->Jabatan->nama_jabatan }}</div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
                                                 <!-- Invoice - sent from info-->
@@ -423,9 +445,7 @@
                                                 <!-- Invoice - additional notes-->
                                                 <div class="small text-muted text-uppercase font-weight-700 mb-2">Note
                                                 </div>
-                                                <div class="small mb-0">Pembayaran akan dilakukan setelah diapproval
-                                                    oleh
-                                                    Account Payable</div>
+                                                <span class="small mb-0" id="detailketerangan"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -528,6 +548,109 @@
     </div>
 </div>
 
+<div class="modal fade" id="Modalabsensi" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Data Absensi Pegawai</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="" method="POST" id="form2" class="d-inline">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="datatable">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-hover dataTable"
+                                            id="dataTableAbsensi" width="100%" cellspacing="0" role="grid"
+                                            aria-describedby="dataTable_info" style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">
+                                                        No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 100px;">
+                                                        Tanggal</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 80px;">
+                                                        Absensi</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 50px;">
+                                                        Jam Masuk</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 50px;">
+                                                        Jam Keluar</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 100px;">
+                                                        Keterangan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($gaji->Pegawai->absensi as $item)
+                                                <tr role="row" class="odd">
+                                                    <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
+                                                </th>
+                                                <td>{{ $item->tanggal_absensi }}</td>
+                                                <td>
+                                                    @if($item->absensi == 'Absen_Pagi')
+                                                    <span> Masuk </span>
+                                                    @elseif ($item->absensi == 'Masuk')
+                                                    <span> Masuk</span>
+                                                    @elseif ($item->absensi == 'Ijin' | $item->absensi == 'Sakit' |
+                                                    $item->absensi == 'Cuti' | $item->absensi == 'Alpha')
+                                                    {{ $item->absensi }}
+                                                    @else
+                                                    <span>
+                                                        @endif
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    @if($item->absensi == 'Absen_Pagi' | $item->absensi =='Masuk')
+                                                    {{ $item->jam_masuk }}
+                                                    @elseif ($item->absensi == 'Ijin' | $item->absensi == 'Sakit' |
+                                                    $item->absensi == 'Cuti' | $item->absensi == 'Alpha')
+                                                    @else
+                                                    <span>
+                                                        @endif
+                                                    </span>
+                                                </td>
+                                                <td>{{ $item->jam_pulang }}</td>
+                                                <td>{{ $item->keterangan }}</td>
+                                                </tr>
+                                                @empty
+                                                    
+                                                @endforelse
+                                                {{-- BELUM DIKERJAKAN --}}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 {{-- MODAL PEGAWAI --}}
 <div class="modal fade" id="Modalpegawai" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
     aria-hidden="true">
@@ -571,7 +694,8 @@
                                         </a>
                                     </div>
                                     @else
-                                    <div class="small text-muted d-none d-md-block gaji_pokok">Rp.{{ number_format($item->jabatan->gajipokok->besaran_gaji,2,',','.') }}</div>
+                                    <div class="small text-muted d-none d-md-block gaji_pokok">
+                                        Rp.{{ number_format($item->jabatan->gajipokok->besaran_gaji,2,',','.') }}</div>
                                     @endif
 
                                 </td>
@@ -630,7 +754,7 @@
 </template>
 
 <script>
-     function tambahpegawai(event, id_pegawai) {
+    function tambahpegawai(event, id_pegawai) {
         var data = $('#item-' + id_pegawai)
         var _token = $('#form1').find('input[name="_token"]').val()
         var nama_pegawai = $(data.find('.nama_pegawai')[0]).text()
@@ -672,10 +796,11 @@
 
     }
 
-    
+
 
     function hapussparepart(element) {
         var table = $('#dataTabletunjangan').DataTable()
+       
         // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
         table.row(row).remove().draw();
@@ -692,6 +817,16 @@
             $('#detailbulangaji').html(bulan);
         })
 
+        $('#tahun_gaji').on('input', function () {
+            var tahun = $(this).val()
+            $('#detailtahungaji').html(tahun);
+        })
+
+        $('#keterangan').on('input', function () {
+            var keterangan = $(this).val()
+            $('#detailketerangan').html(keterangan);
+        })
+
         $('#detailpegawai').on('change', function () {
             var select = $(this)
             var textpegawai = select.text()
@@ -699,10 +834,8 @@
             $('#detailpegawai2').html(textpegawai);
         })
 
-        
+        var table2 = $('#dataTableAbsensi').DataTable()
         var table = $('#dataTablesemuatunjangan').DataTable()
-
-        
 
         var template = $('#template_delete_button').html()
         $('#dataTabletunjangan').DataTable({

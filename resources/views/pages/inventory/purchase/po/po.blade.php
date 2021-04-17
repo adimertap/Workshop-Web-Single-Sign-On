@@ -135,15 +135,15 @@
                                             @elseif($item->approve_po == 'Not Approved')
                                             <span class="font-size-300" style="font-size: 12px;">Data diTolak</span> 
                                             @elseif($item->approve_po == 'Approved')
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Cetak PO">
-                                                <i class="fas fa-print"></i></i>
-                                            </a>
-                                            <a href="" class="btn btn-dark btn-datatable" type="button"
-                                                data-toggle="modal"
-                                                data-target="#Modalkirimsupplier-{{ $item->id_po }}">
-                                                <i class="fas fa-share-square"></i>
-                                            </a>
+                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Cetak PO">
+                                                    <i class="fas fa-print"></i></i>
+                                                </a>
+                                                <a href="" class="btn btn-dark btn-datatable" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modalkirimsupplier-{{ $item->id_po }}">
+                                                    <i class="fas fa-share-square"></i>
+                                                </a>
                                             @else
                                             <span>
                                                 @endif
