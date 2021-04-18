@@ -24,8 +24,18 @@ class Jenistransaksirequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_transaksi' => 'required',
+            'nama_transaksi' => 'required|unique:tb_accounting_master_jenis_transaksi,nama_transaksi|min:3|max:30',
             'id_akun' => 'exists:tb_accounting_master_akun,id_akun',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nama_transaksi.required' => 'Error! Anda Belum Mengisi Jenis Transaksi',
+            'nama_transaksi.unique' => 'Error! Jenis Transaksi Sudah Ada',
+            'nama_transaksi.min' => 'Error! Character Minimal :min digit',
+            'nama_transaksi.max' => 'Error! Character Maximal :max digit',
         ];
     }
 }

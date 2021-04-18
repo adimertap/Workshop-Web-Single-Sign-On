@@ -61,12 +61,12 @@
                                 <form action="{{ route('sparepart.store') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
-                                    <div class="row">
+                                    <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="kode_sparepart">Kode Sparepart</label>
                                             <input class="form-control" id="kode_sparepart" type="text"
                                                 name="kode_sparepart" placeholder="Input Kode Sparepart"
-                                                value="{{ $kode_sparepart }}" readonly/>
+                                                value="{{ $kode_sparepart }}" readonly />
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="nama_sparepart">Nama Sparepart</label>
@@ -109,7 +109,7 @@
                                             </div> @enderror
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_konversi">Konversi Satuan</label>
                                             <select class="form-control" name="id_konversi" id="id_konversi"
@@ -123,6 +123,7 @@
                                             @error('id_konversi')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
+
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_rak">Tempat Rak</label>
                                             <select class="form-control" name="id_rak" id="id_rak"
@@ -136,9 +137,8 @@
                                             @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
-
                                     </div>
-                                    <div class="row">
+                                    <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="stock">Stock</label>
                                             <input class="form-control" id="stock" type="number" name="stock"

@@ -9,6 +9,7 @@ use App\Model\Accounting\Jenistransaksi;
 use App\Model\Accounting\Prf\Prf;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PrfController extends Controller
@@ -24,7 +25,18 @@ class PrfController extends Controller
             'Jenistransaksi','Supplier','FOP','Akunbank'
         ])->get();
 
-        return view('pages.accounting.payable.prf.prf', compact('prf'));
+        $id = Prf::getId();
+        foreach($id as $value);
+        $idlama = $value->id_prf;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+
+        $kode_prf = 'PRF-'.$idbaru.'/'.$blt;
+
+        $jenis_transaksi = Jenistransaksi::all();
+        $supplier = Supplier::all();
+
+        return view('pages.accounting.payable.prf.prf', compact('prf','jenis_transaksi','supplier','kode_prf'));
     }
 
     /**
@@ -59,7 +71,17 @@ class PrfController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supplier = Supplier::where('nama_supplier',$request->nama_supplier)->first();
+        $id_supplier = $supplier->id_supplier;
+
+        // 
+        $prf = Prf::create([
+            'id_jenis_transaksi'=>$request->id_jenis_transaksi,
+            'id_supplier'=>$id_supplier,
+            'kode_prf'=>$request->kode_prf
+        ]);
+        
+        return $prf;
     }
 
     /**
@@ -81,7 +103,21 @@ class PrfController extends Controller
      */
     public function edit($id)
     {
-        //
+        $jenis_transaksi = Jenistransaksi::all();
+        $pegawai = Pegawai::all();
+        $supplier = Supplier::all();
+        $fop = Fop::all();
+        $akun_bank = Bankaccount::all();
+
+        $id = Prf::getId();
+        foreach($id as $value);
+        $idlama = $value->id_prf;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+
+        $kode_prf = 'AKPRF-'.$idbaru.'/'.$blt;
+
+        return view('pages.accounting.payable.prf.create', compact('jenis_transaksi','pegawai','supplier','fop','akun_bank','kode_prf'));  
     }
 
     /**

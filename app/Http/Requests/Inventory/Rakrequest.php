@@ -29,4 +29,16 @@ class Rakrequest extends FormRequest
             'jenis_rak' => 'required|string|in:Fast Moving,Slow Moving,Sales',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'nama_rak.required' => 'Error! Anda Belum Mengisi Nama Rak',
+            'nama_rak.unique' => 'Error! Nama Rak Sudah Ada',
+            'nama_rak.min' => 'Error! Character Minimal :min digit',
+            'nama_rak.max' => 'Error! Character Maximal :max digit',
+
+            'jenis_rak.required' => 'Error! Anda Belum Memilih Jenis Rak',
+        ];
+    }
 }

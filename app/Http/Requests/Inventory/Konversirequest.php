@@ -24,7 +24,17 @@ class Konversirequest extends FormRequest
     public function rules()
     {
         return [
-            'satuan' => 'required|unique:tb_inventory_master_konversi,satuan',
+            'satuan' => 'required|unique:tb_inventory_master_konversi,satuan|min:3|max:20',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'satuan.required' => 'Error! Anda Belum Mengisi Konversi Satuan',
+            'satuan.unique' => 'Error! Konversi Satuan Sudah Ada',
+            'satuan.min' => 'Error! Character Minimal :min digit',
+            'satuan.max' => 'Error! Character Maximal :max digit',
         ];
     }
 }

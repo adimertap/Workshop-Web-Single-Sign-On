@@ -1,40 +1,34 @@
 <?php
 
-namespace App\Model\Accounting\Prf;
+namespace App\Model\Accounting\Payable;
 
-use App\Model\Accounting\Bankaccount;
-use App\Model\Accounting\Fop;
 use App\Model\Accounting\Jenistransaksi;
 use App\Model\Inventory\Rcv\Rcv;
-use App\Model\Inventory\Rcv\Rcvdetail;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
-class Prf extends Model
+class InvoicePayable extends Model
 {
     use SoftDeletes;
 
-    protected $table = "tb_accounting_prf";
+    protected $table = "tb_accounting_invoice_payable";
 
-    protected $primaryKey = 'id_prf';
+    protected $primaryKey = 'id_payable_invoice';
 
     protected $fillable = [
         'id_supplier',
-        'id_akun_bank',
-        'id_fop',
         'id_jenis_transaksi',
         'id_pegawai',
-        'kode_prf',
-        'tanggal_prf',
-        'tanggal_bayar',
-        'keperluan_prf',
-        'keterangan',
+        'kode_invoice',
+        'tanggal_invoice',
+        'tenggat_invoice',
+        'deskripsi_invoice',
+        'total_pembayaran',
         'status_prf',
-        'status_jurnal',
-        'total_bayar',
+        'status_jurnal'
     ];
 
     protected $hidden =[ 
@@ -45,9 +39,24 @@ class Prf extends Model
 
     public $timestamps = true;
 
+    public function Detailinvoice()
+    {
+        return $this->belongsToMany(Rcv::class,'tb_accounting_detinvoice_payable','id_payable_invoice','id_rcv');
+    }
+
     public function Detail()
     {
-        return $this->hasMany(Rcv::class,'id_rcv');
+        return $this->hasMany(InvoicePayabledetail::class,'id_payable_invoice');
+    }
+
+    public function Rcv()
+    {
+        return $this->belongsTo(Rcv::class,'id_rcv','id_rcv');
+    }
+
+    public function Pegawai()
+    {
+        return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
     }
 
     public function Supplier()
@@ -55,29 +64,14 @@ class Prf extends Model
         return $this->belongsTo(Supplier::class,'id_supplier','id_supplier');
     }
 
-    public function Pegawai()
-    {
-        return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
-    }
-    
-    public function FOP()
-    {
-        return $this->belongsTo(Fop::class,'id_fop','id_fop');
-    }
-
-    public function Akunbank()
-    {
-        return $this->belongsTo(Bankaccount::class,'id_akun_bank','id_bank_account');
-    }
-
     public function Jenistransaksi()
     {
         return $this->belongsTo(Jenistransaksi::class,'id_jenis_transaksi','id_jenis_transaksi');
     }
-    
+
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_accounting_prf')->orderBy('id_prf','DESC')->take(1)->get();
+        return $getId = DB::table('tb_accounting_invoice_payable')->orderBy('id_payable_invoice','DESC')->take(1)->get();
 
     }
 }

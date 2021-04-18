@@ -239,10 +239,10 @@
                         </a>
                         <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                <a class="nav-link " href="invoice.html">
+                                <a class="nav-link " href="{{ route('invoice-payable.index') }}">
                                     Pencatatan Invoice
                                 </a>
-                                <a class="nav-link " href="{{ route('prf') }}">
+                                <a class="nav-link " href="{{ route('prf.index') }}">
                                     PRF
                                 </a>
                                 <a class="nav-link " href="invoice.html">

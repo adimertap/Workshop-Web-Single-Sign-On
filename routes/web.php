@@ -773,35 +773,39 @@ Route::group(
         });
 
         // PAYABLE ---------------------------------------------------------------------------------------------- PAYABLE
-        // PRF ---------------------------------------------------------------------------- PRF
-        Route::prefix('accounting/Prf')
-        ->namespace('Accounting\Payable')
-        ->group(function () {
-        Route::get('/', 'PrfController@index')
-        ->name('prf');
+        // InvoicePayable ----------------------------------------------------------------- Invoice Payable   
+        Route::prefix('Accounting')
+            ->namespace('Accounting\Payable')
+            ->group(function () {
+                Route::resource('invoice-payable', 'InvoicePayableController');
+        });
 
-        Route::resource('prf', 'PrfController');
+        // PRF ---------------------------------------------------------------------------- PRF
+        Route::prefix('accounting')
+            ->namespace('Accounting\Payable')
+            ->group(function () {
+                Route::resource('prf', 'PrfController');
         });
 
         // Approval Prf ----------------------------------------------------------------- Approval PRF
         Route::prefix('accounting/ApprovalPRF')
-        ->namespace('Accounting\Payable')
-        ->group(function () {
-        Route::get('/', 'ApprovalprfController@index')
-        ->name('approval-prf');
+            ->namespace('Accounting\Payable')
+            ->group(function () {
+                Route::get('/', 'ApprovalprfController@index')
+                    ->name('approval-prf');
 
-        Route::resource('approval-prf', 'ApprovalprfController');
+                Route::resource('approval-prf', 'ApprovalprfController');
 
-        Route::post('Prf/{id_prf}/set-status', 'ApprovalprfController@setStatus')
-        ->name('approval-prf-status');
+                Route::post('Prf/{id_prf}/set-status', 'ApprovalprfController@setStatus')
+                    ->name('approval-prf-status');
         });
 
         // PAJAK -------------------------------------------------------------------------- Pajak
         Route::prefix('accounting')
-        ->namespace('Accounting\Payable')
-        ->group(function () {
+            ->namespace('Accounting\Payable')
+            ->group(function () {
 
-        Route::resource('pajak', 'PajakController');
+                Route::resource('pajak', 'PajakController');
         });
 
         // CATATAN ADIM -------------------------------------------------------------------- Catatan Adim
