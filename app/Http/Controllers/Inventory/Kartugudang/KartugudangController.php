@@ -8,6 +8,7 @@ use App\Model\Inventory\Konversi;
 use App\Model\Inventory\Merksparepart;
 use App\Model\Inventory\Rak;
 use App\Model\Inventory\Sparepart;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class KartugudangController extends Controller
@@ -22,8 +23,12 @@ class KartugudangController extends Controller
         $sparepart = Sparepart::with([
             'Jenissparepart', 'Merksparepart','Konversi','Gallery','Rak'
         ])->get();
+       
 
-        return view('pages.inventory.kartugudang.kartugudang', compact('sparepart'));
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
+
+        return view('pages.inventory.kartugudang.kartugudang', compact('sparepart','today','tanggal'));
     }
 
     /**

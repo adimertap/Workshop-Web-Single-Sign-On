@@ -10,6 +10,7 @@ use App\Model\Accounting\Payable\Pajak as PayablePajak;
 use App\Model\Accounting\Payable\Pajakdetail;
 use App\Model\Accounting\Payable\Pembayaranpajak;
 use App\Model\Kepegawaian\Pegawai;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PajakController extends Controller
@@ -25,7 +26,10 @@ class PajakController extends Controller
             'Pegawai','Jenistransaksi'
         ])->get();
 
-        return view('pages.accounting.payable.pajak.pajak', compact('pajak'));
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
+
+        return view('pages.accounting.payable.pajak.pajak', compact('pajak','today','tanggal'));
     }
 
     /**

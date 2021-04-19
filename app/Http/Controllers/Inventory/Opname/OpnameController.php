@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Stockopname\Opname;
 use App\Model\Kepegawaian\Pegawai;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Null_;
 
@@ -22,7 +23,8 @@ class OpnameController extends Controller
             'Pegawai',
         ])->get();
 
-        return view('pages.inventory.stockopname.stockopname', compact('opname'));
+        return view('pages.inventory.stockopname.stockopname',['today' => Carbon::now()->isoFormat('dddd'),
+        'tanggal' => Carbon::now()->format('j F Y')], compact('opname'));
     }
 // 
     /**

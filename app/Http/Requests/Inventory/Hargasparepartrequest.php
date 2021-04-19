@@ -41,10 +41,8 @@ class Hargasparepartrequest extends FormRequest
             'harga_beli.required' => 'Error! Anda Belum Memasukan Harga Beli',
             'harga_beli.min' => 'Error! Character Minimal :min digit',
        
-
             'harga_jual.required' => 'Error! Anda Belum Memasukan Harga Jual',
             'harga_jual.min' => 'Error! Character Minimal :min digit',
-           
         ];
     }
 }

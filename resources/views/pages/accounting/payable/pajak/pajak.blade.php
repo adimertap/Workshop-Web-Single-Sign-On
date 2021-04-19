@@ -9,8 +9,8 @@
             <div class="mr-4 mb-3 mb-sm-0">
                 <h1 class="mb-0">Pembayaran Pajak</h1>
                 <div class="small">
-                    <span class="font-weight-500 text-primary">Friday</span>
-                    · September 20, 2020 · 12:16 PM
+                    <span class="font-weight-500 text-primary">{{ $today }}</span>
+                    · Tanggal {{ $tanggal }} · <span id="clock">12:16 PM</span> 
                 </div>
             </div>
             <div class="small">
@@ -153,5 +153,41 @@
         $('#validasierror').click();
     });
 
+    setInterval(displayclock, 500);
+
+    function displayclock() {
+        var time = new Date()
+        var hrs = time.getHours()
+        var min = time.getMinutes()
+        var sec = time.getSeconds()
+        var en = 'AM';
+
+        if (hrs > 12) {
+            en = 'PM'
+        }
+
+        if (hrs > 12) {
+            hrs = hrs - 12;
+        }
+
+        if (hrs == 0) {
+            hrs = 12;
+        }
+
+        if (hrs < 10) {
+            hrs = '0' + hrs;
+        }
+
+        if (min < 10) {
+            min = '0' + min;
+        }
+
+        if (sec < 10) {
+            sec = '0' + sec;
+        }
+
+        document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
+        document.getElementById('clockmodal').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
+    }
 </script>
 @endsection

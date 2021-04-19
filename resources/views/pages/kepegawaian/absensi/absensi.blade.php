@@ -8,8 +8,8 @@
             <div class="mr-4 mb-3 mb-sm-0">
                 <h1 class="mb-0">Absensi Pegawai</h1>
                 <div class="small">
-                    <span class="font-weight-500 text-primary">Friday</span>
-                    · {{ $blt }} ·
+                    <span class="font-weight-500 text-primary">{{ $today }}</span>
+                    · Tanggal {{ $tanggal }} ·
                 </div>
             </div>
             <div class="small">
@@ -30,6 +30,7 @@
         <div class="alert-icon-content">
             <h6 class="alert-heading">Informasi Hari ini!</h6>
             Anda Belum Melakukan Absensi Kepada Pegawai Bengkel
+           
         </div>
     </div>
 </div>
@@ -50,7 +51,7 @@
                             src="/backend/src/assets/img/freepik/absen.png" alt="">
                     </div>
                     <h2 class="m-0 font-weight-bold text-primary" id="clock" style="text-align: center"></h2>
-                    <div class="m-0 font-weight-bold text-primary" style="text-align: center">{{ $blt }}</div>
+                    <div class="m-0 font-weight-bold text-primary" style="text-align: center">{{ $tanggal }}</div>
                     <hr class="my-4">
                     <p style="text-align: center">Pilih pegawai yang akan dilakukan absensi <a target="_blank"
                             rel="nofollow" href="{{ route('pegawai.index') }}">Daftar Pegawai</a> Klik presensi untuk
@@ -208,8 +209,9 @@
                 <div class="modal-body">
                     <h6>Hari ini</h6>
                     <div class="small mb-2">
-                        <span class="font-weight-500 text-primary">{{ $blt }}</span>
+                        <span class="font-weight-500 text-primary">{{ $tanggal }}</span>
                         <div class="font-weight-500 text-primary" id="clockmodal"></div>
+                        Jumlah Pegawai: {{ $jumlah_pegawai }} Orang
                     </div>
                     <hr class="my-4">
                     <div class="form-group">

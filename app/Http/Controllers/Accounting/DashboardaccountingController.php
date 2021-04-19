@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Accounting;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardaccountingController extends Controller
@@ -14,7 +15,10 @@ class DashboardaccountingController extends Controller
      */
     public function index()
     {
-        return view('pages.accounting.dashboard.dashboardaccounting');
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
+
+        return view('pages.accounting.dashboard.dashboardaccounting', compact('today','tanggal'));
     }
 
     /**

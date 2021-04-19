@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Payroll;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardpayrollController extends Controller
@@ -14,7 +15,11 @@ class DashboardpayrollController extends Controller
      */
     public function index()
     {
-        return view('pages.payroll.dashboard.dashboardpayroll');
+
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
+
+        return view('pages.payroll.dashboard.dashboardpayroll', compact('today','tanggal'));
     }
 
     /**

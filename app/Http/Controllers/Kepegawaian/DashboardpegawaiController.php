@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Kepegawaian;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardpegawaiController extends Controller
@@ -14,7 +15,10 @@ class DashboardpegawaiController extends Controller
      */
     public function index()
     {
-        return view('pages.kepegawaian.dashboard.dashboardpegawai');
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
+
+        return view('pages.kepegawaian.dashboard.dashboardpegawai', compact('today','tanggal'));
     }
 
     /**

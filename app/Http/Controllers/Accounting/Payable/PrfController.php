@@ -36,7 +36,10 @@ class PrfController extends Controller
         $jenis_transaksi = Jenistransaksi::all();
         $supplier = Supplier::all();
 
-        return view('pages.accounting.payable.prf.prf', compact('prf','jenis_transaksi','supplier','kode_prf'));
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
+
+        return view('pages.accounting.payable.prf.prf', compact('prf','jenis_transaksi','supplier','kode_prf','today','tanggal'));
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Model\Inventory\Rak;
 use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\New_;
 
@@ -25,9 +26,12 @@ class RcvController extends Controller
             'PO','Pegawai','Supplier'
         ])->get();
 
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
+
         $po = PO::where([['status', '=', 'Dikirim']])->get();
         
-        return view('pages.inventory.rcv.rcv', compact('rcv','po'));
+        return view('pages.inventory.rcv.rcv', compact('rcv','po','today','tanggal'));
     }
 
     /**

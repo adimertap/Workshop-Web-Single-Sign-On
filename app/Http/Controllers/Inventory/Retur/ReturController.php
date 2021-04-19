@@ -9,6 +9,7 @@ use App\Model\Inventory\Retur\Retur;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReturController extends Controller
@@ -26,8 +27,11 @@ class ReturController extends Controller
         
         $supplier = Supplier::all();
 
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.inventory.retur.retur', compact('retur','supplier'));
+
+        return view('pages.inventory.retur.retur', compact('retur','supplier','today','tanggal'));
     }
 
     /**

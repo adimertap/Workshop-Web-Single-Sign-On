@@ -25,6 +25,8 @@ class GajipegawaiController extends Controller
             'Pegawai'
         ])->get();
 
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
 
         $tahun_bayar = Carbon::now()->format('Y');
         $pegawai = Pegawai::with([
@@ -32,7 +34,7 @@ class GajipegawaiController extends Controller
         ])->get();
        
 
-        return view('pages.payroll.gajipegawai.gajipegawai', compact('gaji','pegawai','tahun_bayar'));
+        return view('pages.payroll.gajipegawai.gajipegawai', compact('gaji','pegawai','tahun_bayar','today','tanggal'));
     }
 
     /**

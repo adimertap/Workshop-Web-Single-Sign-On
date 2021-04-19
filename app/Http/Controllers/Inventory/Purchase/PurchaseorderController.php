@@ -9,6 +9,7 @@ use App\Model\Inventory\Purchase\POdetail;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PurchaseorderController extends Controller
@@ -24,7 +25,10 @@ class PurchaseorderController extends Controller
             'Akun','Supplier','Pegawai'
         ])->get();
 
-        return view('pages.inventory.purchase.po.po', compact('po'));
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
+
+        return view('pages.inventory.purchase.po.po', compact('po','today','tanggal'));
     }
 
     /**

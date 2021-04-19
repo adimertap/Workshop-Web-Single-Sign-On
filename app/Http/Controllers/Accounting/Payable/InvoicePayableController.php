@@ -7,6 +7,7 @@ use App\Model\Accounting\Jenistransaksi;
 use App\Model\Accounting\Payable\InvoicePayable;
 use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Kepegawaian\Pegawai;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class InvoicePayableController extends Controller
@@ -22,8 +23,11 @@ class InvoicePayableController extends Controller
             'Rcv.Detail','Rcv'
         ])->get();
 
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.accounting.payable.invoice.invoice', compact('invoice'));
+
+        return view('pages.accounting.payable.invoice.invoice', compact('invoice','today','tanggal'));
     }
 
     /**

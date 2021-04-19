@@ -21,12 +21,12 @@ class AbsensipegawaiController extends Controller
             'Pegawai',
         ])->whereDate('tanggal_absensi', Carbon::today())->get();
 
-
-        $blt = date('D, d/m/Y');
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
 
         $pegawai = Pegawai::all();
 
-        return view('pages.kepegawaian.absensi.absensi', compact('absensi','pegawai','blt'));
+        return view('pages.kepegawaian.absensi.absensi',['jumlah_pegawai'=> Pegawai::count()], compact('absensi','pegawai','today','tanggal'));
     }
 
     /**
