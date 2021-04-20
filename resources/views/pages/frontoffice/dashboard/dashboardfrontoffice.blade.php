@@ -8,16 +8,16 @@
             <div class="mr-4 mb-3 mb-sm-0">
                 <h1 class="mb-0">Dashboard Front Office</h1>
                 <div class="small">
-                    <span class="font-weight-500 text-primary">Friday</span>
-                    · September 20, 2020 · 12:16 PM
+                    <span class="font-weight-500 text-primary">{{$blt}}</span>
+                    <span id="clock"></span>
                 </div>
             </div>
             <div class="small">
                 <i class="fa fa-cogs" aria-hidden="true"></i>
                 Bengkel
-                <span class="font-weight-500 text-primary">Adi Jaya</span>
-                <hr>
-                </hr>
+                @foreach ($sso as $item)
+                    <span class="font-weight-500 text-primary">{{$item->bengkel->nama_bengkel}}</span>
+                @endforeach
             </div>
         </div>
     </div>

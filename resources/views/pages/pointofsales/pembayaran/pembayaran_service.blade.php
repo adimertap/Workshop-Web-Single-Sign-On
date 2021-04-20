@@ -3,72 +3,93 @@
 @section('content')
 {{-- HEADER --}}
 <main>
-    <div class="container mt-5">
-        <!-- Custom page header alternative example-->
-        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
-            <div class="mr-4 mb-3 mb-sm-0">
-                <h1 class="mb-0">Kode Transaksi S-20210401</h1>
-                <div class="small">
-                    <span class="font-weight-500 text-primary">Detail</span>
-                    · Pembayaran · Service
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container">
+            <div class="page-header-content pt-4">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-4">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="database"></i></div>
+                            Pembayaran Service
+                        </h1>
+                        <div class="page-header-subtitle">Pembayaran service kendaraan pelanggan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {{-- MAIN PAGE CONTENT --}}
+
+    <div class="container mt-n10">
+        <div class="card mb-4">
+            <div class="card card-header-actions">
+                <div class="card-header">
+                    List Pembayaran Service
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="datatable">
+                    {{-- SHOW ENTRIES --}}
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
+                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Kode PKB</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Nama Customer</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Nama Mekanik</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Actions: activate to sort column ascending"
+                                                style="width: 77px;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">1</th>
+                                            <td>PKB-001</td>
+                                            <td>Wayan</td>
+                                            <td>Adim</td>
+                                            <td>
+                                                <a href="{{route('invoiceservice.index')}}" class="btn btn-outline-success btn-sm" type="button">
+                                                    Pembayaran
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-header">Detail Transaksi Service
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label class="small mb-1" for="kode_spt">Kode SPT</label>
-                            <input class="form-control form-control-sm" id="kode_spt" type="text" name="kode_opname"
-                                value="SPT-001" readonly />
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="nama_customer">Nama Customer</label>
-                            <input class="form-control form-control-sm" id="nama_customer" type="text" name="nama_customer"
-                                value="Angga" readonly />
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="kode_mekanik">Nama Mekanik</label>
-                            <input class="form-control form-control-sm" id="kode_mekanik" type="text" name="kode_mekanik"
-                                value="Made" readonly />
-                        </div>
-                        <hr class="my-4" />
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="card-mb-8">
-                    <div class="card-header">Detail Transaksi Service
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label class="small mb-1" for="kode_spt">Kode SPT</label>
-                            <input class="form-control form-control-sm" id="kode_spt" type="text" name="kode_opname"
-                                value="SPT-001" readonly />
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="nama_customer">Nama Customer</label>
-                            <input class="form-control form-control-sm" id="nama_customer" type="text" name="nama_customer"
-                                value="Angga" readonly />
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="kode_mekanik">Nama Mekanik</label>
-                            <input class="form-control form-control-sm" id="kode_mekanik" type="text" name="kode_mekanik"
-                                value="Made" readonly />
-                        </div>
-                        <hr class="my-4" />
-                </div>
-            </div>
-        </div>
-    </div>
 </main>
 
+
+{{-- Script Open Modal Callback --}}
+<script>
+    $(document).ready(function () {
+        $('#validasierror').click();
+    });
+
+</script>
 
 @endsection

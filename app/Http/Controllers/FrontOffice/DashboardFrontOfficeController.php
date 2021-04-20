@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
+use App\Model\SingleSignOn\Bengkel;
+use App\User;
 use Illuminate\Http\Request;
 
 class DashboardFrontOfficeController extends Controller
@@ -14,7 +16,9 @@ class DashboardFrontOfficeController extends Controller
      */
     public function index()
     {
-        return view('pages.frontoffice.dashboard.dashboardfrontoffice');
+        $sso = User::get();
+        $blt = date('D, d/m/Y');
+        return view('pages.frontoffice.dashboard.dashboardfrontoffice', compact('sso', 'blt'));
     }
 
     /**

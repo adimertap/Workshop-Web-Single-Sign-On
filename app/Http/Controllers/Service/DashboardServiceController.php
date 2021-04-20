@@ -14,7 +14,8 @@ class DashboardServiceController extends Controller
      */
     public function index()
     {
-        return view('pages.service.dashboard.dashboardservice');
+        $blt = date('D, d/m/Y');
+        return view('pages.service.dashboard.dashboardservice', compact('blt'));
     }
 
     /**

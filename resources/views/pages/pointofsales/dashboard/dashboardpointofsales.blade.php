@@ -8,8 +8,8 @@
             <div class="mr-4 mb-3 mb-sm-0">
                 <h1 class="mb-0">Dashboard Point of Sales</h1>
                 <div class="small">
-                    <span class="font-weight-500 text-primary">Friday</span>
-                    · September 20, 2020 · 12:16 PM
+                    <span class="font-weight-500 text-primary">{{$blt}}</span>
+                    <span id="clock"></span>
                 </div>
             </div>
             <div class="small">

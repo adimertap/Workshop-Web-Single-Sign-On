@@ -67,10 +67,29 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Jenis Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Merk Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">Jumlah</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($sparepart as $item)
+                                            <tr role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td>{{ $item->kode_sparepart }}</td>
+                                            <td>{{ $item->nama_sparepart }}</td>
+                                            <td>{{ $item->jenissparepart->jenis_sparepart }}</td>
+                                            <td>{{ $item->merksparepart->merk_sparepart }}</td>
+                                            <td>{{ $item->stock }}</td>
+                                        </tr>
+                                        @endforeach
+                                        
 
                                     </tbody>
                                 </table>

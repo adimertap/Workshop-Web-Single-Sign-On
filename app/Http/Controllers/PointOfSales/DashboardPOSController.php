@@ -14,7 +14,8 @@ class DashboardPOSController extends Controller
      */
     public function index()
     {
-        return view('pages.pointofsales.dashboard.dashboardpointofsales');
+        $blt = date('D, d/m/Y');
+        return view('pages.pointofsales.dashboard.dashboardpointofsales', compact('blt'));
     }
 
     /**

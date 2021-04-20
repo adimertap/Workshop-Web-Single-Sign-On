@@ -18424,7 +18424,7 @@ body {
 }
 .page-header .page-header-content .page-header-title {
   line-height: normal;
-  font-size: 2.25rem;
+  font-size: 1.80rem;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -18439,7 +18439,7 @@ body {
   width: 1.75rem;
 }
 .page-header .page-header-content .page-header-subtitle {
-  font-size: 1.15rem;
+  font-size: 1rem;
   margin-top: 0.25rem;
 }
 .page-header .page-header-search .input-group-joined {
