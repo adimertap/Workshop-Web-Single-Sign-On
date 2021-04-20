@@ -5,6 +5,7 @@ namespace App\Model\Inventory\Rcv;
 use App\Model\Accounting\Akun;
 use App\Model\Accounting\Fop;
 use App\Model\Inventory\Purchase\PO;
+use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
@@ -41,7 +42,7 @@ class Rcv extends Model
 
     public function Detailrcv()
     {
-        return $this->belongsToMany(PO::class,'tb_inventory_detrcv','id_rcv','id_po');
+        return $this->belongsToMany(Sparepart::class,'tb_inventory_detrcv','id_rcv','id_sparepart');
     }
 
     public function Detail()

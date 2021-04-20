@@ -81,14 +81,8 @@
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1" for="id_pegawai">Pegawai</label>
-                                            <select class="form-control" name="id_pegawai" id="id_pegawai"
-                                                class="form-control @error('id_supplier') is-invalid @enderror">
-                                                <option>Pilih Pegawai</option>
-                                                @foreach ($pegawai as $item)
-                                                <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
-                                                </option>
-                                                @endforeach
-                                            </select>
+                                            <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
+                                                placeholder="Input Kode Receiving" value="{{ Auth::user()->name }}" readonly>
                                             @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
@@ -464,12 +458,12 @@
                             </div> @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="small mb-1 harga_diterima" for="harga_diterima">Harga diterima</label>
-                            <input class="form-control" name="harga_diterima" type="number" id="harga_diterima"
+                            <label class="small mb-1" for="harga_diterima">Harga diterima</label>
+                            <input class="form-control harga_diterima" name="harga_diterima" type="number"
                                 placeholder="Input Harga Beli diterima">
                             </input>
                             <div class="small">Detail Harga
-                                <span id="detailhargaditerima"></span>
+                                <span id="detailhargaditerima" class="detailhargaditerima"></span>
                             </div>
                         </div>
                     </div>
@@ -492,7 +486,7 @@
 @endforelse
 
 
-@forelse ($rcv->PO->Detailsparepart as $sparepart)
+@forelse ($rcv->PO->Detailsparepart as $sparepart) 
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -509,7 +503,7 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary" type="button"
-                    onclick="tambahrcv(event,{{ $sparepart }})">Ya!Sudah</button>
+                    onclick="tambahrcv(event,{{ $rcv->PO->Detailsparepart }},{{ $rcv->id_rcv }})">Ya!Sudah</button>
             </div>
         </div>
     </div>
@@ -530,38 +524,39 @@
 </template>
 
 <script>
-    function tambahrcv(event, sparepart) {
+    function tambahrcv(event, sparepart, id_rcv) {
         event.preventDefault()
         var form1 = $('#form1')
         var kode_rcv = form1.find('input[name="kode_rcv"]').val()
         var kode_po = form1.find('input[name="kode_po"]').val()
         var no_do = form1.find('input[name="no_do"]').val()
         var id_supplier = $('#id_supplier').val()
-        var id_pegawai = $('#id_pegawai').val()
+        var id_pegawai = form1.find('input[name="id_pegawai"]').val()
         var tanggal_rcv = form1.find('input[name="tanggal_rcv"]').val()
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
-      
-
+        
         for (var i = 0; i < sparepart.length; i++) {
             var form = $('#form-' + sparepart[i].id_sparepart)
+            var qty_po = $($('#item-'+ sparepart[i].id_sparepart).find('.qty')[0]).html()
             var qty_rcv = form.find('input[name="qty_rcv"]').val()
-            var keterangan = form.find('input[name="keterangan"]').val()
+            var keterangan = form.find('textarea[name="keterangan"]').val()
             var harga_diterima = form.find('input[name="harga_diterima"]').val()
             var id_rak = $('#id_rak').val()
-
-            console.log(qty_rcv)
+            
             if (qty_rcv == 0 | qty_rcv == '') {
                 continue
             } else {
                 var id_sparepart = sparepart[i].id_sparepart
                 var obj = {
                     id_sparepart: id_sparepart,
+                    id_rcv: id_rcv,
                     qty_rcv: qty_rcv,
+                    qty_po:qty_po,
                     keterangan: keterangan,
                     harga_diterima: harga_diterima,
                     id_rak: id_rak
-                }
+                } 
                 dataform2.push(obj)
             }
         }
@@ -583,12 +578,15 @@
 
             $.ajax({
                 method: 'put',
-                url: '/inventory/receiving',
+                url: '/inventory/receiving/'+ id_rcv,
                 data: data,
                 success: function (response) {
                     window.location.href = '/inventory/receiving'
 
                 },
+                error: function(response){
+                    console.log(response)
+                }
             });
         }
 
@@ -646,24 +644,25 @@
     }
 
     $(document).ready(function () {
-        $('#harga_diterima').on('input', function () {
+        $('.harga_diterima').each(function(){
+            $(this).on('input', function () {
             var harga = $(this).val()
             var harga_fix = new Intl.NumberFormat('id', {
                 style: 'currency',
                 currency: 'IDR'
             }).format(harga)
 
-            $('#detailhargaditerima').html(harga_fix);
+            var harga_paling_fix = $(this).parent().find('.detailhargaditerima')
+            console.log(harga_paling_fix)
+            $(harga_paling_fix).html(harga_fix);
+        })
         })
 
-        $('#id_pegawai').on('change', function () {
-            var select = $(this).find('option:selected')
+
+        $('#id_pegawai').on('input', function () {
+            var select = $(this).val()
             var textpegawai = select.text()
-            if (textpegawai == 'Pilih Pegawai') {
-                $('#detailpegawai').html('');
-            } else {
-                $('#detailpegawai').html(textpegawai);
-            }
+            $('#detailpegawai').html();
         })
 
         var template = $('#template_delete_button').html()

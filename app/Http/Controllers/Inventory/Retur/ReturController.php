@@ -87,7 +87,7 @@ class ReturController extends Controller
     public function edit($id)
     {
         $retur = Retur::with([
-            'Rcv','Pegawai','Supplier','Akun','Detailretur.Hargasparepart'
+            'Rcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Akun','Detailretur.Hargasparepart'
         ])->find($id);
 
         // Generate Code Manggil Fungsi getId()

@@ -173,15 +173,11 @@
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Salary: activate to sort column ascending"
-                                                            style="width: 60px;">Jumlah dipesan</th>
+                                                            style="width: 60px;">Harga Beli</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Salary: activate to sort column ascending"
-                                                            style="width: 40px;">Satuan</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                            rowspan="1" colspan="1"
-                                                            aria-label="Salary: activate to sort column ascending"
-                                                            style="width: 40px;">Harga Beli</th>
+                                                            style="width: 40px;">Harga Jual</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Actions: activate to sort column ascending"
@@ -189,7 +185,8 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {{-- @forelse ($rcv->PO->Detailsparepart as $item)
+                                                    @forelse ($retur->Supplier->Sparepart as $item)
+                                                   
                                                     <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
                                                         <th scope="row" class="small" class="sorting_1">
                                                             {{ $loop->iteration}}</th>
@@ -200,17 +197,8 @@
                                                         </td>
                                                         <td class="merk_sparepart">
                                                             {{ $item->Merksparepart->merk_sparepart }}</td>
-                                                        <td class="qty">{{ $item->pivot->qty }}</td>
-                                                        <td class="satuan">{{ $item->Konversi->satuan }}</td>
-                                                        <td>@if ($item->Hargasparepart == '')
-                                                            <div class="small text-muted d-none d-md-block">Tidak ada
-                                                                data</div>
-                                                            @else
-                                                            <div class="harga_beli">
-                                                                Rp.{{ number_format($item->Hargasparepart->harga_beli,2,',','.') }}/{{ $item->Konversi->satuan }}
-                                                            </div>
-                                                            @endif
-                                                        </td>
+                                                        <td class="qty">{{ $item->pivot->harga_beli }}</td>
+                                                        <td class="qty">{{ $item->pivot->harga_jual }}</td>
                                                         <td>
                                                             <a href="" class="btn btn-success btn-datatable"
                                                                 type="button" data-toggle="modal"
@@ -221,7 +209,7 @@
                                                     </tr>
                                                     @empty
 
-                                                    @endforelse --}}
+                                                    @endforelse
                                                 </tbody>
                                             </table>
                                         </div>
@@ -439,7 +427,7 @@
                         </thead>
                         <tbody>
                             @forelse ($supplier as $item)
-                            <tr id="item-{{ $item->id_supplier }}" class="border-bottom">
+                            <tr id="supplier-{{ $item->id_supplier }}" class="border-bottom">
                                 <td>
                                     <div class="font-weight-bold nama_supplier">{{ $item->nama_supplier }}</div>
                                 </td>
@@ -593,8 +581,8 @@
 
 <script>
     function tambahsupplier(event, id_supplier) {
-        var data = $('#item-' + id_supplier)
-        var _token = $('#form1').find('input[name="_token"]').val()
+        var data = $('#supplier-' + id_supplier)
+        // var _token = $('#form1').find('input[name="_token"]').val()
         var nama_supplier = $(data.find('.nama_supplier')[0]).text()
         var no_telp = $(data.find('.telephone')[0]).text()
         alert('Berhasil Menambahkan Data Supplier')
@@ -602,7 +590,18 @@
 
         $('#detailsupplier').val(nama_supplier)
         $('#detailtelp').val(no_telp)
-        console.log(nama_supplier);
+        
+        $.ajax({
+                method: 'get',
+                url: '/inventory/supplier/'+ id_supplier + '/sparepart',
+                success: function (response) {
+                    console.log(response.sparepart)
+                        $('#dataTable').DataTable().rows.add(response.sparepart).draw();
+                },
+                error: function(response){
+                    console.log(response)
+                }
+            });
     }
 
 

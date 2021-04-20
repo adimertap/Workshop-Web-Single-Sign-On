@@ -352,6 +352,8 @@ Route::group(
         Route::get('/', 'MasterdatasupplierController@index')
         ->name('masterdatasupplier');
 
+        Route::get('/{id_supplier}/sparepart', 'MasterdatasupplierController@getDataSparepartBySupplierId');
+
         Route::resource('supplier', 'MasterdatasupplierController');
         });
 
@@ -421,14 +423,6 @@ Route::group(
         });
 
         // RECEIVING ------------------------------------------------------------------- Receiving
-        Route::prefix('inventory/receiving')
-        ->namespace('Inventory\Rcv')
-        ->group(function () {
-        Route::get('/', 'RcvController@index')
-        ->name('Receive');
-
-        Route::resource('Rcv', 'RcvController');
-        });
 
         // RETUR ---------------------------------------------------------------------- Retur
         Route::prefix('inventory')

@@ -130,4 +130,9 @@ class MasterdatasupplierController extends Controller
 
         return redirect()->back()->with('messagehapus','Data Supplier Berhasil dihapus');
     }
+
+    public function getDataSparepartBySupplierId(Request $request, $id_supplier){
+        $supplier = Supplier::with('Sparepart.Merksparepart.Jenissparepart')->findOrFail($id_supplier);
+        return $supplier;
+    }
 }

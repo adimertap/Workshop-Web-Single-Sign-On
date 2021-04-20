@@ -7,6 +7,7 @@ use App\Model\Accounting\Akun;
 use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Rak;
 use App\Model\Inventory\Rcv\Rcv;
+use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
@@ -115,9 +116,34 @@ class RcvController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_rcv)
     {
-        //
+        $po = PO::where('kode_po', $request->kode_po)->first();
+        $rcv = Rcv::findOrFail($id_rcv);
+        $rcv->id_pegawai = $request->id_pegawai;
+        $rcv->id_supplier = $po->id_supplier;
+        $rcv->id_po = $po->id_po;
+        $rcv->kode_rcv = $request->kode_rcv;
+        $temp = 0;
+        foreach($request->sparepart as $key=>$item){
+            $sparepart = Sparepart::findOrFail($item['id_sparepart']);
+            $sparepart->stock = $sparepart->stock + $item['qty_rcv'];
+            $sparepart->save();
+            $temp = $temp + $item['harga_diterima'];
+        }
+
+        $po->status ='Diterima';
+        $po->save();
+        $rcv->total_pembayaran = $temp;
+        $rcv->status = 'aktif';
+        $rcv->status_bayar = 'Pending';
+        $rcv->save();
+
+
+        $rcv->Detailrcv()->sync($request->sparepart);
+
+
+        return $request;
     }
 
     /**
