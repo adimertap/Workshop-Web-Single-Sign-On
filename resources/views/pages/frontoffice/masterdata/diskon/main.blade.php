@@ -3,15 +3,16 @@
 @section('content')
 {{-- HEADER --}}
 <main>
-    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
-        <div class="container-fluid">
-            <div class="page-header-content">
-                <div class="row align-items-center justify-content-between pt-3">
-                    <div class="col-auto mb-3">
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container">
+            <div class="page-header-content pt-4">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-4">
                         <h1 class="page-header-title">
-                            <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
+                            <div class="page-header-icon"><i data-feather="database"></i></div>
                             Master Data Diskon
                         </h1>
+                        <div class="page-header-subtitle">List data diskon yang ditawarkan untuk pelanggan</div>
                     </div>
                 </div>
             </div>
@@ -20,7 +21,7 @@
 
     {{-- MAIN PAGE CONTENT --}}
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-n10">
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Diskon

@@ -9,9 +9,10 @@
                 <div class="mr-4 mb-3 mb-sm-0">
                     <h1 class="mb-0">Dashboard Bengkel</h1>
                     <div class="small">
-                        <span class="font-weight-500 text-primary">Welcome</span>
-                        · Page · Bengkel
+                        <span class="font-weight-500 text-primary">{{$blt}}</span>
+                        <span id="clock"></span>
                     </div>
+                    
                 </div>
             </div>
         </div>

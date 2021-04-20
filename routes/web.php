@@ -217,6 +217,16 @@ Route::group(
                 Route::resource('pembayaranservice', 'PembayaranServiceController');
             });
 
+        Route::prefix('pos/pembayaranservice/invoice')
+            ->namespace('PointOfSales\Pembayaran')
+            ->group(function () {
+                Route::get('/', 'InvoiceServiceController@index')
+                    ->name('invoiceservice');
+
+                Route::resource('invoiceservice', 'InvoiceServiceController');
+            });
+
+
         // PEMBAYARAN PENJUALAN SPAREPART
         Route::prefix('pos/pembayaransparepart')
             ->namespace('PointOfSales\Pembayaran')
@@ -225,6 +235,15 @@ Route::group(
                     ->name('pembayaransparepart');
 
                 Route::resource('pembayaransparepart', 'PembayaranSparepartController');
+            });
+
+        Route::prefix('pos/pembayaransparepart/invoice')
+            ->namespace('PointOfSales\Pembayaran')
+            ->group(function () {
+                Route::get('/', 'InvoiceSparepartController@index')
+                    ->name('invoicesparepart');
+
+                Route::resource('invoicesparepart', 'InvoiceSparepartController');
             });
 
         // PEMBAYARAN PENJUALAN SPAREPART

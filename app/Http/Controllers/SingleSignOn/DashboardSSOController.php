@@ -14,7 +14,8 @@ class DashboardSSOController extends Controller
      */
     public function index()
     {
-        return view('pages.singlesignon.dashboard.dashboardsso');
+        $blt = date('D, d/m/Y');
+        return view('pages.singlesignon.dashboard.dashboardsso', compact('blt'));
     }
 
     /**

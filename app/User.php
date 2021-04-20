@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\SingleSignOn\Bengkel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'id_bengkel'
     ];
 
     /**
@@ -39,4 +40,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // relations
+    public function bengkel()
+    {
+        return $this->belongsTo(Bengkel::class, 'id_bengkel', 'id_bengkel');
+    }
 }
