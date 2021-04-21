@@ -53,8 +53,7 @@
                     <h2 class="m-0 font-weight-bold text-primary" id="clock" style="text-align: center"></h2>
                     <div class="m-0 font-weight-bold text-primary" style="text-align: center">{{ $tanggal }}</div>
                     <hr class="my-4">
-                    <p style="text-align: center">Pilih pegawai yang akan dilakukan absensi <a target="_blank"
-                            rel="nofollow" href="{{ route('pegawai.index') }}">Daftar Pegawai</a> Klik presensi untuk
+                    <p style="text-align: center">Klik <span class="font-weight-bold text-primary"> Mulai Absensi </span> untuk
                         melakukan
                         absensi kepada pegawai bengkel
 
@@ -66,7 +65,7 @@
 
                 </div>
                 <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#Modaltambah">Mulai
-                    Absensi Masuk !</button>
+                    Absensi</button>
             </div>
         </div>
         <div class="col-lg-8">
@@ -215,7 +214,7 @@
                     </div>
                     <hr class="my-4">
                     <div class="form-group">
-                        <label class="" for="id_pegawai">Pegawai</label>
+                        <label class="mr-1" for="id_pegawai">Pegawai</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <select class="form-control" name="id_pegawai" id="id_pegawai"
                             class="form-control @error('id_pegawai') is-invalid @enderror">
                             <option>Pilih Pegawai</option>
@@ -226,7 +225,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="absensi">Absensi</label>
+                        <label class="small mb-1 mr-1" for="absensi">Absensi</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <select name="absensi" id="absensi" class="form-control"
                             class="form-control @error('absensi') is-invalid @enderror">
                             <option> Pilih Absen Pegawai</option>
@@ -249,7 +248,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="submit">Absen Masuk!</button>
+                    <button class="btn btn-primary" type="submit">Absen</button>
                 </div>
             </form>
         </div>

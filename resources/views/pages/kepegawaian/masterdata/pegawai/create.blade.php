@@ -70,7 +70,7 @@
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="nama_pegawai">Nama Lengkap</label>
+                                            <label class="small mb-1 mr-1" for="nama_pegawai">Nama Lengkap</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="nama_pegawai" type="text"
                                                 name="nama_pegawai" placeholder="Input Nama Lengkap"
                                                 class="form-control @error('nama_pegawai') is-invalid @enderror" />
@@ -78,7 +78,7 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="nama_panggilan">Nama Panggilan</label>
+                                            <label class="small mb-1 mr-1" for="nama_panggilan">Nama Panggilan</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="nama_panggilan" type="text"
                                                 name="nama_panggilan" placeholder="Input Nama Panggilan"
                                                 class="form-control @error('nama_panggilan') is-invalid @enderror" />
@@ -88,7 +88,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_jabatan">Jabatan</label>
+                                            <label class="small mb-1 mr-1" for="id_jabatan">Jabatan</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_jabatan" id="id_jabatan"
                                                 class="form-control @error('id_jabatan') is-invalid @enderror">
                                                 <option>Pilih Jabatan</option>
@@ -101,7 +101,7 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="jenis_kelamin">Jenis Kelamin</label>
+                                            <label class="small mb-1 mr-1" for="jenis_kelamin">Jenis Kelamin</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select name="jenis_kelamin" id="jenis_kelamin" class="form-control"
                                                 class="form-control @error('jenis_kelamin') is-invalid @enderror">
                                                 <option value="{{ old('jenis_kelamin')}}"> Pilih Jenis Kelamin</option>
@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="tempat_lahir">Tempat Lahir</label>
+                                            <label class="small mb-1 mr-1" for="tempat_lahir">Tempat Lahir</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="tempat_lahir" type="text"
                                                 name="tempat_lahir" placeholder="Input Tempat Lahir"
                                                 class="form-control @error('tempat_lahir') is-invalid @enderror" />
@@ -122,7 +122,7 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="tanggal_lahir">Tanggal Lahir</label>
+                                            <label class="small mb-1 mr-1" for="tanggal_lahir">Tanggal Lahir</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="tanggal_lahir" type="date"
                                                 name="tanggal_lahir"
                                                 class="form-control @error('tanggal_lahir') is-invalid @enderror" />
@@ -131,7 +131,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="small mb-1" for="email">Email</label>
+                                        <label class="small mb-1 mr-1" for="email">Email</label><span class="mr-4 mb-3" style="color: red">*</span>
                                         <input class="form-control" id="email" type="email" name="email"
                                             placeholder="name@example.com"
                                             class="form-control @error('email') is-invalid @enderror" />
@@ -140,7 +140,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-md-0">
-                                            <label class="small mb-1" for="no_telp">Phone number</label>
+                                            <label class="small mb-1 mr-1" for="no_telp">Phone number</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="no_telp" name="no_telp" type="number"
                                                 placeholder="+62"
                                                 class="form-control @error('no_telp') is-invalid @enderror" />
@@ -148,7 +148,7 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6 mb-0">
-                                            <label class="small mb-1" for="agama">Agama</label>
+                                            <label class="small mb-1 mr-1" for="agama">Agama</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select name="agama" id="agama" class="form-control"
                                                 class="form-control @error('agama') is-invalid @enderror">
                                                 <option value="{{ old('agama')}}"> Pilih Agama</option>
@@ -181,7 +181,7 @@
                                 <h5 class="card-title">Input Formulir Berikut</h5>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label class="small mb-1" for="status_perkawinan">Status Perkawinan</label>
+                                        <label class="small mb-1 mr-1" for="status_perkawinan">Status Perkawinan</label><span class="mr-4 mb-3" style="color: red">*</span>
                                         <select name="status_perkawinan" id="status_perkawinan" class="form-control"
                                             class="form-control @error('status_perkawinan') is-invalid @enderror">
                                             <option value="{{ old('status_perkawinan')}}">Pilih Status Perkawinan
@@ -193,8 +193,8 @@
                                         </div> @enderror
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="small mb-1" for="pendidikan_terakhir">Pendidikan
-                                            Terakhir</label>
+                                        <label class="small mb-1 mr-1" for="pendidikan_terakhir">Pendidikan
+                                            Terakhir</label><span class="mr-4 mb-3" style="color: red">*</span>
                                         <select name="pendidikan_terakhir" id="pendidikan_terakhir" class="form-control"
                                             class="form-control @error('pendidikan_terakhir') is-invalid @enderror">
                                             <option value="{{ old('pendidikan_terakhir')}}">Pilih Pendidikan
@@ -212,7 +212,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label class="small mb-1" for="kota_asal">Kota Asal</label>
+                                        <label class="small mb-1 mr-1" for="kota_asal">Kota Asal</label><span class="mr-4 mb-3" style="color: red">*</span>
                                         <input class="form-control" name="kota_asal" id="kota_asal" type="text"
                                             placeholder="Input Kota Asal"
                                             class="form-control @error('kota_asal') is-invalid @enderror" />
@@ -220,7 +220,7 @@
                                         </div> @enderror
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="small mb-1" for="tanggal_masuk">Tanggal Masuk</label>
+                                        <label class="small mb-1 mr-1" for="tanggal_masuk">Tanggal Masuk</label><span class="mr-4 mb-3" style="color: red">*</span>
                                         <input class="form-control" name="tanggal_masuk" id="tanggal_masuk" type="date"
                                             class="form-control @error('tanggal_masuk') is-invalid @enderror" />
                                         @error('tanggal_masuk')<div class="text-danger small mb-1">{{ $message }}
@@ -229,7 +229,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label class="small mb-1" for="alamat">Alamat Lengkap</label>
+                                        <label class="small mb-1 mr-1" for="alamat">Alamat Lengkap</label><span class="mr-4 mb-3" style="color: red">*</span>
                                         <input class="form-control" name="alamat" id="alamat" type="text"
                                             placeholder="Input Alamat Lengkap"
                                             class="form-control @error('alamat') is-invalid @enderror" />

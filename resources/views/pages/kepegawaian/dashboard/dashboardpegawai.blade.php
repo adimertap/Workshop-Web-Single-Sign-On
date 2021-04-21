@@ -248,7 +248,6 @@
        }
 
        document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
-       document.getElementById('clockmodal').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
    }
 </script>
 

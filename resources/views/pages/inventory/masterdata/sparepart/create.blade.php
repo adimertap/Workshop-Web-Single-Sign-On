@@ -69,7 +69,7 @@
                                                 value="{{ $kode_sparepart }}" readonly />
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="nama_sparepart">Nama Sparepart</label>
+                                            <label class="small mb-1 mr-1" for="nama_sparepart">Nama Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="nama_sparepart" type="text"
                                                 name="nama_sparepart" placeholder="Input Nama Sparepart"
                                                 value="{{ old('nama_sparepart') }}"
@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
+                                            <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_jenis_sparepart"
                                                 class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
                                                 id="id_jenis_sparepart">
@@ -96,7 +96,7 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_merk">Merk Sparepart</label>
+                                            <label class="small mb-1 mr-1" for="id_merk">Merk Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_merk" id="id_merk"
                                                 class="form-control @error('id_merk') is-invalid @enderror">
                                                 <option>Pilih Merk</option>
@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_konversi">Konversi Satuan</label>
+                                            <label class="small mb-1 mr-1" for="id_konversi">Konversi Satuan</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_konversi" id="id_konversi"
                                                 class="form-control @error('id_konversi') is-invalid @enderror">
                                                 <option>Pilih Satuan</option>
@@ -125,7 +125,7 @@
                                         </div>
 
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_rak">Tempat Rak</label>
+                                            <label class="small mb-1 mr-1" for="id_rak">Tempat Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_rak" id="id_rak"
                                                 class="form-control @error('id_rak') is-invalid @enderror">
                                                 <option>Pilih Rak</option>
@@ -140,7 +140,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="stock">Stock</label>
+                                            <label class="small mb-1 mr-1" for="stock">Stock</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="stock" type="number" name="stock"
                                                 placeholder="Input Stock Sparepart" value="{{ old('stock') }}""
                                                 class=" form-control @error('stock') is-invalid @enderror" />
@@ -148,7 +148,7 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="stock_min">Stock Minimum</label>
+                                            <label class="small mb-1 mr-1" for="stock_min">Stock Minimum</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="stock_min" type="number" name="stock_min"
                                                 placeholder="Input Nama Sparepart" value="{{ old('stock_min') }}""
                                                 class=" form-control @error('stock_min') is-invalid @enderror" />

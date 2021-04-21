@@ -130,11 +130,13 @@
                                                         </span>
                                         </td>
                                         <td>
-                                            @if($item->approve_po == 'Pending')
+                                            @if($item->approve_po == 'Pending' and $item->approve_ap == 'Pending')
+                                            <span class="font-size-300" style="font-size: 12px;">Menunggu Approval</span>
+                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Pending')
                                             <span class="font-size-300" style="font-size: 12px;">Menunggu Approval</span>
                                             @elseif($item->approve_po == 'Not Approved')
                                             <span class="font-size-300" style="font-size: 12px;">Data diTolak</span> 
-                                            @elseif($item->approve_po == 'Approved')
+                                            @elseif($item->approve_po == 'Approved' and $item->approve_ap == 'Approved')
                                                 <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Cetak PO">
                                                     <i class="fas fa-print"></i></i>
@@ -294,7 +296,6 @@
        }
 
        document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
-       document.getElementById('clockmodal').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
    }
 </script>
 

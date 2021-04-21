@@ -115,7 +115,7 @@
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="id_sparepart">Sparepart</label>
+                            <label class="small mb-1 mr-1" for="id_sparepart">Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <select class="form-control" name="id_sparepart" id="id_sparepart"
                             class="form-control @error('id_sparepart') is-invalid @enderror">
                                 <option> Pilih Sparepart</option>
@@ -127,7 +127,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="id_merk">Merk Sparepart</label>
+                            <label class="small mb-1 mr-1" for="id_merk">Merk Sparepart</label>
                             <select class="form-control" name="id_merk" id="id_merk" readonly>
                                 @foreach ($sparepart as $item)
                                 <option value="{{ $item->id_merk }}">{{ $item->nama_merk }}</option>
@@ -136,7 +136,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="id_supplier">Supplier</label>
+                        <label class="small mb-1 mr-1" for="id_supplier">Supplier</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <select class="form-control" name="id_supplier" id="id_supplier"
                         class="form-control @error('id_supplier') is-invalid @enderror">
                             <option> Pilih Supplier</option>
@@ -150,7 +150,7 @@
                     <div class="form-group">
                         <div class="row justify-content-between align-items-center">
                             <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
-                                <label class="small mb-1" for="harga_beli">Harga Beli</label>
+                                <label class="small mb-1 mr-1" for="harga_beli">Harga Beli</label><span class="mr-4 mb-3" style="color: red">*</span>
                             </div>
                             <div class="col-12 col-lg-auto text-center text-lg-right">
                                 <div class="small text-lg-right">
@@ -168,7 +168,7 @@
                     <div class="form-group">
                         <div class="row justify-content-between align-items-center">
                             <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
-                                <label class="small mb-1" for="harga_jual">Harga Jual</label>
+                                <label class="small mb-1 mr-1" for="harga_jual">Harga Jual</label><span class="mr-4 mb-3" style="color: red">*</span>
                             </div>
                             <div class="col-12 col-lg-auto text-center text-lg-right">
                                 <div class="small text-lg-right">
@@ -215,12 +215,12 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="harga_beli"> Harga Beli </label>
+                            <label class="small mb-1 mr-1" for="harga_beli">Harga Beli </label><span class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" name="harga_beli" type="number" id="harga_beli"
                                 value="{{ $item->harga_beli }}">
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="harga_jual"> Atur Harga Jual </label>
+                            <label class="small mb-1 mr-1" for="harga_jual">Harga Jual </label><span class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" name="harga_jual" type="number" id="harga_jual"
                                 value="{{ $item->harga_jual }}">
                         </div>

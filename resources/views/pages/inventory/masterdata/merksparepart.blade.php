@@ -132,7 +132,7 @@
                             placeholder="Input Kode Merk" value="{{ $kode_merk }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
+                        <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <select class="form-control" name="id_jenis_sparepart"
                             class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
                             id="id_jenis_sparepart">
@@ -147,7 +147,7 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="merk_sparepart">Merk Sparepart</label>
+                        <label class="small mb-1 mr-1" for="merk_sparepart">Merk Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
                             placeholder="Input Merk" value="{{ old('merk_sparepart') }}"
                             class="form-control @error('merk_sparepart') is-invalid @enderror"></input>
@@ -190,7 +190,7 @@
                             value="{{ $item->kode_merk }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
+                        <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart">
                             <option value="{{ $item->jenissparepart->id_jenis_sparepart }}">
                                 {{ $item->jenissparepart->jenis_sparepart }}</option>
@@ -201,7 +201,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="small" for="merk_sparepart">Merk Sparepart</label>
+                        <label class="small mr-1" for="merk_sparepart">Merk Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
                             value="{{ $item->merk_sparepart }}" />
                     </div>

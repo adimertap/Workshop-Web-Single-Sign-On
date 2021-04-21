@@ -57,11 +57,6 @@
                                 value="{{ $po->approve_ap }}" readonly />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="id_akun">Akun</label>
-                        <input class="form-control form-control-sm" id="id_akun" type="text" name="id_akun"
-                            value="{{ $po->Akun->nama_akun }}" readonly />
-                    </div>
                     <hr class="my-4" />
                     <div class="small mb-2">
                         <span class="font-weight-500 text-primary">Total</span>

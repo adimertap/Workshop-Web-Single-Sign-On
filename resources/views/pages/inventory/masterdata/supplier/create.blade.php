@@ -64,7 +64,7 @@
                                                 value="{{ $kode_supplier }}" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="nama_supplier">Nama Supplier</label>
+                                            <label class="small mb-1 mr-1" for="nama_supplier">Nama Supplier</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" name="nama_supplier" type="text"
                                                 id="nama_supplier" placeholder="Input Nama Supplier"
                                                 value="{{ old('nama_supplier') }}"
@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="nama_sales">Nama Sales</label>
+                                            <label class="small mb-1 mr-1" for="nama_sales">Nama Sales</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" name="nama_sales" type="text" id="nama_sales"
                                                 placeholder="Input Nama Sales" value="{{ old('nama_sales') }}"
                                                 class="form-control @error('nama_sales') is-invalid @enderror">
@@ -84,7 +84,7 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="email">Email</label>
+                                            <label class="small mb-1 mr-1" for="email">Email</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" name="email" type="text" id="email"
                                                 placeholder="Input Email Supplier" value="{{ old('email') }}"
                                                 class="form-control @error('email') is-invalid @enderror"></input>
@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="telephone">Telephone</label>
+                                            <label class="small mb-1 mr-1" for="telephone">Telephone</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" name="telephone" type="number" id="telephone"
                                                 placeholder="Input Nomor Telephone" value="{{ old('telephone') }}"
                                                 class="form-control @error('telephone') is-invalid @enderror">
@@ -102,7 +102,7 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="rekening_supplier">Nomor Rekening</label>
+                                            <label class="small mb-1 mr-1" for="rekening_supplier">Nomor Rekening</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" name="rekening_supplier" type="number"
                                                 id="rekening_supplier" placeholder="Input Nomor Rekening"
                                                 value="{{ old('rekening_supplier') }}"
@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="alamat_supplier">Alamat Supplier</label>
+                                            <label class="small mb-1 mr-1" for="alamat_supplier">Alamat Supplier</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" name="alamat_supplier" type="text"
                                                 id="alamat_supplier" placeholder="Input Alamat Supplier"
                                                 value="{{ old('alamat_supplier') }}"
@@ -124,7 +124,7 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="kode_pos">Kode Pos</label>
+                                            <label class="small mb-1 mr-1" for="kode_pos">Kode Pos</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" name="kode_pos" type="number" id="kode_pos"
                                                 placeholder="Input Kode Pos" value="{{ old('kode_pos') }}"
                                                 class="form-control @error('kode_pos') is-invalid @enderror"></input>

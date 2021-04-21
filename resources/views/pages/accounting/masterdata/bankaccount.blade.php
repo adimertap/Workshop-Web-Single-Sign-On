@@ -147,7 +147,7 @@
                                 placeholder="Input Nama Bank" value="{{ $kode_bank }}" readonly />
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="nama_bank">Nama Bank</label>
+                            <label class="small mb-1 mr-1" for="nama_bank">Nama Bank</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" name="nama_bank" type="text" id="nama_bank"
                                 placeholder="Input Nama Bank" value="{{ old('nama_bank') }}"
                                 class="form-control @error('nama_bank') is-invalid @enderror" />
@@ -156,7 +156,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="nama_account">Nama Account</label>
+                        <label class="small mb-1 mr-1" for="nama_account">Nama Account</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_account" type="text" id="nama_account"
                             placeholder="Input Nama Account Bank" value="{{ old('nama_account') }}"
                             class="form-control @error('nama_account') is-invalid @enderror" />
@@ -164,7 +164,7 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="jenis_account">Jenis Account Bank</label>
+                        <label class="small mb-1 mr-1" for="jenis_account">Jenis Account Bank</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <select name="jenis_account" id="jenis_account" class="form-control"
                             class="form-control @error('jenis_account') is-invalid @enderror">
                             <option value="{{ old('jenis_account')}}">Pilih Jenis Account
@@ -176,7 +176,7 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="nomor_rekening">Nomor Rekening</label>
+                        <label class="small mb-1 mr-1" for="nomor_rekening">Nomor Rekening</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nomor_rekening" type="number" id="nomor_rekening"
                             placeholder="Input Nomor Rekening" value="{{ old('nomor_rekening') }}"
                             class="form-control @error('nomor_rekening') is-invalid @enderror" />
@@ -184,7 +184,7 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="alamat_account">Alamat Account</label>
+                        <label class="small mb-1 mr-1" for="alamat_account">Alamat Account</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="alamat_account" type="text" id="alamat_account"
                             placeholder="Input Alamat Account" value="{{ old('alamat_account') }}"
                             class="form-control @error('alamat_account') is-invalid @enderror" />
@@ -225,17 +225,17 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="nama_bank">Nama Bank</label>
+                        <label class="small mb-1 mr-1" for="nama_bank">Nama Bank</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_bank" type="text" id="nama_bank"
                             value="{{ $item->nama_bank }}"></input>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="nama_account">Nama Account</label>
+                        <label class="small mb-1 mr-1" for="nama_account">Nama Account</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_account" type="text" id="nama_account"
                             value="{{ $item->nama_account }}"></input>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="jenis_account">Jenis Account Bank</label>
+                        <label class="small mb-1 mr-1" for="jenis_account">Jenis Account Bank</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <select name="jenis_account" id="jenis_account" class="form-control">
                             <option value="{{ $item->jenis_account }}">{{ $item->jenis_account }}
                             </option>
@@ -244,12 +244,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="nomor_rekening">Nomor Rekening</label>
+                        <label class="small mb-1 mr-1" for="nomor_rekening">Nomor Rekening</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nomor_rekening" type="number" id="nomor_rekening"
                             value="{{ $item->nomor_rekening }}"></input>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="alamat_account">Alamat Account</label>
+                        <label class="small mb-1 mr-1" for="alamat_account">Alamat Account</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="alamat_account" type="text" id="alamat_account"
                             value="{{ $item->alamat_account }}"></input>
                     </div>

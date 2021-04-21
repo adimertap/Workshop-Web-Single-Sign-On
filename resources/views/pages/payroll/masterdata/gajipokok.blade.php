@@ -125,7 +125,7 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="id_jabatan">Pilih Jabatan</label>
+                        <label class="small mb-1 mr-1" for="id_jabatan">Pilih Jabatan</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <select class="form-control" name="id_jabatan" id="id_jabatan"
                             class="form-control @error('id_jabatan') is-invalid @enderror">
                             <option>Pilih Jabatan</option>
@@ -139,7 +139,7 @@
                     <div class="form-group">
                         <div class="row justify-content-between align-items-center">
                             <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
-                                <label class="small mb-1" for="besaran_gaji">Besaran Gaji</label>
+                                <label class="small mb-1 mr-1" for="besaran_gaji">Besaran Gaji</label><span class="mr-4 mb-3" style="color: red">*</span>
                             </div>
                             <div class="col-12 col-lg-auto text-center text-lg-right">
                                 <div class="small text-lg-right">
@@ -188,7 +188,7 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small" for="besaran_gaji">Besaran Gaji</label>
+                        <label class="small mr-1" for="besaran_gaji">Besaran Gaji</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="besaran_gaji" type="text" id="besaran_gaji"
                             value="{{ $item->besaran_gaji }}"
                             class="form-control @error('besaran_gaji') is-invalid @enderror" />

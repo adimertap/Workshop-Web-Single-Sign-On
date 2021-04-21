@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
-                        <a href="{{ route('Rcv.index') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
+                        <a href="{{ route('Rcv.destroy', $rcv->id_rcv) }}" class="btn btn-sm btn-light text-primary">Kembali</a>
                     </div>
                 </div>
             </div>
@@ -81,13 +81,19 @@
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1" for="id_pegawai">Pegawai</label>
-                                            <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
-                                                placeholder="Input Kode Receiving" value="{{ Auth::user()->name }}" readonly>
+                                            <select class="form-control" name="id_pegawai" id="id_pegawai"
+                                                class="form-control @error('id_supplier') is-invalid @enderror">
+                                                <option>Pilih Pegawai</option>
+                                                @foreach ($pegawai as $item)
+                                                <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
+                                                </option>
+                                                @endforeach
+                                            </select>
                                             @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label class="small mb-1" for="tanggal_rcv">Tanggal Receive</label>
+                                            <label class="small mb-1 mr-1" for="tanggal_rcv">Tanggal Receive</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="tanggal_rcv" type="date" name="tanggal_rcv"
                                                 placeholder="Input Tanggal Receive" value="{{ $rcv->tanggal_rcv }}"
                                                 class="form-control @error('tanggal_rcv') is-invalid @enderror" />
@@ -108,7 +114,7 @@
                                                 readonly>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label class="small mb-1" for="no_do">Nomor DO</label>
+                                            <label class="small mb-1 mr-1" for="no_do">Nomor DO</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="no_do" type="text" name="no_do"
                                                 placeholder="Input Nomor Delivery Order" value="{{ $rcv->no_do }}">
                                         </div>
@@ -258,8 +264,8 @@
                                             <tr class="border-bottom">
                                                 <td>
                                                     <div class="font-weight-bold">Pegawai</div>
-                                                    <div class="small text-muted d-none d-md-block"><span
-                                                            id="detailpegawai"></span></div>
+                                                    <div class="small text-muted d-none d-md-block">
+                                                        <span id="detailpegawai"></span></div>
                                                 </td>
                                             </tr>
                                             <tr class="border-bottom">
@@ -531,7 +537,7 @@
         var kode_po = form1.find('input[name="kode_po"]').val()
         var no_do = form1.find('input[name="no_do"]').val()
         var id_supplier = $('#id_supplier').val()
-        var id_pegawai = form1.find('input[name="id_pegawai"]').val()
+        var id_pegawai = $('#id_pegawai').val()
         var tanggal_rcv = form1.find('input[name="tanggal_rcv"]').val()
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
@@ -557,6 +563,7 @@
                     harga_diterima: harga_diterima,
                     id_rak: id_rak
                 } 
+               
                 dataform2.push(obj)
             }
         }
@@ -660,9 +667,9 @@
 
 
         $('#id_pegawai').on('input', function () {
-            var select = $(this).val()
+            var select = $(this).find('option:selected')
             var textpegawai = select.text()
-            $('#detailpegawai').html();
+            $('#detailpegawai').html(textpegawai);
         })
 
         var template = $('#template_delete_button').html()
@@ -682,6 +689,7 @@
             ]
         });
     });
+    
 
 </script>
 

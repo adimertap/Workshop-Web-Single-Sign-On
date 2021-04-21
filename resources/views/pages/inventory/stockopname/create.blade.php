@@ -100,7 +100,7 @@
                                                 value="Pending" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="tanggal_opname">Tanggal Opname</label>
+                                            <label class="small mb-1 mr-1" for="tanggal_opname">Tanggal Opname</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="tanggal_opname" type="date"
                                                 name="tanggal_opname" placeholder="Input Tanggal Opname"
                                                 value="{{ old('tanggal_opname') }}"

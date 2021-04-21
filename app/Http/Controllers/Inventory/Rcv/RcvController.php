@@ -7,6 +7,7 @@ use App\Model\Accounting\Akun;
 use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Rak;
 use App\Model\Inventory\Rcv\Rcv;
+use App\Model\Inventory\Rcv\Rcvdetail;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
@@ -96,16 +97,15 @@ class RcvController extends Controller
         ])->find($id);
         
         $id = Rcv::getId();
-        $blt = date('d-m-Y');
+        $blt = date('y-m');
 
-        $kode_rcv = 'RCV-'.$rcv->id_rcv.'/'.$blt;
+        $kode_rcv = 'RCV-'.$blt.'/'.$rcv->id_rcv;
 
         $pegawai = Pegawai::all();
         $supplier = Supplier::all();
         $po = PO::where([['status', '=', 'Dikirim']])->get();
         $rak = Rak::all();
         
-
         return view('pages.inventory.rcv.create', compact('rcv','pegawai','po','supplier', 'kode_rcv','rak'));
     }
 
@@ -155,7 +155,7 @@ class RcvController extends Controller
     public function destroy($id_rcv)
     {
         $rcv = Rcv::findOrFail($id_rcv);
-        
+        Rcvdetail::where('id_rcv', $id_rcv)->delete();
         $rcv->delete();
 
         return redirect()->back()->with('messagehapus','Data Penerimaan Berhasil dihapus');

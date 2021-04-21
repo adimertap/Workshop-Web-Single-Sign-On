@@ -17,7 +17,7 @@ class ApprovalpurchaseAPController extends Controller
     public function index()
     {
         $po = PO::with([
-            'Akun','Supplier','Pegawai'
+            'Supplier','Pegawai'
         ])->get();
 
         return view('pages.inventory.purchase.approvalpoap.approvalpoap', compact('po'));

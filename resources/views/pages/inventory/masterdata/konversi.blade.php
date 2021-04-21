@@ -116,7 +116,7 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="satuan">Satuan Konversi</label>
+                        <label class="small mb-1 mr-1" for="satuan">Satuan Konversi</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="satuan" type="text" id="satuan"
                             placeholder="Input Satuan Konversi" value="{{ old('satuan') }}"
                             class="form-control @error('satuan') is-invalid @enderror"></input>
@@ -156,7 +156,7 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="satuan">Satuan Konversi</label>
+                        <label class="small mb-1 mr-1" for="satuan">Satuan Konversi</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="satuan" type="text" id="satuan"
                             value="{{ $item->satuan }}"></input>
                     </div>

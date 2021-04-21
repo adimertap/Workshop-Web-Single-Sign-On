@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Rcvdetail extends Model
 {
-    use SoftDeletes;
 
     protected $table = "tb_inventory_detrcv";
 
@@ -19,15 +18,16 @@ class Rcvdetail extends Model
         'id_rcv',
         'id_sparepart',
         'id_rak',
-        'jumlah_po',
-        'jumlah_rcv',
+        'qty_po',
+        'qty_rcv',
+        'keterangan',
+        'harga_diterima'
 
     ];
 
     protected $hidden =[ 
         'created_at',
-        'updated_at',
-        'deleted_at'
+        'updated_at'
     ];
 
     public $timestamps = true;

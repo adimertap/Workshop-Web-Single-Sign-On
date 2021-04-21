@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inventory\Opname;
 use App\Http\Controllers\Controller;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Stockopname\Opname;
+use App\Model\Inventory\Stockopname\Opnamedetail;
 use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -42,9 +43,9 @@ class OpnameController extends Controller
         foreach($id as $value);
         $idlama = $value->id_opname;
         $idbaru = $idlama + 1;
-        $blt = date('d-m-Y');
+        $blt = date('y-m');
 
-        $kode_opname = 'OP-'.$idbaru.'/'.$blt;
+        $kode_opname = 'OPM-'.'/'.$blt.$idbaru;
     
 
         $sparepart = Sparepart::all();
@@ -66,9 +67,9 @@ class OpnameController extends Controller
         foreach($id as $value);
         $idlama = $value->id_opname;
         $idbaru = $idlama + 1;
-        $blt = date('d-m-Y');
+        $blt = date('y-m');
 
-        $kode_opname = 'OP-'.$idbaru.'/'.$blt;
+        $kode_opname = 'OP-'.'/'.$blt.$idbaru;
 
         $opname = new Opname;
         $opname->id_pegawai = $request->id_pegawai;
@@ -127,8 +128,13 @@ class OpnameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_opname)
     {
-        //
+        $opname = Opname::findOrFail($id_opname);
+        
+        Opnamedetail::where('id_opname', $id_opname)->delete();
+        $opname->delete();
+
+        return redirect()->back()->with('messagehapus','Data Opname Berhasil dihapus');
     }
 }

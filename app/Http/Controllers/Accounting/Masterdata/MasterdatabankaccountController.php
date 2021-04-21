@@ -24,7 +24,7 @@ class MasterdatabankaccountController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_bank = 'AKBA/'.$idbaru.'/'.$blt;
+        $kode_bank = 'AKBA/'.'/'.$blt.$idbaru;
 
         return view('pages.accounting.masterdata.bankaccount', compact('bankaccount','kode_bank'));
     }
@@ -54,7 +54,7 @@ class MasterdatabankaccountController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_bank = 'AKBA/'.$idbaru.'/'.$blt;
+        $kode_bank = 'AKBA/'.'/'.$blt.$idbaru;
 
         $bankaccount = new Bankaccount;
         $bankaccount->nama_bank = $request->nama_bank;

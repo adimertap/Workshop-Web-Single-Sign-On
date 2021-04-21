@@ -119,7 +119,7 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="nama_jabatan">Nama Jabatan</label>
+                        <label class="small mb-1 mr-1" for="nama_jabatan">Nama Jabatan</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_jabatan" type="text" id="nama_jabatan"
                             placeholder="Input Nama Jabatan" value="{{ old('nama_jabatan') }}"
                             class="form-control @error('nama_jabatan') is-invalid @enderror" />
@@ -159,7 +159,7 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="nama_jabatan">Nama Jabatan</label>
+                        <label class="small mb-1 mr-1" for="nama_jabatan">Nama Jabatan</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_jabatan" type="text" id="nama_jabatan"
                             value="{{ $item->nama_jabatan }}"></input>
                     </div>

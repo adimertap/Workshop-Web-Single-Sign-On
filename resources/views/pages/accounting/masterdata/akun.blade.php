@@ -125,7 +125,7 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="kode_akun">Kode akun</label>
+                        <label class="small mb-1 mr-1" for="kode_akun">Kode akun</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="kode_akun" type="text" id="kode_akun"
                             placeholder="Input Kode Akun" value="{{ old('kode_akun') }}"
                             class="form-control @error('kode_akun') is-invalid @enderror" />
@@ -133,7 +133,7 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="nama_akun">Nama akun</label>
+                        <label class="small mb-1 mr-1" for="nama_akun">Nama akun</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_akun" type="text" id="nama_akun"
                             placeholder="Input Nama Akun" value="{{ old('nama_akun') }}"
                             class="form-control @error('nama_akun') is-invalid @enderror" />
@@ -141,7 +141,7 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="akun_grup">Grup Akun</label>
+                        <label class="small mb-1 mr-1" for="akun_grup">Grup Akun</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <select name="akun_grup" id="akun_grup" class="form-control"
                             class="form-control @error('akun_grup') is-invalid @enderror">
                             <option value="{{ old('akun_grup')}}">Pilih Akun Grup
@@ -186,7 +186,7 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="kode_akun">Kode akun</label>
+                        <label class="small mb-1 mr-1" for="kode_akun">Kode akun</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="kode_akun" type="text" id="kode_akun"
                             value="{{ $item->kode_akun }}"
                             class="form-control @error('kode_akun') is-invalid @enderror" />
@@ -194,7 +194,7 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="nama_akun">Nama akun</label>
+                        <label class="small mb-1 mr-1" for="nama_akun">Nama akun</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_akun" type="text" id="nama_akun"
                             value="{{ $item->nama_akun }}"
                             class="form-control @error('nama_akun') is-invalid @enderror" />
@@ -202,7 +202,7 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="akun_grup">Grup Akun</label>
+                        <label class="small mb-1 mr-1" for="akun_grup">Grup Akun</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <select name="akun_grup" id="akun_grup" class="form-control"
                             class="form-control @error('akun_grup') is-invalid @enderror">
                             <option value="{{ $item->akun_grup }}">{{ $item->akun_grup }}</option>

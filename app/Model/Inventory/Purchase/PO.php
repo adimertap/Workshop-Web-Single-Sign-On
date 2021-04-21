@@ -21,7 +21,6 @@ class PO extends Model
     protected $fillable = [
         'kode_po',
         'id_pegawai',
-        'id_akun',
         'id_supplier',
         'tanggal_po',
         'approve_po',
@@ -43,11 +42,6 @@ class PO extends Model
     public function Detailsparepart()
     {
         return $this->belongsToMany(Sparepart::class,'tb_inventory_detpo','id_po','id_sparepart')->withPivot('qty');
-    }
-
-    public function Akun()
-    {
-        return $this->belongsTo(Akun::class,'id_akun','id_akun');
     }
 
     public function Supplier()

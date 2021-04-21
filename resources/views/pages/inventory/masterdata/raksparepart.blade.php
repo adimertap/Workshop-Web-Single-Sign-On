@@ -130,7 +130,7 @@
                             placeholder="Input Kode Rak" value="{{ $kode_rak }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="nama_rak">Nama Rak</label>
+                        <label class="small mb-1 mr-1" for="nama_rak">Nama Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_rak" type="text" id="nama_rak"
                             placeholder="Input Nama Rak" value="{{ old('nama_rak') }}"
                             class="form-control @error('nama_rak') is-invalid @enderror"></input>
@@ -138,7 +138,7 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="jenis_rak">Jenis Rak</label>
+                        <label class="small mb-1 mr-1" for="jenis_rak">Jenis Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <select name="jenis_rak" id="jenis_rak" class="form-control"
                             class="form-control @error('jenis_rak') is-invalid @enderror">
                             <option value="{{ old('jenis_rak')}}"> Pilih Jenis Rak</option>
@@ -182,12 +182,12 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="kode_rak">Kode Rak</label>
+                        <label class="small mb-1 mr-1" for="kode_rak">Kode Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="kode_rak" type="text" id="kode_rak"
                             value="{{ $item->kode_rak }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="nama_rak">Nama Rak</label>
+                        <label class="small mb-1 mr-1" for="nama_rak">Nama Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_rak" type="text" id="nama_rak"
                             value="{{ $item->nama_rak }}"></input>
                     </div>

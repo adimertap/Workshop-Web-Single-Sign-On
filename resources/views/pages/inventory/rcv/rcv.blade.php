@@ -188,7 +188,7 @@
                     </hr>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="kode_po">Kode PO</label>
+                            <label class="small mb-1 mr-1" for="kode_po">Kode PO</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <div class="input-group input-group-joined">
                                 <input class="form-control" type="text" placeholder="Masukan Kode PO"
                                     aria-label="Search" id="detailkodepo">
@@ -208,7 +208,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="no_do">Nomor DO</label>
+                            <label class="small mb-1 mr-1" for="no_do">Nomor DO</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" id="no_do" type="text" name="no_do"
                                 placeholder="Input Nomor Delivery" value="{{ old('no_do') }}"
                                 class="form-control @error('no_do') is-invalid @enderror" />
@@ -216,7 +216,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="tanggal_rcv">Tanggal Receive</label>
+                            <label class="small mb-1 mr-1" for="tanggal_rcv">Tanggal Receive</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" id="tanggal_rcv" type="date" name="tanggal_rcv"
                                 placeholder="Input Tanggal Receive" value="{{ old('tanggal_rcv') }}"
                                 class="form-control @error('tanggal_rcv') is-invalid @enderror" />
@@ -391,7 +391,6 @@
         }
 
         document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
-        document.getElementById('clockmodal').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
     }
 
 </script>

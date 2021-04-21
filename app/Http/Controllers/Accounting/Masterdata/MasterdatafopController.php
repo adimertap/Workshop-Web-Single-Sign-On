@@ -23,7 +23,7 @@ class MasterdatafopController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_fop = 'AKFOP-'.$idbaru.'/'.$blt;
+        $kode_fop = 'AKFOP-'.'/'.$blt.$idbaru;
 
         return view('pages.accounting.masterdata.fop', compact('fop','kode_fop'));
     }
@@ -52,7 +52,7 @@ class MasterdatafopController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_fop = 'AKFOP-'.$idbaru.'/'.$blt;
+        $kode_fop = 'AKFOP-'.'/'.$blt.$idbaru;
 
         $fop = new Fop;
         $fop->nama_fop = $request->nama_fop;

@@ -48,11 +48,11 @@ class MasterdatasparepartController extends Controller
 
         $id = Sparepart::getId();
         foreach($id as $value);
-        $idlama = $value->id_sparepart;
-        $idbaru = $idlama + 1;
+            $idlama = $value->id_sparepart;
+            $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_sparepart = 'SP-'.$idbaru.'/'.$blt;
+        $kode_sparepart = 'SP-'.'/'.$blt.$idbaru;
 
         return view('pages.inventory.masterdata.sparepart.create', compact('jenis_sparepart','merk_sparepart','konversi','gallery','rak','kode_sparepart')); 
     }
@@ -89,7 +89,7 @@ class MasterdatasparepartController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_sparepart = 'SP-'.$idbaru.'/'.$blt;
+        $kode_sparepart = 'SP-'.'/'.$blt.$idbaru;
 
         $sparepart = new Sparepart;
         $sparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
@@ -159,6 +159,7 @@ class MasterdatasparepartController extends Controller
      */
     public function update(Request $request, $id_sparepart)
     {
+
         $sparepart = Sparepart::findOrFail($id_sparepart);
         $sparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
         $sparepart->id_merk = $request->id_merk;

@@ -92,15 +92,13 @@ class ReturController extends Controller
 
         // Generate Code Manggil Fungsi getId()
         $id = Retur::getId();
-        $blt = date('m');
-        $kode_retur = 'RTR-'.$retur->id_retur.'/'.$blt;
+        $blt = date('y-m');
+        $kode_retur = 'RTR-'.$blt.'/'.$retur->id_retur;
 
         // Panggil
         $supplier = Supplier::all();
         $akun = Akun::all();
         $pegawai = Pegawai::all();
-
-        
 
         return view('pages.inventory.retur.create', compact('retur','pegawai','supplier','akun','kode_retur','sparepart'));
     }

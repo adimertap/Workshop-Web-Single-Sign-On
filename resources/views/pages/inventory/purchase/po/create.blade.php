@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_supplier">Supplier</label>
+                                            <label class="small mb-1 mr-1" for="id_supplier">Supplier</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_supplier" id="id_supplier"
                                                 class="form-control @error('id_supplier') is-invalid @enderror">
                                                 <option>Pilih Supplier</option>
@@ -108,7 +108,7 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="tanggal_po">Tanggal Receive</label>
+                                            <label class="small mb-1 mr-1" for="tanggal_po">Tanggal Receive</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="tanggal_po" type="date" name="tanggal_po"
                                                 placeholder="Input Tanggal Receive" value="{{ old('tanggal_po') }}"
                                                 class="form-control @error('tanggal_po') is-invalid @enderror" />
@@ -117,25 +117,12 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label class="small mb-1" for="id_akun">Akun</label>
-                                            <select class="form-control" name="id_akun" id="id_akun"
-                                                class="form-control @error('id_akun') is-invalid @enderror">
-                                                <option>Pilih Akun</option>
-                                                @foreach ($akun as $item)
-                                                <option value="{{ $item->id_akun }}">{{ $item->nama_akun }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            @error('id_akun')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label class="small mb-1" for="approve_po">Approval</label>
                                             <input class="form-control" id="approve_po" type="text" name="approve_po"
                                                 value="Pending" readonly>
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label class="small mb-1" for="approve_ap">Approval AP</label>
                                             <input class="form-control" id="approve_ap" type="text" name="approve_ap"
                                                 value="Pending" readonly>
@@ -219,8 +206,13 @@
                                                         <td class="satuan">{{ $item->Konversi->satuan }}
                                                         </td>
                                                         <td class="stock">{{ $item->stock }}</td>
-                                                        <td class="harga_beli">Rp.
-                                                            {{ number_format($item->Hargasparepart->harga_beli,2,',','.') }}
+                                                        <td class="harga_beli">@if ($item->Hargasparepart == '' | $item->Hargasparepart == '0')
+                                                            <span class="text-center">Tidak ada Harga</span> 
+                                                        @else
+                                                        Rp.{{ number_format($item->Hargasparepart->harga_beli,2,',','.') }}
+                                                        @endif
+                                                            
+                                                            
                                                         </td>
                                                         <td>
                                                             <a href="" class="btn btn-success btn-datatable"
@@ -330,13 +322,6 @@
                                                     <div class="font-weight-bold">Pegawai</div>
                                                     <div class="small text-muted d-none d-md-block"><span
                                                             id="detailpegawai"></span></div>
-                                                </td>
-                                            </tr>
-                                            <tr class="border-bottom">
-                                                <td>
-                                                    <div class="font-weight-bold">Akun</div>
-                                                    <div class="small text-muted d-none d-md-block"><span
-                                                            id="detailakun"></span></div>
                                                 </td>
                                             </tr>
                                             <tr class="border-bottom">
@@ -517,7 +502,6 @@
         var form1 = $('#form1')
         var kode_po = form1.find('input[name="kode_po"]').val()
         var id_supplier = $('#id_supplier').val()
-        var id_akun = $('#id_akun').val()
         var id_pegawai = $('#id_pegawai').val()
         var tanggal_po = form1.find('input[name="tanggal_po"]').val()
         var approve_po = form1.find('input[name="approve_po"]').val()
@@ -549,7 +533,6 @@
                 _token: _token,
                 kode_po: kode_po,
                 id_supplier: id_supplier,
-                id_akun: id_akun,
                 id_pegawai: id_pegawai,
                 tanggal_po: tanggal_po,
                 approve_po: approve_po,
@@ -635,15 +618,7 @@
                 $('#detailsupplier').html(textsupplier);
             }
         })
-        $('#id_akun').on('change', function () {
-            var select = $(this).find('option:selected')
-            var textakun = select.text()
-            if (textakun == 'Pilih Akun') {
-                $('#detailakun').html('');
-            } else {
-                $('#detailakun').html(textakun);
-            }
-        })
+      
         $('#tanggal_po').on('change', function () {
             var select = $(this)
             var textdate = select.val()

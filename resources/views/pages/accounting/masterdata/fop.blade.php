@@ -128,7 +128,7 @@
                             placeholder="Input Nama FOP" value="{{ $kode_fop }}" readonly />
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="nama_fop">Nama Form of Payment</label>
+                        <label class="small mb-1 mr-1" for="nama_fop">Nama Form of Payment</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_fop" type="text" id="nama_fop"
                             placeholder="Input Nama FOP" value="{{ old('nama_fop') }}"
                             class="form-control @error('nama_fop') is-invalid @enderror" />
@@ -169,7 +169,7 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="nama_fop">Nama Form of Payment</label>
+                        <label class="small mb-1 mr-1" for="nama_fop">Nama Form of Payment</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_fop" type="text" id="nama_fop"
                             value="{{ $item->nama_fop }}"></input>
                     </div>

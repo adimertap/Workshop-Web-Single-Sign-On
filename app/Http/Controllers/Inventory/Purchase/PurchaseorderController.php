@@ -22,7 +22,7 @@ class PurchaseorderController extends Controller
     public function index()
     {
         $po = PO::with([
-            'Akun','Supplier','Pegawai'
+            'Supplier','Pegawai'
         ])->get();
 
         $today = Carbon::now()->isoFormat('dddd');
@@ -39,23 +39,22 @@ class PurchaseorderController extends Controller
     public function create()
     {
         $po = PO::with([
-            'Akun','Supplier','Pegawai'
+            'Supplier','Pegawai'
         ])->get();
 
         $id = PO::getId();
         foreach($id as $value);
         $idlama = $value->id_po;
         $idbaru = $idlama + 1;
-        $blt = date('m');
+        $blt = date('y-m');
 
-        $kode_po = 'PO-'.$idbaru.'/'.$blt;
-
-        $akun = Akun::all();    
+        $kode_po = 'PO-'.$blt.'/'.$idbaru;
+ 
         $supplier = Supplier::all();
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
 
-        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','akun','pegawai','kode_po'));
+        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','pegawai','kode_po'));
     }
 
     /**
@@ -67,17 +66,16 @@ class PurchaseorderController extends Controller
     public function store(Request $request)
     {
         $id = PO::getId();
-        foreach($id as $value);
-        $idlama = $value->id_po;
-        $idbaru = $idlama + 1;
-        $blt = date('m');
+            foreach($id as $value);
+            $idlama = $value->id_po;
+            $idbaru = $idlama + 1;
+        $blt = date('y-m');
 
-        $kode_po = 'PO-'.$idbaru.'/'.$blt;
+        $kode_po = 'PO-'.$blt.'/'.$idbaru;
 
         $po = new PO;
         $po->kode_po = $kode_po;
         $po->id_pegawai = $request->id_pegawai;
-        $po->id_akun = $request->id_akun;
         $po->id_supplier = $request->id_supplier;
         $po->tanggal_po = $request->tanggal_po;
         $po->approve_po = $request->approve_po;

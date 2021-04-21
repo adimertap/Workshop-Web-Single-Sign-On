@@ -54,19 +54,19 @@
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="kode_sparepart">Kode Sparepart</label>
+                                            <label class="small mb-1 mr-1" for="kode_sparepart">Kode Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="kode_sparepart" type="text"
                                                 name="kode_sparepart" value="{{ $item->kode_sparepart }}" readonly/>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="nama_sparepart">Nama Sparepart</label>
+                                            <label class="small mb-1 mr-1" for="nama_sparepart">Nama Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="nama_sparepart" type="text"
                                                 name="nama_sparepart" value="{{ $item->nama_sparepart }}" />
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_jenis_sparepart">Jenis Sparepart</label>
+                                            <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_jenis_sparepart"
                                                 id="id_jenis_sparepart">
                                                 <option value="{{ $item->Jenissparepart->id_jenis_sparepart }}">
@@ -79,7 +79,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_merk">Merk Sparepart</label>
+                                            <label class="small mb-1 mr-1" for="id_merk">Merk Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_merk" id="id_merk">
                                                 <option value="{{ $item->Merksparepart->id_merk }}">
                                                     {{ $item->Merksparepart->merk_sparepart }}</option>
@@ -93,7 +93,7 @@
                                     </div>
                                     <div class="row"> 
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_konversi">Konversi Satuan</label>
+                                            <label class="small mb-1 mr-1" for="id_konversi">Konversi Satuan</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_konversi" id="id_konversi">
                                                 <option value="{{ $item->Konversi->id_konversi }}">
                                                     {{ $item->Konversi->satuan }}</option>
@@ -105,7 +105,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_rak">Tempat Rak</label>
+                                            <label class="small mb-1 mr-1" for="id_rak">Tempat Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_rak" id="id_rak">
                                                 <option value="{{ $item->Rak->id_rak }}">
                                                     {{ $item->Rak->nama_rak }}</option>
@@ -119,12 +119,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="stock">Stock</label>
+                                            <label class="small mb-1 mr-1" for="stock">Stock</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="stock" type="text" name="stock"
                                                 value="{{ $item->stock }}"/>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="stock_min">Stock Min</label>
+                                            <label class="small mb-1 mr-1" for="stock_min">Stock Min</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="stock_min" type="text" name="stock_min"
                                                 value="{{ $item->stock_min }}" />
                                         </div>

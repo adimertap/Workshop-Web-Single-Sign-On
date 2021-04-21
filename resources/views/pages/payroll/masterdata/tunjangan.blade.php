@@ -127,7 +127,7 @@
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
                         <hr></hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="nama_tunjangan">Nama Tunjangan</label>
+                            <label class="small mb-1 mr-1" for="nama_tunjangan">Nama Tunjangan</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" name="nama_tunjangan" type="text" id="nama_tunjangan"
                                 placeholder="Input Nama Tunjangan" value="{{ old('nama_tunjangan') }}"
                                 class="form-control @error('nama_tunjangan') is-invalid @enderror" />
@@ -137,7 +137,7 @@
                         <div class="form-group">
                             <div class="row justify-content-between align-items-center">
                                 <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
-                                    <label class="small mb-1" for="jumlah_tunjangan">Besaran Tunjangan</label>
+                                    <label class="small mb-1 mr-1" for="jumlah_tunjangan">Besaran Tunjangan</label><span class="mr-4 mb-3" style="color: red">*</span>
                                 </div>
                                 <div class="col-12 col-lg-auto text-center text-lg-right">
                                     <div class="small text-lg-right">
@@ -194,12 +194,12 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="nama_tunjangan">Nama Tunjangan</label>
+                            <label class="small mb-1 mr-1" for="nama_tunjangan">Nama Tunjangan</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" name="nama_tunjangan" type="text" id="nama_tunjangan"
                                 value="{{ $item->nama_tunjangan }}"></input>
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="jumlah_tunjangan">Besaran Tunjangan</label>
+                            <label class="small mb-1 mr-1" for="jumlah_tunjangan">Besaran Tunjangan</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" name="jumlah_tunjangan" type="number" id="jumlah_tunjangan"
                                 value="{{ number_format($item->jumlah_tunjangan,0,',','.') }}"></input>
                         </div>

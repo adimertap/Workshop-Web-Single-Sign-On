@@ -124,7 +124,7 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="jenis_sparepart">Jenis Sparepart</label>
+                        <label class="small mb-1 mr-1" for="jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="jenis_sparepart" type="text" id="jenis_sparepart"
                             placeholder="Input Jenis Sparepart" value="{{ old('jenis_sparepart') }}"
                             class="form-control @error('jenis_sparepart') is-invalid @enderror">
@@ -173,7 +173,7 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small" for="jenis_sparepart">Jenis Sparepart</label>
+                        <label class="small mr-1" for="jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="jenis_sparepart" type="text" id="jenis_sparepart"
                             value="{{ $item->jenis_sparepart }}" />
                     </div>
