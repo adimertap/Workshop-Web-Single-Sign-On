@@ -25,7 +25,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Kendaraan
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
                         Data</button>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="kode_kendaraan">Kode Kendaraan</label>
+                            <label class="small mb-1" for="kode_kendaraan">Kode Kendaraan <span style="color: red">*</span> </label>
                             <input class="form-control" name="kode_kendaraan" type="text" id="kode_kendaraan"
                                 placeholder="Input Kode Kendaraan" value="{{ old('kode_kendaraan') }}"
                                 class="form-control @error('kode_kendaraan') is-invalid @enderror">
@@ -141,7 +141,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="nama_kendaraan">Nama Kendaraan</label>
+                            <label class="small mb-1" for="nama_kendaraan">Nama Kendaraan <span style="color: red">*</span> </label>
                             <input class="form-control" name="nama_kendaraan" type="text" id="nama_kendaraan"
                                 placeholder="Input Nama Kondaraan" value="{{ old('nama_kendaraan') }}"
                                 class="form-control @error('nama_kendaraan') is-invalid @enderror">
@@ -149,7 +149,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="jenis_kendaraan">Jenis Kendaraan</label>
+                            <label class="small mb-1" for="jenis_kendaraan">Jenis Kendaraan <span style="color: red">*</span> </label>
                             <select class="form-control" name="jenis_kendaraan"
                                 class="form-control @error('jenis_kendaraan') is-invalid @enderror"
                                 id="jenis_kendaraan">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\FrontOffice;
 
 use App\Model\FrontOffice\PenjualanSparepart;
 use App\Http\Controllers\Controller;
+use App\Model\FrontOffice\CustomerBengkel;
+use App\Model\Inventory\Sparepart;
 use Illuminate\Http\Request;
 
 class PenjualanSparepartController extends Controller
@@ -15,8 +17,9 @@ class PenjualanSparepartController extends Controller
      */
     public function index()
     {
+        $penjualan = PenjualanSparepart::with(['Customer'])->get();
         $blt = date('D, d/m/Y');
-        return view('pages.frontoffice.penjualan_sparepart.main', compact('blt'));
+        return view('pages.frontoffice.penjualan_sparepart.main', compact('blt', 'penjualan'));
     }
 
     /**
@@ -26,7 +29,9 @@ class PenjualanSparepartController extends Controller
      */
     public function create()
     {
-        //
+        $customer = CustomerBengkel::all();
+        $sparepart = Sparepart::all();
+        return view('pages.frontoffice.penjualan_sparepart.tambah_penjualan_sparepart', compact('customer', 'sparepart'));
     }
 
     /**
@@ -37,7 +42,19 @@ class PenjualanSparepartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = CustomerBengkel::where('nama_customer', $request->nama_customer)->first();
+
+        $penjualan = new PenjualanSparepart;
+        $penjualan->kode_penjualan = $request->kode_penjualan;
+        $penjualan->id_customer_bengkel = $customer->id_customer_bengkel;
+        $penjualan->tanggal = $request->tanggal;
+        $penjualan->status_bayar = 'Belum Bayar';
+
+        $penjualan->save();
+        $penjualan->Detailsparepart()->sync($request->sparepart);
+
+        // return $request;
+        return response()->json($request);
     }
 
     /**

@@ -25,7 +25,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List FAQ
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
                         Data</button>
                 </div>
             </div>
@@ -170,7 +170,7 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="pertanyaan_faq">Pertanyaan</label>
+                            <label class="small mb-1" for="pertanyaan_faq">Pertanyaan <span style="color: red">*</span> </label>
                             <input class="form-control" name="pertanyaan_faq" type="text" id="pertanyaan_faq"
                                 placeholder="Input Nama Diskon" value="{{ $item->pertanyaan_faq }}"
                                 class="form-control @error('pertanyaan_faq') is-invalid @enderror">
@@ -178,7 +178,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="jawaban_faq">Jawaban</label>
+                            <label class="small mb-1" for="jawaban_faq">Jawaban <span style="color: red">*</span> </label>
                             <input class="form-control" name="jawaban_faq" type="text" id="jawaban_faq"
                                 placeholder="Input Jumlah Diskon" value="{{ $item->jawaban_faq }}"
                                 class="form-control @error('jawaban_faq') is-invalid @enderror">

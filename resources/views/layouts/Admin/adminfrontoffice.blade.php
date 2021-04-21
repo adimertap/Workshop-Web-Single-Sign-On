@@ -239,7 +239,7 @@
                         </a>
 
                         {{-- Inventory --}}
-                        <a class="nav-link collapsed" href="{{route('penjualansparepart')}}"  aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="{{route('penjualansparepart.index')}}"  aria-expanded="false" aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
                             Penjualan Sparepart
                         </a>

@@ -15,7 +15,8 @@ class CustomerBengkelController extends Controller
      */
     public function index()
     {
-        return view('pages.frontoffice.customer_terdaftar.main');
+        $customer = CustomerBengkel::get();
+        return view('pages.frontoffice.customer_terdaftar.main', compact('customer'));
     }
 
     /**

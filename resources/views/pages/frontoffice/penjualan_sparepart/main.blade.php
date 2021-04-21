@@ -3,15 +3,16 @@
 @section('content')
 {{-- HEADER --}}
 <main>
-    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
-        <div class="container-fluid">
-            <div class="page-header-content">
-                <div class="row align-items-center justify-content-between pt-3">
-                    <div class="col-auto mb-3">
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container">
+            <div class="page-header-content pt-4">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-4">
                         <h1 class="page-header-title">
-                            <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
+                            <div class="page-header-icon"><i data-feather="shopping-cart"></i></div>
                             Penjualan Sparepart
                         </h1>
+                        <div class="page-header-subtitle">Data Penjualan Sparepart pada Bengkel</div>
                     </div>
                 </div>
             </div>
@@ -20,12 +21,11 @@
 
     {{-- MAIN PAGE CONTENT --}}
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-n10">
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">Penjualan Sparepart
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
-                        Data</button>
+                    <a href="{{ route('penjualansparepart.create') }}" class="btn btn-sm btn-primary"> Tambah Penjualan</a>
                 </div>
             </div>
             <div class="card-body">
@@ -65,14 +65,58 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Sparepart</th>
+                                                style="width: 20px;">Nama Customer</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Tanggal</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Status</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @forelse ($penjualan as $item)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                <td>{{$item->kode_penjualan}}</td>
+                                                <td>{{$item->Customer->nama_customer}}</td>
+                                                <td>{{$item->tanggal}}</td>
+                                                <td>
+                                                    @if ($item->status_bayar == 'Belum Bayar')
+                                                        <span class="badge badge-danger">
+                                                    @elseif ($item->status_bayar == 'Lunas')
+                                                        <span class="badge badge-success">
+                                                    @else
+                                                        <span>
+                                                            @endif
+                                                            {{$item->status_bayar}}
+                                                        </span>
+                                                    
+                                                </td>
+                                                <td>
+                                                    <a href="/" class="btn btn-secondary btn-datatable"
+                                                        data-toggle="tooltip" data-placement="top" title=""
+                                                        data-original-title="Detail">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Edit">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                        data-toggle="modal">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
