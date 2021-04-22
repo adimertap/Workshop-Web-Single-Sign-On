@@ -159,6 +159,16 @@
             <form action="{{ route('retur.store') }}" method="POST" id="form1" class="d-inline">
                 @csrf
                 <div class="modal-body">
+                    <div class="alert alert-danger" id="alertdatakosong" role="alert" style="display:none"> <i
+                        class="fas fa-times"></i>
+                    Error! Terdapat Data yang Masih Kosong!
+                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    </div>
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
                     <div class="row">
                         <div class="form-group col-md-7">
                             <label class="small mb-1" for="id_supplier">Pilih Supplier</label>
@@ -307,18 +317,22 @@
             tanggal_retur: tanggal_retur
         }
 
-        $.ajax({
-            method: 'post',
-            url: '/inventory/retur',
-            data: data,
-            success: function (response) {
-                window.location.href = '/inventory/retur/' + response.id_retur + '/edit'
-            },
-            error: function (error) {
-                console.log(error)
-            }
+        if (nama_supplier == 0 | nama_supplier == '' | tanggal_retur == 0 | tanggal_retur == '' ) {
+            var alert = $('#alertdatakosong').show()
+        } else {
+            $.ajax({
+                method: 'post',
+                url: '/inventory/retur',
+                data: data,
+                success: function (response) {
+                    window.location.href = '/inventory/retur/' + response.id_retur + '/edit'
+                },
+                error: function (error) {
+                    console.log(error)
+                }
 
-        });
+            });
+        }
 
     }
 

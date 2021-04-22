@@ -254,9 +254,6 @@
                                 <a class="nav-link " href="{{ route('approval-prf') }}">
                                     Approve PRF
                                 </a>
-                                <a class="nav-link " href="{{ route('approvalpoap') }}">
-                                    Approve Purchase Order
-                                </a>
                             </nav>
                         </div>
 

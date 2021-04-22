@@ -564,11 +564,9 @@ Route::group(
 
 
         // PURCHASE ORDER ---------------------------------------------------------------- Purchase Order
-        Route::prefix('inventory/pembelian')
+        Route::prefix('inventory')
         ->namespace('Inventory\Purchase')
         ->group(function () {
-        Route::get('/', 'PurchaseorderController@index')
-        ->name('purchaseorder');
 
         Route::resource('purchase-order', 'PurchaseorderController');
 

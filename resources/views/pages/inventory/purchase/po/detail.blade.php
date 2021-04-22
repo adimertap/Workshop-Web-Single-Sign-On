@@ -25,7 +25,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="card mb-4">
                 <div class="card-header">Detail Pembelian
                 </div>
@@ -45,33 +45,15 @@
                         <input class="form-control form-control-sm" id="tanggal_po" type="date" name="tanggal_po"
                             value="{{ $po->tanggal_po }}" readonly />
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="approve_po">Approve Owner</label>
-                            <input class="form-control form-control-sm" id="approve_po" type="text" name="approve_po"
-                                value="{{ $po->approve_po }}" readonly />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="approve_ap">Approve AP</label>
-                            <input class="form-control form-control-sm" id="approve_ap" type="text" name="approve_ap"
-                                value="{{ $po->approve_ap }}" readonly />
-                        </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="approve_po">Approve Owner</label>
+                        <input class="form-control form-control-sm" id="approve_po" type="text" name="approve_po"
+                            value="{{ $po->approve_po }}" readonly />
                     </div>
-                    <hr class="my-4" />
-                    <div class="small mb-2">
-                        <span class="font-weight-500 text-primary">Total</span>
-                        Biaya Keseluruhan
-                    </div>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">Total
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label class="small line-height-normal">:
-                                Rp.
-                        </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="approve_ap">Approve AP</label>
+                        <input class="form-control form-control-sm" id="approve_ap" type="text" name="approve_ap"
+                            value="{{ $po->approve_ap }}" readonly />
                     </div>
                     <hr class="my-2" />
                     <div class="small mb-2">
@@ -93,7 +75,7 @@
         </div>
     </div>
 
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header ">List Sparepart
@@ -129,16 +111,16 @@
                                                 style="width: 50px;">Merk Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 40px;">Qty</th>
+                                                style="width: 20px;">Qty</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 30px;">Satuan</th>
+                                                style="width: 20px;">Satuan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 50px;">Harga Sparepart</th>
+                                                style="width: 30px;">Harga Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 50px;">Total</th>
+                                                style="width: 80px;">Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -152,17 +134,27 @@
                                             <td>{{ $detail->pivot->qty }}</td>
                                             <td>{{ $detail->Konversi->satuan }}</td>
                                             <td>Rp.
-                                                {{ number_format($detail->Hargasparepart->harga_beli,0,',','.') }}
+                                                {{ number_format($detail->pivot->harga_satuan,0,',','.') }}
                                             </td>
-                                            <td>Rp. </td>
+                                            <td>Rp.
+                                                {{ number_format($detail->pivot->total_harga,0,',','.') }}
+                                            </td>
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="7" class="tex-center">
+                                            <td colspan="7" class="text-center">
                                                 Data Sparepart Kosong
                                             </td>
                                         </tr>
                                         @endforelse
+                                        <tr>
+                                        <td colspan="6" class="text-center font-weight-500">
+                                            Total Harga
+                                        </td>
+                                        <td >
+                                            Rp.{{ number_format($po->grand_total,0,',','.') }}
+                                        </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

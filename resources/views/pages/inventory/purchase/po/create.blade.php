@@ -95,22 +95,17 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_supplier">Supplier</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select class="form-control" name="id_supplier" id="id_supplier"
-                                                class="form-control @error('id_supplier') is-invalid @enderror">
-                                                <option>Pilih Supplier</option>
-                                                @foreach ($supplier as $item)
-                                                <option value="{{ $item->id_supplier }}">{{ $item->nama_supplier }}
-                                                </option>
-                                                @endforeach
-                                            </select>
+                                            <label class="small mb-1 mr-1" for="id_supplier">Supplier</label>
+                                            <input class="form-control" id="id_supplier" type="text" name="id_supplier"
+                                                placeholder="Input Tanggal Receive" value="{{ $po->Supplier->nama_supplier }}"
+                                                class="form-control @error('id_supplier') is-invalid @enderror" readonly/>
                                             @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="tanggal_po">Tanggal Receive</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="tanggal_po" type="date" name="tanggal_po"
-                                                placeholder="Input Tanggal Receive" value="{{ old('tanggal_po') }}"
+                                                placeholder="Input Tanggal Receive" value="{{ $po->tanggal_po }}"
                                                 class="form-control @error('tanggal_po') is-invalid @enderror" />
                                             @error('tanggal_po')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
@@ -190,7 +185,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @forelse ($sparepart as $item)
+                                                    @forelse ($po->Supplier->Sparepart as $item)
                                                     <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
                                                         <th scope="row" class="small" class="sorting_1">
                                                             {{ $loop->iteration}}</th>
@@ -208,11 +203,8 @@
                                                         <td class="stock">{{ $item->stock }}</td>
                                                         <td class="harga_beli">@if ($item->Hargasparepart == '' | $item->Hargasparepart == '0')
                                                             <span class="text-center">Tidak ada Harga</span> 
-                                                        @else
-                                                        Rp.{{ number_format($item->Hargasparepart->harga_beli,2,',','.') }}
+                                                        @else Rp.{{ number_format($item->Hargasparepart->harga_beli,2,',','.') }}
                                                         @endif
-                                                            
-                                                            
                                                         </td>
                                                         <td>
                                                             <a href="" class="btn btn-success btn-datatable"
@@ -281,11 +273,18 @@
                                             </tr>
                                             <tr class="border-bottom">
                                                 <td>
-                                                    <div class="font-weight-bold">Supplier</div>
+                                                    <div class="font-weight-bold">Pegawai</div>
                                                     <div class="small text-muted d-none d-md-block"><span
-                                                            id="detailsupplier"></span></div>
+                                                            id="detailpegawai"></span></div>
                                                 </td>
                                             </tr>
+                                            <tr class="border-bottom">
+                                                <td>
+                                                    <div class="font-weight-bold">Tanggal PO</div>
+                                                    <div class="small text-muted d-none d-md-block">{{ $po->tanggal_po }}</div>
+                                                </td>
+                                            </tr>
+                                           
                                             <tr class="border-bottom">
                                                 <td>
                                                     <div class="font-weight-bold">Approval Owner</div>
@@ -312,16 +311,20 @@
                                         <tbody>
                                             <tr class="border-bottom">
                                                 <td>
-                                                    <div class="font-weight-bold">Tanggal PO</div>
-                                                    <div class="small text-muted d-none d-md-block"><span
-                                                            id="detailtanggal"></span></div>
+                                                    <div class="font-weight-bold">Supplier</div>
+                                                    <div class="small text-muted d-none d-md-block">{{ $po->Supplier->nama_supplier }}</div>
                                                 </td>
                                             </tr>
                                             <tr class="border-bottom">
                                                 <td>
-                                                    <div class="font-weight-bold">Pegawai</div>
-                                                    <div class="small text-muted d-none d-md-block"><span
-                                                            id="detailpegawai"></span></div>
+                                                    <div class="font-weight-bold">No.Telp Supplier</div>
+                                                    <div class="small text-muted d-none d-md-block">{{ $po->Supplier->telephone }}</div>
+                                                </td>
+                                            </tr>
+                                            <tr class="border-bottom">
+                                                <td>
+                                                    <div class="font-weight-bold">Nama Sales</div>
+                                                    <div class="small text-muted d-none d-md-block">{{ $po->Supplier->nama_sales }}</div>
                                                 </td>
                                             </tr>
                                             <tr class="border-bottom">
@@ -430,31 +433,8 @@
     </div>
 </main>
 
-{{-- MODAL KONFIRMASI --}}
-<div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-success-soft">
-                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Form Pembelian</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">Apakah Form yang Anda inputkan sudah benar?</div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary" type="button"
-                    onclick="tambahsparepart(event,{{ $sparepart }})">Ya!Sudah</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 {{-- MODAL TAMBAH SPAREPART --}}
-@forelse ($sparepart as $item)
+@forelse ($po->Supplier->Sparepart as $item)
 <div class="modal fade" id="Modaltambah-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -471,6 +451,14 @@
                         <input class="form-control" name="qty" type="text" id="qty" placeholder="Input Jumlah Pesanan"
                             value="{{ old('qty') }}"></input>
                     </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="harga_diterima">Harga Satuan</label>
+                            <input class="form-control harga_diterima" name="harga_diterima" type="number" id="harga_diterima"
+                                placeholder="Input Harga Beli diterima" value="{{ $item->Hargasparepart->harga_beli }}"></input>
+                        <div class="small text-primary">Detail Harga
+                            <span id="detailhargaditerima" class="detailhargaditerima">Rp.{{ number_format($item->Hargasparepart->harga_beli,2,',','.') }}</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -482,6 +470,31 @@
     </div>
 </div>
 @empty
+@endforelse
+
+@forelse ($po->Supplier->Sparepart as $sparepart)
+<div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header bg-success-soft">
+            <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Form Pembelian</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">Apakah Form yang Anda inputkan sudah benar?</div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary" type="button"
+                onclick="tambahsparepart(event,{{ $po->Supplier->Sparepart }},{{ $po->id_po }})">Ya!Sudah</button>
+        </div>
+    </div>
+</div>
+</div>
+@empty
+    
 @endforelse
 
 <template id="template_delete_button">
@@ -497,7 +510,7 @@
 </template>
 
 <script>
-    function tambahsparepart(event, sparepart) {
+     function tambahsparepart(event, sparepart, id_po) {
         event.preventDefault()
         var form1 = $('#form1')
         var kode_po = form1.find('input[name="kode_po"]').val()
@@ -508,18 +521,24 @@
         var approve_ap = form1.find('input[name="approve_ap"]').val()
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
-
+        
+        
         for (var i = 0; i < sparepart.length; i++) {
             var form = $('#form-' + sparepart[i].id_sparepart)
+            console.log(form)
             var qty = form.find('input[name="qty"]').val()
-
+            var harga_satuan= form.find('input[name="harga_diterima"]').val()
+            var total_harga = qty * harga_satuan
+         
             if (qty == 0 | qty == '') {
                 continue
             } else {
                 var id_sparepart = sparepart[i].id_sparepart
                 var obj = {
                     id_sparepart: id_sparepart,
-                    qty: qty
+                    qty: qty,
+                    total_harga: total_harga,
+                    harga_satuan: harga_satuan
                 }
                 dataform2.push(obj)
             }
@@ -541,24 +560,31 @@
             }
 
             $.ajax({
-                method: 'post',
-                url: '/inventory/pembelian/purchase-order',
+                method: 'put',
+                url: '/inventory/purchase-order/'+ id_po,
                 data: data,
                 success: function (response) {
-                    window.location.href = '/inventory/pembelian/purchase-order'
+                    window.location.href = '/inventory/purchase-order'
 
                 },
+                error: function(response){
+                    console.log(response)
+                }
             });
         }
-
-        // dataTablekonfirmasi
     }
 
     function konfirmsparepart(event, id_sparepart) {
         var form = $('#form-' + id_sparepart)
         var qty = form.find('input[name="qty"]').val()
-        if (qty == 0 | qty == '') {
-            alert('Quantity Kosong')
+        var harga_satuan = form.find('input[name="harga_diterima"]').val()
+        var total_harga = new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR'
+        }).format(qty * harga_satuan)
+
+        if (qty == 0 | qty == '' | harga_diterima == '' | harga_diterima == 0) {
+            alert('Terdapat Data Kosong')
         } else {
             alert('Berhasil Menambahkan Sparepart')
             var data = $('#item-' + id_sparepart)
@@ -567,13 +593,14 @@
             var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
             var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
             var satuan = $(data.find('.satuan')[0]).text()
-            var harga_beli = $(data.find('.harga_beli')[0]).text()
+            // var harga_beli = $(data.find('.harga_beli')[0]).text()
             var template = $($('#template_delete_button').html())
-            var splitqty = harga_beli.split('Rp.')[1].replace('.', '').replace(',00', '')
-            var total = new Intl.NumberFormat('id', {
-                style: 'currency',
-                currency: 'IDR'
-            }).format(qty * splitqty)
+            // var splitqty = harga_beli.split('Rp.')[1].replace('.', '').replace(',00', '')
+            // var total = new Intl.NumberFormat('id', {
+            //     style: 'currency',
+            //     currency: 'IDR'
+            // }).format(qty * splitqty)
+
             //Delete Data di Table Konfirmasi sebelum di add
             var table = $('#dataTablekonfirmasi').DataTable()
             // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
@@ -583,10 +610,70 @@
             $('#dataTablekonfirmasi').DataTable().row.add([
                 kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
                 jenis_sparepart, merk_sparepart, satuan,
-                harga_beli, qty, total,
+                harga_satuan, qty, total_harga,
             ]).draw();
         }
     }
+
+    // FUNGSI JIKA STORE
+    // function tambahsparepart(event, sparepart) {
+    //     event.preventDefault()
+    //     var form1 = $('#form1')
+    //     var kode_po = form1.find('input[name="kode_po"]').val()
+    //     var id_supplier = $('#id_supplier').val()
+    //     var id_pegawai = $('#id_pegawai').val()
+    //     var tanggal_po = form1.find('input[name="tanggal_po"]').val()
+    //     var approve_po = form1.find('input[name="approve_po"]').val()
+    //     var approve_ap = form1.find('input[name="approve_ap"]').val()
+    //     var dataform2 = []
+    //     var _token = form1.find('input[name="_token"]').val()
+
+    //     for (var i = 0; i < sparepart.length; i++) {
+    //         var form = $('#form-' + sparepart[i].id_sparepart)
+    //         var qty = form.find('input[name="qty"]').val()
+
+    //         if (qty == 0 | qty == '') {
+    //             continue
+    //         } else {
+    //             var id_sparepart = sparepart[i].id_sparepart
+    //             var obj = {
+    //                 id_sparepart: id_sparepart,
+    //                 qty: qty
+    //             }
+    //             dataform2.push(obj)
+    //         }
+
+    //     }
+
+    //     if (dataform2.length == 0) {
+    //         var alert = $('#alertsparepartkosong').show()
+    //     } else {
+    //         var data = {
+    //             _token: _token,
+    //             kode_po: kode_po,
+    //             id_supplier: id_supplier,
+    //             id_pegawai: id_pegawai,
+    //             tanggal_po: tanggal_po,
+    //             approve_po: approve_po,
+    //             approve_ap: approve_ap,
+    //             sparepart: dataform2
+    //         }
+
+    //         $.ajax({
+    //             method: 'post',
+    //             url: '/inventory/pembelian/purchase-order',
+    //             data: data,
+    //             success: function (response) {
+    //                 window.location.href = '/inventory/pembelian/purchase-order'
+                
+    //             },
+    //         });
+    //     }
+
+    //     // dataTablekonfirmasi
+    // }
+
+    
 
     function hapussparepart(element) {
         var table = $('#dataTablekonfirmasi').DataTable()
@@ -600,6 +687,19 @@
 
     // 
     $(document).ready(function () {
+        $('.harga_diterima').each(function(){
+            $(this).on('input', function () {
+            var harga = $(this).val()
+            var harga_fix = new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(harga)
+
+            var harga_paling_fix = $(this).parent().find('.detailhargaditerima')
+            $(harga_paling_fix).html(harga_fix);
+        })
+        })
+
         $('#id_pegawai').on('change', function () {
             var select = $(this).find('option:selected')
             var textpegawai = select.text()
@@ -609,6 +709,7 @@
                 $('#detailpegawai').html(textpegawai);
             }
         })
+
         $('#id_supplier').on('change', function () {
             var select = $(this).find('option:selected')
             var textsupplier = select.text()

@@ -10,7 +10,7 @@
                 <h1 class="mb-0">Penerimaan Pembelian Sparepart</h1>
                 <div class="small">
                     <span class="font-weight-500 text-primary">{{ $today }}</span>
-                    · Tanggal {{ $tanggal }} · <span id="clock">12:16 PM</span> 
+                    · Tanggal {{ $tanggal }} · <span id="clock">12:16 PM</span>
                 </div>
             </div>
             <div class="small">
@@ -183,12 +183,20 @@
             <form action="{{ route('Rcv.store') }}" method="POST" id="form1" class="d-inline">
                 @csrf
                 <div class="modal-body">
+                    <div class="alert alert-danger" id="alertdatakosong" role="alert" style="display:none"> <i
+                        class="fas fa-times"></i>
+                    Error! Terdapat Data yang Masih Kosong!
+                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    </div>
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
                     <hr>
                     </hr>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label class="small mb-1 mr-1" for="kode_po">Kode PO</label><span class="mr-4 mb-3" style="color: red">*</span>
+                            <label class="small mb-1 mr-1" for="kode_po">Kode PO</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
                             <div class="input-group input-group-joined">
                                 <input class="form-control" type="text" placeholder="Masukan Kode PO"
                                     aria-label="Search" id="detailkodepo">
@@ -208,7 +216,8 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label class="small mb-1 mr-1" for="no_do">Nomor DO</label><span class="mr-4 mb-3" style="color: red">*</span>
+                            <label class="small mb-1 mr-1" for="no_do">Nomor DO</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
                             <input class="form-control" id="no_do" type="text" name="no_do"
                                 placeholder="Input Nomor Delivery" value="{{ old('no_do') }}"
                                 class="form-control @error('no_do') is-invalid @enderror" />
@@ -216,7 +225,8 @@
                             </div> @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="small mb-1 mr-1" for="tanggal_rcv">Tanggal Receive</label><span class="mr-4 mb-3" style="color: red">*</span>
+                            <label class="small mb-1 mr-1" for="tanggal_rcv">Tanggal Receive</label><span
+                                class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" id="tanggal_rcv" type="date" name="tanggal_rcv"
                                 placeholder="Input Tanggal Receive" value="{{ old('tanggal_rcv') }}"
                                 class="form-control @error('tanggal_rcv') is-invalid @enderror" />
@@ -342,20 +352,26 @@
             tanggal_rcv: tanggal_rcv
         }
 
-        $.ajax({
-            method: 'post',
-            url: "/inventory/receiving",
-            data: data,
-            success: function (response) {
-                window.location.href = '/inventory/receiving/' + response.id_rcv + '/edit'
-            },
-            error: function (error) {
-                console.log(error)
-            }
+        if (kode_po == 0 | kode_po == '' | no_do == 0 | no_do == '' | tanggal_rcv == 0 | tanggal_rcv == '' ) {
+            var alert = $('#alertdatakosong').show()
+        } else {
 
-        });
+            $.ajax({
+                method: 'post',
+                url: "/inventory/receiving",
+                data: data,
+                success: function (response) {
+                    window.location.href = '/inventory/receiving/' + response.id_rcv + '/edit'
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+
+            });
+        }
 
     }
+    
 
     setInterval(displayclock, 500);
 
@@ -392,6 +408,7 @@
 
         document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
     }
+
 
 </script>
 

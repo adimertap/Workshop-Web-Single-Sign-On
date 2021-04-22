@@ -541,7 +541,7 @@
         var tanggal_rcv = form1.find('input[name="tanggal_rcv"]').val()
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
-        
+
         for (var i = 0; i < sparepart.length; i++) {
             var form = $('#form-' + sparepart[i].id_sparepart)
             var qty_po = $($('#item-'+ sparepart[i].id_sparepart).find('.qty')[0]).html()
@@ -549,7 +549,8 @@
             var keterangan = form.find('textarea[name="keterangan"]').val()
             var harga_diterima = form.find('input[name="harga_diterima"]').val()
             var id_rak = $('#id_rak').val()
-            
+         
+
             if (qty_rcv == 0 | qty_rcv == '') {
                 continue
             } else {
@@ -660,7 +661,6 @@
             }).format(harga)
 
             var harga_paling_fix = $(this).parent().find('.detailhargaditerima')
-            console.log(harga_paling_fix)
             $(harga_paling_fix).html(harga_fix);
         })
         })

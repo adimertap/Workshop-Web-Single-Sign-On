@@ -28,7 +28,9 @@
     <div class="card mb-4">
         <div class="card card-header-actions">
             <div class="card-header ">List Pembelian
-                <a href="{{ route('purchase-order.create') }}" class="btn btn-sm btn-primary"> Tambah Pembelian</a>
+                <a href="" class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">
+                    Tambah Pembelian
+                </a>
             </div>
         </div>
         <div class="card-body ">
@@ -100,7 +102,7 @@
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                         <td>{{ $item->kode_po }}</td>
-                                        <td>{{ $item->Pegawai->nama_pegawai }}</td>
+                                        <td>{{ $item->Pegawai->nama_pegawai ?? '' }}</td>
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
                                         <td>{{ $item->tanggal_po }}</td>
                                         <td>
@@ -261,7 +263,190 @@
 @empty
 @endforelse
 
+{{-- MODAL TAMBAH --}}
+<div class="modal fade" id="Modaltambah" tabindex="-1" role="dialog" data-backdrop="static"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Data Pembelian</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('Rcv.store') }}" method="POST" id="form1" class="d-inline">
+                @csrf
+                <div class="modal-body">
+                    <div class="alert alert-danger" id="alertdatakosong" role="alert" style="display:none"> <i
+                        class="fas fa-times"></i>
+                        Error! Terdapat Data yang Masih Kosong!
+                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    </div>
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1 mr-1" for="kode_po">Kode Pembelian</label>
+                            <input class="form-control" id="kode_po" type="text" name="kode_po"
+                                value="{{ $kode_po }}" readonly>
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1 mr-1" for="tanggal_po">Tanggal Pembelian</label><span
+                                class="mr-4 mb-3" style="color: red">*</span>
+                            <input class="form-control" id="tanggal_po" type="date" name="tanggal_po"
+                                placeholder="Input Tanggal Pembelian" value="{{ old('tanggal_po') }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1 mr-1" for="kode_po">Pilih Supplier</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
+                            <div class="input-group input-group-joined">
+                                <input class="form-control" type="text" placeholder="Pilih Supplier"
+                                    aria-label="Search" id="detailsupplier">
+                                <div class="input-group-append">
+                                    <a href="" class="input-group-text" type="button" data-toggle="modal"
+                                        data-target="#Modalsupplier">
+                                        <i class="fas fa-folder-open"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="small mb-1" for="no_telp">No. Telp</label>
+                            <input class="form-control" id="detailnotelp" type="text" name="no_telp"
+                                placeholder="" value="{{ old('no_telp') }}" readonly>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="small mb-1" for="nama_sales">Nama Sales</label>
+                            <input class="form-control" id="detailnamasales" type="text" name="nama_sales"
+                                placeholder="" value="{{ old('nama_sales') }}" readonly>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" onclick="submit1()" type="button">Selanjutnya!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Modalsupplier" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header bg-light ">
+                <h5 class="modal-title">Pilih Suppleir</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                        <thead class="border-bottom">
+                            <tr class="small text-uppercase text-muted">
+                                <th scope="col">Nama Supplier</th>
+                                <th scope="col">Telephone</th>
+                                <th scope="col">Alamat</th>
+                                <th scope="col">Nama Sales</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($supplier as $item)
+                            <tr id="item-{{ $item->id_supplier }}" class="border-bottom">
+                                <td>
+                                    <div class="font-weight-bold nama_supplier">{{ $item->nama_supplier }}</div>
+                                </td>
+                                <td>
+                                    <div class="small text-muted d-none d-md-block telephone">{{ $item->telephone }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="small text-muted d-none d-md-block alamat_supplier">{{ $item->alamat_supplier }}</div>
+                                </td>
+                                <td>
+                                    <div class="small text-muted d-none d-md-block nama_sales">{{ $item->nama_sales }}</div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-success btn-sm btn-datatable"
+                                        onclick="tambahsupplier(event, {{ $item->id_supplier }})" type="button"
+                                        data-dismiss="modal">Tambah
+                                    </button>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="7" class="tex-center">
+                                    Data Supplier Kosong
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <script>
+    function tambahsupplier(event, id_supplier) {
+        var data = $('#item-' + id_supplier)
+        var _token = $('#form1').find('input[name="_token"]').val()
+        var nama_supplier = $(data.find('.nama_supplier')[0]).text()
+        var no_telp = $(data.find('.telephone')[0]).text()
+        var nama_sales = $(data.find('.nama_sales')[0]).text()
+        alert('Berhasil Menambahkan Data Supplier')
+        // $("#toast").toast("show");
+        console.log(nama_sales)
+
+        $('#detailsupplier').val(nama_supplier)
+        $('#detailnotelp').val(no_telp)
+        $('#detailnamasales').val(nama_sales)
+    }
+
+    function submit1() {
+        var _token = $('#form1').find('input[name="_token"]').val()
+        var nama_supplier = $('#detailsupplier').val()
+        var tanggal_po = $('#tanggal_po').val()
+        var kode_po = $('#kode_po').val()
+        var data = {
+            _token: _token,
+            nama_supplier: nama_supplier,
+            tanggal_po: tanggal_po,
+            kode_po: kode_po
+        }
+
+        if (nama_supplier == 0 | nama_supplier == '' | tanggal_po == 0 | tanggal_po == '' ) {
+            var alert = $('#alertdatakosong').show()
+        } else {
+            $.ajax({
+                method: 'post',
+                url: '/inventory/purchase-order',
+                data: data,
+                success: function (response) {
+                    window.location.href = '/inventory/purchase-order/' + response.id_po + '/edit'
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+
+            });
+        }
+
+    }
+    
+    
     setInterval(displayclock, 500);
 
    function displayclock() {

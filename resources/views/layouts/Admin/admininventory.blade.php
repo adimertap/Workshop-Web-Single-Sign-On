@@ -282,7 +282,7 @@
                         </a>
                         <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                <a class="nav-link " href="{{ route('purchaseorder') }}">
+                                <a class="nav-link " href="{{ route('purchase-order.index') }}">
                                     Purchase Order
                                 </a>
                             </nav>
@@ -320,8 +320,11 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
-                                <a class="nav-link" href="{{ route('approvalpo') }}">
+                                <a class="nav-link" href="{{ route('approval-po.index') }}">
                                     Purchase Order
+                                </a>
+                                <a class="nav-link " href="{{ route('approval-po-ap.index') }}">
+                                    Purchase Order AP
                                 </a>
                                 <a class="nav-link" href="{{ route('approvalopname') }}">
                                     Stock Opname
