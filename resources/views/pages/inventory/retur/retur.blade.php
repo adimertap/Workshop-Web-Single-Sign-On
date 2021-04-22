@@ -106,19 +106,19 @@
                                             No</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 50px;">Kode Retur</th>
+                                            style="width: 80px;">Kode Retur</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 150px;">Pegawai</th>
+                                            style="width: 110px;">Pegawai</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 100px;">Supplier</th>
+                                            style="width: 140px;">Supplier</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Start date: activate to sort column ascending"
                                             style="width: 50px;">Tanggal</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 40px;">Status</th>
+                                            style="width: 30px;">Status</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
                                             style="width: 10px;">Cetak</th>

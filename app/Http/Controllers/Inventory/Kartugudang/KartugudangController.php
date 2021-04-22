@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventory\Kartugudang;
 
 use App\Http\Controllers\Controller;
 use App\Model\Inventory\Jenissparepart;
+use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Konversi;
 use App\Model\Inventory\Merksparepart;
 use App\Model\Inventory\Rak;
@@ -61,13 +62,11 @@ class KartugudangController extends Controller
     public function show($id_sparepart)
     {
         $sparepart = Sparepart::findOrFail($id_sparepart);
-        // $jenis_sparepart = Jenissparepart::all();
-        // $merk_sparepart = Merksparepart::all();
-        // $konversi = Konversi::all();
-        // $rak = Rak::all();
+        $kartu_gudang = Kartugudang::where('id_sparepart', $id_sparepart)->get();
 
         return view('pages.inventory.kartugudang.detail',[
             'item' => $sparepart,
+            'kartu_gudang' => $kartu_gudang,
             // 'jenis_sparepart' => $jenis_sparepart,
             // 'merk_sparepart' => $merk_sparepart,
             // 'konversi' => $konversi,

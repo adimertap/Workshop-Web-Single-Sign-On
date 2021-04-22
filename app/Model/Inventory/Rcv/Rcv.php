@@ -45,6 +45,11 @@ class Rcv extends Model
         return $this->belongsToMany(Sparepart::class,'tb_inventory_detrcv','id_rcv','id_sparepart')->withPivot('qty_po','qty_rcv','qty_retur','keterangan','harga_diterima');
     }
 
+    public function Kartugudang()
+    {
+        return $this->belongsToMany(Sparepart::class,'tb_inventory_kartu_gudang','id_rcv','id_sparepart');
+    }
+
     public function Detail()
     {
         return $this->hasMany(Rcvdetail::class,'id_rcv');

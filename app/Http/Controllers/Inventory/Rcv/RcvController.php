@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventory\Rcv;
 
 use App\Http\Controllers\Controller;
 use App\Model\Accounting\Akun;
+use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Rak;
 use App\Model\Inventory\Rcv\Rcv;
@@ -124,16 +125,32 @@ class RcvController extends Controller
         $rcv->id_supplier = $po->id_supplier;
         $rcv->id_po = $po->id_po;
         $rcv->kode_rcv = $request->kode_rcv;
+        $rcv->tanggal_rcv = $request->tanggal_rcv;
+        // NYIMPEN GRAND TOTAL
         $temp = 0;
         $retur = 0;
+
         foreach($request->sparepart as $key=>$item){
+            // NAMBAH STOCK SPAREPART
             $sparepart = Sparepart::findOrFail($item['id_sparepart']);
             $sparepart->stock = $sparepart->stock + $item['qty_rcv'];
             $sparepart->save();
+
+            // KARTU GUDANG
+            $kartu_gudang = new Kartugudang;
+            $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_mauk +$item['qty_rcv'];
+            $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
+            $kartu_gudang->id_rcv = $rcv->id_rcv;
+            $kartu_gudang->tanggal_transaksi = $rcv->tanggal_rcv;
+            $kartu_gudang->jenis_kartu = 'Receiving';
+            $kartu_gudang->save();
+
+            // NGAMBIL TOTAL
             $temp = $temp + $item['harga_diterima'];
             $retur = $retur + $item['qty_retur'];
         }
 
+        // CONDITION STATUS RETUR
         if($retur > 1){
             $rcv->status_retur = 'Retur';
             $po->status ='Diterima';
@@ -142,7 +159,6 @@ class RcvController extends Controller
             $rcv->status = 'aktif';
             $rcv->status_bayar = 'Pending';
             $rcv->save();
-
 
             $rcv->Detailrcv()->sync($request->sparepart);
 

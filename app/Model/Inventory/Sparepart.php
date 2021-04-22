@@ -2,6 +2,7 @@
 
 namespace App\Model\Inventory;
 
+use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Purchase\POdetail;
 use App\Model\Inventory\Stockopname\Opname;
@@ -69,6 +70,7 @@ class Sparepart extends Model
     public function Opname(){
         return $this->belongsToMany(Opname::class, 'tb_inventory_detopname','id_sparepart','id_opname');
     }
+
 
     public static function getId(){
         return $getId = DB::table('tb_inventory_master_sparepart')->orderBy('id_sparepart','DESC')->take(1)->get();

@@ -62,6 +62,11 @@
                             <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
                                 cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
+                                    <tr>
+                                        <th colspan="3" class="text-center">Transaksi</th>
+                                        <th colspan="3" class="text-center">Jumlah</th>
+                                        <th colspan="1" class="text-center">Saldo</th>
+                                    </tr>
                                     <tr role="row">
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-sort="ascending"
@@ -72,7 +77,7 @@
                                             style="width: 80px;">Tanggal Transaksi</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 80px;">Jenis Transaksi</th>
+                                            style="width: 80px;">Kode Transaksi</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
                                             style="width: 70px;">Masuk</th>
@@ -81,13 +86,32 @@
                                             style="width: 70px;">Keluar</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 40px;">Saldo</th>
+                                            style="width: 20px;">Satuan</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 20px;">Satuan</th>
+                                            style="width: 40px;">Saldo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse ($kartu_gudang as $item)
+                                    <tr role="row" class="odd">
+                                        <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                        <td>{{ $item->tanggal_transaksi }}</td>
+                                        <td>@if ($item->jenis_kartu == 'Receiving')
+                                            {{ $item->Rcv->kode_rcv }}
+                                            @elseif ($item->jenis_kartu == 'Retur')
+                                            {{ $item->Retur->kode_retur }}
+                                            @else
+                                        @endif
+                                        </td>
+                                        <td>{{ $item->jumlah_masuk }}</td>
+                                        <td>{{ $item->jumlah_keluar }}</td>
+                                        <td>{{ $item->Sparepart->Konversi->satuan }}</td>
+                                        <td>{{ $item->jumlah_masuk }}</td>
+                                    </tr>
+                                    @empty
+                                        
+                                    @endforelse
                                    
                                 </tbody>
                             </table>

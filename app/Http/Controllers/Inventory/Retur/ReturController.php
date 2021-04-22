@@ -7,6 +7,7 @@ use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Rcv\Rcvdetail;
 use App\Model\Inventory\Retur\Retur;
 use App\Model\Inventory\Sparepart;
+use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
@@ -119,11 +120,20 @@ class ReturController extends Controller
         $retur->id_supplier = $rcv->id_supplier;
         $retur->id_rcv = $rcv->id_rcv;
         $retur->kode_retur = $request->kode_retur;
+        $retur->tanggal_retur = $request->tanggal_retur;
 
         foreach($request->sparepart as $key=>$item){
             $sparepart = Sparepart::findOrFail($item['id_sparepart']);
             $sparepart->stock = $sparepart->stock + $item['qty_retur'];
             $sparepart->save();
+
+            $kartu_gudang = new Kartugudang;
+            $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_mauk +$item['qty_retur'];
+            $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
+            $kartu_gudang->id_retur = $retur->id_retur;
+            $kartu_gudang->tanggal_transaksi = $retur->tanggal_retur;
+            $kartu_gudang->jenis_kartu = 'Retur';
+            $kartu_gudang->save();
         }
 
         $rcv->status_retur ='Tidak Retur';
