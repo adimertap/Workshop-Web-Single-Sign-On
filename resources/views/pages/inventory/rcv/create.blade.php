@@ -194,10 +194,10 @@
                                                             {{ $item->Merksparepart->merk_sparepart }}</td>
                                                         <td class="qty">{{ $item->pivot->qty }}</td>
                                                         <td class="satuan">{{ $item->Konversi->satuan }}</td>
-                                                        <td>@if ($item->Hargasparepart == '')
+                                                        <td>@if ($item->pivot->harga_satuan == '')
                                                             <div class="small text-muted d-none d-md-block">Tidak ada data</div>
                                                                 @else
-                                                            <div class="harga_beli">Rp.{{ number_format($item->Hargasparepart->harga_beli,2,',','.') }}/{{ $item->Konversi->satuan }}</div>
+                                                            <div class="harga_beli">Rp.{{ number_format($item->pivot->harga_satuan,2,',','.') }}/{{ $item->Konversi->satuan }}</div>
                                                                 @endif
                                                         </td>
                                                         <td>
@@ -275,6 +275,13 @@
                                                         <span>{{ $rcv->tanggal_rcv }}</span></div>
                                                 </td>
                                             </tr>
+                                            <tr class="border-bottom">
+                                                <td>
+                                                    <div class="font-weight-bold">Nomor DO/Delivery Order</div>
+                                                    <div class="small text-muted d-none d-md-block">
+                                                        <span>{{ $rcv->no_do }}</span></div>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -303,11 +310,19 @@
                                             </tr>
                                             <tr class="border-bottom">
                                                 <td>
-                                                    <div class="font-weight-bold">Nomor DO/Delivery Order</div>
+                                                    <div class="font-weight-bold">No. Telp Supplier</div>
                                                     <div class="small text-muted d-none d-md-block">
-                                                        <span>{{ $rcv->no_do }}</span></div>
+                                                        <span>{{ $rcv->Supplier->telephone }}</span></div>
                                                 </td>
                                             </tr>
+                                            <tr class="border-bottom">
+                                                <td>
+                                                    <div class="font-weight-bold">Alamat Supplier</div>
+                                                    <div class="small text-muted d-none d-md-block">
+                                                        <span>{{ $rcv->Supplier->alamat_supplier }}</span></div>
+                                                </td>
+                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -377,7 +392,7 @@
                                                         rowspan="1" colspan="1"
                                                         aria-label="Salary: activate to sort column ascending"
                                                         style="width: 80px;">
-                                                        Lokasi Rak</th>
+                                                        Jumlah Retur</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Salary: activate to sort column ascending"
@@ -441,35 +456,28 @@
                             <label class="small text-muted line-height-normal">
                                 Qty Pesanan: {{ $item->pivot->qty }}
                         </div>
-
                     </div>
                     <hr class="my-4">
                     <div class="form-group">
-                        <label class="small mb-1" for="qty_rcv">Masukan Quantity Sparepart diterima</label>
+                        <label class="small mb-1 mr-1" for="qty_rcv">Masukan Quantity Sparepart diterima</label><span
+                        class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="qty_rcv" type="number" id="qty_rcv"
                             placeholder="Input Quantity diterima" value="{{ old('qty_rcv') }}"></input>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="id_rak">Penempatan Sparepart</label>
-                            <select class="form-control" name="id_rak" id="id_rak"
-                                class="form-control @error('id_rak') is-invalid @enderror">
-                                <option>Pilih Rak</option>
-                                @foreach ($rak as $penempatanrak)
-                                <option value="{{ $penempatanrak->id_rak }}">{{ $penempatanrak->nama_rak }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                            <label class="small mb-1" for="qty_retur">Jumlah Retur</label>
+                            <input class="form-control" name="qty_retur" type="number"
+                                placeholder="Input Jumlah Retur" value="{{ old('qty_retur') }}">
+                            </input>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="harga_diterima">Harga diterima</label>
                             <input class="form-control harga_diterima" name="harga_diterima" type="number"
-                                placeholder="Input Harga Beli diterima">
+                                placeholder="Input Harga Beli diterima" value="{{ $item->pivot->harga_satuan }}">
                             </input>
-                            <div class="small">Detail Harga
-                                <span id="detailhargaditerima" class="detailhargaditerima"></span>
+                            <div class="small text-primary">Detail Harga :
+                                <span id="detailhargaditerima" class="detailhargaditerima">Rp.{{ number_format($item->pivot->harga_satuan,2,',','.')}}</span>
                             </div>
                         </div>
                     </div>
@@ -546,11 +554,10 @@
             var form = $('#form-' + sparepart[i].id_sparepart)
             var qty_po = $($('#item-'+ sparepart[i].id_sparepart).find('.qty')[0]).html()
             var qty_rcv = form.find('input[name="qty_rcv"]').val()
+            var qty_retur = form.find('input[name="qty_retur"]').val()
             var keterangan = form.find('textarea[name="keterangan"]').val()
             var harga_diterima = form.find('input[name="harga_diterima"]').val()
-            var id_rak = $('#id_rak').val()
          
-
             if (qty_rcv == 0 | qty_rcv == '') {
                 continue
             } else {
@@ -560,9 +567,9 @@
                     id_rcv: id_rcv,
                     qty_rcv: qty_rcv,
                     qty_po:qty_po,
+                    qty_retur: qty_retur,
                     keterangan: keterangan,
                     harga_diterima: harga_diterima,
-                    id_rak: id_rak
                 } 
                
                 dataform2.push(obj)
@@ -610,11 +617,12 @@
             style: 'currency',
             currency: 'IDR'
         }).format(harga_diterima)
-        var id_rak = $('#id_rak').find('option:selected')
-        var nama_rak = id_rak.text()
+        var qty_retur = form.find('input[name="qty_retur"]').val()
+        // var id_rak = $('#id_rak').find('option:selected')
+        // var nama_rak = id_rak.text()
         var keterangan = form.find('textarea[name="keterangan"]').val()
 
-        if (qty_rcv == 0 | qty_rcv == '' | nama_rak == 'Pilih Rak') {
+        if (qty_rcv == 0 | qty_rcv == '') {
             alert('Data Inputan Ada yang belum terisi')
         } else {
             alert('Berhasil Menambahkan Sparepart')
@@ -636,7 +644,7 @@
 
             $('#dataTablekonfirmasi').DataTable().row.add([
                 kode_sparepart, kode_sparepart, nama_sparepart, merk_sparepart, satuan, qty,
-                qty_rcv, harga_diterima_fix, nama_rak, keterangan
+                qty_rcv, harga_diterima_fix, qty_retur, keterangan
             ]).draw();
         }
     }

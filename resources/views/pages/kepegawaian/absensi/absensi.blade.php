@@ -22,6 +22,8 @@
         </div>
     </div>
 </main>
+
+@if ($jumlah_absensi != $jumlah_pegawai)
 <div class="container-fluid">
     <div class="alert alert-danger alert-icon" role="alert">
         <div class="alert-icon-aside">
@@ -34,6 +36,22 @@
         </div>
     </div>
 </div>
+@else
+<div class="container-fluid">
+    <div class="alert alert-success alert-icon" role="alert">
+        <div class="alert-icon-aside">
+            <i class="fas fa-calendar-check"></i>
+        </div>
+        <div class="alert-icon-content">
+            <h6 class="alert-heading">Informasi Hari ini!</h6>
+            Anda Telah Melakukan Absensi Kepada Seluruh pegawai
+           
+        </div>
+    </div>
+</div>
+@endif
+
+
 <!-- Main page content-->
 <div class="container-fluid">
     <!-- Content Row -->

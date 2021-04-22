@@ -27,6 +27,7 @@ class RcvController extends Controller
         $rcv = Rcv::with([
             'PO','Pegawai','Supplier'
         ])->get();
+        
 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
@@ -77,7 +78,7 @@ class RcvController extends Controller
      */
     public function show($id_rcv)
     {
-        $rcv = Rcv::with('Detail.Sparepart.Rak')->findOrFail($id_rcv);
+        $rcv = Rcv::with('PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart.Hargasparepart')->findOrFail($id_rcv);
 
         return view('pages.inventory.rcv.detail')->with([
             'rcv' => $rcv
@@ -104,9 +105,8 @@ class RcvController extends Controller
         $pegawai = Pegawai::all();
         $supplier = Supplier::all();
         $po = PO::where([['status', '=', 'Dikirim']])->get();
-        $rak = Rak::all();
         
-        return view('pages.inventory.rcv.create', compact('rcv','pegawai','po','supplier', 'kode_rcv','rak'));
+        return view('pages.inventory.rcv.create', compact('rcv','pegawai','po','supplier', 'kode_rcv'));
     }
 
     /**
@@ -125,25 +125,47 @@ class RcvController extends Controller
         $rcv->id_po = $po->id_po;
         $rcv->kode_rcv = $request->kode_rcv;
         $temp = 0;
+        $retur = 0;
         foreach($request->sparepart as $key=>$item){
             $sparepart = Sparepart::findOrFail($item['id_sparepart']);
             $sparepart->stock = $sparepart->stock + $item['qty_rcv'];
             $sparepart->save();
             $temp = $temp + $item['harga_diterima'];
+            $retur = $retur + $item['qty_retur'];
         }
 
-        $po->status ='Diterima';
-        $po->save();
-        $rcv->total_pembayaran = $temp;
-        $rcv->status = 'aktif';
-        $rcv->status_bayar = 'Pending';
-        $rcv->save();
+        if($retur > 1){
+            $rcv->status_retur = 'Retur';
+            $po->status ='Diterima';
+            $po->save();
+            $rcv->total_pembayaran = $temp;
+            $rcv->status = 'aktif';
+            $rcv->status_bayar = 'Pending';
+            $rcv->save();
 
 
-        $rcv->Detailrcv()->sync($request->sparepart);
+            $rcv->Detailrcv()->sync($request->sparepart);
 
 
-        return $request;
+            return $request;
+        }
+        else{
+            $rcv->status_retur = 'Tidak Retur';
+            $po->status ='Diterima';
+            $po->save();
+            $rcv->total_pembayaran = $temp;
+            $rcv->status = 'aktif';
+            $rcv->status_bayar = 'Pending';
+            $rcv->save();
+
+
+            $rcv->Detailrcv()->sync($request->sparepart);
+
+
+            return $request;
+        }
+
+        
     }
 
     /**

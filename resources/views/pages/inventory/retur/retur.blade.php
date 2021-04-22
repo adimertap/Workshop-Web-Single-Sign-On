@@ -26,6 +26,47 @@
 
 <div class="container-fluid">
     <div class="card mb-4">
+        <div class="card card-header-actions h-100">
+            <div class="card-header">
+                Data Receiving dengan Retur
+            </div>
+            <div class="card-body">
+                <div class="timeline timeline-xs">
+                    <!-- Timeline Item 1-->
+                    @forelse ($rcv as $item)
+                    <div class="timeline-item">
+                        <div class="timeline-item-marker">
+                            <div class="timeline-item-marker-text">New</div>
+                            <div class="timeline-item-marker-indicator bg-green"></div>
+                        </div>
+                        <div class="timeline-item-content">
+                            Receiving dengan Retur! {{ $item->tanggal_rcv }}
+                            <a class="font-weight-bold text-dark" href="{{ route('Rcv.show',$item->id_rcv) }}"
+                                data-toggle="tooltip" data-placement="top" title=""
+                                data-original-title="Cek Detail Receiving">Order {{ $item->kode_rcv }}</a>
+                            Pada Supplier {{ $item->Supplier->nama_supplier }}
+                        </div>
+                    </div>
+                    @empty
+                    <div class="timeline-item">
+                        <div class="timeline-item-marker">
+                            <div class="timeline-item-marker-text">Empty</div>
+                            <div class="timeline-item-marker-indicator bg-red"></div>
+                        </div>
+                        <div class="timeline-item-content">
+                            Sementara Tidak ada Data Receiving dengan Retur
+                        </div>
+                    </div>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="card mb-4">
         <div class="card card-header-actions">
             <div class="card-header ">List Retur
                 <a href="" class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">
@@ -171,21 +212,21 @@
                     </hr>
                     <div class="row">
                         <div class="form-group col-md-7">
-                            <label class="small mb-1" for="id_supplier">Pilih Supplier</label>
+                            <label class="small mb-1" for="id_Rcv">Pilih Receiving</label>
                             <div class="input-group input-group-joined">
-                                <input class="form-control" type="text" placeholder="Pilih Supplier" aria-label="Search"
-                                    id="detailsupplier">
+                                <input class="form-control" type="text" placeholder="Pilih Receiving" aria-label="Search"
+                                    id="detailrcv">
                                 <div class="input-group-append">
                                     <a href="" class="input-group-text" type="button" data-toggle="modal"
-                                        data-target="#Modalsupplier">
+                                        data-target="#Modalrcv">
                                         <i class="fas fa-folder-open"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group col-md-5">
-                            <label class="small mb-1" for="no_telp">No. Telp</label>
-                            <input class="form-control" id="detailtelp" type="text" name="no_telp" readonly>
+                            <label class="small mb-1" for="id_supplier">Supplier</label>
+                            <input class="form-control" id="detailsupplier" type="text" name="id_supplier" readonly>
                         </div>
                     </div>
                     <div class="form-group">
@@ -207,12 +248,12 @@
 </div>
 
 {{-- MODAL PO --}}
-<div class="modal fade" id="Modalsupplier" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+<div class="modal fade" id="Modalrcv" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content ">
             <div class="modal-header bg-light ">
-                <h5 class="modal-title">Pilih Suppleir</h5>
+                <h5 class="modal-title">Pilih Receiving</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
@@ -221,29 +262,29 @@
                     <table class="table table-borderless mb-0">
                         <thead class="border-bottom">
                             <tr class="small text-uppercase text-muted">
-                                <th scope="col">Nama Supplier</th>
+                                <th scope="col">Kode Rcv</th>
+                                <th scope="col">Supplier</th>
                                 <th scope="col">Telephone</th>
-                                <th scope="col">Alamat</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($supplier as $item)
-                            <tr id="item-{{ $item->id_supplier }}" class="border-bottom">
+                            @forelse ($rcv as $item)
+                            <tr id="item-{{ $item->id_rcv }}" class="border-bottom">
                                 <td>
-                                    <div class="font-weight-bold nama_supplier">{{ $item->nama_supplier }}</div>
+                                    <div class="font-weight-bold kode_rcv">{{ $item->kode_rcv }}</div>
                                 </td>
                                 <td>
-                                    <div class="small text-muted d-none d-md-block telephone">{{ $item->telephone }}
+                                    <div class="small text-muted d-none d-md-block nama_supplier">{{ $item->Supplier->nama_supplier }}
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="small text-muted d-none d-md-block alamat_supplier">
-                                        {{ $item->alamat_supplier }}</div>
+                                    <div class="small text-muted d-none d-md-block telephone">
+                                        {{ $item->Supplier->telephone }}</div>
                                 </td>
                                 <td>
                                     <button class="btn btn-success btn-sm btn-datatable"
-                                        onclick="tambahsupplier(event, {{ $item->id_supplier }})" type="button"
+                                        onclick="tambahrcv(event, {{ $item->id_rcv }})" type="button"
                                         data-dismiss="modal">Tambah
                                     </button>
                                 </td>
@@ -251,7 +292,7 @@
                             @empty
                             <tr>
                                 <td colspan="7" class="tex-center">
-                                    Data Supplier Kosong
+                                    Data Receiving dengan Retur Kosong
                                 </td>
                             </tr>
                             @endforelse
@@ -294,30 +335,31 @@
 
 
 <script>
-    function tambahsupplier(event, id_supplier) {
+    function tambahrcv(event, id_supplier) {
         var data = $('#item-' + id_supplier)
         var _token = $('#form1').find('input[name="_token"]').val()
         var nama_supplier = $(data.find('.nama_supplier')[0]).text()
-        var no_telp = $(data.find('.telephone')[0]).text()
+        var kode_rcv = $(data.find('.kode_rcv')[0]).text()
         alert('Berhasil Menambahkan Data Supplier')
         // $("#toast").toast("show");
 
         $('#detailsupplier').val(nama_supplier)
-        $('#detailtelp').val(no_telp)
-        console.log(nama_supplier);
+        $('#detailrcv').val(kode_rcv)
     }
 
     function submit1() {
         var _token = $('#form1').find('input[name="_token"]').val()
         var nama_supplier = $('#detailsupplier').val()
+        var kode_rcv = $('#detailrcv').val()
         var tanggal_retur = $('#tanggal_retur').val()
         var data = {
             _token: _token,
             nama_supplier: nama_supplier,
-            tanggal_retur: tanggal_retur
+            tanggal_retur: tanggal_retur,
+            kode_rcv: kode_rcv,
         }
 
-        if (nama_supplier == 0 | nama_supplier == '' | tanggal_retur == 0 | tanggal_retur == '' ) {
+        if (kode_rcv == 0 | kode_rcv == '' | tanggal_retur == 0 | tanggal_retur == '' ) {
             var alert = $('#alertdatakosong').show()
         } else {
             $.ajax({

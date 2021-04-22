@@ -18,7 +18,6 @@ class Returdetail extends Model
         'id_retur',
         'id_sparepart',
         'qty_retur',
-        'harga_beli',
         'keterangan',
 
     ];

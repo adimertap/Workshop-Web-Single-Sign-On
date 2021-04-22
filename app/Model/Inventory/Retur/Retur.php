@@ -23,7 +23,6 @@ class Retur extends Model
         'id_rcv',
         'id_pegawai',
         'id_supplier',
-        'id_akun',
         'kode_retur',
         'tanggal_retur',
         'status',
@@ -39,7 +38,7 @@ class Retur extends Model
 
     public function Detailretur()
     {
-        return $this->belongsToMany(Sparepart::class,'tb_inventory_detretur','id_retur','id_sparepart');
+        return $this->belongsToMany(Sparepart::class,'tb_inventory_detretur','id_retur','id_sparepart')->withPivot('qty_retur','keterangan');
     }
 
     public function Rcv()

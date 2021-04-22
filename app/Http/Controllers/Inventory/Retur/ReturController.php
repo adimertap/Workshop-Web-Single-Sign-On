@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Inventory\Retur;
 
 use App\Http\Controllers\Controller;
-use App\Model\Accounting\Akun;
 use App\Model\Inventory\Rcv\Rcv;
+use App\Model\Inventory\Rcv\Rcvdetail;
 use App\Model\Inventory\Retur\Retur;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
@@ -22,16 +22,16 @@ class ReturController extends Controller
     public function index()
     {
         $retur = Retur::with([
-            'Rcv','Pegawai','Supplier','Akun'
+            'Rcv.Detailrcv','Pegawai','Supplier'
         ])->get();
-        
+
         $supplier = Supplier::all();
 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
-
-
-        return view('pages.inventory.retur.retur', compact('retur','supplier','today','tanggal'));
+        $rcv = Rcv::where([['status_retur', '=', 'Retur']])->get();
+        
+        return view('pages.inventory.retur.retur', compact('retur','supplier','today','tanggal','rcv'));
     }
 
     /**
@@ -52,10 +52,12 @@ class ReturController extends Controller
      */
     public function store(Request $request)
     {
-        $supplier = Supplier::where('nama_supplier',$request->nama_supplier)->first();
-        $id_supplier = $supplier->id_supplier;
+        $rcv = Rcv::where('kode_rcv',$request->kode_rcv)->first();
+        $id_rcv = $rcv->id_rcv;
+        $id_supplier = $rcv->id_supplier;
 
         $retur = Retur::create([
+            'id_rcv'=>$id_rcv,
             'id_supplier'=>$id_supplier,
             'tanggal_retur'=>$request->tanggal_retur,
         ]);
@@ -71,7 +73,7 @@ class ReturController extends Controller
      */
     public function show($id_retur)
     {
-        $retur = Retur::with('Detail.Sparepart')->findOrFail($id_retur);
+        $retur = Retur::with('Rcv.Detailrcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur.Hargasparepart')->findOrFail($id_retur);
 
         return view('pages.inventory.retur.detail')->with([
             'retur' => $retur
@@ -87,7 +89,7 @@ class ReturController extends Controller
     public function edit($id)
     {
         $retur = Retur::with([
-            'Rcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Akun','Detailretur.Hargasparepart'
+            'Rcv.Detailrcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur.Hargasparepart'
         ])->find($id);
 
         // Generate Code Manggil Fungsi getId()
@@ -97,10 +99,9 @@ class ReturController extends Controller
 
         // Panggil
         $supplier = Supplier::all();
-        $akun = Akun::all();
         $pegawai = Pegawai::all();
 
-        return view('pages.inventory.retur.create', compact('retur','pegawai','supplier','akun','kode_retur','sparepart'));
+        return view('pages.inventory.retur.create', compact('retur','pegawai','supplier','kode_retur','sparepart'));
     }
 
     /**
@@ -110,9 +111,30 @@ class ReturController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_retur)
     {
-        //
+        $rcv = Rcv::where('kode_rcv', $request->kode_rcv)->first();
+        $retur = Retur::findOrFail($id_retur);
+        $retur->id_pegawai = $request->id_pegawai;
+        $retur->id_supplier = $rcv->id_supplier;
+        $retur->id_rcv = $rcv->id_rcv;
+        $retur->kode_retur = $request->kode_retur;
+
+        foreach($request->sparepart as $key=>$item){
+            $sparepart = Sparepart::findOrFail($item['id_sparepart']);
+            $sparepart->stock = $sparepart->stock + $item['qty_retur'];
+            $sparepart->save();
+        }
+
+        $rcv->status_retur ='Tidak Retur';
+        $rcv->save();
+        $retur->status = 'Aktif';
+        $retur->save();
+
+
+        $retur->Detailretur()->sync($request->sparepart);
+        return $request;
+       
     }
 
     /**

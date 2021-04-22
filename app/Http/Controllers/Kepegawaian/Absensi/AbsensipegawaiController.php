@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Kepegawaian\Absensi;
 
 use App\Http\Controllers\Controller;
+use App\Model\Inventory\Retur\Retur;
 use App\Model\Kepegawaian\Absensi;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
@@ -21,12 +22,16 @@ class AbsensipegawaiController extends Controller
             'Pegawai',
         ])->whereDate('tanggal_absensi', Carbon::today())->get();
 
+        $jumlah_absensi = Absensi::with([
+            'Pegawai',
+        ])->whereDate('tanggal_absensi', Carbon::today())->count();
+
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
         $pegawai = Pegawai::all();
 
-        return view('pages.kepegawaian.absensi.absensi',['jumlah_pegawai'=> Pegawai::count()], compact('absensi','pegawai','today','tanggal'));
+        return view('pages.kepegawaian.absensi.absensi',['jumlah_pegawai'=> Pegawai::count()], compact('absensi','jumlah_absensi','pegawai','today','tanggal'));
     }
 
     /**

@@ -25,7 +25,7 @@
             </div>
         </div>
     </header>
-
+   
 
     <div class="container mt-n10">
         <div class="card">
@@ -80,6 +80,11 @@
                                                 placeholder="Input Kode Retur" value="{{ $kode_retur }}" readonly>
                                         </div>
                                         <div class="form-group col-md-4">
+                                            <label class="small mb-1" for="kode_rcv">Kode Receiving</label>
+                                            <input class="form-control" id="kode_rcv" type="text" name="kode_rcv"
+                                                placeholder="Input Kode Retur" value="{{ $retur->Rcv->kode_rcv }}" readonly>
+                                        </div>
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="id_pegawai">Pegawai</label>
                                             <select class="form-control" name="id_pegawai" id="id_pegawai"
                                                 class="form-control @error('id_supplier') is-invalid @enderror">
@@ -92,6 +97,9 @@
                                             @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
+                                        
+                                    </div>
+                                    <div class="form-row">
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1" for="tanggal_retur">Tanggal Retur</label>
                                             <input class="form-control" id="tanggal_retur" type="date" name="tanggal_retur"
@@ -100,8 +108,6 @@
                                             @error('tanggal_retur')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
-                                    </div>
-                                    <div class="form-row">
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1" for="id_supplier">Supplier</label>
                                             <input class="form-control" id="detailsupplier" type="text" name="id_supplier"
@@ -113,11 +119,6 @@
                                             <input class="form-control" id="detailtelp" type="text" name="notelp"
                                                 placeholder="Supplier" value="{{ $retur->Supplier->telephone }}"
                                                 readonly>
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label class="small mb-1" for="status">Status</label>
-                                            <input class="form-control" id="status" type="text" name="status"
-                                                value="Aktif" readonly>
                                         </div>
                                     </div>
                                     <hr class="my-4" />
@@ -162,11 +163,19 @@
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Start date: activate to sort column ascending"
-                                                            style="width: 50px;">Merk Sparepart</th>
+                                                            style="width: 40px;">Merk Sparepart</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Salary: activate to sort column ascending"
-                                                            style="width: 60px;">Satuan</th>
+                                                            style="width: 30px;">Satuan</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Salary: activate to sort column ascending"
+                                                            style="width: 30px;">Qty Retur</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Salary: activate to sort column ascending"
+                                                            style="width: 90px;">Keterangan</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Actions: activate to sort column ascending"
@@ -174,7 +183,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @forelse ($retur->Supplier->Sparepart as $item)
+                                                    @forelse ($retur->Rcv->Detailrcv as $item)
                                                     <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
                                                         <th scope="row" class="small" class="sorting_1">
                                                             {{ $loop->iteration}}</th>
@@ -186,6 +195,8 @@
                                                         <td class="merk_sparepart">
                                                             {{ $item->Merksparepart->merk_sparepart }}</td>
                                                         <td class="satuan">{{ $item->Konversi->satuan }}</td>
+                                                        <td class="qty_retur_awal">{{ $item->pivot->qty_retur }}</td>
+                                                        <td class="ketarangan">{{ $item->pivot->keterangan }}</td>
                                                         <td>
                                                             <a href="" class="btn btn-success btn-datatable"
                                                                 type="button" data-toggle="modal"
@@ -327,11 +338,6 @@
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 50px;">
-                                                        Kode Sparepart</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
                                                         style="width: 90px;">
                                                         Sparepart</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
@@ -346,18 +352,18 @@
                                                         Merk Sparepart</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
+                                                        aria-label="Salary: activate to sort column ascending"
+                                                        style="width: 40px;">
+                                                        Satuan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
                                                         aria-label="Start date: activate to sort column ascending"
                                                         style="width: 70px;">
                                                         Jumlah Retur</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Salary: activate to sort column ascending"
-                                                        style="width: 80px;">
-                                                        Satuan</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Salary: activate to sort column ascending"
-                                                        style="width: 80px;">
+                                                        style="width: 100px;">
                                                         Keterangan</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
@@ -447,7 +453,7 @@
 
 
 {{-- MODAL TAMBAH QTY SPAREPART --}}
-@forelse ($retur->Supplier->Sparepart as $item)
+@forelse ($retur->Rcv->Detailrcv as $item)
 <div class="modal fade" id="Modaltambah-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -459,39 +465,25 @@
             </div>
             <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
                 <div class="modal-body">
-                    <h6>Detail Jumlah Retur</h6>
-                    <hr class="my-4">
-                    <div class="form-group">
-                        <label class="small mb-1" for="qty_rcv">Masukan Quantity Retur</label>
-                        <input class="form-control" name="qty_rcv" type="number" id="qty_rcv"
-                            placeholder="Input Quantity diterima" value="{{ old('qty_rcv') }}"></input>
+                    <div class="small mb-2">
+                        <span class="font-weight-500 text-primary">{{ $item->nama_sparepart }}</span>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="id_rak">Penempatan Sparepart</label>
-                            <select class="form-control" name="id_rak" id="id_rak"
-                                class="form-control @error('id_rak') is-invalid @enderror">
-                                <option>Pilih Rak</option>
-                                @foreach ($rak as $penempatanrak)
-                                <option value="{{ $penempatanrak->id_rak }}">{{ $penempatanrak->nama_rak }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1 harga_diterima" for="harga_diterima">Harga diterima</label>
-                            <input class="form-control" name="harga_diterima" type="number" id="harga_diterima"
-                                placeholder="Input Harga Beli diterima">
-                            </input>
-                            <div class="small">Detail Harga
-                                <span id="detailhargaditerima"></span>
+                        <div class="col-md-7">
+                            <div class="d-flex flex-column font-weight-bold">
+                                <label class="small text-muted line-height-normal">
+                                    Qty Retur saat Receiving: {{ $item->pivot->qty_retur }}
                             </div>
                         </div>
                     </div>
+                    <hr class="my-4">
                     <div class="form-group">
-                        <label class="small mb-1" for="keterangan">Masukan Keterangan Penerimaan</label>
+                        <label class="small mb-1" for="qty_retur">Masukan Quantity Retur</label>
+                        <input class="form-control" name="qty_retur" type="number" id="qty_retur"
+                            placeholder="Input Quantity Retur" value="{{ old('qty_retur') }}"></input>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="keterangan">Masukan Keterangan Retur</label>
                         <textarea class="form-control" name="keterangan" type="text" id="keterangan"
                             placeholder="Input Keterangan diterima">{{ old('keterangan') }}</textarea>
                     </div>
@@ -508,31 +500,31 @@
 @empty
 @endforelse
 
-{{-- 
-@forelse ($rcv->PO->Detailsparepart as $sparepart)
+
+@forelse ($retur->Rcv->Detailrcv as $sparepart)
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-success-soft">
-                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Form Penerimaan</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Formulir Retur</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <div class="form-group">Apakah Form Receiving dengan kode {{ $kode_rcv }} yang Anda inputkan sudah
+                <div class="form-group">Apakah Form Retur dengan kode {{ $kode_retur }} yang Anda inputkan sudah
                     benar?</div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary" type="button"
-                    onclick="tambahrcv(event,{{ $sparepart }})">Ya!Sudah</button>
+                    onclick="tambahretur(event,{{ $retur->Rcv->Detailrcv }},{{ $retur->id_retur }})">Ya!Sudah</button>
             </div>
         </div>
     </div>
 </div>
 @empty
-@endforelse --}}
+@endforelse
 
 <template id="template_delete_button">
     <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
@@ -547,85 +539,33 @@
 </template>
 
 <script>
-     $(document).ready(function () {
-        var table = $('#dataTableSparepart').DataTable()
-
-        $('#id_pegawai').on('change', function () {
-            var select = $(this).find('option:selected')
-            var textpegawai = select.text()
-            if (textpegawai == 'Pilih Pegawai') {
-                $('#detailpegawai').html('');
-            } else {
-                $('#detailpegawai').html(textpegawai);
-            }
-        })
-
-    })
-
-
-    // function tambahsupplier(event, id_supplier) {
-    //     var data = $('#supplier-' + id_supplier)
-    //     // var _token = $('#form1').find('input[name="_token"]').val()
-    //     var nama_supplier = $(data.find('.nama_supplier')[0]).text()
-    //     var no_telp = $(data.find('.telephone')[0]).text()
-    //     alert('Berhasil Menambahkan Data Supplier')
-    //     // $("#toast").toast("show");
-
-    //     $('#detailsupplier').val(nama_supplier)
-    //     $('#detailtelp').val(no_telp)
-        
-    //     $.ajax({
-    //             method: 'get',
-    //             url: '/inventory/supplier/'+ id_supplier + '/sparepart',
-    //             success: function (response) {
-    //                 console.log(response.sparepart)
-    //                     $('#dataTable').DataTable().rows.add(response.sparepart).draw();
-    //             },
-    //             error: function(response){
-    //                 console.log(response)
-    //             }
-    //         });
-    // }
-
-
-
-</script>
-
-
-
-{{-- <script>
-    function tambahrcv(event, sparepart) {
+     function tambahretur(event, sparepart, id_retur) {
         event.preventDefault()
         var form1 = $('#form1')
+        var kode_retur = form1.find('input[name="kode_retur"]').val()
         var kode_rcv = form1.find('input[name="kode_rcv"]').val()
-        var kode_po = form1.find('input[name="kode_po"]').val()
-        var no_do = form1.find('input[name="no_do"]').val()
         var id_supplier = $('#id_supplier').val()
         var id_pegawai = $('#id_pegawai').val()
-        var tanggal_rcv = form1.find('input[name="tanggal_rcv"]').val()
+        var tanggal_retur = form1.find('input[name="tanggal_retur"]').val()
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
-      
 
         for (var i = 0; i < sparepart.length; i++) {
             var form = $('#form-' + sparepart[i].id_sparepart)
-            var qty_rcv = form.find('input[name="qty_rcv"]').val()
-            var keterangan = form.find('input[name="keterangan"]').val()
-            var harga_diterima = form.find('input[name="harga_diterima"]').val()
-            var id_rak = $('#id_rak').val()
-
-            console.log(qty_rcv)
-            if (qty_rcv == 0 | qty_rcv == '') {
+            var qty_retur = form.find('input[name="qty_retur"]').val()
+            var keterangan = form.find('textarea[name="keterangan"]').val()
+         
+            if (qty_retur == 0 | qty_retur == '') {
                 continue
             } else {
                 var id_sparepart = sparepart[i].id_sparepart
                 var obj = {
                     id_sparepart: id_sparepart,
-                    qty_rcv: qty_rcv,
+                    id_retur: id_retur,
+                    qty_retur: qty_retur,
                     keterangan: keterangan,
-                    harga_diterima: harga_diterima,
-                    id_rak: id_rak
-                }
+                } 
+               
                 dataform2.push(obj)
             }
         }
@@ -635,11 +575,11 @@
         } else {
             var data = {
                 _token: _token,
+                kode_retur: kode_retur,
                 kode_rcv: kode_rcv,
-                kode_po: kode_po,
                 id_supplier: id_supplier,
                 id_pegawai: id_pegawai,
-                tanggal_rcv: tanggal_rcv,
+                tanggal_retur: tanggal_retur,
                 sparepart: dataform2
             }
 
@@ -647,78 +587,23 @@
 
             $.ajax({
                 method: 'put',
-                url: '/inventory/receiving',
+                url: '/inventory/retur/'+ id_retur,
                 data: data,
                 success: function (response) {
-                    window.location.href = '/inventory/receiving'
+                    window.location.href = '/inventory/retur'
 
                 },
+                error: function(response){
+                    console.log(response)
+                }
             });
         }
 
         // dataTablekonfirmasi
     }
 
-
-    function konfirmsparepart(event, id_sparepart) {
-        var form = $('#form-' + id_sparepart)
-        var qty_rcv = form.find('input[name="qty_rcv"]').val()
-        var harga_diterima = form.find('input[name="harga_diterima"]').val()
-        var harga_diterima_fix = new Intl.NumberFormat('id', {
-            style: 'currency',
-            currency: 'IDR'
-        }).format(harga_diterima)
-        var id_rak = $('#id_rak').find('option:selected')
-        var nama_rak = id_rak.text()
-        var keterangan = form.find('textarea[name="keterangan"]').val()
-
-        if (qty_rcv == 0 | qty_rcv == '' | nama_rak == 'Pilih Rak') {
-            alert('Data Inputan Ada yang belum terisi')
-        } else {
-            alert('Berhasil Menambahkan Sparepart')
-            var data = $('#item-' + id_sparepart)
-            var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
-            var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
-            var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
-            var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
-            var satuan = $(data.find('.satuan')[0]).text()
-            var qty = $(data.find('.qty')[0]).text()
-            var harga_beli = $(data.find('.harga_beli')[0]).text()
-            var template = $($('#template_delete_button').html())
-            // var splitqty = harga_diterima.split('Rp.')[1].replace('.', '').replace(',00', '')
-            // var total = new Intl.NumberFormat('id', {
-            //     style: 'currency',
-            //     currency: 'IDR'
-            // }).format(qty_rcv * splitqty)
-
-
-            $('#dataTablekonfirmasi').DataTable().row.add([
-                kode_sparepart, kode_sparepart, nama_sparepart, merk_sparepart, satuan, qty,
-                qty_rcv, harga_diterima_fix, nama_rak, keterangan
-            ]).draw();
-        }
-    }
-
-    function hapussparepart(element) {
-        var table = $('#dataTablekonfirmasi').DataTable()
-        // Akses Parent Sampai <tr></tr>
-        var row = $(element).parent().parent()
-        table.row(row).remove().draw();
-        alert('Data Sparepart Berhasil di Hapus')
-        // draw() Reset Ulang Table
-        var table = $('#dataTable').DataTable()
-    }
-
-    $(document).ready(function () {
-        $('#harga_diterima').on('input', function () {
-            var harga = $(this).val()
-            var harga_fix = new Intl.NumberFormat('id', {
-                style: 'currency',
-                currency: 'IDR'
-            }).format(harga)
-
-            $('#detailhargaditerima').html(harga_fix);
-        })
+     $(document).ready(function () {
+        var table = $('#dataTableSparepart').DataTable()
 
         $('#id_pegawai').on('change', function () {
             var select = $(this).find('option:selected')
@@ -746,9 +631,70 @@
                 }
             ]
         });
-    });
 
-</script> --}}
+    })
+
+    function konfirmsparepart(event, id_sparepart) {
+        var form = $('#form-' + id_sparepart)
+        var qty_retur = form.find('input[name="qty_retur"]').val()
+        var keterangan = form.find('textarea[name="keterangan"]').val()
+
+        if (qty_retur == 0 | qty_retur == '' ) {
+            alert('Data Inputan Ada yang belum terisi')
+        } else {
+            alert('Berhasil Menambahkan Sparepart')
+            var data = $('#item-' + id_sparepart)
+            var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
+            var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
+            var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
+            var satuan = $(data.find('.satuan')[0]).text()
+            var template = $($('#template_delete_button').html())
+
+            var table = $('#dataTablekonfirmasi').DataTable()
+            // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
+            var row = $(`#${$.escapeSelector(nama_sparepart.trim())}`).parent().parent()
+            table.row(row).remove().draw();
+
+            $('#dataTablekonfirmasi').DataTable().row.add([
+                nama_sparepart, `<span id=${nama_sparepart}>${nama_sparepart}</span>`, jenis_sparepart, merk_sparepart, satuan, qty_retur,
+                keterangan
+            ]).draw();
+        }
+    }
+
+    function hapussparepart(element) {
+        var table = $('#dataTablekonfirmasi').DataTable()
+        // Akses Parent Sampai <tr></tr>
+        var row = $(element).parent().parent()
+        table.row(row).remove().draw();
+        alert('Data Sparepart Berhasil di Hapus')
+        // draw() Reset Ulang Table
+        var table = $('#dataTable').DataTable()
+    }
 
 
+    // function tambahsupplier(event, id_supplier) {
+    //     var data = $('#supplier-' + id_supplier)
+    //     // var _token = $('#form1').find('input[name="_token"]').val()
+    //     var nama_supplier = $(data.find('.nama_supplier')[0]).text()
+    //     var no_telp = $(data.find('.telephone')[0]).text()
+    //     alert('Berhasil Menambahkan Data Supplier')
+    //     // $("#toast").toast("show");
+
+    //     $('#detailsupplier').val(nama_supplier)
+    //     $('#detailtelp').val(no_telp)
+        
+    //     $.ajax({
+    //             method: 'get',
+    //             url: '/inventory/supplier/'+ id_supplier + '/sparepart',
+    //             success: function (response) {
+    //                 console.log(response.sparepart)
+    //                     $('#dataTable').DataTable().rows.add(response.sparepart).draw();
+    //             },
+    //             error: function(response){
+    //                 console.log(response)
+    //             }
+    //         });
+    // }
+</script>
 @endsection
