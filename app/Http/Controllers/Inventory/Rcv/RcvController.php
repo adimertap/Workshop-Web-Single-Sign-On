@@ -146,7 +146,7 @@ class RcvController extends Controller
             $kartu_gudang->save();
 
             // NGAMBIL TOTAL
-            $temp = $temp + $item['harga_diterima'];
+            $temp = $temp + $item['total_harga'];
             $retur = $retur + $item['qty_retur'];
         }
 
@@ -155,7 +155,7 @@ class RcvController extends Controller
             $rcv->status_retur = 'Retur';
             $po->status ='Diterima';
             $po->save();
-            $rcv->total_pembayaran = $temp;
+            $rcv->grand_total = $temp;
             $rcv->status = 'aktif';
             $rcv->status_bayar = 'Pending';
             $rcv->save();
@@ -169,7 +169,7 @@ class RcvController extends Controller
             $rcv->status_retur = 'Tidak Retur';
             $po->status ='Diterima';
             $po->save();
-            $rcv->total_pembayaran = $temp;
+            $rcv->grand_total = $temp;
             $rcv->status = 'aktif';
             $rcv->status_bayar = 'Pending';
             $rcv->save();

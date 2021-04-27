@@ -25,7 +25,6 @@ class Jenissparepartrequest extends FormRequest
     {
         return [
             'jenis_sparepart' => 'required|unique:tb_inventory_master_jenis_sparepart,jenis_sparepart|min:3|max:30',
-    	    'keterangan' => 'min:4|max:300',
             'fungsi' => 'required|string|in:MOTOR,MOBIL',
         ];
     }
@@ -38,8 +37,6 @@ class Jenissparepartrequest extends FormRequest
             'jenis_sparepart.min' => 'Error! Character Minimal :min digit',
             'jenis_sparepart.max' => 'Error! Character Maximal :max digit',
             'fungsi.required' => 'Error! Anda Belum Memilih Fungsi Jenis Sparepart',
-            'keterangan.min' => 'Error! Character Minimal :min digit',
-            'keterangan.max' => 'Error! Character Maximal :max digit'
 
         ];
     }

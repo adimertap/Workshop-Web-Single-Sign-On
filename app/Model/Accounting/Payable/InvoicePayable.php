@@ -4,6 +4,7 @@ namespace App\Model\Accounting\Payable;
 
 use App\Model\Accounting\Jenistransaksi;
 use App\Model\Inventory\Rcv\Rcv;
+use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +21,7 @@ class InvoicePayable extends Model
 
     protected $fillable = [
         'id_supplier',
+        'id_rcv',
         'id_jenis_transaksi',
         'id_pegawai',
         'kode_invoice',
@@ -41,7 +43,7 @@ class InvoicePayable extends Model
 
     public function Detailinvoice()
     {
-        return $this->belongsToMany(Rcv::class,'tb_accounting_detinvoice_payable','id_payable_invoice','id_rcv');
+        return $this->belongsToMany(Sparepart::class,'tb_accounting_detinvoice_payable','id_payable_invoice','id_sparepart');
     }
 
     public function Detail()
@@ -74,4 +76,5 @@ class InvoicePayable extends Model
         return $getId = DB::table('tb_accounting_invoice_payable')->orderBy('id_payable_invoice','DESC')->take(1)->get();
 
     }
+
 }

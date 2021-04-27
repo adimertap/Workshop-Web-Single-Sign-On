@@ -21,7 +21,8 @@ class Rcvdetail extends Model
         'qty_po',
         'qty_rcv',
         'keterangan',
-        'harga_diterima'
+        'harga_diterima',
+        'total_harga'
 
     ];
 

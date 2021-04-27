@@ -2,6 +2,7 @@
 
 namespace App\Model\Accounting\Payable;
 
+use App\Model\Inventory\Sparepart;
 use Illuminate\Database\Eloquent\Model;
 
 class InvoicePayabledetail extends Model
@@ -13,7 +14,10 @@ class InvoicePayabledetail extends Model
 
     protected $fillable = [
         'id_payable_invoice',
-        'id_rcv',
+        'id_sparepart',
+        'qty_rcv',
+        'harga_item',
+        'total_harga'
     ];
 
     protected $hidden =[ 
@@ -23,9 +27,9 @@ class InvoicePayabledetail extends Model
 
     public $timestamps = true;
 
-    public function Rcv()
+    public function Sparepart()
     {
-        return $this->belongsTo(Rcv::class, 'id_rcv','id_rcv');
+        return $this->belongsTo(Sparepart::class, 'id_sparepart','id_sparepart');
     }
 
     public function PayableInvoice()

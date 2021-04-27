@@ -84,15 +84,14 @@
                                         <td>{{ $item->tanggal_po }}</td>
                                         <td>
                                             @if($item->approve_ap == 'Approved')
-                                            <span class="badge badge-success">
+                                            <span class="badge badge-success">{{ $item->approve_ap }}
                                                 @elseif($item->approve_ap == 'Not Approved')
-                                                <span class="badge badge-danger">
+                                                <span class="badge badge-danger">{{ $item->approve_ap }}
                                                     @elseif($item->approve_ap == 'Pending')
-                                                    <span class="badge badge-secondary">
+                                                    <span class="badge badge-secondary">{{ $item->approve_ap }}
                                                         @else
                                                         <span>
                                                             @endif
-                                                            {{ $item->approve_ap }}
                                                         </span>
                                         </td>
                                         <td>
@@ -118,13 +117,13 @@
                                             <i class="fas fa-times"></i>
                                             </a> --}}
                                             @elseif($item->approve_po == 'Not Approved')
-                                            <span class="badge badge-danger">
+                                            <span class="badge badge-danger">{{ $item->approve_po }}
                                                 @elseif($item->approve_po == 'Approved')
-                                                <span class="badge badge-success">
+                                                <span class="badge badge-success">{{ $item->approve_po }}
                                                     @else
                                                     <span>
                                                         @endif
-                                                        {{ $item->approve_po }}
+                                                      
                                                     </span>
                                         </td>
                                     </tr>

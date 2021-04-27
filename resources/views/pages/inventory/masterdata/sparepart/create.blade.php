@@ -80,20 +80,25 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select class="form-control" name="id_jenis_sparepart"
-                                                class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
-                                                id="id_jenis_sparepart">
-                                                <option>Pilih Jenis</option>
+                                            <label class="small mb-1 mr-1" for="id_jenis_sparepart">Pilih Jenis Sparepart</label><span class="mr-4 mb-3"
+                                            style="color: red">*</span>
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-append">
+                                                    <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
+                                                        data-target="#Modaljenis">
+                                                        Tambah
+                                                    </a>
+                                                </div>
+                                                <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart"
+                                                    class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
+                                                    <option>Pilih Jenis</option>
                                                 @foreach ($jenis_sparepart as $item)
                                                 <option value="{{ $item->id_jenis_sparepart }}">
                                                     {{ $item->jenis_sparepart }}
                                                 </option>
-                                                @endforeach
-                                            </select>
-                                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">
-                                                {{ $message }}
-                                            </div> @enderror
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="id_merk">Merk Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
@@ -199,6 +204,54 @@
             </div>
         </div>
 </main>
+
+
+
+<div class="modal fade" id="Modaljenis" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Data Jenis Sparepart</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('jenis-sparepart.store') }}" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="small mb-1" for="jenis_sparepart">Jenis Sparepart</label>
+                        <input class="form-control" name="jenis_sparepart" type="text" id="jenis_sparepart"
+                            placeholder="Input Jenis Sparepart" value="{{ old('jenis_sparepart') }}"></input>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="fungsi">Fungsi</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <select name="fungsi" id="fungsi" class="form-control"
+                            class="form-control @error('fungsi') is-invalid @enderror">
+                            <option value="{{ old('fungsi')}}"> Pilih Fungsi</option>
+                            <option value="MOBIL">Mobil</option>
+                            <option value="MOTOR">Motor</option>
+                        </select>
+                        @error('fungsi')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="keterangan">Keterangan</label>
+                        <textarea class="form-control" name="keterangan" type="text" id="keterangan"
+                            placeholder="Masukan Keterangan" value="{{ old('keterangan') }}"
+                            class="form-control @error('keterangan') is-invalid @enderror"></textarea>
+                        @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script>
     $(document).ready(function () {

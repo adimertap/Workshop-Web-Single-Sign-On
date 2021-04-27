@@ -22,6 +22,37 @@
         </div>
     </div>
 </main>
+{{-- CHART --}}
+
+{{-- <div class="card h-100">
+    <div class="card-header">Traffic Sources</div>
+    <div class="card-body">
+        <div class="chart-pie mb-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><canvas id="myPieChart" width="409" height="324" style="display: block; height: 240px; width: 303px;" class="chartjs-render-monitor"></canvas></div>
+        <div class="list-group list-group-flush">
+            <div class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                <div class="mr-3">
+                    <svg class="svg-inline--fa fa-circle fa-w-16 fa-sm mr-1 text-blue" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <i class="fas fa-circle fa-sm mr-1 text-blue"></i> -->
+                    Direct
+                </div>
+                <div class="font-weight-500 text-dark">55%</div>
+            </div>
+            <div class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                <div class="mr-3">
+                    <svg class="svg-inline--fa fa-circle fa-w-16 fa-sm mr-1 text-purple" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <i class="fas fa-circle fa-sm mr-1 text-purple"></i> -->
+                    Social
+                </div>
+                <div class="font-weight-500 text-dark">15%</div>
+            </div>
+            <div class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                <div class="mr-3">
+                    <svg class="svg-inline--fa fa-circle fa-w-16 fa-sm mr-1 text-green" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <i class="fas fa-circle fa-sm mr-1 text-green"></i> -->
+                    Referral
+                </div>
+                <div class="font-weight-500 text-dark">30%</div>
+            </div>
+        </div>
+    </div>
+</div> --}}
 <!-- Main page content-->
 <div class="container-fluid">
     <!-- Content Row -->

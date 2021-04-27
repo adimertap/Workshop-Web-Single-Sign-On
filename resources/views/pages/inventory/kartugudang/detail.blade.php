@@ -74,22 +74,22 @@
                                             No</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 80px;">Tanggal Transaksi</th>
+                                            style="width: 130px;">Tanggal Transaksi</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 80px;">Kode Transaksi</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            style="width: 130px;">Kode Transaksi</th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 70px;">Masuk</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            style="width: 30px;">Masuk</th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Start date: activate to sort column ascending"
-                                            style="width: 70px;">Keluar</th>
+                                            style="width: 30px;">Keluar</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
                                             style="width: 20px;">Satuan</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 40px;">Saldo</th>
+                                            style="width: 70px;">Saldo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -104,10 +104,10 @@
                                             @else
                                         @endif
                                         </td>
-                                        <td>{{ $item->jumlah_masuk }}</td>
+                                        <td class="text-center">{{ $item->jumlah_masuk }}</td>
                                         <td>{{ $item->jumlah_keluar }}</td>
                                         <td>{{ $item->Sparepart->Konversi->satuan }}</td>
-                                        <td>{{ $item->jumlah_masuk }}</td>
+                                        <td class="text-center">{{ $item->jumlah_masuk }}</td>
                                     </tr>
                                     @empty
                                         

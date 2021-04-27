@@ -104,33 +104,17 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="nama_pegawai">Pilih Pegawai</label>
-                                            <div class="input-group input-group-joined">
-                                                <input class="form-control" type="text" placeholder="Pilih Pegawai"
-                                                    aria-label="Search" id="detailpegawai"
-                                                    value="{{ $gaji->Pegawai->nama_pegawai }}">
-                                                <div class="input-group-append">
-                                                    <a href="" class="input-group-text" type="button"
-                                                        data-toggle="modal" data-target="#Modalpegawai">
-                                                        <i class="fas fa-folder-open"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <label class="small mb-1" for="id_pegawai">Jabatan</label>
+                                            <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
+                                                value="{{ $gaji->Pegawai->nama_pegawai }}" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1" for="id_jabatan">Jabatan</label>
-                                            <input class="form-control" id="detailjabatan" type="text" name="id_jabatan"
+                                            <input class="form-control" id="id_jabatan" type="text" name="id_jabatan"
                                                 value="{{ $gaji->Pegawai->Jabatan->nama_jabatan }}" readonly>
                                         </div>
                                     </div>
-                                    <div class="row">
-
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="status_diterima">Status diterima</label>
-                                            <input class="form-control" id="status_diterima" type="text"
-                                                name="status_diterima" value="Belum dibayarkan" readonly>
-                                        </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group">
                                             <label class="small mb-1" for="keterangan">Keterangan</label>
                                             <textarea class="form-control" id="keterangan" type="text" name="keterangan"
                                                 placeholder="Keterangan Pembayaran"
@@ -138,8 +122,6 @@
                                             @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
-                                    </div>
-
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
                                         <a href="{{ route('gaji-pegawai.index') }}" class="btn btn-light">Kembali</a>
@@ -196,9 +178,8 @@
                                                                     style="width: 100%;">
                                                                     <thead>
                                                                         <tr role="row">
-                                                                            <th class="sorting" tabindex="0"
-                                                                                aria-controls="dataTable" rowspan="1"
-                                                                                colspan="1" aria-sort="ascending"
+                                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                                rowspan="1" colspan="1" aria-sort="ascending"
                                                                                 aria-label="Name: activate to sort column descending"
                                                                                 style="width: 20px;">
                                                                                 No</th>
@@ -218,7 +199,7 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr role="row" class="odd">
-                                                                            <th scope="row" class="small"
+                                                                            <th scope="row" class="small" 
                                                                                 class="sorting_1">1</th>
                                                                             <td>{{ $gaji->Pegawai->Jabatan->nama_jabatan}}
                                                                             </td>
@@ -256,9 +237,8 @@
                                                                 style="width: 100%;">
                                                                 <thead>
                                                                     <tr role="row">
-                                                                        <th class="sorting" tabindex="0"
-                                                                            aria-controls="dataTable" rowspan="1"
-                                                                            colspan="1" aria-sort="ascending"
+                                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                            rowspan="1" colspan="1" aria-sort="ascending"
                                                                             aria-label="Name: activate to sort column descending"
                                                                             style="width: 20px;">
                                                                             No</th>
@@ -324,7 +304,6 @@
                                 <div class="card-header border-bottom-0 bg-white">
                                     <div class="row justify-content-between align-items-center">
                                         <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
-                                            <!-- Invoice branding-->
                                             <div class="h2 mb-0" id="detailpegawai2">{{ $gaji->Pegawai->nama_pegawai }}
                                             </div>
                                             Pembayaran bulan <span
@@ -333,10 +312,8 @@
 
                                         </div>
                                         <div class="col-12 col-lg-auto text-center text-lg-right">
-                                            <!-- Invoice details-->
                                             <div class="h5">{{ $today }}</div>
-                                            Jabatan<span
-                                                id="detailjabatan2">{{ $gaji->Pegawai->Jabatan->nama_jabatan }}</span>
+                                            Jabatan <span id="detailjabatan2">{{ $gaji->Pegawai->Jabatan->nama_jabatan }}</span>
                                             <br />
                                             <div class="small text-muted">Alamat {{ $gaji->Pegawai->alamat }}</div>
                                             No.Telp <div class="small text-muted" id="detailnotelp">
@@ -356,12 +333,12 @@
                                                         aria-describedby="dataTable_info" style="width: 100%;">
                                                         <thead>
                                                             <tr role="row">
-                                                                <th class="sorting" tabindex="0"
+                                                                <th class="" tabindex="0"
                                                                     aria-controls="dataTable" rowspan="1" colspan="1"
                                                                     aria-label="Position: activate to sort column ascending"
                                                                     style="width: 500px;">
                                                                     Jabatan</th>
-                                                                <th class="sorting" tabindex="0"
+                                                                <th class="text-center" tabindex="0"
                                                                     aria-controls="dataTable" rowspan="1" colspan="1"
                                                                     aria-label="Position: activate to sort column ascending"
                                                                     style="width: 120px;">
@@ -372,7 +349,7 @@
                                                             <tr role="row" class="odd">
                                                                 <td>{{ $gaji->Pegawai->Jabatan->nama_jabatan}}
                                                                 </td>
-                                                                <td>Rp.
+                                                                <td class="text-center">Rp.
                                                                     {{ number_format($gaji->Pegawai->Jabatan->Gajipokok->besaran_gaji,2,',','.') }}
                                                                 </td>
                                                             </tr>
@@ -392,12 +369,12 @@
                                                         style="width: 100%;">
                                                         <thead>
                                                             <tr role="row">
-                                                                <th class="sorting" tabindex="0"
+                                                                <th class="" tabindex="0"
                                                                     aria-controls="dataTable" rowspan="1" colspan="1"
                                                                     aria-label="Position: activate to sort column ascending"
                                                                     style="width: 500px;">
                                                                     Tunjangan</th>
-                                                                <th class="sorting" tabindex="0"
+                                                                <th class="text-center" tabindex="0"
                                                                     aria-controls="dataTable" rowspan="1" colspan="1"
                                                                     aria-label="Position: activate to sort column ascending"
                                                                     style="width: 120px;">
@@ -465,6 +442,7 @@
         </div>
 </main>
 
+
 {{-- MODAL TAMBAH TUNJANGAN --}}
 <div class="modal fade" id="Modaltambahtunjangan" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -475,7 +453,6 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="" method="POST" id="form2" class="d-inline">
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="datatable">
@@ -525,10 +502,8 @@
                                                     </td>
                                                     <td class="keterangan">{{ $item->keterangan }}</td>
                                                     <td>
-                                                        <button class="btn btn-success btn-sm"
-                                                            onclick="tambahtunjangan(event, {{ $item->id_tunjangan }})"
-                                                            type="button" data-dismiss="modal">Tambah
-                                                        </button>
+                                                        <button class="btn btn-success btn-sm" onclick="tambahtunjangan(event, {{ $item->id_tunjangan }})"
+                                                            type="button" data-dismiss="modal">Tambah</button>
                                                     </td>
                                                 </tr>
                                                 @empty
@@ -543,7 +518,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+        
         </div>
     </div>
 </div>
@@ -557,7 +532,7 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="" method="POST" id="form2" class="d-inline">
+            <form action="" method="POST" id="form3" class="d-inline">
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="datatable">
@@ -651,76 +626,6 @@
     </div>
 </div>
 
-{{-- MODAL PEGAWAI --}}
-<div class="modal fade" id="Modalpegawai" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-light">
-                <h5 class="modal-title">Pilih Pegawai</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-borderless mb-0">
-                        <thead class="border-bottom">
-                            <tr class="small text-uppercase text-muted">
-                                <th scope="col">Nama Pegawai</th>
-                                <th scope="col">Jabatan</th>
-                                <th scope="col">No. Telp</th>
-                                <th scope="col">Gaji Pokok</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($seluruhpegawai as $item)
-                            <tr id="item-{{ $item->id_pegawai }}" class="border-bottom">
-                                <td>
-                                    <div class="font-weight-bold nama_pegawai">{{ $item->nama_pegawai }}</div>
-                                </td>
-                                <td>
-                                    <div class="small text-muted d-none d-md-block nama_jabatan">{{ $item->jabatan->nama_jabatan }}</div>
-                                </td>
-                                <td>
-                                    <div class="small text-muted d-none d-md-block no_telp">{{ $item->no_telp }}</div>
-                                </td>
-                                <td>
-                                    @if ($item->jabatan->gajipokok == '')
-                                    <div class="small text-muted d-none d-md-block">Tidak ada data
-                                        <a href="{{ route('gaji-pokok.index') }}"
-                                            class="btn btn-light btn-sm btn-datatable" type="button">
-                                            <i class="fas fa-plus"></i>
-                                        </a>
-                                    </div>
-                                    @else
-                                    <div class="small text-muted d-none d-md-block gaji_pokok">
-                                        Rp.{{ number_format($item->jabatan->gajipokok->besaran_gaji,2,',','.') }}</div>
-                                    @endif
-
-                                </td>
-                                <td>
-                                    <button class="btn btn-success btn-sm btn-datatable"
-                                        onclick="tambahpegawai(event, {{ $item->id_pegawai }})" type="button"
-                                        data-dismiss="modal">Tambah
-                                    </button>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="7" class="tex-center">
-                                    Tidak ada Data Pegawai
-                                </td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -754,42 +659,27 @@
 </template>
 
 <script>
-    function tambahpegawai(event, id_pegawai) {
-        var data = $('#item-' + id_pegawai)
-        var _token = $('#form1').find('input[name="_token"]').val()
-        var nama_pegawai = $(data.find('.nama_pegawai')[0]).text()
-        var nama_jabatan = $(data.find('.nama_jabatan')[0]).text()
-        var no_telp = $(data.find('.no_telp')[0]).text()
-        var gaji_pokok = $(data.find('.gaji_pokok')[0]).text()
-
-        $('#detailpegawai').val(nama_pegawai)
-        $('#detailpegawai3').val(nama_pegawai)
-        $('#detailjabatan').val(nama_jabatan)
-        $('#detailnotelp').val(no_telp)
-    }
-
     function tambahtunjangan(event, id_tunjangan) {
         var data = $('#item-' + id_tunjangan)
         var nama_tunjangan = $(data.find('.nama_tunjangan')[0]).text()
         var jumlah_tunjangan = $(data.find('.jumlah_tunjangan')[0]).text()
         var template = $($('#template_delete_button').html())
-        //Delete Data di Table Konfirmasi sebelum di add
+      
+        // TABLE TAB 2
         var table = $('#dataTabletunjangan').DataTable()
-
-        // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
         var row = $(`#${$.escapeSelector(nama_tunjangan.trim())}`).parent().parent()
         table.row(row).remove().draw();
-
+        
         $('#dataTabletunjangan').DataTable().row.add([
             nama_tunjangan, `<span id=${nama_tunjangan}>${nama_tunjangan}</span>`, jumlah_tunjangan,
         ]).draw();
 
-        $('#dataTabletunjangankonfirmasi').DataTable({
-            "paging": false,
-            "ordering": false,
-            "info": false,
-            "searching": false
-        }).row.add([
+        // TABLE TAB 3
+        var table2 =  $('#dataTabletunjangankonfirmasi').DataTable()
+        var row2 = $(`#${$.escapeSelector(nama_tunjangan.trim())}`).parent().parent()
+        table2.row(row2).remove().draw();
+
+        $('#dataTabletunjangankonfirmasi').DataTable().row.add([
             `<span id=${nama_tunjangan}>${nama_tunjangan}</span>`, jumlah_tunjangan,
         ]).draw();
 
@@ -807,6 +697,15 @@
         alert('Data Tunjangan Berhasil di Hapus')
         // draw() Reset Ulang Table
         var table = $('#dataTable').DataTable()
+
+        var table2 = $('#dataTabletunjangankonfirmasi').DataTable()
+       
+       // Akses Parent Sampai <tr></tr>
+       var row2 = $(element).parent().parent()
+       table2.row(row2).remove().draw();
+       
+       // draw() Reset Ulang Table
+       var table2 = $('#dataTable').DataTable()
     }
 
     $(document).ready(function () {
@@ -853,6 +752,7 @@
                 }
             ]
         });
+
     });
 
 </script>

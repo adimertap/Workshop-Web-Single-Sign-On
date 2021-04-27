@@ -356,12 +356,7 @@
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 50px;">
-                                                        Kode</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
-                                                        style="width: 90px;">
+                                                        style="width: 100px;">
                                                         Sparepart</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
@@ -557,6 +552,8 @@
             var qty_retur = form.find('input[name="qty_retur"]').val()
             var keterangan = form.find('textarea[name="keterangan"]').val()
             var harga_diterima = form.find('input[name="harga_diterima"]').val()
+            var total_harga = qty_rcv * harga_diterima
+
          
             if (qty_rcv == 0 | qty_rcv == '') {
                 continue
@@ -570,6 +567,7 @@
                     qty_retur: qty_retur,
                     keterangan: keterangan,
                     harga_diterima: harga_diterima,
+                    total_harga: total_harga,
                 } 
                
                 dataform2.push(obj)
@@ -604,8 +602,6 @@
                 }
             });
         }
-
-        // dataTablekonfirmasi
     }
 
 
@@ -640,10 +636,13 @@
             //     style: 'currency',
             //     currency: 'IDR'
             // }).format(qty_rcv * splitqty)
-
+            var table = $('#dataTablekonfirmasi').DataTable()
+            // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
+            var row = $(`#${$.escapeSelector(nama_sparepart.trim())}`).parent().parent()
+            table.row(row).remove().draw();
 
             $('#dataTablekonfirmasi').DataTable().row.add([
-                kode_sparepart, kode_sparepart, nama_sparepart, merk_sparepart, satuan, qty,
+                nama_sparepart, `<span id=${nama_sparepart}>${nama_sparepart}</span>`, merk_sparepart, satuan, qty,
                 qty_rcv, harga_diterima_fix, qty_retur, keterangan
             ]).draw();
         }

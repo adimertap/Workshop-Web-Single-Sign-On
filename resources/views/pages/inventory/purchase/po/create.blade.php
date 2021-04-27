@@ -390,18 +390,18 @@
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Salary: activate to sort column ascending"
+                                                            style="width: 20px;">
+                                                            Quantity</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Salary: activate to sort column ascending"
                                                             style="width: 40px;">
                                                             Harga Beli</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Salary: activate to sort column ascending"
                                                             style="width: 20px;">
-                                                            Quantity</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                            rowspan="1" colspan="1"
-                                                            aria-label="Salary: activate to sort column ascending"
-                                                            style="width: 20px;">
-                                                            Total</th>
+                                                            Total Harga</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Actions: activate to sort column ascending"
@@ -578,6 +578,11 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         var form = $('#form-' + id_sparepart)
         var qty = form.find('input[name="qty"]').val()
         var harga_satuan = form.find('input[name="harga_diterima"]').val()
+        var harga_fix = new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR'
+        }).format(harga_satuan)
+
         var total_harga = new Intl.NumberFormat('id', {
                 style: 'currency',
                 currency: 'IDR'
@@ -609,8 +614,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
             $('#dataTablekonfirmasi').DataTable().row.add([
                 kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
-                jenis_sparepart, merk_sparepart, satuan,
-                harga_satuan, qty, total_harga,
+                jenis_sparepart, merk_sparepart, satuan, qty, harga_fix, total_harga,
             ]).draw();
         }
     }

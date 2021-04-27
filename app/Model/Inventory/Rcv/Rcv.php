@@ -28,7 +28,7 @@ class Rcv extends Model
         'no_do',
         'status',
         'tanggal_rcv',
-        'total_pembayaran',
+        'grand_total',
         'status_bayar'
     ];
 
@@ -42,7 +42,7 @@ class Rcv extends Model
 
     public function Detailrcv()
     {
-        return $this->belongsToMany(Sparepart::class,'tb_inventory_detrcv','id_rcv','id_sparepart')->withPivot('qty_po','qty_rcv','qty_retur','keterangan','harga_diterima');
+        return $this->belongsToMany(Sparepart::class,'tb_inventory_detrcv','id_rcv','id_sparepart')->withPivot('qty_po','qty_rcv','qty_retur','keterangan','harga_diterima','total_harga');
     }
 
     public function Kartugudang()

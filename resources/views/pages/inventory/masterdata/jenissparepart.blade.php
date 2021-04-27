@@ -65,7 +65,10 @@
                                                 style="width: 230px;">Jenis Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 200px;">Keterangan</th>
+                                                style="width: 100px;">Fungsi</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 150px;">Keterangan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Actions</th>
@@ -76,6 +79,7 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->jenis_sparepart }}</td>
+                                            <td>{{ $item->fungsi }}</td>
                                             <td>{{ $item->keterangan }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
@@ -132,6 +136,17 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
+                        <label class="small mb-1 mr-1" for="fungsi">Fungsi</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <select name="fungsi" id="fungsi" class="form-control"
+                            class="form-control @error('fungsi') is-invalid @enderror">
+                            <option value="{{ old('fungsi')}}"> Pilih Fungsi</option>
+                            <option value="MOBIL">Mobil</option>
+                            <option value="MOTOR">Motor</option>
+                        </select>
+                        @error('fungsi')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                    <div class="form-group">
                         <label class="small mb-1" for="keterangan">Keterangan</label>
                         <textarea class="form-control" name="keterangan" type="text" id="keterangan"
                             placeholder="Masukan Keterangan" value="{{ old('keterangan') }}"
@@ -176,6 +191,14 @@
                         <label class="small mr-1" for="jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="jenis_sparepart" type="text" id="jenis_sparepart"
                             value="{{ $item->jenis_sparepart }}" />
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="fungsi">Fungsi</label>
+                        <select name="fungsi" id="fungsi" class="form-control">
+                            <option value="{{ $item->fungsi }}">{{ $item->fungsi }}</option>
+                            <option value="MOBIL">Mobil</option>
+                            <option value="MOTOR">Motor</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="small" for="keterangan">Keterangan</label>

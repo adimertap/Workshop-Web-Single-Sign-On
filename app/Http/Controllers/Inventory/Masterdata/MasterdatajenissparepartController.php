@@ -48,7 +48,7 @@ class MasterdatajenissparepartController extends Controller
         $data['slug'] = Str::slug($request->jenis_sparepart);
 
         Jenissparepart::create($data);
-        return redirect()->route('jenis-sparepart.index')->with('messageberhasil','Data Jenis Sparepart Berhasil ditambahkan');
+        return redirect()->back()->with('messageberhasil','Data Jenis Sparepart Berhasil ditambahkan');
     }
 
     /**

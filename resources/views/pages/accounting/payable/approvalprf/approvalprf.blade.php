@@ -98,13 +98,12 @@
                                             <i class="fas fa-times"></i>
                                             </a> --}}
                                             @elseif($item->status_prf == 'Not Approved')
-                                            <span class="badge badge-danger">
+                                            <span class="badge badge-danger">{{ $item->status_prf }}
                                                 @elseif($item->status_prf == 'Approved')
-                                                <span class="badge badge-success">
+                                                <span class="badge badge-success">{{ $item->status_prf }}
                                                     @else
                                                     <span>
                                                         @endif
-                                                        {{ $item->status_prf }}
                                                     </span>
                                         </td>
                                     </tr>
