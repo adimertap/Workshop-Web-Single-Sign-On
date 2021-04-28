@@ -128,7 +128,7 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('jeniskendaraan.store') }}" method="POST">
+            <form action="{{ route('customerterdaftar.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
@@ -153,7 +153,8 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="nohp_customer">No. Telp Customer <span style="color: red">*</span>
+                        <label class="small mb-1" for="nohp_customer">No. Telp Customer <span
+                                style="color: red">*</span>
                         </label>
                         <input class="form-control" name="nohp_customer" type="text" id="nohp_customer"
                             placeholder="Input No. Telp Customer" value="{{ old('nohp_customer') }}"
@@ -161,7 +162,7 @@
                         @error('nohp_customer')<div class="text-danger small mb-1">{{ $message }}
                         </div> @enderror
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="small mb-1" for="alamat_customer">Alamat</label>
                         <input class="form-control" name="alamat_customer" type="text" id="alamat_customer"
@@ -181,6 +182,95 @@
         </div>
     </div>
 </div>
+
+{{-- Modal Edit --}}
+@forelse ($customer as $item)
+<div class="modal fade" id="Modaledit-{{ $item->id_customer_bengkel }}" data-backdrop="static" tabindex="-1"
+    role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Customer Bengkel</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('customerterdaftar.update', $item->id_customer_bengkel) }}" method="POST">
+                @method('PUT')
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="form-group">
+                        <label class="small mb-1" for="nama_customer">Nama Customer</label>
+                        <input class="form-control" name="nama_customer" type="text" id="nama_customer"
+                            value="{{ $item->nama_customer }}" placeholder="Input Kode Kendaraan">
+                        @error('nama_customer')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="email_customer">Email Customer</label>
+                        <input class="form-control" name="email_customer" type="email" id="email_customer"
+                            value="{{ $item->email_customer }}" placeholder="Input Nama Kendaraan">
+                        @error('email_customer')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="nohp_customer">No. HP Customer</label>
+                        <input class="form-control" name="nohp_customer" type="text" id="nohp_customer"
+                            value="{{ $item->nohp_customer }}" placeholder="Input Nama Kendaraan">
+                        @error('nohp_customer')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="alamat_customer">Alamat Customer</label>
+                        <input class="form-control" name="alamat_customer" type="text" id="alamat_customer"
+                            value="{{ $item->alamat_customer }}" placeholder="Input Nama Kendaraan">
+                        @error('alamat_customer')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="Submit">Ubah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@empty
+
+@endforelse
+
+{{-- Modal Hapus --}}
+@forelse ($customer as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_customer_bengkel }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('customerterdaftar.destroy', $item->id_customer_bengkel) }}" method="POST"
+                class="d-inline">
+                @csrf
+                @method('delete')
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Customer {{ $item->nama_customer }}?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+
+@endforelse
 
 </main>
 

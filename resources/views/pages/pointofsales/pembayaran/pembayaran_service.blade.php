@@ -9,7 +9,7 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto mt-4">
                         <h1 class="page-header-title">
-                            <div class="page-header-icon"><i data-feather="database"></i></div>
+                            <div class="page-header-icon"><i data-feather="dollar-sign"></i></div>
                             Pembayaran Service
                         </h1>
                         <div class="page-header-subtitle">Pembayaran service kendaraan pelanggan</div>
