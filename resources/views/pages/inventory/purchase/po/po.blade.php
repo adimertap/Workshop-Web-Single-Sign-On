@@ -194,7 +194,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="7" class="tex-center">
+                                        <td colspan="9" class="text-center">
                                             Data Pembelian Kosong
                                         </td>
                                     </tr>

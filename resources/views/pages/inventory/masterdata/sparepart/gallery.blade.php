@@ -65,11 +65,6 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="stock">Stock </label>
-                            <input class="form-control form-control-sm" id="stock" type="text" name="stock"
-                                value="{{ $sparepart->stock }}" readonly />
-                        </div>
-                        <div class="form-group col-md-6">
                             <i class="fas fa-exclamation-triangle mr-1"></i> <label class="small mb-1"
                                 for="stock_min">Minimal Stock </label>
                             <input class="form-control form-control-sm" id="stock_min" type="text" name="stock_min"
@@ -80,7 +75,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-lg-8">
             <div class="card mb-4">
                 <div class="card card-header-actions">

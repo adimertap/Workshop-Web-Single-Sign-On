@@ -23,7 +23,8 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Master Harga
-                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Atur
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
+                        data-target="#Modaltambah">Atur
                         Harga Sparepart</button>
                 </div>
             </div>
@@ -46,13 +47,13 @@
                                                 style="width: 150px;">Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 50px;">Jenis Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 70px;">Merk Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
                                                 style="width: 90px;">Supplier</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 80px;">Harga Beli</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
                                                 style="width: 80px;">Harga Jual</th>
@@ -66,9 +67,9 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->Sparepart->nama_sparepart }}</td>
+                                            <td>{{ $item->Sparepart->Jenissparepart->jenis_sparepart }}</td>
                                             <td>{{ $item->Sparepart->Merksparepart->merk_sparepart }}</td>
                                             <td>{{ $item->supplier->nama_supplier }}</td>
-                                            <td>Rp. {{ number_format($item->harga_beli,2,',','.') }}</td>
                                             <td>Rp. {{ number_format($item->harga_jual,2,',','.') }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
@@ -100,7 +101,7 @@
 {{-- MODAL TAMBAH -------------------------------------------------------------------------------------}}
 <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
                 <h5 class="modal-title" id="staticBackdropLabel">Harga Sparepart</h5>
@@ -111,10 +112,10 @@
                 <label class="small mb-1">Isikan Form Dibawah Ini</label>
                 <hr>
                 </hr>
-                <form action="{{ route('hargasparepart.store') }}" method="POST">
+                <form action="{{ route('hargasparepart.store') }}" id="form1" method="POST">
                     @csrf
-                    <div class="row">
-                        <div class="form-group col-md-6">
+            
+                        <div class="form-group">
                             <label class="small mb-1 mr-1" for="id_sparepart">Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <select class="form-control" name="id_sparepart" id="id_sparepart"
                             class="form-control @error('id_sparepart') is-invalid @enderror">
@@ -126,69 +127,49 @@
                             @error('id_sparepart')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1 mr-1" for="id_merk">Merk Sparepart</label>
-                            <select class="form-control" name="id_merk" id="id_merk" readonly>
-                                @foreach ($sparepart as $item)
-                                <option value="{{ $item->id_merk }}">{{ $item->nama_merk }}</option>
+              
+           
+                        <div class="form-group">
+                            <label class="small mb-1 mr-1" for="id_supplier">Supplier</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
+                            <select class="form-control" name="id_supplier" id="id_supplier"
+                                class="form-control @error('id_supplier') is-invalid @enderror">
+                                <option> Pilih Supplier</option>
+                                @foreach ($supplier as $item)
+                                <option value="{{ $item->id_supplier }}">{{ $item->nama_supplier }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="small mb-1 mr-1" for="id_supplier">Supplier</label><span class="mr-4 mb-3" style="color: red">*</span>
-                        <select class="form-control" name="id_supplier" id="id_supplier"
-                        class="form-control @error('id_supplier') is-invalid @enderror">
-                            <option> Pilih Supplier</option>
-                            @foreach ($supplier as $item)
-                            <option value="{{ $item->id_supplier }}">{{ $item->nama_supplier }}</option>
-                            @endforeach
-                        </select>
-                        @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
-                    </div>
-                    <div class="form-group">
-                        <div class="row justify-content-between align-items-center">
-                            <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
-                                <label class="small mb-1 mr-1" for="harga_beli">Harga Beli</label><span class="mr-4 mb-3" style="color: red">*</span>
-                            </div>
-                            <div class="col-12 col-lg-auto text-center text-lg-right">
-                                <div class="small text-lg-right">
-                                    <span class="font-weight-500 text-primary">Harga Beli: </span>
-                                    <span id="detailhargabeli"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <input class="form-control" name="harga_beli" type="number" id="harga_beli"
-                            placeholder="Input Harga Beli" value="{{ old('harga_beli') }}"
-                            class="form-control @error('harga_beli') is-invalid @enderror">
-                            @error('harga_beli')<div class="text-danger small mb-1">{{ $message }}
+                            @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
-                    </div>
-                    <div class="form-group">
-                        <div class="row justify-content-between align-items-center">
-                            <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
-                                <label class="small mb-1 mr-1" for="harga_jual">Harga Jual</label><span class="mr-4 mb-3" style="color: red">*</span>
-                            </div>
-                            <div class="col-12 col-lg-auto text-center text-lg-right">
-                                <div class="small text-lg-right">
-                                    <span class="font-weight-500 text-primary">Harga Jual: </span>
-                                    <span id="detailhargajual"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
+                                    <label class="small mb-1 mr-1" for="harga_jual">Harga Jual</label><span
+                                        class="mr-4 mb-3" style="color: red">*</span>
+                                </div>
+                                <div class="col-12 col-lg-auto text-center text-lg-right">
+                                    <div class="small text-lg-right">
+                                        <span class="font-weight-500 text-primary">Harga Jual: </span>
+                                        <span id="detailhargajual"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <input class="form-control" name="harga_jual" type="number" id="harga_jual"
-                            placeholder="Input Harga Jual" value="{{ old('harga_jual') }}"
-                            class="form-control @error('harga_jual') is-invalid @enderror">
+                            <input class="form-control" name="harga_jual" type="number" id="harga_jual"
+                                placeholder="Input Harga Jual" value="{{ old('harga_jual') }}"
+                                class="form-control @error('harga_jual') is-invalid @enderror">
                             @error('harga_jual')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
-                    </div>
+                        </div>
+
+                   
+                    
                     {{-- Validasi Error --}}
                     @if (count($errors) > 0)
                     @endif
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="Submit">Tambah</button>
+                        <button class="btn btn-primary" onclick="submit1()" type="Submit">Tambah</button>
                     </div>
                 </form>
             </div>
@@ -198,40 +179,40 @@
 
 {{-- MODAL EDIT ------------------------------------------------------------------------}}
 @forelse ($harga as $item)
-    <div class="modal fade" id="Modaledit-{{ $item->id_harga }}" tabindex="-1" role="dialog"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-light">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Data Harga Sparepart</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                </div>
-                <form action="{{ route('hargasparepart.update', $item->id_harga) }}" method="POST">
-                    @method('PUT')
-                    @csrf
-                    <div class="modal-body">
-                        <label class="small mb-1">Isikan Form Dibawah Ini</label>
-                        <hr>
-                        </hr>
-                        <div class="form-group">
-                            <label class="small mb-1 mr-1" for="harga_beli">Harga Beli </label><span class="mr-4 mb-3" style="color: red">*</span>
-                            <input class="form-control" name="harga_beli" type="number" id="harga_beli"
-                                value="{{ $item->harga_beli }}">
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1 mr-1" for="harga_jual">Harga Jual </label><span class="mr-4 mb-3" style="color: red">*</span>
-                            <input class="form-control" name="harga_jual" type="number" id="harga_jual"
-                                value="{{ $item->harga_jual }}">
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                            <button class="btn btn-primary" type="Submit">Ubah</button>
-                        </div>
-                </form>
+<div class="modal fade" id="Modaledit-{{ $item->id_harga }}" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Data Harga Sparepart</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
             </div>
+            <form action="{{ route('hargasparepart.update', $item->id_harga) }}" method="POST">
+                @method('PUT')
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="harga_jual">Harga Jual</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <input class="form-control edit_harga_jual" name="harga_jual" type="number" id="edit_harga_jual"
+                            value="{{ $item->harga_jual }}">
+                        <div class="small text-primary">Detail Harga :
+                            <span id="detaileditjual"
+                                class="detaileditjual">Rp.{{ number_format($item->harga_jual,2,',','.')}}</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="Submit">Ubah</button>
+                    </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 @empty
 
@@ -271,18 +252,11 @@
 
 {{-- Script Open Modal Callback --}}
 <script>
+
+
     $(document).ready(function () {
+        var table = $('#dataTablesparepart').DataTable()
         $('#validasierror').click();
-
-        $('#harga_beli').on('input', function () {
-            var harga_beli = $(this).val()
-            var harga_beli_fix = new Intl.NumberFormat('id', {
-                style: 'currency',
-                currency: 'IDR'
-            }).format(harga_beli)
-
-            $('#detailhargabeli').html(harga_beli_fix);
-        })
 
         $('#harga_jual').on('input', function () {
             var harga_jual = $(this).val()
@@ -294,7 +268,20 @@
             $('#detailhargajual').html(harga_jual_fix);
         })
 
-        
+        $('.edit_harga_jual').each(function () {
+            $(this).on('input', function () {
+                var harga = $(this).val()
+                var harga_fix = new Intl.NumberFormat('id', {
+                    style: 'currency',
+                    currency: 'IDR'
+                }).format(harga)
+
+                var harga_paling_fix = $(this).parent().find('.detaileditjual')
+                $(harga_paling_fix).html(harga_fix);
+            })
+        })
+
+
     });
 
 </script>

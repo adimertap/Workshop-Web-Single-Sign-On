@@ -145,14 +145,6 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="stock">Stock</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="stock" type="number" name="stock"
-                                                placeholder="Input Stock Sparepart" value="{{ old('stock') }}""
-                                                class=" form-control @error('stock') is-invalid @enderror" />
-                                            @error('stock')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                        <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="stock_min">Stock Minimum</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="stock_min" type="number" name="stock_min"
                                                 placeholder="Input Nama Sparepart" value="{{ old('stock_min') }}""

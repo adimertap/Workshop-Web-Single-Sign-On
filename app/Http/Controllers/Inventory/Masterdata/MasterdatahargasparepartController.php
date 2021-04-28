@@ -49,7 +49,6 @@ class MasterdatahargasparepartController extends Controller
         $harga = new Hargasparepart;
         $harga->id_sparepart = $request->id_sparepart;
         $harga->id_supplier = $request->id_supplier;
-        $harga->harga_beli = $request->harga_beli;
         $harga->harga_jual = $request->harga_jual;
 
         $harga->save();
@@ -85,10 +84,9 @@ class MasterdatahargasparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Hargasparepartrequest $request, $id_harga)
+    public function update(Request $request, $id_harga)
     {
         $harga = Hargasparepart::findOrFail($id_harga);
-        $harga->harga_beli = $request->harga_beli;
         $harga->harga_jual = $request->harga_jual;
 
         $harga->update();

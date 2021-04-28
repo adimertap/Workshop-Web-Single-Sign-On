@@ -3,9 +3,13 @@
 namespace App\Model\Inventory;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Hargasparepart extends Model
 {
+
+    use SoftDeletes;
+
     protected $table = "tb_inventory_master_harga_sparepart";
 
     protected $primaryKey = 'id_harga';
@@ -14,12 +18,13 @@ class Hargasparepart extends Model
         'id_sparepart',
         'merk_sparepart',
         'id_supplier',
-        'harga_beli',
         'harga_jual',
     ];
 
     protected $hidden =[ 
-    
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
 
     public $timestamps = false;

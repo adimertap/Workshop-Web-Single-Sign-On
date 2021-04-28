@@ -107,7 +107,7 @@
                                         <td class="text-center">{{ $item->jumlah_masuk }}</td>
                                         <td>{{ $item->jumlah_keluar }}</td>
                                         <td>{{ $item->Sparepart->Konversi->satuan }}</td>
-                                        <td class="text-center">{{ $item->jumlah_masuk }}</td>
+                                        <td class="text-center">{{ $item->Sparepart->stock }}</td>
                                     </tr>
                                     @empty
                                         

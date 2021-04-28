@@ -64,7 +64,7 @@
                                                 name="nama_sparepart" value="{{ $item->nama_sparepart }}" />
                                         </div>
                                     </div>
-                                    <div class="form-row">
+                                    <div class="row">
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_jenis_sparepart"
@@ -118,11 +118,6 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="stock">Stock</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="stock" type="text" name="stock"
-                                                value="{{ $item->stock }}"/>
-                                        </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="stock_min">Stock Min</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="stock_min" type="text" name="stock_min"

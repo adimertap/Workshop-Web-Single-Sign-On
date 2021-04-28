@@ -98,7 +98,6 @@ class MasterdatasparepartController extends Controller
         $sparepart->id_rak = $request->id_rak;
         $sparepart->kode_sparepart = $kode_sparepart;
         $sparepart->nama_sparepart = $request->nama_sparepart;
-        $sparepart->stock = $request->stock;
         $sparepart->stock_min = $request->stock_min;
         $sparepart->save();
 
@@ -167,7 +166,6 @@ class MasterdatasparepartController extends Controller
         $sparepart->id_rak = $request->id_rak;
         $sparepart->kode_sparepart = $request->kode_sparepart;
         $sparepart->nama_sparepart = $request->nama_sparepart;
-        $sparepart->stock = $request->stock;
         $sparepart->stock_min = $request->stock_min;
         
         // $sparepart->update();

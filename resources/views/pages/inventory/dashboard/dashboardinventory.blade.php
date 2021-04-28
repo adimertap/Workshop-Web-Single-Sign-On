@@ -218,6 +218,36 @@
         </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-4">
+        <!-- Dashboard info widget 4-->
+        <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-info h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <div class="small font-weight-bold text-info mb-1">Purchase Order</div>
+                        <div class="h6">Total: {{ $po_belum_datang }}</div>
+                    </div>
+                    <div class="ml-2"><svg class="svg-inline--fa fa-percentage fa-w-12 fa-2x text-gray-200"
+                            aria-hidden="true" focusable="false" data-prefix="fas" data-icon="percentage" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                                d="M109.25 173.25c24.99-24.99 24.99-65.52 0-90.51-24.99-24.99-65.52-24.99-90.51 0-24.99 24.99-24.99 65.52 0 90.51 25 25 65.52 25 90.51 0zm256 165.49c-24.99-24.99-65.52-24.99-90.51 0-24.99 24.99-24.99 65.52 0 90.51 24.99 24.99 65.52 24.99 90.51 0 25-24.99 25-65.51 0-90.51zm-1.94-231.43l-22.62-22.62c-12.5-12.5-32.76-12.5-45.25 0L20.69 359.44c-12.5 12.5-12.5 32.76 0 45.25l22.62 22.62c12.5 12.5 32.76 12.5 45.25 0l274.75-274.75c12.5-12.49 12.5-32.75 0-45.25z">
+                            </path>
+                        </svg><!-- <i class="fas fa-percentage fa-2x text-gray-200"></i> -->
+                    </div>
+                </div>
+                <div class="text-xs font-weight-bold text-success d-inline-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-trending-up mr-1">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                    Hari ini +1
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
         <!-- Dashboard info widget 3-->
         <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-success h-100">
             <div class="card-body">
@@ -247,38 +277,11 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-md-6 mb-4">
-        <!-- Dashboard info widget 4-->
-        <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-info h-100">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div class="flex-grow-1">
-                        <div class="small font-weight-bold text-info mb-1">Penjualan Online</div>
-                        <div class="h6">Total: {{ $po_belum_datang }}</div>
-                    </div>
-                    <div class="ml-2"><svg class="svg-inline--fa fa-percentage fa-w-12 fa-2x text-gray-200"
-                            aria-hidden="true" focusable="false" data-prefix="fas" data-icon="percentage" role="img"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                                d="M109.25 173.25c24.99-24.99 24.99-65.52 0-90.51-24.99-24.99-65.52-24.99-90.51 0-24.99 24.99-24.99 65.52 0 90.51 25 25 65.52 25 90.51 0zm256 165.49c-24.99-24.99-65.52-24.99-90.51 0-24.99 24.99-24.99 65.52 0 90.51 24.99 24.99 65.52 24.99 90.51 0 25-24.99 25-65.51 0-90.51zm-1.94-231.43l-22.62-22.62c-12.5-12.5-32.76-12.5-45.25 0L20.69 359.44c-12.5 12.5-12.5 32.76 0 45.25l22.62 22.62c12.5 12.5 32.76 12.5 45.25 0l274.75-274.75c12.5-12.49 12.5-32.75 0-45.25z">
-                            </path>
-                        </svg><!-- <i class="fas fa-percentage fa-2x text-gray-200"></i> -->
-                    </div>
-                </div>
-                <div class="text-xs font-weight-bold text-success d-inline-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-trending-up mr-1">
-                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                        <polyline points="17 6 23 6 23 12"></polyline>
-                    </svg>
-                    Hari ini +1
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
+
+
+
+
 
 {{-- CARD LINE 2 --}}
 <div class="row">

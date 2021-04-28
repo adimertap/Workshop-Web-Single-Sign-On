@@ -71,10 +71,7 @@
                                                 style="width: 40px;">Satuan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 20px;">Stock</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 20px;">Min Stock</th>
+                                                style="width: 20px;">Min Stock </th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 80px;">Actions</th>
@@ -89,8 +86,7 @@
                                             <td>{{ $item->Jenissparepart->jenis_sparepart }}</td>
                                             <td>{{ $item->Merksparepart->merk_sparepart }}</td>
                                             <td>{{ $item->Konversi->satuan }}</td>
-                                            <td>{{ $item->stock }}</td>
-                                            <td>{{ $item->stock_min}}</td>
+                                            <td class ="text-center">{{ $item->stock_min}}</td>
                                             <td>
                                                 <a href="{{ route('sparepart.gallery', $item->id_sparepart) }}"
                                                     class="btn btn-secondary btn-datatable" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail Sparepart dan Foto">

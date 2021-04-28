@@ -26,7 +26,6 @@ class Hargasparepartrequest extends FormRequest
         return [
             'id_sparepart' =>'required|unique:tb_inventory_master_harga_sparepart,id_sparepart',
             'id_supplier' =>'required',
-            'harga_beli' =>'required|min:3',
             'harga_jual' =>'required|min:3',
         ];
     }
@@ -37,9 +36,6 @@ class Hargasparepartrequest extends FormRequest
             'id_sparepart.required' => 'Error! Anda Belum Memilih Sparepart',
             'id_sparepart.unique' => 'Error! Sparepart Sudah Ada Harga',
             'id_supplier.required' => 'Error! Anda Belum Memilih Supplier',
-
-            'harga_beli.required' => 'Error! Anda Belum Memasukan Harga Beli',
-            'harga_beli.min' => 'Error! Character Minimal :min digit',
        
             'harga_jual.required' => 'Error! Anda Belum Memasukan Harga Jual',
             'harga_jual.min' => 'Error! Character Minimal :min digit',

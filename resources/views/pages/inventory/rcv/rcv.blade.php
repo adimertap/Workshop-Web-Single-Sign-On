@@ -154,7 +154,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="7" class="tex-center">
+                                        <td colspan="7" class="text-center">
                                             Data Penerimaan Kosong
                                         </td>
                                     </tr>

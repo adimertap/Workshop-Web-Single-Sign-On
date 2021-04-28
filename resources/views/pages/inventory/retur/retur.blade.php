@@ -170,7 +170,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="7" class="tex-center">
+                                        <td colspan="8" class="text-center">
                                             Data Retur Kosong
                                         </td>
                                     </tr>
