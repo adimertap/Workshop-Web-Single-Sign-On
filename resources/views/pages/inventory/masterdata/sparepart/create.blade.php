@@ -69,7 +69,8 @@
                                                 value="{{ $kode_sparepart }}" readonly />
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="nama_sparepart">Nama Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <label class="small mb-1 mr-1" for="nama_sparepart">Nama
+                                                Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="nama_sparepart" type="text"
                                                 name="nama_sparepart" placeholder="Input Nama Sparepart"
                                                 value="{{ old('nama_sparepart') }}"
@@ -80,76 +81,130 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_jenis_sparepart">Pilih Jenis Sparepart</label><span class="mr-4 mb-3"
-                                            style="color: red">*</span>
+                                            <label class="small mb-1 mr-1" for="id_jenis_sparepart">Pilih Jenis
+                                                Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <div class="input-group input-group-joined">
                                                 <div class="input-group-append">
-                                                    <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
-                                                        data-target="#Modaljenis">
-                                                        Tambah
+                                                    <a href="" class="btn btn-sm btn-secondary" type="button"
+                                                        data-toggle="modal" data-target="#Modaljenis">
+                                                        <i class="fas fa-plus"></i>
                                                     </a>
                                                 </div>
-                                                <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart"
+                                                <select class="form-control" name="id_jenis_sparepart"
+                                                    id="id_jenis_sparepart"
                                                     class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
                                                     <option>Pilih Jenis</option>
-                                                @foreach ($jenis_sparepart as $item)
-                                                <option value="{{ $item->id_jenis_sparepart }}">
-                                                    {{ $item->jenis_sparepart }}
-                                                </option>
+                                                    @foreach ($jenis_sparepart as $item)
+                                                    <option value="{{ $item->id_jenis_sparepart }}">
+                                                        {{ $item->jenis_sparepart }}
+                                                    </option>
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_merk">Merk Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select class="form-control" name="id_merk" id="id_merk"
-                                                class="form-control @error('id_merk') is-invalid @enderror">
-                                                <option>Pilih Merk</option>
-                                                @foreach ($merk_sparepart as $item)
-                                                <option value="{{ $item->id_merk }}">{{ $item->merk_sparepart }}
-                                                </option>
-                                                @endforeach
-                                            </select>
+                                            <label class="small mb-1 mr-1" for="id_merk">Merk Sparepart</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-append">
+                                                    <a href="" class="btn btn-sm btn-secondary" type="button"
+                                                        data-toggle="modal" data-target="#Modalmerk">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                </div>
+                                                <select class="form-control" name="id_merk" id="id_merk"
+                                                    class="form-control @error('id_merk') is-invalid @enderror">
+                                                    <option>Pilih Merk</option>
+                                                    @foreach ($merk_sparepart as $item)
+                                                    <option value="{{ $item->id_merk }}">{{ $item->merk_sparepart }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                               
+                                            </div>
                                             @error('id_merk')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_konversi">Konversi Satuan</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select class="form-control" name="id_konversi" id="id_konversi"
-                                                class="form-control @error('id_konversi') is-invalid @enderror">
-                                                <option>Pilih Satuan</option>
-                                                @foreach ($konversi as $item)
-                                                <option value="{{ $item->id_konversi }}">{{ $item->satuan }}
-                                                </option>
-                                                @endforeach
-                                            </select>
+                                            <label class="small mb-1 mr-1" for="id_konversi">Konversi
+                                                Satuan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-append">
+                                                    <a href="" class="btn btn-sm btn-secondary" type="button"
+                                                        data-toggle="modal" data-target="#Modalkonversi">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                </div>
+                                                <select class="form-control" name="id_konversi" id="id_konversi"
+                                                    class="form-control @error('id_konversi') is-invalid @enderror">
+                                                    <option>Pilih Satuan</option>
+                                                    @foreach ($konversi as $item)
+                                                    <option value="{{ $item->id_konversi }}">{{ $item->satuan }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                             @error('id_konversi')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
 
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_rak">Tempat Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select class="form-control" name="id_rak" id="id_rak"
-                                                class="form-control @error('id_rak') is-invalid @enderror">
-                                                <option>Pilih Rak</option>
-                                                @foreach ($rak as $item)
-                                                <option value="{{ $item->id_rak }}">{{ $item->nama_rak }}
-                                                </option>
-                                                @endforeach
-                                            </select>
+                                            <label class="small mb-1 mr-1" for="id_rak">Tempat Rak</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-append">
+                                                    <a href="" class="btn btn-sm btn-secondary" type="button"
+                                                        data-toggle="modal" data-target="#Modalrak">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                </div>
+                                                <select class="form-control" name="id_rak" id="id_rak"
+                                                    class="form-control @error('id_rak') is-invalid @enderror">
+                                                    <option>Pilih Rak</option>
+                                                    @foreach ($rak as $item)
+                                                    <option value="{{ $item->id_rak }}">{{ $item->nama_rak }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                             @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="stock_min">Stock Minimum</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <label class="small mb-1 mr-1" for="stock_min">Stock Minimum</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="stock_min" type="number" name="stock_min"
                                                 placeholder="Input Nama Sparepart" value="{{ old('stock_min') }}""
                                                 class=" form-control @error('stock_min') is-invalid @enderror" />
                                             @error('stock_min')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1 mr-1" for="id_kemasan">Kemasan</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-append">
+                                                    <a href="" class="btn btn-sm btn-secondary" type="button"
+                                                        data-toggle="modal" data-target="#Modalkemasan">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                </div>
+                                                <select class="form-control" name="id_kemasan" id="id_kemasan"
+                                                    class="form-control @error('id_kemasan') is-invalid @enderror">
+                                                    <option>Pilih Kemasan</option>
+                                                    @foreach ($kemasan as $kemas)
+                                                    <option value="{{ $kemas->id_kemasan }}">{{ $kemas->nama_kemasan }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('id_kemasan')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
@@ -199,8 +254,8 @@
 
 
 
-<div class="modal fade" id="Modaljenis" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="Modaljenis" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
@@ -217,7 +272,8 @@
                             placeholder="Input Jenis Sparepart" value="{{ old('jenis_sparepart') }}"></input>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="fungsi">Fungsi</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <label class="small mb-1 mr-1" for="fungsi">Fungsi</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
                         <select name="fungsi" id="fungsi" class="form-control"
                             class="form-control @error('fungsi') is-invalid @enderror">
                             <option value="{{ old('fungsi')}}"> Pilih Fungsi</option>
@@ -244,6 +300,181 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="Modalmerk" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Merk Sparepart</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('merk-sparepart.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <select class="form-control" name="id_jenis_sparepart"
+                            class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
+                            id="id_jenis_sparepart">
+                            <option>Pilih Jenis</option>
+                            @foreach ($jenis_sparepart as $item)
+                            <option value="{{ $item->id_jenis_sparepart }}">
+                                {{ $item->jenis_sparepart }}
+                            </option>
+                            @endforeach
+                        </select>
+                        @error('id_jenis_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="merk_sparepart">Merk Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
+                            placeholder="Input Merk" value="{{ old('merk_sparepart') }}"
+                            class="form-control @error('merk_sparepart') is-invalid @enderror"></input>
+                        @error('merk_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                </div>
+                @if (count($errors) > 0)
+                @endif
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="Submit">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Modalkonversi" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Konversi</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('konversi.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="satuan">Satuan Konversi</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="satuan" type="text" id="satuan"
+                            placeholder="Input Satuan Konversi" value="{{ old('satuan') }}"
+                            class="form-control @error('satuan') is-invalid @enderror"></input>
+                            @error('satuan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                    </div>
+                </div>
+
+                {{-- Validasi Error --}}
+                @if (count($errors) > 0)
+                @endif
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="Submit">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Modalrak" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Rak</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('rak.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="nama_rak">Nama Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="nama_rak" type="text" id="nama_rak"
+                            placeholder="Input Nama Rak" value="{{ old('nama_rak') }}"
+                            class="form-control @error('nama_rak') is-invalid @enderror"></input>
+                        @error('nama_rak')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="jenis_rak">Jenis Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <select name="jenis_rak" id="jenis_rak" class="form-control"
+                            class="form-control @error('jenis_rak') is-invalid @enderror">
+                            <option value="{{ old('jenis_rak')}}"> Pilih Jenis Rak</option>
+                            <option value="Fast Moving">Fast Moving</option>
+                            <option value="Slow Moving">Slow Moving</option>
+                            <option value="Sales">Sales</option>
+                        </select>
+                        @error('jenis_rak')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                </div>
+
+                {{-- Validasi Error --}}
+                @if (count($errors) > 0)
+                @endif
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="Submit">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Modalkemasan" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Kemasan</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('kemasan.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="nama_kemasan">Kemasan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="nama_kemasan" type="text" id="nama_kemasan"
+                            placeholder="Input Nama Kemasan" value="{{ old('nama_kemasan') }}"
+                            class="form-control @error('nama_kemasan') is-invalid @enderror"></input>
+                            @error('nama_kemasan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                    </div>
+                </div>
+
+                {{-- Validasi Error --}}
+                @if (count($errors) > 0)
+                @endif
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="Submit">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <script>
     $(document).ready(function () {

@@ -66,6 +66,7 @@
                                         <th colspan="3" class="text-center">Transaksi</th>
                                         <th colspan="3" class="text-center">Jumlah</th>
                                         <th colspan="1" class="text-center">Saldo</th>
+                                        <th colspan="1" class="text-center">Harga</th>
                                     </tr>
                                     <tr role="row">
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
@@ -90,6 +91,9 @@
                                         <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
                                             style="width: 70px;">Saldo</th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Salary: activate to sort column ascending"
+                                            style="width: 70px;">Harga Beli</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -108,6 +112,7 @@
                                         <td>{{ $item->jumlah_keluar }}</td>
                                         <td>{{ $item->Sparepart->Konversi->satuan }}</td>
                                         <td class="text-center">{{ $item->Sparepart->stock }}</td>
+                                        <td>Rp.{{ number_format($item->harga_beli,2,',','.')}}</td>
                                     </tr>
                                     @empty
                                         

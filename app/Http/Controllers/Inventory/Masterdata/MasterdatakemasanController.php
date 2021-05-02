@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Inventory\Masterdata;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Inventory\Konversirequest;
-use App\Model\Inventory\Konversi;
+use App\Http\Requests\Inventory\Kemasanrequest;
+use App\Model\Inventory\Kemasan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-class MasterdatakonversiController extends Controller
+
+class MasterdatakemasanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class MasterdatakonversiController extends Controller
      */
     public function index()
     {
-        $konversi = Konversi::get();
+        $kemasan = Kemasan::get();
 
-        return view('pages.inventory.masterdata.konversi', compact('konversi'));
+        return view('pages.inventory.masterdata.kemasan', compact('kemasan'));
     }
 
     /**
@@ -28,7 +28,7 @@ class MasterdatakonversiController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -37,13 +37,12 @@ class MasterdatakonversiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Konversirequest $request)
+    public function store(Kemasanrequest $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->satuan);
-
-        Konversi::create($data);
-        return redirect()->back()->with('messageberhasil','Data Konversi Satuan Berhasil ditambahkan');
+       
+        Kemasan::create($data);
+        return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil ditambahkan');
     }
 
     /**
@@ -75,13 +74,13 @@ class MasterdatakonversiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Konversirequest $request, $id_konversi)
+    public function update(Request $request, $id_kemasan)
     {
-        $konversi = Konversi::findOrFail($id_konversi);
-        $konversi->satuan = $request->satuan;
+        $kemasan = Kemasan::findOrFail($id_kemasan);
+        $kemasan->nama_kemasan = $request->nama_kemasan;
         
-        $konversi->save();
-        return redirect()->back()->with('messageberhasil','Data Satuan Berhasil diubah');
+        $kemasan->save();
+        return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil diubah');
     }
 
     /**
@@ -90,11 +89,11 @@ class MasterdatakonversiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_konversi)
+    public function destroy($id_kemasan)
     {
-        $konversi = Konversi::findOrFail($id_konversi);
-        $konversi->delete();
+        $kemasan = Kemasan::findOrFail($id_kemasan);
+        $kemasan->delete();
 
-        return redirect()->back()->with('messagehapus','Data Satuan Berhasil dihapus');
+        return redirect()->back()->with('messagehapus','Data Kemasan Berhasil dihapus');
     }
 }

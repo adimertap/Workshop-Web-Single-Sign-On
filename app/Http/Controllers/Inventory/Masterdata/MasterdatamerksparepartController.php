@@ -29,7 +29,7 @@ class MasterdatamerksparepartController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_merk = 'MRKSP-'.'/'.$blt.$idbaru;
+        $kode_merk = 'MRK-'.$blt.'/'.$idbaru;
         // // Cek nilai merksparepart -> array
         // // dd($merksparepart); 
 
@@ -60,7 +60,7 @@ class MasterdatamerksparepartController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_merk = 'MRKSP-'.'/'.$blt.$idbaru;
+        $kode_merk = 'MRK-'.$blt.'/'.$idbaru;
 
         $merksparepart = new Merksparepart;
         $merksparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
@@ -68,7 +68,7 @@ class MasterdatamerksparepartController extends Controller
         $merksparepart->merk_sparepart = $request->merk_sparepart;
 
         $merksparepart->save();
-        return redirect()->route('merk-sparepart.index')->with('messageberhasil','Data Merk Sparepart Berhasil ditambahkan');
+        return redirect()->back()->with('messageberhasil','Data Merk Sparepart Berhasil ditambahkan');
     }
 
     /**

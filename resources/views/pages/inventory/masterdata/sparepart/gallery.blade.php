@@ -70,6 +70,11 @@
                             <input class="form-control form-control-sm" id="stock_min" type="text" name="stock_min"
                                 value="{{ $sparepart->stock_min }}" readonly />
                         </div>
+                        <div class="form-group col-md-6">
+                           <label class="small mb-1" for="nama_kemasan">Kemasan</label>
+                            <input class="form-control form-control-sm" id="nama_kemasan" type="text" name="nama_kemasan"
+                                value="{{ $sparepart->Kemasan->nama_kemasan }}" readonly />
+                        </div>
                     </div>
                     <hr class="my-4" />
                 </div>

@@ -53,12 +53,11 @@ class ReturController extends Controller
      */
     public function store(Request $request)
     {
-        $rcv = Rcv::where('kode_rcv',$request->kode_rcv)->first();
-        $id_rcv = $rcv->id_rcv;
-        $id_supplier = $rcv->id_supplier;
+        $supplier = Supplier::where('nama_supplier',$request->nama_supplier)->first();
+        $id_supplier = $supplier->id_supplier;
+
 
         $retur = Retur::create([
-            'id_rcv'=>$id_rcv,
             'id_supplier'=>$id_supplier,
             'tanggal_retur'=>$request->tanggal_retur,
         ]);
@@ -90,7 +89,7 @@ class ReturController extends Controller
     public function edit($id)
     {
         $retur = Retur::with([
-            'Rcv.Detailrcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur.Hargasparepart'
+            'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart'
         ])->find($id);
 
         // Generate Code Manggil Fungsi getId()

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Hargasparepart extends Model
 {
-
     use SoftDeletes;
 
     protected $table = "tb_inventory_master_harga_sparepart";
@@ -27,7 +26,7 @@ class Hargasparepart extends Model
         'deleted_at'
     ];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function Sparepart(){
         return $this->belongsTo(Sparepart::class,'id_sparepart','id_sparepart');

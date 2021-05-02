@@ -30,6 +30,7 @@ class Sparepartrequest extends FormRequest
             'id_rak' => 'required|exists:tb_inventory_master_rak,id_rak',
             'nama_sparepart' => 'required|unique:tb_inventory_master_sparepart,nama_sparepart|min:5|max:50',
             'stock_min' => 'required|min:1|max:20',
+            'id_kemasan' => 'required|exists:tb_inventory_master_kemasan,id_kemasan',
         ];
     }
     public function messages()
@@ -39,6 +40,7 @@ class Sparepartrequest extends FormRequest
             'id_merk.required' => 'Error! Anda Belum Mengisi Merk Sparepart',
             'id_konversi.required' => 'Error! Anda Belum Mengisi Satuan Konversi Sparepart',
             'id_rak.required' => 'Error! Anda Belum Mengisi Penempatan Rak Sparepart',
+            'id_kemasan.required' =>'Error! Anda Belum Mengisi Kemasan Sparepart',
             'nama_sparepart.required' => 'Error! Anda Belum Mengisi Nama Sparepart',
 
             'nama_sparepart.unique' => 'Error! Nama Sparepart Sudah Ada',
@@ -50,6 +52,8 @@ class Sparepartrequest extends FormRequest
 
             'stock_min.min' => 'Error! Nominal Minimal :min digit',
             'stock_min.max' => 'Error! Nominal Maximal :max digit',
+
+
         ];
     }
 }

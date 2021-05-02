@@ -24,46 +24,6 @@
     </div>
 </main>
 
-<div class="container-fluid">
-    <div class="card mb-4">
-        <div class="card card-header-actions h-100">
-            <div class="card-header">
-                Data Receiving dengan Retur
-            </div>
-            <div class="card-body">
-                <div class="timeline timeline-xs">
-                    <!-- Timeline Item 1-->
-                    @forelse ($rcv as $item)
-                    <div class="timeline-item">
-                        <div class="timeline-item-marker">
-                            <div class="timeline-item-marker-text">New</div>
-                            <div class="timeline-item-marker-indicator bg-green"></div>
-                        </div>
-                        <div class="timeline-item-content">
-                            Receiving dengan Retur! {{ $item->tanggal_rcv }}
-                            <a class="font-weight-bold text-dark" href="{{ route('Rcv.show',$item->id_rcv) }}"
-                                data-toggle="tooltip" data-placement="top" title=""
-                                data-original-title="Cek Detail Receiving">Order {{ $item->kode_rcv }}</a>
-                            Pada Supplier {{ $item->Supplier->nama_supplier }}
-                        </div>
-                    </div>
-                    @empty
-                    <div class="timeline-item">
-                        <div class="timeline-item-marker">
-                            <div class="timeline-item-marker-text">Empty</div>
-                            <div class="timeline-item-marker-indicator bg-red"></div>
-                        </div>
-                        <div class="timeline-item-content">
-                            Sementara Tidak ada Data Receiving dengan Retur
-                        </div>
-                    </div>
-                    @endforelse
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <div class="container-fluid">
     <div class="card mb-4">
@@ -212,21 +172,21 @@
                     </hr>
                     <div class="row">
                         <div class="form-group col-md-7">
-                            <label class="small mb-1" for="id_Rcv">Pilih Receiving</label>
+                            <label class="small mb-1" for="id_Rcv">Supplier</label>
                             <div class="input-group input-group-joined">
-                                <input class="form-control" type="text" placeholder="Pilih Receiving" aria-label="Search"
-                                    id="detailrcv">
+                                <input class="form-control" type="text" placeholder="Pilih Supplier" aria-label="Search"
+                                    id="detailsupplier">
                                 <div class="input-group-append">
                                     <a href="" class="input-group-text" type="button" data-toggle="modal"
-                                        data-target="#Modalrcv">
+                                        data-target="#Modalsupplier">
                                         <i class="fas fa-folder-open"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group col-md-5">
-                            <label class="small mb-1" for="id_supplier">Supplier</label>
-                            <input class="form-control" id="detailsupplier" type="text" name="id_supplier" readonly>
+                            <label class="small mb-1" for="telephone">Nomor Telp.</label>
+                            <input class="form-control" id="detailtelephone" type="text" name="telephone" readonly>
                         </div>
                     </div>
                     <div class="form-group">
@@ -248,56 +208,72 @@
 </div>
 
 {{-- MODAL PO --}}
-<div class="modal fade" id="Modalrcv" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+<div class="modal fade" id="Modalsupplier" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content ">
             <div class="modal-header bg-light ">
-                <h5 class="modal-title">Pilih Receiving</h5>
+                <h5 class="modal-title">Pilih Supplier</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-borderless mb-0">
-                        <thead class="border-bottom">
-                            <tr class="small text-uppercase text-muted">
-                                <th scope="col">Kode Rcv</th>
-                                <th scope="col">Supplier</th>
-                                <th scope="col">Telephone</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($rcv as $item)
-                            <tr id="item-{{ $item->id_rcv }}" class="border-bottom">
-                                <td>
-                                    <div class="font-weight-bold kode_rcv">{{ $item->kode_rcv }}</div>
-                                </td>
-                                <td>
-                                    <div class="small text-muted d-none d-md-block nama_supplier">{{ $item->Supplier->nama_supplier }}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="small text-muted d-none d-md-block telephone">
-                                        {{ $item->Supplier->telephone }}</div>
-                                </td>
-                                <td>
-                                    <button class="btn btn-success btn-sm btn-datatable"
-                                        onclick="tambahrcv(event, {{ $item->id_rcv }})" type="button"
-                                        data-dismiss="modal">Tambah
-                                    </button>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="7" class="tex-center">
-                                    Data Receiving dengan Retur Kosong
-                                </td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                <div class="datatable">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataTableSupplier" width="100%"
+                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending" style="width: 20px;">
+                                                No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 80px;">Kode Supplier</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 140px;">Supplier</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                style="width: 50px;">Telephone Supplier</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Salary: activate to sort column ascending"
+                                                style="width: 100px;">Alamat</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Actions: activate to sort column ascending"
+                                                style="width: 90px;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($supplier as $item)
+                                        <tr id="item-{{ $item->id_supplier }}" role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td class="kode_supplier">{{ $item->kode_supplier }}</td>
+                                            <td class="nama_supplier">{{ $item->nama_supplier }}</td>
+                                            <td class="telephone">{{ $item->telephone }}</td>
+                                            <td class="alamat_supplier">{{ $item->alamat_supplier }}</td>
+                                            <td>
+                                                <button class="btn btn-success btn-sm"
+                                                    onclick="tambahsupplier(event, {{ $item->id_supplier }})" type="button"
+                                                    data-dismiss="modal">Tambah
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="8" class="text-center">
+                                                Data Supplier Kosong
+                                            </td>
+                                        </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -315,7 +291,7 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('Retur.destroy', $item->id_retur) }}" method="POST" class="d-inline">
+            <form action="{{ route('retur.destroy', $item->id_retur) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
                 <div class="modal-body">Apakah Anda Yakin Menghapus Data Retur {{ $item->kode_retur }} pada tanggal
@@ -335,31 +311,30 @@
 
 
 <script>
-    function tambahrcv(event, id_supplier) {
+    function tambahsupplier(event, id_supplier) {
         var data = $('#item-' + id_supplier)
         var _token = $('#form1').find('input[name="_token"]').val()
         var nama_supplier = $(data.find('.nama_supplier')[0]).text()
-        var kode_rcv = $(data.find('.kode_rcv')[0]).text()
+        var telephone = $(data.find('.telephone')[0]).text()
         alert('Berhasil Menambahkan Data Supplier')
         // $("#toast").toast("show");
 
         $('#detailsupplier').val(nama_supplier)
-        $('#detailrcv').val(kode_rcv)
+        $('#detailtelephone').val(telephone)
     }
 
     function submit1() {
         var _token = $('#form1').find('input[name="_token"]').val()
         var nama_supplier = $('#detailsupplier').val()
-        var kode_rcv = $('#detailrcv').val()
         var tanggal_retur = $('#tanggal_retur').val()
+        
         var data = {
             _token: _token,
             nama_supplier: nama_supplier,
             tanggal_retur: tanggal_retur,
-            kode_rcv: kode_rcv,
         }
 
-        if (kode_rcv == 0 | kode_rcv == '' | tanggal_retur == 0 | tanggal_retur == '' ) {
+        if (nama_supplier == 0 | nama_supplier == '' | tanggal_retur == 0 | tanggal_retur == '' ) {
             var alert = $('#alertdatakosong').show()
         } else {
             $.ajax({
@@ -375,8 +350,17 @@
 
             });
         }
-
     }
+
+    $(document).ready(function () {
+        var table = $('#dataTableSupplier').DataTable({
+            "pageLength": 5,
+            "lengthMenu": [
+                [5, 10, 20, -1],
+                [5, 10, 20, ]
+            ]
+        })
+    });
 
     setInterval(displayclock, 500);
 

@@ -24,7 +24,7 @@ class MasterdatarakController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_rak = 'RKSP-'.'/'.$blt.$idbaru;
+        $kode_rak = 'RKSP-'.$blt.'/'.$idbaru;
         
         return view('pages.inventory.masterdata.raksparepart', compact('rak','kode_rak'));
         
@@ -54,7 +54,7 @@ class MasterdatarakController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_rak = 'RKSP-'.'/'.$blt.$idbaru;
+        $kode_rak = 'RKSP-'.$blt.'/'.$idbaru;
 
         $rak = new Rak;
         $rak->kode_rak = $kode_rak;
@@ -62,7 +62,7 @@ class MasterdatarakController extends Controller
         $rak->jenis_rak = $request->jenis_rak;
         $rak->save();
 
-        return redirect()->route('rak.index')->with('messageberhasil','Data Rak Berhasil ditambahkan');
+        return redirect()->back()->with('messageberhasil','Data Rak Berhasil ditambahkan');
     }
 
     /**

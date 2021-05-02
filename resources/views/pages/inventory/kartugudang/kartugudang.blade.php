@@ -110,8 +110,8 @@
                                         <td>{{ $item->Jenissparepart->jenis_sparepart }}</td>
                                         <td>{{ $item->Merksparepart->merk_sparepart }}</td>
                                         <td>{{ $item->Konversi->satuan }}</td>
-                                        <td>{{ $item->stock }}</td>
-                                        <td>{{ $item->stock_min}}</td>
+                                        <td class=text-center>{{ $item->stock }}</td>
+                                        <td class="text-center">{{ $item->stock_min}}</td>
                                         <td>
                                             <a href="{{ route('Kartu-gudang.show', $item->id_sparepart) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"

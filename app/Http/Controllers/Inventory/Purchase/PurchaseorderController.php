@@ -122,9 +122,8 @@ class PurchaseorderController extends Controller
     public function edit($id)
     {
         $po = PO::with([
-            'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailsparepart.Hargasparepart','Detailsparepart'
+            'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailsparepart','Supplier.Sparepart.Kartugudang'
         ])->find($id);
-
 
         $id = PO::getId();
         $blt = date('y-m');

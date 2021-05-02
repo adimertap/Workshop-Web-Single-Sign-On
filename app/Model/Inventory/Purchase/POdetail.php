@@ -18,7 +18,6 @@ class POdetail extends Model
     protected $fillable = [
         'id_po',
         'id_sparepart',
-        'id_harga',
         'qty',
     ];
 
@@ -40,8 +39,5 @@ class POdetail extends Model
         return $this->belongsTo(Sparepart::class, 'id_sparepart','id_sparepart');
     }
 
-    public function Hargasparepart()
-    {
-        return $this->belongsTo(Hargasparepart::class, 'id_harga','id_harga');
-    }
+    
 }

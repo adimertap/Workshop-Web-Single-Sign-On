@@ -224,23 +224,26 @@
                                 <a class="nav-link" href="{{ route('sparepart.index')}}">
                                     Sparepart
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatamerksparepart')}}">
+                                <a class="nav-link" href="{{ route('merk-sparepart.index')}}">
                                     Merk Sparepart
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatajenissparepart')}}">
+                                <a class="nav-link" href="{{ route('jenis-sparepart.index')}}">
                                     Jenis Sparepart
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatasupplier')}}">
+                                <a class="nav-link" href="{{ route('supplier.index')}}">
                                     Supplier
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatahargasparepart')}}">
+                                <a class="nav-link" href="{{ route('hargasparepart.index')}}">
                                     Harga Sparepart
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatarak')}}">
+                                <a class="nav-link" href="{{ route('rak.index')}}">
                                     Rak
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatakonversi')}}">
+                                <a class="nav-link" href="{{ route('konversi.index')}}">
                                     Konversi
+                                </a>
+                                <a class="nav-link" href="{{ route('kemasan.index')}}">
+                                    Kemasan
                                 </a>
                             </nav>
                         </div>
@@ -265,7 +268,7 @@
                                 <a class="nav-link" href="{{ route('Opname.index') }}">
                                     Stock Opname
                                 </a>
-                                <a class="nav-link" href="{{ route('Kartu-gudang') }}">
+                                <a class="nav-link" href="{{ route('Kartu-gudang.index') }}">
                                     Kartu Gudang
                                 </a>
                             </nav>
@@ -326,7 +329,7 @@
                                 <a class="nav-link " href="{{ route('approval-po-ap.index') }}">
                                     Purchase Order AP
                                 </a>
-                                <a class="nav-link" href="{{ route('approvalopname') }}">
+                                <a class="nav-link" href="{{ route('approval-opname.index') }}">
                                     Stock Opname
                                 </a>
                             </nav>

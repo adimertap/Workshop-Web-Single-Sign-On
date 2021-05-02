@@ -25,8 +25,8 @@ class Kartugudang extends Model
         'jumlah_masuk',
         'jumlah_keluar',
         'saldo_akhir',
-        'jenis_kartu'
-        
+        'jenis_kartu',
+        'harga_beli'
     ];
 
     protected $hidden =[ 
@@ -42,7 +42,6 @@ class Kartugudang extends Model
     {
         return $this->belongsTo(Sparepart::class,'id_sparepart','id_sparepart');
     }
-
 
     public function Rcv()
     {

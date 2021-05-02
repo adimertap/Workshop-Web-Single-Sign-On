@@ -123,6 +123,18 @@
                                             <input class="form-control" id="stock_min" type="text" name="stock_min"
                                                 value="{{ $item->stock_min }}" />
                                         </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1 mr-1" for="id_kemasan">Kemasan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <select class="form-control" name="id_kemasan" id="id_kemasan">
+                                                <option value="{{ $item->Kemasan->id_kemasan }}">
+                                                    {{ $item->Kemasan->nama_kemasan }}</option>
+                                                @foreach ($kemasan as $kemas)
+                                                <option value="{{ $kemas->id_kemasan }}">
+                                                    {{ $kemas->nama_kemasan }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">

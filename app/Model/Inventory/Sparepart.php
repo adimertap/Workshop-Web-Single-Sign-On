@@ -20,6 +20,7 @@ class Sparepart extends Model
         'id_jenis_sparepart',
         'id_konversi',
         'id_rak',
+        'id_kemasan',
         'kode_sparepart',
         'nama_sparepart',
         'keterangan',
@@ -51,6 +52,10 @@ class Sparepart extends Model
         return $this->belongsTo(Konversi::class,'id_konversi','id_konversi')->withTrashed();
     }
 
+    public function Kemasan(){
+        return $this->belongsTo(Kemasan::class,'id_kemasan','id_kemasan')->withTrashed();
+    }
+
     public function Rak(){
         return $this->belongsTo(Rak::class,'id_rak','id_rak')->withTrashed();
     }
@@ -60,7 +65,7 @@ class Sparepart extends Model
     }
 
     public function Hargasparepart(){
-        return $this->hasOne(Hargasparepart::class,'id_sparepart');
+        return $this->hasMany(Hargasparepart::class,'id_sparepart');
     }
 
     public function PO(){
@@ -71,6 +76,9 @@ class Sparepart extends Model
         return $this->belongsToMany(Opname::class, 'tb_inventory_detopname','id_sparepart','id_opname');
     }
 
+    public function Kartugudang(){
+        return $this->belongsTo(Kartugudang::class, 'id_sparepart','id_sparepart');
+    }
 
     public static function getId(){
         return $getId = DB::table('tb_inventory_master_sparepart')->orderBy('id_sparepart','DESC')->take(1)->get();
