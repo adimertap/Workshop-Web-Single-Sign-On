@@ -26,123 +26,79 @@
         </div>
     </header>
 
-
     <div class="container mt-n10">
-        <div class="card">
-            <div class="card-header border-bottom">
-                <div class="nav nav-pills nav-justified flex-column flex-xl-row nav-wizard" id="cardTab" role="tablist">
-                    <!-- Wizard navigation item 1-->
-                    <a class="nav-item nav-link active" id="wizard1-tab" href="#wizard1" data-toggle="tab" role="tab"
-                        aria-controls="wizard1" aria-selected="true">
-                        <div class="wizard-step-icon">1</div>
-                        <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Formulir Pembayaran</div>
-                            <div class="wizard-step-text-details">Lengkapi formulir berikut</div>
-                        </div>
-                    </a>
-                    <a class="nav-item nav-link" id="wizard2-tab" href="#wizard2" data-toggle="tab" role="tab"
-                        aria-controls="wizard2" aria-selected="true">
-                        <div class="wizard-step-icon">2</div>
-                        <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Daftar Data Pajak</div>
-                            <div class="wizard-step-text-details">Tambah Data</div>
-                        </div>
-                    </a>
-                    <a class="nav-item nav-link" id="wizard3-tab" href="#wizard3" data-toggle="tab" role="tab"
-                        aria-controls="wizard3" aria-selected="true">
-                        <div class="wizard-step-icon">3</div>
-                        <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Konfirmasi Pembayaran</div>
-                            <div class="wizard-step-text-details">Daftar Pajak</div>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
-            {{-- CARD 1 --}}
-            <div class="card-body">
-                <div class="tab-content" id="cardTabContent">
-                    <!-- Wizard tab pane item 1-->
-                    <div class="tab-pane py-2 py-xl-2 fade show active" id="wizard1" role="tabpanel"
-                        aria-labelledby="wizard1-tab">
-                        <div class="row justify-content-center">
-                            <div class="col-xxl-6 col-xl-9">
-                                <h3 class="text-primary">Step 1</h3>
-                                <h5 class="card-title">Input Formulir Pembelian</h5>
-                                <form action="{{ route('pajak.store') }}" id="form1" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="kode_pajak">Kode Pajak</label>
-                                            <input class="form-control" id="kode_pajak" type="text" name="kode_pajak"
-                                                placeholder="Input Kode Pajak" value="{{ $kode_pajak }}" readonly />
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_pegawai">Pegawai</label>
-                                            <select class="form-control" name="id_pegawai" id="id_pegawai"
-                                                class="form-control @error('id_supplier') is-invalid @enderror">
-                                                <option>Pilih Pegawai</option>
-                                                @foreach ($pegawai as $item)
-                                                <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="status_jurnal">Status Jurnal</label>
-                                            <input class="form-control" id="status_jurnal" type="text"
-                                                name="status_jurnal" value="Pending" readonly>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="tanggal_bayar">Tanggal Pembayaran</label>
-                                            <input class="form-control" id="tanggal_bayar" type="date"
-                                                name="tanggal_bayar" placeholder="Input Tanggal Receive"
-                                                value="{{ old('tanggal_bayar') }}"
-                                                class="form-control @error('tanggal_bayar') is-invalid @enderror" />
-                                            @error('tanggal_bayar')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="small mb-1" for="deskripsi_pajak">Deskripsi</label>
-                                        <textarea class="form-control" id="deskripsi_pajak" type="text"
-                                            name="deskripsi_pajak" placeholder="Deskripsi Pembayaran"
-                                            class="form-control @error('deskripsi_pajak') is-invalid @enderror"></textarea>
-                                        @error('deskripsi_pajak')<div class="text-danger small mb-1">{{ $message }}
-                                        </div> @enderror
-                                    </div>
-                                    <hr class="my-4" />
-                                    <div class="d-flex justify-content-between">
-                                        <a href="{{ route('pajak.index') }}" class="btn btn-light">Kembali</a>
-                                        <button class="btn btn-primary">Next</button>
-                                    </div>
-                            </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card card-header-actions">
+                        <div class="card-header ">Form Invoice
                         </div>
                     </div>
-
-                    {{-- CARD 2 --}}
-                    <div class="tab-pane fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
-                        <div class="tab-pane py-2 py-xl-2 fade show active" id="wizard1" role="tabpanel"
-                            aria-labelledby="wizard1-tab">
-                            <h3 class="text-primary">Step 2</h3>
-                            <h5 class="card-title">Tambah Data Pajak</h5>
-                            <hr>
-                            <div class="row justify-content-center">
-                                <div class="col-xxl-12 col-sm-12">
-                                    <div class="form-group col-md-4">
-                                        <label class="small mb-1" for="deskripsi_pajak">Tambah Data</label>
-                                        <button class="form-control btn btn-secondary" type="button" data-toggle="modal"
-                                            data-target="#Modaltambahpajak">Tambah Data Pajak</button>
-                                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('pajak.store') }}" id="form1" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="kode_pajak">Kode Pajak</label>
+                                    <input class="form-control" id="kode_pajak" type="text" name="kode_pajak"
+                                        placeholder="Input Kode Pajak" value="{{ $kode_pajak }}" readonly />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="status_jurnal">Status Jurnal</label>
+                                    <input class="form-control" id="status_jurnal" type="text" name="status_jurnal"
+                                        value="Pending" readonly>
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label class="small mb-1" for="id_pegawai">Pegawai</label>
+                                <select class="form-control" name="id_pegawai" id="id_pegawai"
+                                    class="form-control @error('id_supplier') is-invalid @enderror">
+                                    <option>Pilih Pegawai</option>
+                                    @foreach ($pegawai as $item)
+                                    <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="small mb-1" for="tanggal_bayar">Tanggal Pembayaran</label>
+                                <input class="form-control" id="tanggal_bayar" type="date" name="tanggal_bayar"
+                                    placeholder="Input Tanggal Receive" value="{{ old('tanggal_bayar') }}"
+                                    class="form-control @error('tanggal_bayar') is-invalid @enderror" />
+                                @error('tanggal_bayar')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="small mb-1" for="deskripsi_pajak">Deskripsi</label>
+                                <textarea class="form-control" id="deskripsi_pajak" type="text" name="deskripsi_pajak"
+                                    placeholder="Deskripsi Pembayaran"
+                                    class="form-control @error('deskripsi_pajak') is-invalid @enderror"></textarea>
+                                @error('deskripsi_pajak')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
+                            </div>
+                            <div class="form-group text-right">
+                                <hr>
+                                <a href="{{ route('Opname.index') }}" class="btn btn-sm btn-light">Kembali</a>
+                                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                                    data-target="#Modalsumbit">Simpan</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card card-header-actions">
+                        <div class="card-header">
+                            Detail Pajak
+                            <a href="" class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                                data-target="#Modaltambahpajak">
+                                Tambah Pajak
+                            </a>
+                        </div>
+                        <div class="card-body">
                             <div class="datatable">
                                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                     <div class="row">
@@ -160,149 +116,46 @@
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Position: activate to sort column ascending"
-                                                            style="width: 80px;">
+                                                            style="width: 150px;">
                                                             Data Pajak</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
-                                                            aria-label="Position: activate to sort column ascending"
-                                                            style="width: 180px;">
-                                                            Kode Pajak</th>
+                                                            aria-label="Start date: activate to sort column ascending"
+                                                            style="width: 90px;">
+                                                            Keterangan Pajak</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Office: activate to sort column ascending"
-                                                            style="width: 70px;">
+                                                            style="width: 120px;">
                                                             Nilai Pajak</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Start date: activate to sort column ascending"
-                                                            style="width: 70px;">
-                                                            Keterangan Pajak</th>
+                                                            style="width: 30px;">
+                                                            Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id='konfirmasi'>
 
                                                 </tbody>
+                                                <tr id="grandtotal">
+                                                    <td colspan="3" class="text-center font-weight-500">
+                                                        Total Pajak
+                                                    </td>
+                                                    <td colspan="2" class="grand_total">
+                                                        Rp.
+                                                    </td>
+                                                </tr>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-                        <hr class="my-4">
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-light" type="button">Previous</button>
-                            <button class="btn btn-primary" type="button">Next</button>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
-                        {{-- ALERT --}}
-                        <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
-                                class="fas fa-times"></i>
-                            Error! Anda belum menambahkan Data Pajak!
-                            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="alert alert-success" id="alerttambah" role="alert" style="display:none"> <i
-                                class="fas fa-check"></i>
-                            Berhasil! Anda berhasil menambahkan Data Pajak!
-                            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
-                                    <h3 class="text-primary">Step 3</h3>
-                                    <h5 class="card-title">Konfirmasi Pembayaran Pajak</h5>
-                                </div>
-                                <div class="col-12 col-lg-auto text-center text-lg-right">
-                                    <div class="h3 text-white">PO</div>
-                                    #{{ $kode_pajak }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="table-responsive col-md-6">
-                                    <table class="table table-borderless mb-0">
-                                        <thead class="border-bottom">
-                                            <tr class="small text-uppercase text-muted">
-                                                <th scope="col">STEP 3</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="border-bottom">
-                                                <td>
-                                                    <div class="font-weight-bold">Kode Pajak</div>
-                                                    <div class="small text-muted d-none d-md-block">{{ $kode_pajak }}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="border-bottom">
-                                                <td>
-                                                    <div class="font-weight-bold">Pegawai</div>
-                                                    <div class="small text-muted d-none d-md-block"><span
-                                                            id="detailpegawai"></span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="border-bottom">
-                                                <td>
-                                                    <div class="font-weight-bold">Tanggal Pembayaran</div>
-                                                    <div class="small text-muted d-none d-md-block">
-                                                        <span id="detailtanggalbayar"></span></div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                {{-- 2 --}}
-                                <div class="table-responsive col-md-6">
-                                    <table class="table table-borderless mb-0">
-                                        <thead class="border-bottom">
-                                            <tr class="small text-uppercase text-muted">
-                                                <th scope="col">Konfirmasi Formulir</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="border-bottom">
-                                                <td>
-                                                    <div class="font-weight-bold">Status Jurnal</div>
-                                                    <div class="small text-muted d-none d-md-block">
-                                                        Pending</div>
-                                                </td>
-                                            </tr>
-                                            <tr class="border-bottom">
-                                                <td>
-                                                    <div class="font-weight-bold">Deskripsi</div>
-                                                    <div class="small text-muted d-none d-md-block">
-                                                        <span id="detaildeskripsi"></span></div>
-                                                </td>
-                                            </tr>
-                                            <tr class="border-bottom">
-                                                <td>
-                                                    <div class="font-weight-bold">Total Pembayaran Pajak</div>
-                                                    <div class="small text-muted d-none d-md-block"><span
-                                                            id="detailtotalpembayaran"></span></div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="my-4">
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-light" type="button">Previous</button>
-                            <button class="btn btn-primary" type="button" data-toggle="modal"
-                                data-target="#Modalsumbit">Submit</button>
                         </div>
                     </div>
                 </div>
-                </form>
             </div>
+            </form>
         </div>
     </div>
 </main>
@@ -390,8 +243,7 @@
                 <div class="form-group">Apakah Form yang Anda inputkan sudah benar?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" onclick="submit(event,{{ $pajak }})"
-                        type="button">Ya!Sudah</button>
+                    <button class="btn btn-primary" onclick="submit(event,{{ $pajak }})" type="button">Ya!Sudah</button>
                 </div>
             </div>
         </div>
@@ -486,9 +338,10 @@
         if (nilai_pajak == 0 | nilai_pajak == '' | data_pajak == '') {
             alert('Data Inputan Ada yang belum terisi')
         } else {
-            alert('Berhasil Menambahkan Data Pajak')
+          
+
             $('#dataTablekonfirmasi').DataTable().row.add([
-                data_pajak, data_pajak, nilai_pajak_fix, keterangan_pajak,
+                data_pajak, data_pajak, keterangan_pajak, nilai_pajak_fix
             ]).draw();
         }
     }

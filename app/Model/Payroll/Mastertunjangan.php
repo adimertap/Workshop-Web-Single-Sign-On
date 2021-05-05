@@ -27,4 +27,9 @@ class Mastertunjangan extends Model
 
     public $timestamps = true;
 
+    public function Gaji(){
+        return $this->belongsToMany(Gajipegawai::class, 'tb_payroll_detgaji','id_tunjangan','id_gaji_pegawai');
+    }
+    
+
 }

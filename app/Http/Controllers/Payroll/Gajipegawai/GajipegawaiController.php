@@ -87,9 +87,9 @@ class GajipegawaiController extends Controller
     public function edit($id)
     {
         $gaji = Gajipegawai::with([
-            'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi'
+            'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan'
         ])->find($id);
-
+        
         $seluruhpegawai = Pegawai::all();
         $tunjangan = Mastertunjangan::all();
         $today = Carbon::now()->format('D, d/m/Y');
@@ -104,9 +104,24 @@ class GajipegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_gaji_pegawai)
     {
-        //
+        $gaji = Gajipegawai::findOrFail($id_gaji_pegawai);
+        $gaji->tahun_gaji = $request->tahun_gaji;
+        $gaji->bulan_gaji = $request->bulan_gaji;
+        $gaji->gaji_diterima = $request->gaji_diterima;
+        $gaji->keterangan = $request->keterangan;
+
+        // $temp = 0;
+        // foreach($request->sparepart as $key=>$item){
+        //     $temp = $temp + $item['total_harga'];
+        // }
+
+        // $po->grand_total = $temp;
+        
+        $gaji->save();
+        $gaji->Detailtunjangan()->sync($request->tunjangan);
+        return $request;
     }
 
     /**

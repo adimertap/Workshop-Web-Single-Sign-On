@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Accounting\Akun;
 use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Purchase\PO;
+use App\Model\Inventory\Purchase\POdetail;
 use App\Model\Inventory\Rak;
 use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Rcv\Rcvdetail;
@@ -128,7 +129,8 @@ class RcvController extends Controller
         $rcv->tanggal_rcv = $request->tanggal_rcv;
         // NYIMPEN GRAND TOTAL
         $temp = 0;
-        $retur = 0;
+        $qtyrcv = 0;
+        $qtypo = 0;
 
         foreach($request->sparepart as $key=>$item){
             // NAMBAH STOCK SPAREPART
@@ -138,7 +140,7 @@ class RcvController extends Controller
 
             // KARTU GUDANG
             $kartu_gudang = new Kartugudang;
-            $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_mauk +$item['qty_rcv'];
+            $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_masuk + $item['qty_rcv'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
             $kartu_gudang->id_rcv = $rcv->id_rcv;
             $kartu_gudang->tanggal_transaksi = $rcv->tanggal_rcv;
@@ -147,26 +149,32 @@ class RcvController extends Controller
 
             // NGAMBIL TOTAL
             $temp = $temp + $item['total_harga'];
-            $retur = $retur + $item['qty_retur'];
+            $qtyrcv = $qtyrcv + $item['qty_rcv'];
+            $qtypo = $qtypo + $item['qty_po'];
         }
 
         // CONDITION STATUS RETUR
-        if($retur > 1){
-            $rcv->status_retur = 'Retur';
-            $po->status ='Diterima';
+        if($qtyrcv != $qtypo){
+
+            // foreach($request->sparepartpo as $key=>$tes){
+            //     $sparepartpo = PO::findOrFail($tes['id_sparepart']);
+            //     $sparepartpo->qty = $sparepartpo->qty - $tes['qty_rcv'];
+            //     $sparepartpo->save();
+            // }
+
+            $po->status ='Dikirim';
             $po->save();
+
             $rcv->grand_total = $temp;
             $rcv->status = 'aktif';
             $rcv->status_bayar = 'Pending';
             $rcv->save();
 
             $rcv->Detailrcv()->sync($request->sparepart);
-
 
             return $request;
         }
         else{
-            $rcv->status_retur = 'Tidak Retur';
             $po->status ='Diterima';
             $po->save();
             $rcv->grand_total = $temp;
@@ -174,9 +182,7 @@ class RcvController extends Controller
             $rcv->status_bayar = 'Pending';
             $rcv->save();
 
-
             $rcv->Detailrcv()->sync($request->sparepart);
-
 
             return $request;
         }

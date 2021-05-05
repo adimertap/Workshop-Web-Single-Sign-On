@@ -275,54 +275,95 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-borderless mb-0">
-                        <thead class="border-bottom">
-                            <tr class="small text-uppercase text-muted">
-                                <th scope="col">Nama Pegawai</th>
-                                <th scope="col">Jabatan</th>
-                                <th scope="col">Gaji Pokok</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($pegawai as $item)
-                                <tr id="item-{{ $item->id_pegawai }}" class="border-bottom">
-                                    <td>
-                                        <div class="font-weight-bold nama_pegawai">{{ $item->nama_pegawai }}</div>
-                                    </td>
-                                    <td>
-                                        <div class="small text-muted d-none d-md-block nama_jabatan">{{ $item->jabatan->nama_jabatan }}</div>
-                                    </td>
-                                    <td>
-                                        @if ($item->jabatan->gajipokok == '')
-                                        <div class="small text-muted d-none d-md-block">Tidak ada data
-                                            <a href="{{ route('gaji-pokok.index') }}"
-                                                class="btn btn-light btn-sm btn-datatable" type="button">
-                                                <i class="fas fa-plus"></i>
-                                            </a>
-                                        </div>
-                                        @else
-                                        <div class="small text-muted d-none d-md-block gaji_pokok">Rp.{{ number_format($item->jabatan->gajipokok->besaran_gaji,2,',','.') }}</div>
-                                        @endif
-
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-success btn-sm btn-datatable"
-                                            onclick="tambahpo(event, {{ $item->id_pegawai }})" type="button"
-                                            data-dismiss="modal">Tambah
-                                        </button>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="7" class="tex-center">
-                                        Tidak ada Data Pegawai
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                <div class="datatable">
+                    @if(session('messageberhasil'))
+                        <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
+                            {{ session('messageberhasil') }}
+                            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    @endif
+                    @if(session('messagebayar'))
+                        <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
+                            {{ session('messagebayar') }}
+                            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    @endif
+                    @if(session('messagehapus'))
+                        <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
+                            {{ session('messagehapus') }}
+                            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    @endif
+    
+                    {{-- TABLE --}}
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataTablePegawai" width="100%"
+                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending" style="width: 20px;">
+                                                No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 130px;">Nama Pegawai</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 50px;">Jabatan</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 100px;">Gaji Pokok</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Actions: activate to sort column ascending"
+                                                style="width: 50px;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($pegawai as $item)
+                                        <tr id="item-{{ $item->id_pegawai }}" role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                           <td class="nama_pegawai">{{ $item->nama_pegawai }}</td>
+                                           <td class="nama_jabatan">{{ $item->Jabatan->nama_jabatan }}</td>
+                                           <td>
+                                            @if ($item->jabatan->gajipokok == '')
+                                            <div class="small text-muted d-none d-md-block">Tidak ada data
+                                                <a href="{{ route('gaji-pokok.index') }}"
+                                                    class="btn btn-light btn-sm btn-datatable" type="button">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                            @else
+                                            <div class="small text-muted d-none d-md-block gaji_pokok">Rp.{{ number_format($item->jabatan->gajipokok->besaran_gaji,2,',','.') }}</div>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success btn-sm"
+                                                onclick="tambahpo(event, {{ $item->id_pegawai }})" type="button"
+                                                data-dismiss="modal">Tambah
+                                            </button>
+                                        </td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="7" class="text-center">
+                                                Tidak ada Data Pegawai
+                                            </td>
+                                        </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -429,6 +470,10 @@
         }
 
     }
+
+    $(document).ready(function () {
+        var table_pegawai = $('#dataTablePegawai').DataTable()
+    });
 
     setInterval(displayclock, 500);
 

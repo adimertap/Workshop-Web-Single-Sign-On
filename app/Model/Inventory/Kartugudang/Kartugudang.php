@@ -45,11 +45,11 @@ class Kartugudang extends Model
 
     public function Rcv()
     {
-        return $this->belongsTo(Rcv::class,'id_rcv','id_rcv');
+        return $this->belongsTo(Rcv::class,'id_rcv','id_rcv')->withTrashed();
     }
 
     public function Retur()
     {
-        return $this->belongsTo(Retur::class,'id_retur','id_retur');
+        return $this->belongsTo(Retur::class,'id_retur','id_retur')->withTrashed();
     }
 }

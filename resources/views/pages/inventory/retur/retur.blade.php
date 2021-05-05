@@ -108,18 +108,18 @@
                                         </td>
                                         <td>
                                             <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Cetak PO">
+                                                data-placement="top" title="" data-original-title="Cetak Retur">
                                                 <i class="fas fa-print"></i></i>
                                             </a>
                                         </td>
                                         <td>
                                             <a href="{{ route('retur.show', $item->id_retur) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Detail">
+                                                data-placement="top" title="" data-original-title="Detail Retur">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                             <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Edit">
+                                                data-placement="top" title="" data-original-title="Edit Retur">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <a href="" class="btn btn-danger btn-datatable" type="button"

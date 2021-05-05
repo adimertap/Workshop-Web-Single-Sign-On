@@ -172,7 +172,7 @@
                                                 </tr>
                                                 @empty
                                                 <tr>
-                                                    <td colspan="7" class="tex-center">
+                                                    <td colspan="7" class="text-center">
                                                         Data Sparepart Kosong
                                                     </td>
                                                 </tr>
@@ -402,19 +402,20 @@
                 approve_ap: approve_ap,
                 sparepart: dataform2
             }
+            console.log(data)
 
-            $.ajax({
-                method: 'put',
-                url: '/inventory/purchase-order/' + id_po,
-                data: data,
-                success: function (response) {
-                    window.location.href = '/inventory/purchase-order'
+            // $.ajax({
+            //     method: 'put',
+            //     url: '/inventory/purchase-order/' + id_po,
+            //     data: data,
+            //     success: function (response) {
+            //         window.location.href = '/inventory/purchase-order'
 
-                },
-                error: function (response) {
-                    console.log(response)
-                }
-            });
+            //     },
+            //     error: function (response) {
+            //         console.log(response)
+            //     }
+            // });
         }
     }
 

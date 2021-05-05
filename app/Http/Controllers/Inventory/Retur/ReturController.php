@@ -30,9 +30,8 @@ class ReturController extends Controller
 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
-        $rcv = Rcv::where([['status_retur', '=', 'Retur']])->get();
         
-        return view('pages.inventory.retur.retur', compact('retur','supplier','today','tanggal','rcv'));
+        return view('pages.inventory.retur.retur', compact('retur','supplier','today','tanggal'));
     }
 
     /**
@@ -113,11 +112,10 @@ class ReturController extends Controller
      */
     public function update(Request $request, $id_retur)
     {
-        $rcv = Rcv::where('kode_rcv', $request->kode_rcv)->first();
+        // $supplier = Supplier::where('nama_supplier', $request->nama_supplier)->first();
         $retur = Retur::findOrFail($id_retur);
         $retur->id_pegawai = $request->id_pegawai;
-        $retur->id_supplier = $rcv->id_supplier;
-        $retur->id_rcv = $rcv->id_rcv;
+        // $retur->id_supplier = $supp->id_supplier;
         $retur->kode_retur = $request->kode_retur;
         $retur->tanggal_retur = $request->tanggal_retur;
 
@@ -135,8 +133,6 @@ class ReturController extends Controller
             $kartu_gudang->save();
         }
 
-        $rcv->status_retur ='Tidak Retur';
-        $rcv->save();
         $retur->status = 'Aktif';
         $retur->save();
 

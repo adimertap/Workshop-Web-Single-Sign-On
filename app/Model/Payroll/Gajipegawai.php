@@ -19,6 +19,7 @@ class Gajipegawai extends Model
         'bulan_gaji',
         'tahun_gaji',
         'gaji_diterima',
+        'total_tunjangan',
         'keterangan',
         'status_diterima'
     ];
@@ -33,7 +34,7 @@ class Gajipegawai extends Model
 
     public function Detailtunjangan()
     {
-        return $this->belongsToMany(Mastertunjangan::class,'tb_payroll_det_gaji','id_gaji_pegawai','id_tunjangan');
+        return $this->belongsToMany(Mastertunjangan::class,'tb_payroll_detgaji','id_gaji_pegawai','id_tunjangan');
     }
 
     public function Pegawai(){

@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="small mb-1" for="id_supplier">Supplier</label>
-                                <input class="form-control" id="detailsupplier" type="text" name="id_supplier"
+                                <input class="form-control" id="id_supplier" type="text" name="id_supplier"
                                     placeholder="Supplier" value="{{ $retur->Supplier->nama_supplier }}" readonly>
                             </div>
                             <div class="form-group">
@@ -95,7 +95,7 @@
                             </div>
                             <div class="alert-icon-content">
                                 <h5 class="alert-heading" class="small">Sparepart Info</h5>
-                                Sparepart Pesanan Pembelian
+                                Sparepart Retur Pembelian
                             </div>
                         </div>
                         <div class="datatable">
@@ -190,7 +190,7 @@
     <div class="container">
         <div class="card">
             <div class="card card-header-actions">
-                <div class="card-header ">Detail Pembelian Sparepart
+                <div class="card-header ">Detail Retur Sparepart
                 </div>
             </div>
             <div class="card-body">
@@ -341,7 +341,6 @@
         event.preventDefault()
         var form1 = $('#form1')
         var kode_retur = form1.find('input[name="kode_retur"]').val()
-        var kode_rcv = form1.find('input[name="kode_rcv"]').val()
         var id_supplier = $('#id_supplier').val()
         var id_pegawai = $('#id_pegawai').val()
         var tanggal_retur = form1.find('input[name="tanggal_retur"]').val()
@@ -374,7 +373,6 @@
             var data = {
                 _token: _token,
                 kode_retur: kode_retur,
-                kode_rcv: kode_rcv,
                 id_supplier: id_supplier,
                 id_pegawai: id_pegawai,
                 tanggal_retur: tanggal_retur,

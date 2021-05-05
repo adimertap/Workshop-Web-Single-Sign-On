@@ -20,6 +20,7 @@ class Detailgaji extends Model
     protected $hidden =[ 
         'created_at',
         'updated_at',
+        'deleted_at'
     ];
 
     public $timestamps = true;

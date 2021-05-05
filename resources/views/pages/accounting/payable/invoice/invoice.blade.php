@@ -63,7 +63,7 @@
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
+                                <table class="table table-bordered table-hover dataTable" id="dataTableUtama" width="100%"
                                     cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
@@ -165,8 +165,16 @@
                                             @empty
 
                                             @endforelse
-
+                                            
                                     </tbody>
+                                    <tr id="grandtotal">
+                                        <td colspan="6" class="text-center font-weight-500">
+                                            Total Hutang Belum dibayar
+                                        </td>
+                                        <td colspan="5" class="grand_total">
+                                            Rp.
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
@@ -363,6 +371,8 @@
                                             </td>
                                         </tr>
                                         @endforelse
+
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -490,6 +500,7 @@
 
    $(document).ready(function () {
         var tablercv = $('#dataTableRcv').DataTable()
+        var tableutama = $('#dataTableUtama').DataTable()
     });
 
 </script>

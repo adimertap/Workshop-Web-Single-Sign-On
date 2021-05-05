@@ -47,11 +47,9 @@ class OpnameController extends Controller
 
         $kode_opname = 'OPM-'.'/'.$blt.$idbaru;
     
-
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
         
-
         return view('pages.inventory.stockopname.create', compact('opname','pegawai', 'sparepart', 'kode_opname'));
     }
 
