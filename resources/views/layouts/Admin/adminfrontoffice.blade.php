@@ -39,7 +39,7 @@
         <div class="small">
             <i class="fa fa-cogs" aria-hidden="true"></i>
             Bengkel
-            <span class="font-weight-500 text-primary">{{ Auth::user()->email}}</span>
+            <span class="font-weight-500 text-primary">{{ Auth::user()->bengkel->nama_bengkel}}</span>
         </div>
         </form>
         <ul class="navbar-nav align-items-center ml-auto">
@@ -207,23 +207,26 @@
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('masterdatajeniskendaraan')}}">
+                                <a class="nav-link" href="{{ route('jenis-kendaraan.index')}}">
+                                    Jenis Kendaraan
+                                </a>
+                                <a class="nav-link" href="{{ route('merk-kendaraan.index')}}">
+                                    Merk Kendaraan
+                                </a>
+                                <a class="nav-link" href="{{ route('kendaraan.index')}}">
                                     Kendaraan
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatajenisperbaikan')}}">
+                                <a class="nav-link" href="{{ route('jenis-perbaikan.index')}}">
                                     Jenis Perbaikan
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatadiskon')}}">
+                                <a class="nav-link" href="{{ route('diskon.index')}}">
                                     Diskon
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatapitstop')}}">
+                                <a class="nav-link" href="{{ route('pitstop.index')}}">
                                     Pit Stop
                                 </a>
-                                <a class="nav-link" href="{{ route('masterdatareminder')}}">
+                                <a class="nav-link" href="{{ route('reminder.index')}}">
                                     Reminder
-                                </a>
-                                <a class="nav-link" href="{{ route('masterdatafaq')}}">
-                                    FAQ
                                 </a>
                             </nav>
                         </div>
@@ -247,12 +250,6 @@
                         <a class="nav-link collapsed" href="{{route('customerterdaftar')}}"  aria-expanded="false" aria-controls="collapseComponents">
                             <div class="nav-link-icon"><i class="fas fa-users"></i></div>
                             Customer Terdaftar
-                        </a>
-
-                        {{-- Approval --}}
-                        <a class="nav-link collapsed" href="{{route('customercare')}}" aria-expanded="false" aria-controls="collapseFlows">
-                            <div class="nav-link-icon"><i data-feather="check-square"></i></div>
-                            Customer Care
                         </a>
                     </div>
                 </div>

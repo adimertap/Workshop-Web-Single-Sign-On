@@ -18,7 +18,7 @@ class MasterDataDiskonController extends Controller
     {
         $diskon = MasterDataDiskon::get();
 
-        return view('pages.frontoffice.masterdata.diskon.main', compact('diskon'));
+        return view('pages.frontoffice.masterdata.diskon.index', compact('diskon'));
     }
 
     /**

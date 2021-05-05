@@ -117,7 +117,7 @@
     </div>
 
     {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
-    <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
+    {{-- <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -126,7 +126,7 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('jeniskendaraan.store') }}" method="POST">
+                <form action="{{ route('kendaraan.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
@@ -179,10 +179,10 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- MODAL EDIT --}}
-    @forelse ($kendaraan as $item)
+    {{-- @forelse ($kendaraan as $item)
     <div class="modal fade" id="Modaledit-{{ $item->id_jenis_kendaraan }}" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -192,7 +192,7 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('jeniskendaraan.update', $item->id_jenis_kendaraan) }}" method="POST">
+                <form action="{{ route('kendaraan.update', $item->id_jenis_kendaraan) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="modal-body">
@@ -242,10 +242,10 @@
     </div>
     @empty
 
-    @endforelse
+    @endforelse --}}
 
     {{-- MODAL DELETE --}}
-    @forelse ($kendaraan as $item)
+    {{-- @forelse ($kendaraan as $item)
     <div class="modal fade" id="Modalhapus-{{ $item->id_jenis_kendaraan }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -255,7 +255,7 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('jeniskendaraan.destroy', $item->id_jenis_kendaraan) }}" method="POST" class="d-inline">
+                <form action="{{ route('kendaraan.destroy', $item->id_jenis_kendaraan) }}" method="POST" class="d-inline">
                     @csrf
                     @method('delete')
                     <div class="modal-body">Apakah Anda Yakin Menghapus Data Kendaraan {{ $item->nama_jenis_kendaraan }}?</div>
@@ -270,7 +270,7 @@
 
     @empty
 
-    @endforelse
+    @endforelse --}}
 </main>
 
 {{-- Callback Modal Jika Validasi Error --}}

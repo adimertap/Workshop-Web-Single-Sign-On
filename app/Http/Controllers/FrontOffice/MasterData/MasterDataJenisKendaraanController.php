@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\FrontOffice\Masterdata;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FrontOffice\MasterData\JenisKendaraanrequest;
+use App\Http\Requests\FrontOffice\MasterData\JenisKendaraanRequest as MasterDataJenisKendaraanRequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataJenisKendaraan;
 use Illuminate\Support\Str;
@@ -17,9 +17,9 @@ class MasterDataJenisKendaraanController extends Controller
      */
     public function index()
     {
-        $kendaraan = MasterDataJenisKendaraan::get();
+        $jenis_kendaraan = MasterDataJenisKendaraan::get();
 
-        return view('pages.frontoffice.masterdata.jenis_kendaraan.main', compact('kendaraan'));
+        return view('pages.frontoffice.masterdata.jenis_kendaraan.index', compact('jenis_kendaraan'));
     }
 
     /**
@@ -38,12 +38,12 @@ class MasterDataJenisKendaraanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(JenisKendaraanrequest $request)
+    public function store(MasterDataJenisKendaraanRequest $request)
     {
         $data = $request->all();
 
         MasterDataJenisKendaraan::create($data);
-        return redirect()->route('jeniskendaraan.index')->with('messageberhasil', 'Data Jenis Kendaraan Berhasil ditambahkan');
+        return redirect()->route('jenis-kendaraan.index')->with('messageberhasil', 'Data Jenis Kendaraan Berhasil ditambahkan');
     }
 
     /**
@@ -75,16 +75,14 @@ class MasterDataJenisKendaraanController extends Controller
      * @param  \App\MasterDataJenisKendaraan  $masterDataJenisKendaraan
      * @return \Illuminate\Http\Response
      */
-    public function update(JenisKendaraanrequest $request, $id_jenis_kendaraan)
+    public function update(MasterDataJenisKendaraanRequest $request, $id_jenis_kendaraan)
     {
         $kendaraan = MasterDataJenisKendaraan::findOrFail($id_jenis_kendaraan);
-        $kendaraan->kode_kendaraan = $request->kode_kendaraan;
-        $kendaraan->nama_kendaraan = $request->nama_kendaraan;
         $kendaraan->jenis_kendaraan = $request->jenis_kendaraan;
-        $kendaraan->merk_kendaraan = $request->merk_kendaraan;
+        $kendaraan->keterangan = $request->keterangan;
 
         $kendaraan->update();
-        return redirect()->back()->with('messageberhasil', 'Data Kendaraan Berhasil diubah');
+        return redirect()->back()->with('messageberhasil', 'Data Jenis Kendaraan Berhasil diubah');
     }
 
     /**

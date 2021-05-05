@@ -17,10 +17,4 @@ class Bengkel extends Model
     ];
 
     public $timestamps = false;
-
-    // relations
-    public function sso()
-    {
-        return $this->hasOne(User::class, 'id_bengkel');
-    }
 }

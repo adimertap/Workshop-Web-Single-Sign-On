@@ -4,7 +4,7 @@ namespace App\Http\Requests\FrontOffice\MasterData;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class JenisKendaraanRequest extends FormRequest
+class KendaraanRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class JenisKendaraanRequest extends FormRequest
     public function rules()
     {
         return [
-            'jenis_kendaraan' => 'required'
+            'kode_kendaraan' => 'required',
+            'nama_kendaraan' => 'required',
         ];
     }
 }

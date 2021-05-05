@@ -34,67 +34,19 @@ Route::group(
             });
 
         // MASTER DATA JENIS KENDARAAN
-        Route::prefix('frontoffice/jeniskendaraan')
+        Route::prefix('frontoffice')
             ->namespace('FrontOffice\Masterdata')
             ->group(function () {
-                Route::get('/', 'MasterDataJenisKendaraanController@index')
-                    ->name('masterdatajeniskendaraan');
-
-                Route::resource('jeniskendaraan', 'MasterDataJenisKendaraanController');
-            });
-
-
-        // MASTER DATA JENIS PERBAIKAN
-        Route::prefix('frontoffice/jenisperbaikan')
-            ->namespace('FrontOffice\Masterdata')
-            ->group(function () {
-                Route::get('/', 'MasterDataJenisPerbaikanController@index')
-                    ->name('masterdatajenisperbaikan');
-
-                Route::resource('jenisperbaikan', 'MasterDataJenisPerbaikanController');
-            });
-
-        // MASTER DATA DISKON
-        Route::prefix('frontoffice/diskon')
-            ->namespace('FrontOffice\Masterdata')
-            ->group(function () {
-                Route::get('/', 'MasterDataDiskonController@index')
-                    ->name('masterdatadiskon');
-
+                Route::resource('jenis-kendaraan', 'MasterDataJenisKendaraanController');
+                Route::resource('jenis-perbaikan', 'MasterDataJenisPerbaikanController');
                 Route::resource('diskon', 'MasterDataDiskonController');
-            });
-
-
-        // MASTER DATA PITSTOP
-        Route::prefix('frontoffice/pitstop')
-            ->namespace('FrontOffice\Masterdata')
-            ->group(function () {
-                Route::get('/', 'MasterDataPitstopController@index')
-                    ->name('masterdatapitstop');
-
                 Route::resource('pitstop', 'MasterDataPitstopController');
-            });
-
-
-        // MASTER DATA REMINDER
-        Route::prefix('frontoffice/reminder')
-            ->namespace('FrontOffice\Masterdata')
-            ->group(function () {
-                Route::get('/', 'MasterDataReminderController@index')
-                    ->name('masterdatareminder');
-
                 Route::resource('reminder', 'MasterDataReminderController');
-            });
-
-        // MASTER DATA FAQ
-        Route::prefix('frontoffice/faq')
-            ->namespace('FrontOffice\Masterdata')
-            ->group(function () {
-                Route::get('/', 'MasterDataFAQController@index')
-                    ->name('masterdatafaq');
-
                 Route::resource('faq', 'MasterDataFAQController');
+                Route::resource('merk-kendaraan', 'MasterDataMerkKendaraanController');
+                Route::resource('kendaraan', 'MasterDataKendaraanController');
             });
+
 
         //  DATA PELAYANAN SERVICE
         Route::prefix('frontoffice/pelayananservice')
