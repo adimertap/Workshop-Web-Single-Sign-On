@@ -13,7 +13,7 @@
                         <!-- Invoice branding-->
                         <img class="invoice-brand-img rounded-circle mb-4" src="/image/services.png" style="color:"lt="" />
                         <div class="h2 text-white mb-0">Kode PKB-001</div>
-                        Web Design &amp; Development
+                        Bengkel
                     </div>
                     <div class="col-12 col-lg-auto text-center text-lg-right">
                         <!-- Invoice details-->

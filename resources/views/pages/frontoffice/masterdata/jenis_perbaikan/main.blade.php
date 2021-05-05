@@ -25,7 +25,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Jenis Perbaikan
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
                         Data</button>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="kode_jenis_perbaikan">Kode Jenis Perbaikan</label>
+                            <label class="small mb-1" for="kode_jenis_perbaikan">Kode Jenis Perbaikan <span style="color: red">*</span> </label>
                             <input class="form-control" name="kode_jenis_perbaikan" type="text" id="kode_jenis_perbaikan"
                                 placeholder="Input Kode Jenis Perbaikan" value="{{ old('kode_jenis_perbaikan') }}"
                                 class="form-control @error('kode_jenis_perbaikan') is-invalid @enderror">
@@ -141,7 +141,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="nama_jenis_perbaikan">Nama Jenis Perbaikan</label>
+                            <label class="small mb-1" for="nama_jenis_perbaikan">Nama Jenis Perbaikan <span style="color: red">*</span> </label>
                             <input class="form-control" name="nama_jenis_perbaikan" type="text" id="nama_jenis_perbaikan"
                                 placeholder="Input Nama Jenis Perbaikan" value="{{ old('nama_jenis_perbaikan') }}"
                                 class="form-control @error('nama_jenis_perbaikan') is-invalid @enderror">
@@ -162,7 +162,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <label class="small mb-1" for="harga_jenis_perbaikan">Harga Perbaikan</label>
+                            <label class="small mb-1" for="harga_jenis_perbaikan">Harga Perbaikan <span style="color: red">*</span> s</label>
                             <input class="form-control" name="harga_jenis_perbaikan" type="text" id="harga_jenis_perbaikan"
                                 placeholder="Input Harga Perbaikan" value="{{ old('harga_jenis_perbaikan') }}"
                                 class="form-control @error('harga_jenis_perbaikan') is-invalid @enderror">

@@ -25,7 +25,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Reminder
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
                         Data</button>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="nama_reminder">Nama Reminder</label>
+                            <label class="small mb-1" for="nama_reminder">Nama Reminder <span style="color: red">*</span> </label>
                             <input class="form-control" name="nama_reminder" type="text" id="nama_reminder"
                                 placeholder="Input Nama Reminder" value="{{ old('nama_reminder') }}"
                                 class="form-control @error('nama_reminder') is-invalid @enderror">
@@ -136,7 +136,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="masa_berlaku">Masa Berlaku</label>
+                            <label class="small mb-1" for="masa_berlaku">Masa Berlaku <span style="color: red">*</span> </label>
                             <input class="form-control" name="masa_berlaku" type="text" id="masa_berlaku"
                                 placeholder="Input Masa Berlaku" value="{{ old('masa_berlaku') }}"
                                 class="form-control @error('masa_berlaku') is-invalid @enderror">

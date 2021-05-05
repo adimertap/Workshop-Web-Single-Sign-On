@@ -25,7 +25,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Pit Stop
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
                         Data</button>
                 </div>
             </div>
@@ -170,7 +170,7 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="kode_pitstop">Kode Pit Stop</label>
+                            <label class="small mb-1" for="kode_pitstop">Kode Pit Stop <span style="color: red">*</span> </label>
                             <input class="form-control" name="kode_pitstop" type="text" id="kode_pitstop"
                                 placeholder="Input Nama Diskon" value="{{ $item->kode_pitstop }}"
                                 class="form-control @error('kode_pitstop') is-invalid @enderror">

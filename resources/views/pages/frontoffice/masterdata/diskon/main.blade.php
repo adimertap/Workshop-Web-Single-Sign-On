@@ -25,7 +25,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Diskon
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
                         Data</button>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="nama_diskon">Nama Diskon</label>
+                            <label class="small mb-1" for="nama_diskon">Nama Diskon <span style="color: red">*</span></label>
                             <input class="form-control" name="nama_diskon" type="text" id="nama_diskon"
                                 placeholder="Input Nama Diskon" value="{{ old('nama_diskon') }}"
                                 class="form-control @error('nama_diskon') is-invalid @enderror">
@@ -141,7 +141,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="jumlah_diskon">Jumlah Diskon (%)</label>
+                            <label class="small mb-1" for="jumlah_diskon">Jumlah Diskon (%) <span style="color: red">*</span></label>
                             <input class="form-control" name="jumlah_diskon" type="text" id="jumlah_diskon"
                                 placeholder="Input Jumlah Diskon" value="{{ old('jumlah_diskon') }}"
                                 class="form-control @error('jumlah_diskon') is-invalid @enderror">
@@ -149,7 +149,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="tanggal_mulai">Tanggal Mulai</label>
+                            <label class="small mb-1" for="tanggal_mulai">Tanggal Mulai <span style="color: red">*</span> </label>
                             <input class="form-control" name="tanggal_mulai" type="date" id="tanggal_mulai"
                                 placeholder="Tanggal Mulai" value="{{ old('tanggal_mulai') }}"
                                 class="form-control @error('tanggal_mulai') is-invalid @enderror"></input>
@@ -157,7 +157,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="tanggal_selesai">Tanggal Selesai</label>
+                            <label class="small mb-1" for="tanggal_selesai">Tanggal Selesai <span style="color: red">*</span> </label>
                             <input class="form-control" name="tanggal_selesai" type="date" id="tanggal_selesai"
                                 placeholder="Tanggal Selesai" value="{{ old('tanggal_selesai') }}"
                                 class="form-control @error('tanggal_selesai') is-invalid @enderror"></input>
