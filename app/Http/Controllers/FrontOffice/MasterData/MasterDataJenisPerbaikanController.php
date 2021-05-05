@@ -19,7 +19,7 @@ class MasterDataJenisPerbaikanController extends Controller
     {
         $jenisperbaikan = MasterDataJenisPerbaikan::get();
 
-        return view('pages.frontoffice.masterdata.jenis_perbaikan.main', compact('jenisperbaikan'));
+        return view('pages.frontoffice.masterdata.jenis_perbaikan.index', compact('jenisperbaikan'));
     }
 
     /**

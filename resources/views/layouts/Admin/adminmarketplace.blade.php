@@ -36,7 +36,7 @@
         <div class="small">
             <i class="fa fa-cogs" aria-hidden="true"></i>
             Bengkel
-            <span class="font-weight-500 text-primary">Adi Jaya</span>
+            <span class="font-weight-500 text-primary">{{ Auth::user()->bengkel->nama_bengkel}}</span>
         </div>
         </form>
         <ul class="navbar-nav align-items-center ml-auto">

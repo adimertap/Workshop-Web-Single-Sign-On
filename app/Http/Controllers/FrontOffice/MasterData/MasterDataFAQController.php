@@ -18,7 +18,7 @@ class MasterDataFAQController extends Controller
     {
         $faq = MasterDataFAQ::get();
 
-        return view('pages.frontoffice.masterdata.faq.main', compact('faq'));
+        return view('pages.frontoffice.masterdata.faq.index', compact('faq'));
     }
 
     /**

@@ -18,7 +18,7 @@ class MasterDataReminderController extends Controller
     {
         $reminder = MasterDataReminder::get();
 
-        return view('pages.frontoffice.masterdata.reminder.main', compact('reminder'));
+        return view('pages.frontoffice.masterdata.reminder.index', compact('reminder'));
     }
 
     /**

@@ -18,7 +18,7 @@ class MasterDataPitstopController extends Controller
     {
         $pitstop = MasterDataPitstop::get();
 
-        return view('pages.frontoffice.masterdata.pitstop.main', compact('pitstop'));
+        return view('pages.frontoffice.masterdata.pitstop.index', compact('pitstop'));
     }
 
     /**
