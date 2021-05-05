@@ -115,7 +115,7 @@
                         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <table class="table table-bordered table-hover dataTable" id="dataTable"
+                                    <table class="table table-bordered table-hover dataTable" id="dataTableAbsensi"
                                         width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
                                         style="width: 100%;">
                                         <thead>
@@ -195,7 +195,7 @@
                                             </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="7" class="tex-center">
+                                                <td colspan="7" class="text-center">
                                                     Anda Belum Melakukan Absensi Pegawai
                                                 </td>
                                             </tr>
@@ -301,6 +301,7 @@
                 $('#keteranganlabel').hide();
             }
         })
+        var tableabsensi = $('#dataTableAbsensi').DataTable()
 
     });
 
