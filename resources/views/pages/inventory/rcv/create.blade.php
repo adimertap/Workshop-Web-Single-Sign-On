@@ -460,25 +460,32 @@
         if (qty_rcv == 0 | qty_rcv == '' | harga_diterima_fix == 0 | harga_diterima_fix == '') {
             alert('Data Inputan Ada yang belum terisi')
         } else {
-            alert('Berhasil Menambahkan Sparepart')
             var data = $('#item-' + id_sparepart)
-            var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
-            var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
-            var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
-            var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
-            var satuan = $(data.find('.satuan')[0]).text()
             var qty = $(data.find('.qty')[0]).text()
-            var harga_beli = $(data.find('.harga_beli')[0]).text()
-            var template = $($('#template_delete_button').html())
-            var table = $('#dataTablekonfirmasi').DataTable()
-            // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
-            var row = $(`#${$.escapeSelector(nama_sparepart.trim())}`).parent().parent()
-            table.row(row).remove().draw();
-
-            $('#dataTablekonfirmasi').DataTable().row.add([
-                nama_sparepart, `<span id=${nama_sparepart}>${nama_sparepart}</span>`, merk_sparepart, satuan,
-                qty, qty_rcv, harga_diterima_fix, keterangan
-            ]).draw();
+            
+            if(parseInt(qty_rcv) > parseInt(qty)  ){
+                alert('Qty Rcv tidak boleh melebihi Qty PO')
+            }else{
+                alert('Berhasil Menambahkan Sparepart')
+                var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
+                var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
+                var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
+                var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
+                var satuan = $(data.find('.satuan')[0]).text()
+                var qty = $(data.find('.qty')[0]).text()
+                var harga_beli = $(data.find('.harga_beli')[0]).text()
+                var template = $($('#template_delete_button').html())
+                var table = $('#dataTablekonfirmasi').DataTable()
+                // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
+                var row = $(`#${$.escapeSelector(nama_sparepart.trim())}`).parent().parent()
+                table.row(row).remove().draw();
+        
+                $('#dataTablekonfirmasi').DataTable().row.add([
+                    nama_sparepart, `<span id=${nama_sparepart}>${nama_sparepart}</span>`, merk_sparepart, satuan,
+                    qty, qty_rcv, harga_diterima_fix, keterangan
+                ]).draw();
+                
+            }
         }
     }
 

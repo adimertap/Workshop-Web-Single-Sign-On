@@ -241,9 +241,6 @@
                                 <a class="nav-link " href="{{ route('gaji-pegawai.index') }}">
                                     Gaji Pegawai
                                 </a>
-                                <a class="nav-link " href="invoice.html">
-                                    Laporan Absensi
-                                </a>
                             </nav>
                         </div>
                     </div>

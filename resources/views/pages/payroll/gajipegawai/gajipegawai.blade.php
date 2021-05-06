@@ -103,7 +103,7 @@
                                         <td>{{ $item->bulan_gaji}}</td>
                                         <td>{{ $item->Pegawai->nama_pegawai }}</td>
                                         <td>{{ $item->Pegawai->Jabatan->nama_jabatan }}</td>
-                                        <td>{{ $item->bulan_gaji }}</td>
+                                        <td>Rp. {{ number_format($item->gaji_diterima,2,',','.') }}</td>
                                         <td> @if($item->status_diterima == 'Belum Dibayarkan')
                                             <span class="badge badge-danger">
                                                 @elseif($item->status_diterima == 'Dibayarkan')
@@ -119,11 +119,11 @@
                                                 data-toggle="modal" data-target="#Modalbayar-{{ $item->id_gaji_pegawai }}">
                                                 <i class="fas fa-check"></i>
                                             </a>
-                                            <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                            <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak Slip">
                                                 <i class="fas fa-print"></i></i>
                                             </a>
-                                            <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail Slip">
                                                 <i class="fa fa-eye"></i>
                                             </a>
@@ -136,11 +136,11 @@
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                             @elseif ($item->status_diterima == 'Dibayarkan')
-                                            <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                            <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak Slip">
                                                 <i class="fas fa-print"></i></i>
                                             </a>
-                                            <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail Slip">
                                                 <i class="fa fa-eye"></i>
                                             </a>
@@ -276,31 +276,6 @@
             </div>
             <div class="modal-body">
                 <div class="datatable">
-                    @if(session('messageberhasil'))
-                        <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                            {{ session('messageberhasil') }}
-                            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                    @endif
-                    @if(session('messagebayar'))
-                        <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                            {{ session('messagebayar') }}
-                            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                    @endif
-                    @if(session('messagehapus'))
-                        <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
-                            {{ session('messagehapus') }}
-                            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                    @endif
-    
                     {{-- TABLE --}}
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
@@ -382,7 +357,7 @@
             </div>
             <form action="{{ route('gaji-pegawai-status', $item->id_gaji_pegawai) }}?status=Dibayarkan" method="POST" class="d-inline">
                 @csrf
-                <div class="modal-body text-center">Apakah Anda Yakin untuk Melakukan Pembayaran Gaji Pegawai <span class="font-weight-700">{{ $item->Pegawai->nama_pegawai }}</span>, bulan {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }}?</div>
+                <div class="modal-body text-center">Apakah Anda Yakin untuk Melakukan Pembayaran Gaji Pegawai <span class="font-weight-700">{{ $item->Pegawai->nama_pegawai }}</span>, bulan {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }} Sebesar Rp. {{ number_format($item->gaji_diterima,2,',','.') }} ?</div>
                 <div class="modal-footer ">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-success" type="submit">Ya! Bayar</button>

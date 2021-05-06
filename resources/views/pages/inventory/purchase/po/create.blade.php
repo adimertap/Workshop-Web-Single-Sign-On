@@ -290,14 +290,13 @@
                     <div class="form-group">
                         <label class="small mb-1" for="harga_diterima">Harga Satuan</label>
                         <input class="form-control harga_diterima" name="harga_diterima" type="number"
-                            id="harga_diterima" placeholder="Input Harga Beli diterima" value=""></input>
+                            id="harga_diterima" placeholder="Input Harga Beli diterima" value="{{ $item->Kartugudangterakhir['harga_beli'] }}"></input>
                         <div class="small text-primary">Detail Harga
-                            <span id="detailhargaditerima" class="detailhargaditerima"></span>
-                            <span>
-                                @if ($item->Kartugudang == '')
-                                    Tes
+                            <span id="detailhargaditerima" class="detailhargaditerima">
+                                @if ($item->Kartugudangterakhir == '')
+                                   
                                 @else
-                                Rp.{{ number_format($item->Kartugudang->harga_beli,2,',','.')}}
+                                Rp.{{ number_format($item->Kartugudangterakhir->harga_beli,2,',','.')}}
                                 @endif
 
                             </span>
@@ -404,18 +403,18 @@
             }
             console.log(data)
 
-            // $.ajax({
-            //     method: 'put',
-            //     url: '/inventory/purchase-order/' + id_po,
-            //     data: data,
-            //     success: function (response) {
-            //         window.location.href = '/inventory/purchase-order'
+            $.ajax({
+                method: 'put',
+                url: '/inventory/purchase-order/' + id_po,
+                data: data,
+                success: function (response) {
+                    window.location.href = '/inventory/purchase-order'
 
-            //     },
-            //     error: function (response) {
-            //         console.log(response)
-            //     }
-            // });
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
         }
     }
 

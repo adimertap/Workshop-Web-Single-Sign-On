@@ -30,8 +30,6 @@ class Kartugudang extends Model
     ];
 
     protected $hidden =[ 
-        'created_at',
-        'updated_at',
         'deleted_at'
     ];
 
@@ -45,11 +43,11 @@ class Kartugudang extends Model
 
     public function Rcv()
     {
-        return $this->belongsTo(Rcv::class,'id_rcv','id_rcv')->withTrashed();
+        return $this->belongsTo(Rcv::class,'id_rcv','id_rcv');
     }
 
     public function Retur()
     {
-        return $this->belongsTo(Retur::class,'id_retur','id_retur')->withTrashed();
+        return $this->belongsTo(Retur::class,'id_retur','id_retur');
     }
 }

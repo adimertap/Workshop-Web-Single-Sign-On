@@ -77,12 +77,19 @@
                             </div>
                             <div class="form-group">
                                 <label class="small mb-1" for="gaji_diterima">Total Bayar</label>
-                                <input class="form-control" id="gaji_diterima" type="text" name="gaji_diterima"
-                                    placeholder="Keterangan Pembayaran"
-                                    value=" {{ $gaji->Pegawai->Jabatan->Gajipokok->besaran_gaji }}"
-                                    class="form-control @error('keterangan') is-invalid @enderror"></in>
-                                @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
+                                <div class="input-group input-group-joined">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-gray-200">
+                                            Rp.
+                                        </span>
+                                    </div>
+                                        <input class="form-control" id="gaji_diterima" type="text" name="gaji_diterima"
+                                        placeholder="Keterangan Pembayaran"
+                                        value=" {{ $gaji->Pegawai->Jabatan->Gajipokok->besaran_gaji }}"
+                                        class="form-control @error('keterangan') is-invalid @enderror" readonly>
+                                    @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
+                                    </div> @enderror
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="small mb-1" for="keterangan">Keterangan</label>
@@ -205,6 +212,14 @@
                                                 <tbody id='konfirmasi'>
 
                                                 </tbody>
+                                                <tr id="totaltunjangan">
+                                                    <td colspan="2" class="text-center font-weight-500">
+                                                        Total Tunjangan
+                                                    </td>
+                                                    <td  colspan="2" class="grand_total text-center font-weight-500">
+                                                        <span>Rp. </span><span id="totaltunjangan2">0</span>
+                                                    </td>
+                                                </tr>
                                             </table>
                                         </div>
                                     </div>
@@ -265,12 +280,11 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($tunjangan as $item)
-                                            <tr id="item-{{ $item->id_tunjangan }}" role="row" class="odd">
+                                            <tr id="item-{{ $item->id_tunjangan }}" role="row" class="odd" >
                                                 <th scope="row" class="small" class="sorting_1">
                                                     {{ $loop->iteration}}</th>
                                                 <td class="nama_tunjangan">{{ $item->nama_tunjangan }}</td>
-                                                <td class="jumlah_tunjangan">Rp.
-                                                    {{ number_format($item->jumlah_tunjangan,2,',','.') }}</td>
+                                                <td class="jumlah_tunjangan">Rp {{ number_format($item->jumlah_tunjangan,2,',','.') }}</td>
                                                 </td>
                                                 <td class="keterangan">{{ $item->keterangan }}</td>
                                                 <td>
@@ -438,15 +452,19 @@
         var bulan_gaji = $('#bulan_gaji').val()
         var gaji_diterima = form1.find('input[name="gaji_diterima"]').val()
         var keterangan = form1.find('textarea[name="keterangan"]').val()
+        var total_tunjangan = $('#totaltunjangan2').html()
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
 
-        for (var i = 0; i < tunjangan.length; i++) {
-            var id_tunjangan = tunjangan[i].id_tunjangan
-            var obj = {
-                id_tunjangan: id_tunjangan,
-            }
-            dataform2.push(obj)
+        var datatunjangan = $('#konfirmasi').children()
+        for (let index = 0; index < datatunjangan.length; index++) {
+            var children = $(datatunjangan[index]).children()
+            var td = children[1]
+            var span = $(td).children()[0]
+            var id_tunjangan = $(span).attr('id')
+            dataform2.push({
+                id_tunjangan: id_tunjangan
+            })
         }
 
         var data = {
@@ -454,6 +472,7 @@
             tahun_gaji: tahun_gaji,
             bulan_gaji: bulan_gaji,
             gaji_diterima: gaji_diterima,
+            total_tunjangan: total_tunjangan,
             keterangan: keterangan,
             tunjangan: dataform2
         }
@@ -480,13 +499,24 @@
         var jumlah_tunjangan = $(data.find('.jumlah_tunjangan')[0]).text()
         var template = $($('#template_delete_button').html())
 
-        // TABLE TAB 2
+        // GAJI DITERIMA
+        var totaltambahtunjangan = $('#gaji_diterima').val()
+        var splittunjangan = jumlah_tunjangan.split('Rp')[1].replace('.', '').replace(',00', '').trim()
+        var jumlahfix = parseInt(splittunjangan) + parseInt(totaltambahtunjangan)
+        $('#gaji_diterima').val(jumlahfix)
+
+        // TUNJANGAN
+        var totaltunjangan = $('#totaltunjangan2').html()
+        var totalfix = parseInt(splittunjangan) + parseInt(totaltunjangan)
+        console.log(totalfix)
+        $('#totaltunjangan2').html(totalfix)
+      
         var table = $('#dataTabletunjangan').DataTable()
         var row = $(`#${$.escapeSelector(nama_tunjangan.trim())}`).parent().parent()
         table.row(row).remove().draw();
 
         $('#dataTabletunjangan').DataTable().row.add([
-            nama_tunjangan, `<span id=${nama_tunjangan}>${nama_tunjangan}</span>`, jumlah_tunjangan,
+            nama_tunjangan, `<span id=${id_tunjangan}>${nama_tunjangan}</span>`, jumlah_tunjangan,
         ]).draw();
 
         // TABLE TAB 3
@@ -498,9 +528,6 @@
             `<span id=${nama_tunjangan}>${nama_tunjangan}</span>`, jumlah_tunjangan,
         ]).draw();
     }
-
-
-
 
     function hapussparepart(element) {
         var table = $('#dataTabletunjangan').DataTable()
@@ -515,6 +542,17 @@
 
         // Akses Parent Sampai <tr></tr>
         var row2 = $(element).parent().parent()
+
+        // Gaji diterima berkurang
+        var gajiberkurang = $(row2.children()[2]).text()
+        var totaltambahtunjangan = $('#gaji_diterima').val()
+        var splittunjangan = gajiberkurang.split('Rp')[1].replace('.', '').replace(',00', '').trim()
+        var jumlahfix = parseInt(totaltambahtunjangan) -  parseInt(splittunjangan)
+        $('#gaji_diterima').val(jumlahfix)
+
+        var totaltunjangan = $('#totaltunjangan2').html()
+        var totaltunjanganfix = parseInt(totaltunjangan) -  parseInt(splittunjangan)
+        $('#totaltunjangan2').html(totaltunjanganfix)
         table2.row(row2).remove().draw();
 
         // draw() Reset Ulang Table
@@ -522,6 +560,8 @@
     }
 
     $(document).ready(function () {
+
+
         var table2 = $('#dataTableAbsensi').DataTable()
         var table = $('#dataTablesemuatunjangan').DataTable()
         var template = $('#template_delete_button').html()

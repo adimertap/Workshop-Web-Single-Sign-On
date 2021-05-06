@@ -138,6 +138,13 @@ class RcvController extends Controller
             $sparepart->stock = $sparepart->stock + $item['qty_rcv'];
             $sparepart->save();
 
+            // Mengurangi Qty PO
+            $detailpo = POdetail::where('id_po',$po->id_po)->where('id_sparepart',$item['id_sparepart'])->first();
+            
+            $detailpo->qty = $detailpo->qty - $item['qty_rcv'];
+            $detailpo->save(); 
+
+
             // KARTU GUDANG
             $kartu_gudang = new Kartugudang;
             $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_masuk + $item['qty_rcv'];

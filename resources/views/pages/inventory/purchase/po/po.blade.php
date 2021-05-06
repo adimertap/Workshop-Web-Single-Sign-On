@@ -148,6 +148,8 @@
                                                     data-target="#Modalkirimsupplier-{{ $item->id_po }}">
                                                     <i class="fas fa-share-square"></i>
                                                 </a>
+                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Approved' and $status == 'Diterima')
+                                                Tes
                                             @else
                                             <span>
                                                 @endif

@@ -77,7 +77,11 @@ class Sparepart extends Model
     }
 
     public function Kartugudang(){
-        return $this->belongsTo(Kartugudang::class, 'id_sparepart','id_sparepart');
+        return $this->hasMany(Kartugudang::class, 'id_sparepart','id_sparepart');
+    }
+
+    public function Kartugudangterakhir(){
+        return $this->hasOne(Kartugudang::class, 'id_sparepart','id_sparepart')->where('jenis_kartu', 'Receiving')->orderBy('updated_at', 'DESC');
     }
 
     public static function getId(){
