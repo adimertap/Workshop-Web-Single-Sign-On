@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Inventory\Masterdata;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Galleryrequest;
 use App\Http\Requests\Inventory\Sparepartrequest;
@@ -28,10 +29,10 @@ class MasterdatasparepartController extends Controller
     {
 
         $sparepart = Sparepart::with([
-            'Jenissparepart', 'Merksparepart','Konversi','Gallery','Rak','Kemasan'
+            'Jenissparepart', 'Merksparepart', 'Konversi', 'Gallery', 'Rak', 'Kemasan'
         ])->get();
 
-        return view('pages.inventory.masterdata.sparepart.sparepart', compact('sparepart','jenis_sparepart','merk_sparepart','konversi','Gallery','rak'));
+        return view('pages.inventory.masterdata.sparepart.sparepart', compact('sparepart'));
     }
 
     /**
@@ -49,15 +50,15 @@ class MasterdatasparepartController extends Controller
         $rak = Rak::all();
 
         $id = Sparepart::getId();
-        foreach($id as $value);
-            $idlama = $value->id_sparepart;
-            $idbaru = $idlama + 1;
+        foreach ($id as $value);
+        $idlama = $value->id_sparepart;
+        $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_sparepart = 'SP-'.$blt.'/'.$idbaru;
+        $kode_sparepart = 'SP-' . $blt . '/' . $idbaru;
 
 
-        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_sparepart','merk_sparepart','konversi','gallery','rak','kode_sparepart','kemasan')); 
+        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_sparepart', 'merk_sparepart', 'konversi', 'gallery', 'rak', 'kode_sparepart', 'kemasan'));
     }
 
     /**
@@ -70,29 +71,27 @@ class MasterdatasparepartController extends Controller
     {
         // $data = $request->all();
         // $data = Sparepart::create($data);
-     
-        // return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil diubah');
-       
-        if($request->hasfile('photo'))
-        {
-            
 
-            foreach($request->file('photo') as $image)
-            {
-                
-                $name=$image->getClientOriginalName();
-                $image->move(public_path().'/image/', $name); 
-                $data[] = $name; 
+        // return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil diubah');
+
+        if ($request->hasfile('photo')) {
+
+
+            foreach ($request->file('photo') as $image) {
+
+                $name = $image->getClientOriginalName();
+                $image->move(public_path() . '/image/', $name);
+                $data[] = $name;
             }
         }
 
         $id = Sparepart::getId();
-        foreach($id as $value);
+        foreach ($id as $value);
         $idlama = $value->id_sparepart;
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_sparepart = 'SP-'.$blt.'/'.$idbaru;
+        $kode_sparepart = 'SP-' . $blt . '/' . $idbaru;
 
         $sparepart = new Sparepart;
         $sparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
@@ -110,7 +109,7 @@ class MasterdatasparepartController extends Controller
         $gallery->id_sparepart = $sparepart->id_sparepart;
         $gallery->save();
 
-        return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil ditambah');
+        return redirect()->route('sparepart.index')->with('messageberhasil', 'Data Sparepart Berhasil ditambah');
     }
 
 
@@ -123,8 +122,8 @@ class MasterdatasparepartController extends Controller
     public function show($id_sparepart)
     {
         $sparepart = Sparepart::findOrFail($id_sparepart);
-    
-        return view('pages.inventory.masterdata.sparepart.detail',[
+
+        return view('pages.inventory.masterdata.sparepart.detail', [
             'item' => $sparepart,
         ]);
     }
@@ -144,7 +143,7 @@ class MasterdatasparepartController extends Controller
         $rak = Rak::all();
         $kemasan = Kemasan::all();
 
-        return view('pages.inventory.masterdata.sparepart.edit',[
+        return view('pages.inventory.masterdata.sparepart.edit', [
             'item' => $item,
             'jenis_sparepart' => $jenis_sparepart,
             'merk_sparepart' => $merk_sparepart,
@@ -174,13 +173,13 @@ class MasterdatasparepartController extends Controller
         $sparepart->nama_sparepart = $request->nama_sparepart;
         $sparepart->stock_min = $request->stock_min;
         $sparepart->id_kemasan = $request->id_kemasan;
-        
+
         // $sparepart->update();
         // $data = $request->all();
 
         $sparepart->save();
 
-        return redirect()->route('sparepart.index')->with('messageberhasil','Data Sparepart Berhasil diubah');
+        return redirect()->route('sparepart.index')->with('messageberhasil', 'Data Sparepart Berhasil diubah');
     }
 
     /**
@@ -192,19 +191,19 @@ class MasterdatasparepartController extends Controller
     public function destroy($id_sparepart)
     {
         $sparepart = Sparepart::findOrFail($id_sparepart);
-        
-        Hargasparepart::where('id_sparepart',$id_sparepart)->delete();
+
+        Hargasparepart::where('id_sparepart', $id_sparepart)->delete();
         Gallery::where('id_sparepart', $id_sparepart)->delete();
         $sparepart->delete();
 
-        return redirect()->back()->with('messagehapus','Data Sparepart Berhasil dihapus');
+        return redirect()->back()->with('messagehapus', 'Data Sparepart Berhasil dihapus');
     }
 
     public function gallery(Request $request, $id_sparepart)
     {
         $sparepart = Sparepart::findorFail($id_sparepart);
         $gallery = Gallery::with('sparepart')
-            ->where('id_sparepart',$id_sparepart)
+            ->where('id_sparepart', $id_sparepart)
             ->get();
 
         return view('pages.inventory.masterdata.sparepart.gallery')->with([
@@ -212,7 +211,4 @@ class MasterdatasparepartController extends Controller
             'gallery' => $gallery,
         ]);
     }
-
-
-
 }
