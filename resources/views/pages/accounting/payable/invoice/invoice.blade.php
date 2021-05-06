@@ -133,7 +133,7 @@
                                                 </span>
                                             </td>
                                             <td> @if($item->status_prf == 'Belum Dibuat')
-                                                <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                <a href="{{ route('invoice-payable.show',$item->id_payable_invoice) }}" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Detail Invoice">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
@@ -171,8 +171,8 @@
                                         <td colspan="6" class="text-center font-weight-500">
                                             Total Hutang Belum dibayar
                                         </td>
-                                        <td colspan="5" class="grand_total">
-                                            Rp.
+                                        <td colspan="5" class="grand_total text-center font-weight-500">
+                                            Rp. {{ number_format($hutang,2,',','.') }}
                                         </td>
                                     </tr>
                                 </table>
@@ -434,10 +434,12 @@
         var id_jenis_transaksi = $('#id_jenis_transaksi').val()
         var kode_rcv = $('#detailkodercv').val()
         var nama_supplier = $('#detailsupplier').val()
+        var kode_po = $('#detailkodepo').val()
         var data = {
             _token: _token,
             id_jenis_transaksi: id_jenis_transaksi,
             kode_rcv: kode_rcv,
+            kode_po: kode_po,
             nama_supplier: nama_supplier,
         }
 

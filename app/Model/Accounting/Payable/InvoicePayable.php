@@ -3,6 +3,7 @@
 namespace App\Model\Accounting\Payable;
 
 use App\Model\Accounting\Jenistransaksi;
+use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
@@ -22,6 +23,7 @@ class InvoicePayable extends Model
     protected $fillable = [
         'id_supplier',
         'id_rcv',
+        'id_po',
         'id_jenis_transaksi',
         'id_pegawai',
         'kode_invoice',
@@ -54,6 +56,11 @@ class InvoicePayable extends Model
     public function Rcv()
     {
         return $this->belongsTo(Rcv::class,'id_rcv','id_rcv');
+    }
+
+    public function PO()
+    {
+        return $this->belongsTo(PO::class,'id_po','id_po');
     }
 
     public function Pegawai()

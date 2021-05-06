@@ -32,108 +32,114 @@
 
     <div class="container mt-n10">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 <div class="card mb-4">
                     <div class="card card-header-actions">
                         <div class="card-header ">Form Invoice
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="form-group">
-                            <label class="small mb-1 mr-1" for="id_jenis_transaksi">Pilih Jenis
-                                Transaksi</label><span class="mr-4 mb-3" style="color: red">*</span>
-                            <div class="input-group input-group-joined">
-                                <div class="input-group-append">
-                                    <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
-                                        data-target="#Modaltransaksi">
-                                        Tambah
-                                    </a>
-                                </div>
-                                <select class="form-control" name="id_jenis_transaksi" id="id_jenis_transaksi">
-                                    <option value="{{ $invoice->Jenistransaksi->id_jenis_transaksi }}">
-                                        {{ $invoice->Jenistransaksi->nama_transaksi }}</option>
-                                    @foreach ($jenis_transaksi as $transaksijenis)
-                                    <option value="{{ $transaksijenis->id_jenis_transaksi }}">
-                                        {{ $transaksijenis->nama_transaksi }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label class="small mb-1" for="tanggal_invoice">Tanggal Invoice</label>
-                                <input class="form-control" id="tanggal_invoice" type="date" name="tanggal_invoice"
-                                    placeholder="Input Tanggal Invoice" value="{{ old('tanggal_invoice') }}"
-                                    class="form-control @error('tanggal_invoice') is-invalid @enderror" />
-                                @error('tanggal_invoice')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label class="small mb-1" for="tenggat_invoice">Tanggal Bayar Terakhir</label>
-                                <input class="form-control" id="tenggat_invoice" type="date" name="tenggat_invoice"
-                                    placeholder="Input Tanggal Bayar Terakhir" value="{{ old('tenggat_invoice') }}"
-                                    class="form-control @error('tenggat_invoice') is-invalid @enderror" />
-                                @error('tenggat_invoice')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="deskripsi_invoice">Deskripsi Keperluan</label>
-                            <textarea class="form-control" id="deskripsi_invoice" type="text" name="deskripsi_invoice"
-                                placeholder="" value="{{ old('deskripsi_invoice') }}"
-                                class="form-control @error('deskripsi_invoice') is-invalid @enderror"> </textarea>
-                            @error('deskripsi_invoice')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
-                        </div>
-                        <div class="form-group text-right">
-                            <hr>
-                            <a href="{{ route('Opname.index') }}" class="btn btn-sm btn-light">Kembali</a>
-                            <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                                data-target="#Modalsumbit">Simpan</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card mb-4">
-                    <div class="card-header">Detail Invoice
-                    </div>
-                    <div class="card-body">
                         <form action="{{ route('invoice-payable.store') }}" id="form1" method="POST"
                             enctype="multipart/form-data">
                             @csrf
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
+                            <div class="row">
+                                <div class="form-group col-md-4">
                                     <label class="small mb-1" for="kode_invoice">Kode Invoice</label>
                                     <input class="form-control" id="kode_invoice" type="text" name="kode_invoice"
                                         placeholder="Input Kode Invoice" value="{{ $kode_invoice }}" readonly />
                                 </div>
+                                <div class="form-group col-md-8">
+                                    <label class="small mb-1 mr-1" for="id_jenis_transaksi">Pilih Jenis
+                                        Transaksi</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                    <div class="input-group input-group-joined">
+                                        <div class="input-group-append">
+                                            <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
+                                                data-target="#Modaltransaksi">
+                                                Tambah
+                                            </a>
+                                        </div>
+                                        <select class="form-control" name="id_jenis_transaksi" id="id_jenis_transaksi">
+                                            <option value="{{ $invoice->Jenistransaksi->id_jenis_transaksi }}">
+                                                {{ $invoice->Jenistransaksi->nama_transaksi }}</option>
+                                            @foreach ($jenis_transaksi as $transaksijenis)
+                                            <option value="{{ $transaksijenis->id_jenis_transaksi }}">
+                                                {{ $transaksijenis->nama_transaksi }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="tanggal_invoice">Tanggal Invoice</label>
+                                    <input class="form-control" id="tanggal_invoice" type="date" name="tanggal_invoice"
+                                        placeholder="Input Tanggal Invoice" value="{{ old('tanggal_invoice') }}"
+                                        class="form-control @error('tanggal_invoice') is-invalid @enderror" />
+                                    @error('tanggal_invoice')<div class="text-danger small mb-1">{{ $message }}
+                                    </div> @enderror
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="tenggat_invoice">Tanggal Bayar Terakhir</label>
+                                    <input class="form-control" id="tenggat_invoice" type="date" name="tenggat_invoice"
+                                        placeholder="Input Tanggal Bayar Terakhir" value="{{ old('tenggat_invoice') }}"
+                                        class="form-control @error('tenggat_invoice') is-invalid @enderror" />
+                                    @error('tenggat_invoice')<div class="text-danger small mb-1">{{ $message }}
+                                    </div> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="small mb-1" for="deskripsi_invoice">Deskripsi Keperluan</label>
+                                <textarea class="form-control" id="deskripsi_invoice" type="text"
+                                    name="deskripsi_invoice" placeholder="" value="{{ old('deskripsi_invoice') }}"
+                                    class="form-control @error('deskripsi_invoice') is-invalid @enderror"> </textarea>
+                                @error('deskripsi_invoice')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
+                            </div>
+                            
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="card mb-4">
+                    <div class="card-header">Detail Invoice
+                    </div>
+                    <div class="card-body">
+                            <div class="form-row">
+                                
                                 <div class="form-group col-md-6">
                                     <label class="small mb-1" for="id_rcv">Kode Receiving</label>
                                     <input class="form-control" id="id_rcv" type="text" name="id_rcv"
                                         placeholder="Input Kode Invoice" value="{{ $invoice->Rcv->kode_rcv }}"
                                         readonly />
                                 </div>
-                            </div>
-                            <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label class="small mb-1" for="id_supplier">Supplier</label>
                                     <input class="form-control" id="id_supplier" type="text" name="id_supplier"
                                         placeholder="Input Kode Invoice"
                                         value="{{ $invoice->Rcv->Supplier->nama_supplier }}" readonly />
                                 </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label class="small mb-1" for="kode_po">Kode PO</label>
                                     <input class="form-control" id="kode_po" type="text" name="kode_po"
                                         placeholder="Input Kode Invoice" value="{{ $invoice->Rcv->PO->kode_po }}"
                                         readonly />
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="kode_invoice">Alamat Supplier</label>
+                                    <input class="form-control" id="kode_invoice" type="text" name="kode_invoice"
+                                        placeholder="Input Kode Invoice"
+                                        value="{{ $invoice->Rcv->Supplier->alamat_supplier }}" readonly />
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label class="small mb-1" for="kode_invoice">Alamat Supplier</label>
-                                <input class="form-control" id="kode_invoice" type="text" name="kode_invoice"
-                                    placeholder="Input Kode Invoice" value="{{ $invoice->Rcv->Supplier->alamat_supplier }}" readonly />
+                            
+                            <div class="form-group text-right">
+                                <hr>
+                                <a href="{{ route('invoice-payable.index') }}" class="btn btn-sm btn-light">Kembali</a>
+                                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                                    data-target="#Modalsumbit">Simpan</button>
                             </div>
                     </div>
                 </div>
@@ -318,15 +324,11 @@
     function submit(event, sparepart, id_payable_invoice) {
         event.preventDefault()
         var form1 = $('#form1')
-        var kode_rcv = form1.find('input[name="id_rcv"]').val()
         var kode_invoice = form1.find('input[name="kode_invoice"]').val()
-        var kode_po = form1.find('input[name="kode_po"]').val()
-        var id_supplier = form1.find('input[name="id_supplier"]').val()
         var id_jenis_transaksi = $('#id_jenis_transaksi').val()
         var tanggal_invoice = form1.find('input[name="tanggal_invoice"]').val()
         var tenggat_invoice = form1.find('input[name="tenggat_invoice"]').val()
-        var deskripsi_invoice = form1.find('textare[name="deskripsi_invoice"]').val()
-
+        var deskripsi_invoice = form1.find('textarea[name="deskripsi_invoice"]').val()
         var formgrandtotal = $('#grandtotal')
         var grand_total = $(formgrandtotal.find('.grand_total')[0]).html()
         var total_pembayaran = grand_total.split('Rp.')[1].replace('.', '').replace('.', '').replace(',00', '')
@@ -342,22 +344,14 @@
             var harga_diterima = $($('#sparepart-' + sparepart[i].id_sparepart).find('.harga_diterima')[0]).html()
             var harga_item = harga_diterima.split('Rp.')[1].replace('.', '').replace(',00', '')
 
-
-
             var id_sparepart = sparepart[i].id_sparepart
             var obj = {
                 id_sparepart: id_sparepart,
                 total_harga: splitqty,
                 qty_rcv: qty_rcv,
                 harga_item: harga_item,
-
-
             }
-            console.log(obj)
-
             dataform2.push(obj)
-
-
         }
 
 
@@ -366,10 +360,7 @@
         } else {
             var data = {
                 _token: _token,
-                kode_rcv: kode_rcv,
-                kode_po: kode_po,
                 kode_invoice: kode_invoice,
-                id_supplier: id_supplier,
                 id_jenis_transaksi: id_jenis_transaksi,
                 tanggal_invoice: tanggal_invoice,
                 tenggat_invoice: tenggat_invoice,
@@ -377,8 +368,6 @@
                 deskripsi_invoice: deskripsi_invoice,
                 sparepart: dataform2
             }
-
-            console.log(data)
 
             $.ajax({
                 method: 'put',

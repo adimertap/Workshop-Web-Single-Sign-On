@@ -28,11 +28,13 @@ class InvoicePayableController extends Controller
             'PO'
         ])->get();
 
+
         $jenis_transaksi = Jenistransaksi::all();
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.accounting.payable.invoice.invoice', compact('invoice','today','tanggal','jenis_transaksi','rcv'));
+        return view('pages.accounting.payable.invoice.invoice',['hutang' => InvoicePayable::where('status_prf','Belum Dibuat')->sum('total_pembayaran')], 
+        compact('invoice','today','tanggal','jenis_transaksi','rcv'));
     }
 
     /**
@@ -56,12 +58,15 @@ class InvoicePayableController extends Controller
         $rcv = Rcv::where('kode_rcv',$request->kode_rcv)->first();
         $id_rcv = $rcv->id_rcv;
         $id_supplier = $rcv->id_supplier;
+        $id_po = $rcv->id_po;
 
         // 
         $invoice = InvoicePayable::create([
             'id_rcv'=>$id_rcv,
             'id_supplier'=>$id_supplier,
             'id_jenis_transaksi'=>$request->id_jenis_transaksi,
+            'id_po' => $id_po,
+           
         ]);
         
         return $invoice;
@@ -73,9 +78,13 @@ class InvoicePayableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_payable_invoice)
     {
-        //
+        $invoice = InvoicePayable::with('Detailinvoice')->findOrFail($id_payable_invoice);
+
+        return view('pages.accounting.payable.invoice.detail')->with([
+            'invoice' => $invoice
+        ]);
     }
 
     /**
@@ -123,11 +132,7 @@ class InvoicePayableController extends Controller
      */
     public function update(Request $request, $id_payable_invoice)
     {
-        $rcv = Rcv::where('kode_rcv', $request->kode_rcv)->first();
         $invoice = InvoicePayable::findOrFail($id_payable_invoice);
-        $invoice->id_rcv = $rcv->id_rcv;
-        $invoice->id_po = $rcv->id_po;
-        $invoice->id_supplier = $rcv->id_supplier;
         $invoice->kode_invoice = $request->kode_invoice;
         $invoice->tanggal_invoice = $request->tanggal_invoice;
         $invoice->tenggat_invoice = $request->tenggat_invoice;
