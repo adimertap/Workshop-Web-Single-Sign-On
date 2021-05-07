@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'id_bengkel'
+        'name', 'email', 'password', 'id_bengkel', 'id_pegawai'
     ];
 
     /**
@@ -45,5 +46,11 @@ class User extends Authenticatable
     public function bengkel()
     {
         return $this->belongsTo(Bengkel::class, 'id_bengkel', 'id_bengkel');
+    }
+
+    // relations
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class, 'id_pegawai', 'id_pegawai');
     }
 }

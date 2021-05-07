@@ -58,7 +58,7 @@
                             <div class="avatar avatar-xl mr-3 bg-gray-200"><img class="avatar-img img-fluid"
                                     src="/backend/src/assets/img/freepik/profiles/profile-6.png" alt=""></div>
                             <div class="d-flex flex-column font-weight-bold">
-                                <a class="text-dark line-height-normal mb-1">{{ Auth::user()->name }}</a>
+                                <a class="text-dark line-height-normal mb-1">{{ Auth::user()->pegawai->nama_pegawai }}</a>
                                     <div class=" small text-muted line-height-normal">Bagian Point of Sales</div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <label class="small text-muted line-height-normal">: Jl. Denpasar
+                            <label class="small text-muted line-height-normal">: {{ Auth::user()->pegawai->alamat }}
                         </div>
                     </div>
                     <div class="row">
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <label class="small text-muted line-height-normal">: 083117270179
+                            <label class="small text-muted line-height-normal">: {{ Auth::user()->pegawai->no_telp }}
                         </div>
                     </div>
                 </form>
