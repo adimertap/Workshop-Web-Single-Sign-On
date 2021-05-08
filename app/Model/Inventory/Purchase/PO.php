@@ -41,7 +41,7 @@ class PO extends Model
 
     public function Detailsparepart()
     {
-        return $this->belongsToMany(Sparepart::class,'tb_inventory_detpo','id_po','id_sparepart')->withPivot('qty','harga_satuan','total_harga');
+        return $this->belongsToMany(Sparepart::class,'tb_inventory_detpo','id_po','id_sparepart')->withPivot('qty','qty_po_sementara','harga_satuan','total_harga');
     }
 
     public function Supplier()

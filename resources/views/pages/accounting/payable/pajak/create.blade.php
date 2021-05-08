@@ -9,7 +9,7 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto mt-4">
                         <h1 class="page-header-title">
-                            <div class="page-header-icon" style="color: white"><i class="fas fa-pallet"></i>
+                            <div class="page-header-icon" style="color: white"><i class="fas fa-hand-holding-usd"></i>
                             </div>
                             <div class="page-header-subtitle" style="color: white">Tambah Data Pembayaran Pajak</div>
                         </h1>
@@ -48,6 +48,26 @@
                                     <label class="small mb-1" for="status_jurnal">Status Jurnal</label>
                                     <input class="form-control" id="status_jurnal" type="text" name="status_jurnal"
                                         value="Pending" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="small mb-1 mr-1" for="id_jenis_transaksi">Pilih Jenis Transaksi</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
+                                <div class="input-group input-group-joined">
+                                    <div class="input-group-append">
+                                        <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
+                                            data-target="#Modaltransaksi">
+                                            Tambah
+                                        </a>
+                                    </div>
+                                    <select class="form-control" name="id_jenis_transaksi" id="id_jenis_transaksi"
+                                        class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
+                                        <option>Pilih Jenis Transaksi</option>
+                                        @foreach ($jenis_transaksi as $item)
+                                        <option value="{{ $item->id_jenis_transaksi }}">{{ $item->nama_transaksi }}
+                                        </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -116,12 +136,12 @@
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Position: activate to sort column ascending"
-                                                            style="width: 150px;">
+                                                            style="width: 80px;">
                                                             Data Pajak</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Start date: activate to sort column ascending"
-                                                            style="width: 90px;">
+                                                            style="width: 150px;">
                                                             Keterangan Pajak</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
@@ -142,9 +162,8 @@
                                                     <td colspan="3" class="text-center font-weight-500">
                                                         Total Pajak
                                                     </td>
-                                                    <td colspan="2" class="grand_total">
-                                                        Rp.
-                                                    </td>
+                                                    <td  colspan="2" class="grand_total text-center font-weight-500">
+                                                        <span>Rp. </span><span id="totalpajak">0</span>
                                                 </tr>
                                             </table>
                                         </div>
@@ -229,6 +248,35 @@
 </div>
 
 
+
+<div class="modal fade" id="Modaltransaksi" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Data Jenis Transaksi</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('jenis-transaksi.store') }}" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="small mb-1" for="nama_transaksi">Jenis Transaksi</label>
+                        <textarea class="form-control" name="nama_transaksi" type="text" id="nama_transaksi"
+                            placeholder="Input Jenis Transaksi" value="{{ old('nama_transaksi') }}"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -243,7 +291,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary" onclick="submit(event,{{ $pajak }})" type="button">Ya!Sudah</button>
+                <button class="btn btn-primary" onclick="submit(event,{{ $pajak }}, {{ $id_pajak }})" type="button">Ya!Sudah</button>
             </div>
         </div>
     </div>
@@ -262,65 +310,68 @@
 </template>
 
 <script>
-    function submit(event, pajak) {
+    function submit(event, pajak, id_pajak) {
+        console.log(id_pajak)
         event.preventDefault()
         var form1 = $('#form1')
         var kode_pajak = form1.find('input[name="kode_pajak"]').val()
         var id_pegawai = $('#id_pegawai').val()
-        var tanggal_bayar = form1.find('input[name="tanggal_pembayaran"]').val()
-        var deskripsi_pajak = form1.find('input[name="approve_po"]').val()
+        var id_jenis_transaksi = $('#id_jenis_transaksi').val()
+        var tanggal_bayar = form1.find('input[name="tanggal_bayar"]').val()
+        var deskripsi_pajak = form1.find('textarea[name="deskripsi_pajak"]').val()
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
+        var total_pajak = $('#totalpajak').html()
 
-        for (var i = 0; i < pajak.length; i++) {
-            var form2 = $('#form2')
-            var data_pajak = form2.find('input[name="data_pajak"]').val()
-            var nilai_pajak = form2.find('input[name="nilai_pajak"]').val()
-            var nilai_pajak_fix = new Intl.NumberFormat('id', {
-                style: 'currency',
-                currency: 'IDR'
-            }).format(nilai_pajak)
-            var keterangan_pajak = form2.find('textarea[name="keterangan_pajak"]').val()
+        var pajak = $('#konfirmasi').children()
+        for (let index = 0; index < pajak.length; index++) {
+            var children = $(pajak[index]).children()
+            var td_datapajak = children[1]
+            var datapajak = $(td_datapajak).html()
+            
+            var td_keterangan_pajak = children[2]
+            var keteranganpajak = $(td_keterangan_pajak).html()
 
-            if (nilai_pajak_fix == 0 | nilai_pajak_fix == '') {
-                continue
-            } else {
-                var id_pajak = pajak[i].id_pajak
-                var obj = {
-                    id_pajak: id_pajak,
-                    data_pajak: data_pajak,
-                    nilai_pajak_fix: nilai_pajak_fix,
-                    keterangan_pajak: keterangan_pajak
-                }
-                dataform2.push(obj)
-
-                console.log(obj)
-            }
-
+            var td_nilai_pajak = children[3]
+            var nilaipajak = $(td_nilai_pajak).html()
+            var nilaipajak_fix = nilaipajak.split('Rp&nbsp;')[1].replace('.', '').replace('.', '').replace(',00', '').trim()
+            
+            dataform2.push({
+                id_pajak: id_pajak,
+                data_pajak: datapajak,
+                keterangan_pajak: keteranganpajak,
+                nilai_pajak: nilaipajak_fix
+            })
         }
-        // if (dataform2.length == 0) {
-        //     var alert = $('#alertsparepartkosong').show()
-        // } else {
-        //     var data = {
-        //         _token: _token,
-        //         kode_pajak: kode_pajak,
-        //         id_pegawai: id_pegawai,
-        //         tanggal_bayar: tanggal_bayar,
-        //         deskripsi_pajak: deskripsi_pajak,
-        //         pajak: dataform2
-        //     }
 
-        //     $.ajax({
-        //         method: 'post',
-        //         url: '/accounting/pajak',
-        //         data: data,
-        //         success: function (response) {
-        //             window.location.href = '/accounting/pajak'
-        //             console.log(response)
 
-        //         },
-        //     });
-        // }
+        if (dataform2.length == 0) {
+            alert('ERROR')
+        } else {
+            var data = {
+                _token: _token,
+                kode_pajak: kode_pajak,
+                id_jenis_transaksi: id_jenis_transaksi,
+                id_pegawai: id_pegawai,
+                tanggal_bayar: tanggal_bayar,
+                deskripsi_pajak: deskripsi_pajak,
+                total_pajak: total_pajak,
+                pajak: dataform2
+            }
+         
+
+            $.ajax({
+                method: 'post',
+                url: '/accounting/pajak',
+                data: data,
+                success: function (response) {
+                    // window.location.href = '/accounting/pajak'
+                },
+                error: function (response) {
+                console.log(response)
+            }
+            });
+        }
     }
 
     function tambahpajak(event) {
@@ -334,10 +385,17 @@
         }).format(nilai_pajak)
         var keterangan_pajak = form.find('textarea[name="keterangan_pajak"]').val()
 
+      
+            
+
         if (nilai_pajak == 0 | nilai_pajak == '' | data_pajak == '') {
             alert('Data Inputan Ada yang belum terisi')
         } else {
-          
+            
+            var totalpajak = $('#totalpajak').html()
+            var totalpajakfix = parseInt(nilai_pajak) + parseInt(totalpajak)
+            $('#totalpajak').html(totalpajakfix)
+           
 
             $('#dataTablekonfirmasi').DataTable().row.add([
                 data_pajak, data_pajak, keterangan_pajak, nilai_pajak_fix
@@ -349,6 +407,15 @@
         var table = $('#dataTablekonfirmasi').DataTable()
         var row = $(element).parent().parent()
         table.row(row).remove().draw();
+
+        var pajakberkurang = $(row.children()[3]).text()
+        var splitpajak = pajakberkurang.split('Rp')[1].replace('.', '').replace('.', '').replace(',00', '').trim()
+       
+        var totalpajak = $('#totalpajak').html()
+        var totalpajakfix = parseInt(totalpajak) -  parseInt(splitpajak)
+        $('#totalpajak').html(totalpajakfix)
+
+
         alert('Data Pajak Berhasil di Hapus')
     }
 

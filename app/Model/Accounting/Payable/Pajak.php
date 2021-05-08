@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
-class Bayarpajak extends Model
+class Pajak extends Model
 {
     use SoftDeletes;
 
@@ -36,7 +36,7 @@ class Bayarpajak extends Model
 
     public function detailpajak()
     {
-        return $this->hasMany(Pajakdetail::class, 'id_pajak');
+        return $this->hasMany(Pajakdetail::class, 'id_pajak', 'id_pajak');
     }
 
     public function Pegawai()

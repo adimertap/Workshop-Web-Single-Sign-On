@@ -40,7 +40,7 @@
                         </div>
                         <div class="timeline-item-content">
                             Pembelian Baru! {{ $item->tanggal_po }}
-                            <a class="font-weight-bold text-dark" href="{{ route('purchase-order.show',$item->id_po) }}"
+                            <a class="font-weight-bold text-dark" href="{{ route('Rcv-detail-po',$item->id_po) }}"
                                 data-toggle="tooltip" data-placement="top" title=""
                                 data-original-title="Cek Detail Pembelian">Order {{ $item->kode_po }}</a>
                             Pada Supplier {{ $item->Supplier->nama_supplier }}

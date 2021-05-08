@@ -383,8 +383,8 @@ Route::group(
             ->group(function () {
 
                 Route::resource('receiving', 'RcvController', ['names' => 'Rcv']);
-                Route::get('/post', 'RcvController@post')
-                    ->name('Rcvstoreawal');
+                Route::get('detail/{id_po}', 'RcvController@detailpo')
+                    ->name('Rcv-detail-po');
             });
 
         // RETUR ---------------------------------------------------------------------- Retur

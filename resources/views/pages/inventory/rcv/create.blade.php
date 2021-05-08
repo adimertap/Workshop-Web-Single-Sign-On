@@ -159,7 +159,7 @@
 
                                                     <td class="merk_sparepart">
                                                         {{ $item->Merksparepart->merk_sparepart }}</td>
-                                                    <td class="qty">{{ $item->pivot->qty }}</td>
+                                                    <td class="qty">{{ $item->pivot->qty_po_sementara }}</td>
                                                     <td class="satuan">{{ $item->Konversi->satuan }}</td>
                                                     <td>@if ($item->pivot->harga_satuan == '')
                                                         <div class="small text-muted d-none d-md-block">Tidak ada
@@ -299,7 +299,7 @@
                         </div>
                         <div class="col">
                             <label class="small text-muted line-height-normal">
-                                Qty Pesanan: {{ $item->pivot->qty }}
+                                Qty Pesanan: {{ $item->pivot->qty_po_sementara }}
                         </div>
                     </div>
                     <hr class="my-4">
@@ -462,7 +462,8 @@
         } else {
             var data = $('#item-' + id_sparepart)
             var qty = $(data.find('.qty')[0]).text()
-            
+
+            // Kondisi tidak boleh melebihi qty po
             if(parseInt(qty_rcv) > parseInt(qty)  ){
                 alert('Qty Rcv tidak boleh melebihi Qty PO')
             }else{
@@ -484,7 +485,6 @@
                     nama_sparepart, `<span id=${nama_sparepart}>${nama_sparepart}</span>`, merk_sparepart, satuan,
                     qty, qty_rcv, harga_diterima_fix, keterangan
                 ]).draw();
-                
             }
         }
     }

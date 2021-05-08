@@ -380,6 +380,7 @@
                 var obj = {
                     id_sparepart: id_sparepart,
                     qty: qty,
+                    qty_po_sementara: qty,
                     total_harga: total_harga,
                     harga_satuan: harga_satuan
                 }
@@ -486,39 +487,6 @@
                 var harga_paling_fix = $(this).parent().find('.detailhargaditerima')
                 $(harga_paling_fix).html(harga_fix);
             })
-        })
-
-        $('#id_pegawai').on('change', function () {
-            var select = $(this).find('option:selected')
-            var textpegawai = select.text()
-            if (textpegawai == 'Pilih Pegawai') {
-                $('#detailpegawai').html('');
-            } else {
-                $('#detailpegawai').html(textpegawai);
-            }
-        })
-
-        $('#id_supplier').on('change', function () {
-            var select = $(this).find('option:selected')
-            var textsupplier = select.text()
-            if (textsupplier == 'Pilih Supplier') {
-                $('#detailsupplier').html('');
-            } else {
-                $('#detailsupplier').html(textsupplier);
-            }
-        })
-
-        $('#tanggal_po').on('change', function () {
-            var select = $(this)
-            var textdate = select.val()
-            var splitdate = textdate.split('-')
-            console.log(splitdate)
-            var datefix = new Date(splitdate[0], splitdate[1] - 1, splitdate[2])
-            var formatindodate = new Intl.DateTimeFormat('id', {
-                dateStyle: 'long'
-            }).format(datefix)
-            $('#detailtanggal').html(formatindodate);
-
         })
 
         var table = $('#dataTable').DataTable({

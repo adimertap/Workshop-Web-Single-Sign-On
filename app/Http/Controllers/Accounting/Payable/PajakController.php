@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Accounting\Payable;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Inventory\Accounting\Payable\Pajak;
 use App\Model\Accounting\Jenistransaksi;
-use App\Model\Accounting\Payable\Bayarpajak;
-use App\Model\Accounting\Payable\Pajak as PayablePajak;
+use App\Model\Accounting\Payable\Pajak;
 use App\Model\Accounting\Payable\Pajakdetail;
 use App\Model\Accounting\Payable\Pembayaranpajak;
 use App\Model\Kepegawaian\Pegawai;
@@ -22,7 +20,7 @@ class PajakController extends Controller
      */
     public function index()
     {
-        $pajak = Bayarpajak::with([
+        $pajak = Pajak::with([
             'Pegawai','Jenistransaksi'
         ])->get();
 
@@ -40,7 +38,7 @@ class PajakController extends Controller
     public function create()
     {
 
-        $pajak = Bayarpajak::with([
+        $pajak = Pajak::with([
             'detailpajak',
         ])->get();
 
@@ -48,15 +46,16 @@ class PajakController extends Controller
         $pegawai = Pegawai::all();
         $detailpajak = Pajakdetail::all();
 
-        $id = Bayarpajak::getId();
+        $id = Pajak::getId();
         foreach($id as $value);
         $idlama = $value->id_pajak;
         $idbaru = $idlama + 1;
         $blt = date('m');
 
         $kode_pajak = 'AKPJ-'.$idbaru.'/'.$blt;
+        $id_pajak = $idbaru;
 
-        return view('pages.accounting.payable.pajak.create', compact('jenis_transaksi','pegawai','kode_pajak','pajak', 'detailpajak')); 
+        return view('pages.accounting.payable.pajak.create', compact('id_pajak','jenis_transaksi','pegawai','kode_pajak','pajak', 'detailpajak')); 
     }
 
     /**
@@ -67,9 +66,8 @@ class PajakController extends Controller
      */
     public function store(Request $request)
     {
-        return 'aaa';
 
-        $id = Bayarpajak::getId();
+        $id = Pajak::getId();
         foreach($id as $value);
         $idlama = $value->id_pajak;
         $idbaru = $idlama + 1;
@@ -77,18 +75,24 @@ class PajakController extends Controller
 
         $kode_pajak = 'AKPJ-'.$idbaru.'/'.$blt;
 
-        $pajak = new Bayarpajak;
+        $pajak = new Pajak;
         $pajak->kode_pajak = $kode_pajak;
+        $pajak->id_jenis_transaksi = $request->id_jenis_transaksi;
         $pajak->id_pegawai = $request->id_pegawai;
         $pajak->tanggal_bayar = $request->tanggal_bayar;
         $pajak->deskripsi_pajak = $request->deskripsi_pajak;
-       
+        $pajak->total_pajak = $request->total_pajak;
+        $pajak->status_jurnal = 'Pending';
 
         $pajak->save();
-        $pajak->Detail()->sync($request->pajak);
-        
+        // $pajak->detailpajak()->sync($request->pajak);
+        $pajak->detailpajak()->sync($request->pajak);
+
+        // $pajak->detailpajak()->attach($id_pajak);
+        // $pajak->detailpajak()->saveMany($request->pajak);
+
         // return $request;
-        return response()->json($request);
+        return $request;
     }
 
     /**
@@ -99,7 +103,7 @@ class PajakController extends Controller
      */
     public function show($id_pajak)
     {
-        $pajak = Bayarpajak::with('Detail')->findOrFail($id_pajak);
+        $pajak = Pajak::with('Detail')->findOrFail($id_pajak);
 
         return view('pages.accounting.payable.pajak.detail')->with([
             'pajak' => $pajak

@@ -14,7 +14,7 @@
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
-                        <a href="{{ route('masterdatasupplier') }}"
+                        <a href="{{ route('supplier.index') }}"
                             class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('masterdatasupplier') }}"
+                                        <a href="{{ route('supplier.index') }}"
                                             class="btn btn-light">Kembali</a>
                                         <button class="btn btn-primary" type="Submit">Submit</button>
                                     </div>

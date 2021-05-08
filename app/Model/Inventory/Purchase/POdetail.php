@@ -19,6 +19,7 @@ class POdetail extends Model
         'id_po',
         'id_sparepart',
         'qty',
+        'qty_po_sementara'
     ];
 
     protected $hidden =[ 
