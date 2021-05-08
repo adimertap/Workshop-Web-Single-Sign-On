@@ -10,11 +10,11 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-cog"></i></div>
-                            Edit Data Sparepart
+                            Edit Data Kendaraan
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
-                        <a href="{{ route('masterdatasparepart') }}"
+                        <a href="{{ route('kendaraan.index') }}"
                             class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                         aria-controls="wizard1" aria-selected="true">
                         <div class="wizard-step-icon"><i class="fas fa-plus"></i></div>
                         <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Formulir Sparepart</div>
+                            <div class="wizard-step-text-name">Formulir Kendaraan</div>
                             <div class="wizard-step-text-details">Lengkapi formulir berikut</div>
                         </div>
                     </a>
@@ -47,98 +47,55 @@
                         aria-labelledby="wizard1-tab">
                         <div class="row justify-content-center">
                             <div class="col-xxl-6 col-xl-8">
-                                <h3 class="text-primary">{{ $item->nama_sparepart }}</h3>
-                                <h5 class="card-title">Ubah Data Sparepart</h5>
-                                <form action="{{ route('sparepart.update',$item->id_sparepart) }}" method="POST">
+                                <h3 class="text-primary">{{ $item->nama_kendaraan }}</h3>
+                                <h5 class="card-title">Ubah Data Kendaraan</h5>
+                                <form action="{{ route('kendaraan.update',$item->id_kendaraan) }}" method="POST">
                                     @method('PUT')
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="kode_sparepart">Kode
-                                                Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="kode_sparepart" type="text"
-                                                name="kode_sparepart" value="{{ $item->kode_sparepart }}" readonly />
+                                            <label class="small mb-1 mr-1" for="kode_kendaraan">Kode
+                                                Kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="kode_kendaraan" type="text"
+                                                name="kode_kendaraan" value="{{ $item->kode_kendaraan }}" readonly />
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="nama_sparepart">Nama
-                                                Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="nama_sparepart" type="text"
-                                                name="nama_sparepart" value="{{ $item->nama_sparepart }}" />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis
-                                                Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select class="form-control" name="id_jenis_sparepart"
-                                                id="id_jenis_sparepart">
-                                                <option value="{{ $item->Jenissparepart->id_jenis_sparepart }}">
-                                                    {{ $item->Jenissparepart->jenis_sparepart }}</option>
-                                                @foreach ($jenis_sparepart as $jenissparepart)
-                                                <option value="{{ $jenissparepart->id_jenis_sparepart }}">
-                                                    {{ $jenissparepart->jenis_sparepart }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_merk">Merk Sparepart</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
-                                            <select class="form-control" name="id_merk" id="id_merk">
-                                                <option value="{{ $item->Merksparepart->id_merk }}">
-                                                    {{ $item->Merksparepart->merk_sparepart }}</option>
-                                                @foreach ($merk_sparepart as $merksparepart)
-                                                <option value="{{ $merksparepart->id_merk }}">
-                                                    {{ $merksparepart->merk_sparepart }}
-                                                </option>
-                                                @endforeach
-                                            </select>
+                                            <label class="small mb-1 mr-1" for="nama_kendaraan">Nama
+                                                kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="nama_kendaraan" type="text"
+                                                name="nama_kendaraan" value="{{ $item->nama_kendaraan }}" />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_konversi">Konversi
-                                                Satuan</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select class="form-control" name="id_konversi" id="id_konversi">
-                                                <option value="{{ $item->Konversi->id_konversi }}">
-                                                    {{ $item->Konversi->satuan }}</option>
-                                                @foreach ($konversi as $konversisatuan)
-                                                <option value="{{ $konversisatuan->id_konversi }}">
-                                                    {{ $konversisatuan->satuan }}
+                                            <label class="small mb-1 mr-1" for="warna_kendaraan">Nama
+                                                kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="warna_kendaraan" type="text"
+                                                name="warna_kendaraan" value="{{ $item->warna_kendaraan }}" />
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1 mr-1" for="id_jenis_kendaraan">Jenis
+                                                Kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <select class="form-control" name="id_jenis_kendaraan"
+                                                id="id_jenis_kendaraan">
+                                                <option value="{{ $item->jenis_kendaraan->id_jenis_kendaraan }}">
+                                                    {{ $item->jenis_kendaraan->jenis_kendaraan }}</option>
+                                                @foreach ($jenis_kendaraan as $jenis_kendaraan)
+                                                <option value="{{ $jenis_kendaraan->id_jenis_kendaraan }}">
+                                                    {{ $jenis_kendaraan->jenis_kendaraan }}
                                                 </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_rak">Tempat Rak</label><span
+                                            <label class="small mb-1 mr-1" for="id_merk_kendaraan">Merk Kendaraan</label><span
                                                 class="mr-4 mb-3" style="color: red">*</span>
-                                            <select class="form-control" name="id_rak" id="id_rak">
-                                                <option value="{{ $item->Rak->id_rak }}">
-                                                    {{ $item->Rak->nama_rak }}</option>
-                                                @foreach ($rak as $raks)
-                                                <option value="{{ $raks->id_rak }}">
-                                                    {{ $raks->nama_rak }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="stock_min">Stock Min</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="stock_min" type="text" name="stock_min"
-                                                value="{{ $item->stock_min }}" />
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_kemasan">Kemasan</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
-                                            <select class="form-control" name="id_kemasan" id="id_kemasan">
-                                                <option value="{{ $item->Kemasan->id_kemasan }}">
-                                                    {{ $item->Kemasan->nama_kemasan }}</option>
-                                                @foreach ($kemasan as $kemas)
-                                                <option value="{{ $kemas->id_kemasan }}">
-                                                    {{ $kemas->nama_kemasan }}
+                                            <select class="form-control" name="id_merk_kendaraan" id="id_merk_kendaraan">
+                                                <option value="{{ $item->merk_kendaraan->id_merk_kendaraan }}">
+                                                    {{ $item->merk_kendaraan->merk_kendaraan }}</option>
+                                                @foreach ($merk_kendaraan as $merk_kendaraan)
+                                                <option value="{{ $merk_kendaraan->id_merk_kendaraan }}">
+                                                    {{ $merk_kendaraan->merk_kendaraan }}
                                                 </option>
                                                 @endforeach
                                             </select>

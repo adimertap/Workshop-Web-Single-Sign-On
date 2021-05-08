@@ -3,6 +3,7 @@
 namespace App\Model\FrontOffice;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class MasterDataPitstop extends Model
 {
@@ -17,4 +18,9 @@ class MasterDataPitstop extends Model
     protected $hidden = [];
 
     public $timestamps = false;
+
+    public static function getId()
+    {
+        return $getId = DB::table('tb_fo_master_pitstop')->orderBy('id_pitstop', 'DESC')->take(1)->get();
+    }
 }

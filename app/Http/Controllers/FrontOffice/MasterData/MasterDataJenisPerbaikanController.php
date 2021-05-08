@@ -19,7 +19,15 @@ class MasterDataJenisPerbaikanController extends Controller
     {
         $jenisperbaikan = MasterDataJenisPerbaikan::get();
 
-        return view('pages.frontoffice.masterdata.jenis_perbaikan.index', compact('jenisperbaikan'));
+        $id = MasterDataJenisPerbaikan::getId();
+        foreach ($id as $value);
+        $idlama = $value->id_jenis_perbaikan;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+
+        $kode_jenis_perbaikan = 'JP-' . $idbaru . '/' . $blt;
+
+        return view('pages.frontoffice.masterdata.jenis_perbaikan.index', compact('jenisperbaikan', 'kode_jenis_perbaikan'));
     }
 
     /**
@@ -44,7 +52,7 @@ class MasterDataJenisPerbaikanController extends Controller
         $data['slug'] = Str::slug($request->group_jenis_perbaikan);
 
         MasterDataJenisPerbaikan::create($data);
-        return redirect()->route('jenisperbaikan.index')->with('messageberhasil', 'Data Jenis Perbaikan Berhasil ditambahkan');
+        return redirect()->route('jenis-perbaikan.index')->with('messageberhasil', 'Data Jenis Perbaikan Berhasil ditambahkan');
     }
 
     /**

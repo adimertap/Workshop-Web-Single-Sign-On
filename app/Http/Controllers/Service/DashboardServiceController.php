@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Service;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardServiceController extends Controller
@@ -14,8 +15,10 @@ class DashboardServiceController extends Controller
      */
     public function index()
     {
-        $blt = date('D, d/m/Y');
-        return view('pages.service.dashboard.dashboardservice', compact('blt'));
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal_tahun = Carbon::now()->format('j F Y');
+
+        return view('pages.service.dashboard.dashboardservice', compact('today', 'tanggal_tahun'));
     }
 
     /**

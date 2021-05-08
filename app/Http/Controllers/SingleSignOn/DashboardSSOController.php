@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SingleSignOn;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardSSOController extends Controller
@@ -14,8 +15,10 @@ class DashboardSSOController extends Controller
      */
     public function index()
     {
-        $blt = date('D, d/m/Y');
-        return view('pages.singlesignon.dashboard.dashboardsso', compact('blt'));
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal_tahun = Carbon::now()->format('j F Y');
+
+        return view('pages.singlesignon.dashboard.dashboardsso', compact('today', 'tanggal_tahun'));
     }
 
     /**

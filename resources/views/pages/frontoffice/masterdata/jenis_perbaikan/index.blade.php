@@ -87,7 +87,7 @@
                                             <td>{{ $item->kode_jenis_perbaikan }}</td>
                                             <td>{{ $item->nama_jenis_perbaikan }}</td>
                                             <td>{{ $item->group_jenis_perbaikan }}</td>
-                                            <td>{{ $item->harga_jenis_perbaikan }}</td>
+                                            <td>Rp. {{ number_format($item->harga_jenis_perbaikan) }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
                                                     data-toggle="modal" data-target="#Modaledit-{{ $item->id_jenis_perbaikan }}">
@@ -126,19 +126,16 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('jenisperbaikan.store') }}" method="POST">
+                <form action="{{ route('jenis-perbaikan.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="kode_jenis_perbaikan">Kode Jenis Perbaikan <span style="color: red">*</span> </label>
+                            <label class="small mb-1" for="kode_jenis_perbaikan">Kode Jenis Perbaikan</label>
                             <input class="form-control" name="kode_jenis_perbaikan" type="text" id="kode_jenis_perbaikan"
-                                placeholder="Input Kode Jenis Perbaikan" value="{{ old('kode_jenis_perbaikan') }}"
-                                class="form-control @error('kode_jenis_perbaikan') is-invalid @enderror">
-                            @error('kode_jenis_perbaikan')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                                placeholder="Input Kode Jenis Perbaikan" value="{{ $kode_jenis_perbaikan }}" readonly>
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="nama_jenis_perbaikan">Nama Jenis Perbaikan <span style="color: red">*</span> </label>
@@ -162,7 +159,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <label class="small mb-1" for="harga_jenis_perbaikan">Harga Perbaikan <span style="color: red">*</span> s</label>
+                            <label class="small mb-1" for="harga_jenis_perbaikan">Harga Perbaikan <span style="color: red">*</span></label>
                             <input class="form-control" name="harga_jenis_perbaikan" type="text" id="harga_jenis_perbaikan"
                                 placeholder="Input Harga Perbaikan" value="{{ old('harga_jenis_perbaikan') }}"
                                 class="form-control @error('harga_jenis_perbaikan') is-invalid @enderror">
@@ -192,7 +189,7 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('jenisperbaikan.update', $item->id_jenis_perbaikan) }}" method="POST">
+                <form action="{{ route('jenis-perbaikan.update', $item->id_jenis_perbaikan) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="modal-body">
@@ -200,11 +197,9 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="kode_jenis_perbaikan">Kode Jenis Perbaikan</label>
+                            <label class="small" for="kode_jenis_perbaikan">Kode Merk</label>
                             <input class="form-control" name="kode_jenis_perbaikan" type="text" id="kode_jenis_perbaikan"
-                                value="{{ $item->kode_jenis_perbaikan }}" placeholder="Input Kode Jenis Perbaikan">
-                            @error('kode_jenis_perbaikan')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                                value="{{ $item->kode_jenis_perbaikan }}" readonly>
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="nama_jenis_perbaikan">Nama Jenis Perbaikan</label>
@@ -255,7 +250,7 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('jenisperbaikan.destroy', $item->id_jenis_perbaikan) }}" method="POST" class="d-inline">
+                <form action="{{ route('jenis-perbaikan.destroy', $item->id_jenis_perbaikan) }}" method="POST" class="d-inline">
                     @csrf
                     @method('delete')
                     <div class="modal-body">Apakah Anda Yakin Menghapus Data Perbaikan {{ $item->nama_jenis_perbaikan }}?</div>

@@ -86,7 +86,7 @@
                                             <div class="input-group input-group-joined">
                                                 <div class="input-group-append">
                                                     <a href="" class="btn btn-sm btn-secondary" type="button"
-                                                        data-toggle="modal" data-target="#Modaljenis">
+                                                        data-toggle="modal" data-target="#ModalTamabenis">
                                                         <i class="fas fa-plus"></i>
                                                     </a>
                                                 </div>

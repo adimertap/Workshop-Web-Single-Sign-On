@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontOffice;
 use App\Http\Controllers\Controller;
 use App\Model\SingleSignOn\Bengkel;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardFrontOfficeController extends Controller
@@ -17,8 +18,10 @@ class DashboardFrontOfficeController extends Controller
     public function index()
     {
         $sso = User::get();
-        $blt = date('D, d/m/Y');
-        return view('pages.frontoffice.dashboard.dashboardfrontoffice', compact('sso', 'blt'));
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal_tahun = Carbon::now()->format('j F Y');
+
+        return view('pages.frontoffice.dashboard.dashboardfrontoffice', compact('sso', 'today', 'tanggal_tahun'));
     }
 
     /**

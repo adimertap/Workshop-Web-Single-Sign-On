@@ -4,7 +4,9 @@ namespace App\Http\Controllers\FrontOffice\MasterData;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\MasterData\KendaraanRequest;
+use App\Model\FrontOffice\MasterDataJenisKendaraan;
 use App\Model\FrontOffice\MasterDataKendaraan;
+use App\Model\FrontOffice\MasterDataMerkKendaraan;
 use Illuminate\Http\Request;
 
 class MasterDataKendaraanController extends Controller
@@ -16,7 +18,10 @@ class MasterDataKendaraanController extends Controller
      */
     public function index()
     {
-        $kendaraan = MasterDataKendaraan::get();
+        $kendaraan = MasterDataKendaraan::with(['merk_kendaraan', 'jenis_kendaraan'])->get();
+        $jenis_kendaraan = MasterDataJenisKendaraan::all();
+        $merk_kendaraan = MasterDataMerkKendaraan::all();
+
 
         return view('pages.frontoffice.masterdata.kendaraan.index', compact('kendaraan'));
     }
@@ -28,7 +33,18 @@ class MasterDataKendaraanController extends Controller
      */
     public function create()
     {
-        //
+        $merk_kendaraan = MasterDataMerkKendaraan::all();
+        $jenis_kendaraan = MasterDataJenisKendaraan::all();
+
+        $id = MasterDataKendaraan::getId();
+        foreach ($id as $value);
+        $idlama = $value->id_kendaraan;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+
+        $kode_kendaraan = 'KD-' . $blt . '/' . $idbaru;
+
+        return view('pages.frontoffice.masterdata.kendaraan.create', compact('merk_kendaraan', 'jenis_kendaraan', 'kode_kendaraan'));
     }
 
     /**
@@ -62,9 +78,18 @@ class MasterDataKendaraanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_kendaraan)
     {
-        //
+        // return $id_kendaraan;
+        $item = MasterDataKendaraan::findOrFail($id_kendaraan);
+        $jenis_kendaraan = MasterDataJenisKendaraan::all();
+        $merk_kendaraan = MasterDataMerkKendaraan::all();
+
+        return view('pages.frontoffice.masterdata.kendaraan.edit', [
+            'item' => $item,
+            'jenis_kendaraan' => $jenis_kendaraan,
+            'merk_kendaraan' => $merk_kendaraan
+        ]);
     }
 
     /**
@@ -74,9 +99,18 @@ class MasterDataKendaraanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_kendaraan)
     {
-        //
+        $kendaraan = MasterDataKendaraan::findOrFail($id_kendaraan);
+        $kendaraan->id_jenis_kendaraan = $request->id_jenis_kendaraan;
+        $kendaraan->id_merk_kendaraan = $request->id_merk_kendaraan;
+        $kendaraan->kode_kendaraan = $request->kode_kendaraan;
+        $kendaraan->nama_kendaraan = $request->nama_kendaraan;
+        $kendaraan->warna_kendaraan = $request->warna_kendaraan;
+
+        $kendaraan->save();
+
+        return redirect()->route('kendaraan.index')->with('messageberhasil', 'Data Kendaraan Berhasil diubah');
     }
 
     /**
@@ -85,8 +119,11 @@ class MasterDataKendaraanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_kendaraan)
     {
-        //
+        $kendaraan = MasterDataKendaraan::findOrFail($id_kendaraan);
+        $kendaraan->delete();
+
+        return redirect()->back()->with('messagehapus', 'Data Kendaraan Berhasil dihapus');
     }
 }

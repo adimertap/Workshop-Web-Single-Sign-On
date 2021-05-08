@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\PointOfSales;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardPOSController extends Controller
@@ -14,8 +15,10 @@ class DashboardPOSController extends Controller
      */
     public function index()
     {
-        $blt = date('D, d/m/Y');
-        return view('pages.pointofsales.dashboard.dashboardpointofsales', compact('blt'));
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal_tahun = Carbon::now()->format('j F Y');
+
+        return view('pages.pointofsales.dashboard.dashboardpointofsales', compact('today', 'tanggal_tahun'));
     }
 
     /**
