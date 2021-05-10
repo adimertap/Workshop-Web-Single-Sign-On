@@ -24,29 +24,11 @@
     <div class="container-fluid mt-n10">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header">List Diskon
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
-                        Data</button>
+                <div class="card-header">List Pembayaran Sparepart
                 </div>
             </div>
             <div class="card-body">
                 <div class="datatable">
-                    @if(session('messageberhasil'))
-                    <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                        {{ session('messageberhasil') }}
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    @endif
-                    @if(session('messagehapus'))
-                    <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
-                        {{ session('messagehapus') }}
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    @endif
                     {{-- SHOW ENTRIES --}}
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
@@ -62,26 +44,37 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Nama Diskon</th>
+                                                style="width: 20px;">Kode Transaksi</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Jumlah Diskon (%)</th>
+                                                style="width: 20px;">Nama Customer</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Tanggal Mulai</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Tanggal Selesai</th>
+                                                style="width: 20px;">Total Bayar</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($penjualan_sparepart as $item)
+                                        <tr role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">1</th>
+                                            <td>{{ $item->kode_penjualan }}</td>
+                                            <td>{{ $item->Customer->nama_customer }}</td>
+                                            <td>Rp. {{ number_format($item->total_bayar,2,',','.') }}</td>
+                                            <td>
+                                                <a href="{{route('pembayaransparepart.show', $item->id_penjualan_sparepart)}}"
+                                                    class="btn btn-outline-success btn-sm" type="button">
+                                                    Pembayaran
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @empty
 
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

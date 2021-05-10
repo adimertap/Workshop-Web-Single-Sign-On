@@ -13,7 +13,10 @@ class Bengkel extends Model
 
     protected $fillable = [
         'nama_bengkel',
-        'alamat_bengkel'
+        'alamat_bengkel',
+        'longitude',
+        'latitude',
+        'slug'
     ];
 
     public $timestamps = false;

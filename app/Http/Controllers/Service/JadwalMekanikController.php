@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Service;
 
 use App\Http\Controllers\Controller;
+use App\Model\Kepegawaian\Absensi;
+use App\Model\Kepegawaian\Jabatan;
+use App\Model\Kepegawaian\Pegawai;
 use App\Model\Service\JadwalMekanik;
 use Illuminate\Http\Request;
 
@@ -15,7 +18,13 @@ class JadwalMekanikController extends Controller
      */
     public function index()
     {
-        return view('pages.service.jadwal_mekanik.main');
+        $mekanik = Jabatan::with('pegawai', 'pegawai.absensi_mekanik')->where('nama_jabatan', 'Mekanik')->get();
+        // $absensi = Absensi::with(['pegawai.jabatan'])->get();
+        // $mekanik = $absensi['pegawai']['jabatan']->where('nama_jabatan', 'Mekanik');
+        $mekanik_asli = $mekanik[0]->pegawai;
+        // return $mekanik_asli;
+        return view('pages.service.jadwal_mekanik.main', compact('mekanik_asli'));
+        // return view('pages.service.jadwal_mekanik.main');
     }
 
     /**

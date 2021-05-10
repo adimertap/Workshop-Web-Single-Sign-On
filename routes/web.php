@@ -21,6 +21,9 @@ Auth::routes();
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/', 'Auth\LoginController@login')->name('login');
 
+Route::get('/register', 'Auth\RegisterController@showRegisterForm')->name('register');
+Route::post('/register', 'Auth\RegisterController@register')->name('register');
+
 Route::group(
     ['middleware' => 'auth'],
     function () {
@@ -265,7 +268,7 @@ Route::group(
 
                 Route::resource('user', 'ManajemenUserController');
             });
-       
+
         // MODUL INVENTORY ------------------------------------------------------------------------------------ INVENTORY
         // DASHBOARD
         Route::prefix('inventory')
@@ -277,10 +280,10 @@ Route::group(
 
         // MASTERDATA INVENTORY -------------------------------------------------------- Master Data Inventory
         Route::prefix('Inventory')
-        ->namespace('Inventory\Masterdata')
-        ->group(function () {
-        Route::get('/', 'MasterdatasparepartController@index')
-        ->name('masterdatasparepart');
+            ->namespace('Inventory\Masterdata')
+            ->group(function () {
+                Route::get('/', 'MasterdatasparepartController@index')
+                    ->name('masterdatasparepart');
 
                 Route::get('sparepart/{id_sparepart}/gallery', 'MasterdatasparepartController@gallery')
                     ->name('sparepart.gallery');
@@ -294,58 +297,58 @@ Route::group(
                 Route::get('/', 'MasterdatagalleryController@index')
                     ->name('masterdatagallery');
 
-        Route::resource('gallery', 'MasterdatagalleryController')->except('create');
-        Route::get('gallery/create/{idsparepart}', 'MasterdatagalleryController@create')->name('gallery.create');
-        });
+                Route::resource('gallery', 'MasterdatagalleryController')->except('create');
+                Route::get('gallery/create/{idsparepart}', 'MasterdatagalleryController@create')->name('gallery.create');
+            });
 
         Route::prefix('inventory')
-        ->namespace('Inventory\Masterdata')
-        ->group(function () {
-        Route::resource('merk-sparepart', 'MasterdatamerksparepartController');
-        });
+            ->namespace('Inventory\Masterdata')
+            ->group(function () {
+                Route::resource('merk-sparepart', 'MasterdatamerksparepartController');
+            });
 
         Route::prefix('inventory')
-        ->namespace('Inventory\Masterdata')
-        ->group(function () {
-        Route::resource('jenis-sparepart', 'MasterdataJenissparepartController');
-        });
+            ->namespace('Inventory\Masterdata')
+            ->group(function () {
+                Route::resource('jenis-sparepart', 'MasterdataJenissparepartController');
+            });
 
         Route::prefix('inventory')
-        ->namespace('Inventory\Masterdata')
-        ->group(function () {
-        Route::get('/{id_supplier}/sparepart', 'MasterdatasupplierController@getDataSparepartBySupplierId');
-        Route::resource('supplier', 'MasterdatasupplierController');
-        });
+            ->namespace('Inventory\Masterdata')
+            ->group(function () {
+                Route::get('/{id_supplier}/sparepart', 'MasterdatasupplierController@getDataSparepartBySupplierId');
+                Route::resource('supplier', 'MasterdatasupplierController');
+            });
 
         Route::prefix('inventory')
-        ->namespace('Inventory\Masterdata')
-        ->group(function () {
-        Route::resource('hargasparepart', 'MasterdatahargasparepartController');
-        });
+            ->namespace('Inventory\Masterdata')
+            ->group(function () {
+                Route::resource('hargasparepart', 'MasterdatahargasparepartController');
+            });
 
         Route::prefix('inventory')
-        ->namespace('Inventory\Masterdata')
-        ->group(function () {
-        Route::resource('rak', 'MasterdatarakController');
-        });
+            ->namespace('Inventory\Masterdata')
+            ->group(function () {
+                Route::resource('rak', 'MasterdatarakController');
+            });
 
         Route::prefix('inventory')
-        ->namespace('Inventory\Masterdata')
-        ->group(function () {
-            Route::resource('konversi', 'MasterdatakonversiController');
-        });
+            ->namespace('Inventory\Masterdata')
+            ->group(function () {
+                Route::resource('konversi', 'MasterdatakonversiController');
+            });
 
         Route::prefix('inventory')
-        ->namespace('Inventory\Masterdata')
-        ->group(function () {
-            Route::resource('kemasan', 'MasterdatakemasanController');
-        });
+            ->namespace('Inventory\Masterdata')
+            ->group(function () {
+                Route::resource('kemasan', 'MasterdatakemasanController');
+            });
 
 
         // PURCHASE ORDER ---------------------------------------------------------------- Purchase Order
         Route::prefix('inventory')
-        ->namespace('Inventory\Purchase')
-        ->group(function () {
+            ->namespace('Inventory\Purchase')
+            ->group(function () {
 
                 Route::resource('purchase-order', 'PurchaseorderController');
 
@@ -427,7 +430,7 @@ Route::group(
             });
 
 
-        
+
         // --------------------------------------------------------------------------------------------------------KEPEGAWAIAN
         // MODUL KEPEGAWAIAN
         // DASHBOARD

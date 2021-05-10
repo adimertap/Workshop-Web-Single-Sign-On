@@ -3,6 +3,7 @@
 namespace App\Model\Kepegawaian;
 
 use App\Model\Payroll\Mastergajipokok;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -31,19 +32,22 @@ class Pegawai extends Model
         'tanggal_masuk',
     ];
 
-    protected $hidden =[ 
-    
-    ];
+    protected $hidden = [];
 
     public $timestamps = false;
 
-    public function jabatan(){
-        return $this->belongsTo(Jabatan::class,'id_jabatan','id_jabatan')->withTrashed();
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'id_jabatan', 'id_jabatan')->withTrashed();
     }
 
-    public function absensi(){
-        return $this->hasMany(Absensi::class,'id_pegawai');
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_pegawai');
     }
-   
 
+    public function absensi_mekanik()
+    {
+        return $this->hasOne(Absensi::class, 'id_pegawai')->whereDate('tanggal_absensi', Carbon::today())->where('absensi', 'Absen_Pagi');
+    }
 }

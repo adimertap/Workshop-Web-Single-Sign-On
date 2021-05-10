@@ -31,7 +31,6 @@ class MasterDataKendaraan extends Model
 
     public static function getId()
     {
-        // return $this->orderBy('id_sparepart')->take(1)->get();
         return $getId = DB::table('tb_fo_master_kendaraan')->orderBy('id_kendaraan', 'DESC')->take(1)->get();
     }
 }

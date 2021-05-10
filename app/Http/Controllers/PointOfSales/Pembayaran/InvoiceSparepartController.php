@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\PointOfSales\Pembayaran;
 
 use App\Http\Controllers\Controller;
+use App\Model\FrontOffice\PenjualanSparepart;
 use Illuminate\Http\Request;
 
 class InvoiceSparepartController extends Controller
@@ -14,7 +15,8 @@ class InvoiceSparepartController extends Controller
      */
     public function index()
     {
-        //
+        $penjualan_sparepart = PenjualanSparepart::where([['status_bayar', '=', 'Belum Bayar']])->get();
+        return view('pages.pointofsales.pembayaran.invoice_sparepart', compact('penjualan_sparepart'));
     }
 
     /**

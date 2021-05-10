@@ -5,6 +5,7 @@ namespace App\Model\FrontOffice;
 use App\Model\Inventory\Sparepart;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class PenjualanSparepart extends Model
 {
@@ -38,6 +39,12 @@ class PenjualanSparepart extends Model
 
     public function Detailsparepart()
     {
-        return $this->belongsToMany(Sparepart::class, 'tb_fo_detail_penjualan_sparepart', 'id_penjualan_sparepart', 'id_sparepart')->withPivot('jumlah');
+        return $this->belongsToMany(Sparepart::class, 'tb_fo_detail_penjualan_sparepart', 'id_penjualan_sparepart', 'id_sparepart')->withPivot('jumlah', 'total_harga');
+    }
+
+    public static function getId()
+    {
+        // return $this->orderBy('id_sparepart')->take(1)->get();
+        return $getId = DB::table('tb_fo_penjualan_sparepart')->orderBy('id_penjualan_sparepart', 'DESC')->take(1)->get();
     }
 }
