@@ -2,6 +2,7 @@
 
 namespace App\Model\Inventory;
 
+use App\Model\Accounting\Payable\InvoicePayable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -38,6 +39,10 @@ class Supplier extends Model
         return $this->belongsToMany(Sparepart::class,'tb_inventory_master_harga_sparepart','id_supplier','id_sparepart')->withPivot('harga_jual');
     }
 
+    public function InvoicePayable()
+    {
+        return $this->hasMany(InvoicePayable::class, 'id_supplier');
+    }
 
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();

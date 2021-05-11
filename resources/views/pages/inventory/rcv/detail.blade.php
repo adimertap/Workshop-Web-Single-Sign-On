@@ -106,7 +106,7 @@
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 40px;">Satuan</th>
+                                                    style="width: 40px;">Kemasan</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
@@ -132,7 +132,7 @@
                                                 </th>
                                                 <td>{{ $detail->nama_sparepart }}</td>
                                                 <td>{{ $detail->Merksparepart->merk_sparepart }}</td>
-                                                <td>{{ $detail->Konversi->satuan }}</td>
+                                                <td>{{ $detail->Kemasan->nama_kemasan }}</td>
                                                 <td>{{ $detail->pivot->qty_po }}</td>
                                                 <td>{{ $detail->pivot->qty_rcv }}</td>
                                                 <td>Rp.{{ number_format($detail->pivot->harga_diterima,2,',','.')}}</td>

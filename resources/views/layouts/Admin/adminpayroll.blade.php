@@ -199,10 +199,10 @@
 
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
-                        <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardpayroll') }}">
+                        <div class="sidenav-menu-heading">Penggajian</div>
+                        <a class="nav-link" href="{{ route('gaji-pegawai.index') }}">
                             <div class="nav-link-icon"><i class="fas fa-money-bill-wave-alt"></i></div>
-                            Dashboard Payroll
+                            Gaji Pegawai
                         </a>
 
                         {{-- MASTER DATA --}}
@@ -221,25 +221,6 @@
                                 </a>
                                 <a class="nav-link" href="{{ route('masterdatatunjangan') }}">
                                     Master Tunjangan
-                                </a>
-                            </nav>
-                        </div>
-
-                        {{-- INVENTORY SYSTEM --}}
-                        {{-- Inventory System Side Bar --}}
-                        <div class="sidenav-menu-heading">Penggajian</div>
-
-                        {{-- Inventory --}}
-                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                            data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="nav-link-icon"><i class="fas fa-briefcase"></i></div>
-                            Penggajian
-                            <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
-                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                <a class="nav-link " href="{{ route('gaji-pegawai.index') }}">
-                                    Gaji Pegawai
                                 </a>
                             </nav>
                         </div>

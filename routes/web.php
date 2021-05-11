@@ -477,6 +477,14 @@ Route::group(
                     ->name('laporanabsensi');
             });
 
+        // JADWAL PEGAWAI --------------------------------------------------------------- Jadwal
+        Route::prefix('kepegawaian')
+            ->namespace('Kepegawaian\Jadwal')
+            ->group(function () {
+                Route::resource('jadwal-pegawai', 'JadwalpegawaiController');
+            });
+
+
         // -------------------------------------------------------------------------------------------------------PAYROLL 
         // MODUL PAYROLL
         // DASHBOARD

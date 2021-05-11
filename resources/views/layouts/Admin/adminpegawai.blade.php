@@ -9,10 +9,12 @@
     <meta name="author" content="" />
     <title>Kepegawaian System</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}">
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
     <link rel="icon" type="image/x-icon" href={{ url('backend/dist/assets/img/favicon.png')}} />
@@ -22,7 +24,7 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ url('/node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
-    
+
 </head>
 
 <body class="nav-fixed">
@@ -166,7 +168,7 @@
                         <div class="dropdown-item-icon"> <i class="fas fa-cubes"></i></div>
                         Sistem Inventory
                     </a>
-                    <a class="dropdown-item" href="{{ route('dashboardpayroll') }}">
+                    <a class="dropdown-item" href="{{ route('gaji-pegawai.index') }}">
                         <div class="dropdown-item-icon"><i class="fas fa-wallet"></i></div>
                         Sistem Payroll
                     </a>
@@ -174,12 +176,11 @@
                         <div class="dropdown-item-icon"><i class="fas fa-calculator"></i></div>
                         Sistem Accounting
                     </a>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                         Logout
-                    </a> 
+                    </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -229,10 +230,25 @@
                         {{-- Inventory System Side Bar --}}
                         <div class="sidenav-menu-heading">Aktivitas Pegawai</div>
 
-                        {{-- Inventory --}}
+                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                            data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
+                            Jadwal Pegawai
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down">
+                                </i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
+                                <a class="nav-link" href="{{ route('jadwal-pegawai.index') }}">
+                                    Atur Jadwal
+                                </a>
+                            </nav>
+                        </div>
+                        
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="nav-link-icon"><i class="fas fa-briefcase"></i></div>
+                            <div class="nav-link-icon"><i class="fas fa-business-time"></i></div>
                             Absensi Pegawai
                             <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -246,6 +262,8 @@
                                 </a>
                             </nav>
                         </div>
+
+                        
                     </div>
                 </div>
                 {{-- USER ROLE Side Bar --}}

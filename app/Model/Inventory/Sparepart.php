@@ -25,7 +25,9 @@ class Sparepart extends Model
         'nama_sparepart',
         'keterangan',
         'stock',
-        'stock_min'
+        'stock_min',
+        'status_jumlah',
+        'berat_sparepart'
     ];
 
     protected $hidden =[ 
@@ -65,7 +67,7 @@ class Sparepart extends Model
     }
 
     public function Hargasparepart(){
-        return $this->hasMany(Hargasparepart::class,'id_sparepart');
+        return $this->hasOne(Hargasparepart::class,'id_sparepart');
     }
 
     public function PO(){

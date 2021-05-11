@@ -1,18 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Inventory\Kartugudang;
+namespace App\Http\Controllers\Kepegawaian\Jadwal;
 
 use App\Http\Controllers\Controller;
-use App\Model\Inventory\Jenissparepart;
-use App\Model\Inventory\Kartugudang\Kartugudang;
-use App\Model\Inventory\Konversi;
-use App\Model\Inventory\Merksparepart;
-use App\Model\Inventory\Rak;
-use App\Model\Inventory\Sparepart;
+use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class KartugudangController extends Controller
+class JadwalpegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,14 +16,14 @@ class KartugudangController extends Controller
      */
     public function index()
     {
-        $sparepart = Sparepart::with([
-            'Jenissparepart', 'Merksparepart','Konversi','Gallery','Rak'
-        ])->get();
- 
+
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.inventory.kartugudang.kartugudang', compact('sparepart','today','tanggal'));
+        $pegawai = Pegawai::all();
+
+
+        return view('pages.kepegawaian.jadwal.jadwal', compact('today', 'tanggal','pegawai'));
     }
 
     /**
@@ -58,19 +53,9 @@ class KartugudangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_sparepart)
+    public function show($id)
     {
-        $sparepart = Sparepart::findOrFail($id_sparepart);
-        $kartu_gudang = Kartugudang::where('id_sparepart', $id_sparepart)->get();
-
-        return view('pages.inventory.kartugudang.detail',[
-            'item' => $sparepart,
-            'kartu_gudang' => $kartu_gudang,
-            // 'jenis_sparepart' => $jenis_sparepart,
-            // 'merk_sparepart' => $merk_sparepart,
-            // 'konversi' => $konversi,
-            // 'rak' => $rak,
-        ]);
+        //
     }
 
     /**

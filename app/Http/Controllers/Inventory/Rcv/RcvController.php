@@ -170,6 +170,7 @@ class RcvController extends Controller
             $rcv->grand_total = $temp;
             $rcv->status = 'aktif';
             $rcv->status_bayar = 'Pending';
+            $rcv->status_invoice = 'Belum dibuat';
             $rcv->save();
 
             $rcv->Detailrcv()->sync($request->sparepart);
@@ -182,6 +183,7 @@ class RcvController extends Controller
             $rcv->grand_total = $temp;
             $rcv->status = 'aktif';
             $rcv->status_bayar = 'Pending';
+            $rcv->status_invoice = 'Belum dibuat';
             $rcv->save();
 
             $rcv->Detailrcv()->sync($request->sparepart);

@@ -114,7 +114,7 @@
                                                 style="width: 20px;">Qty</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 20px;">Satuan</th>
+                                                style="width: 20px;">Kemasan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
                                                 style="width: 30px;">Harga Sparepart</th>
@@ -132,7 +132,7 @@
                                             <td>{{ $detail->nama_sparepart }}</td>
                                             <td>{{ $detail->Merksparepart->merk_sparepart }}</td>
                                             <td>{{ $detail->pivot->qty }}</td>
-                                            <td>{{ $detail->Konversi->satuan }}</td>
+                                            <td>{{ $detail->Kemasan->nama_kemasan }}</td>
                                             <td>Rp.
                                                 {{ number_format($detail->pivot->harga_satuan,0,',','.') }}
                                             </td>

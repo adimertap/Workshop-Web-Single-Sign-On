@@ -5,6 +5,7 @@ namespace App\Model\Accounting\Prf;
 use App\Model\Accounting\Bankaccount;
 use App\Model\Accounting\Fop;
 use App\Model\Accounting\Jenistransaksi;
+use App\Model\Accounting\Payable\InvoicePayable;
 use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Rcv\Rcvdetail;
 use App\Model\Inventory\Supplier;
@@ -26,7 +27,6 @@ class Prf extends Model
         'id_akun_bank',
         'id_fop',
         'id_jenis_transaksi',
-        'id_pegawai',
         'kode_prf',
         'tanggal_prf',
         'tanggal_bayar',
@@ -38,16 +38,14 @@ class Prf extends Model
     ];
 
     protected $hidden =[ 
-        'created_at',
-        'updated_at',
         'deleted_at'
     ];
 
     public $timestamps = true;
 
-    public function Detail()
+    public function Detailprf()
     {
-        return $this->hasMany(Rcv::class,'id_rcv');
+        return $this->belongsToMany(InvoicePayable::class,'tb_accounting_detprf','id_prf','id_payable_invoice')->withPivot('total_pembayaran');
     }
 
     public function Supplier()
@@ -55,11 +53,6 @@ class Prf extends Model
         return $this->belongsTo(Supplier::class,'id_supplier','id_supplier');
     }
 
-    public function Pegawai()
-    {
-        return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
-    }
-    
     public function FOP()
     {
         return $this->belongsTo(Fop::class,'id_fop','id_fop');

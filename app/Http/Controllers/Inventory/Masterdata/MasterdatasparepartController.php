@@ -102,6 +102,8 @@ class MasterdatasparepartController extends Controller
         $sparepart->nama_sparepart = $request->nama_sparepart;
         $sparepart->stock_min = $request->stock_min;
         $sparepart->id_kemasan = $request->id_kemasan;
+        $sparepart->berat_sparepart = $request->berat_sparepart;
+        $sparepart->status_jumlah = 'Habis';
         $sparepart->save();
 
         $gallery = new Gallery;
@@ -173,6 +175,7 @@ class MasterdatasparepartController extends Controller
         $sparepart->nama_sparepart = $request->nama_sparepart;
         $sparepart->stock_min = $request->stock_min;
         $sparepart->id_kemasan = $request->id_kemasan;
+        $sparepart->berat_sparepart = $request->berat_sparepart;
 
         // $sparepart->update();
         // $data = $request->all();

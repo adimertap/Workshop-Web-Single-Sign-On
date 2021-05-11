@@ -170,7 +170,7 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('gaji-pegawai.store') }}" method="POST" id="form1" class="d-inline">
+            <form action="{{ route('prf.store') }}" method="POST" id="form1" class="d-inline">
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
@@ -193,7 +193,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="id_jenis_transaksi">Pilih Jenis Transaksi</label>
+                            <label class="small mb-1" for="id_jenis_transaksi">Pilih Jenis Transaksi</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <div class="input-group input-group-joined">
                                 <div class="input-group-append">
                                     <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
@@ -216,7 +216,7 @@
                     </div>     
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="id_supplier">Pilih Supplier</label>
+                            <label class="small mb-1" for="id_supplier">Pilih Supplier</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <div class="input-group input-group-joined">
                                 <input class="form-control" type="text" placeholder="Pilih Supplier" aria-label="Search"
                                     id="detailsupplier">
@@ -350,6 +350,37 @@
         </div>
     </div>
 </div>
+
+
+{{-- MODAL HAPUS --}}
+@forelse ($prf as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_prf }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger-soft">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('prf.destroy', $item->id_prf) }}" method="POST" class="d-inline">
+                @csrf
+                @method('delete')
+                <div class="modal-body text-center">
+                    Apakah Anda Yakin Menghapus Data PRF {{ $item->kode_prf }}, Supplier {{ $item->Supplier->nama_supplier }} ?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+
+@endforelse
+
 
 
 

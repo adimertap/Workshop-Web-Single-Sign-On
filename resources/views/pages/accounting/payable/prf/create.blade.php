@@ -9,9 +9,12 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto mt-4">
                         <h1 class="page-header-title">
-                            <div class="page-header-icon" style="color: white"><i class="fas fa-pallet"></i>
+                            <div class="page-header-icon" style="color: white"><i
+                                    class="fas fa-file-invoice-dollar"></i>
                             </div>
-                            <div class="page-header-subtitle" style="color: white">Tambah Data PRF</div>
+                            <div class="page-header-subtitle mr-2" style="color: white">Tambah Data Payment Requisition
+                                Form
+                            </div>
                         </h1>
                         <div class="small">
                             <span class="font-weight-500">PRF</span>
@@ -28,352 +31,543 @@
 
 
     <div class="container mt-n10">
-        <div class="card">
-            <div class="card-header border-bottom">
-                <div class="nav nav-pills nav-justified flex-column flex-xl-row nav-wizard" id="cardTab" role="tablist">
-                    <!-- Wizard navigation item 1-->
-                    <a class="nav-item nav-link active" id="wizard1-tab" href="#wizard1" data-toggle="tab" role="tab"
-                        aria-controls="wizard1" aria-selected="true">
-                        <div class="wizard-step-icon">1</div>
-                        <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Formulir PRF</div>
-                            <div class="wizard-step-text-details">Lengkapi formulir berikut</div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card mb-4">
+                    <div class="card card-header-actions">
+                        <div class="card-header ">Form PRF
                         </div>
-                    </a>
-                    <a class="nav-item nav-link" id="wizard2-tab" href="#wizard2" data-toggle="tab" role="tab"
-                        aria-controls="wizard2" aria-selected="true">
-                        <div class="wizard-step-icon">2</div>
-                        <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Daftar Data Pembayaran</div>
-                            <div class="wizard-step-text-details">Pilih Data</div>
-                        </div>
-                    </a>
-                    <a class="nav-item nav-link" id="wizard3-tab" href="#wizard3" data-toggle="tab" role="tab"
-                        aria-controls="wizard3" aria-selected="true">
-                        <div class="wizard-step-icon">3</div>
-                        <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Konfirmasi Pembayaran</div>
-                            <div class="wizard-step-text-details">Rincian Item</div>
-                        </div>
-                    </a>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('prf.store') }}" id="form1" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label class="small mb-1 mr-1" for="id_jenis_transaksi">Pilih Jenis
+                                    Transaksi</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                <select class="form-control" name="id_jenis_transaksi" id="id_jenis_transaksi">
+                                    <option value="{{ $prf->Jenistransaksi->id_jenis_transaksi }}">
+                                        {{ $prf->Jenistransaksi->nama_transaksi }}</option>
+                                    @foreach ($jenis_transaksi as $jenistransaksi)
+                                    <option value="{{ $jenistransaksi->id_jenis_transaksi }}">
+                                        {{ $jenistransaksi->nama_transaksi }}
+                                    </option>
+                                    @endforeach
+                                </select>
 
+                            </div>
+
+                            <div class="form-group">
+                                <label class="small mb-1" for="kode_prf">Kode PRF</label>
+                                <input class="form-control" id="kode_prf" type="text" name="kode_prf"
+                                    placeholder="Input Kode Invoice" value="{{ $kode_prf }}" readonly />
+                            </div>
+                            <div class="form-group">
+                                <label class="small mb-1" for="tanggal_prf">Tanggal Pembuatan PRF</label><span
+                                    class="mr-4 mb-3" style="color: red">*</span>
+                                <input class="form-control" id="tanggal_prf" type="date" name="tanggal_prf"
+                                    placeholder="Input Tanggal Prf" value="{{ old('tanggal_prf') }}"
+                                    class="form-control @error('tanggal_prf') is-invalid @enderror" />
+                                @error('tanggal_prf')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label class="small mb-1" for="keperluan_prf">Deskripsi Keperluan</label><span
+                                    class="mr-4 mb-3" style="color: red">*</span>
+                                <textarea class="form-control" id="keperluan_prf" type="text" name="keperluan_prf"
+                                    placeholder="Input Keperluan PRF" value="{{ old('keperluan_prf') }}"
+                                    class="form-control @error('keperluan_prf') is-invalid @enderror"> </textarea>
+                                @error('keperluan_prf')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
+                            </div>
+                    </div>
                 </div>
             </div>
 
-            {{-- CARD 1 --}}
-            <div class="card-body">
-                <div class="tab-content" id="cardTabContent">
-                    <!-- Wizard tab pane item 1-->
-                    <div class="tab-pane py-2 py-xl-2 fade show active" id="wizard1" role="tabpanel"
-                        aria-labelledby="wizard1-tab">
-                        <div class="row justify-content-center">
-                            <div class="col-xxl-6 col-xl-9">
-                                <h3 class="text-primary">Step 1</h3>
-                                <h5 class="card-title">Input Formulir PRF</h5>
-                                <form action="{{ route('prf.store') }}" id="form1" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="kode_prf">Kode PRF</label>
-                                            <input class="form-control" id="kode_prf" type="text" name="kode_prf"
-                                                placeholder="Input Kode PRF" value="{{ $kode_prf }}" readonly />
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_jenis_transaksi">Jenis Transaksi</label>
-                                            <select class="form-control" name="id_jenis_transaksi"
-                                                id="id_jenis_transaksi"
-                                                class="form-control @error('id_supplier') is-invalid @enderror">
-                                                <option>Pilih Jenis Transaksi</option>
-                                                @foreach ($jenis_transaksi as $item)
-                                                <option value="{{ $item->id_jenis_transaksi }}">
-                                                    {{ $item->nama_transaksi }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            @error('id_jenis_transaksi')<div class="text-danger small mb-1">
-                                                {{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="id_pegawai">Pegawai</label>
-                                            <select class="form-control" name="id_pegawai" id="id_pegawai"
-                                                class="form-control @error('id_supplier') is-invalid @enderror">
-                                                <option>Pilih Pegawai</option>
-                                                @foreach ($pegawai as $item)
-                                                <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="tanggal_prf">Tanggal Pembuatan PRF</label>
-                                            <input class="form-control" id="tanggal_prf" type="date" name="tanggal_prf"
-                                                placeholder="Input Tanggal PRF" value="{{ old('tanggal_prf') }}"
-                                                class="form-control @error('tanggal_prf') is-invalid @enderror" />
-                                            @error('tanggal_prf')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="small mb-1" for="keperluan_prf">Keperluan PRF</label>
-                                        <textarea class="form-control" id="keperluan_prf" type="text"
-                                            name="keperluan_prf" placeholder="Input Keperluan PRF"
-                                            value="{{ old('keperluan_prf') }}"
-                                            class="form-control @error('keperluan_prf') is-invalid @enderror"></textarea>
-                                        @error('keperluan_prf')<div class="text-danger small mb-1">{{ $message }}
-                                        </div> @enderror
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="status_prf">Status PRF</label>
-                                            <input class="form-control" id="status_prf" type="text" name="status_prf"
-                                                value="Pending" readonly>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="status_jurnal">Status Jurnal</label>
-                                            <input class="form-control" id="status_jurnal" type="text"
-                                                name="status_jurnal" value="Pending" readonly>
-                                        </div>
-                                    </div>
-                                    <hr class="my-4" />
-                                    <div class="d-flex justify-content-between">
-                                        <a href="{{ route('prf.index') }}" class="btn btn-light">Kembali</a>
-                                        <button class="btn btn-primary">Next</button>
-                                    </div>
-                            </div>
+            <div class="col-lg-9">
+                <div class="card">
+                    <div class="card card-header-actions">
+                        <div class="card-header ">Detail Invoice Supplier
                         </div>
                     </div>
+                    <div class="card-body">
+                        <div class="datatable">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-hover dataTable" id="dataTableDetail"
+                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 100px;">Kode Invoice</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 60px;">Kode PO</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 50px;">Tanggal Invoice</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 50px;">Tenggat Invoice</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 100px;">Total Biaya</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 50px;">Kode Rcv</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 50px;">Action</th>
 
-                    <div class="tab-pane fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
-                        <div class="card card-icon">
-                            <div class="row no-gutters">
-                                <div class="col-auto card-icon-aside bg-primary">
-                                    <i class="fas fa-clipboard-list" style="color: white"></i>
-                                </div>
-                                <div class="col">
-                                    <div class="card-body">
-                                        <h3 class="text-primary">Step 2</h3>
-                                        <h5 class="card-title">Pilih Transaksi Supplier</h5>
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label class="small mb-1" for="id_supplier">Supplier</label>
-                                                <select class="form-control" name="id_supplier" id="id_supplier"
-                                                    class="form-control @error('id_supplier') is-invalid @enderror">
-                                                    <option>Pilih Supplier</option>
-                                                    @foreach ($supplier as $item)
-                                                    <option value="{{ $item->id_supplier }}">{{ $item->nama_supplier }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                                @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
-                                                </div> @enderror
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="small mb-1" for="kode_prf">Rekening Supplier</label>
-                                                <input class="form-control" id="kode_prf" type="text" name="kode_prf"
-                                                    placeholder="No. Rek. Supplier" readonly />
-                                            </div>
-                                        </div>
-                                        <hr class="my-4" />
-                                        <div class="datatable">
-                                            <div id="dataTable_wrapperr" class="dataTables_wrapper dt-bootstrap4">
-                                                <div class="row justify-content-center">
-                                                    <div class="col-sm-12">
-                                                        <table class="table table-bordered table-hover dataTable"
-                                                            id="dataTable" width="100%" cellspacing="0" role="grid"
-                                                            aria-describedby="dataTable_info" style="width: 100%;">
-                                                            <thead>
-                                                                <tr role="row">
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1" colspan="1"
-                                                                        aria-sort="ascending"
-                                                                        aria-label="Name: activate to sort column descending"
-                                                                        style="width: 20px;">No</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1" colspan="1"
-                                                                        aria-label="Position: activate to sort column ascending"
-                                                                        style="width: 180px;">No Invoice</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1" colspan="1"
-                                                                        aria-label="Position: activate to sort column ascending"
-                                                                        style="width: 180px;">Kode PO</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1" colspan="1"
-                                                                        aria-label="Position: activate to sort column ascending"
-                                                                        style="width: 180px;">Tgl Inv.</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1" colspan="1"
-                                                                        aria-label="Position: activate to sort column ascending"
-                                                                        style="width: 180px;">Tgl Pemb. Terakhir</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1" colspan="1"
-                                                                        aria-label="Position: activate to sort column ascending"
-                                                                        style="width: 180px;">Total Biaya</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1" colspan="1"
-                                                                        aria-label="Position: activate to sort column ascending"
-                                                                        style="width: 180px;">No. Rcv</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1" colspan="1"
-                                                                        aria-label="Actions: activate to sort column ascending"
-                                                                        style="width: 100px;">Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($prf->Supplier->InvoicePayable as $item)
+                                                <tr id="invoice-{{ $item->id_payable_invoice }}" role="row" class="odd">
+                                                    <th scope="row" class="small" class="sorting_1">
+                                                        {{ $loop->iteration}}</th>
+                                                    <td class="kode_invoice">{{ $item->kode_invoice }}</td>
+                                                    <td class="kode_po">{{ $item->PO->kode_po }}</td>
+                                                    <td class="tanggal_invoice">{{ $item->tanggal_invoice }}</td>
+                                                    <td class="tenggat_invoice">{{ $item->tenggat_invoice }}</td>
+                                                    <td class="total_pembayaran">
+                                                        Rp.{{ number_format($item->total_pembayaran,2,',','.') }}</td>
+                                                    <td class="kode_rcv">{{ $item->Rcv->kode_rcv }}</td>
+                                                    <td>
+                                                        <a href="" class="btn btn-primary btn-datatable" type="button"
+                                                            data-toggle="modal"
+                                                            data-target="#Modalinvoice-{{ $item->id_payable_invoice }}">
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
+                                                        <a href="" class="btn btn-success btn-datatable"
+                                                            data-toggle="tooltip" data-placement="top" title=""
+                                                            data-original-title="Tambah">
+                                                            <i class="fas fa-plus"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @empty
 
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="tab-pane fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
-                        <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none">
-                            <i class="fas fa-times"></i>
-                            Error! Anda belum menambahkan sparepart!
-                            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="alert alert-success" id="alerttambah" role="alert" style="display:none"> <i
-                                class="fas fa-check"></i>
-                            Berhasil! Anda berhasil menambahkan sparepart!
-                            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                       
-                        <div class="card card-icon">
-                            <div class="row no-gutters">
-                                <div class="col-auto card-icon-aside bg-primary">
-                                    <i class="fas fa-clipboard-list" style="color: white"></i>
-                                </div>
-                                <div class="col">
-                                    <div class="card-body py-5">
-                                        <h3 class="text-primary">Step 3</h3>
-                                        <h5 class="card-title">Konfirmasi Pembayaran</h5>
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label class="small mb-1" for="id_fop">Form of Payment</label>
-                                                <select class="form-control" name="id_fop" id="id_fop"
-                                                    class="form-control @error('id_supplier') is-invalid @enderror">
-                                                    <option>Pilih Jenis Pembayaran</option>
-                                                    @foreach ($fop as $item)
-                                                    <option value="{{ $item->id_fop }}">{{ $item->nama_fop }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                                @error('id_fop')<div class="text-danger small mb-1">{{ $message }}
-                                                </div> @enderror
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="small mb-1" for="id_akun_bank">Bank Account</label>
-                                                <select class="form-control" name="id_akun_bank" id="id_akun_bank"
-                                                    class="form-control @error('id_akun_bank') is-invalid @enderror">
-                                                    <option>Pilih Bank Akun</option>
-                                                    @foreach ($akun_bank as $item)
-                                                    <option value="{{ $item->id_akun_bank }}">{{ $item->nama_bank }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                                @error('id_akun_bank')<div class="text-danger small mb-1">
-                                                    {{ $message }}
-                                                </div> @enderror
-                                            </div>
-                                        </div>
-                                        <hr class="my-4" />
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="kode_prf">Total Biaya</label>
-                                            <input class="form-control" id="kode_prf" type="text" name="kode_prf"
-                                                placeholder="Rp. " readonly />
-                                        </div>
-                                        <div class="datatable">
-                                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <table class="table table-bordered table-hover dataTable"
-                                                            id="dataTablekonfirmasi" width="100%" cellspacing="0"
-                                                            role="grid" aria-describedby="dataTable_info"
-                                                            style="width: 100%;">
-                                                            <thead>
-                                                                <tr role="row">
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1" aria-sort="ascending"
-                                                                        aria-label="Name: activate to sort column descending"
-                                                                        style="width: 20px;">No</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1"
-                                                                        aria-label="Position: activate to sort column ascending"
-                                                                        style="width: 180px;">Data Pajak</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1"
-                                                                        aria-label="Position: activate to sort column ascending"
-                                                                        style="width: 180px;">Nilai Pajak</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1"
-                                                                        aria-label="Actions: activate to sort column ascending"
-                                                                        style="width: 100px;">Actions</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="my-4">
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-light" type="button">Previous</button>
-                            <button class="btn btn-primary" type="button" data-toggle="modal"
-                                data-target="#Modalsumbit">Submit</button>
-                        </div>
-                    </div>
-                    </form>
                 </div>
+                </form>
             </div>
         </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card card-header-actions">
+                        <div class="card-header ">Konfirmasi
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="datatable">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-hover dataTable" id="dataTableDetail"
+                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 100px;">Kode Invoice</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 60px;">Kode PO</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 50px;">Tanggal Invoice</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 50px;">Tenggat Invoice</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 100px;">Total Biaya</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 50px;">Kode Rcv</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 50px;">Action</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($prf->Supplier->InvoicePayable as $item)
+                                                <tr id="invoice-{{ $item->id_payable_invoice }}" role="row" class="odd">
+                                                    <th scope="row" class="small" class="sorting_1">
+                                                        {{ $loop->iteration}}</th>
+                                                    <td class="kode_invoice">{{ $item->kode_invoice }}</td>
+                                                    <td class="kode_po">{{ $item->PO->kode_po }}</td>
+                                                    <td class="tanggal_invoice">{{ $item->tanggal_invoice }}</td>
+                                                    <td class="tenggat_invoice">{{ $item->tenggat_invoice }}</td>
+                                                    <td class="total_pembayaran">
+                                                        Rp.{{ number_format($item->total_pembayaran,2,',','.') }}</td>
+                                                    <td class="kode_rcv">{{ $item->Rcv->kode_rcv }}</td>
+                                                    <td>
+                                                        <a href="" class="btn btn-primary btn-datatable" type="button"
+                                                            data-toggle="modal"
+                                                            data-target="#Modalinvoice-{{ $item->id_payable_invoice }}">
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
+                                                        <a href="" class="btn btn-success btn-datatable"
+                                                            data-toggle="tooltip" data-placement="top" title=""
+                                                            data-original-title="Tambah">
+                                                            <i class="fas fa-plus"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @empty
+
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">Detail Pembayaran
+                    </div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1" for="id_supplier">Supplier</label>
+                                <input class="form-control" id="id_supplier" type="text" name="id_supplier"
+                                    placeholder="Input Kode Invoice" value="{{ $prf->Supplier->nama_supplier }}"
+                                    readonly />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1" for="no_rek">No Rekening Supplier</label>
+                                <input class="form-control" id="no_rek" type="text" name="no_rek"
+                                    placeholder="Input Kode Invoice" value="{{ $prf->Supplier->rekening_supplier }}"
+                                    readonly />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="small mb-1" for="grand_total">Total Pembayaran</label>
+                            <input class="form-control" id="grand_total" type="text" name="grand_total"
+                                placeholder="Grand Total" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1 mr-1" for="id_fop">Pilih Metode Pembayaran</label><span
+                                class="mr-4 mb-3" style="color: red">*</span>
+                            <select class="form-control" name="id_fop" id="id_fop">
+                                @foreach ($fop as $fops)
+                                <option value="{{ $fops->id_fop }}">
+                                    {{ $fops->nama_fop }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group text-right">
+                            <hr>
+                            <a href="{{ route('prf.index') }}" class="btn btn-sm btn-light">Kembali</a>
+                            <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                                data-target="#Modalsumbit">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </main>
 
-{{-- MODAL KONFIRMASI --}}
-<div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+{{-- MODAL Jenis Transaksi --}}
+<div class="modal fade" id="Modaltransaksi" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-success-soft">
-                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Form Pembelian</h5>
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Data Jenis Transaksi</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('jenis-transaksi.store') }}" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="small mb-1" for="nama_transaksi">Jenis Transaksi</label>
+                        <input class="form-control" name="nama_transaksi" type="text" id="nama_transaksi"
+                            placeholder="Input Jenis Transaksi" value="{{ old('nama_transaksi') }}"></input>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{-- MODAL DETAIL INVOICE --}}
+@forelse ($prf->Supplier->InvoicePayable as $item)
+<div class="modal fade" id="Modalinvoice-{{ $item->id_payable_invoice }}" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title">Detail Item Invoice</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <div class="form-group">Apakah Form yang Anda inputkan sudah benar?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="button">Ya!Sudah</button>
+                <div class="datatable">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataTableDetailInvoice"
+                                    width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                    style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 60px;">Kode Rcv</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 150px;">Nama Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 50px;">Jenis</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 50px;">Merk</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 30px;">Qty Rcv</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 50px;">Harga Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 50px;">Total Harga</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($item->Detailinvoice as $invoice)
+                                        <tr id="sparepart-{{ $item->id_sparepart }}" role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">
+                                                {{ $loop->iteration}}</th>
+                                            <td class="kode_sparepart">{{ $invoice->kode_sparepart }}</td>
+                                            <td class="nama_sparepart">{{ $invoice->nama_sparepart }}</td>
+                                            <td class="jenis_sparepart">
+                                                {{ $invoice->Merksparepart->Jenissparepart->jenis_sparepart }}
+                                            </td>
+                                            <td class="merk_sparepart">
+                                                {{ $invoice->Merksparepart->merk_sparepart }}
+                                            </td>
+                                            <td class="qty_rcv">{{ $invoice->pivot->qty_rcv }}
+                                            </td>
+                                            <td class="harga_diterima">
+                                                Rp.{{ number_format($invoice->pivot->harga_item,2,',','.') }}
+                                            </td>
+                                            <td class="total_harga">
+                                                Rp.{{ number_format($invoice->pivot->total_harga,2,',','.') }}
+                                            </td>
+
+
+                                        </tr>
+                                        @empty
+
+                                        @endforelse
+                                    </tbody>
+                                    <tr id="grandtotal">
+                                        <td colspan="7" class="text-center font-weight-500">
+                                            Total Harga
+                                        </td>
+                                        <td class="grand_total">
+                                            Rp.{{ number_format($item->total_pembayaran,2,',','.') }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="modal-footer"><button class="btn btn-primary" type="button" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
+@empty
+
+@endforelse
+
+
+
+
+{{-- MODAL KONFIRMASI --}}
+{{-- <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success-soft">
+                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Invoice</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">Apakah Form Invoice yang Anda inputkan sudah benar?</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="button"
+                    onclick="submit(event,{{ $invoice->Rcv->Detailrcv }},{{ $invoice->id_payable_invoice }})">Ya!Sudah</button>
+</div>
+</div>
+</div>
+</div> --}}
+
+
+
+{{-- <template id="template_delete_button">
+    <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
+        <i class="fas fa-trash"></i>
+    </button>
+</template>
+
+<template id="template_add_button">
+    <button class="btn btn-success btn-datatable" type="button" data-toggle="modal" data-target="#Modaltambah">
+        <i class="fas fa-plus"></i>
+    </button>
+</template> --}}
+
+
+<script>
+    function tambahrcv(event, id_rcv) {
+        var data = $('#item-' + id_rcv)
+        var _token = $('#form1').find('input[name="_token"]').val()
+        var kode_rcv = $(data.find('.kode_rcv')[0]).text()
+        var nama_supplier = $(data.find('.nama_supplier')[0]).text()
+
+        $('#detailrcv').val(kode_rcv)
+        $('#detailsupplier').val(nama_supplier)
+    }
+
+    function submit(event, sparepart, id_payable_invoice) {
+        event.preventDefault()
+        var form1 = $('#form1')
+        var kode_invoice = form1.find('input[name="kode_invoice"]').val()
+        var id_jenis_transaksi = $('#id_jenis_transaksi').val()
+        var tanggal_invoice = form1.find('input[name="tanggal_invoice"]').val()
+        var tenggat_invoice = form1.find('input[name="tenggat_invoice"]').val()
+        var deskripsi_invoice = form1.find('textarea[name="deskripsi_invoice"]').val()
+        var formgrandtotal = $('#grandtotal')
+        var grand_total = $(formgrandtotal.find('.grand_total')[0]).html()
+        var total_pembayaran = grand_total.split('Rp.')[1].replace('.', '').replace('.', '').replace(',00', '')
+
+        var dataform2 = []
+        var _token = form1.find('input[name="_token"]').val()
+
+        for (var i = 0; i < sparepart.length; i++) {
+            var data = $('#sparepart-' + id_sparepart)
+            var total_harga = $($('#sparepart-' + sparepart[i].id_sparepart).find('.total_harga')[0]).html()
+            var splitqty = total_harga.split('Rp.')[1].replace('.', '').replace(',00', '')
+            var qty_rcv = $($('#sparepart-' + sparepart[i].id_sparepart).find('.qty_rcv')[0]).html()
+            var harga_diterima = $($('#sparepart-' + sparepart[i].id_sparepart).find('.harga_diterima')[0]).html()
+            var harga_item = harga_diterima.split('Rp.')[1].replace('.', '').replace(',00', '')
+
+            var id_sparepart = sparepart[i].id_sparepart
+            var obj = {
+                id_sparepart: id_sparepart,
+                total_harga: splitqty,
+                qty_rcv: qty_rcv,
+                harga_item: harga_item,
+            }
+            dataform2.push(obj)
+        }
+
+
+        if (dataform2.length == 0) {
+            var alert = $('#alertsparepartkosong').show()
+        } else {
+            var data = {
+                _token: _token,
+                kode_invoice: kode_invoice,
+                id_jenis_transaksi: id_jenis_transaksi,
+                tanggal_invoice: tanggal_invoice,
+                tenggat_invoice: tenggat_invoice,
+                total_pembayaran: total_pembayaran,
+                deskripsi_invoice: deskripsi_invoice,
+                sparepart: dataform2
+            }
+
+            $.ajax({
+                method: 'put',
+                url: '/Accounting/invoice-payable/' + id_payable_invoice,
+                data: data,
+                success: function (response) {
+                    window.location.href = '/Accounting/invoice-payable'
+
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        var tablercv = $('#dataTableRcv').DataTable()
+        var tabledetail = $('#dataTableDetail').DataTable()
+        // var tabledetailinvoice = $('#dataTableDetailInvoice').DataTable()
+
+    });
+
+</script>
+
 
 @endsection

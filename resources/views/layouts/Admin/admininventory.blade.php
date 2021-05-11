@@ -169,7 +169,7 @@
                         <div class="dropdown-item-icon"><i class="fas fa-user"></i></div>
                         Sistem Kepegawaian
                     </a>
-                    <a class="dropdown-item" href="{{ route('dashboardpayroll') }}">
+                    <a class="dropdown-item" href="{{ route('gaji-pegawai.index') }}">
                         <div class="dropdown-item-icon"><i class="fas fa-wallet"></i></div>
                         Sistem Payroll
                     </a>

@@ -7,6 +7,7 @@ use App\Model\Accounting\Bankaccount;
 use App\Model\Accounting\Fop;
 use App\Model\Accounting\Jenistransaksi;
 use App\Model\Accounting\Prf\Prf;
+use App\Model\Accounting\Prf\PrfDetail;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
@@ -104,8 +105,13 @@ class PrfController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_prf)
     {
+
+        $prf = Prf::with([
+            'Jenistransaksi','Supplier.InvoicePayable','Supplier.InvoicePayable.Detailinvoice','FOP','Akunbank','Detailprf','Detailprf.Detailinvoice'
+        ])->find($id_prf);
+
         $jenis_transaksi = Jenistransaksi::all();
         $pegawai = Pegawai::all();
         $supplier = Supplier::all();
@@ -113,14 +119,10 @@ class PrfController extends Controller
         $akun_bank = Bankaccount::all();
 
         $id = Prf::getId();
-        foreach($id as $value);
-        $idlama = $value->id_prf;
-        $idbaru = $idlama + 1;
-        $blt = date('m');
+        $blt = date('y-m');
+        $kode_prf = 'PRF-'.$blt.'/'.$prf->id_prf;
 
-        $kode_prf = 'AKPRF-'.$idbaru.'/'.$blt;
-
-        return view('pages.accounting.payable.prf.create', compact('jenis_transaksi','pegawai','supplier','fop','akun_bank','kode_prf'));  
+        return view('pages.accounting.payable.prf.create', compact('jenis_transaksi','pegawai','supplier','fop','akun_bank','kode_prf','prf'));  
     }
 
     /**
@@ -141,8 +143,12 @@ class PrfController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_prf)
     {
-        //
+        $prf = Prf::findOrFail($id_prf);
+        PrfDetail::where('id_prf', $id_prf)->delete();
+        $prf->delete();
+
+        return redirect()->back()->with('messagehapus','Data Prf Berhasil dihapus');
     }
 }

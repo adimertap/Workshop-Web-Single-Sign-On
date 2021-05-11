@@ -138,7 +138,7 @@
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Salary: activate to sort column ascending"
-                                                        style="width: 40px;">Satuan</th>
+                                                        style="width: 40px;">Kemasan</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Salary: activate to sort column ascending"
@@ -160,7 +160,7 @@
                                                     <td class="merk_sparepart">
                                                         {{ $item->Merksparepart->merk_sparepart }}</td>
                                                     <td class="qty">{{ $item->pivot->qty_po_sementara }}</td>
-                                                    <td class="satuan">{{ $item->Konversi->satuan }}</td>
+                                                    <td class="satuan">{{ $item->Kemasan->nama_kemasan }}</td>
                                                     <td>@if ($item->pivot->harga_satuan == '')
                                                         <div class="small text-muted d-none d-md-block">Tidak ada
                                                             data

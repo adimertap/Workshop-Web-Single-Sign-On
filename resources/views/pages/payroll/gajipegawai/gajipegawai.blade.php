@@ -395,9 +395,6 @@
 
 @endforelse
 
-
-
-
 <script>
     function tambahpo(event, id_pegawai) {
         var data = $('#item-' + id_pegawai)

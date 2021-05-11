@@ -43,6 +43,7 @@
                         </button>
                     </div>
                     @endif
+                    
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
@@ -109,7 +110,7 @@
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="7" class="tex-center">
+                                            <td colspan="9" class="text-center">
                                                 Data Sparepart Kosong
                                             </td>
                                         </tr>

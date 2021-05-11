@@ -31,6 +31,7 @@ class Sparepartrequest extends FormRequest
             'nama_sparepart' => 'required|unique:tb_inventory_master_sparepart,nama_sparepart|min:5|max:50',
             'stock_min' => 'required|min:1|max:20',
             'id_kemasan' => 'required|exists:tb_inventory_master_kemasan,id_kemasan',
+            'berat_sparepart' =>  'required|min:1|max:4'
         ];
     }
     public function messages()
@@ -47,11 +48,13 @@ class Sparepartrequest extends FormRequest
             'nama_sparepart.min' => 'Error! Character Minimal :min digit',
             'nama_sparepart.max' => 'Error! Character Maximal :max digit',
 
-            'stock.min' => 'Error! Nominal Minimal :min digit',
-            'stock.max' => 'Error! Nominal Maximal :max digit',
-
+            'stock_min.required' => 'Error! Anda Belum Mengisi Stock Minimal',
             'stock_min.min' => 'Error! Nominal Minimal :min digit',
             'stock_min.max' => 'Error! Nominal Maximal :max digit',
+
+            'berat_sparepart.required' => 'Error! Anda Belum Mengisi Berat Sparepart',
+            'berat_sparepart.min' => 'Error! Nominal Minimal :min digit',
+            'berat_sparepart.max' => 'Error! Nominal Maximal :max digit',
 
 
         ];

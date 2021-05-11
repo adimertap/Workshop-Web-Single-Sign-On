@@ -133,23 +133,26 @@
                                         </td>
                                         <td>
                                             @if($item->approve_po == 'Pending' and $item->approve_ap == 'Pending')
-                                            <span class="font-size-300" style="font-size: 12px;">Menunggu Approval</span>
+                                            <span class="font-size-300" style="font-size: 12px;">Menunggu
+                                                Approval</span>
                                             @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Pending')
-                                            <span class="font-size-300" style="font-size: 12px;">Menunggu Approval</span>
+                                            <span class="font-size-300" style="font-size: 12px;">Menunggu
+                                                Approval</span>
                                             @elseif($item->approve_po == 'Not Approved')
-                                            <span class="font-size-300" style="font-size: 12px;">Data diTolak</span> 
+                                            <span class="font-size-300" style="font-size: 12px;">Data diTolak</span>
                                             @elseif($item->approve_po == 'Approved' and $item->approve_ap == 'Approved')
-                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Cetak PO">
-                                                    <i class="fas fa-print"></i></i>
-                                                </a>
-                                                <a href="" class="btn btn-dark btn-datatable" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modalkirimsupplier-{{ $item->id_po }}">
-                                                    <i class="fas fa-share-square"></i>
-                                                </a>
-                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Approved' and $status == 'Diterima')
-                                                Tes
+                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Cetak PO">
+                                                <i class="fas fa-print"></i></i>
+                                            </a>
+                                            <a href="" class="btn btn-dark btn-datatable" type="button"
+                                                data-toggle="modal"
+                                                data-target="#Modalkirimsupplier-{{ $item->id_po }}">
+                                                <i class="fas fa-share-square"></i>
+                                            </a>
+                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Approved'
+                                            and $status == 'Diterima')
+                                            Tes
                                             @else
                                             <span>
                                                 @endif
@@ -162,7 +165,7 @@
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            
+
                                             @if($item->approve_po == 'Pending')
                                             <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Edit">
@@ -252,7 +255,8 @@
             </div>
             <form action="{{ route('po-status-kirim', $item->id_po) }}?status=Dikirim" method="POST" class="d-inline">
                 @csrf
-                <div class="modal-body">Pengiriman Data Pembelian pada supplier {{ $item->Supplier->nama_supplier }} dengan kode {{ $item->kode_po }} pada tanggal
+                <div class="modal-body">Pengiriman Data Pembelian pada supplier {{ $item->Supplier->nama_supplier }}
+                    dengan kode {{ $item->kode_po }} pada tanggal
                     {{ $item->tanggal_po }}</div>
                 <div class="modal-footer ">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -279,11 +283,11 @@
                 @csrf
                 <div class="modal-body">
                     <div class="alert alert-danger" id="alertdatakosong" role="alert" style="display:none"> <i
-                        class="fas fa-times"></i>
+                            class="fas fa-times"></i>
                         Error! Terdapat Data yang Masih Kosong!
-                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                        <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
                     </div>
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
                     <hr>
@@ -291,10 +295,10 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="kode_po">Kode Pembelian</label>
-                            <input class="form-control" id="kode_po" type="text" name="kode_po"
-                                value="{{ $kode_po }}" readonly>
+                            <input class="form-control" id="kode_po" type="text" name="kode_po" value="{{ $kode_po }}"
+                                readonly>
                         </div>
-                        
+
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="tanggal_po">Tanggal Pembelian</label><span
                                 class="mr-4 mb-3" style="color: red">*</span>
@@ -307,8 +311,8 @@
                             <label class="small mb-1 mr-1" for="kode_po">Pilih Supplier</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
                             <div class="input-group input-group-joined">
-                                <input class="form-control" type="text" placeholder="Pilih Supplier"
-                                    aria-label="Search" id="detailsupplier">
+                                <input class="form-control" type="text" placeholder="Pilih Supplier" aria-label="Search"
+                                    id="detailsupplier">
                                 <div class="input-group-append">
                                     <a href="" class="input-group-text" type="button" data-toggle="modal"
                                         data-target="#Modalsupplier">
@@ -319,8 +323,8 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label class="small mb-1" for="no_telp">No. Telp</label>
-                            <input class="form-control" id="detailnotelp" type="text" name="no_telp"
-                                placeholder="" value="{{ old('no_telp') }}" readonly>
+                            <input class="form-control" id="detailnotelp" type="text" name="no_telp" placeholder=""
+                                value="{{ old('no_telp') }}" readonly>
                         </div>
                         <div class="form-group col-md-3">
                             <label class="small mb-1" for="nama_sales">Nama Sales</label>
@@ -328,7 +332,7 @@
                                 placeholder="" value="{{ old('nama_sales') }}" readonly>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -371,10 +375,12 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="small text-muted d-none d-md-block alamat_supplier">{{ $item->alamat_supplier }}</div>
+                                    <div class="small text-muted d-none d-md-block alamat_supplier">
+                                        {{ $item->alamat_supplier }}</div>
                                 </td>
                                 <td>
-                                    <div class="small text-muted d-none d-md-block nama_sales">{{ $item->nama_sales }}</div>
+                                    <div class="small text-muted d-none d-md-block nama_sales">{{ $item->nama_sales }}
+                                    </div>
                                 </td>
                                 <td>
                                     <button class="btn btn-success btn-sm btn-datatable"
@@ -429,7 +435,7 @@
             kode_po: kode_po
         }
 
-        if (nama_supplier == 0 | nama_supplier == '' | tanggal_po == 0 | tanggal_po == '' ) {
+        if (nama_supplier == 0 | nama_supplier == '' | tanggal_po == 0 | tanggal_po == '') {
             var alert = $('#alertdatakosong').show()
         } else {
             $.ajax({
@@ -447,43 +453,44 @@
         }
 
     }
-    
-    
+
+
     setInterval(displayclock, 500);
 
-   function displayclock() {
-       var time = new Date()
-       var hrs = time.getHours()
-       var min = time.getMinutes()
-       var sec = time.getSeconds()
-       var en = 'AM';
+    function displayclock() {
+        var time = new Date()
+        var hrs = time.getHours()
+        var min = time.getMinutes()
+        var sec = time.getSeconds()
+        var en = 'AM';
 
-       if (hrs > 12) {
-           en = 'PM'
-       }
+        if (hrs > 12) {
+            en = 'PM'
+        }
 
-       if (hrs > 12) {
-           hrs = hrs - 12;
-       }
+        if (hrs > 12) {
+            hrs = hrs - 12;
+        }
 
-       if (hrs == 0) {
-           hrs = 12;
-       }
+        if (hrs == 0) {
+            hrs = 12;
+        }
 
-       if (hrs < 10) {
-           hrs = '0' + hrs;
-       }
+        if (hrs < 10) {
+            hrs = '0' + hrs;
+        }
 
-       if (min < 10) {
-           min = '0' + min;
-       }
+        if (min < 10) {
+            min = '0' + min;
+        }
 
-       if (sec < 10) {
-           sec = '0' + sec;
-       }
+        if (sec < 10) {
+            sec = '0' + sec;
+        }
 
-       document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
-   }
+        document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
+    }
+
 </script>
 
 

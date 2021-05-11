@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Kepegawaian\Masterdata;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Kepegawaian\Pegawairequest;
+use App\Model\Inventory\Retur\Retur;
 use App\Model\Kepegawaian\Jabatan;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
@@ -34,8 +35,16 @@ class MasterdatapegawaiController extends Controller
             'jabatan'])->get();
 
         $jabatan = Jabatan::all();
+
+        $id = Pegawai::getId();
+        foreach($id as $value);
+        $idlama = $value->id_pegawai;
+        $idbaru = $idlama + 1;
+        $blt = date('Ym');
+
+        $kode_pegawai = $blt.$idbaru;
         
-        return view('pages.kepegawaian.masterdata.pegawai.create', compact('pegawai','jabatan')); 
+        return view('pages.kepegawaian.masterdata.pegawai.create', compact('pegawai','jabatan','kode_pegawai')); 
     }
 
     /**
@@ -61,10 +70,12 @@ class MasterdatapegawaiController extends Controller
         $pegawai->email = $request->email;
         $pegawai->pendidikan_terakhir = $request->pendidikan_terakhir;
         $pegawai->tanggal_masuk = $request->tanggal_masuk;
-        
+        $pegawai->kode_pegawai = $request->kode_pegawai;
+
+
         $pegawai->save();
 
-        return redirect()->route('masterdatapegawai')->with('messageberhasil','Data Pegawai Berhasil ditambahkan');
+        return redirect()->route('pegawai.index')->with('messageberhasil','Data Pegawai Berhasil ditambahkan');
     }
 
     /**

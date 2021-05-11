@@ -71,9 +71,16 @@
                                 value="{{ $sparepart->stock_min }}" readonly />
                         </div>
                         <div class="form-group col-md-6">
-                           <label class="small mb-1" for="nama_kemasan">Kemasan</label>
-                            <input class="form-control form-control-sm" id="nama_kemasan" type="text" name="nama_kemasan"
-                                value="{{ $sparepart->Kemasan->nama_kemasan }}" readonly />
+                            <label class="small mb-1" for="nama_kemasan">Kemasan</label>
+                            <input class="form-control form-control-sm" id="nama_kemasan" type="text"
+                                name="nama_kemasan" value="{{ $sparepart->Kemasan->nama_kemasan }}" readonly />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1" for="berat_sparepart">Berat Sparepart</label>
+                            <input class="form-control form-control-sm" id="berat_sparepart" type="text"
+                                name="berat_sparepart" value="{{ $sparepart->berat_sparepart }}" readonly />
                         </div>
                     </div>
                     <hr class="my-4" />

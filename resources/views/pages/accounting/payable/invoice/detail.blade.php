@@ -66,12 +66,19 @@
                                     readonly>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="deskripsi_invoice">Deskripsi Keperluan</label>
-                            <input class="form-control" id="deskripsi_invoice" type="text" name="deskripsi_invoice"
-                                placeholder="" value="{{ $invoice->deskripsi_invoice }}" readonly>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1" for="deskripsi_invoice">Deskripsi Keperluan</label>
+                                <input class="form-control" id="deskripsi_invoice" type="text" name="deskripsi_invoice"
+                                    placeholder="" value="{{ $invoice->deskripsi_invoice }}" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1" for="kode_invoice">Status PRF</label>
+                                <input class="form-control" id="kode_invoice" type="text" name="kode_invoice"
+                                    placeholder="Input Kode Invoice"
+                                    value="{{ $invoice->status_prf }}" readonly />
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -107,6 +114,8 @@
                                     placeholder="Input Kode Invoice"
                                     value="{{ $invoice->Rcv->Supplier->alamat_supplier }}" readonly />
                             </div>
+                            
+                           
                         </div>
                     </div>
                 </div>

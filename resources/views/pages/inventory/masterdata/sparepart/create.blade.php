@@ -101,7 +101,8 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">
+                                                {{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
@@ -122,7 +123,7 @@
                                                     </option>
                                                     @endforeach
                                                 </select>
-                                               
+
                                             </div>
                                             @error('id_merk')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
@@ -210,7 +211,7 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('masterdatasparepart') }}" class="btn btn-light">Kembali</a>
+                                        <a href="{{ route('sparepart.index') }}" class="btn btn-light">Kembali</a>
                                         <button class="btn btn-primary">Next</button>
                                     </div>
                             </div>
@@ -221,15 +222,27 @@
                         <div class="row justify-content-center">
                             <div class="col-xxl-6 col-xl-8">
                                 <h3 class="text-primary">Step 2</h3>
-                                <h5 class="card-title">Input Formulir Berikut</h5>
-                                <div class="form-group">
-                                    <label class="small mb-1" for="photo">Foto Sparepart</label>
-                                    <input class="form-control" id="photo" type="file" name="photo[]"
-                                        value="{{ old('photo') }}" accept="image/*" multiple="multiple"
-                                        class="form-control @error('photo') is-invalid @enderror">
-                                    @error('photo')<div class="text-danger small mb-1">{{ $message }}
-                                    </div> @enderror
+                                <h5 class="card-title">Marketplace Info</h5>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="small mb-1" for="berat_sparepart">Berat Sparepart</label>
+                                        <input class="form-control" name="berat_sparepart" id="berat_sparepart"
+                                            placeholder="Input Berat Sparepart" value="{{ old('berat_sparepart') }}"
+                                            class="form-control @error('berat_sparepart') is-invalid @enderror"></input>
+                                        @error('berat_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                                        </div> @enderror
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label class="small mb-1" for="photo">Foto Sparepart</label>
+                                        <input class="form-control" id="photo" type="file" name="photo[]"
+                                            value="{{ old('photo') }}" accept="image/*" multiple="multiple"
+                                            class="form-control @error('photo') is-invalid @enderror">
+                                        @error('photo')<div class="text-danger small mb-1">{{ $message }}
+                                        </div> @enderror
+                                    </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label class="small mb-1" for="keterangan">Keterangan Marketplace</label>
                                     <textarea class="form-control" name="keterangan" id="keterangan" cols="20" rows="10"
@@ -240,7 +253,7 @@
                                 </div>
                                 <hr class="my-4" />
                                 <div class="d-flex justify-content-between">
-                                    <a href="{{ route('masterdatasparepart') }}" class="btn btn-light">Kembali</a>
+                                    <a href="{{ route('sparepart.index') }}" class="btn btn-light">Kembali</a>
                                     <button class="btn btn-primary" type="Submit">Submit</button>
                                 </div>
                                 </form>
@@ -317,7 +330,8 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
                         <select class="form-control" name="id_jenis_sparepart"
                             class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
                             id="id_jenis_sparepart">
@@ -332,7 +346,8 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="merk_sparepart">Merk Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <label class="small mb-1 mr-1" for="merk_sparepart">Merk Sparepart</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
                             placeholder="Input Merk" value="{{ old('merk_sparepart') }}"
                             class="form-control @error('merk_sparepart') is-invalid @enderror"></input>
@@ -367,12 +382,13 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="satuan">Satuan Konversi</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <label class="small mb-1 mr-1" for="satuan">Satuan Konversi</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
                         <input class="form-control" name="satuan" type="text" id="satuan"
                             placeholder="Input Satuan Konversi" value="{{ old('satuan') }}"
                             class="form-control @error('satuan') is-invalid @enderror"></input>
-                            @error('satuan')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                        @error('satuan')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
                 </div>
 
@@ -405,7 +421,8 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="nama_rak">Nama Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <label class="small mb-1 mr-1" for="nama_rak">Nama Rak</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
                         <input class="form-control" name="nama_rak" type="text" id="nama_rak"
                             placeholder="Input Nama Rak" value="{{ old('nama_rak') }}"
                             class="form-control @error('nama_rak') is-invalid @enderror"></input>
@@ -413,7 +430,8 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="jenis_rak">Jenis Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <label class="small mb-1 mr-1" for="jenis_rak">Jenis Rak</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
                         <select name="jenis_rak" id="jenis_rak" class="form-control"
                             class="form-control @error('jenis_rak') is-invalid @enderror">
                             <option value="{{ old('jenis_rak')}}"> Pilih Jenis Rak</option>
@@ -454,12 +472,13 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="nama_kemasan">Kemasan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <label class="small mb-1 mr-1" for="nama_kemasan">Kemasan</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
                         <input class="form-control" name="nama_kemasan" type="text" id="nama_kemasan"
                             placeholder="Input Nama Kemasan" value="{{ old('nama_kemasan') }}"
                             class="form-control @error('nama_kemasan') is-invalid @enderror"></input>
-                            @error('nama_kemasan')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                        @error('nama_kemasan')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
                 </div>
 

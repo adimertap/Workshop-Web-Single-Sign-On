@@ -118,12 +118,17 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1 mr-1" for="berat_sparepart">Berat Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="berat_sparepart" type="text" name="berat_sparepart"
+                                                value="{{ $item->berat_sparepart }}" />
+                                        </div>
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="stock_min">Stock Min</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="stock_min" type="text" name="stock_min"
                                                 value="{{ $item->stock_min }}" />
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="id_kemasan">Kemasan</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_kemasan" id="id_kemasan">
                                                 <option value="{{ $item->Kemasan->id_kemasan }}">

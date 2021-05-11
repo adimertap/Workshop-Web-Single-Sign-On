@@ -26,8 +26,9 @@ class InvoicePayableController extends Controller
 
         $rcv = Rcv::with([
             'PO'
-        ])->get();
+        ])->where([['status_invoice', '=', 'Belum diBuat']])->get();
 
+       
 
         $jenis_transaksi = Jenistransaksi::all();
         $today = Carbon::now()->isoFormat('dddd');
@@ -60,7 +61,9 @@ class InvoicePayableController extends Controller
         $id_supplier = $rcv->id_supplier;
         $id_po = $rcv->id_po;
 
-        // 
+        $rcv->status_invoice = 'Sudah dibuat';
+        $rcv->save();
+
         $invoice = InvoicePayable::create([
             'id_rcv'=>$id_rcv,
             'id_supplier'=>$id_supplier,
@@ -139,7 +142,6 @@ class InvoicePayableController extends Controller
         $invoice->deskripsi_invoice = $request->deskripsi_invoice;
         $invoice->total_pembayaran = $request->total_pembayaran;
 
-        
         $invoice->status_prf ='Belum diBuat';
         $invoice->status_jurnal ='Belum diPosting';    
         $invoice->save();

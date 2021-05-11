@@ -19,7 +19,8 @@
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
-                        <a href="{{ route('purchase-order.index') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
+                        <a href="{{ route('purchase-order.index') }}"
+                            class="btn btn-sm btn-light text-primary">Kembali</a>
                     </div>
                 </div>
             </div>
@@ -72,10 +73,10 @@
                                 </div> @enderror
                             </div>
                             <div class="form-group text-right">
-                            <hr>
-                            <a href="{{ route('purchase-order.index') }}" class="btn btn-sm btn-light">Kembali</a>
-                            <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                                data-target="#Modalsumbit">Simpan</button>
+                                <hr>
+                                <a href="{{ route('purchase-order.index') }}" class="btn btn-sm btn-light">Kembali</a>
+                                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                                    data-target="#Modalsumbit">Simpan</button>
                             </div>
                     </div>
                 </div>
@@ -113,15 +114,11 @@
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 60px;">Kode</th>
+                                                        style="width: 30px;">Kode</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
                                                         style="width: 150px;">Nama Sparepart</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Office: activate to sort column ascending"
-                                                        style="width: 50px;">Jenis Sparepart</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Start date: activate to sort column ascending"
@@ -129,15 +126,19 @@
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Salary: activate to sort column ascending"
-                                                        style="width: 20px;">Satuan</th>
+                                                        style="width: 40px;">Kemasan</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Salary: activate to sort column ascending"
                                                         style="width: 20px;">Stock</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 60px;">Status</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
                                                         aria-label="Actions: activate to sort column ascending"
-                                                        style="width: 20px;">Actions</th>
+                                                        style="width: 10px;">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -149,14 +150,22 @@
                                                         {{ $item->kode_sparepart }}</td>
                                                     <td class="nama_sparepart">
                                                         {{ $item->nama_sparepart }}</td>
-                                                    <td class="jenis_sparepart">
-                                                        {{ $item->Jenissparepart->jenis_sparepart }}
-                                                    </td>
                                                     <td class="merk_sparepart">
                                                         {{ $item->Merksparepart->merk_sparepart }}</td>
-                                                    <td class="satuan">{{ $item->Konversi->satuan }}
+                                                    <td class="kemasan">{{ $item->Kemasan->nama_kemasan }}
                                                     </td>
                                                     <td class="text-center stock">{{ $item->stock }}</td>
+                                                    <td class="text-center status">
+                                                        @if($item->status_jumlah == 'Cukup')
+                                                        <span class="badge badge-success">
+                                                            @elseif($item->status_jumlah == 'Habis')
+                                                            <span class="badge badge-danger">
+                                                                @else
+                                                                <span>
+                                                                    @endif
+                                                                    {{ $item->status_jumlah }}
+                                                                </span>
+                                                    </td>
                                                     {{-- <td class="harga_beli">@if ($item->Hargasparepart == '' | $item->Hargasparepart == '0')
                                                         <span class="text-center">Tidak ada Harga</span> 
                                                     @else Rp.{{ number_format($item->Hargasparepart->harga_beli,2,',','.') }}
@@ -219,39 +228,35 @@
                                                 No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 80px;">
+                                                style="width: 60px;">
                                                 Kode</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 180px;">
+                                                style="width: 130px;">
                                                 Nama Sparepart</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Office: activate to sort column ascending"
-                                                style="width: 70px;">
-                                                Jenis Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
                                                 style="width: 70px;">
                                                 Merk</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 40px;">
-                                                Satuan</th>
+                                                style="width: 60px;">
+                                                Kemasan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
                                                 style="width: 20px;">
                                                 Quantity</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 40px;">
+                                                style="width: 70px;">
                                                 Harga Beli</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 20px;">
+                                                style="width: 80px;">
                                                 Total Harga</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 100px;">
+                                                style="width: 50px;">
                                                 Actions</th>
                                         </tr>
                                     </thead>
@@ -290,11 +295,12 @@
                     <div class="form-group">
                         <label class="small mb-1" for="harga_diterima">Harga Satuan</label>
                         <input class="form-control harga_diterima" name="harga_diterima" type="number"
-                            id="harga_diterima" placeholder="Input Harga Beli diterima" value="{{ $item->Kartugudangterakhir['harga_beli'] }}"></input>
+                            id="harga_diterima" placeholder="Input Harga Beli diterima"
+                            value="{{ $item->Kartugudangterakhir['harga_beli'] }}"></input>
                         <div class="small text-primary">Detail Harga
                             <span id="detailhargaditerima" class="detailhargaditerima">
                                 @if ($item->Kartugudangterakhir == '')
-                                   
+
                                 @else
                                 Rp.{{ number_format($item->Kartugudangterakhir->harga_beli,2,',','.')}}
                                 @endif
@@ -440,9 +446,8 @@
             var data = $('#item-' + id_sparepart)
             var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
             var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
-            var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
             var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
-            var satuan = $(data.find('.satuan')[0]).text()
+            var kemasan = $(data.find('.kemasan')[0]).text()
             // var harga_beli = $(data.find('.harga_beli')[0]).text()
             var template = $($('#template_delete_button').html())
             // var splitqty = harga_beli.split('Rp.')[1].replace('.', '').replace(',00', '')
@@ -459,7 +464,7 @@
 
             $('#dataTablekonfirmasi').DataTable().row.add([
                 kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
-                jenis_sparepart, merk_sparepart, satuan, qty, harga_fix, total_harga,
+                merk_sparepart, kemasan, qty, harga_fix, total_harga,
             ]).draw();
         }
     }

@@ -57,15 +57,18 @@
                                             colspan="1" aria-sort="ascending"
                                             aria-label="Name: activate to sort column descending" style="width: 10px;">
                                             No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Position: activate to sort column ascending"
+                                            style="width: 60px;">Kode Pegawai</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 180px;">Nama Pegawai</th>
+                                            style="width: 150px;">Nama Pegawai</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
                                             style="width: 80px;">Jabatan</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Age: activate to sort column ascending"
-                                            style="width: 170px;">Alamat</th>
+                                            style="width: 150px;">Alamat</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
                                             style="width: 60px;">Jenis Kelamin</th>
@@ -74,13 +77,14 @@
                                             style="width: 90px;">No Telephone</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
-                                            style="width: 90px;">Actions</th>
+                                            style="width: 100px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($pegawai as $item)
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                        <td class="text-center">{{ $item->kode_pegawai }}</td>
                                         <td>{{ $item->nama_pegawai }}</td>
                                         <td>{{ $item->jabatan->nama_jabatan }}</td>
                                         <td>{{ $item->alamat }}</td>

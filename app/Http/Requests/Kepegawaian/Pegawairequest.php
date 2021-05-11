@@ -26,6 +26,7 @@ class Pegawairequest extends FormRequest
         return [
             'nama_pegawai' => 'required|unique:tb_kepeg_master_pegawai,id_pegawai|min:5|max:30',
             'nama_panggilan' => 'required|unique:tb_kepeg_master_pegawai,id_pegawai|min:4|max:20',
+            'kode_pegawai' => 'required',
             'id_jabatan' => 'required|exists:tb_kepeg_master_jabatan,id_jabatan',
             'tempat_lahir' => 'required|min:5|max:20',
             'tanggal_lahir' => 'required|date',
@@ -48,6 +49,7 @@ class Pegawairequest extends FormRequest
             'nama_pegawai.unique' => 'Error! Nama Pegawai Sudah Ada',
             'nama_pegawai.min' => 'Error! Character Minimal :min digit',
             'nama_pegawai.max' => 'Error! Character Maximal :max digit',
+            'kode_pegawai.required' => 'Error! Anda Belum Mengisi Kode Pegawai',
 
             'nama_panggilan.required' => 'Error! Anda Belum Mengisi Nama Panggilan',
             'nama_panggilan.unique' => 'Error! Nama Panggilan Pegawai Sudah Ada',

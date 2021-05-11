@@ -10,7 +10,7 @@
                 <h1 class="mb-0">Kartu Gudang</h1>
                 <div class="small">
                     <span class="font-weight-500 text-primary">{{ $today }}</span>
-                    · Tanggal {{ $tanggal }} · <span id="clock">12:16 PM</span> 
+                    · Tanggal {{ $tanggal }} · <span id="clock">12:16 PM</span>
                 </div>
             </div>
             <div class="small">
@@ -31,10 +31,12 @@
                     <div class="col-xl-8 col-xxl-12">
                         <div class="text-center px-4 mb-4 mb-xl-0 mb-xxl-4">
                             <h1 class="text-primary" style="font-size: 15pt">Kartu Gudang, Reporting Sparepart</h1>
-                            <p class="text-gray-700 mb-0">It's time to get started! View new opportunities now, or continue on your previous work.</p>
+                            <p class="text-gray-700 mb-0">It's time to get started! View new opportunities now, or
+                                continue on your previous work.</p>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid" src="/backend/src/assets/img/freepik/data-report-pana.svg" style="max-width: 20rem;"></div>
+                    <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"
+                            src="/backend/src/assets/img/freepik/data-report-pana.svg" style="max-width: 20rem;"></div>
                 </div>
             </div>
         </div>
@@ -97,6 +99,9 @@
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
                                             style="width: 20px;">Min Stock</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Salary: activate to sort column ascending"
+                                            style="width: 20px;">Status</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
                                             style="width: 60px;">Actions</th>
                                     </tr>
@@ -112,17 +117,28 @@
                                         <td>{{ $item->Konversi->satuan }}</td>
                                         <td class=text-center>{{ $item->stock }}</td>
                                         <td class="text-center">{{ $item->stock_min}}</td>
+                                        <td class="text-center">
+                                            @if($item->status_jumlah == 'Cukup')
+                                            <span class="badge badge-success">
+                                                @elseif($item->status_jumlah == 'Habis')
+                                                <span class="badge badge-danger">
+                                                    @else
+                                                    <span>
+                                                        @endif
+                                                        {{ $item->status_jumlah }}
+                                                    </span>
+                                        </td>
                                         <td>
                                             <a href="{{ route('Kartu-gudang.show', $item->id_sparepart) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title=""
-                                                data-original-title="Sparepart Report">
+                                                data-placement="top" title="" data-original-title="Sparepart Report">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                             <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                            data-placement="top" title="" data-original-title="Cetak Sparepart Report">
-                                            <i class="fas fa-print"></i></i>
-                                        </a>
+                                                data-placement="top" title=""
+                                                data-original-title="Cetak Sparepart Report">
+                                                <i class="fas fa-print"></i></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     @empty
@@ -178,7 +194,7 @@
     $(document).ready(function () {
         $('#validasierror').click();
     });
-   
+
     setInterval(displayclock, 500);
 
     function displayclock() {
@@ -214,7 +230,6 @@
 
         document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
     }
-
 
 </script>
 @endsection

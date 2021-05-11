@@ -45,7 +45,7 @@ class InvoicePayable extends Model
 
     public function Detailinvoice()
     {
-        return $this->belongsToMany(Sparepart::class,'tb_accounting_detinvoice_payable','id_payable_invoice','id_sparepart');
+        return $this->belongsToMany(Sparepart::class,'tb_accounting_detinvoice_payable','id_payable_invoice','id_sparepart')->withPivot('qty_rcv','harga_item','total_harga');
     }
 
     public function Detail()

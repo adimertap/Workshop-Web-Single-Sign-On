@@ -65,21 +65,15 @@
                 </div>
                 <div class="card-body">
                     <div class="text-center">
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 10rem;"
-                            src="/backend/src/assets/img/freepik/absen.png" alt="">
+                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 12rem;"
+                            src="/backend/src/assets/img/freepik/absen3.png" alt="">
                     </div>
                     <h2 class="m-0 font-weight-bold text-primary" id="clock" style="text-align: center"></h2>
                     <div class="m-0 font-weight-bold text-primary" style="text-align: center">{{ $tanggal }}</div>
-                    <hr class="my-4">
+                    <hr class="my-2">
                     <p style="text-align: center">Klik <span class="font-weight-bold text-primary"> Mulai Absensi </span> untuk
                         melakukan
                         absensi kepada pegawai bengkel
-
-                        {{-- <hr class="my-4" /> --}}
-                        {{-- <div class="d-flex justify-content-between">
-                        <button class="btn btn-primary">Presensi Masuk</button>
-                        <button class="btn btn-secondary">Presensi Pulang</button>
-                    </div> --}}
 
                 </div>
                 <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#Modaltambah">Mulai

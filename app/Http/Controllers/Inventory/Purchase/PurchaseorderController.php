@@ -71,30 +71,7 @@ class PurchaseorderController extends Controller
         
         return $po;
 
-        // $id = PO::getId();
-        //     foreach($id as $value);
-        //     $idlama = $value->id_po;
-        //     $idbaru = $idlama + 1;
-        // $blt = date('y-m');
-
-        // $kode_po = 'PO-'.$blt.'/'.$idbaru;
-
-        // $po = new PO;
-        // $po->kode_po = $kode_po;
-        // $po->id_pegawai = $request->id_pegawai;
-        // $po->id_supplier = $request->id_supplier;
-        // $po->tanggal_po = $request->tanggal_po;
-        // $po->approve_po = $request->approve_po;
-        // $po->approve_ap = $request->approve_ap;
-        // $po->status = $request->status;
-        // $po->keterangan_owner = $request->keterangan_owner;
-        // $po->keterangan_ap = $request->keterangan_ap;
-
-        // $po->save();
-        // $po->Detailsparepart()->sync($request->sparepart);
-        
-        // // return $request;
-        // return response()->json($request);
+       
     }
 
     /**
@@ -147,25 +124,7 @@ class PurchaseorderController extends Controller
      */
     public function update(Request $request, $id_po)
     {
-        // $po = new PO;
-        // $po->kode_po = $kode_po;
-        // $po->id_pegawai = $request->id_pegawai;
-        // $po->id_supplier = $request->id_supplier;
-        // $po->tanggal_po = $request->tanggal_po;
-        // $po->approve_po = $request->approve_po;
-        // $po->approve_ap = $request->approve_ap;
-        // $po->status = $request->status;
-        // $po->keterangan_owner = $request->keterangan_owner;
-        // $po->keterangan_ap = $request->keterangan_ap;
-
-        // $po->save();
-        // $po->Detailsparepart()->sync($request->sparepart);
         
-        // // return $request;
-        // return response()->json($request);
-        
-        
-       
         $po = PO::findOrFail($id_po);
         $po->id_pegawai = $request->id_pegawai;
         $po->kode_po = $request->kode_po;

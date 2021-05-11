@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
 use App\Model\Inventory\Purchase\PO;
+use App\Model\Inventory\Rcv\Rcv;
+use App\Model\Inventory\Retur\Retur;
+use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Stockopname\Opname;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,17 +23,30 @@ class DashboardinventoryController extends Controller
         
 
         return view('pages.inventory.dashboard.dashboardinventory',[
-            'po_daftar' => PO::count(),
+            'po' => PO::count(),
+            'po_today' => PO::whereDate('created_at', Carbon::today())->count(),
+            'rcv' => Rcv::count(),
+            'rcv_today' => Rcv::whereDate('created_at', Carbon::today())->count(),
+            'opname' => Opname::count(),
+            'opname_today' => Opname::whereDate('created_at', Carbon::today())->count(),
+            'retur' => Retur::count(),
+            'retur_today' => Retur::whereDate('created_at', Carbon::today())->count(),
+            // APPROVAL
+
+
             'po_belum_datang' => PO::where('status','Dikirim')->count(),
+            'poap_pending' => PO::where('approve_ap','Pending')->count(),
+            'poap_approve' => PO::where('approve_ap','Approved')->count(),
+            'poap_tolak' => PO::where('approve_ap','Not Approved')->count(),
             'po_pending' => PO::where('approve_po','Pending')->count(),
             'po_approve' => PO::where('approve_po','Approved')->count(),
             'po_tolak' => PO::where('approve_po','Not Approved')->count(),
-            'opname_daftar' => Opname::count(),
             'opname_pending' => Opname::where('approve','Pending')->count(),
             'opname_approve' => Opname::where('approve','Approved')->count(),
             'opname_tolak' => Opname::where('approve','Not Approved')->count(),
             'today' => Carbon::now()->isoFormat('dddd'),
-            'tanggal_tahun' => Carbon::now()->format('j F Y')
+            'tanggal_tahun' => Carbon::now()->format('j F Y'),
+            'sparepart' => Sparepart::all()
         ]);
     }
 

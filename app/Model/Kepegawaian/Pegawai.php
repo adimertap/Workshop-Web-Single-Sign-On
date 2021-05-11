@@ -5,6 +5,7 @@ namespace App\Model\Kepegawaian;
 use App\Model\Payroll\Mastergajipokok;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Pegawai extends Model
 {
@@ -18,6 +19,7 @@ class Pegawai extends Model
         'id_jabatan',
         'nama_pegawai',
         'nama_panggilan',
+        'kode_pegawai',
         'tempat_lahir',
         'tanggal_lahir',
         'jenis_kelamin',
@@ -45,5 +47,10 @@ class Pegawai extends Model
         return $this->hasMany(Absensi::class,'id_pegawai');
     }
    
+    public static function getId(){
+        // return $this->orderBy('id_sparepart')->take(1)->get();
+        return $getId = DB::table('tb_kepeg_master_pegawai')->orderBy('id_pegawai','DESC')->take(1)->get();
+
+    }
 
 }
