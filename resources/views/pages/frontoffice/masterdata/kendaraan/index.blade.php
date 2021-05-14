@@ -69,10 +69,6 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Warna Kendaraan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">Jenis Kendaraan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
@@ -89,7 +85,6 @@
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->kode_kendaraan }}</td>
                                             <td>{{ $item->nama_kendaraan }}</td>
-                                            <td>{{ $item->warna_kendaraan }}</td>
                                             <td>{{ $item->jenis_kendaraan->jenis_kendaraan }}</td>
                                             <td>{{ $item->merk_kendaraan->merk_kendaraan }}</td>
                                             <td>

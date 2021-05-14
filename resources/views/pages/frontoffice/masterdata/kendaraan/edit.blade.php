@@ -68,12 +68,6 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="warna_kendaraan">Nama
-                                                kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="warna_kendaraan" type="text"
-                                                name="warna_kendaraan" value="{{ $item->warna_kendaraan }}" />
-                                        </div>
-                                        <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="id_jenis_kendaraan">Jenis
                                                 Kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_jenis_kendaraan"

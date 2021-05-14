@@ -68,16 +68,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
+        // dd($data);
+        $file = $data['logo_bengkel'];
+        $name_file = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path() . '/image/', $name_file);
+        $imgUrl = url('/image/' . $name_file);
 
         $bengkel = Bengkel::create([
             'slug' => Str::slug($data['nama_bengkel']),
             'nama_bengkel' => $data['nama_bengkel'],
-            'alamat_bengkel' => $data['alamat_bengkel']
+            'alamat_bengkel' => $data['alamat_bengkel'],
+            'longitude' => $data['longitude'],
+            'latitude' => $data['latitude'],
+            'nohp_bengkel' => $data['nohp_bengkel'],
+            'logo_bengkel' => $name_file
         ]);
 
+
         $pegawai = Pegawai::create([
-            'no_telp' => $data['no_telp']
+            'nama_pegawai' => $data['name'],
+            'nama_panggilan' => $data['username'],
+            'tempat_lahir' => $data['tempat_lahir'],
+            'tanggal_lahir' => $data['tanggal_lahir'],
+            'email' => $data['email'],
+            'no_telp' => $data['no_telp'],
+            'jenis_kelamin' => $data['jenis_kelamin'],
+            'id_jabatan' => 4
         ]);
 
         $user =  User::create([
@@ -88,6 +104,7 @@ class RegisterController extends Controller
             'id_bengkel' =>  $bengkel->id_bengkel,
             'id_pegawai' => $pegawai->id_pegawai
         ]);
+
 
         return $user;
     }

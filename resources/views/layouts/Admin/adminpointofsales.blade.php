@@ -209,10 +209,10 @@
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('pembayaranservice')}}">
+                                <a class="nav-link" href="{{ route('pembayaranservice.index')}}">
                                     Layanan Service
                                 </a>
-                                <a class="nav-link" href="{{ route('pembayaransparepart')}}">
+                                <a class="nav-link" href="{{ route('pembayaransparepart.index')}}">
                                     Penjualan Sparepart
                                 </a>
                                 </a>
@@ -231,10 +231,10 @@
                         </a>
                         <div class="collapse" id="collapseLaporan" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('laporanservice')}}">
+                                <a class="nav-link" href="{{ route('laporanservice.index')}}">
                                     Laporan Service
                                 </a>
-                                <a class="nav-link" href="{{ route('laporansparepart')}}">
+                                <a class="nav-link" href="{{ route('laporansparepart.index')}}">
                                     Laporan Penjualan Sparepart
                                 </a>
                                 </a>

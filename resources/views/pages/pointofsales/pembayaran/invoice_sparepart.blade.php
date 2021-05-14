@@ -39,7 +39,7 @@
                                 @forelse ($pembayaran->Detailsparepart as $item)
                                 <tr class="border-bottom">
                                     <td colspan="10">
-                                        <div class="font-weight-bold" >{{ $item->nama_sparepart }}</div>
+                                        <div class="font-weight-bold">{{ $item->nama_sparepart }}</div>
                                     </td>
                                     <td class="text-right font-weight-bold">Rp.
                                         {{ number_format($item->pivot->total_harga,0,',','.') }}</td>
@@ -55,27 +55,36 @@
                                     </td>
                                     <td class="text-right pb-0">
                                         <div class="h5 mb-0 font-weight-700">Rp.
-                                        {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
+                                            {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
                                     </td>
+                                    </td>
+                                </tr>
+                                <!-- Invoice Discount column-->
+                                <tr>
+                                    <td class="text-right pb-0" colspan="7">
+                                        <div class="text-uppercase small font-weight-700 text-muted">Diskon:</div>
+                                    </td>
+                                    <td class="text-right pb-0">
+                                        <div class="h5 mb-0 font-weight-700">- Rp. 10.000,00</div>
                                     </td>
                                 </tr>
                                 <!-- Invoice tax column-->
                                 <tr>
                                     <td class="text-right pb-0" colspan="7">
-                                        <div class="text-uppercase small font-weight-700 text-muted">Tax (7%):</div>
+                                        <div class="text-uppercase small font-weight-700 text-muted">PPN:</div>
                                     </td>
                                     <td class="text-right pb-0">
-                                        <div class="h5 mb-0 font-weight-700">$134.75</div>
+                                        <div class="h5 mb-0 font-weight-700">Rp. 10.000,00</div>
                                     </td>
                                 </tr>
                                 <!-- Invoice total-->
                                 <tr>
                                     <td class="text-right pb-0" colspan="7">
-                                        <div class="text-uppercase small font-weight-700 text-muted">Total Amount Due:
+                                        <div class="text-uppercase small font-weight-700 text-muted">Total Bayar:
                                         </div>
                                     </td>
                                     <td class="text-right pb-0">
-                                        <div class="h5 mb-0 font-weight-700 text-green">$2059.75</div>
+                                        <div class="h5 mb-0 font-weight-700 text-green">Rp. 127.000,00</div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -90,23 +99,27 @@
                     <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
                         <!-- Invoice - sent to info-->
                         <div class="small text-muted text-uppercase font-weight-700 mb-2">To</div>
-                        <div class="h6 mb-1">Company Name</div>
-                        <div class="small">1234 Company Dr.</div>
-                        <div class="small">Yorktown, MA 39201</div>
+                        <div class="h6 mb-1">{{ $pembayaran->Customer->nama_customer }}</div>
+                        <div class="small">{{ $pembayaran->Customer->alamat_customer }}</div>
+                        <div class="small">{{ $pembayaran->Customer->nohp_customer }}</div>
                     </div>
                     <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
                         <!-- Invoice - sent from info-->
                         <div class="small text-muted text-uppercase font-weight-700 mb-2">From</div>
-                        <div class="h6 mb-0">Start Bootstrap</div>
-                        <div class="small">5678 Company Rd.</div>
-                        <div class="small">Yorktown, MA 39201</div>
+                        <div class="h6 mb-0">{{ $pembayaran->Bengkel->nama_bengkel }}</div>
+                        <div class="small">{{ $pembayaran->Bengkel->alamat_bengkel }}</div>
+                        <div class="small">{{ $pembayaran->Bengkel->nohp_bengkel }}</div>
                     </div>
                     <div class="col-lg-6">
                         <!-- Invoice - additional notes-->
                         <div class="small text-muted text-uppercase font-weight-700 mb-2">Note</div>
-                        <div class="small mb-0">Payment is due 15 days after receipt of this invoice. Please make checks
-                            or money orders out to Company Name, and include the invoice number in the memo. We
-                            appreciate your business, and hope to be working with you again very soon!</div>
+                        <div class="small mb-0">Harap periksa Invoice {{ $pembayaran->kode_penjualan }} sebelum
+                            melakukan pembayaran!</div>
+
+                        <a href=""
+                            class="btn btn-outline-success mt-4 btn-block" type="button">
+                            Bayar Sekarang
+                        </a>
                     </div>
                 </div>
             </div>

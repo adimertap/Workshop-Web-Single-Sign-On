@@ -39,10 +39,7 @@
                             src="/backend/src/assets/img/pos.jpg" alt="">
                     </div>
                     <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Selamat Datang, I Gede Angga Kusuma Putra</h2>
-                    <p></p>
-                    <p style="text-align: center">Add some quality, svg illustrations to your project courtesy of <a
-                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated
-                        collection of beautiful svg images that you can use completely free and without attribution!</p>
+                    
                 </div>
             </div>
         </div>
@@ -85,16 +82,7 @@
                 </div>
 
                 <form>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">NIP
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label class="small text-muted line-height-normal">: 192003994982
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <div class="col-md-4">
                             <div class="d-flex flex-column font-weight-bold">
@@ -108,7 +96,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">Telephone
+                                <label class="small text-muted line-height-normal">Telepon
                             </div>
                         </div>
                         <div class="col">

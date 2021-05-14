@@ -44,7 +44,15 @@ class MasterDataKendaraanController extends Controller
 
         $kode_kendaraan = 'KD-' . $blt . '/' . $idbaru;
 
-        return view('pages.frontoffice.masterdata.kendaraan.create', compact('merk_kendaraan', 'jenis_kendaraan', 'kode_kendaraan'));
+        $id = MasterDataMerkKendaraan::getId();
+        foreach ($id as $value);
+        $idlama = $value->id_merk_kendaraan;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+
+        $kode_merk_kendaraan = 'MRKKD-' . $idbaru . '/' . $blt;
+
+        return view('pages.frontoffice.masterdata.kendaraan.create', compact('merk_kendaraan', 'jenis_kendaraan', 'kode_kendaraan', 'kode_merk_kendaraan'));
     }
 
     /**

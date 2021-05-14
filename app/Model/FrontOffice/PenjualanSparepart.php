@@ -3,6 +3,7 @@
 namespace App\Model\FrontOffice;
 
 use App\Model\Inventory\Sparepart;
+use App\Model\SingleSignOn\Bengkel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,8 @@ class PenjualanSparepart extends Model
         'id_customer_bengkel',
         'tanggal',
         'status_bayar',
-        'total_bayar'
+        'total_bayar',
+        'id_bengkel'
     ];
 
     protected $hidden = [
@@ -35,6 +37,11 @@ class PenjualanSparepart extends Model
     public function Customer()
     {
         return $this->belongsTo(CustomerBengkel::class, 'id_customer_bengkel', 'id_customer_bengkel');
+    }
+
+    public function Bengkel()
+    {
+        return $this->belongsTo(Bengkel::class, 'id_bengkel', 'id_bengkel');
     }
 
     public function Detailsparepart()

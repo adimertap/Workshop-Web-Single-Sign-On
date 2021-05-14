@@ -217,7 +217,7 @@
                                     Kendaraan
                                 </a>
                                 <a class="nav-link" href="{{ route('jenis-perbaikan.index')}}">
-                                    Jenis Perbaikan
+                                    Jasa Perbaikan
                                 </a>
                                 <a class="nav-link" href="{{ route('diskon.index')}}">
                                     Diskon
@@ -234,7 +234,7 @@
                         {{-- FRONTOFFICE SYSTEM --}}
                         <div class="sidenav-menu-heading">Front Office System</div>
 
-                        <a class="nav-link collapsed" href="{{route('pelayananservice')}}"  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('pelayananservice.index')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-cog"></i>
                             </div>
@@ -247,7 +247,7 @@
                             Penjualan Sparepart
                         </a>
 
-                        <a class="nav-link collapsed" href="{{route('customerterdaftar')}}"  aria-expanded="false" aria-controls="collapseComponents">
+                        <a class="nav-link collapsed" href="{{route('customerterdaftar.index')}}"  aria-expanded="false" aria-controls="collapseComponents">
                             <div class="nav-link-icon"><i class="fas fa-users"></i></div>
                             Customer Terdaftar
                         </a>

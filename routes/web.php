@@ -52,51 +52,13 @@ Route::group(
 
 
         //  DATA PELAYANAN SERVICE
-        Route::prefix('frontoffice/pelayananservice')
-            ->namespace('FrontOffice')
-            ->group(function () {
-                Route::get('/', 'PelayananServiceController@index')
-                    ->name('pelayananservice');
-
-                Route::resource('pelayananservice', 'PelayananServiceController');
-            });
-
-        //  DATA CUSTOMER BENGKEL
-        Route::prefix('frontoffice/customerterdaftar')
-            ->namespace('FrontOffice')
-            ->group(function () {
-                Route::get('/', 'CustomerBengkelController@index')
-                    ->name('customerterdaftar');
-
-                Route::resource('customerterdaftar', 'CustomerBengkelController');
-            });
-
-        //  DATA PENJUALAN SPAREPART
         Route::prefix('frontoffice')
             ->namespace('FrontOffice')
             ->group(function () {
 
-                Route::resource('penjualansparepart', 'PenjualanSparepartController');
-            });
-
-        //  DATA CUSTOMER CARE
-        Route::prefix('frontoffice/customercare')
-            ->namespace('FrontOffice')
-            ->group(function () {
-                Route::get('/', 'CustomerCareController@index')
-                    ->name('customercare');
-
-                Route::resource('customercare', 'CustomerCareController');
-            });
-
-        //  DATA PELAYANAN SERVICE
-        Route::prefix('frontoffice/pelayananservice')
-            ->namespace('FrontOffice')
-            ->group(function () {
-                Route::get('/', 'PelayananServiceController@index')
-                    ->name('pelayananservice');
-
                 Route::resource('pelayananservice', 'PelayananServiceController');
+                Route::resource('customerterdaftar', 'CustomerBengkelController');
+                Route::resource('penjualansparepart', 'PenjualanSparepartController');
             });
 
         // ------------------------------------------------------------------------
@@ -110,41 +72,14 @@ Route::group(
             });
 
         // PENERIMAANSERVICE
-        Route::prefix('service/penerimaanservice')
+        Route::prefix('service')
             ->namespace('Service')
             ->group(function () {
-                Route::get('/', 'PenerimaanServiceController@index')
-                    ->name('penerimaanservice');
 
                 Route::resource('penerimaanservice', 'PenerimaanServiceController');
-            });
-
-        // PENERIMAANSERVICE
-        Route::prefix('service/jadwalmekanik')
-            ->namespace('Service')
-            ->group(function () {
-                Route::get('/', 'JadwalMekanikController@index')
-                    ->name('jadwalmekanik');
 
                 Route::resource('jadwalmekanik', 'JadwalMekanikController');
-            });
-
-        // STOK SPAREPART
-        Route::prefix('service/stoksparepart')
-            ->namespace('Service')
-            ->group(function () {
-                Route::get('/', 'StokSparepartController@index')
-                    ->name('stoksparepart');
-
                 Route::resource('stoksparepart', 'StokSparepartController');
-            });
-
-        // PENGERJAAN SERVICE
-        Route::prefix('service/pengerjaanservice')
-            ->namespace('Service')
-            ->group(function () {
-                Route::get('/', 'PengerjaanServiceController@index')
-                    ->name('pengerjaanservice');
 
                 Route::resource('pengerjaanservice', 'PengerjaanServiceController');
             });
@@ -161,72 +96,24 @@ Route::group(
             });
 
         // PEMBAYARAN LAYANAN SERVICE
-        Route::prefix('pos/pembayaranservice')
+        Route::prefix('pos')
             ->namespace('PointOfSales\Pembayaran')
             ->group(function () {
-                Route::get('/', 'PembayaranServiceController@index')
-                    ->name('pembayaranservice');
 
                 Route::resource('pembayaranservice', 'PembayaranServiceController');
-            });
-
-        Route::prefix('pos/pembayaranservice/invoice')
-            ->namespace('PointOfSales\Pembayaran')
-            ->group(function () {
-                Route::get('/', 'InvoiceServiceController@index')
-                    ->name('invoiceservice');
-
                 Route::resource('invoiceservice', 'InvoiceServiceController');
-            });
-
-
-        // PEMBAYARAN PENJUALAN SPAREPART
-        Route::prefix('pos/pembayaransparepart')
-            ->namespace('PointOfSales\Pembayaran')
-            ->group(function () {
-                Route::get('/', 'PembayaranSparepartController@index')
-                    ->name('pembayaransparepart');
-
                 Route::resource('pembayaransparepart', 'PembayaranSparepartController');
-            });
-
-        Route::prefix('pos/pembayaransparepart/invoice')
-            ->namespace('PointOfSales\Pembayaran')
-            ->group(function () {
-                Route::get('/', 'InvoiceSparepartController@index')
-                    ->name('invoicesparepart');
-
                 Route::resource('invoicesparepart', 'InvoiceSparepartController');
             });
 
+
         // PEMBAYARAN PENJUALAN SPAREPART
-        Route::prefix('pos/laporanservice')
+        Route::prefix('pos')
             ->namespace('PointOfSales\Laporan')
             ->group(function () {
-                Route::get('/', 'LaporanServiceController@index')
-                    ->name('laporanservice');
 
                 Route::resource('laporanservice', 'LaporanServiceController');
-            });
-
-        // PEMBAYARAN PENJUALAN SPAREPART
-        Route::prefix('pos/laporansparepart')
-            ->namespace('PointOfSales\Laporan')
-            ->group(function () {
-                Route::get('/', 'LaporanSparepartController@index')
-                    ->name('laporansparepart');
-
                 Route::resource('laporansparepart', 'LaporanSparepartController');
-            });
-
-        // PEMBAYARAN PENJUALAN SPAREPART
-        Route::prefix('pos/pembayaransparepart')
-            ->namespace('PointOfSales\Pembayaran')
-            ->group(function () {
-                Route::get('/', 'PembayaranSparepartController@index')
-                    ->name('pembayaransparepart');
-
-                Route::resource('pembayaran', 'PembayaranSparepartController');
             });
 
         // ------------------------------------------------------------------------

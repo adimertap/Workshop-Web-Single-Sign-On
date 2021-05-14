@@ -16,7 +16,9 @@ class Bengkel extends Model
         'alamat_bengkel',
         'longitude',
         'latitude',
-        'slug'
+        'slug',
+        'nohp_bengkel',
+        'logo_bengkel',
     ];
 
     public $timestamps = false;

@@ -70,17 +70,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label class="small mb-1 mr-1" for="warna_kendaraan">Warna
-                                                Kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="warna_kendaraan" type="text"
-                                                name="warna_kendaraan" placeholder="Input Warna Kendaraan"
-                                                value="{{ old('warna_kendaraan') }}"
-                                                class="form-control @error('warna_kendaraan') is-invalid @enderror" />
-                                            @error('warna_kendaraan')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="id_jenis_kendaraan">Pilih Jenis
                                                 kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <div class="input-group input-group-joined">
@@ -105,7 +95,7 @@
                                                 {{ $message }}
                                             </div> @enderror
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="id_merk_kendaraan">Merk
                                                 Kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <div class="input-group input-group-joined">
@@ -209,7 +199,7 @@
                     <div class="form-group">
                         <label class="small mb-1" for="kode_merk_kendaraan">Kode Merk</label>
                         <input class="form-control" name="kode_merk_kendaraan" type="text" id="kode_merk_kendaraan"
-                            placeholder="Input Kode Merk" value="{{ $merk_kendaraan }}" readonly>
+                            placeholder="Input Kode Merk" value="{{ $kode_merk_kendaraan }}" readonly>
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="merk_kendaraan">Merk Kendaraan <span style="color: red">*</span>

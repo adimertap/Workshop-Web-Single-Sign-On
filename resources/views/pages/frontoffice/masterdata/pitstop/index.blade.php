@@ -128,7 +128,7 @@
                         <div class="form-group">
                             <label class="small mb-1" for="kode_pitstop">Kode Pitstop</label>
                             <input class="form-control" name="kode_pitstop" type="text" id="kode_pitstop"
-                                placeholder="Input Kode Jenis Perbaikan" value="{{ $kode_pitstop }}" readonly>
+                                placeholder="Input Kode Jasa Perbaikan" value="{{ $kode_pitstop }}" readonly>
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="nama_pitstop">Nama Pit Stop</label>

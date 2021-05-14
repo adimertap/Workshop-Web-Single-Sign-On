@@ -10,9 +10,9 @@
                     <div class="col-auto mt-4">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i data-feather="database"></i></div>
-                            Master Data Jenis Perbaikan
+                            Master Data Jasa Perbaikan
                         </h1>
-                        <div class="page-header-subtitle">List data jenis perbaikan yang dapat dilayani oleh bengkel</div>
+                        <div class="page-header-subtitle">List data Jasa Perbaikan yang dapat dilayani oleh bengkel</div>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
     <div class="container-fluid mt-n10">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header">List Jenis Perbaikan
+                <div class="card-header">List Jasa Perbaikan
                     <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
                         Data</button>
                 </div>
@@ -62,15 +62,15 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Kode Jenis Perbaikan</th>
+                                                style="width: 20px;">Kode Jasa Perbaikan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Nama Jenis Perbaikan</th>
+                                                style="width: 20px;">Nama Jasa Perbaikan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Group Jenis Perbaikan</th>
+                                                style="width: 20px;">Group Jasa Perbaikan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
@@ -102,7 +102,7 @@
                                         @empty
                                         <tr>
                                             <td colspan="7" class="text-center">
-                                                Data Jenis Perbaikan Kosong
+                                                Data Jasa Perbaikan Kosong
                                             </td>
                                         </tr>
                                         @endforelse
@@ -122,7 +122,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Jenis Perbaikan</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Jasa Perbaikan</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -133,20 +133,20 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="kode_jenis_perbaikan">Kode Jenis Perbaikan</label>
+                            <label class="small mb-1" for="kode_jenis_perbaikan">Kode Jasa Perbaikan</label>
                             <input class="form-control" name="kode_jenis_perbaikan" type="text" id="kode_jenis_perbaikan"
-                                placeholder="Input Kode Jenis Perbaikan" value="{{ $kode_jenis_perbaikan }}" readonly>
+                                placeholder="Input Kode Jasa Perbaikan" value="{{ $kode_jenis_perbaikan }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="nama_jenis_perbaikan">Nama Jenis Perbaikan <span style="color: red">*</span> </label>
+                            <label class="small mb-1" for="nama_jenis_perbaikan">Nama Jasa Perbaikan <span style="color: red">*</span> </label>
                             <input class="form-control" name="nama_jenis_perbaikan" type="text" id="nama_jenis_perbaikan"
-                                placeholder="Input Nama Jenis Perbaikan" value="{{ old('nama_jenis_perbaikan') }}"
+                                placeholder="Input Nama Jasa Perbaikan" value="{{ old('nama_jenis_perbaikan') }}"
                                 class="form-control @error('nama_jenis_perbaikan') is-invalid @enderror">
                             @error('nama_jenis_perbaikan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="group_jenis_perbaikan">Group Jenis Perbaikan</label>
+                            <label class="small mb-1" for="group_jenis_perbaikan">Group Jasa Perbaikan</label>
                             <select class="form-control" name="group_jenis_perbaikan"
                                 class="form-control @error('group_jenis_perbaikan') is-invalid @enderror"
                                 id="group_jenis_perbaikan">
@@ -185,7 +185,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Jenis Perbaikan</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Jasa Perbaikan</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -202,14 +202,14 @@
                                 value="{{ $item->kode_jenis_perbaikan }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="nama_jenis_perbaikan">Nama Jenis Perbaikan</label>
+                            <label class="small mb-1" for="nama_jenis_perbaikan">Nama Jasa Perbaikan</label>
                             <input class="form-control" name="nama_jenis_perbaikan" type="text" id="nama_jenis_perbaikan"
-                                value="{{ $item->nama_jenis_perbaikan }}" placeholder="Input Nama Jenis Perbaikan">
+                                value="{{ $item->nama_jenis_perbaikan }}" placeholder="Input Nama Jasa Perbaikan">
                             @error('nama_jenis_perbaikan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="group_jenis_perbaikan">Group Jenis Perbaikan</label>
+                            <label class="small mb-1" for="group_jenis_perbaikan">Group Jasa Perbaikan</label>
                             <select name="group_jenis_perbaikan" id="group_jenis_perbaikan" class="form-control">
                                 <option value="{{ $item->group_jenis_perbaikan }}">{{ $item->group_jenis_perbaikan }}</option>
                                 <option value="Motor">Motor</option>
@@ -220,9 +220,9 @@
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="harga_jenis_perbaikan">Harga Jenis Perbaikan</label>
+                            <label class="small mb-1" for="harga_jenis_perbaikan">Harga Jasa Perbaikan</label>
                             <input class="form-control" name="harga_jenis_perbaikan" type="text" id="harga_jenis_perbaikan"
-                                value="{{ $item->harga_jenis_perbaikan }}" placeholder="Input Harga Jenis Perbaikan">
+                                value="{{ $item->harga_jenis_perbaikan }}" placeholder="Input Harga Jasa Perbaikan">
                             @error('harga_jenis_perbaikan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>

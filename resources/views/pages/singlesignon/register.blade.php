@@ -40,30 +40,31 @@
                             </div>
 
                             <div class="card-body">
-                                <form method="POST" action="{{ route('register') }}">
+                                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                                     @csrf
                                     <h6>Data Bengkel</h6>
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label for="nama_bengkel">Nama Bengkel</label>
                                             <input id="nama_bengkel" type="text" class="form-control"
-                                                name="nama_bengkel" autofocus>
+                                                name="nama_bengkel" placeholder="Input Nama Bengkel" autofocus>
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="alamat_bengkel">Alamat Bengkel</label>
-                                            <input id="alamat_bengkel" type="text" class="form-control"
-                                                name="alamat_bengkel">
+                                            <input id="alamat_bengkel" type="text" placeholder="Input Alamat Bengkel"
+                                                class="form-control" name="alamat_bengkel">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label for="latitude">Latitude Bengkel</label>
-                                            <input id="latitude" type="number" class="form-control" name="latitude"
-                                                autofocus>
+                                            <input id="latitude" type="number" class="form-control"
+                                                placeholder="Input Latitude Bengkel" name="latitude" autofocus>
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="longitude">Longitude Bengkel</label>
-                                            <input id="longitude" type="number" class="form-control" name="longitude">
+                                            <input id="longitude" type="number" class="form-control"
+                                                placeholder="Input Longitude bengkel" name="longitude">
                                         </div>
                                     </div>
 
@@ -71,27 +72,26 @@
                                         <div class="form-group col-6">
                                             <label class="small mb-1" for="logo_bengkel">Logo Bengkel</label>
                                             <input class="form-control" id="logo_bengkel" type="file"
-                                                name="logo_bengkel[]" value="" accept="image/*"
-                                                multiple="multiple">
+                                                name="logo_bengkel" accept="image/*">
                                         </div>
 
                                         <div class="form-group col-6">
-                                            <label for="nohp_bengkel">No.Telp Bengkel</label>
+                                            <label for="nohp_bengkel">No. Telp Bengkel</label>
                                             <input id="nohp_bengkel" type="number" class="form-control"
-                                                name="nohp_bengkel">
+                                                placeholder="Input No. Telp Bengkel" name="nohp_bengkel">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label class="small mb-1" for="logo_bengkel">Provinsi</label>
-                                            <input id="nohp_bengkel" type="number" class="form-control"
-                                                name="nohp_bengkel">
+                                            <label class="small mb-1" for="provinsi">Provinsi</label>
+                                            <input id="provinsi" type="text" class="form-control"
+                                                name="provinsi">
                                         </div>
                                         <div class="form-group col-6">
-                                            <label class="small mb-1" for="logo_bengkel">Kabupaten</label>
-                                            <input id="nohp_bengkel" type="number" class="form-control"
-                                                name="nohp_bengkel">
+                                            <label class="small mb-1" for="kabupaten">Kabupaten</label>
+                                            <input id="kabupaten" type="text" class="form-control"
+                                                name="kabupaten">
                                         </div>
                                     </div>
 
@@ -99,11 +99,12 @@
                                     <h6>Data Pemilik</h6>
 
                                     <div class="row">
-                                        <div class="form-group col-6">
+                                        <div class="form-group col-4">
                                             <label class="small mb-1" for="name">Nama</label>
                                             <input id="name" type="text"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
-                                                value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                                value="{{ old('name') }}" required placeholder="Input Nama Pemilik"
+                                                autocomplete="name" autofocus>
 
                                             @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -111,11 +112,51 @@
                                             </span>
                                             @enderror
                                         </div>
+                                        <div class="form-group col-4">
+                                            <label class="small mb-1 mr-1" for="jenis_kelamin">Jenis Kelamin</label>
+                                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control"
+                                                class="form-control @error('jenis_kelamin') is-invalid @enderror">
+                                                <option value="{{ old('jenis_kelamin')}}"> Pilih Jenis Kelamin</option>
+                                                <option value="Laki-Laki">Laki Laki</option>
+                                                <option value="Perempuan">Perempuan</option>
+                                            </select>
+                                            @error('jenis_kelamin')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label class="small mb-1" for="no_telp">No.Telp Pemilik</label>
+                                            <input id="no_telp" type="number" class="form-control"
+                                                placeholder="Input No. Telp Pemilik" name="no_telp">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1 mr-1" for="tempat_lahir">Tempat Lahir</label>
+                                            <input class="form-control" id="tempat_lahir" type="text"
+                                                name="tempat_lahir" placeholder="Input Tempat Lahir"
+                                                class="form-control @error('tempat_lahir') is-invalid @enderror" />
+                                            @error('tempat_lahir')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1 mr-1" for="tanggal_lahir">Tanggal Lahir</label>
+                                            <input class="form-control" id="tanggal_lahir" type="date"
+                                                name="tanggal_lahir"
+                                                class="form-control @error('tanggal_lahir') is-invalid @enderror" />
+                                            @error('tanggal_lahir')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
                                         <div class="form-group col-6">
                                             <label class="small mb-1" for="username">Username</label>
                                             <input id="username" type="text"
-                                                class="form-control @error('username') is-invalid @enderror" name="username"
-                                                value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                                class="form-control @error('username') is-invalid @enderror"
+                                                name="username" placeholder="Input Username"
+                                                value="{{ old('username') }}" required autocomplete="username"
+                                                autofocus>
 
                                             @error('username')
                                             <span class="invalid-feedback" role="alert">
@@ -123,25 +164,18 @@
                                             </span>
                                             @enderror
                                         </div>
-                                    </div>
-
-                                    <div class="row">
                                         <div class="form-group col-6">
                                             <label for="email">Email</label>
                                             <input id="email" type="email"
                                                 class="form-control @error('email') is-invalid @enderror" name="email"
-                                                value="{{ old('email') }}" required autocomplete="email">
+                                                placeholder="Input Email" value="{{ old('email') }}" required
+                                                autocomplete="email">
 
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label class="small mb-1" for="no_telp">No.Telp Pemilik</label>
-                                            <input id="no_telp" type="number" class="form-control"
-                                                name="no_telp">
                                         </div>
                                     </div>
 
@@ -150,7 +184,8 @@
                                             <label for="password" class="d-block">Password</label>
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
-                                                name="password" required autocomplete="new-password">
+                                                placeholder="Input Password" name="password" required
+                                                autocomplete="new-password">
 
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -161,19 +196,12 @@
                                         <div class="form-group col-6">
                                             <label for="password-confirm" class="d-block">Password Confirmation</label>
                                             <input id="password-confirm" type="password" class="form-control"
-                                                name="password_confirmation" required autocomplete="new-password">
+                                                placeholder="Konfirmasi Password" name="password_confirmation" required
+                                                autocomplete="new-password">
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="agree" class="custom-control-input" id="agree">
-                                            <label class="custom-control-label" for="agree">I agree with the terms and
-                                                conditions</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
+                                    <div class="form-group mt-4">
                                         <button type="submit" class="btn btn-primary btn-block">
                                             {{ __('Register') }}
                                         </button>

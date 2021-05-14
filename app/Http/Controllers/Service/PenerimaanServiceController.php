@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Service;
 
 use App\Http\Controllers\Controller;
+use App\Model\FrontOffice\CustomerBengkel;
+use App\Model\FrontOffice\MasterDataKendaraan;
 use App\Model\Service\PenerimaanService;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,18 @@ class PenerimaanServiceController extends Controller
      */
     public function index()
     {
-        return view('pages.service.penerimaan_service.main');
+        $service_advisor = PenerimaanService::all();
+        $kendaraan = MasterDataKendaraan::all();
+        $customer_bengkel = CustomerBengkel::all();
+
+        $id = PenerimaanService::getId();
+        foreach ($id as $value);
+        $idlama = $value->id_kendaraan;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+        $kode_sa = 'SA-' . $blt . '/' . $idbaru;
+
+        return view('pages.service.penerimaan_service.main', compact('service_advisor', 'kode_sa', 'kendaraan', 'customer_bengkel'));
     }
 
     /**

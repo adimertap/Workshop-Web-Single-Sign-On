@@ -52,7 +52,7 @@ class MasterDataJenisPerbaikanController extends Controller
         $data['slug'] = Str::slug($request->group_jenis_perbaikan);
 
         MasterDataJenisPerbaikan::create($data);
-        return redirect()->route('jenis-perbaikan.index')->with('messageberhasil', 'Data Jenis Perbaikan Berhasil ditambahkan');
+        return redirect()->route('jenis-perbaikan.index')->with('messageberhasil', 'Data Jasa Perbaikan Berhasil ditambahkan');
     }
 
     /**

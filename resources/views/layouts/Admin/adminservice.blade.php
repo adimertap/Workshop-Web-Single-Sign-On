@@ -199,7 +199,7 @@
                         {{-- Service Advisor --}}
                         {{-- Service Advisor --}}
                         <div class="sidenav-menu-heading">Service Advisor</div>
-                        <a class="nav-link collapsed" href="{{route('penerimaanservice')}}"  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('penerimaanservice.index')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-handshake"></i>
                             </div>
@@ -209,14 +209,14 @@
                         {{-- FRONTOFFICE SYSTEM --}}
                         <div class="sidenav-menu-heading">Service System</div>
 
-                        <a class="nav-link collapsed" href="{{route('stoksparepart')}}"  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('stoksparepart.index')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-cubes"></i>
                             </div>
                             Stok Sparepart
                         </a>
 
-                        <a class="nav-link collapsed" href="{{route('jadwalmekanik')}}"  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('jadwalmekanik.index')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-user"></i>
                             </div>
@@ -224,7 +224,7 @@
                         </a>
 
                         {{-- Inventory --}}
-                        <a class="nav-link collapsed" href="{{route('pengerjaanservice')}}"  aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="{{route('pengerjaanservice.index')}}"  aria-expanded="false" aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-cogs"></i></div>
                             Pengerjaan Service
                         </a>
