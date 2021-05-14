@@ -24,7 +24,7 @@ class Prf extends Model
 
     protected $fillable = [
         'id_supplier',
-        'id_akun_bank',
+        'id_bank_account',
         'id_fop',
         'id_jenis_transaksi',
         'kode_prf',
@@ -45,7 +45,7 @@ class Prf extends Model
 
     public function Detailprf()
     {
-        return $this->belongsToMany(InvoicePayable::class,'tb_accounting_detprf','id_prf','id_payable_invoice')->withPivot('total_pembayaran');
+        return $this->belongsToMany(InvoicePayable::class,'tb_accounting_detprf','id_prf','id_payable_invoice');
     }
 
     public function Supplier()
@@ -60,7 +60,7 @@ class Prf extends Model
 
     public function Akunbank()
     {
-        return $this->belongsTo(Bankaccount::class,'id_akun_bank','id_bank_account');
+        return $this->belongsTo(Bankaccount::class,'id_bank_account','id_bank_account');
     }
 
     public function Jenistransaksi()

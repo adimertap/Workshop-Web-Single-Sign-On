@@ -80,7 +80,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="mr-3">
                             <div class="text-white-75 small">Total Hutang (Supplier)</div>
-                            <div class="text-lg font-weight-bold">Rp <span>500.000</span></div>
+                            <div class="text-lg font-weight-bold ">Rp <span>{{ number_format($hutang_supplier,2,',','.') }}</span></div>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -221,7 +221,8 @@
 
 
 
-<script>
+<script type="text/javascript">
+
     setInterval(displayclock, 500);
 
     function displayclock() {
@@ -256,7 +257,6 @@
         }
 
         document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
-        document.getElementById('clockmodal').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
     }
 
 </script>

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Accounting\Payable;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Accounting\Prf\Statusbayar;
 use App\Model\Accounting\Bankaccount;
 use App\Model\Accounting\Fop;
 use App\Model\Accounting\Jenistransaksi;
+use App\Model\Accounting\Payable\InvoicePayable;
 use App\Model\Accounting\Prf\Prf;
 use App\Model\Accounting\Prf\PrfDetail;
+use App\Model\Inventory\Retur\Retur;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
@@ -117,12 +120,13 @@ class PrfController extends Controller
         $supplier = Supplier::all();
         $fop = Fop::all();
         $akun_bank = Bankaccount::all();
+        $invoice = InvoicePayable::all();
 
         $id = Prf::getId();
         $blt = date('y-m');
         $kode_prf = 'PRF-'.$blt.'/'.$prf->id_prf;
 
-        return view('pages.accounting.payable.prf.create', compact('jenis_transaksi','pegawai','supplier','fop','akun_bank','kode_prf','prf'));  
+        return view('pages.accounting.payable.prf.create', compact('prf2','invoice','jenis_transaksi','pegawai','supplier','fop','akun_bank','kode_prf','prf'));  
     }
 
     /**
@@ -132,9 +136,48 @@ class PrfController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_prf)
     {
-        //
+        $bank = Bankaccount::where('nama_bank', $request->nama_bank)->first();
+        
+
+        if (empty($bank)) {
+            $prf = Prf::findOrFail($id_prf);
+            $prf->kode_prf = $request->kode_prf;
+            $prf->id_jenis_transaksi = $request->id_jenis_transaksi;
+            $prf->tanggal_prf = $request->tanggal_prf;
+            $prf->keperluan_prf = $request->keperluan_prf;
+            $prf->grand_total = $request->grand_total;
+            $prf->id_fop = $request->id_fop;
+            $prf->status_prf = 'Pending';
+            $prf->status_jurnal = 'Pending';
+            $prf->status_bayar = 'Belum Dibayar';
+        }else{
+            $prf = Prf::findOrFail($id_prf);
+            $prf->kode_prf = $request->kode_prf;
+            $prf->id_jenis_transaksi = $request->id_jenis_transaksi;
+            $prf->tanggal_prf = $request->tanggal_prf;
+            $prf->keperluan_prf = $request->keperluan_prf;
+            $prf->grand_total = $request->grand_total;
+            $prf->id_fop = $request->id_fop;
+            $prf->id_bank_account = $bank->id_bank_account;
+            $prf->status_prf = 'Pending';
+            $prf->status_jurnal = 'Pending';
+            $prf->status_bayar = 'Belum Dibayar';
+        }
+
+        foreach($request->invoice as $key=>$item){
+            // NAMBAH STOCK SPAREPART
+            $invoice = InvoicePayable::findOrFail($item['id_payable_invoice']);
+            $invoice->status_prf = 'Telah Dibuat';
+            $invoice->save();
+        }
+
+        $prf->save();
+        $prf->Detailprf()->sync($request->invoice);
+        return $request;
+        
+       
     }
 
     /**
@@ -150,5 +193,16 @@ class PrfController extends Controller
         $prf->delete();
 
         return redirect()->back()->with('messagehapus','Data Prf Berhasil dihapus');
+    }
+
+    public function statusBayar(Statusbayar $request, $id_prf)
+    {
+
+        $item = Prf::findOrFail($id_prf);
+        $item->status_bayar = $request->status_bayar;
+        $item->tanggal_bayar = $request->tanggal_bayar;
+ 
+        $item->save();
+        return redirect()->back()->with('messagekirim','Data PRF Berhasil dibayarkan');
     }
 }

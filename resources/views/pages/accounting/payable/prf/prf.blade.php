@@ -100,8 +100,8 @@
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                         <td>{{ $item->kode_prf }}</td>
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
-                                        <td>Rp. {{ number_format($item->total_bayar,0,',','.') }}</td>
-                                        <td>
+                                        <td>Rp {{ number_format($item->grand_total,2,',','.') }}</td>
+                                        <td class="text-center">
                                             @if($item->status_prf == 'Approved')
                                             <span class="badge badge-success">
                                                 @elseif($item->status_prf == 'Not Approved')
@@ -114,17 +114,31 @@
                                                             {{ $item->status_prf }}
                                                         </span>
                                         </td>
-                                        <td>{{ $item->tanggal_bayar }}</td>
+                                        <td class="text-center"> @if($item->status_prf == 'Pending')
+                                            <span class="font-size-300" style="font-size: 12px;">Menunggu
+                                                Persetujuan..</span>
+                                            @elseif ($item->status_prf == 'Approved')
+                                            <a href="" class="btn btn-primary btn-xs" type="button"
+                                                data-toggle="modal"
+                                                data-target="#Modalbayar-{{ $item->id_prf }}">
+                                                Bayar
+                                            </a>
+                                            @elseif($item->status_prf == 'Not Approved')
+                                            <span class="font-size-300" style="font-size: 12px;">Data diTolak</span>
+                                            @else
+                                            <span>
+                                                @endif
+                                            </span>
                                         <td>
-                                            @if($item->status_jurnal == 'Pending')
-                                            <span class="badge badge-danger">
-                                                @elseif($item->status_jurnal == 'Posting')
-                                                <span class="badge badge-success">
-                                                    @else
-                                                    <span>
-                                                        @endif
-                                                        {{ $item->status_jurnal }}
-                                                    </span>
+                                            @if($item->status_bayar == 'Belum Dibayar')
+                                            <span class="font-size-200" style="font-size: 12px;">Menunggu
+                                                Pembayaran..</span>
+                                            @elseif ($item->status_bayar == 'Sudah Dibayar')
+                                            <button class="btn btn-secondary btn-xs" type="button" data-dismiss="modal">Posting Jurnal</button>
+                                            @else
+                                            <span>
+                                                @endif
+                                            </span>
                                         </td>
                                         <td>
                                             <a href="{{ route('prf.show', $item->id_prf) }}"
@@ -144,7 +158,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="7" class="tex-center">
+                                        <td colspan="7" class="text-center">
                                             Data Pembayaran Kosong
                                         </td>
                                     </tr>
@@ -159,6 +173,43 @@
     </div>
 </div>
 </main>
+
+@forelse ($prf as $item)
+<div class="modal fade" id="Modalbayar-{{ $item->id_prf }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Tanggal Bayar</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('prf-bayar', $item->id_prf) }}?status_bayar=Sudah Dibayar" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="small mb-1" for="tanggal_bayar">Tanggal Pembayaran</label>
+                        <input class="form-control" name="tanggal_bayar" type="date" id="tanggal_bayar"
+                            placeholder="Input Tanggal Bayar" value="{{ old('tanggal_bayar') }}"   
+                            class="form-control @error('tanggal_bayar') is-invalid @enderror" />
+                            @error('tanggal_bayar')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                    </div>
+                      {{-- Validasi Error --}}
+                    @if (count($errors) > 0)
+                    @endif
+                </div>
+                <div class="modal-footer ">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Bayar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+@endforelse
+
 
 {{-- MODAL TAMBAH --}}
 <div class="modal fade" id="Modaltambah" tabindex="-1" role="dialog" data-backdrop="static"
@@ -381,9 +432,10 @@
 
 @endforelse
 
-
-
-
+@if (count($errors) > 0)
+<button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modalbayar-{{ $item->id_prf }}">Open
+    Modal</button>
+@endif
 
 <script>
      function tambahsupplier(event, id_supplier) {
@@ -431,7 +483,7 @@
 
     $(document).ready(function () {
     var tablesupplier = $('#dataTableSupplier').DataTable()
-
+        $('#validasierror').click();
 
     });
 
@@ -470,7 +522,6 @@
         }
 
         document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
-        document.getElementById('clockmodal').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
     }
 
 </script>

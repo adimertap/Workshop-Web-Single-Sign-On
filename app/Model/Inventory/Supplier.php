@@ -41,7 +41,7 @@ class Supplier extends Model
 
     public function InvoicePayable()
     {
-        return $this->hasMany(InvoicePayable::class, 'id_supplier');
+        return $this->hasMany(InvoicePayable::class, 'id_supplier')->where('status_prf', 'Belum Dibuat');
     }
 
     public static function getId(){

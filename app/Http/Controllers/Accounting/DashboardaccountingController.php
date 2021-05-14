@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Accounting;
 
 use App\Http\Controllers\Controller;
+use App\Model\Accounting\Payable\InvoicePayable;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class DashboardaccountingController extends Controller
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.accounting.dashboard.dashboardaccounting', compact('today','tanggal'));
+        return view('pages.accounting.dashboard.dashboardaccounting',['hutang_supplier' => InvoicePayable::where('status_prf','Belum Dibuat')->sum('total_pembayaran')], compact('today','tanggal'));
     }
 
     /**

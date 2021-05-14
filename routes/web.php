@@ -585,6 +585,9 @@ Route::group(
             ->namespace('Accounting\Payable')
             ->group(function () {
                 Route::resource('prf', 'PrfController');
+
+                Route::post('Prf/{id_prf}', 'PrfController@statusBayar')
+                    ->name('prf-bayar');
             });
 
         // Approval Prf ----------------------------------------------------------------- Approval PRF

@@ -74,7 +74,7 @@
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                         <td>{{ $item->kode_prf }}</td>
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
-                                        <td>Rp. {{ number_format($item->total_bayar,0,',','.') }}</td>
+                                        <td>Rp. {{ number_format($item->grand_total,0,',','.') }}</td>
                                         <td>
                                             @if($item->status_prf == 'Pending')
                                             <a href="{{ route('approval-prf.show', $item->id_prf) }}"
@@ -138,9 +138,9 @@
             <form action="{{ route('approval-prf-status', $item->id_prf) }}?status=Approved" method="POST"
                 class="d-inline">
                 @csrf
-                <div class="modal-body">
+                <div class="modal-body text-center">
                     <div class="form-group">Apakah Anda Yakin Menyetujui Pembayaran {{ $item->kode_prf }} dengan total
-                        biaya Rp. {{ number_format($item->total_bayar,0,',','.') }}?</div>
+                        biaya Rp. {{ number_format($item->grand_total,0,',','.') }}?</div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -166,9 +166,9 @@
             <form action="{{ route('approval-prf-status', $item->id_prf) }}?status=Not Approved" method="POST"
                 class="d-inline">
                 @csrf
-                <div class="modal-body">
+                <div class="modal-body text-center">
                     <div class="form-group">Apakah Anda Yakin Menyetujui Pembayaran {{ $item->kode_prf }} dengan total
-                        biaya Rp. {{ number_format($item->total_bayar,0,',','.') }}?</div>
+                        biaya Rp. {{ number_format($item->grand_total,0,',','.') }}?</div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
