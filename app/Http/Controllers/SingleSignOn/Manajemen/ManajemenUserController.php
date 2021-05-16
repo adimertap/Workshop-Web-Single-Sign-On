@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SingleSignOn\Manajemen;
 
 use App\Http\Controllers\Controller;
 use App\Model\SingleSignOn\ManajemenUser;
+use App\User;
 use Illuminate\Http\Request;
 
 class ManajemenUserController extends Controller
@@ -15,7 +16,8 @@ class ManajemenUserController extends Controller
      */
     public function index()
     {
-        return view('pages.singlesignon.manajemen.user');
+        $user = User::ownership()->get();
+        return view('pages.singlesignon.manajemen.user', compact('user'));
     }
 
     /**
@@ -36,7 +38,6 @@ class ManajemenUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**

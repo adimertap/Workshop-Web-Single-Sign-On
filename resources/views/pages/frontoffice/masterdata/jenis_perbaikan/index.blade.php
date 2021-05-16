@@ -70,7 +70,7 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Group Jasa Perbaikan</th>
+                                                style="width: 20px;">Jenis Jasa Perbaikan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
@@ -146,7 +146,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="group_jenis_perbaikan">Group Jasa Perbaikan</label>
+                            <label class="small mb-1" for="group_jenis_perbaikan">Jenis Jasa Perbaikan</label>
                             <select class="form-control" name="group_jenis_perbaikan"
                                 class="form-control @error('group_jenis_perbaikan') is-invalid @enderror"
                                 id="group_jenis_perbaikan">
@@ -209,7 +209,7 @@
                             </div> @enderror
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="group_jenis_perbaikan">Group Jasa Perbaikan</label>
+                            <label class="small mb-1" for="group_jenis_perbaikan">Jenis Jasa Perbaikan</label>
                             <select name="group_jenis_perbaikan" id="group_jenis_perbaikan" class="form-control">
                                 <option value="{{ $item->group_jenis_perbaikan }}">{{ $item->group_jenis_perbaikan }}</option>
                                 <option value="Motor">Motor</option>

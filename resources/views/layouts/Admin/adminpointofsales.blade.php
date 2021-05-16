@@ -247,7 +247,7 @@
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">User Role:</div>
-                        <div class="sidenav-footer-title">{{ Auth::user()->name }}</div>
+                        <div class="sidenav-footer-title">{{ Auth::user()->role_name }}</div>
                     </div>
                 </div>
             </nav>
@@ -269,7 +269,7 @@
                         <div class="col-md-6 text-md-right small">
                             <a href="#!">Privacy Policy</a>
                             &middot;
-                            <a href="#!">BengkelKuy</a>
+                            <a href="#!">BengkelPro</a>
                         </div>
                     </div>
                 </div>

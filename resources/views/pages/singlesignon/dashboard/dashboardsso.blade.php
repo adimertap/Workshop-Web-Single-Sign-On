@@ -25,9 +25,9 @@
     </div>
 </div>
 
-
 <div class="container">
     <div class="row">
+        @if(Auth::user()->role == 'admin_front_office' || Auth::user()->role == 'owner')
         <div class="col-xxl-4 col-xl-3 mb-4">
             <!-- Dashboard example card 1-->
             <a class="card lift h-100" href="{{ route('dashboardfrontoffice') }}">
@@ -43,6 +43,8 @@
                 </div>
             </a>
         </div>
+        @endif
+        @if (Auth::user()->role == 'admin_service_advisor' || Auth::user()->role == 'service_instructor' || Auth::user()->role == 'owner')
         <div class="col-xxl-4 col-xl-3 mb-4">
             <!-- Dashboard example card 2-->
             <a class="card lift h-100" href="{{ route('dashboardservice') }}">
@@ -58,6 +60,9 @@
                 </div>
             </a>
         </div>
+        @endif
+
+        @if (Auth::user()->role == 'admin_kasir' || Auth::user()->role == 'owner')
         <div class="col-xxl-4 col-xl-3 mb-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardpointofsales') }}">
@@ -73,6 +78,9 @@
                 </div>
             </a>
         </div>
+        @endif
+
+        @if (Auth::user()->role == 'admin_marketplace' || Auth::user()->role == 'owner')
         <div class="col-xxl-4 col-xl-3 mb-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardmarketplace') }}">
@@ -88,11 +96,13 @@
                 </div>
             </a>
         </div>
+        @endif
     </div>
 </div>
 {{-- BARIS 2 --}}
 <div class="container">
     <div class="row">
+        @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'admin_purchasing' || Auth::user()->role == 'owner')
         <div class="col-xxl-4 col-xl-3 mb-4">
             <!-- Dashboard example card 1-->
             <a class="card lift h-100" href="{{ route('dashboardinventory') }}">
@@ -108,6 +118,9 @@
                 </div>
             </a>
         </div>
+        @endif
+
+        @if (Auth::user()->role == 'owner')
         <div class="col-xxl-4 col-xl-3 mb-4">
             <!-- Dashboard example card 2-->
             <a class="card lift h-100" href="{{ route('dashboardpegawai') }}">
@@ -123,6 +136,9 @@
                 </div>
             </a>
         </div>
+        @endif
+
+        @if (Auth::user()->role == 'owner')
         <div class="col-xxl-4 col-xl-3 mb-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardpayroll') }}">
@@ -138,6 +154,9 @@
                 </div>
             </a>
         </div>
+        @endif
+
+        @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'admin_account_receivable' || Auth::user()->role == 'owner')
         <div class="col-xxl-4 col-xl-3 mb-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardaccounting') }}">
@@ -154,6 +173,8 @@
                 </div>
             </a>
         </div>
+        @endif
+
     </div>
 </div>
 

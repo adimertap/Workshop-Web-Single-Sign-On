@@ -72,7 +72,7 @@ class RegisterController extends Controller
         $file = $data['logo_bengkel'];
         $name_file = time() . '_' . $file->getClientOriginalName();
         $file->move(public_path() . '/image/', $name_file);
-        $imgUrl = url('/image/' . $name_file);
+        // $imgUrl = url('/image/' . $name_file);
 
         $bengkel = Bengkel::create([
             'slug' => Str::slug($data['nama_bengkel']),

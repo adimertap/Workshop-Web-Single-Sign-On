@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Service;
 
 use App\Http\Controllers\Controller;
 use App\Model\FrontOffice\CustomerBengkel;
+use App\Model\FrontOffice\MasterDataJenisPerbaikan;
 use App\Model\FrontOffice\MasterDataKendaraan;
+use App\Model\Inventory\Sparepart;
 use App\Model\Service\PenerimaanService;
 use Illuminate\Http\Request;
 
@@ -20,6 +22,8 @@ class PenerimaanServiceController extends Controller
         $service_advisor = PenerimaanService::all();
         $kendaraan = MasterDataKendaraan::all();
         $customer_bengkel = CustomerBengkel::all();
+        $sparepart = Sparepart::all();
+        $jasa_perbaikan = MasterDataJenisPerbaikan::all();
 
         $id = PenerimaanService::getId();
         foreach ($id as $value);
@@ -28,7 +32,7 @@ class PenerimaanServiceController extends Controller
         $blt = date('m');
         $kode_sa = 'SA-' . $blt . '/' . $idbaru;
 
-        return view('pages.service.penerimaan_service.main', compact('service_advisor', 'kode_sa', 'kendaraan', 'customer_bengkel'));
+        return view('pages.service.penerimaan_service.main', compact('service_advisor', 'kode_sa', 'kendaraan', 'customer_bengkel', 'sparepart', 'jasa_perbaikan'));
     }
 
     /**
