@@ -219,7 +219,7 @@
                                             </tbody>
                                             <tr id="totalgrand">
                                                 <td colspan="3" class="text-center font-weight-500">
-                                                    Total Tunjangan
+                                                    Total Pembayaran
                                                 </td>
                                                 <td colspan="2" class="text-center font-weight-500">
                                                     <span>Rp. </span><span id="totalgrand2">0</span>

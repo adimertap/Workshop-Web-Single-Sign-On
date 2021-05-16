@@ -24,13 +24,13 @@ class DashboardinventoryController extends Controller
 
         return view('pages.inventory.dashboard.dashboardinventory',[
             'po' => PO::count(),
-            'po_today' => PO::whereDate('created_at', Carbon::today())->count(),
+            'po_today' => PO::whereDate('tanggal_po', Carbon::today())->count(),
             'rcv' => Rcv::count(),
-            'rcv_today' => Rcv::whereDate('created_at', Carbon::today())->count(),
+            'rcv_today' => Rcv::whereDate('tanggal_rcv', Carbon::today())->count(),
             'opname' => Opname::count(),
-            'opname_today' => Opname::whereDate('created_at', Carbon::today())->count(),
+            'opname_today' => Opname::whereDate('tanggal_opname', Carbon::today())->count(),
             'retur' => Retur::count(),
-            'retur_today' => Retur::whereDate('created_at', Carbon::today())->count(),
+            'retur_today' => Retur::whereDate('tanggal_retur', Carbon::today())->count(),
             // APPROVAL
 
 

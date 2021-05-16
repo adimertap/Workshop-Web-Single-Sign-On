@@ -5,6 +5,7 @@ namespace App\Model\Payroll;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Gajipegawai extends Model
 {
@@ -40,5 +41,4 @@ class Gajipegawai extends Model
     public function Pegawai(){
         return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
     }
-
 }

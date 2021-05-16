@@ -610,6 +610,13 @@ Route::group(
 
                 Route::resource('pajak', 'PajakController');
             });
+        
+        // Gaji Pegawai Accounting ----------------------------------------------------------------- Gaji Pegawai Accounting  
+        Route::prefix('Accounting')
+            ->namespace('Accounting\Payable')
+            ->group(function () {
+                Route::resource('gaji-accounting', 'GajiAccountingController');
+            });
 
         // CATATAN ADIM -------------------------------------------------------------------- Catatan Adim
         // NOTES ADIM

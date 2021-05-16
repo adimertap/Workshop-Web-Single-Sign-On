@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Accounting;
+namespace App\Http\Controllers\Accounting\Payable;
 
 use App\Http\Controllers\Controller;
-use App\Model\Accounting\Payable\InvoicePayable;
-use App\Model\Accounting\Prf\Prf;
+use App\Model\Payroll\Gajipegawai;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class DashboardaccountingController extends Controller
+class GajiAccountingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,26 +17,14 @@ class DashboardaccountingController extends Controller
      */
     public function index()
     {
+        
+
+       
+
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.accounting.dashboard.dashboardaccounting',
-        ['hutang_supplier' => InvoicePayable::where('status_prf','Belum Dibuat')->sum('total_pembayaran'),
-        'invoice' => InvoicePayable::count(),
-        'invoice_prf_belum' => InvoicePayable::where('status_prf','Belum Dibuat')->count(),
-        'invoice_prf_sudah' => InvoicePayable::where('status_prf','Sudah Dibuat')->count(),
-        'prf' => Prf::count(),
-        'prf_pending' => Prf::where('status_prf','Pending')->count(),
-        'prf_approve' => Prf::where('status_prf','Approved')->count(),
-        'prf_tolak' => Prf::where('status_prf','Not Approved')->count(),
-    
-        ], 
-        
-        
-        
-        
-        
-        compact('today','tanggal'));
+        return view('pages.accounting.payable.gajiaccounting.gajiaccounting', compact('today','tanggal','gaji'));
     }
 
     /**

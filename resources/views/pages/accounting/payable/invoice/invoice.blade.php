@@ -151,7 +151,7 @@
                                                     <i class="fas fa-print"></i></i>
                                                 </a>
                                                 @elseif ($item->status_prf == 'Telah Dibuat')
-                                                <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                <a href="{{ route('invoice-payable.show',$item->id_payable_invoice) }}" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Detail Invoice">
                                                     <i class="fa fa-eye"></i>
                                                 </a>

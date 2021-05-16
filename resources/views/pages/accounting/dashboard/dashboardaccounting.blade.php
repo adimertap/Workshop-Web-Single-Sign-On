@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">Lihat Laporan</a>
+                    <a class="small text-white stretched-link" href="{{ route('invoice-payable.index') }}">Lihat Invoice</a>
                     <div class="small text-white"><svg class="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true"
                             focusable="false" data-prefix="fas" data-icon="angle-right" role="img"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
@@ -118,7 +118,7 @@
                         <!-- Timeline Item 1-->
                         <div class="timeline-item">
                             <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-text font-weight-bold text-dark">1</div>
+                                <div class="timeline-item-marker-text font-weight-bold text-dark">{{ $invoice }}</div>
                                 <div class="timeline-item-marker-indicator bg-green"></div>
                             </div>
                             <div class="timeline-item-content">
@@ -128,7 +128,7 @@
                         <!-- Timeline Item 2-->
                         <div class="timeline-item">
                             <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-text font-weight-bold text-dark">1</div>
+                                <div class="timeline-item-marker-text font-weight-bold text-dark">{{ $invoice_prf_belum }}</div>
                                 <div class="timeline-item-marker-indicator bg-blue"></div>
                             </div>
                             <div class="timeline-item-content">
@@ -139,7 +139,7 @@
                         <!-- Timeline Item 3-->
                         <div class="timeline-item">
                             <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-text font-weight-bold text-dark">13</div>
+                                <div class="timeline-item-marker-text font-weight-bold text-dark">{{ $invoice_prf_sudah }}</div>
                                 <div class="timeline-item-marker-indicator bg-purple"></div>
                             </div>
                             <div class="timeline-item-content">
@@ -150,7 +150,7 @@
                         <!-- Timeline Item 4-->
                         <div class="timeline-item">
                             <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-text font-weight-bold text-dark">2</div>
+                                <div class="timeline-item-marker-text font-weight-bold text-dark">Belum Buat</div>
                                 <div class="timeline-item-marker-indicator bg-danger"></div>
                             </div>
                             <div class="timeline-item-content">
@@ -172,7 +172,7 @@
                         <!-- Timeline Item 1-->
                         <div class="timeline-item">
                             <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-text font-weight-bold text-dark">1</div>
+                                <div class="timeline-item-marker-text font-weight-bold text-dark">{{ $prf }}</div>
                                 <div class="timeline-item-marker-indicator bg-green"></div>
                             </div>
                             <div class="timeline-item-content">
@@ -182,7 +182,7 @@
                         <!-- Timeline Item 2-->
                         <div class="timeline-item">
                             <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-text font-weight-bold text-dark">12</div>
+                                <div class="timeline-item-marker-text font-weight-bold text-dark">{{ $prf_pending }}</div>
                                 <div class="timeline-item-marker-indicator bg-blue"></div>
                             </div>
                             <div class="timeline-item-content">
@@ -192,7 +192,7 @@
                         <!-- Timeline Item 3-->
                         <div class="timeline-item">
                             <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-text font-weight-bold text-dark">1</div>
+                                <div class="timeline-item-marker-text font-weight-bold text-dark">{{ $prf_approve }}</div>
                                 <div class="timeline-item-marker-indicator bg-purple"></div>
                             </div>
                             <div class="timeline-item-content">
@@ -203,7 +203,7 @@
                         <!-- Timeline Item 4-->
                         <div class="timeline-item">
                             <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-text font-weight-bold text-dark">2</div>
+                                <div class="timeline-item-marker-text font-weight-bold text-dark">{{ $prf_tolak }}</div>
                                 <div class="timeline-item-marker-indicator bg-danger"></div>
                             </div>
                             <div class="timeline-item-content">

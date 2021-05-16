@@ -233,7 +233,7 @@
                         <div class="sidenav-menu-heading">Account</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="nav-link-icon"><i class="fas fa-briefcase"></i></div>
+                            <div class="nav-link-icon"><i class="fas fa-wallet"></i></div>
                             Payable
                             <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -245,7 +245,7 @@
                                 <a class="nav-link " href="{{ route('prf.index') }}">
                                     PRF
                                 </a>
-                                <a class="nav-link " href="invoice.html">
+                                <a class="nav-link " href="{{ route('gaji-accounting.index') }}">
                                     Gaji Karyawan
                                 </a>
                                 <a class="nav-link " href="{{ route('pajak.index') }}">
@@ -259,7 +259,7 @@
 
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
-                            <div class="nav-link-icon"><i class="fas fa-box-open"></i></div>
+                            <div class="nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
                             Receiveable
                             <div class="sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
@@ -276,7 +276,7 @@
                         <div class="sidenav-menu-heading">Jurnal dan Laporan</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
-                            <div class="nav-link-icon"><i data-feather="check-square"></i></div>
+                            <div class="nav-link-icon"><i class="fas fa-book"></i></div>
                             Jurnal
                             <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
