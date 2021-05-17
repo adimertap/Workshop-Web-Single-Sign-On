@@ -23,6 +23,7 @@ Route::post('/', 'Auth\LoginController@login')->name('login');
 
 Route::get('/register', 'Auth\RegisterController@showRegisterForm')->name('register');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
+Route::get("/getkabupaten/{id}", "Auth\RegisterController@kabupaten");
 
 Route::group(
     ['middleware' => 'auth'],
