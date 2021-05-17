@@ -71,9 +71,15 @@ class ManajemenUserController extends Controller
      * @param  \App\ManajemenUser  $manajemenUser
      * @return \Illuminate\Http\Response
      */
-    public function edit(ManajemenUser $manajemenUser)
+    public function edit($id)
     {
-        //
+        $item = User::findOrFail($id);
+        $pegawai = Pegawai::all();
+
+        return view('pages.singlesignon.manajemen.edit-user', [
+            'item' => $item,
+            'pegawai' => $pegawai
+        ]);
     }
 
     /**
@@ -83,9 +89,19 @@ class ManajemenUserController extends Controller
      * @param  \App\ManajemenUser  $manajemenUser
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ManajemenUser $manajemenUser)
+    public function update(Request $request, $id)
     {
-        //
+        $users = User::findOrFail($id);
+        $users->id_pegawai = $request->id_pegawai;
+        $users->username = $request->username;
+        $users->email = $request->email;
+        $users->role = $request->role;
+
+        $users->save();
+
+        return redirect()->route(
+            'manajemen-user.index'
+        )->with('messageberhasil', 'Data Pengguna Berhasil diubah');
     }
 
     /**

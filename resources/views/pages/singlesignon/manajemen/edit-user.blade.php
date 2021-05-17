@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-cog"></i></div>
-                            Tambah Data Pengguna
+                            Edit Data Pengguna
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
@@ -46,35 +46,27 @@
                         <div class="row justify-content-center">
                             <div class="col-xxl-6 col-xl-9">
                                 <h3 class="text-primary">Pengguna</h3>
-                                <h5 class="card-title">Input Formulir Pengguna</h5>
-                                <form action="{{ route('manajemen-user.store') }}" method="POST"
-                                    enctype="multipart/form-data">
+                                <h5 class="card-title">Ubah Data Pengguna</h5>
+                                <form action="{{ route('manajemen-user.update',$item->id) }}" method="POST">
+                                    @method('PUT')
                                     @csrf
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_pegawai">Nama Pegawai</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
-                                            <div class="input-group input-group-joined">
-                                                <select class="form-control" name="id_pegawai" id="id_pegawai"
-                                                    class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
-                                                    <option>Pilih Pegawai</option>
-                                                    @foreach ($pegawai as $item)
-                                                    <option value="{{ $item->id_pegawai }}">
-                                                        {{ $item->nama_pegawai }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            @error('id_pegawai')<div class="text-danger small mb-1">
-                                                {{ $message }}
-                                            </div> @enderror
+                                        <div class="form-group col-6">
+                                            <label class="small mb-1" for="username">Username</label>
+                                            <input id="username" type="text" class="form-control" name="username"
+                                                value="{{ $item->username }}" required autocomplete="username"
+                                                autofocus>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="email">Email</label>
+                                            <input id="email" type="email" class="form-control" name="email"
+                                                placeholder="Input Email" value="{{ $item->email }}" required
+                                                autocomplete="email">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="role">Role</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
-                                            <select name="role" id="role" class="form-control"
-                                                class="form-control @error('role') is-invalid @enderror">
-                                                <option value="{{ old('role')}}"> Pilih Role</option>
+                                            <label class="small mb-1 mr-1" for="role">Role</label>
+                                            <select name="role" id="role" class="form-control">
+                                                <option value="{{ $item->role }}"> {{ $item->role }}</option>
                                                 <option value="owner">Owner</option>
                                                 <option value="admin_front_office">Admin Front Office</option>
                                                 <option value="admin_service_advisor">Admin Service Advisor</option>
@@ -88,20 +80,21 @@
                                                 </option>
                                                 <option value="admin_marketplace">Admin Marketplace</option>
                                             </select>
-                                            @error('role')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="username">Username</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="username" type="text"
-                                                name="username" value="{{ $item->username }}"/>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="email">Email</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="email" type="email"
-                                                name="email" value="{{ $item->email }}"/>
+                                            <label class="small mb-1 mr-1" for="id_pegawai">Nama Pegawai</label>
+                                            <div class="input-group input-group-joined">
+                                                <select class="form-control" name="id_pegawai" id="id_pegawai"
+                                                    class="form-control">
+                                                    <option value="{{ $item->pegawai->id_pegawai }}">
+                                                        {{ $item->pegawai->nama_pegawai }}</option>
+                                                    @foreach ($pegawai as $item)
+                                                    <option value="{{ $item->id_pegawai }}">
+                                                        {{ $item->nama_pegawai }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr class="my-4" />
@@ -109,6 +102,7 @@
                                         <a href="{{ route('manajemen-user.index') }}" class="btn btn-light">Kembali</a>
                                         <button class="btn btn-primary" type="Submit">Simpan</button>
                                     </div>
+                                </form>
                             </div>
                         </div>
                     </div>

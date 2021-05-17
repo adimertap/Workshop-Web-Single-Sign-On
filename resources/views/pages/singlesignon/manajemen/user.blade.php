@@ -25,7 +25,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Pengguna
-                    <a href="{{ route('manajemen-user.create') }}" class="btn btn-sm btn-primary"> Tambah Kendaraan</a>
+                    <a href="{{ route('manajemen-user.create') }}" class="btn btn-sm btn-primary"> Tambah Pengguna</a>
                 </div>
             </div>
             <div class="card-body">
@@ -88,12 +88,17 @@
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->role_name }}</td>
                                             <td>
-                                                <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id }}">
+                                                <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title=""
+                                                    data-original-title="Detail Sparepart dan Foto">
+                                                    <i class="fa fa-key"></i>
+                                                </a>
+                                                <a href="{{ route('manajemen-user.edit', $item->id) }}"
+                                                    class="btn btn-primary btn-datatable" type="button">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id }}">
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->iid }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
