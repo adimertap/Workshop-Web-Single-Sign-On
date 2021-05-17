@@ -56,7 +56,7 @@ class PO extends Model
 
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_inventory_po')->orderBy('id_po','DESC')->take(1)->get();
+        return $getId = DB::table('tb_inventory_po')->orderBy('id_po','DESC')->where('id_po', '2000')->take(1)->get();
 
     }
 }

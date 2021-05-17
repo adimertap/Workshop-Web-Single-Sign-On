@@ -17,14 +17,12 @@ class GajiAccountingController extends Controller
      */
     public function index()
     {
-        
-
-       
+        $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_diterima')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_diterima')->get();
 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.accounting.payable.gajiaccounting.gajiaccounting', compact('today','tanggal','gaji'));
+        return view('pages.accounting.payable.gajiaccounting.gajiaccounting', compact('today','tanggal','gajipegawai'));
     }
 
     /**

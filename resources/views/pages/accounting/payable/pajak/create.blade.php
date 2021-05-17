@@ -365,7 +365,7 @@
                 url: '/accounting/pajak',
                 data: data,
                 success: function (response) {
-                    // window.location.href = '/accounting/pajak'
+                    window.location.href = '/accounting/pajak'
                 },
                 error: function (response) {
                 console.log(response)

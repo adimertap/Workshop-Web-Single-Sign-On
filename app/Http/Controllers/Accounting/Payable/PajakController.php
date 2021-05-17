@@ -85,13 +85,8 @@ class PajakController extends Controller
         $pajak->status_jurnal = 'Pending';
 
         $pajak->save();
-        // $pajak->detailpajak()->sync($request->pajak);
-        $pajak->detailpajak()->sync($request->pajak);
-
-        // $pajak->detailpajak()->attach($id_pajak);
-        // $pajak->detailpajak()->saveMany($request->pajak);
-
-        // return $request;
+        
+        $pajak->detailpajak()->insert($request->pajak);
         return $request;
     }
 

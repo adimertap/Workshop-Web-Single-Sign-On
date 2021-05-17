@@ -93,25 +93,33 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @forelse ($gaji as $item)
+                                        @forelse ($gajipegawai as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->bulan_gaji }}</td>
                                             <td>{{ $item->tahun_gaji }}</td>
-                                            <td>{{ $item->tahun_gaji }}</td>
-                                            <td>{{ $item->gaji_diterima }}</td>
+                                            <td>{{ $item->jumlah_pegawai }}</td>
+                                            <td>{{ $item->total_gaji }}</td>
                                             <td>{{ $item->total_tunjangan }}</td>
                                             <td>{{ $item->status_diterima }}</td>
-                                        </tr>
+                                            <td>  @if($item->status_diterima == 'Belum Dibayarkan')
+                                                <a href="" class="btn btn-success btn-datatable" type="button"
+                                                data-toggle="modal" data-target="#Modalbayar-{{ $item->bulan_gaji }}-{{ $item->tahun_gaji }}">
+                                                <i class="fas fa-check"></i>
+                                                @endif
 
+                                                
+                                            </a>
+                                            </td>
+                                        </tr>
                                         @empty
-                                        @endforelse --}}
+                                        @endforelse
                                     </tbody>
                                     <tr id="grandtotal">
                                         <td colspan="4" class="text-center font-weight-500">
                                             Total Gaji Belum DiBayarkan
                                         </td>
-                                        <td colspan="3" class="grand_total text-center font-weight-500">
+                                        <td colspan="4" class="grand_total text-center font-weight-500">
                                             {{-- Rp. {{ number_format($hutang,2,',','.') }} --}}
                                         </td>
                                     </tr>
@@ -124,6 +132,32 @@
         </div>
     </div>
 </main>
+
+
+@forelse ($gajipegawai as $item)
+<div class="modal fade" id="Modalbayar-{{ $item->bulan_gaji }}-{{ $item->tahun_gaji }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Pembayaran Gaji Pegawai</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('gaji-pegawai-status-bulan-tahun',
+            ['bulan_gaji'=>$item->bulan_gaji, 'tahun_gaji'=>$item->tahun_gaji]) }}?status=Dibayarkan" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body text-center">Apakah Anda Yakin untuk Melakukan Pembayaran Gaji Pegawai pada bulan {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }} </div>
+                <div class="modal-footer ">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Bayar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+@endforelse
 
 
 <script>

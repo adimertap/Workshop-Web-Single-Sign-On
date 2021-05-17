@@ -146,7 +146,7 @@
                                                 <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
-                                                    <td class="kode_sparepart">
+                                                    <td class="kode_sparepart" >
                                                         {{ $item->kode_sparepart }}</td>
                                                     <td class="nama_sparepart">
                                                         {{ $item->nama_sparepart }}</td>
@@ -172,11 +172,11 @@
                                                     @endif
                                                     </td> --}}
                                                     <td>
-                                                        <a href="" class="btn btn-success btn-datatable" type="button"
+                                                        <button id="{{ $item->kode_sparepart }}-button" href="" class="btn btn-success btn-datatable" type="button"
                                                             data-toggle="modal"
                                                             data-target="#Modaltambah-{{ $item->id_sparepart }}">
                                                             <i class="fas fa-plus"></i>
-                                                        </a>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                                 @empty
@@ -350,6 +350,9 @@
     <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
         <i class="fas fa-trash"></i>
     </button>
+    <button class="btn btn-primary btn-datatable" onclick="editsparepart(this)" type="button">
+        <i class="fas fa-edit"></i>
+    </button>
 </template>
 
 <template id="template_add_button">
@@ -359,6 +362,10 @@
 </template>
 
 <script>
+
+
+
+
     function tambahsparepart(event, sparepart, id_po) {
         event.preventDefault()
         var form1 = $('#form1')
@@ -477,6 +484,16 @@
         alert('Data Sparepart Berhasil di Hapus')
         // draw() Reset Ulang Table
         var table = $('#dataTable').DataTable()
+    }
+
+    function editsparepart(element){
+        var table = $('#dataTablekonfirmasi').DataTable()
+        // Akses Parent Sampai <tr></tr>
+        var row = $(element).parent().parent()
+        var children = $(row).children()[1]
+        var kode = $($(children).children()[0]).html().trim()
+        $(`#${$.escapeSelector(kode)}-button`).trigger('click')
+
     }
 
     // 

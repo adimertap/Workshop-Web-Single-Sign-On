@@ -98,7 +98,7 @@ class MasterdatabankaccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Bankaccountrequest $request, $id_bank_account)
+    public function update(Request $request, $id_bank_account)
     {
         $bankaccount = Bankaccount::findOrFail($id_bank_account);
         $bankaccount->nama_bank = $request->nama_bank;

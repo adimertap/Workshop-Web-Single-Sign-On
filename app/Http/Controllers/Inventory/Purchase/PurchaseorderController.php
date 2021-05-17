@@ -106,6 +106,7 @@ class PurchaseorderController extends Controller
         $id = PO::getId();
         $blt = date('y-m');
 
+        return $id;
         $kode_po = 'PO-'.$blt.'/'.$po->id_po;
  
         $supplier = Supplier::all();

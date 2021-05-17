@@ -522,6 +522,8 @@ Route::group(
 
                 Route::post('gaji-pegawai/{id_gaji_pegawai}/set-status', 'GajipegawaiController@setStatus')
                     ->name('gaji-pegawai-status');
+                Route::post('gaji-pegawai/{bulan_gaji}/{tahun_gaji}/set-status', 'GajipegawaiController@setStatusPerBulanTahun')
+                    ->name('gaji-pegawai-status-bulan-tahun');
             });
 
 

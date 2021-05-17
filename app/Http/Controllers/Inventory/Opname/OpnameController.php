@@ -45,8 +45,9 @@ class OpnameController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('y-m');
 
-        $kode_opname = 'OPM-'.'/'.$blt.$idbaru;
-    
+        $kode_opname = 'OPM-'.'/'.$blt.'-'.$idbaru;
+        return $kode_opname;
+
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
         
@@ -64,6 +65,7 @@ class OpnameController extends Controller
         $id = Opname::getId();
         foreach($id as $value);
         $idlama = $value->id_opname;
+        return $idlama;
         $idbaru = $idlama + 1;
         $blt = date('y-m');
 

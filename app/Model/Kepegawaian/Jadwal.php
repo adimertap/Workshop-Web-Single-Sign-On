@@ -15,7 +15,8 @@ class Jadwal extends Model
 
     protected $fillable = [
         'id_pegawai',
-        'tanggal_jadwal',
+        'start_tanggal',
+        'end_tanggal',
         'bulan_jadwal',
         'tahun_jadwal',
     ];

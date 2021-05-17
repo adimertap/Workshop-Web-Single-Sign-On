@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
-                        <a href="{{ route('prf.index') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
+                        <a href="{{ route('prf.destroy', $prf->id_prf) }}" class="btn btn-sm btn-light text-primary">Kembali</a>
                     </div>
                 </div>
             </div>

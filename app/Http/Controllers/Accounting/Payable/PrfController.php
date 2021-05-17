@@ -198,7 +198,7 @@ class PrfController extends Controller
         PrfDetail::where('id_prf', $id_prf)->delete();
         $prf->delete();
 
-        return redirect()->back()->with('messagehapus','Data Prf Berhasil dihapus');
+        return redirect()->route('prf.index')->with('messagehapus','Data Prf Berhasil dihapus');
     }
 
     public function statusBayar(Statusbayar $request, $id_prf)

@@ -44,7 +44,14 @@ class Opname extends Model
     
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_inventory_opname')->orderBy('id_opname','DESC')->take(1)->get();
+         $getId = DB::table('tb_inventory_opname')->orderBy('id_opname','DESC')->take(1)->get();
+         if(count($getId) > 0) return $getId;
+         return (object)[
+             (object)[
+                 'id_opname'=> 0
+             ]
+             ];
+
 
     }
 }

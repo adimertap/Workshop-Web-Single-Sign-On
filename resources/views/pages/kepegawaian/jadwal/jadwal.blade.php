@@ -25,11 +25,12 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
+
                 <!-- Illustrations -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Jadwal Pegawai</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Jadwal</h6>
                     </div>
                     <div class="card-body">
                         <div class="text-center">
@@ -40,14 +41,28 @@
                         <div class="m-0 font-weight-bold text-primary" style="text-align: center">Pukul 08.00 - 16.00
                         </div>
                         <hr class="my-2">
-                        <p style="text-align: center">Klik <span class="font-weight-bold text-primary"> Atur Jadwal
-                            </span> untuk
-                            melakukan
-                            pengaturan jadwal pegawai bengkel
+                        <p style="text-align: center">Pilih <span class="font-weight-bold text-primary"> Tanggal
+                            </span> untuk melakukan pengaturan jadwal pegawai bengkel
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Kalendar Jadwal</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="mr-3 ml-3" id="calendar"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-9">
                 <div class="card mb-4">
                     <div class="card card-header-actions">
                         <div class="card-header">Jadwal Seluruh Pegawai
@@ -71,7 +86,7 @@
                                 </button>
                             </div>
                             @endif
-    
+
                             {{-- SHOW ENTRIES --}}
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
@@ -81,25 +96,29 @@
                                             style="width: 100%;">
                                             <thead>
                                                 <tr role="row">
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                        colspan="1" aria-sort="ascending"
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
                                                         aria-label="Name: activate to sort column descending"
                                                         style="width: 20px;">No</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                        colspan="1" aria-label="Position: activate to sort column ascending"
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
                                                         style="width: 180px;">Nama Pegawai</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                        colspan="1" aria-label="Position: activate to sort column ascending"
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
                                                         style="width: 120px;">Jabatan</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                        colspan="1" aria-label="Position: activate to sort column ascending"
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
                                                         style="width: 80px;">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody id='konfirmasi'>
                                                 @forelse ($pegawai as $item)
                                                 <tr role="row" class="odd">
-                                                    <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
+                                                    <th scope="row" class="small" class="sorting_1">
+                                                        {{ $loop->iteration}}
                                                     </th>
                                                     <td>{{ $item->nama_pegawai }}</td>
                                                     <td>{{ $item->jabatan->nama_jabatan }}</td>
@@ -112,7 +131,7 @@
                                                 @empty
                                                 <tr>
                                                     <td colspan="4" class="text-center">
-                                                       Tidak ada Data Pegawai
+                                                        Tidak ada Data Pegawai
                                                     </td>
                                                 </tr>
                                                 @endforelse
@@ -130,8 +149,29 @@
 </main>
 
 <script>
+    $(document).ready(function () {
+        var calendar = $('#calendar').fullcalendar({
+            height: 650,
+            showNonCurrentDates: false,
+            editable: false,
+            defaultView: 'year',
+            yearColumns: 3,
+            header: {
+                lef: 'prev,next today',
+                center: 'title',
+                right: 'year,month,basicWeek,basicDay'
+            }
+        })
+    })
 
-    
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+        });
+        calendar.render();
+    });
+
 
     setInterval(displayclock, 500);
 
