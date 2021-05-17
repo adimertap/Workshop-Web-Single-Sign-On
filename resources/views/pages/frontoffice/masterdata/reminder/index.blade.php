@@ -175,7 +175,7 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{ route('reminder.update', $item->id_master_reminder) }}" method="POST">
                     @method('PUT')
                     @csrf
                     
@@ -231,7 +231,7 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="#" method="POST" class="d-inline">
+                <form action="{{ route('reminder.destroy', $item->id_master_reminder) }}" method="POST" class="d-inline">
                     @csrf
                     @method('delete')
                     <div class="modal-body">Apakah Anda Yakin Menghapus Data Reminder {{ $item->nama_reminder }}?</div>

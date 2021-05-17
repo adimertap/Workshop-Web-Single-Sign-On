@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontOffice;
 use App\Model\FrontOffice\PenjualanSparepart;
 use App\Http\Controllers\Controller;
 use App\Model\FrontOffice\CustomerBengkel;
+use App\Model\FrontOffice\DetailPenjualanSparepart;
 use App\Model\Inventory\Sparepart;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,17 @@ class PenjualanSparepartController extends Controller
     {
         $customer = CustomerBengkel::all();
         $sparepart = Sparepart::all();
-        return view('pages.frontoffice.penjualan_sparepart.tambah_penjualan_sparepart', compact('customer', 'sparepart'));
+
+        $id = PenjualanSparepart::getId();
+        foreach ($id as $value);
+        $idlama = $value->id_penjualan_sparepart;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+
+        $kode_penjualan_sparepart = 'PS-' . $blt . '/' . $idbaru;
+
+
+        return view('pages.frontoffice.penjualan_sparepart.create', compact('customer', 'sparepart', 'kode_penjualan_sparepart'));
     }
 
     /**
@@ -50,6 +61,12 @@ class PenjualanSparepartController extends Controller
         $penjualan->tanggal = $request->tanggal;
         $penjualan->status_bayar = 'Belum Bayar';
 
+        $temp = 0;
+        foreach ($request->sparepart as $key => $item) {
+            $temp = $temp + $item['total_harga'];
+        }
+        $penjualan->total_bayar = $temp;
+
         $penjualan->save();
         $penjualan->Detailsparepart()->sync($request->sparepart);
 
@@ -63,9 +80,13 @@ class PenjualanSparepartController extends Controller
      * @param  \App\PenjualanSparepart  $penjualanSparepart
      * @return \Illuminate\Http\Response
      */
-    public function show(PenjualanSparepart $penjualanSparepart)
+    public function show($id_penjualan_sparepart)
     {
-        //
+        $penjualan = PenjualanSparepart::with('Detailsparepart')->findOrFail($id_penjualan_sparepart);
+
+        return view('pages.frontoffice.penjualan_sparepart.detail')->with([
+            'penjualan' => $penjualan
+        ]);
     }
 
     /**
@@ -97,8 +118,12 @@ class PenjualanSparepartController extends Controller
      * @param  \App\PenjualanSparepart  $penjualanSparepart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PenjualanSparepart $penjualanSparepart)
+    public function destroy($id_penjualan_sparepart)
     {
-        //
+        $penjualan = PenjualanSparepart::findOrFail($id_penjualan_sparepart);
+        DetailPenjualanSparepart::where('id_penjualan_sparepart', $id_penjualan_sparepart)->delete();
+        $penjualan->delete();
+
+        return redirect()->back()->with('messagehapus', 'Data Penjualan Sparepart Berhasil dihapus');
     }
 }

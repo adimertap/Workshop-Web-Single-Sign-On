@@ -19,6 +19,7 @@ class MasterDataMerkKendaraanController extends Controller
     public function index()
     {
         $merk = FrontOfficeMasterDataMerkKendaraan::with(['jenis_kendaraan'])->get();
+        // return $merk;
         $jenis_kendaraan = MasterDataJenisKendaraan::all();
 
         $id = FrontOfficeMasterDataMerkKendaraan::getId();

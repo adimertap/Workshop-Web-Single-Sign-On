@@ -32,7 +32,7 @@
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
         <a class="navbar-brand" href="{{ route('dashboardinventory')}}">
-            <i class="fas fa-boxes mr-3"></i>
+            <i class="fas fa-users mr-2"></i>
             Single Sign On System
         </a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
@@ -156,7 +156,7 @@
                     <h6 class="dropdown-header d-flex align-items-center">
                         <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
                         <div class="dropdown-user-details">
-                            <div class="dropdown-user-details-name">{{ Auth::user()->name }}</div>
+                            <div class="dropdown-user-details-name">{{ Auth::user()->pegawai->nama_pegawai }}</div>
                             <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
                         </div>
                     </h6>
@@ -192,26 +192,19 @@
                         
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
-                        <div class="sidenav-menu-heading">Management</div>
+                        <div class="sidenav-menu-heading">Manajemen</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
-                            Management
+                            Manajemen
                             <div class="sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('manajemenrole')}}">
-                                    Role
-                                </a>
-                                <a class="nav-link" href="{{ route('manajemenhakakses')}}">
-                                    Hak Akses
-                                </a>
-                                <a class="nav-link" href="{{ route('manajemenuser')}}">
+                                <a class="nav-link" href="{{ route('manajemen-user.index')}}">
                                     User
-                                </a>
                                 </a>
                             </nav>
                         </div>
@@ -230,7 +223,7 @@
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">User Role:</div>
-                        <div class="sidenav-footer-title">{{ Auth::user()->name }}</div>
+                        <div class="sidenav-footer-title">{{ Auth::user()->role_name }}</div>
                     </div>
                 </div>
             </nav>
@@ -248,12 +241,7 @@
             <footer class="footer mt-auto footer-light">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6 small">Copyright &copy; Universitas Udayana</div>
-                        <div class="col-md-6 text-md-right small">
-                            <a href="#!">Privacy Policy</a>
-                            &middot;
-                            <a href="#!">BengkelKuy</a>
-                        </div>
+                        <div class="col-md-12 text-center">Copyright &copy; 2021 BengkelPro</div>
                     </div>
                 </div>
             </footer>

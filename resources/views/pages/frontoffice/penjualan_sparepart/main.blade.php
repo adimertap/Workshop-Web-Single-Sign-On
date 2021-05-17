@@ -25,7 +25,8 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">Penjualan Sparepart
-                    <a href="{{ route('penjualansparepart.create') }}" class="btn btn-sm btn-primary"> Tambah Penjualan</a>
+                    <a href="{{ route('penjualansparepart.create') }}" class="btn btn-sm btn-primary"> Tambah
+                        Penjualan</a>
                 </div>
             </div>
             <div class="card-body">
@@ -69,6 +70,10 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Total Bayar</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">Tanggal</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
@@ -81,41 +86,42 @@
                                     </thead>
                                     <tbody>
                                         @forelse ($penjualan as $item)
-                                            <tr>
-                                                <td>{{$loop->iteration}}</td>
-                                                <td>{{$item->kode_penjualan}}</td>
-                                                <td>{{$item->Customer->nama_customer}}</td>
-                                                <td>{{$item->tanggal}}</td>
-                                                <td>
-                                                    @if ($item->status_bayar == 'Belum Bayar')
-                                                        <span class="badge badge-danger">
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$item->kode_penjualan}}</td>
+                                            <td>{{$item->Customer->nama_customer}}</td>
+                                            <td>Rp. {{ number_format($item->total_bayar,2,',','.') }}</td>
+                                            <td>{{$item->tanggal}}</td>
+                                            <td>
+                                                @if ($item->status_bayar == 'Belum Bayar')
+                                                <span class="badge badge-danger">
                                                     @elseif ($item->status_bayar == 'Lunas')
-                                                        <span class="badge badge-success">
-                                                    @else
+                                                    <span class="badge badge-success">
+                                                        @else
                                                         <span>
                                                             @endif
                                                             {{$item->status_bayar}}
                                                         </span>
-                                                    
-                                                </td>
-                                                <td>
-                                                    <a href="/" class="btn btn-secondary btn-datatable"
-                                                        data-toggle="tooltip" data-placement="top" title=""
-                                                        data-original-title="Detail">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                    <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Edit">
-                                                        <i class="fas fa-edit"></i>
-                                                    </a>
-                                                    <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                        data-toggle="modal">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('penjualansparepart.show', $item->id_penjualan_sparepart) }}"
+                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Detail">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_penjualan_sparepart }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                         @empty
-                                            
+
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -127,6 +133,36 @@
         </div>
     </div>
 </main>
+
+{{-- MODAL HAPUS --}}
+@forelse ($penjualan as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_penjualan_sparepart }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger-soft">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('penjualansparepart.destroy', $item->id_penjualan_sparepart) }}" method="POST"
+                class="d-inline">
+                @csrf
+                @method('delete')
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Penerimaan {{ $item->kode_penjualan }} pada
+                    tanggal
+                    {{ $item->tanggal }}?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+
+@endforelse
 
 
 @endsection

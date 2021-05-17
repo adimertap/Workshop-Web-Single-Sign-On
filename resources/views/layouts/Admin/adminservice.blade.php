@@ -32,7 +32,7 @@
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
         <a class="navbar-brand" href="{{ route('dashboardservice')}}">
-            <i class="fas fa-boxes mr-3"></i>
+            <i class="fas fa-cog mr-2"></i>
             Service System
         </a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
@@ -156,7 +156,7 @@
                     <h6 class="dropdown-header d-flex align-items-center">
                         <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
                         <div class="dropdown-user-details">
-                            <div class="dropdown-user-details-name">{{ Auth::user()->name }}</div>
+                            <div class="dropdown-user-details-name">{{ Auth::user()->pegawai->nama_pegawai }}</div>
                             <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
                         </div>
                     </h6>
@@ -198,25 +198,27 @@
 
                         {{-- Service Advisor --}}
                         {{-- Service Advisor --}}
+                        @if (Auth::user()->role == 'admin_service_advisor' || Auth::user()->role == 'owner')
                         <div class="sidenav-menu-heading">Service Advisor</div>
-                        <a class="nav-link collapsed" href="{{route('penerimaanservice')}}"  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('penerimaanservice.index')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-handshake"></i>
                             </div>
                             Penerimaan Service
                         </a>
+                        @endif
 
                         {{-- FRONTOFFICE SYSTEM --}}
                         <div class="sidenav-menu-heading">Service System</div>
 
-                        <a class="nav-link collapsed" href="{{route('stoksparepart')}}"  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('stoksparepart.index')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-cubes"></i>
                             </div>
                             Stok Sparepart
                         </a>
 
-                        <a class="nav-link collapsed" href="{{route('jadwalmekanik')}}"  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('jadwalmekanik.index')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-user"></i>
                             </div>
@@ -224,7 +226,7 @@
                         </a>
 
                         {{-- Inventory --}}
-                        <a class="nav-link collapsed" href="{{route('pengerjaanservice')}}"  aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="{{route('pengerjaanservice.index')}}"  aria-expanded="false" aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-cogs"></i></div>
                             Pengerjaan Service
                         </a>
@@ -235,7 +237,7 @@
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">User Role:</div>
-                        <div class="sidenav-footer-title">{{ Auth::user()->name }}</div>
+                        <div class="sidenav-footer-title">{{ Auth::user()->role_name }}</div>
                     </div>
                 </div>
             </nav>
@@ -253,12 +255,7 @@
             <footer class="footer mt-auto footer-light">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6 small">Copyright &copy; Universitas Udayana</div>
-                        <div class="col-md-6 text-md-right small">
-                            <a href="#!">Privacy Policy</a>
-                            &middot;
-                            <a href="#!">BengkelKuy</a>
-                        </div>
+                        <div class="col-md-12 text-center">Copyright &copy; 2021 BengkelPro</div>
                     </div>
                 </div>
             </footer>

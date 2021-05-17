@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\MasterData\JenisKendaraanRequest as MasterDataJenisKendaraanRequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataJenisKendaraan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class MasterDataJenisKendaraanController extends Controller
@@ -40,7 +41,10 @@ class MasterDataJenisKendaraanController extends Controller
      */
     public function store(MasterDataJenisKendaraanRequest $request)
     {
+
+        $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
+        // return $data;
 
         MasterDataJenisKendaraan::create($data);
         return redirect()->route('jenis-kendaraan.index')->with('messageberhasil', 'Data Jenis Kendaraan Berhasil ditambahkan');

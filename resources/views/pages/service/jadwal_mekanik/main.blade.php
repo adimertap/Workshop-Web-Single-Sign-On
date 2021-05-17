@@ -56,19 +56,29 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">No</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Kode Pegawai</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">Nama Mekanik</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Jam Masuk</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($mekanik_asli as $item)
+                                        @if (($item->absensi_mekanik) != '')
+                                        <tr role="row" class="odd">
+                                            <td>{{ $item->nama_pegawai }}</td>
+                                            <td>{{ $item->absensi_mekanik->jam_masuk }}</td>
+                                        </tr>
+                                        @endif
 
+                                        @empty
+                                        <tr>
+                                            <td colspan="7" class="text-center">
+                                                Data Mekanik Kosong
+                                            </td>
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

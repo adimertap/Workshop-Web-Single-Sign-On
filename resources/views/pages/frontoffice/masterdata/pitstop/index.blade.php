@@ -25,7 +25,8 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Pit Stop
-                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                        data-target="#Modaltambah">Tambah
                         Data</button>
                 </div>
             </div>
@@ -80,11 +81,13 @@
                                             <td>{{ $item->nama_pitstop }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_pitstop }}">
+                                                    data-toggle="modal"
+                                                    data-target="#Modaledit-{{ $item->id_pitstop }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_pitstop }}">
+                                                    data-toggle="modal"
+                                                    data-target="#Modalhapus-{{ $item->id_pitstop }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -105,7 +108,7 @@
             </div>
         </div>
     </div>
-    
+
     {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
     <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -123,12 +126,9 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="kode_pitstop">Kode Pit Stop</label>
+                            <label class="small mb-1" for="kode_pitstop">Kode Pitstop</label>
                             <input class="form-control" name="kode_pitstop" type="text" id="kode_pitstop"
-                                placeholder="Input Kode Pit Stop" value="{{ old('kode_pitstop') }}"
-                                class="form-control @error('kode_pitstop') is-invalid @enderror">
-                            @error('kode_pitstop')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                                placeholder="Input Kode Jasa Perbaikan" value="{{ $kode_pitstop }}" readonly>
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="nama_pitstop">Nama Pit Stop</label>
@@ -164,18 +164,15 @@
                 <form action="{{ route('pitstop.update', $item->id_pitstop) }}" method="POST">
                     @method('PUT')
                     @csrf
-                    
+
                     <div class="modal-body">
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="kode_pitstop">Kode Pit Stop <span style="color: red">*</span> </label>
-                            <input class="form-control" name="kode_pitstop" type="text" id="kode_pitstop"
-                                placeholder="Input Nama Diskon" value="{{ $item->kode_pitstop }}"
-                                class="form-control @error('kode_pitstop') is-invalid @enderror">
-                            @error('kode_pitstop')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                            <label class="small" for="kode_pitstop">Kode Merk</label>
+                            <input class="form-control" name="kode_pitstop" type="text"
+                                id="kode_pitstop" value="{{ $item->kode_pitstop }}" readonly>
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="nama_pitstop">Nama Pitstop</label>

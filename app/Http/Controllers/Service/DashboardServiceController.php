@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Service;
 
 use App\Http\Controllers\Controller;
+use App\Model\Kepegawaian\Jabatan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardServiceController extends Controller
@@ -14,8 +16,14 @@ class DashboardServiceController extends Controller
      */
     public function index()
     {
-        $blt = date('D, d/m/Y');
-        return view('pages.service.dashboard.dashboardservice', compact('blt'));
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal_tahun = Carbon::now()->format('j F Y');
+
+        $mekanik = Jabatan::with('pegawai', 'pegawai.absensi_mekanik')->where('nama_jabatan', 'Mekanik')->get();
+        $mekanik_asli = $mekanik[0]->pegawai;
+        $mekanik_count = $mekanik_asli->count();
+
+        return view('pages.service.dashboard.dashboardservice', compact('today', 'tanggal_tahun', 'mekanik_count'));
     }
 
     /**

@@ -42,10 +42,7 @@
                     </div>
                     <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Selamat Datang, I Putu Adi
                         Merta Pratama</h2>
-                    <p></p>
-                    <p style="text-align: center">Add some quality, svg illustrations to your project courtesy of <a
-                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated
-                        collection of beautiful svg images that you can use completely free and without attribution!</p>
+                    
                 </div>
             </div>
         </div>
@@ -61,7 +58,7 @@
                             <div class="avatar avatar-xl mr-3 bg-gray-200"><img class="avatar-img img-fluid"
                                     src="/backend/src/assets/img/freepik/profiles/profile-6.png" alt=""></div>
                             <div class="d-flex flex-column font-weight-bold">
-                                <a class="text-dark line-height-normal mb-1" ">I Putu Adi Merta Pratama</a>
+                                <a class="text-dark line-height-normal mb-1" ">{{ Auth::user()->pegawai->nama_pegawai }}</a>
                                     <div class=" small text-muted line-height-normal">Bagian Gudang</div>
                         </div>
                     </div>
@@ -88,16 +85,7 @@
                 </div>
 
                 <form>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">NIP
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label class="small text-muted line-height-normal">: 192003994982
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <div class="col-md-4">
                             <div class="d-flex flex-column font-weight-bold">
@@ -105,17 +93,17 @@
                             </div>
                         </div>
                         <div class="col">
-                            <label class="small text-muted line-height-normal">: Jl. Anyelir Bongan Kauh Tabanan
+                            <label class="small text-muted line-height-normal">: {{ Auth::user()->pegawai->alamat }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">Telephone
+                                <label class="small text-muted line-height-normal">Telepon
                             </div>
                         </div>
                         <div class="col">
-                            <label class="small text-muted line-height-normal">: 083117270179
+                            <label class="small text-muted line-height-normal">: {{ Auth::user()->pegawai->no_telp }}
                         </div>
                     </div>
                 </form>

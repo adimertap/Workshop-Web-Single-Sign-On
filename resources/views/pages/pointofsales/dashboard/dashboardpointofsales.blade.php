@@ -2,14 +2,14 @@
 
 @section('content')
 <main>
-    <div class="container mt-3">
+    <div class="container mt-4">
         <!-- Custom page header alternative example-->
         <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
             <div class="mr-4 mb-3 mb-sm-0">
                 <h1 class="mb-0">Dashboard Point of Sales</h1>
                 <div class="small">
-                    <span class="font-weight-500 text-primary">{{$blt}}</span>
-                    <span id="clock"></span>
+                    <span class="font-weight-500 text-primary">{{ $today }}</span>
+                    · Tanggal {{ $tanggal_tahun }} · <span id="clock">12:16 PM</span>
                 </div>
             </div>
             <div class="small">
@@ -39,10 +39,7 @@
                             src="/backend/src/assets/img/pos.jpg" alt="">
                     </div>
                     <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Selamat Datang, I Gede Angga Kusuma Putra</h2>
-                    <p></p>
-                    <p style="text-align: center">Add some quality, svg illustrations to your project courtesy of <a
-                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated
-                        collection of beautiful svg images that you can use completely free and without attribution!</p>
+                    
                 </div>
             </div>
         </div>
@@ -58,7 +55,7 @@
                             <div class="avatar avatar-xl mr-3 bg-gray-200"><img class="avatar-img img-fluid"
                                     src="/backend/src/assets/img/freepik/profiles/profile-6.png" alt=""></div>
                             <div class="d-flex flex-column font-weight-bold">
-                                <a class="text-dark line-height-normal mb-1">{{ Auth::user()->name }}</a>
+                                <a class="text-dark line-height-normal mb-1">{{ Auth::user()->pegawai->nama_pegawai }}</a>
                                     <div class=" small text-muted line-height-normal">Bagian Point of Sales</div>
                         </div>
                     </div>
@@ -85,16 +82,7 @@
                 </div>
 
                 <form>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">NIP
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label class="small text-muted line-height-normal">: 192003994982
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <div class="col-md-4">
                             <div class="d-flex flex-column font-weight-bold">
@@ -102,17 +90,17 @@
                             </div>
                         </div>
                         <div class="col">
-                            <label class="small text-muted line-height-normal">: Jl. Denpasar
+                            <label class="small text-muted line-height-normal">: {{ Auth::user()->pegawai->alamat }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">Telephone
+                                <label class="small text-muted line-height-normal">Telepon
                             </div>
                         </div>
                         <div class="col">
-                            <label class="small text-muted line-height-normal">: 083117270179
+                            <label class="small text-muted line-height-normal">: {{ Auth::user()->pegawai->no_telp }}
                         </div>
                     </div>
                 </form>

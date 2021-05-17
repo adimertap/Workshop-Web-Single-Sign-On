@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\PointOfSales\Pembayaran;
 
 use App\Http\Controllers\Controller;
+use App\Model\FrontOffice\CustomerBengkel;
+use App\Model\FrontOffice\PenjualanSparepart;
+use App\Model\SingleSignOn\Bengkel;
 use Illuminate\Http\Request;
 
 class PembayaranSparepartController extends Controller
@@ -14,7 +17,8 @@ class PembayaranSparepartController extends Controller
      */
     public function index()
     {
-        return view('pages.pointofsales.pembayaran.pembayaran_sparepart');
+        $penjualan_sparepart = PenjualanSparepart::where([['status_bayar', '=', 'Belum Bayar']])->get();
+        return view('pages.pointofsales.pembayaran.pembayaran_sparepart', compact('penjualan_sparepart'));
     }
 
     /**
@@ -44,9 +48,11 @@ class PembayaranSparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_penjualan_sparepart)
     {
-        //
+        $pembayaran = PenjualanSparepart::with('Detailsparepart', 'Bengkel', 'Customer')->findOrFail($id_penjualan_sparepart);
+
+        return view('pages.pointofsales.pembayaran.invoice_sparepart', compact('pembayaran'));
     }
 
     /**

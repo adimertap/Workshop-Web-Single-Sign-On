@@ -32,7 +32,7 @@
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
         <a class="navbar-brand" href="{{ route('dashboardinventory')}}">
-            <i class="fas fa-boxes mr-3"></i>
+            <i class="fas fa-file-invoice-dollar mr-2"></i>
             Point of Sales System
         </a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
@@ -156,7 +156,7 @@
                     <h6 class="dropdown-header d-flex align-items-center">
                         <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
                         <div class="dropdown-user-details">
-                            <div class="dropdown-user-details-name">{{ Auth::user()->name }}</div>
+                            <div class="dropdown-user-details-name">{{ Auth::user()->pegawai->nama_pegawai }}</div>
                             <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
                         </div>
                     </h6>
@@ -209,10 +209,10 @@
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('pembayaranservice')}}">
+                                <a class="nav-link" href="{{ route('pembayaranservice.index')}}">
                                     Layanan Service
                                 </a>
-                                <a class="nav-link" href="{{ route('pembayaransparepart')}}">
+                                <a class="nav-link" href="{{ route('pembayaransparepart.index')}}">
                                     Penjualan Sparepart
                                 </a>
                                 </a>
@@ -231,10 +231,10 @@
                         </a>
                         <div class="collapse" id="collapseLaporan" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('laporanservice')}}">
+                                <a class="nav-link" href="{{ route('laporanservice.index')}}">
                                     Laporan Service
                                 </a>
-                                <a class="nav-link" href="{{ route('laporansparepart')}}">
+                                <a class="nav-link" href="{{ route('laporansparepart.index')}}">
                                     Laporan Penjualan Sparepart
                                 </a>
                                 </a>
@@ -247,7 +247,7 @@
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">User Role:</div>
-                        <div class="sidenav-footer-title">{{ Auth::user()->name }}</div>
+                        <div class="sidenav-footer-title">{{ Auth::user()->role_name }}</div>
                     </div>
                 </div>
             </nav>
@@ -269,7 +269,7 @@
                         <div class="col-md-6 text-md-right small">
                             <a href="#!">Privacy Policy</a>
                             &middot;
-                            <a href="#!">BengkelKuy</a>
+                            <a href="#!">BengkelPro</a>
                         </div>
                     </div>
                 </div>

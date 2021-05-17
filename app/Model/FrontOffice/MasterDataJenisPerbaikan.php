@@ -3,6 +3,7 @@
 namespace App\Model\FrontOffice;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class MasterDataJenisPerbaikan extends Model
 {
@@ -17,4 +18,9 @@ class MasterDataJenisPerbaikan extends Model
     protected $hidden = [];
 
     public $timestamps = false;
+
+    public static function getId()
+    {
+        return $getId = DB::table('tb_fo_master_jenis_perbaikan')->orderBy('id_jenis_perbaikan', 'DESC')->take(1)->get();
+    }
 }

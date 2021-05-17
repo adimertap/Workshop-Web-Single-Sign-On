@@ -33,6 +33,8 @@
                         <p class="text-gray-700 mb-0">It's time to get started! View new opportunities now, or
                             continue on your previous work.</p>
                     </div>
+                    <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Selamat Datang, {{ Auth::user()->pegawai->nama_pegawai }}</h2>
+                    
                 </div>
                 <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"
                         src="/backend/src/assets/img/freepik/accounting.png" style="max-width: 11rem;"></div>

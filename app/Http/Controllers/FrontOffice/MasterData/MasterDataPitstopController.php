@@ -18,7 +18,15 @@ class MasterDataPitstopController extends Controller
     {
         $pitstop = MasterDataPitstop::get();
 
-        return view('pages.frontoffice.masterdata.pitstop.index', compact('pitstop'));
+        $id = MasterDataPitstop::getId();
+        foreach ($id as $value);
+        $idlama = $value->id_pitstop;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+
+        $kode_pitstop = 'PS-' . $idbaru . '/' . $blt;
+
+        return view('pages.frontoffice.masterdata.pitstop.index', compact('pitstop', 'kode_pitstop'));
     }
 
     /**
@@ -77,7 +85,7 @@ class MasterDataPitstopController extends Controller
     public function update(Pitstoprequest $request, $id_pitstop)
     {
         $pitstop = MasterDataPitstop::findOrFail($id_pitstop);
-        $pitstop->kode_pitstop = $request->kodepitstop;
+        $pitstop->kode_pitstop = $request->kode_pitstop;
         $pitstop->nama_pitstop = $request->nama_pitstop;
 
         $pitstop->update();

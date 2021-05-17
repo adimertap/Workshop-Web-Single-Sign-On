@@ -62,19 +62,10 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label class="small text-muted line-height-normal">: {{ Auth::user()->name }}
+                                <label class="small text-muted line-height-normal">: {{ Auth::user()->pegawai->nama_pegawai }}
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="d-flex flex-column font-weight-bold">
-                                    <label class="small text-muted line-height-normal">NIP
-                                </div>
-                            </div>
-                            <div class="col">
-                                <label class="small text-muted line-height-normal">: 192003994982
-                            </div>
-                        </div>
+                        
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="d-flex flex-column font-weight-bold">
@@ -182,7 +173,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label class="small text-muted line-height-normal">: Jl. Anyelir Bongan Kauh Tabanan
+                                <label class="small text-muted line-height-normal">: {{ Auth::user()->pegawai->alamat }}
                             </div>
                         </div>
                         <div class="row">

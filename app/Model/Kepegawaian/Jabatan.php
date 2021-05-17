@@ -19,7 +19,7 @@ class Jabatan extends Model
         'id_gaji_pokok'
     ];
 
-    protected $hidden =[ 
+    protected $hidden = [
         'created_at',
         'updated_at',
         'deleted_at'
@@ -27,7 +27,13 @@ class Jabatan extends Model
 
     public $timestamps = true;
 
-    public function Gajipokok(){
-        return $this->hasOne(Mastergajipokok::class,'id_jabatan');
+    public function Gajipokok()
+    {
+        return $this->hasOne(Mastergajipokok::class, 'id_jabatan');
+    }
+
+    public function pegawai()
+    {
+        return $this->hasMany(Pegawai::class, 'id_jabatan');
     }
 }

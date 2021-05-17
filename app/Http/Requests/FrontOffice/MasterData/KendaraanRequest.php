@@ -26,6 +26,8 @@ class KendaraanRequest extends FormRequest
         return [
             'kode_kendaraan' => 'required',
             'nama_kendaraan' => 'required',
+            'id_jenis_kendaraan' => 'required',
+            'id_merk_kendaraan' => 'required',
         ];
     }
 }

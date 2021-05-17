@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
+use App\Model\FrontOffice\CustomerBengkel;
+use App\Model\FrontOffice\PelayananService;
+use App\Model\FrontOffice\PenjualanSparepart;
 use App\Model\SingleSignOn\Bengkel;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardFrontOfficeController extends Controller
@@ -17,8 +21,13 @@ class DashboardFrontOfficeController extends Controller
     public function index()
     {
         $sso = User::get();
-        $blt = date('D, d/m/Y');
-        return view('pages.frontoffice.dashboard.dashboardfrontoffice', compact('sso', 'blt'));
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal_tahun = Carbon::now()->format('j F Y');
+        $transaksi_sparepart = PenjualanSparepart::count();
+        // $pelayanan_service = PelayananService::count();
+        $customer_terdaftar = CustomerBengkel::count();
+
+        return view('pages.frontoffice.dashboard.dashboardfrontoffice', compact('sso', 'today', 'tanggal_tahun', 'transaksi_sparepart', 'customer_terdaftar'));
     }
 
     /**

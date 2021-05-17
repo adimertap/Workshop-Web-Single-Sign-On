@@ -65,5 +65,15 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+        'owner' => \App\Http\Middleware\isOwner::class,
+        'admin_front_office' => \App\Http\Middleware\isAdminFrontOffice::class,
+        'admin_service_advisor' => \App\Http\Middleware\isAdminServiceAdvisor::class,
+        'admin_service_instructor' => \App\Http\Middleware\isAdminServiceInstructor::class,
+        'admin_kasir' => \App\Http\Middleware\isAdminKasir::class,
+        'admin_gudang' => \App\Http\Middleware\isAdminGudang::class,
+        'admin_purchasing' => \App\Http\Middleware\isAdminPurchasing::class,
+        'admin_account_payable' => \App\Http\Middleware\isAdminAccountPayable::class,
+        'admin_account_receivable' => \App\Http\Middleware\isAdminAccountReceivable::class,
+        'admin_marketplace' => \App\Http\Middleware\isAdminMarketplace::class,
     ];
 }

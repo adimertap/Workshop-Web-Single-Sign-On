@@ -31,7 +31,7 @@
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
         <a class="navbar-brand" href="{{ route('dashboardfrontoffice')}}">
-            <i class="fas fa-boxes mr-3"></i>
+            <i class="fas fa-users-cog mr-2"></i>
             Front Office System 
         </a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
@@ -155,7 +155,7 @@
                     <h6 class="dropdown-header d-flex align-items-center">
                         <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
                         <div class="dropdown-user-details">
-                            <div class="dropdown-user-details-name">{{ Auth::user()->name }}</div>
+                            <div class="dropdown-user-details-name">{{ Auth::user()->pegawai->nama_pegawai }}</div>
                             <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
                         </div>
                     </h6>
@@ -217,7 +217,7 @@
                                     Kendaraan
                                 </a>
                                 <a class="nav-link" href="{{ route('jenis-perbaikan.index')}}">
-                                    Jenis Perbaikan
+                                    Jasa Perbaikan
                                 </a>
                                 <a class="nav-link" href="{{ route('diskon.index')}}">
                                     Diskon
@@ -234,7 +234,7 @@
                         {{-- FRONTOFFICE SYSTEM --}}
                         <div class="sidenav-menu-heading">Front Office System</div>
 
-                        <a class="nav-link collapsed" href="{{route('pelayananservice')}}"  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('pelayananservice.index')}}"  aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-cog"></i>
                             </div>
@@ -247,7 +247,7 @@
                             Penjualan Sparepart
                         </a>
 
-                        <a class="nav-link collapsed" href="{{route('customerterdaftar')}}"  aria-expanded="false" aria-controls="collapseComponents">
+                        <a class="nav-link collapsed" href="{{route('customerterdaftar.index')}}"  aria-expanded="false" aria-controls="collapseComponents">
                             <div class="nav-link-icon"><i class="fas fa-users"></i></div>
                             Customer Terdaftar
                         </a>
@@ -258,7 +258,7 @@
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">User Role:</div>
-                        <div class="sidenav-footer-title">{{ Auth::user()->name }}</div>
+                        <div class="sidenav-footer-title">{{ Auth::user()->role_name }}</div>
                     </div>
                 </div>
             </nav>
@@ -276,12 +276,7 @@
             <footer class="footer mt-auto footer-light">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6 small">Copyright &copy; Universitas Udayana</div>
-                        <div class="col-md-6 text-md-right small">
-                            <a href="#!">Privacy Policy</a>
-                            &middot;
-                            <a href="#!">BengkelKuy</a>
-                        </div>
+                        <div class="col-md-12 text-center">Copyright &copy; 2021 BengkelPro</div>
                     </div>
                 </div>
             </footer>

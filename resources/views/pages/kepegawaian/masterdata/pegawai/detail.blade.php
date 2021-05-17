@@ -141,7 +141,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="d-flex flex-column font-weight-bold">
-                                                        <label class="small text-muted line-height-normal">Telephone
+                                                        <label class="small text-muted line-height-normal">Telepon
                                                     </div>
                                                 </div>
                                                 <div class="col">

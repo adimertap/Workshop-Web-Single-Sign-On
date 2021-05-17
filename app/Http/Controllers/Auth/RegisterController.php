@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Model\Kepegawaian\Pegawai;
+use App\Model\SingleSignOn\Bengkel;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -29,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::SSO;
 
     /**
      * Create a new controller instance.
@@ -51,6 +54,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'min:6', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -64,10 +68,48 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        // dd($data);
+        $file = $data['logo_bengkel'];
+        $name_file = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path() . '/image/', $name_file);
+        // $imgUrl = url('/image/' . $name_file);
+
+        $bengkel = Bengkel::create([
+            'slug' => Str::slug($data['nama_bengkel']),
+            'nama_bengkel' => $data['nama_bengkel'],
+            'alamat_bengkel' => $data['alamat_bengkel'],
+            'longitude' => $data['longitude'],
+            'latitude' => $data['latitude'],
+            'nohp_bengkel' => $data['nohp_bengkel'],
+            'logo_bengkel' => $name_file
+        ]);
+
+
+        $pegawai = Pegawai::create([
+            'nama_pegawai' => $data['name'],
+            'nama_panggilan' => $data['username'],
+            'tempat_lahir' => $data['tempat_lahir'],
+            'tanggal_lahir' => $data['tanggal_lahir'],
+            'email' => $data['email'],
+            'no_telp' => $data['no_telp'],
+            'jenis_kelamin' => $data['jenis_kelamin'],
+            'id_jabatan' => 4
+        ]);
+
+        $user =  User::create([
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'id_bengkel' =>  $bengkel->id_bengkel,
+            'id_pegawai' => $pegawai->id_pegawai
         ]);
+
+
+        return $user;
+    }
+
+    public function showRegisterForm()
+    {
+        return view('pages.singlesignon.register');
     }
 }
