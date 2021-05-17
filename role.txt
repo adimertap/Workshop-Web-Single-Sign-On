@@ -1,0 +1,16 @@
+Inventory
+- Master Data : Owner, Gudang
+- Kelola Stock : Owner, Gudang
+- Purchasing : Admin Purchasing
+- Receiving : Gudang
+- Approval (PO, Stock Opname) : Owner
+- Approval (PO AP) : Account Payable
+
+Kepegawaian (Owner)
+Payroll (Owner)
+
+Accounting
+- Master Data : Owner
+- Payable : Account Payable
+- Receivable : Account Receivable
+- Jurnal & Laporan : Account Receivable dan Payable 
