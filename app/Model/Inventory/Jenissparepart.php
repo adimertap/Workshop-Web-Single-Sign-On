@@ -2,6 +2,7 @@
 
 namespace App\Model\Inventory;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -33,6 +34,11 @@ class Jenissparepart extends Model
 
     public function Mastermerk(){
         return $this->hasMany(Merksparepart::class, 'id_merk','id_merk');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 
 }

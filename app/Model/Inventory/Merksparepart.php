@@ -2,6 +2,7 @@
 
 namespace App\Model\Inventory;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -42,5 +43,10 @@ class Merksparepart extends Model
         // return $this->orderBy('id_sparepart')->take(1)->get();
         return $getId = DB::table('tb_inventory_master_merk_sparepart')->orderBy('id_merk','DESC')->take(1)->get();
 
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

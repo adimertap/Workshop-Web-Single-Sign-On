@@ -3,6 +3,7 @@
 namespace App\Model\Kepegawaian;
 
 use App\Model\Payroll\Mastergajipokok;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -35,5 +36,10 @@ class Jabatan extends Model
     public function pegawai()
     {
         return $this->hasMany(Pegawai::class, 'id_jabatan');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

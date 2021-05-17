@@ -2,6 +2,7 @@
 
 namespace App\Model\Accounting;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Jenistransaksi extends Model
@@ -23,5 +24,10 @@ class Jenistransaksi extends Model
 
     public function akun(){
         return $this->belongsTo(Akun::class,'id_akun','id_akun');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

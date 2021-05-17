@@ -5,6 +5,7 @@ namespace App\Model\Inventory\Kartugudang;
 use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Retur\Retur;
 use App\Model\Inventory\Sparepart;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -49,5 +50,10 @@ class Kartugudang extends Model
     public function Retur()
     {
         return $this->belongsTo(Retur::class,'id_retur','id_retur');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Model\Kepegawaian;
 
 use App\Model\Payroll\Mastergajipokok;
+use App\Scopes\OwnershipScope;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -57,5 +58,10 @@ class Pegawai extends Model
     public function absensi_mekanik()
     {
         return $this->hasOne(Absensi::class, 'id_pegawai')->whereDate('tanggal_absensi', Carbon::today())->where('absensi', 'Absen_Pagi');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

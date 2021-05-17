@@ -3,6 +3,7 @@
 namespace App\Model\Payroll;
 
 use App\Model\Kepegawaian\Pegawai;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -40,5 +41,10 @@ class Gajipegawai extends Model
 
     public function Pegawai(){
         return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

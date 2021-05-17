@@ -4,6 +4,7 @@ namespace App\Model\Inventory\Stockopname;
 
 use App\Model\Inventory\Rak;
 use App\Model\Inventory\Sparepart;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -39,6 +40,11 @@ class Opnamedetail extends Model
     public function Sparepart()
     {
         return $this->belongsTo(Sparepart::class, 'id_sparepart','id_sparepart');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 
 }

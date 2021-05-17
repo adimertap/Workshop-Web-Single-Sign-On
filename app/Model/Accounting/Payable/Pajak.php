@@ -4,6 +4,7 @@ namespace App\Model\Accounting\Payable;
 
 use App\Model\Accounting\Jenistransaksi;
 use App\Model\Kepegawaian\Pegawai;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +53,11 @@ class Pajak extends Model
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
         return $getId = DB::table('tb_accounting_pajak')->orderBy('id_pajak','DESC')->take(1)->get();
+    }
 
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 
 }

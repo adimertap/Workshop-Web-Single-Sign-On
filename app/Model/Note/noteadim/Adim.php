@@ -2,6 +2,7 @@
 
 namespace App\Model\Note\noteadim;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Adim extends Model
@@ -23,4 +24,9 @@ class Adim extends Model
     ];
 
     public $timestamps = false;
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
+    }
 }

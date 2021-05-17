@@ -3,6 +3,7 @@
 namespace App\Model\Accounting\Payable;
 
 use App\Model\Inventory\Sparepart;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 
 class InvoicePayabledetail extends Model
@@ -35,5 +36,10 @@ class InvoicePayabledetail extends Model
     public function PayableInvoice()
     {
         return $this->belongsTo(InvoicePayable::class, 'id_payable_invoice','id_payable_invoice');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Model\Payroll;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -29,6 +30,11 @@ class Mastertunjangan extends Model
 
     public function Gaji(){
         return $this->belongsToMany(Gajipegawai::class, 'tb_payroll_detgaji','id_tunjangan','id_gaji_pegawai');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
     
 

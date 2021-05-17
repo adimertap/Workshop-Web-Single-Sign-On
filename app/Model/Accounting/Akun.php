@@ -2,6 +2,7 @@
 
 namespace App\Model\Accounting;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Akun extends Model
@@ -21,4 +22,9 @@ class Akun extends Model
     ];
 
     public $timestamps = false;
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
+    }
 }

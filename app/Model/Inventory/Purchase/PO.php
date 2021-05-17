@@ -6,6 +6,7 @@ use App\Model\Accounting\Akun;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -63,5 +64,10 @@ class PO extends Model
                  'id_po'=> 0
              ]
              ];
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }
