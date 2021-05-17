@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\SingleSignOn\Manajemen;
 
 use App\Http\Controllers\Controller;
+use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\ManajemenUser;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ManajemenUserController extends Controller
 {
@@ -17,7 +19,10 @@ class ManajemenUserController extends Controller
     public function index()
     {
         $user = User::ownership()->get();
-        return view('pages.singlesignon.manajemen.user', compact('user'));
+        $pegawai = Pegawai::all();
+        $users = User::all();
+
+        return view('pages.singlesignon.manajemen.user', compact('user', 'pegawai', 'users'));
     }
 
     /**
@@ -27,7 +32,10 @@ class ManajemenUserController extends Controller
      */
     public function create()
     {
-        //
+        $pegawai = Pegawai::all();
+        $users = User::all();
+
+        return view('pages.singlesignon.manajemen.create-user', compact('pegawai', 'users'));
     }
 
     /**
@@ -38,6 +46,12 @@ class ManajemenUserController extends Controller
      */
     public function store(Request $request)
     {
+        $request['id_bengkel'] = Auth::user()->id_bengkel;
+        $data = $request->all();
+        $data['password'] = bcrypt($request->password);
+
+        User::create($data);
+        return redirect()->route('manajemen-user.index')->with('messageberhasil', 'Data Pengguna Berhasil ditambahkan');
     }
 
     /**
@@ -80,8 +94,11 @@ class ManajemenUserController extends Controller
      * @param  \App\ManajemenUser  $manajemenUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ManajemenUser $manajemenUser)
+    public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->back()->with('messagehapus', 'Data Pengguna Berhasil dihapus');
     }
 }

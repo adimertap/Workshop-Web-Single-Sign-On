@@ -25,9 +25,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Pengguna
-                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                        data-target="#Modaltambah">Tambah
-                        Data</button>
+                    <a href="{{ route('manajemen-user.create') }}" class="btn btn-sm btn-primary"> Tambah Kendaraan</a>
                 </div>
             </div>
             <div class="card-body">
@@ -59,11 +57,11 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">No</th>
+                                                style="width: 10px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Nama</th>
+                                                style="width: 40px;">Nama</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
@@ -71,21 +69,21 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Email</th>
+                                                style="width: 30px;">Email</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Role</th>
+                                                style="width: 30px;">Role</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Actions</th>
+                                                style="width: 15px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse ($user as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->pegawai->nama_pegawai }}</td>
                                             <td>{{ $item->username }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->role_name }}</td>
@@ -116,6 +114,36 @@
             </div>
         </div>
     </div>
+
+    {{-- MODAL DELETE --}}
+    @forelse ($users as $item)
+    <div class="modal fade" id="Modalhapus-{{ $item->id }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('manajemen-user.destroy', $item->id) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('delete')
+                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Pengguna dengan Username
+                        {{ $item->username }}?
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @empty
+
+    @endforelse
 </main>
 
 {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
