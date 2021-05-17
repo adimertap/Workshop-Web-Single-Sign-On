@@ -107,8 +107,6 @@
                                                 data-toggle="modal" data-target="#Modalbayar-{{ $item->bulan_gaji }}-{{ $item->tahun_gaji }}">
                                                 <i class="fas fa-check"></i>
                                                 @endif
-
-                                                
                                             </a>
                                             </td>
                                         </tr>

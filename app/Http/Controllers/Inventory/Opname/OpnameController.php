@@ -46,7 +46,6 @@ class OpnameController extends Controller
         $blt = date('y-m');
 
         $kode_opname = 'OPM-'.'/'.$blt.'-'.$idbaru;
-        return $kode_opname;
 
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
