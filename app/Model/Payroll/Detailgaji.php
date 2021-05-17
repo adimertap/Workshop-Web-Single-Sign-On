@@ -2,6 +2,7 @@
 
 namespace App\Model\Payroll;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -33,5 +34,10 @@ class Detailgaji extends Model
     public function Tunjangan()
     {
         return $this->belongsTo(Mastertunjangan::class, 'id_tunjangan','id_tunjangan');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

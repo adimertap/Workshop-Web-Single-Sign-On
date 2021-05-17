@@ -2,6 +2,7 @@
 
 namespace App\Model\Inventory;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,9 +31,8 @@ class Gallery extends Model
         return $this->belongsTo(Sparepart::class,'id_sparepart','id_sparepart');
     }
 
-    // public function getPhotoAttribute($value){
-    //     return url('storage/' . $value);
-    // }
-
-
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
+    }
 }

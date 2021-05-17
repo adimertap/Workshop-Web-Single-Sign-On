@@ -3,6 +3,7 @@
 namespace App\Model\Inventory\Kelolastock;
 
 use App\Model\Inventory\Rak;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Stock extends Model
@@ -31,5 +32,10 @@ class Stock extends Model
 
     public function Rak(){
         return $this->hasMany(Rak::class, 'id_rak','id_rak');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

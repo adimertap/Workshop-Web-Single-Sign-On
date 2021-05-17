@@ -2,6 +2,7 @@
 
 namespace App\Model\Inventory;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,10 @@ class Rak extends Model
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
         return $getId = DB::table('tb_inventory_master_rak')->orderBy('id_rak','DESC')->take(1)->get();
+    }
 
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

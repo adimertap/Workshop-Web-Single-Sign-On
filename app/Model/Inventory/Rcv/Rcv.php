@@ -8,6 +8,7 @@ use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -73,7 +74,11 @@ class Rcv extends Model
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
         return $getId = DB::table('tb_inventory_rcv')->orderBy('id_rcv','DESC')->take(1)->get();
+    }
 
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 
    

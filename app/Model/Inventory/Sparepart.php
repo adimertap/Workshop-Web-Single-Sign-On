@@ -6,6 +6,7 @@ use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Purchase\POdetail;
 use App\Model\Inventory\Stockopname\Opname;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -98,5 +99,10 @@ class Sparepart extends Model
     public static function getId()
     {
         return $getId = DB::table('tb_inventory_master_sparepart')->orderBy('id_sparepart', 'DESC')->take(1)->get();
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

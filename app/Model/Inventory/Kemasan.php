@@ -2,6 +2,7 @@
 
 namespace App\Model\Inventory;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -24,4 +25,9 @@ class Kemasan extends Model
     ];
 
     public $timestamps = true;
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
+    }
 }

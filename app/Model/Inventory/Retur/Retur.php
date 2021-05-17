@@ -7,6 +7,7 @@ use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -64,6 +65,10 @@ class Retur extends Model
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
         return $getId = DB::table('tb_inventory_retur')->orderBy('id_retur','DESC')->take(1)->get();
+    }
 
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

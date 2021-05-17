@@ -3,6 +3,7 @@
 namespace App\Model\Payroll;
 
 use App\Model\Kepegawaian\Jabatan;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -29,5 +30,10 @@ class Mastergajipokok extends Model
 
     public function Jabatan(){
         return $this->belongsTo(Jabatan::class,'id_jabatan','id_jabatan')->withTrashed();
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

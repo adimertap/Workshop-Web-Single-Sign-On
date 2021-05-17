@@ -2,6 +2,7 @@
 
 namespace App\Model\Accounting\Payable;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -31,5 +32,10 @@ class Pajakdetail extends Model
     public function pajak()
     {
         return $this->belongsTo(Pajak::class, 'id_pajak','id_pajak');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Model\Kepegawaian;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -33,6 +34,11 @@ class Jadwal extends Model
     public function Pegawai()
     {
         return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 
 }

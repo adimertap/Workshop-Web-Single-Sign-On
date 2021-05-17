@@ -4,6 +4,7 @@ namespace App\Model\Inventory\Rcv;
 
 use App\Model\Inventory\Rak;
 use App\Model\Inventory\Sparepart;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -46,5 +47,10 @@ class Rcvdetail extends Model
     public function Rak()
     {
         return $this->belongsTo(Rak::class, 'id_rak','id_rak');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

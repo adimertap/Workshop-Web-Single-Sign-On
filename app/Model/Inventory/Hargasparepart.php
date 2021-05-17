@@ -2,6 +2,7 @@
 
 namespace App\Model\Inventory;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -34,6 +35,11 @@ class Hargasparepart extends Model
 
     public function Supplier(){
         return $this->belongsTo(Supplier::class,'id_supplier','id_supplier')->withTrashed();
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 
 }

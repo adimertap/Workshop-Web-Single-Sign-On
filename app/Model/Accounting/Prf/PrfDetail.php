@@ -3,6 +3,7 @@
 namespace App\Model\Accounting\Prf;
 
 use App\Model\Accounting\Payable\InvoicePayable;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 
 class PrfDetail extends Model
@@ -31,5 +32,10 @@ class PrfDetail extends Model
     public function Prf()
     {
         return $this->belongsTo(Prf::class, 'id_prf','id_prf');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }
