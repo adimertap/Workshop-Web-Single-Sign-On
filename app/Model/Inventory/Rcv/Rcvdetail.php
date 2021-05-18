@@ -17,6 +17,7 @@ class Rcvdetail extends Model
 
     protected $fillable = [
         'id_rcv',
+        'id_bengkel',
         'id_sparepart',
         'id_rak',
         'qty_po',

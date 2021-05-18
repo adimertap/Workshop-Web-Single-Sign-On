@@ -17,6 +17,7 @@ class Returdetail extends Model
 
     protected $fillable = [
         'id_retur',
+        'id_bengkel',
         'id_sparepart',
         'qty_retur',
         'keterangan',

@@ -17,6 +17,7 @@ class Bankaccount extends Model
 
     protected $fillable = [
         'nama_bank',
+        'id_bengkel',
         'kode_bank',
         'nama_account',
         'jenis_account',
@@ -34,7 +35,13 @@ class Bankaccount extends Model
 
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_accounting_master_bank_account')->orderBy('id_bank_account','DESC')->take(1)->get();
+        $getId = DB::table('tb_accounting_master_bank_account')->orderBy('id_bank_account','DESC')->take(1)->get();
+        if(count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_bank_account'=> 0
+            ]
+            ];
 
     }
 

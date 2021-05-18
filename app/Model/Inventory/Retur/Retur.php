@@ -22,6 +22,7 @@ class Retur extends Model
 
     protected $fillable = [
         'id_rcv',
+        'id_bengkel',
         'id_pegawai',
         'id_supplier',
         'kode_retur',
@@ -64,7 +65,13 @@ class Retur extends Model
 
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_inventory_retur')->orderBy('id_retur','DESC')->take(1)->get();
+        $getId = DB::table('tb_inventory_retur')->orderBy('id_retur','DESC')->take(1)->get();
+        if(count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_retur'=> 0
+            ]
+            ];
     }
 
     protected static function booted()

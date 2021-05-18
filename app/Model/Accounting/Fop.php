@@ -17,6 +17,7 @@ class Fop extends Model
 
     protected $fillable = [
         'nama_fop',
+        'id_bengkel',
         'kode_fop',
     ];
 
@@ -30,7 +31,13 @@ class Fop extends Model
 
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_accounting_master_fop')->orderBy('id_fop','DESC')->take(1)->get();
+        $getId = DB::table('tb_accounting_master_fop')->orderBy('id_fop','DESC')->take(1)->get();
+        if(count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_fop'=> 0
+            ]
+            ];
     }
 
     protected static function booted()

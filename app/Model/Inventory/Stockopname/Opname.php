@@ -19,6 +19,7 @@ class Opname extends Model
 
     protected $fillable = [
         'id_pegawai',
+        'id_bengkel',
         'kode_opname',
         'tanggal_opname',
         'keterangan',

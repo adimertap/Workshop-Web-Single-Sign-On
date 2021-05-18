@@ -13,6 +13,7 @@ class Akun extends Model
 
     protected $fillable = [
         'kode_akun',
+        'id_bengkel',
         'nama_akun',
         'akun_grup'
     ];

@@ -18,6 +18,7 @@ class Opnamedetail extends Model
 
     protected $fillable = [
         'id_opname',
+        'id_bengkel',
         'id_sparepart',
         'jumlah_real',
         'selisih',

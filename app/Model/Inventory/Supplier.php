@@ -18,6 +18,7 @@ class Supplier extends Model
 
     protected $fillable = [
     	'kode_supplier',
+        'id_bengkel',
         'nama_supplier',
         'telephone',
         'alamat_supplier',
@@ -47,7 +48,13 @@ class Supplier extends Model
 
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_inventory_master_supplier')->orderBy('id_supplier','DESC')->take(1)->get();
+        $getId = DB::table('tb_inventory_master_supplier')->orderBy('id_supplier','DESC')->take(1)->get();
+        if(count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_supplier'=> 0
+            ]
+            ];
     }
 
     protected static function booted()

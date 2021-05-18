@@ -21,6 +21,7 @@ class PO extends Model
 
     protected $fillable = [
         'kode_po',
+        'id_bengkel',
         'id_pegawai',
         'id_supplier',
         'tanggal_po',

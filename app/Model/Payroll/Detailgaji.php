@@ -14,6 +14,7 @@ class Detailgaji extends Model
     protected $primaryKey = 'id_detgaji';
 
     protected $fillable = [
+        'id_bengkel',
         'id_gaji_pegawai',
         'id_tunjangan',
     ];

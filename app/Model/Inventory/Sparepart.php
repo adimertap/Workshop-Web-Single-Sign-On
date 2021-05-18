@@ -18,6 +18,7 @@ class Sparepart extends Model
 
     protected $fillable = [
         'id_merk',
+        'id_bengkel',
         'id_jenis_sparepart',
         'id_konversi',
         'id_rak',
@@ -98,7 +99,13 @@ class Sparepart extends Model
 
     public static function getId()
     {
-        return $getId = DB::table('tb_inventory_master_sparepart')->orderBy('id_sparepart', 'DESC')->take(1)->get();
+        $getId = DB::table('tb_inventory_master_sparepart')->orderBy('id_sparepart', 'DESC')->take(1)->get();
+        if(count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_sparepart'=> 0
+            ]
+            ];
     }
 
     protected static function booted()

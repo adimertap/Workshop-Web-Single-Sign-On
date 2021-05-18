@@ -23,6 +23,7 @@ class InvoicePayable extends Model
 
     protected $fillable = [
         'id_supplier',
+        'id_bengkel',
         'id_rcv',
         'id_po',
         'id_jenis_transaksi',
@@ -81,8 +82,13 @@ class InvoicePayable extends Model
 
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_accounting_invoice_payable')->orderBy('id_payable_invoice','DESC')->take(1)->get();
-
+        $getId = DB::table('tb_accounting_invoice_payable')->orderBy('id_payable_invoice','DESC')->take(1)->get();
+        if(count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_payable_invoice'=> 0
+            ]
+            ];
     }
 
     protected static function booted()

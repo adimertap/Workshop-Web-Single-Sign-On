@@ -23,6 +23,7 @@ class Rcv extends Model
 
     protected $fillable = [
         'id_po',
+        'id_bengkel',
         'id_pegawai',
         'id_supplier',
         'kode_rcv',
@@ -73,7 +74,13 @@ class Rcv extends Model
 
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_inventory_rcv')->orderBy('id_rcv','DESC')->take(1)->get();
+        $getId = DB::table('tb_inventory_rcv')->orderBy('id_rcv','DESC')->take(1)->get();
+        if(count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_rcv'=> 0
+            ]
+            ];
     }
 
     protected static function booted()

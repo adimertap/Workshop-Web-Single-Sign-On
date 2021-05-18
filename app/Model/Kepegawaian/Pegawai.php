@@ -18,6 +18,7 @@ class Pegawai extends Model
     protected $primaryKey = 'id_pegawai';
 
     protected $fillable = [
+        'id_bengkel',
         'id_jabatan',
         'nama_pegawai',
         'nama_panggilan',
@@ -51,7 +52,13 @@ class Pegawai extends Model
    
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_kepeg_master_pegawai')->orderBy('id_pegawai','DESC')->take(1)->get();
+        $getId = DB::table('tb_kepeg_master_pegawai')->orderBy('id_pegawai','DESC')->take(1)->get();
+        if(count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_pegawai'=> 0
+            ]
+            ];
 
     }
 

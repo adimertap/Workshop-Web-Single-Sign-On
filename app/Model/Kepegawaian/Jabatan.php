@@ -16,6 +16,7 @@ class Jabatan extends Model
     protected $primaryKey = 'id_jabatan';
 
     protected $fillable = [
+        'id_bengkel',
         'nama_jabatan',
         'id_gaji_pokok'
     ];

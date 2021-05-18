@@ -15,6 +15,7 @@ class Mastertunjangan extends Model
     protected $primaryKey = 'id_tunjangan';
 
     protected $fillable = [
+        'id_bengkel',
         'nama_tunjangan',
         'jumlah_tunjangan',
         'keterangan',

@@ -17,6 +17,7 @@ class Gajipegawai extends Model
     protected $primaryKey = 'id_gaji_pegawai';
 
     protected $fillable = [
+        'id_bengkel',
         'id_pegawai',
         'bulan_gaji',
         'tahun_gaji',

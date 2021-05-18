@@ -19,6 +19,7 @@ class Merksparepart extends Model
     protected $fillable = [
         'id_jenis_sparepart',
     	'kode_merk',
+        'id_bengkel',
     	'merk_sparepart',
     ];
 
@@ -41,8 +42,13 @@ class Merksparepart extends Model
 
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_inventory_master_merk_sparepart')->orderBy('id_merk','DESC')->take(1)->get();
-
+        $getId = DB::table('tb_inventory_master_merk_sparepart')->orderBy('id_merk','DESC')->take(1)->get();
+        if(count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_merk'=> 0
+            ]
+            ];
     }
 
     protected static function booted()

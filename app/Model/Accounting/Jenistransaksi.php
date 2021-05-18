@@ -13,7 +13,7 @@ class Jenistransaksi extends Model
 
     protected $fillable = [
         'nama_transaksi',
-        'id_akun',
+        'id_bengkel',
     ];
 
     protected $hidden =[ 
@@ -21,10 +21,6 @@ class Jenistransaksi extends Model
     ];
 
     public $timestamps = false;
-
-    public function akun(){
-        return $this->belongsTo(Akun::class,'id_akun','id_akun');
-    }
 
     protected static function booted()
     {

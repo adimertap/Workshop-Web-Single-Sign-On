@@ -112,7 +112,7 @@
                             <h5>Inventory</h5>
                             <div class="text-muted">Pengelolaan Persediaan Barang</div>
                         </div>
-                        <img class="card-img-top" src="/backend/src/assets/img/ilustrasi/inventoryilustration.jpg"
+                        <img class="card-img-top" src="/backend/src/assets/img/freepik/logistic5.png"
                             alt="..." style="width: 5rem;">
                     </div>
                 </div>

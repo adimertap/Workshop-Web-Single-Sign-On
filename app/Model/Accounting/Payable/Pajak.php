@@ -19,6 +19,7 @@ class Pajak extends Model
 
     protected $fillable = [
         'kode_pajak',
+        'id_bengkel',
         'id_pegawai',
         'id_jenis_transaksi',
         'tanggal_bayar',
@@ -52,7 +53,13 @@ class Pajak extends Model
 
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_accounting_pajak')->orderBy('id_pajak','DESC')->take(1)->get();
+        $getId = DB::table('tb_accounting_pajak')->orderBy('id_pajak','DESC')->take(1)->get();
+        if(count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_pajak'=> 0
+            ]
+            ];
     }
 
     protected static function booted()

@@ -17,6 +17,7 @@ class Rak extends Model
 
     protected $fillable = [
         'kode_rak',
+        'id_bengkel',
         'nama_rak',
         'jenis_rak',
     ];
@@ -31,7 +32,13 @@ class Rak extends Model
 
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_inventory_master_rak')->orderBy('id_rak','DESC')->take(1)->get();
+        $getId = DB::table('tb_inventory_master_rak')->orderBy('id_rak','DESC')->take(1)->get();
+        if(count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_rak'=> 0
+            ]
+            ];
     }
 
     protected static function booted()

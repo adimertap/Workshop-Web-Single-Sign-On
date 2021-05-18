@@ -25,6 +25,7 @@ class Prf extends Model
 
     protected $fillable = [
         'id_supplier',
+        'id_bengkel',
         'id_bank_account',
         'id_fop',
         'id_jenis_transaksi',
@@ -71,7 +72,13 @@ class Prf extends Model
     
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_accounting_prf')->orderBy('id_prf','DESC')->take(1)->get();
+        $getId = DB::table('tb_accounting_prf')->orderBy('id_prf','DESC')->take(1)->get();
+        if(count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_prf'=> 0
+            ]
+            ];
     }
 
     protected static function booted()

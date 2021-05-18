@@ -16,11 +16,10 @@ class MasterdatajenistransaksiController extends Controller
      */
     public function index()
     {
-        $jenis_transaksi = Jenistransaksi::with([
-            'akun'])->get();
+        $jenis_transaksi = Jenistransaksi::get();
         
 
-        return view('pages.accounting.masterdata.jenistransaksi', compact('jenis_transaksi','akun'));
+        return view('pages.accounting.masterdata.jenistransaksi', compact('jenis_transaksi'));
     }
 
     /**

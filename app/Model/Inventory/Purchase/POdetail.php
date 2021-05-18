@@ -18,6 +18,7 @@ class POdetail extends Model
 
     protected $fillable = [
         'id_po',
+        'id_bengkel',
         'id_sparepart',
         'qty',
         'qty_po_sementara'

@@ -14,6 +14,7 @@ class PrfDetail extends Model
 
     protected $fillable = [
         'id_prf',
+        'id_bengkel',
         'id_payable_invoice',
         'total_pembayaran',
     ];

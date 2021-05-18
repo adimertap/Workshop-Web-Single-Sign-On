@@ -19,6 +19,7 @@ class Hargasparepart extends Model
         'merk_sparepart',
         'id_supplier',
         'harga_jual',
+        'id_bengkel'
     ];
 
     protected $hidden =[ 

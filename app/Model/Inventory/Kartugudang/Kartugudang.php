@@ -19,6 +19,7 @@ class Kartugudang extends Model
 
     protected $fillable = [
         'id_sparepart',
+        'id_bengkel',
         'id_rcv',
         'id_retur',
         'saldo_awal',

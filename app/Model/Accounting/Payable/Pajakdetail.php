@@ -16,6 +16,7 @@ class Pajakdetail extends Model
 
     protected $fillable = [
         'id_pajak',
+        'id_bengkel',
         'data_pajak',
         'nilai_pajak',
         'keterangan_pajak'

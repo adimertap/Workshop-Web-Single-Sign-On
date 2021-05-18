@@ -16,6 +16,7 @@ class Mastergajipokok extends Model
     protected $primaryKey = 'id_gaji_pokok';
 
     protected $fillable = [
+        'id_bengkel',
         'id_jabatan',
         'besaran_gaji',
     ];
