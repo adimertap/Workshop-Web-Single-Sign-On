@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>SIM Bengkel</title>
+    <title>Register - BengkelKuy</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -249,13 +249,10 @@
 
 
                                 <div class="simple-footer">
-                                    Copyright &copy; Bengkel 2021
+                                    Copyright &copy; BengkelKuy 2021
                                 </div>
 
                             </div>
-                        </div>
-                        <div class="simple-footer">
-                            Copyright &copy; BengkelKuy 2021
                         </div>
                     </div>
         </section>

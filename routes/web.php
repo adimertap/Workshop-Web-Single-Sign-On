@@ -134,6 +134,7 @@ Route::group(
             ->group(function () {
                 Route::get('/', 'DashboardSSOController@index')
                     ->name('dashboardsso');
+                Route::resource('profile', 'ProfileController');
             });
 
         // MANAJEMEN ROLE
