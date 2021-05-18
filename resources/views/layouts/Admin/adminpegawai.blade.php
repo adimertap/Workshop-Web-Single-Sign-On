@@ -20,11 +20,13 @@
         crossorigin="anonymous" />
     <link rel="icon" type="image/x-icon" href={{ url('backend/dist/assets/img/favicon.png')}} />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.27.0/feather.min.js" crossorigin="anonymous"></script>
+    <script data-search-pseudo-elements defer
+        src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.27.0/feather.min.js" crossorigin="anonymous">
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src='{{ asset('fullcalendar/main.js') }}'></script>
-  
+
 
 </head>
 
@@ -161,21 +163,9 @@
                         <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                         Account
                     </a>
-                    <a class="dropdown-item" href="{{ route('Note-adim.index') }}">
-                        <div class="dropdown-item-icon"><i class="fas fa-clipboard"></i></div>
-                        Catatan Progress
-                    </a>
-                    <a class="dropdown-item" href="{{ route('dashboardinventory') }}">
+                    <a class="dropdown-item" href="{{ route('dashboardsso') }}">
                         <div class="dropdown-item-icon"> <i class="fas fa-cubes"></i></div>
-                        Sistem Inventory
-                    </a>
-                    <a class="dropdown-item" href="{{ route('gaji-pegawai.index') }}">
-                        <div class="dropdown-item-icon"><i class="fas fa-wallet"></i></div>
-                        Sistem Payroll
-                    </a>
-                    <a class="dropdown-item" href="{{ route('dashboardaccounting') }}">
-                        <div class="dropdown-item-icon"><i class="fas fa-calculator"></i></div>
-                        Sistem Accounting
+                        Menu SSO
                     </a>
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
@@ -201,12 +191,7 @@
 
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
-                        <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardpegawai')}}">
-                            <div class="nav-link-icon"><i class="fas fa-user"></i></div>
-                            Dashboard Pegawai
-                        </a>
-
+                      
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
                         <div class="sidenav-menu-heading">Master Data</div>
@@ -232,22 +217,6 @@
                         <div class="sidenav-menu-heading">Aktivitas Pegawai</div>
 
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                            data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
-                            Jadwal Pegawai
-                            <div class="sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down">
-                                </i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
-                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
-                                <a class="nav-link" href="{{ route('jadwal-pegawai.index') }}">
-                                    Atur Jadwal
-                                </a>
-                            </nav>
-                        </div>
-                        
-                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-business-time"></i></div>
                             Absensi Pegawai
@@ -264,7 +233,24 @@
                             </nav>
                         </div>
 
-                        
+                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                            data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
+                            Jadwal Pegawai
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down">
+                                </i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
+                                <a class="nav-link" href="{{ route('jadwal-pegawai.index') }}">
+                                    Atur Jadwal
+                                </a>
+                            </nav>
+                        </div>
+
+
+
                     </div>
                 </div>
                 {{-- USER ROLE Side Bar --}}
@@ -303,7 +289,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  
+
     <script src="{{ asset('backend/dist/assets/demo/datatables-demo.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
