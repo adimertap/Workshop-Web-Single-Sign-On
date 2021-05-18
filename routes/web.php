@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
@@ -24,6 +24,9 @@ Route::post('/', 'Auth\LoginController@login')->name('login');
 Route::get('/register', 'Auth\RegisterController@showRegisterForm')->name('register');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
 
+Route::get('account/password', 'Account\PasswordController@edit')->name('password.edit');
+Route::patch('account/password', 'Account\PasswordController@update')->name('password.edit');
+
 Route::group(
     ['middleware' => 'auth'],
     function () {
@@ -31,7 +34,7 @@ Route::group(
         // DASHBOARD
         Route::prefix('frontoffice')
             ->namespace('FrontOffice')
-            ->middleware(['admin_front_office'])
+            ->middleware(['admin_front_office', 'verified'])
             ->group(function () {
                 Route::get('/', 'DashboardFrontOfficeController@index')
                     ->name('dashboardfrontoffice');
@@ -522,7 +525,7 @@ Route::group(
 
                 Route::resource('pajak', 'PajakController');
             });
-        
+
         // Gaji Pegawai Accounting ----------------------------------------------------------------- Gaji Pegawai Accounting  
         Route::prefix('Accounting')
             ->namespace('Accounting\Payable')

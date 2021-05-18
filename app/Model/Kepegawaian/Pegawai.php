@@ -33,6 +33,7 @@ class Pegawai extends Model
         'email',
         'pendidikan_terakhir',
         'tanggal_masuk',
+        'id_bengkel'
     ];
 
     protected $hidden = [];
@@ -48,11 +49,11 @@ class Pegawai extends Model
     {
         return $this->hasMany(Absensi::class, 'id_pegawai');
     }
-   
-    public static function getId(){
-        // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_kepeg_master_pegawai')->orderBy('id_pegawai','DESC')->take(1)->get();
 
+    public static function getId()
+    {
+        // return $this->orderBy('id_sparepart')->take(1)->get();
+        return $getId = DB::table('tb_kepeg_master_pegawai')->orderBy('id_pegawai', 'DESC')->take(1)->get();
     }
 
     public function absensi_mekanik()

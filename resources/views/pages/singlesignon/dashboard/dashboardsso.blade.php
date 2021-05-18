@@ -17,6 +17,23 @@
         </div>
     </div>
 </main>
+@if (Auth::check() && !Auth::user()->email_verified_at)
+<div class="container">
+    <div class="alert alert-danger" role="alert">
+        Anda belum verifikasi email,
+        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+            @csrf
+            <button type="submit"
+                class="text-danger btn btn-link p-0 m-0 align-baseline">{{ __('verifikasi ulang') }}</button>
+        </form>.
+    </div>
+    @if (session('resent'))
+    <div class="alert alert-success" role="alert">
+        {{ __('Tautan verifikasi baru telah dikirim ke alamat email Anda.') }}
+    </div>
+    @endif
+</div>
+@endif
 <div class="container">
     <div class="alert alert-info alert-dismissible fade show" role="alert">
         <h5 class="alert-heading">Informasi, Simak dengan Baik</h5>
@@ -44,7 +61,8 @@
             </a>
         </div>
         @endif
-        @if (Auth::user()->role == 'admin_service_advisor' || Auth::user()->role == 'service_instructor' || Auth::user()->role == 'owner')
+        @if (Auth::user()->role == 'admin_service_advisor' || Auth::user()->role == 'service_instructor' ||
+        Auth::user()->role == 'owner')
         <div class="col-xxl-4 col-xl-3 mb-4">
             <!-- Dashboard example card 2-->
             <a class="card lift h-100" href="{{ route('dashboardservice') }}">
@@ -102,7 +120,8 @@
 {{-- BARIS 2 --}}
 <div class="container">
     <div class="row">
-        @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'admin_purchasing' || Auth::user()->role == 'owner')
+        @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'admin_purchasing' || Auth::user()->role ==
+        'owner')
         <div class="col-xxl-4 col-xl-3 mb-4">
             <!-- Dashboard example card 1-->
             <a class="card lift h-100" href="{{ route('dashboardinventory') }}">
@@ -156,7 +175,8 @@
         </div>
         @endif
 
-        @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'admin_account_receivable' || Auth::user()->role == 'owner')
+        @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'admin_account_receivable' ||
+        Auth::user()->role == 'owner')
         <div class="col-xxl-4 col-xl-3 mb-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardaccounting') }}">

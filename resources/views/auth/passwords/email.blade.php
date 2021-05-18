@@ -1,11 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.reset')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <div>
+                        {{ __('Reset Password') }}
+                    </div>
+                    <div>
+                        BengkelKuy
+                    </div>
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -34,7 +41,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                                    {{ __('Kirim Link Reset Password ') }}
                                 </button>
                             </div>
                         </div>

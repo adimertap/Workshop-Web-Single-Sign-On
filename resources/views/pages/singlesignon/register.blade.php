@@ -85,13 +85,11 @@
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label class="small mb-1" for="provinsi">Provinsi</label>
-                                            <input id="provinsi" type="text" class="form-control"
-                                                name="provinsi">
+                                            <input id="provinsi" type="text" class="form-control" name="provinsi">
                                         </div>
                                         <div class="form-group col-6">
                                             <label class="small mb-1" for="kabupaten">Kabupaten</label>
-                                            <input id="kabupaten" type="text" class="form-control"
-                                                name="kabupaten">
+                                            <input id="kabupaten" type="text" class="form-control" name="kabupaten">
                                         </div>
                                     </div>
 
@@ -131,7 +129,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="tempat_lahir">Tempat Lahir</label>
                                             <input class="form-control" id="tempat_lahir" type="text"
                                                 name="tempat_lahir" placeholder="Input Tempat Lahir"
@@ -139,13 +137,20 @@
                                             @error('tempat_lahir')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="tanggal_lahir">Tanggal Lahir</label>
                                             <input class="form-control" id="tanggal_lahir" type="date"
                                                 name="tanggal_lahir"
                                                 class="form-control @error('tanggal_lahir') is-invalid @enderror" />
-                                            @error('tanggal_lahir')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
+                                            @error('tanggal_lahir')
+                                            <div class="text-danger small mb-1">{{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label for="alamat">Alamat</label>
+                                            <input id="alamat" type="text" placeholder="Input Alamat"
+                                                class="form-control" name="alamat">
                                         </div>
                                     </div>
 
@@ -210,7 +215,7 @@
                             </div>
                         </div>
                         <div class="simple-footer">
-                            Copyright &copy; Bengkel 2021
+                            Copyright &copy; BengkelKuy 2021
                         </div>
                     </div>
                 </div>

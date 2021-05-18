@@ -96,12 +96,33 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="username">Username</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="username" type="text"
-                                                name="username" value="{{ $item->username }}"/>
+                                                name="username" placeholder="Input Username"/>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="email">Email</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="email" type="email"
-                                                name="email" value="{{ $item->email }}"/>
+                                                name="email" placeholder="Input Email"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label for="password" class="d-block">Password</label>
+                                            <input id="password" type="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                placeholder="Input Password" name="password" required
+                                                autocomplete="new-password">
+
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="password-confirm" class="d-block">Password Confirmation</label>
+                                            <input id="password-confirm" type="password" class="form-control"
+                                                placeholder="Konfirmasi Password" name="password_confirmation" required
+                                                autocomplete="new-password">
                                         </div>
                                     </div>
                                     <hr class="my-4" />
