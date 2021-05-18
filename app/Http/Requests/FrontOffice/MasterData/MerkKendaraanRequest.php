@@ -25,7 +25,7 @@ class MerkKendaraanRequest extends FormRequest
     {
         return [
             'id_jenis_kendaraan' => 'required',
-            'merk_kendaraan' => 'required|unique:tb_fo_master_merk_kendaraan,merk_kendaraan|min:3|max:30'
+            'merk_kendaraan' => 'required|min:3|max:30'
         ];
     }
 
@@ -34,7 +34,6 @@ class MerkKendaraanRequest extends FormRequest
         return [
             'id_jenis_kendaraan.required' => 'Error! Anda Belum Mengisi Jenis Kendaraan',
             'merk_kendaraan.required' => 'Error! Anda Belum Mengisi Merk Kendaraan',
-            'merk_kendaraan.unique' => 'Error! Merk Kendaraan Sudah Ada',
             'merk_kendaraan.min' => 'Error! Character Minimal :min digit',
             'merk_kendaraan.max' => 'Error! Character Maximal :max digit'
         ];

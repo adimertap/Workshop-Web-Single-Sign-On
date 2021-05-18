@@ -114,7 +114,6 @@ class MasterDataKendaraanController extends Controller
         $kendaraan->id_merk_kendaraan = $request->id_merk_kendaraan;
         $kendaraan->kode_kendaraan = $request->kode_kendaraan;
         $kendaraan->nama_kendaraan = $request->nama_kendaraan;
-        $kendaraan->warna_kendaraan = $request->warna_kendaraan;
 
         $kendaraan->save();
 

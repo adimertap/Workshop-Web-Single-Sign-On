@@ -48,6 +48,10 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Tanggal</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">Nama Customer</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
@@ -63,6 +67,7 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">1</th>
                                             <td>{{ $item->kode_penjualan }}</td>
+                                            <td>{{ $item->tanggal }}</td>
                                             <td>{{ $item->Customer->nama_customer }}</td>
                                             <td>Rp. {{ number_format($item->total_bayar,2,',','.') }}</td>
                                             <td>

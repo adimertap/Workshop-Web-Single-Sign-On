@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>SIM Bengkel</title>
+    <title>Login Bengkel-Kuy</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -61,14 +61,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="remember" class="custom-control-input"
-                                                tabindex="3" id="remember-me">
-                                            <label class="custom-control-label" for="remember-me">Remember Me</label>
-                                        </div>
-                                    </div>
-
                                     @if (session('message'))
                                     <div class="alert alert-danger alert-dismissible show fade">
                                         <div class="alert-body">
@@ -90,12 +82,12 @@
                             </div>
                         </div>
 
-                        <div class="mt-5 text-muted text-center">
+                        <div class="mt-0 text-muted text-center">
                             Tidak punya akun? <a href="{{ route('register') }}">Buat Akun</a>
                         </div>
 
                         <div class="simple-footer">
-                            Copyright &copy; Bengkel 2021
+                            Copyright &copy; Bengkel-Kuy 2021
                         </div>
                     </div>
                 </div>

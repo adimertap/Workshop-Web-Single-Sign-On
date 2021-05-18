@@ -124,7 +124,7 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('masterdatasparepart') }}" class="btn btn-light">Kembali</a>
+                                        <a href="{{ route('kendaraan.index') }}" class="btn btn-light">Kembali</a>
                                         <button class="btn btn-primary" type="Submit">Submit</button>
                                     </div>
                             </div>
