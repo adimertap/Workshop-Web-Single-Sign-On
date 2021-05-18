@@ -553,6 +553,13 @@ Route::group(
             ->group(function () {
                 Route::get('/', 'DashboardadminController@index')
                     ->name('dashboardmarketplace');
+                Route::get('/faq', 'DashboardadminController@faq')
+                    ->name('faq');
+                Route::put('/faqupdate/{id}', 'DashboardadminController@update')
+                    ->name('faq-update');
+                    Route::delete('/faqdestroy/{id}', 'DashboardadminController@destroy')
+                    ->name('faq-destroy');
+                
             });
 
         // PENJUALAN ONLINE ---------------------------------------------------------------------- Penjualan Online
