@@ -75,5 +75,8 @@ class Kernel extends HttpKernel
         'admin_account_payable' => \App\Http\Middleware\isAdminAccountPayable::class,
         'admin_account_receivable' => \App\Http\Middleware\isAdminAccountReceivable::class,
         'admin_marketplace' => \App\Http\Middleware\isAdminMarketplace::class,
+        'admin_inventory_gabung' => \App\Http\Middleware\isAdminInventoryGabung::class,
+        'admin_service_gabung' => \App\Http\Middleware\isAdminServiceGabung::class,
+        'admin_accounting_gabung' => \App\Http\Middleware\isAdminAccountingGabung::class,
     ];
 }

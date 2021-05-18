@@ -61,7 +61,7 @@
             </a>
         </div>
         @endif
-        @if (Auth::user()->role == 'admin_service_advisor' || Auth::user()->role == 'service_instructor' ||
+        @if (Auth::user()->role == 'admin_service_advisor' || Auth::user()->role == 'admin_service_instructor' ||
         Auth::user()->role == 'owner')
         <div class="col-xxl-4 col-xl-3 mb-4">
             <!-- Dashboard example card 2-->

@@ -44,7 +44,7 @@ Route::group(
         // MASTER DATA JENIS KENDARAAN
         Route::prefix('frontoffice')
             ->namespace('FrontOffice\Masterdata')
-            ->middleware(['admin_front_office'])
+            ->middleware(['admin_front_office', 'verified'])
             ->group(function () {
                 Route::resource('jenis-kendaraan', 'MasterDataJenisKendaraanController');
                 Route::resource('jenis-perbaikan', 'MasterDataJenisPerbaikanController');
@@ -60,7 +60,7 @@ Route::group(
         //  DATA PELAYANAN SERVICE
         Route::prefix('frontoffice')
             ->namespace('FrontOffice')
-            ->middleware(['admin_front_office'])
+            ->middleware(['admin_front_office', 'verified'])
             ->group(function () {
                 Route::resource('pelayananservice', 'PelayananServiceController');
                 Route::resource('customerterdaftar', 'CustomerBengkelController');
@@ -72,6 +72,7 @@ Route::group(
         // DASHBOARD
         Route::prefix('service')
             ->namespace('Service')
+            ->middleware(['admin_service_gabung', 'verified'])
             ->group(function () {
                 Route::get('/', 'DashboardServiceController@index')
                     ->name('dashboardservice');
@@ -80,6 +81,7 @@ Route::group(
         // PENERIMAANSERVICE
         Route::prefix('service')
             ->namespace('Service')
+            ->middleware(['admin_service_instructor', 'verified'])
             ->group(function () {
                 Route::resource('jadwalmekanik', 'JadwalMekanikController');
                 Route::resource('stoksparepart', 'StokSparepartController');
@@ -88,7 +90,7 @@ Route::group(
 
         Route::prefix('service')
             ->namespace('Service')
-            ->middleware(['admin_service_advisor'])
+            ->middleware(['admin_service_advisor', 'verified'])
             ->group(function () {
                 Route::resource('penerimaanservice', 'PenerimaanServiceController');
             });
@@ -99,7 +101,7 @@ Route::group(
         // DASHBOARD
         Route::prefix('pos')
             ->namespace('PointOfSales')
-            ->middleware(['admin_kasir'])
+            ->middleware(['admin_kasir', 'verified'])
             ->group(function () {
                 Route::get('/', 'DashboardPOSController@index')
                     ->name('dashboardpointofsales');
@@ -108,7 +110,7 @@ Route::group(
         // PEMBAYARAN LAYANAN SERVICE
         Route::prefix('pos')
             ->namespace('PointOfSales\Pembayaran')
-            ->middleware(['admin_kasir'])
+            ->middleware(['admin_kasir', 'verified'])
             ->group(function () {
                 Route::resource('pembayaranservice', 'PembayaranServiceController');
                 Route::resource('invoiceservice', 'InvoiceServiceController');
@@ -120,7 +122,7 @@ Route::group(
         // PEMBAYARAN PENJUALAN SPAREPART
         Route::prefix('pos')
             ->namespace('PointOfSales\Laporan')
-            ->middleware(['admin_kasir'])
+            ->middleware(['admin_kasir', 'verified'])
             ->group(function () {
                 Route::resource('laporanservice', 'LaporanServiceController');
                 Route::resource('laporansparepart', 'LaporanSparepartController');
@@ -140,7 +142,7 @@ Route::group(
         // MANAJEMEN ROLE
         Route::prefix('sso')
             ->namespace('SingleSignOn\Manajemen')
-            ->middleware(['owner'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::resource('manajemen-user', 'ManajemenUserController');
             });
@@ -149,7 +151,8 @@ Route::group(
         // DASHBOARD
         Route::prefix('inventory')
             ->namespace('Inventory')
-            ->middleware(['admin_gudang'])
+            ->middleware(['admin_inventory_gabung', 'verified'])
+
             ->group(function () {
                 Route::get('/', 'DashboardinventoryController@index')
                     ->name('dashboardinventory');
@@ -158,7 +161,7 @@ Route::group(
         // MASTERDATA INVENTORY -------------------------------------------------------- Master Data Inventory
         Route::prefix('Inventory')
             ->namespace('Inventory\Masterdata')
-            ->middleware(['admin_gudang'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdatasparepartController@index')
                     ->name('masterdatasparepart');
@@ -171,7 +174,7 @@ Route::group(
 
         Route::prefix('inventory/gallerysparepart')
             ->namespace('Inventory\Masterdata')
-            ->middleware(['admin_gudang'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdatagalleryController@index')
                     ->name('masterdatagallery');
@@ -182,21 +185,21 @@ Route::group(
 
         Route::prefix('inventory')
             ->namespace('Inventory\Masterdata')
-            ->middleware(['admin_gudang'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
                 Route::resource('merk-sparepart', 'MasterdatamerksparepartController');
             });
 
         Route::prefix('inventory')
             ->namespace('Inventory\Masterdata')
-            ->middleware(['admin_gudang'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
                 Route::resource('jenis-sparepart', 'MasterdataJenissparepartController');
             });
 
         Route::prefix('inventory')
             ->namespace('Inventory\Masterdata')
-            ->middleware(['admin_gudang'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
                 Route::get('/{id_supplier}/sparepart', 'MasterdatasupplierController@getDataSparepartBySupplierId');
                 Route::resource('supplier', 'MasterdatasupplierController');
@@ -204,28 +207,28 @@ Route::group(
 
         Route::prefix('inventory')
             ->namespace('Inventory\Masterdata')
-            ->middleware(['admin_gudang'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
                 Route::resource('hargasparepart', 'MasterdatahargasparepartController');
             });
 
         Route::prefix('inventory')
             ->namespace('Inventory\Masterdata')
-            ->middleware(['admin_gudang'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
                 Route::resource('rak', 'MasterdatarakController');
             });
 
         Route::prefix('inventory')
             ->namespace('Inventory\Masterdata')
-            ->middleware(['admin_gudang'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
                 Route::resource('konversi', 'MasterdatakonversiController');
             });
 
         Route::prefix('inventory')
             ->namespace('Inventory\Masterdata')
-            ->middleware(['admin_gudang'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
                 Route::resource('kemasan', 'MasterdatakemasanController');
             });
@@ -234,7 +237,7 @@ Route::group(
         // PURCHASE ORDER ---------------------------------------------------------------- Purchase Order
         Route::prefix('inventory')
             ->namespace('Inventory\Purchase')
-            ->middleware(['admin_purchasing'])
+            ->middleware(['admin_purchasing', 'verified'])
             ->group(function () {
 
                 Route::resource('purchase-order', 'PurchaseorderController');
@@ -245,7 +248,7 @@ Route::group(
 
         Route::prefix('inventory/approvalpembelian')
             ->namespace('Inventory\Purchase')
-            ->middleware(['admin_purchasing'])
+            ->middleware(['admin_purchasing', 'verified'])
             ->group(function () {
                 Route::get('/', 'ApprovalpurchaseController@index')
                     ->name('approvalpo');
@@ -258,7 +261,7 @@ Route::group(
 
         Route::prefix('inventory/approvalappembelian')
             ->namespace('Inventory\Purchase')
-            ->middleware(['admin_purchasing'])
+            ->middleware(['admin_purchasing', 'verified'])
             ->group(function () {
                 Route::get('/', 'ApprovalpurchaseAPController@index')
                     ->name('approvalpoap');
@@ -272,7 +275,7 @@ Route::group(
         // RECEIVING ------------------------------------------------------------------- Receiving
         Route::prefix('inventory')
             ->namespace('Inventory\Rcv')
-            ->middleware(['admin_purchasing'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
 
                 Route::resource('receiving', 'RcvController', ['names' => 'Rcv']);
@@ -283,7 +286,7 @@ Route::group(
         // RETUR ---------------------------------------------------------------------- Retur
         Route::prefix('inventory')
             ->namespace('Inventory\Retur')
-            ->middleware(['admin_purchasing'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
 
                 Route::resource('retur', 'ReturController');
@@ -292,7 +295,7 @@ Route::group(
         // OPNAME ---------------------------------------------------------------------- Stock Opname
         Route::prefix('inventory')
             ->namespace('Inventory\Opname')
-            ->middleware(['admin_purchasing'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
 
                 Route::resource('Opname', 'OpnameController');
@@ -300,7 +303,7 @@ Route::group(
 
         Route::prefix('inventory/approvalopname')
             ->namespace('Inventory\Opname')
-            ->middleware(['admin_purchasing'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::get('/', 'ApprovalopnameController@index')
                     ->name('approvalopname');
@@ -315,7 +318,7 @@ Route::group(
         // KARTU GUDANG --------------------------------------------------------------------------- Kartu Gudang
         Route::prefix('inventory/Kartugudang')
             ->namespace('Inventory\Kartugudang')
-            ->middleware(['admin_purchasing'])
+            ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
                 Route::get('/', 'KartugudangController@index')
                     ->name('Kartu-gudang');
@@ -330,7 +333,7 @@ Route::group(
         // DASHBOARD
         Route::prefix('kepegawaian')
             ->namespace('Kepegawaian')
-            ->middleware(['owner'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::get('/', 'DashboardpegawaiController@index')
                     ->name('dashboardpegawai');
@@ -339,7 +342,7 @@ Route::group(
         // MASTER DATA KEPEGAWAIAN -------------------------------------------------------- Master Data Pegawai
         Route::prefix('kepegawaian/masterdatapegawai')
             ->namespace('Kepegawaian\Masterdata')
-            ->middleware(['owner'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdatapegawaiController@index')
                     ->name('masterdatapegawai');
@@ -349,7 +352,7 @@ Route::group(
 
         Route::prefix('kepegawaian/masterdatajabatan')
             ->namespace('Kepegawaian\Masterdata')
-            ->middleware(['owner'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdatajabatanController@index')
                     ->name('masterdatajabatan');
@@ -361,7 +364,7 @@ Route::group(
         // ABSENSI PEGAWAI ---------------------------------------------------------------- ABSENSI
         Route::prefix('kepegawaian')
             ->namespace('Kepegawaian\Absensi')
-            ->middleware(['owner'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
 
                 Route::resource('absensi', 'AbsensipegawaiController');
@@ -373,7 +376,7 @@ Route::group(
         // LAPORAN ABSENSI --------------------------------------------------------------- Laporan Absensi
         Route::prefix('kepegawaian/LaporanAbsensi')
             ->namespace('Kepegawaian\Absensi')
-            ->middleware(['owner'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::get('/', 'LaporanabsensiController@index')
                     ->name('laporanabsensi');
@@ -382,6 +385,7 @@ Route::group(
         // JADWAL PEGAWAI --------------------------------------------------------------- Jadwal
         Route::prefix('kepegawaian')
             ->namespace('Kepegawaian\Jadwal')
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::resource('jadwal-pegawai', 'JadwalpegawaiController');
             });
@@ -392,7 +396,7 @@ Route::group(
         // DASHBOARD
         Route::prefix('payroll')
             ->namespace('payroll')
-            ->middleware(['owner'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::get('/', 'DashboardpayrollController@index')
                     ->name('dashboardpayroll');
@@ -401,7 +405,7 @@ Route::group(
         // MASTER DATA ------------------------------------------------------------ Master Data Payroll
         Route::prefix('payroll/masterdatagajipokok')
             ->namespace('Payroll\Masterdata')
-            ->middleware(['owner'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdatagajipokokController@index')
                     ->name('masterdatagajipokok');
@@ -411,7 +415,7 @@ Route::group(
 
         Route::prefix('payroll/masterdatatunjangan')
             ->namespace('Payroll\Masterdata')
-            ->middleware(['owner'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdatatunjanganController@index')
                     ->name('masterdatatunjangan');
@@ -422,7 +426,7 @@ Route::group(
         // GAJI PEGAWAI ----------------------------------------------------------- Gaji Pegawai
         Route::prefix('payroll')
             ->namespace('Payroll\Gajipegawai')
-            ->middleware(['owner'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::resource('gaji-pegawai', 'GajipegawaiController');
 
@@ -438,7 +442,7 @@ Route::group(
         // DASHBOARD
         Route::prefix('accounting')
             ->namespace('Accounting')
-            ->middleware(['admin_account_receivable'])
+            ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::get('/', 'DashboardaccountingController@index')
                     ->name('dashboardaccounting');
@@ -447,7 +451,7 @@ Route::group(
         // MASTER DATA ---------------------------------------------------- Master Data Accounting
         Route::prefix('accounting/masterdatafop')
             ->namespace('Accounting\Masterdata')
-            ->middleware(['admin_account_receivable'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdatafopController@index')
                     ->name('masterdatafop');
@@ -457,7 +461,7 @@ Route::group(
 
         Route::prefix('accounting/masterdatabankaccount')
             ->namespace('Accounting\Masterdata')
-            ->middleware(['admin_account_receivable'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdatabankaccountController@index')
                     ->name('masterdatabankaccount');
@@ -467,7 +471,7 @@ Route::group(
 
         Route::prefix('accounting/masterdataakun')
             ->namespace('Accounting\Masterdata')
-            ->middleware(['admin_account_receivable'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdataakunController@index')
                     ->name('masterdataakun');
@@ -477,7 +481,7 @@ Route::group(
 
         Route::prefix('accounting/masterjenistransaksi')
             ->namespace('Accounting\Masterdata')
-            ->middleware(['admin_account_receivable'])
+            ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdatajenistransaksiController@index')
                     ->name('masterdatajenistransaksi');
@@ -489,7 +493,7 @@ Route::group(
         // InvoicePayable ----------------------------------------------------------------- Invoice Payable   
         Route::prefix('Accounting')
             ->namespace('Accounting\Payable')
-            ->middleware(['admin_account_payable'])
+            ->middleware(['admin_account_payable', 'verified'])
             ->group(function () {
                 Route::resource('invoice-payable', 'InvoicePayableController');
             });
@@ -497,7 +501,7 @@ Route::group(
         // PRF ---------------------------------------------------------------------------- PRF
         Route::prefix('accounting')
             ->namespace('Accounting\Payable')
-            ->middleware(['admin_account_payable'])
+            ->middleware(['admin_account_payable', 'verified'])
             ->group(function () {
                 Route::resource('prf', 'PrfController');
 
@@ -508,7 +512,7 @@ Route::group(
         // Approval Prf ----------------------------------------------------------------- Approval PRF
         Route::prefix('accounting/ApprovalPRF')
             ->namespace('Accounting\Payable')
-            ->middleware(['admin_account_payable'])
+            ->middleware(['admin_account_payable', 'verified'])
             ->group(function () {
                 Route::get('/', 'ApprovalprfController@index')
                     ->name('approval-prf');
@@ -522,7 +526,7 @@ Route::group(
         // PAJAK -------------------------------------------------------------------------- Pajak
         Route::prefix('accounting')
             ->namespace('Accounting\Payable')
-            ->middleware(['admin_account_receivable'])
+            ->middleware(['admin_account_payable', 'verified'])
             ->group(function () {
 
                 Route::resource('pajak', 'PajakController');
@@ -531,6 +535,7 @@ Route::group(
         // Gaji Pegawai Accounting ----------------------------------------------------------------- Gaji Pegawai Accounting  
         Route::prefix('Accounting')
             ->namespace('Accounting\Payable')
+            ->middleware(['admin_account_payable', 'verified'])
             ->group(function () {
                 Route::resource('gaji-accounting', 'GajiAccountingController');
             });
@@ -553,7 +558,7 @@ Route::group(
         // MODUL ADMIN MARKETPLACE ------------------------------------------------------------ ADM. Marketplace
         Route::prefix('AdminMarketplace')
             ->namespace('AdminMarketplace')
-            ->middleware(['admin_marketplace'])
+            ->middleware(['admin_marketplace', 'verified'])
             ->group(function () {
                 Route::get('/', 'DashboardadminController@index')
                     ->name('dashboardmarketplace');
@@ -567,17 +572,15 @@ Route::group(
                     ->name('transaksi-marketplace');
                 Route::put('/transaksiupdate/{id}', 'TransaksiController@update')
                     ->name('transaksi-marketplace-update');
-                
             });
 
         // PENJUALAN ONLINE ---------------------------------------------------------------------- Penjualan Online
         Route::prefix('AdminMarketplace/Penjualan')
             ->namespace('AdminMarketplace\Penjualan')
-            ->middleware(['admin_marketplace'])
+            ->middleware(['admin_marketplace', 'verified'])
             ->group(function () {
                 Route::get('/', 'PenjualanController@index')
                     ->name('Penjualan-Online');
-
             });
     }
 );
