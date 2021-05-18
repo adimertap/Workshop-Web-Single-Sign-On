@@ -72,8 +72,8 @@
                             <h5>Point Of Sales</h5>
                             <div class="text-muted">Pengelolaan Penjualan Bengkel</div>
                         </div>
-                        <img class="card-img-top" src="/backend/src/assets/img/freepik/windows-pana.svg" alt="..."
-                            style="width: 5rem;">
+                        <img class="card-img-top" src="/backend/src/assets/img/freepik/cashier.svg" alt="..."
+                            style="width: 7rem;">
                     </div>
                 </div>
             </a>
@@ -90,8 +90,8 @@
                             <h5>Marketplace</h5>
                             <div class="text-muted">Marketplace Bengkel</div>
                         </div>
-                        <img class="card-img-top" src="/backend/src/assets/img/freepik/windows-pana.svg" alt="..."
-                            style="width: 5rem;">
+                        <img class="card-img-top" src="/backend/src/assets/img/freepik/marketplace.svg" alt="..."
+                            style="width: 6.8rem;">
                     </div>
                 </div>
             </a>
@@ -148,8 +148,8 @@
                             <h5>Payroll</h5>
                             <div class="text-muted">Pengelolaan Gaji Pegawai</div>
                         </div>
-                        <img class="card-img-top" src="/backend/src/assets/img/freepik/processing-pana.svg" alt="..."
-                            style="width: 5rem;">
+                        <img class="card-img-top" src="/backend/src/assets/img/freepik/wallet.svg" alt="..."
+                            style="width: 7rem;">
                     </div>
                 </div>
             </a>
@@ -167,8 +167,8 @@
                             <div class="text-muted">Pengelolaan Keuangan Bengkel</div>
                         </div>
 
-                        <img class="card-img-top" src="/backend/src/assets/img/freepik/browser-stats-pana.svg" alt="..."
-                            style="width: 5rem;">
+                        <img class="card-img-top" src="/backend/src/assets/img/freepik/accounting.svg" alt="..."
+                            style="width: 6rem;">
                     </div>
                 </div>
             </a>

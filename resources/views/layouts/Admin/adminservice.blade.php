@@ -255,7 +255,7 @@
             <footer class="footer mt-auto footer-light">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12 text-center">Copyright &copy; 2021 BengkelPro</div>
+                        <div class="col-md-12 text-center">Copyright &copy; 2021 BengkelKuy</div>
                     </div>
                 </div>
             </footer>

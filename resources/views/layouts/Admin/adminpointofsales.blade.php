@@ -269,7 +269,7 @@
                         <div class="col-md-6 text-md-right small">
                             <a href="#!">Privacy Policy</a>
                             &middot;
-                            <a href="#!">BengkelPro</a>
+                            <a href="#!">BengkelKuy</a>
                         </div>
                     </div>
                 </div>

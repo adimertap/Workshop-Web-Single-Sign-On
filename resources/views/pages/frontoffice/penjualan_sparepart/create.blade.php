@@ -46,7 +46,7 @@
                         <div class="form-group col-md-12">
                             <label class="small mb-1" for="id_pegawai">Nama Pegawai</label>
                             <input class="form-control" id="id_pegawai" name="id_pegawai" type="text"
-                                placeholder="Enter your last name" value="{{Auth::user()->name}}" readonly />
+                                placeholder="Enter your last name" value="{{Auth::user()->pegawai->nama_pegawai}}" readonly />
                         </div>
                     </div>
                     <div class="form-row">
@@ -54,7 +54,7 @@
                             <label class="small mb-1" for="tanggal">Tanggal <span style="color: red">*</span>
                             </label>
                             <input class="form-control" id="tanggal" type="date" name="tanggal"
-                                placeholder="Masukkan Tanggal" />
+                                placeholder="Masukkan Tanggal" value="{{ $today }}" />
                         </div>
                     </div>
                     <div class="form-row">

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\FrontOffice\CustomerBengkel;
 use App\Model\FrontOffice\DetailPenjualanSparepart;
 use App\Model\Inventory\Sparepart;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PenjualanSparepartController extends Controller
@@ -32,6 +33,7 @@ class PenjualanSparepartController extends Controller
     {
         $customer = CustomerBengkel::all();
         $sparepart = Sparepart::all();
+        $today = Carbon::today();
 
         $id = PenjualanSparepart::getId();
         foreach ($id as $value);
@@ -42,7 +44,7 @@ class PenjualanSparepartController extends Controller
         $kode_penjualan_sparepart = 'PS-' . $blt . '/' . $idbaru;
 
 
-        return view('pages.frontoffice.penjualan_sparepart.create', compact('customer', 'sparepart', 'kode_penjualan_sparepart'));
+        return view('pages.frontoffice.penjualan_sparepart.create', compact('customer', 'sparepart', 'kode_penjualan_sparepart', 'today'));
     }
 
     /**
