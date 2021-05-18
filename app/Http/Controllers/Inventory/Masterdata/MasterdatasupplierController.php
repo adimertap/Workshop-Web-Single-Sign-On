@@ -5,6 +5,7 @@ use App\Http\Requests\Inventory\Supplierrequest;
 use App\Model\Inventory\Supplier;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 class MasterdatasupplierController extends Controller
 {
@@ -55,6 +56,7 @@ class MasterdatasupplierController extends Controller
         $kode_supplier = 'SUP-'.$idbaru.'/'.$blt;
 
         $supplier = new Supplier;
+        $supplier->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $supplier->kode_supplier = $kode_supplier;
         $supplier->nama_supplier = $request->nama_supplier;
         $supplier->telephone = $request->telephone;

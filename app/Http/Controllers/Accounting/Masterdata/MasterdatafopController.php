@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Accounting\Foprequest;
 use App\Model\Accounting\Fop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterdatafopController extends Controller
 {
@@ -55,6 +56,7 @@ class MasterdatafopController extends Controller
         $kode_fop = 'AKFOP-'.'/'.$blt.$idbaru;
 
         $fop = new Fop;
+        $fop->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $fop->nama_fop = $request->nama_fop;
         $fop->kode_fop = $kode_fop;
         

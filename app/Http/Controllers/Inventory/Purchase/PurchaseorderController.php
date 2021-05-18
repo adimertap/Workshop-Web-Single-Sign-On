@@ -11,6 +11,7 @@ use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PurchaseorderController extends Controller
 {
@@ -66,7 +67,9 @@ class PurchaseorderController extends Controller
             'id_supplier'=>$id_supplier,
             'tanggal_po'=>$request->tanggal_po,
             'approve_po'=>'Pending',
-            'approve_ap'=>'Pending'
+            'approve_ap'=>'Pending',
+            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
+           
         ]);
         
         return $po;
@@ -100,14 +103,17 @@ class PurchaseorderController extends Controller
     {
         $po = PO::with([
             'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailsparepart','Supplier.Sparepart.Kartugudang','Supplier.Sparepart.Kartugudangterakhir'
-        ])->find($id);
+        ])->where('id_bengkel','=', $id )->get();
 
+        return $po;
 
         $id = PO::getId();
+        foreach($id as $value);
+        $idlama = $value->id_po;
+        $idbaru = $idlama + 1;
         $blt = date('y-m');
 
-        return $id;
-        $kode_po = 'PO-'.$blt.'/'.$po->id_po;
+        $kode_po = 'PO-'.$blt.'/'.$idbaru;
  
         $supplier = Supplier::all();
         $sparepart = Sparepart::all();
@@ -136,6 +142,7 @@ class PurchaseorderController extends Controller
         }
 
         $po->grand_total = $temp;
+      
         
         $po->save();
         $po->Detailsparepart()->sync($request->sparepart);

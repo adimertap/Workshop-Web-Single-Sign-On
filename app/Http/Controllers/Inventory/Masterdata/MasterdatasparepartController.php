@@ -15,6 +15,7 @@ use App\Model\Inventory\Rak;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -104,11 +105,13 @@ class MasterdatasparepartController extends Controller
         $sparepart->id_kemasan = $request->id_kemasan;
         $sparepart->berat_sparepart = $request->berat_sparepart;
         $sparepart->status_jumlah = 'Habis';
+        $sparepart->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $sparepart->save();
 
         $gallery = new Gallery;
         $gallery->photo = $name;
         $gallery->id_sparepart = $sparepart->id_sparepart;
+        $sparepart->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $gallery->save();
 
         return redirect()->route('sparepart.index')->with('messageberhasil', 'Data Sparepart Berhasil ditambah');

@@ -8,6 +8,7 @@ use App\Http\Requests\Inventory\Sparepartrequest;
 use App\Model\Inventory\Gallery;
 use App\Model\Inventory\Sparepart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterdatagalleryController extends Controller
 {
@@ -62,6 +63,7 @@ class MasterdatagalleryController extends Controller
   
           $image->photo = $imageName;
           $image->id_sparepart = $request->id_sparepart;
+          $image->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         //   $image->id_sparepart = $idSparePart;
           
           $image->save();

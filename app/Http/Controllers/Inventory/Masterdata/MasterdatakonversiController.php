@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Konversirequest;
 use App\Model\Inventory\Konversi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 class MasterdatakonversiController extends Controller
 {
@@ -39,6 +40,7 @@ class MasterdatakonversiController extends Controller
      */
     public function store(Konversirequest $request)
     {
+        $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
         $data['slug'] = Str::slug($request->satuan);
 

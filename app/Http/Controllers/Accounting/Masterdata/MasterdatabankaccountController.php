@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Accounting\Bankaccountrequest;
 use App\Model\Accounting\Bankaccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterdatabankaccountController extends Controller
 {
@@ -57,6 +58,7 @@ class MasterdatabankaccountController extends Controller
         $kode_bank = 'AKBA/'.'/'.$blt.$idbaru;
 
         $bankaccount = new Bankaccount;
+        $bankaccount->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $bankaccount->nama_bank = $request->nama_bank;
         $bankaccount->kode_bank = $kode_bank;
         $bankaccount->nama_account = $request->nama_account;

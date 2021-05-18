@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Kepegawaian\Jabatanrequest;
 use App\Model\Kepegawaian\Jabatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterdatajabatanController extends Controller
 {
@@ -43,6 +44,7 @@ class MasterdatajabatanController extends Controller
     {
         $jabatan = new Jabatan;
         $jabatan->nama_jabatan = $request->nama_jabatan;
+        $jabatan->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         // $rak=Rak::all()
 
         $jabatan->save();

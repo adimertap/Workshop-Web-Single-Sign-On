@@ -43,7 +43,7 @@ class PO extends Model
 
     public function Detailsparepart()
     {
-        return $this->belongsToMany(Sparepart::class,'tb_inventory_detpo','id_po','id_sparepart')->withPivot('qty','qty_po_sementara','harga_satuan','total_harga');
+        return $this->belongsToMany(Sparepart::class,'tb_inventory_detpo','id_po','id_sparepart')->withPivot('qty','qty_po_sementara','harga_satuan','total_harga','id_bengkel');
     }
 
     public function Supplier()
@@ -57,7 +57,6 @@ class PO extends Model
     }
 
     public static function getId(){
-        // return $this->orderBy('id_sparepart')->take(1)->get();
         $getId = DB::table('tb_inventory_po')->orderBy('id_po','DESC')->take(1)->get();
         if(count($getId) > 0) return $getId;
          return (object)[
@@ -67,7 +66,7 @@ class PO extends Model
              ];
     }
 
-    protected static function booted()
+    public static function booted()
     {
         static::addGlobalScope(new OwnershipScope);
     }

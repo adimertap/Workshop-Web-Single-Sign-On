@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Accounting\Jenistransaksirequest;
 use App\Model\Accounting\Jenistransaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterdatajenistransaksiController extends Controller
 {
@@ -41,6 +42,7 @@ class MasterdatajenistransaksiController extends Controller
     public function store(Jenistransaksirequest $request)
     {
         $jenis_transaksi = new Jenistransaksi;
+        $jenis_transaksi->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $jenis_transaksi->nama_transaksi = $request->nama_transaksi;
         
         // $rak=Rak::all()

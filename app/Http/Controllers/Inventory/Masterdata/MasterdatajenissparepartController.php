@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Jenissparepartrequest;
 use App\Http\Requests\Inventory\Merksparepartrequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class MasterdatajenissparepartController extends Controller
@@ -44,6 +45,7 @@ class MasterdatajenissparepartController extends Controller
      */
     public function store(Jenissparepartrequest $request)
     {
+        $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
         $data['slug'] = Str::slug($request->jenis_sparepart);
 

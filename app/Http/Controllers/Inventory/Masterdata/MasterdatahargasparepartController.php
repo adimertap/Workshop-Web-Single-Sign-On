@@ -8,6 +8,7 @@ use App\Model\Inventory\Hargasparepart;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterdatahargasparepartController extends Controller
 {
@@ -47,6 +48,7 @@ class MasterdatahargasparepartController extends Controller
     public function store(Hargasparepartrequest $request)
     {
         $harga = new Hargasparepart;
+        $harga->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $harga->id_sparepart = $request->id_sparepart;
         $harga->id_supplier = $request->id_supplier;
         $harga->harga_jual = $request->harga_jual;

@@ -8,6 +8,7 @@ use App\Model\Inventory\Retur\Retur;
 use App\Model\Kepegawaian\Jabatan;
 use App\Model\Kepegawaian\Pegawai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class MasterdatapegawaiController extends Controller
@@ -56,6 +57,7 @@ class MasterdatapegawaiController extends Controller
     public function store(Pegawairequest $request)
     {
         $pegawai = new Pegawai;
+        $pegawai->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $pegawai->id_jabatan = $request->id_jabatan;
         $pegawai->nama_pegawai = $request->nama_pegawai;
         $pegawai->nama_panggilan = $request->nama_panggilan;

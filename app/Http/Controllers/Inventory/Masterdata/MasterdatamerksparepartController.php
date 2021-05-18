@@ -6,6 +6,7 @@ use App\Model\Inventory\Merksparepart;
 use App\Http\Controllers\Controller;
 use App\Model\Inventory\Jenissparepart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use PhpParser\Node\Expr\New_;
 
@@ -64,6 +65,7 @@ class MasterdatamerksparepartController extends Controller
 
         $merksparepart = new Merksparepart;
         $merksparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
+        $merksparepart->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $merksparepart->kode_merk = $kode_merk;
         $merksparepart->merk_sparepart = $request->merk_sparepart;
 

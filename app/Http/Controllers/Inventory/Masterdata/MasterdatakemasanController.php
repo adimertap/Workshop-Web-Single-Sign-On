@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Kemasanrequest;
 use App\Model\Inventory\Kemasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterdatakemasanController extends Controller
 {
@@ -39,6 +40,7 @@ class MasterdatakemasanController extends Controller
      */
     public function store(Kemasanrequest $request)
     {
+        $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
        
         Kemasan::create($data);

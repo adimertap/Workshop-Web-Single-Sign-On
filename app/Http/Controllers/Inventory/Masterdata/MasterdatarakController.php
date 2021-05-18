@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Rakrequest;
 use App\Model\Inventory\Rak;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 class MasterdatarakController extends Controller
 {
@@ -58,6 +59,7 @@ class MasterdatarakController extends Controller
 
         $rak = new Rak;
         $rak->kode_rak = $kode_rak;
+        $rak->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $rak->nama_rak = $request->nama_rak;
         $rak->jenis_rak = $request->jenis_rak;
         $rak->save();

@@ -7,6 +7,7 @@ use App\Http\Requests\Payroll\Mastergajipokokrequest;
 use App\Model\Kepegawaian\Jabatan;
 use App\Model\Payroll\Mastergajipokok;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterdatagajipokokController extends Controller
 {
@@ -48,6 +49,7 @@ class MasterdatagajipokokController extends Controller
     {
 
         $gajipokok = new Mastergajipokok;
+        $gajipokok->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $gajipokok->id_jabatan = $request->id_jabatan;
         $gajipokok->besaran_gaji = $request->besaran_gaji;
        

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Payroll\Mastertunjanganrequest;
 use App\Model\Payroll\Mastertunjangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterdatatunjanganController extends Controller
 {
@@ -40,6 +41,7 @@ class MasterdatatunjanganController extends Controller
     public function store(Mastertunjanganrequest $request)
     {
         $tunjangan = new Mastertunjangan;
+        $tunjangan->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $tunjangan->nama_tunjangan = $request->nama_tunjangan;
         $tunjangan->jumlah_tunjangan = $request->jumlah_tunjangan;
         $tunjangan->keterangan = $request->keterangan;

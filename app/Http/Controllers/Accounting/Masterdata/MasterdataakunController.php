@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Accounting\Akunrequest;
 use App\Model\Accounting\Akun;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterdataakunController extends Controller
 {
@@ -40,6 +41,7 @@ class MasterdataakunController extends Controller
     public function store(Akunrequest $request)
     {
         $akun = new Akun;
+        $akun->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $akun->kode_akun = $request->kode_akun;
         $akun->nama_akun = $request->nama_akun;
         $akun->akun_grup = $request->akun_grup;
