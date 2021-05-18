@@ -557,6 +557,17 @@ Route::group(
             ->group(function () {
                 Route::get('/', 'DashboardadminController@index')
                     ->name('dashboardmarketplace');
+                Route::get('/faq', 'DashboardadminController@faq')
+                    ->name('faq');
+                Route::put('/faqupdate/{id}', 'DashboardadminController@update')
+                    ->name('faq-update');
+                Route::delete('/faqdestroy/{id}', 'DashboardadminController@destroy')
+                    ->name('faq-destroy');
+                Route::get('/transaksi', 'TransaksiController@index')
+                    ->name('transaksi-marketplace');
+                Route::put('/transaksiupdate/{id}', 'TransaksiController@update')
+                    ->name('transaksi-marketplace-update');
+                
             });
 
         // PENJUALAN ONLINE ---------------------------------------------------------------------- Penjualan Online
@@ -567,7 +578,6 @@ Route::group(
                 Route::get('/', 'PenjualanController@index')
                     ->name('Penjualan-Online');
 
-                Route::resource('Penjualan-Online', 'PenjualanController');
             });
     }
 );

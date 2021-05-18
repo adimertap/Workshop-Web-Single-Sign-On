@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\AdminMarketplace;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Marketplace\Faq;
+use App\Model\Marketplace\Transaksi;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Types\Null_;
 
 class DashboardadminController extends Controller
 {
@@ -14,7 +18,46 @@ class DashboardadminController extends Controller
      */
     public function index()
     {
-       return view('pages.adminmarketplace.dashboardadminmarketplace');
+        $faq = Faq::where('id_bengkel', Auth::user()->id_bengkel)->get();
+        $faqnoanswer = Faq::where('id_bengkel', Auth::user()->id_bengkel)->where('jawaban_faq', NULL)->get();
+        $faqtoday = Faq::where('id_bengkel', Auth::user()->id_bengkel)->whereDate('created_at', Carbon::today())->get();
+
+        $totalfaq = count($faq);
+        $totaltoday = count($faqtoday);
+        $totalnoanswer = count($faqnoanswer);
+
+        $transaksi = Transaksi::where('id_bengkel', Auth::user()->id_bengkel)->where('transaksi_status', 'DITERIMA')->get();
+        $transaksidikirim = Transaksi::where('id_bengkel', Auth::user()->id_bengkel)->where('transaksi_status', 'PENDING')->get();
+        $transaksiditerima = Transaksi::where('id_bengkel', Auth::user()->id_bengkel)->where('transaksi_status', 'DIKIRIM')->get();
+
+        $transaksitoday = Transaksi::where('id_bengkel', Auth::user()->id_bengkel)->where('transaksi_status', 'DITERIMA')->whereDate('created_at', Carbon::today())->get();
+
+        $totaltransaksi= count($transaksi);
+        $totaltransaksidikirim= count($transaksidikirim);
+        $totaltransaksiditerima= count($transaksiditerima);
+        $totaltransaksitoday= count($transaksitoday);
+
+
+
+
+        
+       return view('pages.adminmarketplace.dashboardadminmarketplace',[
+           "totalfaq" => $totalfaq,
+           "totaltoday" =>$totaltoday,
+           "totalnoanswer" =>$totalnoanswer,
+           "totaltransaksi" =>$totaltransaksi,
+           "totaltransaksidikirim"=>$totaltransaksidikirim,
+           "totaltransaksiditerima"=>$totaltransaksiditerima,
+           "totaltransaksitoday"=>$totaltransaksitoday
+       ]);
+    }
+
+    public function faq()
+    {
+        $faq = Faq::with('User')->where('id_bengkel', Auth::user()->id_bengkel)->get();
+        // dd($faq);
+       return view('pages.adminmarketplace.faq',
+            ['faq' =>$faq]);
     }
 
     /**
@@ -69,7 +112,14 @@ class DashboardadminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->jawaban_faq);
+        
+        $faq = Faq::findOrFail($id);
+        $faq->jawaban_faq = $request->jawaban_faq;
+      
+        $faq->update();
+        return redirect()->back()->with('messageberhasil','Data Merk Berhasil diubah');
+    
     }
 
     /**
@@ -80,6 +130,9 @@ class DashboardadminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $faq = Faq::findOrFail($id);
+        $faq->delete();
+
+        return redirect()->back()->with('messagehapus','Data Merk Berhasil dihapus');
     }
 }

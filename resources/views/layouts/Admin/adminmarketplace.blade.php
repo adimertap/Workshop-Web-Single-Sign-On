@@ -211,10 +211,6 @@
                             <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
                             Dashboard
                         </a>
-                        <a class="nav-link" href="{{ route('dashboardinventory')}}">
-                            <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
-                            Marketplace
-                        </a>
 
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
@@ -222,44 +218,25 @@
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
-                            Pengiriman
+                            Kelola
                             <div class="sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('Penjualan-Online.index')}}">
-                                    Pengiriman Barang
+                                <a class="nav-link" href="{{ route('faq')}}">
+                                    FAQ
                                 </a>
-                                <a class="nav-link" href="{{ route('sparepart.index')}}">
-                                    Laporan Pengiriman
+                                <a class="nav-link" href="{{ route('transaksi-marketplace')}}">
+                                    Penjualan
                                 </a>
                             </nav>
                         </div>
 
                         {{-- INVENTORY SYSTEM --}}
                         {{-- Inventory System Side Bar --}}
-                        <div class="sidenav-menu-heading">Sparepart</div>
-
-                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                            data-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
-                            <div class="nav-link-icon">
-                                <i class="fas fa-cubes"></i>
-                            </div>
-                            Daftar Sparepart
-                            <div class="sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
-                        </a>
-
-                        <div class="collapse" id="collapseUtilities" data-parent="#accordionSidenav" style="">
-                            <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ route('sparepart.index') }}">
-                                    Daftar Sparepart
-                                </a>
-                            </nav>
-                        </div>
+                        
                     </div>
                 </div>
                        
