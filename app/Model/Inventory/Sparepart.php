@@ -45,6 +45,7 @@ class Sparepart extends Model
         return $this->belongsTo(Jenissparepart::class, 'id_jenis_sparepart', 'id_jenis_sparepart')->withTrashed();
     }
 
+    public $with = ['Merksparepart','Jenissparepart','Kemasan','Kartugudangterakhir'];
     public function Merksparepart()
     {
         return $this->belongsTo(Merksparepart::class, 'id_merk', 'id_merk')->withTrashed();

@@ -3,6 +3,7 @@
 namespace App\Model\Inventory\Purchase;
 
 use App\Model\Accounting\Akun;
+use App\Model\Inventory\Hargasparepart;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
@@ -46,6 +47,11 @@ class PO extends Model
         return $this->belongsToMany(Sparepart::class,'tb_inventory_detpo','id_po','id_sparepart')->withPivot('qty','qty_po_sementara','harga_satuan','total_harga','id_bengkel');
     }
 
+    public function Hargasparepart()
+    {
+        return $this->belongsTo(Hargasparepart::class,'id_harga','id_harga');
+    }
+
     public function Supplier()
     {
         return $this->belongsTo(Supplier::class,'id_supplier','id_supplier');
@@ -70,4 +76,11 @@ class PO extends Model
     {
         static::addGlobalScope(new OwnershipScope);
     }
+
+    
+    public function SupplierBaru()
+    {
+        return $this->belongsTo(Supplier::class,'id_supplier','id_supplier');
+    }
+
 }

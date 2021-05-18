@@ -30,12 +30,18 @@ class Hargasparepart extends Model
 
     public $timestamps = true;
 
+    public $with = ['sparepart'];
     public function Sparepart(){
         return $this->belongsTo(Sparepart::class,'id_sparepart','id_sparepart');
     }
 
+
     public function Supplier(){
         return $this->belongsTo(Supplier::class,'id_supplier','id_supplier')->withTrashed();
+    }
+
+    public function SupplierBaru(){
+        return $this->hasMany(Sparepart::class,'id_sparepart')->withTrashed();
     }
 
     protected static function booted()

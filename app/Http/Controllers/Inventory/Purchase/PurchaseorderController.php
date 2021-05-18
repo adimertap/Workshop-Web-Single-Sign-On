@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventory\Purchase;
 
 use App\Http\Controllers\Controller;
 use App\Model\Accounting\Akun;
+use App\Model\Inventory\Hargasparepart;
 use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Purchase\POdetail;
 use App\Model\Inventory\Sparepart;
@@ -101,11 +102,13 @@ class PurchaseorderController extends Controller
      */
     public function edit($id)
     {
-        $po = PO::with([
-            'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailsparepart','Supplier.Sparepart.Kartugudang','Supplier.Sparepart.Kartugudangterakhir'
-        ])->where('id_bengkel','=', $id )->get();
+        // $po = PO::with([
+        //     'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailsparepart','Supplier.Sparepart.Kartugudang','Supplier.Sparepart.Kartugudangterakhir'
+        //     'Supplier.masterHarga.sparepart'
+        // ])->find($id);
 
-        return $po;
+        $po = PO::find($id);
+        $sparepartSupplier = Hargasparepart::where('id_supplier', $po->id_supplier)->get();
 
         $id = PO::getId();
         foreach($id as $value);
@@ -119,7 +122,7 @@ class PurchaseorderController extends Controller
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
 
-        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','pegawai','kode_po'));
+        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','pegawai','kode_po','sparepartSupplier'));
     }
 
     /**

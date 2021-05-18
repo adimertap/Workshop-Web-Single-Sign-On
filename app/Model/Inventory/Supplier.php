@@ -41,6 +41,11 @@ class Supplier extends Model
         return $this->belongsToMany(Sparepart::class,'tb_inventory_master_harga_sparepart','id_supplier','id_sparepart')->withPivot('harga_jual');
     }
 
+    public function MasterHarga()
+    {
+        return $this->belongsTo(Hargasparepart::class, 'id_supplier');
+    }
+
     public function InvoicePayable()
     {
         return $this->hasMany(InvoicePayable::class, 'id_supplier')->where('status_prf', 'Belum Dibuat');

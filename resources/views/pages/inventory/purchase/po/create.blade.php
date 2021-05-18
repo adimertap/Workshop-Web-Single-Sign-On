@@ -142,28 +142,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($po->Supplier->Sparepart as $item)
+                                                @forelse ($sparepartSupplier as $item)
                                                 <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
                                                     <td class="kode_sparepart" >
-                                                        {{ $item->kode_sparepart }}</td>
+                                                        {{ $item->sparepart->kode_sparepart }}</td>
                                                     <td class="nama_sparepart">
-                                                        {{ $item->nama_sparepart }}</td>
+                                                        {{ $item->sparepart->nama_sparepart }}</td>
                                                     <td class="merk_sparepart">
-                                                        {{ $item->Merksparepart->merk_sparepart }}</td>
-                                                    <td class="kemasan">{{ $item->Kemasan->nama_kemasan }}
+                                                        {{ $item->sparepart->Merksparepart->merk_sparepart }}</td>
+                                                    <td class="kemasan">{{ $item->sparepart->Kemasan->nama_kemasan }}
                                                     </td>
-                                                    <td class="text-center stock">{{ $item->stock }}</td>
+                                                    <td class="text-center stock">{{ $item->sparepart->stock }}</td>
                                                     <td class="text-center status">
-                                                        @if($item->status_jumlah == 'Cukup')
+                                                        @if($item->sparepart->status_jumlah == 'Cukup')
                                                         <span class="badge badge-success">
-                                                            @elseif($item->status_jumlah == 'Habis')
+                                                            @elseif($item->sparepart->status_jumlah == 'Habis')
                                                             <span class="badge badge-danger">
                                                                 @else
                                                                 <span>
                                                                     @endif
-                                                                    {{ $item->status_jumlah }}
+                                                                    {{ $item->sparepart->status_jumlah }}
                                                                 </span>
                                                     </td>
                                                     {{-- <td class="harga_beli">@if ($item->Hargasparepart == '' | $item->Hargasparepart == '0')
@@ -275,7 +275,8 @@
 </main>
 
 {{-- MODAL TAMBAH SPAREPART --}}
-@forelse ($po->Supplier->Sparepart as $item)
+{{-- @forelse ($po->Supplier->Sparepart as $item) --}}
+@forelse ($sparepartSupplier as $item)
 <div class="modal fade" id="Modaltambah-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -285,7 +286,7 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
+            <form action="" method="POST" id="form-{{ $item->sparepart->id_sparepart }}" class="d-inline">
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="small mb-1" for="qty">Masukan Quantity Pesanan</label>
@@ -296,13 +297,13 @@
                         <label class="small mb-1" for="harga_diterima">Harga Satuan</label>
                         <input class="form-control harga_diterima" name="harga_diterima" type="number"
                             id="harga_diterima" placeholder="Input Harga Beli diterima"
-                            value="{{ $item->Kartugudangterakhir['harga_beli'] }}"></input>
+                            value="{{ $item->sparepart->Kartugudangterakhir['harga_beli'] }}"></input>
                         <div class="small text-primary">Detail Harga
                             <span id="detailhargaditerima" class="detailhargaditerima">
-                                @if ($item->Kartugudangterakhir == '')
+                                @if ($item->sparepart->Kartugudangterakhir == '')
 
                                 @else
-                                Rp.{{ number_format($item->Kartugudangterakhir->harga_beli,2,',','.')}}
+                                Rp.{{ number_format($item->sparepart->Kartugudangterakhir->harga_beli,2,',','.')}}
                                 @endif
 
                             </span>
@@ -311,7 +312,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" onclick="konfirmsparepart(event, {{ $item->id_sparepart }})"
+                    <button class="btn btn-success" onclick="konfirmsparepart(event, {{ $item->sparepart->id_sparepart }})"
                         type="button" data-dismiss="modal">Tambah</button>
                 </div>
             </form>
@@ -321,7 +322,8 @@
 @empty
 @endforelse
 
-@forelse ($po->Supplier->Sparepart as $sparepart)
+{{-- @forelse ($po->Supplier->Sparepart as $sparepart) --}}
+@forelse ($sparepartSupplier as $item)
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -337,7 +339,7 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary" type="button"
-                    onclick="tambahsparepart(event,{{ $po->Supplier->Sparepart }},{{ $po->id_po }})">Ya!Sudah</button>
+                    onclick="tambahsparepart(event,{{ $sparepartSupplier }},{{ $po->id_po }})">Ya!Sudah</button>
             </div>
         </div>
     </div>
@@ -362,10 +364,6 @@
 </template>
 
 <script>
-
-
-
-
     function tambahsparepart(event, sparepart, id_po) {
         event.preventDefault()
         var form1 = $('#form1')

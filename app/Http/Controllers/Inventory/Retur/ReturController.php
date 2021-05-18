@@ -8,6 +8,7 @@ use App\Model\Inventory\Rcv\Rcvdetail;
 use App\Model\Inventory\Retur\Retur;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Kartugudang\Kartugudang;
+use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
@@ -90,11 +91,19 @@ class ReturController extends Controller
         $retur = Retur::with([
             'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart'
         ])->find($id);
+        
+        $id = Retur::getId();
+        foreach($id as $value);
+        $idlama = $value->id_retur;
+        $idbaru = $idlama + 1;
+        $blt = date('y-m');
+
+        $kode_retur = 'RTR-'.$blt.'/'.$idbaru;
 
         // Generate Code Manggil Fungsi getId()
-        $id = Retur::getId();
-        $blt = date('y-m');
-        $kode_retur = 'RTR-'.$blt.'/'.$retur->id_retur;
+        // $id = Retur::getId();
+        // $blt = date('y-m');
+        // $kode_retur = 'RTR-'.$blt.'/'.$retur->id_retur;
 
         // Panggil
         $supplier = Supplier::all();
