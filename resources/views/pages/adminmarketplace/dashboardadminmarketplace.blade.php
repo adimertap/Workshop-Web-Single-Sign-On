@@ -54,7 +54,7 @@
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
                                 <div class="small font-weight-bold text-secondary mb-1">Penjulan Selesai</div>
-                                <div class="h6">Total: 0</div>
+                                <div class="h6">Total: {{ $totaltransaksi }}</div>
                             </div>
                             <div class="ml-2"><svg class="svg-inline--fa fa-shopping-cart fa-w-18" style="color: gainsboro;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="shopping-cart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg><!-- <i class="fas fa-shopping-cart" style="color: gainsboro"></i> -->
                             </div>
@@ -64,7 +64,7 @@
                                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                                 <polyline points="17 6 23 6 23 12"></polyline>
                             </svg>
-                            Hari ini + <span>0</span>
+                            Hari ini + <span>{{ $totaltransaksitoday }}</span>
                         </div>
                     </div>
                 </div>
@@ -76,18 +76,12 @@
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
                                 <div class="small font-weight-bold text-info mb-1">Menunggu Dikirim</div>
-                                <div class="h6">Total: 0</div>
+                                <div class="h6">Total: {{ $totaltransaksidikirim }}</div>
                             </div>
                             <div class="ml-2"><svg class="svg-inline--fa fa-box-open fa-w-20" style="color: gainsboro;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="box-open" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M425.7 256c-16.9 0-32.8-9-41.4-23.4L320 126l-64.2 106.6c-8.7 14.5-24.6 23.5-41.5 23.5-4.5 0-9-.6-13.3-1.9L64 215v178c0 14.7 10 27.5 24.2 31l216.2 54.1c10.2 2.5 20.9 2.5 31 0L551.8 424c14.2-3.6 24.2-16.4 24.2-31V215l-137 39.1c-4.3 1.3-8.8 1.9-13.3 1.9zm212.6-112.2L586.8 41c-3.1-6.2-9.8-9.8-16.7-8.9L320 64l91.7 152.1c3.8 6.3 11.4 9.3 18.5 7.3l197.9-56.5c9.9-2.9 14.7-13.9 10.2-23.1zM53.2 41L1.7 143.8c-4.6 9.2.3 20.2 10.1 23l197.9 56.5c7.1 2 14.7-1 18.5-7.3L320 64 69.8 32.1c-6.9-.8-13.5 2.7-16.6 8.9z"></path></svg><!-- <i class="fas fa-box-open" style="color: gainsboro"></i> -->
                             </div>
                         </div>
-                        <div class="text-xs font-weight-bold text-success d-inline-flex align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up mr-1">
-                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                                <polyline points="17 6 23 6 23 12"></polyline>
-                            </svg>
-                            Hari ini + <span>0</span>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -98,18 +92,12 @@
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
                                 <div class="small font-weight-bold text-success mb-1">Menunggu Diterima</div>
-                                <div class="h6">Total: 0</div>
+                                <div class="h6">Total: {{ $totaltransaksiditerima }}</div>
                             </div>
                             <div class="ml-2"><svg class="svg-inline--fa fa-truck-loading fa-w-20" style="color: gainsboro;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="truck-loading" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M50.2 375.6c2.3 8.5 11.1 13.6 19.6 11.3l216.4-58c8.5-2.3 13.6-11.1 11.3-19.6l-49.7-185.5c-2.3-8.5-11.1-13.6-19.6-11.3L151 133.3l24.8 92.7-61.8 16.5-24.8-92.7-77.3 20.7C3.4 172.8-1.7 181.6.6 190.1l49.6 185.5zM384 0c-17.7 0-32 14.3-32 32v323.6L5.9 450c-4.3 1.2-6.8 5.6-5.6 9.8l12.6 46.3c1.2 4.3 5.6 6.8 9.8 5.6l393.7-107.4C418.8 464.1 467.6 512 528 512c61.9 0 112-50.1 112-112V0H384zm144 448c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z"></path></svg><!-- <i class="fas fa-truck-loading" style="color: gainsboro"></i> -->
                             </div>
                         </div>
-                        <div class="text-xs font-weight-bold text-success d-inline-flex align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up mr-1">
-                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                                <polyline points="17 6 23 6 23 12"></polyline>
-                            </svg>
-                            Hari ini + <span>0</span>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminMarketplace;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Marketplace\Faq;
+use App\Model\Marketplace\Transaksi;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Null_;
@@ -25,11 +26,29 @@ class DashboardadminController extends Controller
         $totaltoday = count($faqtoday);
         $totalnoanswer = count($faqnoanswer);
 
+        $transaksi = Transaksi::where('id_bengkel', Auth::user()->id_bengkel)->where('transaksi_status', 'DITERIMA')->get();
+        $transaksidikirim = Transaksi::where('id_bengkel', Auth::user()->id_bengkel)->where('transaksi_status', 'PENDING')->get();
+        $transaksiditerima = Transaksi::where('id_bengkel', Auth::user()->id_bengkel)->where('transaksi_status', 'DIKIRIM')->get();
+
+        $transaksitoday = Transaksi::where('id_bengkel', Auth::user()->id_bengkel)->where('transaksi_status', 'DITERIMA')->whereDate('created_at', Carbon::today())->get();
+
+        $totaltransaksi= count($transaksi);
+        $totaltransaksidikirim= count($transaksidikirim);
+        $totaltransaksiditerima= count($transaksiditerima);
+        $totaltransaksitoday= count($transaksitoday);
+
+
+
+
         
        return view('pages.adminmarketplace.dashboardadminmarketplace',[
            "totalfaq" => $totalfaq,
            "totaltoday" =>$totaltoday,
-           "totalnoanswer" =>$totalnoanswer
+           "totalnoanswer" =>$totalnoanswer,
+           "totaltransaksi" =>$totaltransaksi,
+           "totaltransaksidikirim"=>$totaltransaksidikirim,
+           "totaltransaksiditerima"=>$totaltransaksiditerima,
+           "totaltransaksitoday"=>$totaltransaksitoday
        ]);
     }
 
