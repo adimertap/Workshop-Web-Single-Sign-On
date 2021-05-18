@@ -7,6 +7,8 @@ use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Provinsi;
+use App\Kabupaten;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -114,6 +116,15 @@ class RegisterController extends Controller
 
     public function showRegisterForm()
     {
-        return view('pages.singlesignon.register');
+        $provinsi = Provinsi::all();
+
+        return view('pages.singlesignon.register', [
+            'provinsi' =>$provinsi
+        ]);
+    }
+
+    public function kabupaten ($id){
+        $kabupaten = Kabupaten::where('id_provinsi', '=', $id)->pluck('nama_kabupaten', 'id_kabupaten');
+        return json_encode($kabupaten);
     }
 }
