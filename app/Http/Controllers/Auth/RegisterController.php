@@ -8,6 +8,7 @@ use App\Model\SingleSignOn\Bengkel;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -90,9 +91,11 @@ class RegisterController extends Controller
             'nama_panggilan' => $data['username'],
             'tempat_lahir' => $data['tempat_lahir'],
             'tanggal_lahir' => $data['tanggal_lahir'],
+            'alamat' => $data['alamat'],
             'email' => $data['email'],
             'no_telp' => $data['no_telp'],
             'jenis_kelamin' => $data['jenis_kelamin'],
+            'id_bengkel' => $bengkel->id_bengkel,
             'id_jabatan' => 4
         ]);
 
@@ -100,6 +103,7 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role' => 'owner',
             'id_bengkel' =>  $bengkel->id_bengkel,
             'id_pegawai' => $pegawai->id_pegawai
         ]);

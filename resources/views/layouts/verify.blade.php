@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Single Sign On System</title>
+    <title>Verifikasi Email Anda</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}">
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
@@ -28,15 +28,10 @@
 
 
 </head>
+
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="{{ route('dashboardinventory')}}">
-            <i class="fas fa-users mr-2"></i>
-            Single Sign On System
-        </a>
-        <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
-                data-feather="menu"></i></button>
-        <div class="small">
+        <div class="small ml-3">
             <i class="fa fa-cogs" aria-hidden="true"></i>
             Bengkel
             <span class="font-weight-500 text-primary">{{ Auth::user()->bengkel->nama_bengkel}}</span>
@@ -165,17 +160,11 @@
                         Account
                     </a>
 
-                    <a class="dropdown-item" href="{{ route('password.edit') }}">
-                        <div class="dropdown-item-icon"><i data-feather="key"></i></div>
-                        Ganti Password
-                    </a>
-
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                         Logout
-                    </a> 
+                    </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -187,75 +176,23 @@
 
     {{-- Side Bar Content --}}
     {{-- Layout --}}
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sidenav shadow-right sidenav-light">
-                <div class="sidenav-menu">
-                    <div class="nav accordion" id="accordionSidenav">
+    <div class="row">
+        <div class="container" style="margin-top: 200px">
 
-                        
-                        {{-- MASTER DATA --}}
-                        {{-- Master Data Side Bar --}}
-                        <div class="sidenav-menu-heading">Manajemen</div>
-                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                            data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
-                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
-                            Manajemen
-                            <div class="sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
-                        </a>
-                        <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
-                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('manajemen-user.index')}}">
-                                    User
-                                </a>
-                            </nav>
-                        </div>
-
-                        {{-- DASHBOARD --}}
-                        {{-- Dashboard Side Bar--}}
-                        <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardsso')}}">
-                            <div class="nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Dashboard
-                        </a>
-                        <a class="nav-link" href="{{ route('dashboardfrontoffice') }}">
-                            <div class="nav-link-icon"><i class="fas fa-user"></i></div>
-                            Profile
-                        </a>
-                    </div>
-                </div>
-
-                {{-- USER ROLE Side Bar --}}
-                <div class="sidenav-footer">
-                    <div class="sidenav-footer-content">
-                        <div class="sidenav-footer-subtitle">User Role:</div>
-                        <div class="sidenav-footer-title">{{ Auth::user()->role_name }}</div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-
-
-        <div id="layoutSidenav_content">
-
-            {{-- MASTER CONTENT --}}
-            {{-- Konten di dalam Masing-Masing Fitur --}}
             @yield('content')
-
-
-            {{-- FOOTER --}}
-            <footer class="footer mt-auto footer-light">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12 text-center">Copyright &copy; 2021 BengkelKuy</div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
-    
+
+
+    {{-- FOOTER --}}
+    <footer class="footer my-auto footer-light">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center">Copyright &copy; 2021 BengkelKuy</div>
+            </div>
+        </div>
+    </footer>
+
     <script>
         // Waktu
         setInterval(displayclock, 500);
@@ -294,6 +231,7 @@
             document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
             document.getElementById('clockmodal').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
         }
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>

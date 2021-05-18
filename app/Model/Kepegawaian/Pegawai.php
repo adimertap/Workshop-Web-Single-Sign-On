@@ -34,6 +34,7 @@ class Pegawai extends Model
         'email',
         'pendidikan_terakhir',
         'tanggal_masuk',
+        'id_bengkel'
     ];
 
     protected $hidden = [];
@@ -59,8 +60,7 @@ class Pegawai extends Model
                 'id_pegawai'=> 0
             ]
             ];
-
-    }
+        }
 
     public function absensi_mekanik()
     {
