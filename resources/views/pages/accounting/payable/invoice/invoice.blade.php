@@ -43,9 +43,9 @@
                         </button>
                     </div>
                     @endif
-                    @if(session('messagekirim'))
+                    @if(session('messagejurnal'))
                     <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                        {{ session('messagekirim') }}
+                        {{ session('messagejurnal') }}
                         <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -104,7 +104,7 @@
                                     <tbody>
                                         @forelse ($invoice as $item)
                                         <tr role="row" class="odd">
-                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
                                             <td>{{ $item->kode_invoice }}</td>
                                             <td>{{ $item->tanggal_invoice }}</td>
                                             <td>{{ $item->Rcv->kode_rcv }}</td>
@@ -121,13 +121,16 @@
                                                             {{ $item->status_prf }}
                                                         </span>
                                             </td>
-                                            <td>@if($item->status_jurnal == 'Belum Diposting')
-                                                <button class="btn btn-sm btn-danger">
+                                            <td>@if($item->status_prf == 'Telah Dibuat')
+                                                <a href="" class="btn btn-danger btn-xs" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modaljurnal-{{ $item->id_payable_invoice }}">
                                                     Posting?
-                                                </button>
-                                                @elseif($item->status_jurnal == 'Sudah Diposting')
-                                                <span class="badge badge-success">{{ $item->status_jurnal }}</span>
+                                                </a>
+                                                @elseif ($item->status_jurnal == 'Sudah Diposting')
+                                                <span class="badge badge-secondary">{{ $item->status_jurnal }}</span>
                                                 @else
+                                                <span class="badge badge-secondary">{{ $item->status_jurnal }}</span>
                                                 <span>
                                                     @endif
                                                 </span>
@@ -404,6 +407,33 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+
+@endforelse
+
+@forelse ($invoice as $item)
+<div class="modal fade" id="Modaljurnal-{{ $item->id_payable_invoice }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Posting Jurnal</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('jurnal-pengeluaran.update', $item->id_payable_invoice) }}" method="POST" class="d-inline">
+                @method('PUT')
+                @csrf
+                <div class="modal-body text-center">Apakah Anda Yakin Memposting Data Invoice {{ $item->kode_invoice }} pada tanggal
+                    {{ $item->tanggal_invoice }}?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Posting</button>
                 </div>
             </form>
         </div>

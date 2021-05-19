@@ -5,6 +5,7 @@ namespace App\Model\Inventory\Kartugudang;
 use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Retur\Retur;
 use App\Model\Inventory\Sparepart;
+use App\Model\Marketplace\Transaksi;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,6 +23,7 @@ class Kartugudang extends Model
         'id_bengkel',
         'id_rcv',
         'id_retur',
+        'id_transaksi_online',
         'saldo_awal',
         'tanggal_transaksi',
         'jumlah_masuk',
@@ -46,6 +48,11 @@ class Kartugudang extends Model
     public function Rcv()
     {
         return $this->belongsTo(Rcv::class,'id_rcv','id_rcv');
+    }
+
+    public function TransaksiOnline()
+    {
+        return $this->belongsTo(Transaksi::class,'id_transaksi_online','id_transaksi_online');
     }
 
     public function Retur()

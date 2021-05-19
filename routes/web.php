@@ -540,6 +540,15 @@ Route::group(
                 Route::resource('gaji-accounting', 'GajiAccountingController');
             });
 
+
+         // Jurnal Pengeluaran ----------------------------------------------------------------- Jurnal Pengeluaran 
+         Route::prefix('Accounting')
+            ->namespace('Accounting\Jurnal')
+            ->middleware(['admin_account_payable', 'verified'])
+            ->group(function () {
+                Route::resource('jurnal-pengeluaran', 'JurnalPengeluaranController');
+         });
+
         // CATATAN ADIM -------------------------------------------------------------------- Catatan Adim
         // NOTES ADIM
         Route::prefix('Note/Noteadim')

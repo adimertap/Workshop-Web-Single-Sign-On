@@ -166,6 +166,6 @@ class GajipegawaiController extends Controller
             $value->save();
         }
         
-        return redirect()->route('gaji-pegawai.index')->with('messagebayar','Slip Gaji Pegawai berhasil Dibayarkan');
+        return redirect()->back()->with('messagebayar','Slip Gaji Pegawai berhasil Dibayarkan');
     }
 }

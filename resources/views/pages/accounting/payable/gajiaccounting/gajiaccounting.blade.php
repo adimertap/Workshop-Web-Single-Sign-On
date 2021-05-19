@@ -40,17 +40,9 @@
                         </button>
                     </div>
                     @endif
-                    @if(session('messagekirim'))
+                    @if(session('messagebayar'))
                     <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                        {{ session('messagekirim') }}
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    @endif
-                    @if(session('messagehapus'))
-                    <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
-                        {{ session('messagehapus') }}
+                        {{ session('messagebayar') }}
                         <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -89,7 +81,7 @@
                                                 style="width: 70px;">Status Gaji</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 50px;">Action</th>
+                                                style="width: 80px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -103,7 +95,7 @@
                                             <td>Rp. {{ number_format($item->total_tunjangan,2,',','.') }}</td>
                                             <td>@if($item->status_diterima == 'Belum Dibayarkan')
                                                 <span class="badge badge-danger">
-                                                    @elseif($item->status_diterima == 'Sudah Dibayarkan')
+                                                    @elseif($item->status_diterima == 'Dibayarkan')
                                                     <span class="badge badge-success">
                                                         @else
                                                         <span>
@@ -115,6 +107,8 @@
                                                 <a href="" class="btn btn-success btn-datatable" type="button"
                                                 data-toggle="modal" data-target="#Modalbayar-{{ $item->bulan_gaji }}-{{ $item->tahun_gaji }}">
                                                 <i class="fas fa-check"></i>
+                                                @elseif ($item->status_diterima == 'Dibayarkan')
+                                                <button class="btn btn-secondary btn-xs" type="button" data-dismiss="modal">Posting Jurnal</button>
                                                 @endif
                                             </a>
                                             </td>
@@ -146,7 +140,7 @@
             <form action="{{ route('gaji-pegawai-status-bulan-tahun',
             ['bulan_gaji'=>$item->bulan_gaji, 'tahun_gaji'=>$item->tahun_gaji]) }}?status=Dibayarkan" method="POST" class="d-inline">
                 @csrf
-                <div class="modal-body text-center">Apakah Anda Yakin untuk Melakukan Pembayaran Gaji Pegawai pada bulan {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }} </div>
+                <div class="modal-body text-center">Apakah Anda Yakin untuk Melakukan Pembayaran Gaji Pegawai pada bulan {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }} dengan jumlah pegawai <span class="font-weight-700">{{ $item->jumlah_pegawai }}</span> Orang, sebesar <span class="font-weight-700">Rp. {{ number_format($item->total_gaji,2,',','.') }}</span> </div>
                 <div class="modal-footer ">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-success" type="submit">Ya! Bayar</button>
@@ -160,54 +154,6 @@
 
 
 <script>
-     function tambahrcv(event, id_rcv) {
-        var data = $('#item-' + id_rcv)
-        var _token = $('#form1').find('input[name="_token"]').val()
-        var kode_rcv = $(data.find('.kode_rcv')[0]).text()
-        var kode_po = $(data.find('.kode_po')[0]).text()
-        var nama_supplier = $(data.find('.nama_supplier')[0]).text()
-        var tanggal_rcv = $(data.find('.tanggal_rcv')[0]).text()
-        alert('Berhasil Menambahkan Data Receiving')
-
-        $('#detailkodercv').val(kode_rcv)
-        $('#detailkodepo').val(kode_po)
-        $('#detailsupplier').val(nama_supplier)
-        $('#detailtanggalrcv').val(tanggal_rcv)
-    }
-
-    function submit1() {
-        var _token = $('#form1').find('input[name="_token"]').val()
-        var id_jenis_transaksi = $('#id_jenis_transaksi').val()
-        var kode_rcv = $('#detailkodercv').val()
-        var nama_supplier = $('#detailsupplier').val()
-        var kode_po = $('#detailkodepo').val()
-        var data = {
-            _token: _token,
-            id_jenis_transaksi: id_jenis_transaksi,
-            kode_rcv: kode_rcv,
-            kode_po: kode_po,
-            nama_supplier: nama_supplier,
-        }
-
-        if (kode_rcv == 0 | kode_rcv == '' | id_jenis_transaksi == 0 | id_jenis_transaksi == 'Pilih Jenis Transaksi' ) {
-            var alert = $('#alertdatakosong').show()
-        } else {
-
-            $.ajax({
-                method: 'post',
-                url: "/Accounting/invoice-payable",
-                data: data,
-                success: function (response) {
-                    window.location.href = '/Accounting/invoice-payable/' + response.id_payable_invoice + '/edit'
-                },
-                error: function (error) {
-                    console.log(error)
-                }
-
-            });
-        }
-
-    }
 
 
     setInterval(displayclock, 500);

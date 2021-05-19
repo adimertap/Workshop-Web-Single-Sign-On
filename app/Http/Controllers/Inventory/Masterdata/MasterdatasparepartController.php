@@ -105,6 +105,7 @@ class MasterdatasparepartController extends Controller
         $sparepart->id_kemasan = $request->id_kemasan;
         $sparepart->berat_sparepart = $request->berat_sparepart;
         $sparepart->status_jumlah = 'Habis';
+        $sparepart->slug = Str::slug($request->nama_sparepart);
         $sparepart->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $sparepart->save();
 

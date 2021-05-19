@@ -16,7 +16,6 @@ class Pajakdetail extends Model
 
     protected $fillable = [
         'id_pajak',
-        'id_bengkel',
         'data_pajak',
         'nilai_pajak',
         'keterangan_pajak'
@@ -35,8 +34,4 @@ class Pajakdetail extends Model
         return $this->belongsTo(Pajak::class, 'id_pajak','id_pajak');
     }
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
 }

@@ -278,14 +278,11 @@
                         </a>
                         <div class="collapse" id="collapseFlows" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link " href="invoice.html">
-                                    Jurnal Harian
+                                <a class="nav-link" href="{{ route('jurnal-pengeluaran.index') }}">
+                                    Jurnal Pengeluaran
                                 </a>
                                 <a class="nav-link " href="invoice.html">
                                     Jurnal Pemasukan
-                                </a>
-                                <a class="nav-link" href="invoice.html">
-                                    Jurnal Pengeluaran
                                 </a>
                             </nav>
                         </div>
