@@ -1,4 +1,4 @@
-@extends('layouts.admin.verify')
+@extends('layouts.Admin.verify')
 
 @section('content')
 <div class="container">
