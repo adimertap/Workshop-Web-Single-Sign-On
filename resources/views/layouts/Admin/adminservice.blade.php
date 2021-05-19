@@ -165,12 +165,11 @@
                         <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                         Account
                     </a>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                         Logout
-                    </a> 
+                    </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -200,7 +199,8 @@
                         {{-- Service Advisor --}}
                         @if (Auth::user()->role == 'admin_service_advisor' || Auth::user()->role == 'owner')
                         <div class="sidenav-menu-heading">Service Advisor</div>
-                        <a class="nav-link collapsed" href="{{route('penerimaanservice.index')}}"  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('penerimaanservice.index')}}" aria-expanded="false"
+                            aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-handshake"></i>
                             </div>
@@ -208,17 +208,20 @@
                         </a>
                         @endif
 
+                        @if (Auth::user()->role == 'admin_service_instructor' || Auth::user()->role == 'owner')
                         {{-- FRONTOFFICE SYSTEM --}}
                         <div class="sidenav-menu-heading">Service System</div>
 
-                        <a class="nav-link collapsed" href="{{route('stoksparepart.index')}}"  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('stoksparepart.index')}}" aria-expanded="false"
+                            aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-cubes"></i>
                             </div>
                             Stok Sparepart
                         </a>
 
-                        <a class="nav-link collapsed" href="{{route('jadwalmekanik.index')}}"  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('jadwalmekanik.index')}}" aria-expanded="false"
+                            aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-user"></i>
                             </div>
@@ -226,10 +229,13 @@
                         </a>
 
                         {{-- Inventory --}}
-                        <a class="nav-link collapsed" href="{{route('pengerjaanservice.index')}}"  aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="{{route('pengerjaanservice.index')}}" aria-expanded="false"
+                            aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-cogs"></i></div>
                             Pengerjaan Service
                         </a>
+                        @endif
+
                     </div>
                 </div>
 
@@ -300,6 +306,7 @@
             document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
             document.getElementById('clockmodal').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
         }
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>

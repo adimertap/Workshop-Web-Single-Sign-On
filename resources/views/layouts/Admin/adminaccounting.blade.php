@@ -193,6 +193,7 @@
                             Dashboard
                         </a>
 
+                        @if (Auth::user()->role == 'owner')
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
                         <div class="sidenav-menu-heading">Master Data</div>
@@ -218,7 +219,11 @@
                                 </a>
                             </nav>
                         </div>
+                        @endif
+
+
                         <div class="sidenav-menu-heading">Account</div>
+                        @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'owner')
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-wallet"></i></div>
@@ -244,7 +249,9 @@
                                 </a>
                             </nav>
                         </div>
+                        @endif
 
+                        @if (Auth::user()->role == 'admin_account_receivable' || Auth::user()->role == 'owner')
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
                             <div class="nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
@@ -260,6 +267,7 @@
                                 </a>
                             </nav>
                         </div>
+                        @endif
 
                         <div class="sidenav-menu-heading">Jurnal dan Laporan</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"

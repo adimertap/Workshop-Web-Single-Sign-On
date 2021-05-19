@@ -165,12 +165,11 @@
                         <div class="dropdown-item-icon"> <i class="fas fa-cubes"></i></div>
                         Menu SSO
                     </a>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                         Logout
-                    </a> 
+                    </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -196,6 +195,7 @@
                             Dashboard
                         </a>
 
+                        @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'owner')
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
                         <div class="sidenav-menu-heading">Master Data</div>
@@ -235,11 +235,13 @@
                                 </a>
                             </nav>
                         </div>
+                        @endif
 
                         {{-- INVENTORY SYSTEM --}}
                         {{-- Inventory System Side Bar --}}
                         <div class="sidenav-menu-heading">Inventory System</div>
 
+                        @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'owner')
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
@@ -251,6 +253,7 @@
                             </div>
                         </a>
 
+
                         <div class="collapse" id="collapseUtilities" data-parent="#accordionSidenav" style="">
                             <nav class="sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{ route('Opname.index') }}">
@@ -261,7 +264,9 @@
                                 </a>
                             </nav>
                         </div>
+                        @endif
 
+                        @if (Auth::user()->role == 'admin_purchasing' || Auth::user()->role == 'owner')
                         {{-- Inventory --}}
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -278,7 +283,9 @@
                                 </a>
                             </nav>
                         </div>
+                        @endif
 
+                        @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'owner')
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
                             <div class="nav-link-icon"><i class="fas fa-box-open"></i></div>
@@ -297,7 +304,9 @@
                                 </a>
                             </nav>
                         </div>
+                        @endif
 
+                        @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'owner')
                         {{-- MANAJEMEN ASET --}}
                         {{-- Manajemen Aset Side Bar --}}
                         <div class="sidenav-menu-heading">Approval</div>
@@ -309,17 +318,25 @@
                                 <i class="fas fa-angle-down">
                                 </i></div>
                         </a>
+                        @endif
                         <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
+                                @if (Auth::user()->role == 'owner')
                                 <a class="nav-link" href="{{ route('approval-po.index') }}">
                                     Purchase Order
-                                </a>
-                                <a class="nav-link " href="{{ route('approval-po-ap.index') }}">
-                                    Purchase Order AP
                                 </a>
                                 <a class="nav-link" href="{{ route('approval-opname.index') }}">
                                     Stock Opname
                                 </a>
+                                @endif
+
+                                @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'owner')
+                                <a class="nav-link " href="{{ route('approval-po-ap.index') }}">
+                                    Purchase Order AP
+                                </a>
+                                @endif
+
+
                             </nav>
                         </div>
                     </div>
@@ -371,19 +388,20 @@
 
 
 
- 
-   
-   
-    
-  
- 
-  
-   
-  
-   
-   
-   
-    
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
+
 </html>
