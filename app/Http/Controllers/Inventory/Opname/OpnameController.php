@@ -9,6 +9,7 @@ use App\Model\Inventory\Stockopname\Opnamedetail;
 use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Null_;
 
 class OpnameController extends Controller
@@ -76,6 +77,7 @@ class OpnameController extends Controller
         $opname->tanggal_opname = $request->tanggal_opname;
         $opname->keterangan = $request->keterangan;
         $opname->approve =  $request->approve;
+        $opname->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
 
         $opname->save();
         $opname->Detailsparepart()->sync($request->sparepart);

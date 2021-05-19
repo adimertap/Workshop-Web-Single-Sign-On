@@ -201,10 +201,6 @@
                                                 style="width: 180px;">
                                                 Nama Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Office: activate to sort column ascending"
-                                                style="width: 70px;">
-                                                Jenis Sparepart</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
                                                 style="width: 70px;">
                                                 Merk</th>
@@ -250,12 +246,14 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <div class="form-group">Apakah Form yang Anda inputkan sudah benar?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="button"
-                        onclick="tambahsparepart(event,{{ $sparepart }})">Ya!Sudah</button>
+                <div class="form-group">Apakah Form yang Anda inputkan sudah benar?
+
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="button"
+                    onclick="tambahsparepart(event,{{ $sparepart }}.{{ $opname->id_opname }})">Ya!Sudah</button>
             </div>
         </div>
     </div>
@@ -315,7 +313,7 @@
         $(`#selisih-${id_sparepart}`).val(selisih)
     }
 
-    function tambahsparepart(event, sparepart) {
+    function tambahsparepart(event, sparepart, id_opname) {
         event.preventDefault()
         var form1 = $('#form1')
         var kode_opname = form1.find('input[name="kode_opname"]').val()
@@ -336,6 +334,7 @@
             } else {
                 var id_sparepart = sparepart[i].id_sparepart
                 var obj = {
+                    id_opname: id_opname,
                     id_sparepart: id_sparepart,
                     jumlah_real: jumlah_real,
                     keterangan_detail: keterangan_detail
@@ -345,28 +344,28 @@
             }
         }
 
-        // if (dataform2.length == 0) {
-        //     var alert = $('#alertsparepartkosong').show()
-        // } else {
-        //     var data = {
-        //         _token: _token,
-        //         kode_opname: kode_opname,
-        //         id_pegawai: id_pegawai,
-        //         tanggal_opname: tanggal_opname,
-        //         approve: approve,
-        //         keterangan: keterangan,
-        //         sparepart: dataform2
-        //     }
+        if (dataform2.length == 0) {
+            var alert = $('#alertsparepartkosong').show()
+        } else {
+            var data = {
+                _token: _token,
+                kode_opname: kode_opname,
+                id_pegawai: id_pegawai,
+                tanggal_opname: tanggal_opname,
+                approve: approve,
+                keterangan: keterangan,
+                sparepart: dataform2
+            }
 
-        //     $.ajax({
-        //         method: 'post',
-        //         url: '/inventory/Opname',
-        //         data: data,
-        //         success: function (response) {
-        //             window.location.href = '/inventory/Opname'
-        //         }
-        //     })
-        // }
+            $.ajax({
+                method: 'post',
+                url: '/inventory/Opname',
+                data: data,
+                success: function (response) {
+                    window.location.href = '/inventory/Opname'
+                }
+            })
+        }
     }
 
     function konfirmsparepart(event, id_sparepart) {
@@ -384,7 +383,6 @@
             var data = $('#item-' + id_sparepart)
             var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
             var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
-            var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
             var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
             var satuan = $(data.find('.satuan')[0]).text()
             var template = $($('#template_delete_button').html())
@@ -395,8 +393,7 @@
             table.row(row).remove().draw();
 
             $('#dataTablekonfirmasi').DataTable().row.add([
-                kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
-                jenis_sparepart, merk_sparepart, satuan,
+                kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart, merk_sparepart, satuan,
                 jumlah_real, keterangan_detail
             ]).draw();
         }

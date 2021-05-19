@@ -10,6 +10,7 @@ use App\Model\Accounting\Payable\Pembayaranpajak;
 use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PajakController extends Controller
 {
@@ -44,7 +45,7 @@ class PajakController extends Controller
 
         $jenis_transaksi = Jenistransaksi::all();
         $pegawai = Pegawai::all();
-        $detailpajak = Pajakdetail::all();
+    
 
         $id = Pajak::getId();
         foreach($id as $value);
@@ -52,7 +53,7 @@ class PajakController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_pajak = 'AKPJ-'.$idbaru.'/'.$blt;
+        $kode_pajak = 'PJK-'.$blt.'/'.$idbaru;
         $id_pajak = $idbaru;
 
         return view('pages.accounting.payable.pajak.create', compact('id_pajak','jenis_transaksi','pegawai','kode_pajak','pajak', 'detailpajak')); 
@@ -73,7 +74,7 @@ class PajakController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_pajak = 'AKPJ-'.$idbaru.'/'.$blt;
+        $kode_pajak = 'PJK-'.$blt.'/'.$idbaru;
 
         $pajak = new Pajak;
         $pajak->kode_pajak = $kode_pajak;
@@ -83,6 +84,7 @@ class PajakController extends Controller
         $pajak->deskripsi_pajak = $request->deskripsi_pajak;
         $pajak->total_pajak = $request->total_pajak;
         $pajak->status_jurnal = 'Pending';
+        $pajak->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
 
         $pajak->save();
         

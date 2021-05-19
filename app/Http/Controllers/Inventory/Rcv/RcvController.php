@@ -15,6 +15,7 @@ use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\New_;
 
 class RcvController extends Controller
@@ -67,6 +68,7 @@ class RcvController extends Controller
             'id_supplier'=>$id_supplier,
             'no_do'=>$request->no_do,
             'tanggal_rcv'=>$request->tanggal_rcv,
+            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
         ]);
         
         return $rcv;
@@ -98,11 +100,14 @@ class RcvController extends Controller
         $rcv = Rcv::with([
             'PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart.Hargasparepart'
         ])->find($id);
-        
+
         $id = Rcv::getId();
+        foreach($id as $value);
+        $idlama = $value->id_rcv;
+        $idbaru = $idlama + 1;
         $blt = date('y-m');
 
-        $kode_rcv = 'RCV-'.$blt.'/'.$rcv->id_rcv;
+        $kode_rcv = 'Rcv-'.$blt.'/'.$idbaru;
 
         $pegawai = Pegawai::all();
         $supplier = Supplier::all();

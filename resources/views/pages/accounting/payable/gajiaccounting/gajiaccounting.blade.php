@@ -98,10 +98,19 @@
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->bulan_gaji }}</td>
                                             <td>{{ $item->tahun_gaji }}</td>
-                                            <td>{{ $item->jumlah_pegawai }}</td>
-                                            <td>{{ $item->total_gaji }}</td>
-                                            <td>{{ $item->total_tunjangan }}</td>
-                                            <td>{{ $item->status_diterima }}</td>
+                                            <td class="text-center">{{ $item->jumlah_pegawai }}</td>
+                                            <td>Rp. {{ number_format($item->total_gaji,2,',','.') }}</td>
+                                            <td>Rp. {{ number_format($item->total_tunjangan,2,',','.') }}</td>
+                                            <td>@if($item->status_diterima == 'Belum Dibayarkan')
+                                                <span class="badge badge-danger">
+                                                    @elseif($item->status_diterima == 'Sudah Dibayarkan')
+                                                    <span class="badge badge-success">
+                                                        @else
+                                                        <span>
+                                                            @endif
+                                                            {{ $item->status_diterima }}
+                                                        </span>
+                                            </td>
                                             <td>  @if($item->status_diterima == 'Belum Dibayarkan')
                                                 <a href="" class="btn btn-success btn-datatable" type="button"
                                                 data-toggle="modal" data-target="#Modalbayar-{{ $item->bulan_gaji }}-{{ $item->tahun_gaji }}">
@@ -113,14 +122,6 @@
                                         @empty
                                         @endforelse
                                     </tbody>
-                                    <tr id="grandtotal">
-                                        <td colspan="4" class="text-center font-weight-500">
-                                            Total Gaji Belum DiBayarkan
-                                        </td>
-                                        <td colspan="4" class="grand_total text-center font-weight-500">
-                                            {{-- Rp. {{ number_format($hutang,2,',','.') }} --}}
-                                        </td>
-                                    </tr>
                                 </table>
                             </div>
                         </div>

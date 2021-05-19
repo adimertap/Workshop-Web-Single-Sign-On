@@ -10,6 +10,7 @@ use App\Model\Payroll\Gajipegawai;
 use App\Model\Payroll\Mastertunjangan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GajipegawaiController extends Controller
 {
@@ -62,6 +63,7 @@ class GajipegawaiController extends Controller
             'id_pegawai'=>$id_pegawai,
             'bulan_gaji'=>$request->bulan_gaji,
             'tahun_gaji'=>$request->tahun_gaji,
+            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
         ]);
         
         return $gaji;
@@ -75,7 +77,7 @@ class GajipegawaiController extends Controller
      */
     public function show($id_gaji_pegawai)
     {
-        $gaji = Gajipegawai::with( 'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan')->findOrFail($id_gaji_pegawai);
+        $gaji = Gajipegawai::with('Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan')->findOrFail($id_gaji_pegawai);
 
         
         return view('pages.payroll.gajipegawai.detail')->with([
@@ -92,9 +94,9 @@ class GajipegawaiController extends Controller
     public function edit($id)
     {
         $gaji = Gajipegawai::with([
-            'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan'
+            'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi'
         ])->find($id);
-        
+
         $seluruhpegawai = Pegawai::all();
         $tunjangan = Mastertunjangan::all();
         $today = Carbon::now()->format('D, d/m/Y');
