@@ -47,7 +47,7 @@
                             <input type="password" name="password_confirmation" placeholder="Input Konfirmasi Password" id="password_confirmation"
                                 class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Ganti Password</button>
+                        <button type="submit" class="btn btn-primary btn-block mt-4">Ganti Password</button>
                     </form>
                 </div>
             </div>

@@ -16,7 +16,7 @@ class isAdminServiceInstructor
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() && Auth::user()->role == 'admin_service_instructor' || Auth::user()->role == 'owner' || Auth::user()->role == 'admin_service_advisor') {
+        if (Auth::user() && Auth::user()->role == 'admin_service_instructor' || Auth::user()->role == 'owner') {
             return $next($request);
         }
         abort(403);
