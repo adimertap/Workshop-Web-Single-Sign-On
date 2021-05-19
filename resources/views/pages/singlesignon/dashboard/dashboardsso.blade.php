@@ -38,7 +38,7 @@
     <div class="alert alert-info alert-dismissible fade show" role="alert">
         <h5 class="alert-heading">Informasi, Simak dengan Baik</h5>
         Getting Started, Seluruh panduan kami berikan pada link berikut <a class="alert-link"
-            href="javascript:void(0);">Panduan Pengguaan Sistem</a>
+            href="javascript:void(0);">Panduan Penggunaan Sistem</a>
     </div>
 </div>
 
