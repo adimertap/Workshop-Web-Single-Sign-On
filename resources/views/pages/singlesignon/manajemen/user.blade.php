@@ -88,11 +88,6 @@
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->role_name }}</td>
                                             <td>
-                                                <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title=""
-                                                    data-original-title="Detail Sparepart dan Foto">
-                                                    <i class="fa fa-key"></i>
-                                                </a>
                                                 <a href="{{ route('manajemen-user.edit', $item->id) }}"
                                                     class="btn btn-primary btn-datatable" type="button">
                                                     <i class="fas fa-edit"></i>
