@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -41,11 +43,12 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        // if ($user->hasRole('super_admin')) {
-        //     return redirect()->route('dashboard');
-        // }
+        $data = User::where('username', $request->username)->firstorFail();
 
-        // return redirect()->route('sso');
+        if (Hash::check($request->password, $data->password)) {
+            return redirect(route('dashboardsso'));
+        }
+        return redirect('/')->with('message', 'Username atau password salah');
     }
 
     public function showLoginForm()
