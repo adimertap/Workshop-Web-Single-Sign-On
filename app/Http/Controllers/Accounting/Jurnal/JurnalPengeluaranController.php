@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Accounting\Jurnal;
 use App\Http\Controllers\Controller;
 use App\Model\Accounting\Jurnal\Jurnalpengeluaran;
 use App\Model\Accounting\Payable\InvoicePayable;
+use App\Model\Accounting\Payable\Pajak;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -88,12 +89,35 @@ class JurnalPengeluaranController extends Controller
         $jurnal->ref = $invoice->kode_invoice;
         $jurnal->keterangan = $invoice->deskripsi_invoice;
         $jurnal->grand_total = $invoice->total_pembayaran;
+        $jurnal->jenis_jurnal = 'Invoice_Payable';
         $jurnal->save();
 
         $invoice->status_jurnal = 'Sudah Diposting';
         $invoice->save();
 
         return redirect()->back()->with('messagejurnal','Data Invoice Berhasil DiPosting ke Jurnal Pengeluaran');
+    }
+
+    public function Pajak(Request $request, $id_pajak)
+    {
+
+        $pajak = Pajak::findOrFail($id_pajak);
+
+        $jurnal = new Jurnalpengeluaran;
+        $jurnal->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+        $jurnal->id_jenis_transaksi = $pajak->id_jenis_transaksi;
+        $jurnal->tanggal_jurnal = Carbon::now();
+        $jurnal->id_pajak = $pajak->id_pajak;
+        $jurnal->ref = $pajak->kode_pajak;
+        $jurnal->keterangan = $pajak->deskripsi_pajak;
+        $jurnal->grand_total = $pajak->total_pajak;
+        $jurnal->jenis_jurnal = 'Pajak';
+        $jurnal->save();
+
+        $pajak->status_jurnal = 'Sudah Diposting';
+        $pajak->save();
+       
+        return redirect()->back()->with('messagejurnal','Data Pajak Berhasil DiPosting ke Jurnal Pengeluaran');
     }
 
     /**

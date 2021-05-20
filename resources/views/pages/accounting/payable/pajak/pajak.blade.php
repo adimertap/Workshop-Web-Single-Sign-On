@@ -41,9 +41,9 @@
                     </button>
                 </div>
                 @endif
-                @if(session('messagekirim'))
+                @if(session('messagejurnal'))
                 <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                    {{ session('messagekirim') }}
+                    {{ session('messagejurnal') }}
                     <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -95,21 +95,24 @@
                                 <tbody>
                                     @forelse ($pajak as $item)
                                     <tr role="row" class="odd">
-                                        <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                        <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
                                         <td>{{ $item->kode_pajak }}</td>
                                         <td>{{ $item->deskripsi_pajak }}</td>
                                         <td>{{ $item->tanggal_bayar }}</td>
                                         <td>{{ $item->Pegawai->nama_pegawai }}</td>
                                         <td>Rp. {{ number_format($item->total_pajak,0,',','.') }}</td>
                                         <td>
-                                            @if($item->status_jurnal == 'Pending')
-                                            <span class="badge badge-danger">
-                                                @elseif($item->status_jurnal == 'Posting')
-                                                <span class="badge badge-success">
+                                            @if($item->status_jurnal == 'Belum Diposting')
+                                            <a href="" class="btn btn-danger btn-xs" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modaljurnal-{{ $item->id_pajak }}">
+                                                    Posting?
+                                                </a>
+                                                @elseif($item->status_jurnal == 'Sudah Diposting')
+                                                <span class="badge badge-success">   {{ $item->status_jurnal }}
                                                     @else
                                                     <span>
                                                         @endif
-                                                        {{ $item->status_jurnal }}
                                                     </span>
                                         </td>
                                         <td>
@@ -145,6 +148,32 @@
     </div>
 </div>
 </main>
+
+@forelse ($pajak as $item)
+<div class="modal fade" id="Modaljurnal-{{ $item->id_pajak }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Posting Jurnal</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('jurnal-pengeluaran-pajak', $item->id_pajak) }}" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body text-center">Apakah Anda Yakin Memposting Data Pajak {{ $item->kode_pajak }} pada tanggal
+                    {{ $item->tanggal_bayar }}?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Posting</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+
+@endforelse
 
 
 {{-- Script Open Modal Callback --}}
@@ -187,7 +216,6 @@
         }
 
         document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
-        document.getElementById('clockmodal').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
     }
 </script>
 @endsection

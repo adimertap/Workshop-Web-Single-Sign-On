@@ -83,7 +83,7 @@ class PajakController extends Controller
         $pajak->tanggal_bayar = $request->tanggal_bayar;
         $pajak->deskripsi_pajak = $request->deskripsi_pajak;
         $pajak->total_pajak = $request->total_pajak;
-        $pajak->status_jurnal = 'Pending';
+        $pajak->status_jurnal = 'Belum Diposting';
         $pajak->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
 
         $pajak->save();

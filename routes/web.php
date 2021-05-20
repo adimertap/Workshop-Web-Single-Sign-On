@@ -548,6 +548,9 @@ Route::group(
             ->middleware(['admin_account_payable', 'verified'])
             ->group(function () {
                 Route::resource('jurnal-pengeluaran', 'JurnalPengeluaranController');
+
+                Route::post('Pajak/{id_pajak}', 'JurnalPengeluaranController@Pajak')
+                    ->name('jurnal-pengeluaran-pajak');
          });
 
         // CATATAN ADIM -------------------------------------------------------------------- Catatan Adim

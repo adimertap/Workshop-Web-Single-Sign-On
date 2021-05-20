@@ -108,7 +108,7 @@
                                                 data-toggle="modal" data-target="#Modalbayar-{{ $item->bulan_gaji }}-{{ $item->tahun_gaji }}">
                                                 <i class="fas fa-check"></i>
                                                 @elseif ($item->status_diterima == 'Dibayarkan')
-                                                <button class="btn btn-secondary btn-xs" type="button" data-dismiss="modal">Posting Jurnal</button>
+                                                <button class="btn btn-danger btn-xs" type="button" data-dismiss="modal">Posting Jurnal?</button>
                                                 @endif
                                             </a>
                                             </td>

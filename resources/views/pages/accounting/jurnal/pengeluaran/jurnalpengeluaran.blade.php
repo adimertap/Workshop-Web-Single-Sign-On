@@ -84,8 +84,14 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
                                             <td>{{ $item->tanggal_jurnal }}</td>
-                                            <td>{{ $item->Invoicepayable->Jenistransaksi->nama_transaksi}} tanggal
+                                            <td>@if ($item->jenis_jurnal == 'Invoice_Payable')
+                                                {{ $item->Invoicepayable->Jenistransaksi->nama_transaksi}} tanggal
                                                 {{ date('j F, Y', strtotime($item->Invoicepayable->tanggal_invoice)) }}
+                                                @elseif ($item->jenis_jurnal == 'Pajak')
+                                                {{ $item->Pajak->Jenistransaksi->nama_transaksi}} tanggal
+                                                {{ date('j F, Y', strtotime($item->Pajak->tanggal_bayar)) }}
+                                                @else
+                                            @endif
                                             </td>
                                             <td>{{ $item->ref }}</td>
                                             <td>Rp. {{ number_format($item->grand_total,2,',','.') }}</td>
