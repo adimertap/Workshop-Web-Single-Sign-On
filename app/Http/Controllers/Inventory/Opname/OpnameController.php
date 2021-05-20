@@ -41,7 +41,6 @@ class OpnameController extends Controller
         ])->get();
 
         $id = Opname::getId();
-
         foreach($id as $value);
         $idlama = $value->id_opname;
         $idbaru = $idlama + 1;
@@ -49,7 +48,6 @@ class OpnameController extends Controller
 
         $kode_opname = 'OPM-'.'/'.$blt.'-'.$idbaru;
         
-
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
         
@@ -64,18 +62,18 @@ class OpnameController extends Controller
      */
     public function store(Request $request)
     {
-        $id = Opname::getId();
-        foreach($id as $value);
-        $idlama = $value->id_opname;
-        return $idlama;
-        $idbaru = $idlama + 1;
-        $blt = date('y-m');
+        // $id = Opname::getId();
+        // foreach($id as $value);
+        // $idlama = $value->id_opname;
+        // return $idlama;
+        // $idbaru = $idlama + 1;
+        // $blt = date('y-m');
 
-        $kode_opname = 'OP-'.'/'.$blt.$idbaru;
+        // $kode_opname = 'OP-'.'/'.$blt.$idbaru;
 
         $opname = new Opname;
         $opname->id_pegawai = $request->id_pegawai;
-        $opname->kode_opname = $kode_opname;
+        $opname->kode_opname = $request->kode_opname;
         $opname->tanggal_opname = $request->tanggal_opname;
         $opname->keterangan = $request->keterangan;
         $opname->approve =  $request->approve;

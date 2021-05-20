@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Kepegawaian\Jadwal;
 
 use App\Http\Controllers\Controller;
 use App\Model\Kepegawaian\Pegawai;
+use App\Model\SingleSignOn\Bengkel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,8 @@ class JadwalpegawaiController extends Controller
      */
     public function index()
     {
+
+        $jamkerja = Bengkel::get();
 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');

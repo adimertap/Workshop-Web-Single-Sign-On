@@ -329,8 +329,11 @@
                 data: data,
                 success: function (response) {
                     window.location.href = '/inventory/Opname'
+                },
+                error: function (response) {
+                    console.log(response)
                 }
-            })
+            });
         }
     }
 

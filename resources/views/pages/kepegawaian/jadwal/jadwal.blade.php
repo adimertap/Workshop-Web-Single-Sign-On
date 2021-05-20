@@ -38,7 +38,8 @@
                                 src="/backend/src/assets/img/freepik/jadwal2.png" alt="">
                         </div>
                         <h2 class="m-0 font-weight-bold text-primary" style="text-align: center">Jam Kerja</h2>
-                        <div class="m-0 font-weight-bold text-primary" style="text-align: center">Pukul 08.00 - 16.00
+                        <div class="m-0 font-weight-bold text-primary" style="text-align: center">
+                            <span>{{ $jamkerja->jam_masuk_kerja }}</span><span>{{ $jamkerja->jam_keluar_kerja }}</span>
                         </div>
                         <hr class="my-2">
                         <p style="text-align: center">Pilih <span class="font-weight-bold text-primary"> Tanggal

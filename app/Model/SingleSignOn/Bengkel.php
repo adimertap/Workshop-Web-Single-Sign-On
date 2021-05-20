@@ -19,6 +19,8 @@ class Bengkel extends Model
         'slug',
         'nohp_bengkel',
         'logo_bengkel',
+        'jam_masuk_kerja',
+        'jam_keluar_kerja'
     ];
 
     public $timestamps = false;
