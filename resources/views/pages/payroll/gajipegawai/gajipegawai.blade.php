@@ -10,7 +10,7 @@
                 <h1 class="mb-0">Penggajian Pegawai</h1>
                 <div class="small">
                     <span class="font-weight-500 text-primary">{{ $today }}</span>
-                    · Tanggal {{ $tanggal }} · <span id="clock">12:16 PM</span> 
+                    · Tanggal {{ $tanggal }} · <span id="clock">12:16 PM</span>
                 </div>
             </div>
             <div class="small">
@@ -24,150 +24,177 @@
     </div>
 
 
-<div class="container-fluid">
-    <div class="card mb-4">
-        <div class="card card-header-actions">
-            <div class="card-header ">List Penggajian
-                <a href="" class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">
-                    Tambah Data Gaji
-                </a>
+    <div class="container-fluid">
+        <div class="card mb-4">
+            <div class="card card-header-actions">
+                <div class="card-header ">List Penggajian
+                    <a href="" class="btn btn-sm btn-primary" type="button" data-toggle="modal"
+                        data-target="#Modaltambah">
+                        Tambah Data Gaji
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="card-body ">
-            <div class="datatable">
-                @if(session('messageberhasil'))
+            <div class="card-body ">
+                <div class="datatable">
+                    @if(session('messageberhasil'))
                     <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
                         {{ session('messageberhasil') }}
                         <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                @endif
-                @if(session('messagebayar'))
+                    @endif
+                    @if(session('messagebayar'))
                     <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
                         {{ session('messagebayar') }}
                         <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                @endif
-                @if(session('messagehapus'))
+                    @endif
+                    @if(session('messagehapus'))
                     <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
                         {{ session('messagehapus') }}
                         <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                @endif
+                    @endif
 
-                {{-- TABLE --}}
-                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
-                                cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-sort="ascending"
-                                            aria-label="Name: activate to sort column descending" style="width: 20px;">
-                                            No</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 20px;">Tahun</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 40px;">Bulan</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 130px;">Nama Pegawai</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 50px;">Jabatan</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 100px;">Gaji diterima</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Start date: activate to sort column ascending"
-                                            style="width: 50px;">Status diterima</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Actions: activate to sort column ascending"
-                                            style="width: 150px;">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($gaji as $item)
-                                    <tr role="row" class="odd">
-                                        <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                        <td>{{ $item->tahun_gaji }}</td>
-                                        <td>{{ $item->bulan_gaji}}</td>
-                                        <td>{{ $item->Pegawai->nama_pegawai }}</td>
-                                        <td>{{ $item->Pegawai->Jabatan->nama_jabatan }}</td>
-                                        <td>Rp. {{ number_format($item->gaji_diterima,2,',','.') }}</td>
-                                        <td> @if($item->status_diterima == 'Belum Dibayarkan')
-                                            <span class="badge badge-danger">
-                                                @elseif($item->status_diterima == 'Dibayarkan')
-                                                <span class="badge badge-success">
-                                                    @else
-                                                    <span>
-                                                        @endif
-                                                        {{ $item->status_diterima }}
-                                                    </span>
-                                        <td>
-                                            @if($item->status_diterima == 'Belum Dibayarkan')
-                                            <a href="" class="btn btn-success btn-datatable" type="button"
-                                                data-toggle="modal" data-target="#Modalbayar-{{ $item->id_gaji_pegawai }}">
-                                                <i class="fas fa-check"></i>
-                                            </a>
-                                            <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Cetak Slip">
-                                                <i class="fas fa-print"></i></i>
-                                            </a>
-                                            <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Detail Slip">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Edit Slip">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                            @elseif ($item->status_diterima == 'Dibayarkan')
-                                            <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Cetak Slip">
-                                                <i class="fas fa-print"></i></i>
-                                            </a>
-                                            <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Detail Slip">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Edit Slip">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                            @else
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @empty
+                    {{-- TABLE --}}
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
+                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
+                                                No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 20px;">Tahun</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 40px;">Bulan</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 130px;">Nama Pegawai</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 50px;">Jabatan</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 100px;">Gaji diterima</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                style="width: 50px;">Status diterima</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Actions: activate to sort column ascending"
+                                                style="width: 150px;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($gaji as $item)
+                                        <tr role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td>{{ $item->tahun_gaji }}</td>
+                                            <td>{{ $item->bulan_gaji}}</td>
+                                            <td>{{ $item->Pegawai->nama_pegawai }}</td>
+                                            <td>{{ $item->Pegawai->Jabatan->nama_jabatan }}</td>
+                                            <td>Rp. {{ number_format($item->gaji_diterima,2,',','.') }}</td>
+                                            <td> @if($item->status_diterima == 'Belum Dibayarkan')
+                                                <span class="badge badge-danger">
+                                                    @elseif($item->status_diterima == 'Dibayarkan')
+                                                    <span class="badge badge-success">
+                                                        @else
+                                                        <span>
+                                                            @endif
+                                                            {{ $item->status_diterima }}
+                                                        </span>
+                                            <td>
+                                                @if($item->status_dana == 'Dana Telah Diberikan')
+                                                <a href="" class="btn btn-success btn-datatable" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modalbayar-{{ $item->id_gaji_pegawai }}">
+                                                    <i class="fas fa-check"></i>
+                                                </a>
+                                                <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Cetak Slip">
+                                                    <i class="fas fa-print"></i></i>
+                                                </a>
+                                                <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}"
+                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Detail Slip">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Edit Slip">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                                @elseif ($item->status_diterima == 'Belum Dibayarkan' and
+                                                $item->status_dana =='Dana Belum Cair')
+                                                <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Cetak Slip">
+                                                    <i class="fas fa-print"></i></i>
+                                                </a>
+                                                <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}"
+                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Detail Slip">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Edit Slip">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                                @elseif ($item->status_diterima == 'Dibayarkan')
+                                                <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Cetak Slip">
+                                                    <i class="fas fa-print"></i></i>
+                                                </a>
+                                                <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}"
+                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Detail Slip">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Edit Slip">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                                @else
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @empty
 
-                                    @endforelse
-                                </tbody>
-                            </table>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </main>
 
 {{-- MODAL TAMBAH --}}
@@ -280,13 +307,15 @@
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table class="table table-bordered table-hover dataTable" id="dataTablePegawai" width="100%"
-                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <table class="table table-bordered table-hover dataTable" id="dataTablePegawai"
+                                    width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                    style="width: 100%;">
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending" style="width: 20px;">
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
                                                 No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
@@ -306,26 +335,28 @@
                                         @forelse ($pegawai as $item)
                                         <tr id="item-{{ $item->id_pegawai }}" role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                           <td class="nama_pegawai">{{ $item->nama_pegawai }}</td>
-                                           <td class="nama_jabatan">{{ $item->Jabatan->nama_jabatan }}</td>
-                                           <td>
-                                            @if ($item->jabatan->gajipokok == '')
-                                            <div class="small text-muted d-none d-md-block">Tidak ada data
-                                                <a href="{{ route('gaji-pokok.index') }}"
-                                                    class="btn btn-light btn-sm btn-datatable" type="button">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                            </div>
-                                            @else
-                                            <div class="small text-muted d-none d-md-block gaji_pokok">Rp.{{ number_format($item->jabatan->gajipokok->besaran_gaji,2,',','.') }}</div>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-success btn-sm"
-                                                onclick="tambahpo(event, {{ $item->id_pegawai }})" type="button"
-                                                data-dismiss="modal">Tambah
-                                            </button>
-                                        </td>
+                                            <td class="nama_pegawai">{{ $item->nama_pegawai }}</td>
+                                            <td class="nama_jabatan">{{ $item->Jabatan->nama_jabatan }}</td>
+                                            <td>
+                                                @if ($item->jabatan->gajipokok == '')
+                                                <div class="small text-muted d-none d-md-block">Tidak ada data
+                                                    <a href="{{ route('gaji-pokok.index') }}"
+                                                        class="btn btn-light btn-sm btn-datatable" type="button">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                </div>
+                                                @else
+                                                <div class="small text-muted d-none d-md-block gaji_pokok">
+                                                    Rp.{{ number_format($item->jabatan->gajipokok->besaran_gaji,2,',','.') }}
+                                                </div>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-success btn-sm"
+                                                    onclick="tambahpo(event, {{ $item->id_pegawai }})" type="button"
+                                                    data-dismiss="modal">Tambah
+                                                </button>
+                                            </td>
                                         </tr>
                                         @empty
                                         <tr>
@@ -355,9 +386,13 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('gaji-pegawai-status', $item->id_gaji_pegawai) }}?status=Dibayarkan" method="POST" class="d-inline">
+            <form action="{{ route('gaji-pegawai-status', $item->id_gaji_pegawai) }}?status=Dibayarkan" method="POST"
+                class="d-inline">
                 @csrf
-                <div class="modal-body text-center">Apakah Anda Yakin untuk Melakukan Pembayaran Gaji Pegawai <span class="font-weight-700">{{ $item->Pegawai->nama_pegawai }}</span>, bulan {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }} Sebesar Rp. {{ number_format($item->gaji_diterima,2,',','.') }} ?</div>
+                <div class="modal-body text-center">Apakah Anda Yakin untuk Melakukan Pembayaran Gaji Pegawai <span
+                        class="font-weight-700">{{ $item->Pegawai->nama_pegawai }}</span>, bulan
+                    {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }} Sebesar Rp.
+                    {{ number_format($item->gaji_diterima,2,',','.') }} ?</div>
                 <div class="modal-footer ">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-success" type="submit">Ya! Bayar</button>
@@ -382,7 +417,9 @@
             <form action="{{ route('gaji-pegawai.destroy', $item->id_gaji_pegawai) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pembayaran Gaji Pegawai <span class="font-weight-700">{{ $item->Pegawai->nama_pegawai }}</span>, bulan {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }}?</div>
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pembayaran Gaji Pegawai <span
+                        class="font-weight-700">{{ $item->Pegawai->nama_pegawai }}</span>, bulan
+                    {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>

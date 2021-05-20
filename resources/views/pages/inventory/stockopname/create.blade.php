@@ -253,46 +253,12 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary" type="button"
-                    onclick="tambahsparepart(event,{{ $sparepart }}.{{ $opname->id_opname }})">Ya!Sudah</button>
+                    onclick="tambahsparepart(event,{{ $sparepart }},{{ $idbaru}})">Ya!Sudah</button>
             </div>
         </div>
     </div>
 </div>
-{{-- 
-@forelse ($sparepart as $item)
-<div class="modal fade" id="Modaltambah-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-primary-soft">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Sparepart</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <form action="" id="form-{{ $item->id_sparepart }}" method="POST" class="d-inline">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="small mb-1" for="jumlah_real">Masukan Stock Real</label>
-                        <input class="form-control" name="jumlah_real" type="text" id="jumlah_real"
-                            placeholder="Input Stock Real" value="{{ old('jumlah_real') }}"></input>
-                    </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="keterangan_detail">Masukan Keterangan</label>
-                        <input class="form-control" name="keterangan_detail" type="text" id="keterangan_detail"
-                            placeholder="Input Keterangan" value="{{ old('keterangan_detail') }}"></input>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" onclick="konfirmsparepart(event, {{ $item->id_sparepart }})"
-                        type="button" data-dismiss="modal">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-@empty
-@endforelse --}}
+
 
 <template id="template_delete_button">
     <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
@@ -313,7 +279,7 @@
         $(`#selisih-${id_sparepart}`).val(selisih)
     }
 
-    function tambahsparepart(event, sparepart, id_opname) {
+    function tambahsparepart(event, sparepart, idbaru) {
         event.preventDefault()
         var form1 = $('#form1')
         var kode_opname = form1.find('input[name="kode_opname"]').val()
@@ -334,12 +300,11 @@
             } else {
                 var id_sparepart = sparepart[i].id_sparepart
                 var obj = {
-                    id_opname: id_opname,
+                    id_opname: idbaru,
                     id_sparepart: id_sparepart,
                     jumlah_real: jumlah_real,
                     keterangan_detail: keterangan_detail
                 }
-                console.log(obj)
                 dataform2.push(obj)
             }
         }
@@ -356,6 +321,7 @@
                 keterangan: keterangan,
                 sparepart: dataform2
             }
+            console.log(data)
 
             $.ajax({
                 method: 'post',

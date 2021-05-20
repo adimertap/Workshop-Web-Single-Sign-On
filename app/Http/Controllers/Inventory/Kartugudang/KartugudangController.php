@@ -63,9 +63,12 @@ class KartugudangController extends Controller
         $sparepart = Sparepart::findOrFail($id_sparepart);
         $kartu_gudang = Kartugudang::where('id_sparepart', $id_sparepart)->get();
 
+        $tanggal = Carbon::now()->format('F Y');
+
         return view('pages.inventory.kartugudang.detail',[
             'item' => $sparepart,
             'kartu_gudang' => $kartu_gudang,
+            'tanggal' => $tanggal
             // 'jenis_sparepart' => $jenis_sparepart,
             // 'merk_sparepart' => $merk_sparepart,
             // 'konversi' => $konversi,

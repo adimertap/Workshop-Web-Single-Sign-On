@@ -37,8 +37,8 @@
                         {{ $item->Merksparepart->merk_sparepart }}
                         <div class="small">
                             <p class="font-weight-500 text-gray">Jumlah Stock · {{ $item->stock }} </p> 
-                            <span class="font-weight-500 text-gray">Saldo Awal</span>
-                            Bulan: 03 ·
+                            <span class="font-weight-500 text-gray">Saldo Awal ·</span>
+                            Bulan: {{ $tanggal }} ·
                             <span class="font-weight-500 text-gray">Jumlah</span>
                             {{ $item->stock }}
                         </div>
@@ -52,7 +52,7 @@
 <div class="container-fluid">
     <div class="card mb-4">
         <div class="card card-header-actions">
-            <div class="card-header ">List Sparepart</div>
+            <div class="card-header ">List Transaksi Sparepart</div>
         </div>
         <div class="card-body ">
             <div class="datatable">
@@ -100,18 +100,20 @@
                                     @forelse ($kartu_gudang as $item)
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                        <td>{{ $item->tanggal_transaksi }}</td>
-                                        <td>@if ($item->jenis_kartu == 'Receiving')
+                                        <td class="text-center">{{ $item->tanggal_transaksi }}</td>
+                                        <td class="text-center">@if ($item->jenis_kartu == 'Receiving')
                                             {{ $item->Rcv->kode_rcv }}
                                             @elseif ($item->jenis_kartu == 'Retur')
                                             {{ $item->Retur->kode_retur }}
+                                            @elseif ($item->jenis_kartu =='Online')
+                                            {{ $item->TransaksiOnline->code_transaksi }}
                                             @else
                                         @endif
                                         </td>
-                                        <td class="text-center">{{ $item->jumlah_masuk }}</td>
-                                        <td>{{ $item->jumlah_keluar }}</td>
+                                        <td class="text-center"><span class="badge badge-warning">{{ $item->jumlah_masuk }}</span></td>
+                                        <td class="text-center"><span class="badge badge-warning">{{ $item->jumlah_keluar }}</span></td>
                                         <td>{{ $item->Sparepart->Konversi->satuan }}</td>
-                                        <td class="text-center">{{ $item->Sparepart->stock }}</td>
+                                        <td class="text-center">{{ $item->saldo_akhir }}</td>
                                         <td>Rp.{{ number_format($item->harga_beli,2,',','.')}}</td>
                                     </tr>
                                     @empty

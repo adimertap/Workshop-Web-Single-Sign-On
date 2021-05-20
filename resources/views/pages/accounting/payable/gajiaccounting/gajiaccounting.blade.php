@@ -78,10 +78,10 @@
                                                 style="width: 100px;">Total Tunjangan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 70px;">Status Gaji</th>
+                                                style="width: 70px;">Status Penyerahan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 80px;">Action</th>
+                                                style="width: 80px;">Status Jurnal</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -93,21 +93,20 @@
                                             <td class="text-center">{{ $item->jumlah_pegawai }}</td>
                                             <td>Rp. {{ number_format($item->total_gaji,2,',','.') }}</td>
                                             <td>Rp. {{ number_format($item->total_tunjangan,2,',','.') }}</td>
-                                            <td>@if($item->status_diterima == 'Belum Dibayarkan')
-                                                <span class="badge badge-danger">
-                                                    @elseif($item->status_diterima == 'Dibayarkan')
-                                                    <span class="badge badge-success">
-                                                        @else
-                                                        <span>
-                                                            @endif
-                                                            {{ $item->status_diterima }}
-                                                        </span>
-                                            </td>
-                                            <td>  @if($item->status_diterima == 'Belum Dibayarkan')
-                                                <a href="" class="btn btn-success btn-datatable" type="button"
+                                            <td class="text-center">  
+                                                @if($item->status_dana == 'Dana Belum Cair')
+                                                <a href="" class="btn btn-warning btn-xs" type="button"
                                                 data-toggle="modal" data-target="#Modalbayar-{{ $item->bulan_gaji }}-{{ $item->tahun_gaji }}">
-                                                <i class="fas fa-check"></i>
-                                                @elseif ($item->status_diterima == 'Dibayarkan')
+                                                Proses?
+                                                </a>
+                                                @elseif ($item->status_dana == 'Dana Telah Diberikan')
+                                                <span class="badge badge-success"> Dana Telah Cair
+                                                @endif
+                                          
+                                            </td>
+                                            <td>  @if($item->status_dana == 'Dana Belum Cair')
+                                                    <span>Menunggu Pembayaran Gaji..</span>
+                                                @elseif ($item->status_dana == 'Dana Telah Diberikan')
                                                 <button class="btn btn-danger btn-xs" type="button" data-dismiss="modal">Posting Jurnal?</button>
                                                 @endif
                                             </a>
@@ -138,12 +137,12 @@
                         aria-hidden="true">×</span></button>
             </div>
             <form action="{{ route('gaji-pegawai-status-bulan-tahun',
-            ['bulan_gaji'=>$item->bulan_gaji, 'tahun_gaji'=>$item->tahun_gaji]) }}?status=Dibayarkan" method="POST" class="d-inline">
+            ['bulan_gaji'=>$item->bulan_gaji, 'tahun_gaji'=>$item->tahun_gaji]) }}" method="POST" class="d-inline">
                 @csrf
-                <div class="modal-body text-center">Apakah Anda Yakin untuk Melakukan Pembayaran Gaji Pegawai pada bulan {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }} dengan jumlah pegawai <span class="font-weight-700">{{ $item->jumlah_pegawai }}</span> Orang, sebesar <span class="font-weight-700">Rp. {{ number_format($item->total_gaji,2,',','.') }}</span> </div>
+                <div class="modal-body text-center">Apakah Anda Yakin untuk Melanjutkan Proses Pembayaran Gaji Pegawai pada bulan {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }} dengan jumlah pegawai <span class="font-weight-700">{{ $item->jumlah_pegawai }}</span> Orang, sebesar <span class="font-weight-700">Rp. {{ number_format($item->total_gaji,2,',','.') }}</span> </div>
                 <div class="modal-footer ">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="submit">Ya! Bayar</button>
+                    <button class="btn btn-success" type="submit">Ya! Proses</button>
                 </div>
             </form>
         </div>

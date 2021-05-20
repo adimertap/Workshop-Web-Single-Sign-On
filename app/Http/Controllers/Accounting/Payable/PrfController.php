@@ -129,8 +129,12 @@ class PrfController extends Controller
         $invoice = InvoicePayable::all();
 
         $id = Prf::getId();
+        foreach($id as $value);
+        $idlama = $value->id_prf;
+        $idbaru = $idlama + 1;
         $blt = date('y-m');
-        $kode_prf = 'PRF-'.$blt.'/'.$prf->id_prf;
+
+        $kode_prf = 'PRF-'.$blt.'/'.$idbaru;
 
         return view('pages.accounting.payable.prf.create', compact('prf2','invoice','jenis_transaksi','pegawai','supplier','fop','akun_bank','kode_prf','prf'));  
     }

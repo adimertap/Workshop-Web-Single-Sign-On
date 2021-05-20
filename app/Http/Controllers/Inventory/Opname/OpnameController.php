@@ -41,17 +41,19 @@ class OpnameController extends Controller
         ])->get();
 
         $id = Opname::getId();
+
         foreach($id as $value);
         $idlama = $value->id_opname;
         $idbaru = $idlama + 1;
         $blt = date('y-m');
 
         $kode_opname = 'OPM-'.'/'.$blt.'-'.$idbaru;
+        
 
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
         
-        return view('pages.inventory.stockopname.create', compact('opname','pegawai', 'sparepart', 'kode_opname'));
+        return view('pages.inventory.stockopname.create', compact('opname','pegawai', 'sparepart', 'kode_opname','idbaru'));
     }
 
     /**

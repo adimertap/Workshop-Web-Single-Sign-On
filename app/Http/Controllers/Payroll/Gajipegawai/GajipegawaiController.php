@@ -156,16 +156,13 @@ class GajipegawaiController extends Controller
 
     public function setStatusPerBulanTahun(Request $request, $bulan_gaji, $tahun_gaji)
     {
-        $request->validate([
-            'status' => 'required|in:Belum Dibayarkan,Dibayarkan'
-        ]);
-
+       
         $item = Gajipegawai::where('bulan_gaji',$bulan_gaji)->where('tahun_gaji', $tahun_gaji)->get();
         foreach ($item as $key => $value) {
-            $value->status_diterima = $request->status;
+            $value->status_dana = 'Dana Telah Diberikan';
             $value->save();
         }
         
-        return redirect()->back()->with('messagebayar','Slip Gaji Pegawai berhasil Dibayarkan');
+        return redirect()->back()->with('messagebayar','Proses Pencairan Dana Berhasil Dilakukan');
     }
 }

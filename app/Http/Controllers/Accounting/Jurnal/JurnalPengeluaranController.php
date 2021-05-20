@@ -126,8 +126,11 @@ class JurnalPengeluaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_jurnal_pengeluaran)
     {
-        //
+        $jurnal = Jurnalpengeluaran::findOrFail($id_jurnal_pengeluaran);
+        $jurnal->delete();
+
+        return redirect()->back()->with('messagehapus','Data Jurnal Berhasil dihapus');
     }
 }

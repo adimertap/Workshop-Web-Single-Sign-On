@@ -149,21 +149,7 @@
 </main>
 
 <script>
-    $(document).ready(function () {
-        var calendar = $('#calendar').fullcalendar({
-            height: 650,
-            showNonCurrentDates: false,
-            editable: false,
-            defaultView: 'year',
-            yearColumns: 3,
-            header: {
-                lef: 'prev,next today',
-                center: 'title',
-                right: 'year,month,basicWeek,basicDay'
-            }
-        })
-    })
-
+   
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {

@@ -123,35 +123,33 @@
     </div>
 </main>
 
-{{-- 
-@forelse ($gajipegawai as $item)
-<div class="modal fade" id="Modalbayar-{{ $item->bulan_gaji }}-{{ $item->tahun_gaji }}" tabindex="-1" role="dialog"
-aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="modal-header bg-light">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Pembayaran Gaji Pegawai</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                    aria-hidden="true">×</span></button>
-        </div>
-        <form action="{{ route('gaji-pegawai-status-bulan-tahun',
-            ['bulan_gaji'=>$item->bulan_gaji, 'tahun_gaji'=>$item->tahun_gaji]) }}?status=Dibayarkan" method="POST"
-            class="d-inline">
-            @csrf
-            <div class="modal-body text-center">Apakah Anda Yakin untuk Melakukan Pembayaran Gaji Pegawai pada bulan
-                {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }} dengan jumlah pegawai <span
-                    class="font-weight-700">{{ $item->jumlah_pegawai }}</span> Orang, sebesar <span
-                    class="font-weight-700">Rp. {{ number_format($item->total_gaji,2,',','.') }}</span> </div>
-            <div class="modal-footer ">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-success" type="submit">Ya! Bayar</button>
+{{-- MODAL DELETE ------------------------------------------------------------------------------}}
+@forelse ($jurnal as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_jurnal_pengeluaran }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger-soft">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
             </div>
-        </form>
+            <form action="{{ route('jurnal-pengeluaran.destroy', $item->id_jurnal_pengeluaran) }}" method="POST" class="d-inline">
+                @csrf
+                @method('delete')
+                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Jurnal ini ?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-</div>
 @empty
-@endforelse --}}
+
+@endforelse
+
 
 
 <script>
