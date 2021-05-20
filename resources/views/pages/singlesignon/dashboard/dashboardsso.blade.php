@@ -45,7 +45,7 @@
 <div class="container">
     <div class="row">
         @if(Auth::user()->role == 'admin_front_office' || Auth::user()->role == 'owner')
-        <div class="col-3">
+        <div class="col-3 mt-2">
             <!-- Dashboard example card 1-->
             <a class="card lift h-100" href="{{ route('dashboardfrontoffice') }}">
                 <div class="card-body d-flex justify-content-center flex-column">
@@ -63,7 +63,7 @@
         @endif
         @if (Auth::user()->role == 'admin_service_advisor' || Auth::user()->role == 'admin_service_instructor' ||
         Auth::user()->role == 'owner')
-        <div class="col-3">
+        <div class="col-3 mt-2">
             <!-- Dashboard example card 2-->
             <a class="card lift h-100" href="{{ route('dashboardservice') }}">
                 <div class="card-body d-flex justify-content-center flex-column">
@@ -81,7 +81,7 @@
         @endif
 
         @if (Auth::user()->role == 'admin_kasir' || Auth::user()->role == 'owner')
-        <div class="col-3">
+        <div class="col-3 mt-2">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardpointofsales') }}">
                 <div class="card-body d-flex justify-content-center flex-column">
@@ -99,7 +99,7 @@
         @endif
 
         @if (Auth::user()->role == 'admin_marketplace' || Auth::user()->role == 'owner')
-        <div class="col-3">
+        <div class="col-3 mt-2">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardmarketplace') }}">
                 <div class="card-body d-flex justify-content-center flex-column">
@@ -122,7 +122,7 @@
     <div class="row">
         @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'admin_purchasing' || Auth::user()->role ==
         'owner')
-        <div class="col-3">
+        <div class="col-3 mt-2">
             <!-- Dashboard example card 1-->
             <a class="card lift h-100" href="{{ route('dashboardinventory') }}">
                 <div class="card-body d-flex justify-content-center flex-column">
@@ -140,7 +140,7 @@
         @endif
 
         @if (Auth::user()->role == 'owner')
-        <div class="col-3">
+        <div class="col-3 mt-2">
             <!-- Dashboard example card 2-->
             <a class="card lift h-100" href="{{ route('pegawai.index') }}">
                 <div class="card-body d-flex justify-content-center flex-column">
@@ -158,7 +158,7 @@
         @endif
 
         @if (Auth::user()->role == 'owner')
-        <div class="col-3">
+        <div class="col-3 mt-2">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('gaji-pegawai.index') }}">
                 <div class="card-body d-flex justify-content-center flex-column">
@@ -177,7 +177,7 @@
 
         @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'admin_account_receivable' ||
         Auth::user()->role == 'owner')
-        <div class="col-3">
+        <div class="col-3 mt-2">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardaccounting') }}">
                 <div class="card-body d-flex justify-content-center flex-column">
