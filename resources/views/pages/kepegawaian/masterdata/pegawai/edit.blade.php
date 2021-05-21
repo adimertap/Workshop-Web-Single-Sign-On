@@ -60,20 +60,30 @@
                                 <form action="{{ route('pegawai.update', $item->id_pegawai) }}" method="POST">
                                     @method('PUT')
                                     @csrf
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group">
                                             <label class="small mb-1" for="nama_pegawai">Nama Lengkap</label>
                                             <input class="form-control" id="nama_pegawai" type="text"
                                                 name="nama_pegawai" value="{{ $item->nama_pegawai }}" />
                                         </div>
+                                    <div class="form-row">
                                         <div class="form-group col-md-6">
+                                            <label class="small mb-1" for="nik_pegawai">NIK Pegawai</label>
+                                            <input class="form-control" id="nik_pegawai" type="text"
+                                                name="nik_pegawai" value="{{ $item->nik_pegawai }}" />
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1" for="npwp_pegawai">NPWP Pegawai</label>
+                                            <input class="form-control" id="npwp_pegawai" type="text"
+                                                name="npwp_pegawai" value="{{ $item->npwp_pegawai }}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="nama_panggilan">Nama Panggilan</label>
                                             <input class="form-control" id="nama_panggilan" type="text"
                                                 name="nama_panggilan" value="{{ $item->nama_panggilan }}" />
                                         </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="id_jabatan">Jabatan</label>
                                             <select class="form-control" name="id_jabatan" id="id_jabatan">
                                                 <option value="{{ $item->jabatan->nama_jabatan }}">{{ $item->jabatan->nama_jabatan }}</option>
@@ -83,7 +93,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="jenis_kelamin">Jenis Kelamin</label>
                                             <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                                 <option value="{{ $item->jenis_kelamin }}">{{ $item->jenis_kelamin }}</option>
