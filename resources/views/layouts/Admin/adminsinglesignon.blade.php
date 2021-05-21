@@ -28,6 +28,7 @@
 
 
 </head>
+
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
         <a class="navbar-brand" href="{{ route('dashboardinventory')}}">
@@ -170,12 +171,11 @@
                         Ganti Password
                     </a>
 
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                         Logout
-                    </a> 
+                    </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -193,7 +193,7 @@
                 <div class="sidenav-menu">
                     <div class="nav accordion" id="accordionSidenav">
 
-                        
+
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
                         <div class="sidenav-menu-heading">Manajemen</div>
@@ -223,6 +223,11 @@
                         <a class="nav-link" href="{{ route('profile.index') }}">
                             <div class="nav-link-icon"><i class="fas fa-user"></i></div>
                             Profile
+                        </a>
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            <div class="nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                            Logout
                         </a>
                     </div>
                 </div>
@@ -255,7 +260,7 @@
             </footer>
         </div>
     </div>
-    
+
     <script>
         // Waktu
         setInterval(displayclock, 500);
@@ -294,6 +299,7 @@
             document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
             document.getElementById('clockmodal').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
         }
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>

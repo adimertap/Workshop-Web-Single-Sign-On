@@ -81,7 +81,7 @@
 
                                         <div class="form-group col-6">
                                             <label for="nohp_bengkel">No. Telp Bengkel</label>
-                                            <input id="nohp_bengkel" type="number" class="form-control"
+                                            <input id="nohp_bengkel" type="text" class="form-control"
                                                 placeholder="Input No. Telp Bengkel" name="nohp_bengkel">
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
                                         <div class="form-group col-6">
                                             <label class="small mb-1" for="provinsi">Provinsi</label>
                                             <select class="form-control" name="provinsi">
-                                                <option value="" holder>provinsi</option>
+                                                <option value="" holder>Pilih Provinsi</option>
                                                 @foreach ($provinsi as $item)
                                                 <option value="{{ $item->id_provinsi }}">
                                                     {{ $item->nama_provinsi }}</option>
@@ -99,9 +99,24 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label class="small mb-1" for="kabupaten">Kabupaten</label>
+                                            <label class="small mb-1" for="kabupaten">Kabupaten/Kota</label>
                                             <select class="form-control" name="id_kabupaten">
-                                                <option value="" holder>Kota</option>
+                                                <option value="" holder>Pilih Kabupaten/Kota</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label class="small mb-1" for="kecamatan">Kecamatan</label>
+                                            <select class="form-control" name="id_kecamatan">
+                                                <option value="" holder>Pilih Kecamatan</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="small mb-1" for="desa">Desa</label>
+                                            <select class="form-control" name="id_desa">
+                                                <option value="" holder>Pilih Desa</option>
                                             </select>
                                         </div>
                                     </div>
@@ -120,6 +135,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col">
+                                            <small class="text-muted">Silahkan klik peta untuk menentukan lokasi (latitude dan longitude) bengkel</small>
                                             <div id="mapid">
 
                                             </div>
@@ -145,6 +161,19 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-4">
+                                            <label class="small mb-1" for="nik_pegawai">NIK Pemilik <small class="text-muted">*16 digit</small></label>
+                                            <input id="nik_pegawai" type="text" class="form-control"
+                                                placeholder="Input NIK Pemilik" name="nik_pegawai" minlength="16">
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label class="small mb-1" for="npwp_pegawai">NPWP Pemilik <small class="text-muted">*16 digit</small></label>
+                                            <input id="npwp_pegawai" type="text" class="form-control"
+                                                placeholder="Input NPWP Pemilik" name="npwp_pegawai" minlength="16">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-4">
                                             <label class="small mb-1 mr-1" for="jenis_kelamin">Jenis Kelamin</label>
                                             <select name="jenis_kelamin" id="jenis_kelamin" class="form-control"
                                                 class="form-control @error('jenis_kelamin') is-invalid @enderror">
@@ -157,29 +186,8 @@
                                         </div>
                                         <div class="form-group col-4">
                                             <label class="small mb-1" for="no_telp">No.Telp Pemilik</label>
-                                            <input id="no_telp" type="number" class="form-control"
+                                            <input id="no_telp" type="text" class="form-control"
                                                 placeholder="Input No. Telp Pemilik" name="no_telp">
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-md-4">
-                                            <label class="small mb-1 mr-1" for="tempat_lahir">Tempat Lahir</label>
-                                            <input class="form-control" id="tempat_lahir" type="text"
-                                                name="tempat_lahir" placeholder="Input Tempat Lahir"
-                                                class="form-control @error('tempat_lahir') is-invalid @enderror" />
-                                            @error('tempat_lahir')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label class="small mb-1 mr-1" for="tanggal_lahir">Tanggal Lahir</label>
-                                            <input class="form-control" id="tanggal_lahir" type="date"
-                                                name="tanggal_lahir"
-                                                class="form-control @error('tanggal_lahir') is-invalid @enderror" />
-                                            @error('tanggal_lahir')
-                                            <div class="text-danger small mb-1">{{ $message }}
-                                            </div>
-                                            @enderror
                                         </div>
                                         <div class="form-group col-4">
                                             <label for="alamat">Alamat</label>
@@ -190,7 +198,28 @@
 
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label class="small mb-1" for="username">Username</label>
+                                            <label class="small mb-1 mr-1" for="tempat_lahir">Tempat Lahir</label>
+                                            <input class="form-control" id="tempat_lahir" type="text"
+                                                name="tempat_lahir" placeholder="Input Tempat Lahir"
+                                                class="form-control @error('tempat_lahir') is-invalid @enderror" />
+                                            @error('tempat_lahir')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="small mb-1 mr-1" for="tanggal_lahir">Tanggal Lahir</label>
+                                            <input class="form-control" id="tanggal_lahir" type="date"
+                                                name="tanggal_lahir"
+                                                class="form-control @error('tanggal_lahir') is-invalid @enderror" />
+                                            @error('tanggal_lahir')
+                                            <div class="text-danger small mb-1">{{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label class="small mb-1" for="username">Username <small class="text-muted">*Min. 6 digit</small></label>
                                             <input id="username" type="text"
                                                 class="form-control @error('username') is-invalid @enderror"
                                                 name="username" placeholder="Input Username"
@@ -220,7 +249,7 @@
 
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="password" class="d-block">Password</label>
+                                            <label for="password" class="d-block">Password <small class="text-muted">*Min. 8 digit</small></label>
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 placeholder="Input Password" name="password" required
@@ -233,7 +262,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="password-confirm" class="d-block">Password Confirmation</label>
+                                            <label for="password-confirm" class="d-block">Password Confirmation <small class="text-muted">*Min. 8 digit</small></label>
                                             <input id="password-confirm" type="password" class="form-control"
                                                 placeholder="Konfirmasi Password" name="password_confirmation" required
                                                 autocomplete="new-password">
@@ -328,8 +357,8 @@
 
             });
         });
-        $(document).ready(function () {
 
+        $(document).ready(function () {
             $('select[name="provinsi"]').on('change', function () {
                 var cityId = $(this).val();
                 if (cityId) {
@@ -351,6 +380,30 @@
                 }
             });
 
+        });
+
+    </script>
+
+    <script>
+        $(function () {
+            $("input[name='no_telp']").on('input', function (e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+        });
+        $(function () {
+            $("input[name='nik_pegawai']").on('input', function (e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+        });
+        $(function () {
+            $("input[name='npwp_pegawai']").on('input', function (e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+        });
+        $(function () {
+            $("input[name='nohp_bengkel']").on('input', function (e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
         });
 
     </script>
