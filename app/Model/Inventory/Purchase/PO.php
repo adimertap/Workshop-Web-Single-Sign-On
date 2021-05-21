@@ -31,10 +31,10 @@ class PO extends Model
         'status',
         'keterangan_owner',
         'keterangan_ap',
-        
+
     ];
 
-    protected $hidden =[ 
+    protected $hidden = [
         'created_at',
         'updated_at',
         'deleted_at'
@@ -44,32 +44,33 @@ class PO extends Model
 
     public function Detailsparepart()
     {
-        return $this->belongsToMany(Sparepart::class,'tb_inventory_detpo','id_po','id_sparepart')->withPivot('qty','qty_po_sementara','harga_satuan','total_harga','id_bengkel');
+        return $this->belongsToMany(Sparepart::class, 'tb_inventory_detpo', 'id_po', 'id_sparepart')->withPivot('qty', 'qty_po_sementara', 'harga_satuan', 'total_harga', 'id_bengkel');
     }
 
     public function Hargasparepart()
     {
-        return $this->belongsTo(Hargasparepart::class,'id_harga','id_harga');
+        return $this->belongsTo(Hargasparepart::class, 'id_harga', 'id_harga');
     }
 
     public function Supplier()
     {
-        return $this->belongsTo(Supplier::class,'id_supplier','id_supplier');
+        return $this->belongsTo(Supplier::class, 'id_supplier', 'id_supplier');
     }
 
     public function Pegawai()
     {
-        return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
+        return $this->belongsTo(Pegawai::class, 'id_pegawai', 'id_pegawai');
     }
 
-    public static function getId(){
-        $getId = DB::table('tb_inventory_po')->orderBy('id_po','DESC')->take(1)->get();
-        if(count($getId) > 0) return $getId;
-         return (object)[
-             (object)[
-                 'id_po'=> 0
-             ]
-             ];
+    public static function getId()
+    {
+        $getId = DB::table('tb_inventory_po')->orderBy('id_po', 'DESC')->take(1)->get();
+        if (count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_po' => 0
+            ]
+        ];
     }
 
     public static function booted()
@@ -77,7 +78,7 @@ class PO extends Model
         static::addGlobalScope(new OwnershipScope);
     }
 
-    
+
     // public function SupplierBaru()
     // {
     //     return $this->belongsTo(Supplier::class,'id_supplier','id_supplier');

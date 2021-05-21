@@ -7,6 +7,7 @@ use App\Model\FrontOffice\CustomerBengkel;
 use App\Model\FrontOffice\MasterDataJenisPerbaikan;
 use App\Model\FrontOffice\MasterDataKendaraan;
 use App\Model\Inventory\Sparepart;
+use App\Model\Kepegawaian\Pegawai;
 use App\Model\Service\PenerimaanService;
 use Illuminate\Http\Request;
 
@@ -23,16 +24,17 @@ class PenerimaanServiceController extends Controller
         $kendaraan = MasterDataKendaraan::all();
         $customer_bengkel = CustomerBengkel::all();
         $sparepart = Sparepart::all();
+        $pegawai = Pegawai::all();
         $jasa_perbaikan = MasterDataJenisPerbaikan::all();
 
         $id = PenerimaanService::getId();
         foreach ($id as $value);
-        $idlama = $value->id_kendaraan;
+        $idlama = $value->id_service_advisor;
         $idbaru = $idlama + 1;
         $blt = date('m');
         $kode_sa = 'SA-' . $blt . '/' . $idbaru;
 
-        return view('pages.service.penerimaan_service.main', compact('service_advisor', 'kode_sa', 'kendaraan', 'customer_bengkel', 'sparepart', 'jasa_perbaikan'));
+        return view('pages.service.penerimaan_service.main', compact('service_advisor', 'kode_sa', 'kendaraan', 'customer_bengkel', 'pegawai', 'sparepart', 'jasa_perbaikan'));
     }
 
     /**
