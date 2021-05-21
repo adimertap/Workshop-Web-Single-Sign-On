@@ -102,8 +102,8 @@
                                             <label class="small mb-1" for="kabupaten">Kabupaten</label>
                                             <select class="form-control" name="id_kabupaten">
                                                 <option value="" holder>Kota</option>
-                                            </select> </div>
-
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
