@@ -149,6 +149,8 @@
                                                 <td>
                                                     @if($item->absensi == 'Absen_Pagi')
                                                     <span> Masuk </span>
+                                                    @elseif($item->absensi == 'Terlambat')
+                                                    <span>Terlambat</span>
                                                     @elseif ($item->absensi == 'Masuk')
                                                     <span> Masuk</span>
                                                     @elseif ($item->absensi == 'Ijin' | $item->absensi == 'Sakit' |
@@ -160,7 +162,7 @@
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    @if($item->absensi == 'Absen_Pagi' | $item->absensi =='Masuk')
+                                                    @if($item->absensi == 'Absen_Pagi' | $item->absensi =='Masuk' | $item->absensi == 'Terlambat')
                                                     {{ $item->jam_masuk }}
                                                     @elseif ($item->absensi == 'Ijin' | $item->absensi == 'Sakit' |
                                                     $item->absensi == 'Cuti' | $item->absensi == 'Alpha')

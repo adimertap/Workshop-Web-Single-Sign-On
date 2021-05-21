@@ -18,6 +18,7 @@ class OwnershipScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('id_bengkel', '=', Auth::user()->id_bengkel);
+        $table = $model->getTable();
+        $builder->where($table.'.id_bengkel', '=', Auth::user()->id_bengkel);
     }
 }

@@ -141,6 +141,14 @@ class RcvController extends Controller
             // NAMBAH STOCK SPAREPART
             $sparepart = Sparepart::findOrFail($item['id_sparepart']);
             $sparepart->stock = $sparepart->stock + $item['qty_rcv'];
+            if($sparepart->stock >= $sparepart->stock_min){
+                $sparepart->status_jumlah = 'Cukup';
+            } else if($sparepart->stock == 0){
+                $sparepart->status_jumlah = 'Habis';
+            }else{
+                $sparepart->status_jumlah ='Kurang';
+            }
+            
             $sparepart->save();
 
             // Mengurangi Qty PO

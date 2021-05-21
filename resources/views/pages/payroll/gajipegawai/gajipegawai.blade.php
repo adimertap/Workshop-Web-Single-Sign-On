@@ -438,7 +438,7 @@
         var _token = $('#form1').find('input[name="_token"]').val()
         var nama_pegawai = $(data.find('.nama_pegawai')[0]).text()
         var nama_jabatan = $(data.find('.nama_jabatan')[0]).text()
-        var gaji_pokok = $(data.find('.gaji_pokok')[0]).text()
+        var gaji_pokok = $(data.find('.gaji_pokok')[0]).text().trim()
 
         $('#detailpegawai').val(nama_pegawai)
         $('#detailjabatan').val(nama_jabatan)
@@ -461,7 +461,7 @@
 
         if (gaji_pokok == 0 | gaji_pokok == '' | bulan_gaji == 0 | bulan_gaji == '' | tahun_gaji == 0 | tahun_gaji ==
             'Pilih Bulan Gaji' | nama_pegawai == 0 | nama_pegawai == '') {
-            var alert = $('#alertdatakosong').show()
+            $('#alertdatakosong').show()
         } else {
 
             $.ajax({
@@ -473,6 +473,7 @@
                 },
                 error: function (error) {
                     console.log(error)
+                    alert(error.responseJSON.message)
                 }
 
             });

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Inventory\Retur\Retur;
 use App\Model\Kepegawaian\Absensi;
 use App\Model\Kepegawaian\Pegawai;
+use App\Model\SingleSignOn\Bengkel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -53,12 +54,18 @@ class AbsensipegawaiController extends Controller
     public function store(Request $request)
     {
 
+        $bengkel = Bengkel::first();
+        $jammasuk = Carbon::now()->format('H:i:s');
+        if($jammasuk > $bengkel->jam_masuk_kerja){
+            $absensi = 'Terlambat';
+        }else{
+            $absensi = 'Absen_Pagi';
+        }
         
-
         $absensi = Absensi::create([
             'id_pegawai'=>$request->id_pegawai,
             'tanggal_absensi'=>Carbon::today(),
-            'absensi'=>$request->absensi,
+            'absensi'=>$absensi,
             'keterangan'=>$request->keterangan,
             'jam_masuk' => Carbon::now()->format('H:i:s')
         ]);

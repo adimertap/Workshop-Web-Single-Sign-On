@@ -28,37 +28,41 @@
                                 <p class="text-gray-700 mb-0">Silahkan melakukan pencarian berdasarkan tanggal</p>
                                 <span id="total_records"></span>
                                 <p></p>
+                                <form id="form1">
                                 <div class="row input-daterange">
-                                    <div class="col-md-4">
-                                        <div class="input-group input-group-joined">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i data-feather="search"></i>
-                                                </span>
+                                   
+                                        <div class="col-md-4">
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i data-feather="search"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="date" name="from_date" id="from_date"
+                                                    class="form-control form-control-sm" placeholder="From Date" />
                                             </div>
-                                            <input type="text" name="from_date" id="from_date"
-                                                class="form-control form-control-sm" placeholder="From Date" />
+    
                                         </div>
-
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="input-group input-group-joined">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i data-feather="search"></i>
-                                                </span>
+                                        <div class="col-md-4">
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i data-feather="search"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="date" name="to_date" id="to_date"
+                                                    class="form-control form-control-sm" placeholder="To Date" />
                                             </div>
-                                            <input type="text" name="to_date" id="to_date"
-                                                class="form-control form-control-sm" placeholder="To Date" />
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <button type="button" name="filter" id="filter"
-                                            class="btn btn-sm btn-primary px-4">Filter</button>
-                                        <button type="button" name="refresh" id="refresh"
-                                            class="btn btn-sm btn-secondary">Refresh</button>
-                                    </div>
+                                        <div class="col-md-4">
+                                            <button type="button" name="filter" onclick="filter_tanggal(event)"
+                                                class="btn btn-sm btn-primary px-4">Filter</button>
+                                            <button type="button" name="refresh" id="refresh"
+                                                class="btn btn-sm btn-secondary">Refresh</button>
+                                        </div>
+                                  
                                 </div>
+                            </form>
                             </div>
                         </div>
                         <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"
@@ -143,6 +147,8 @@
                                         <td>
                                             @if($item->absensi == 'Absen_Pagi')
                                             <span> Masuk </span>
+                                            @elseif($item->absensi == 'Terlambat')
+                                            <span> Terlambat </span>
                                             @elseif ($item->absensi == 'Masuk')
                                             <span> Masuk</span>
                                             @elseif ($item->absensi == 'Ijin' | $item->absensi == 'Sakit' |
@@ -154,7 +160,7 @@
                                             </span>
                                         </td>
                                         <td>
-                                            @if($item->absensi == 'Absen_Pagi' | $item->absensi =='Masuk')
+                                            @if($item->absensi == 'Absen_Pagi' | $item->absensi =='Masuk' | $item->absensi == 'Terlambat')
                                             {{ $item->jam_masuk }}
                                             @elseif ($item->absensi == 'Ijin' | $item->absensi == 'Sakit' |
                                             $item->absensi == 'Cuti' | $item->absensi == 'Alpha')
@@ -188,6 +194,17 @@
 
 
 <script>
+
+    function filter_tanggal(event){
+        event.preventDefault()
+        var form1 = $('#form1')
+        var tanggal_mulai = form1.find('input[name="from_date"]').val()
+        var tanggal_selesai = form1.find('input[name="to_date"]').val()
+
+         window.location.href = '/kepegawaian/LaporanAbsensi?from='+ tanggal_mulai + '&to=' + tanggal_selesai 
+        
+    }
+
    
 </script>
 

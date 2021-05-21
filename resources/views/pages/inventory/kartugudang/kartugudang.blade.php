@@ -122,6 +122,8 @@
                                             <span class="badge badge-success">
                                                 @elseif($item->status_jumlah == 'Habis')
                                                 <span class="badge badge-danger">
+                                                @elseif($item->status_jumlah == 'Kurang')
+                                                <span class="badge badge-warning">
                                                     @else
                                                     <span>
                                                         @endif

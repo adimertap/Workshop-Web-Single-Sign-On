@@ -14,13 +14,26 @@ class LaporanabsensiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+      
        
+
         $absensi = Absensi::with([
             'Pegawai',
-        ])->get();
+        ]);
+        if($request->from){
+            $absensi->where('tanggal_absensi', '>=', $request->from);
+        }
+        if($request->to){
+            $absensi->where('tanggal_absensi', '<=', $request->to);
+        }
+
+        $absensi = $absensi->get();
+
+        
         return view('pages.kepegawaian.absensi.laporanabsensi', compact('absensi'));
+
 
         
     }

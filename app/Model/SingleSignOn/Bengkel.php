@@ -2,6 +2,7 @@
 
 namespace App\Model\SingleSignOn;
 
+use App\Scopes\OwnershipScope;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,4 +25,10 @@ class Bengkel extends Model
     ];
 
     public $timestamps = false;
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
+    }
+    
 }

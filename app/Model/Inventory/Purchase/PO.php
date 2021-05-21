@@ -78,9 +78,9 @@ class PO extends Model
     }
 
     
-    public function SupplierBaru()
-    {
-        return $this->belongsTo(Supplier::class,'id_supplier','id_supplier');
-    }
+    // public function SupplierBaru()
+    // {
+    //     return $this->belongsTo(Supplier::class,'id_supplier','id_supplier');
+    // }
 
 }

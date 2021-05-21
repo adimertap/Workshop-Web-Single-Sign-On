@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Accounting\Payable;
 
 use App\Http\Controllers\Controller;
+use App\Model\Accounting\Jurnal\Jurnalpengeluaran;
 use App\Model\Payroll\Gajipegawai;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class GajiAccountingController extends Controller
@@ -23,6 +25,22 @@ class GajiAccountingController extends Controller
         $tanggal = Carbon::now()->format('j F Y');
 
         return view('pages.accounting.payable.gajiaccounting.gajiaccounting', compact('today','tanggal','gajipegawai'));
+    }
+
+    public function postingjurnal(Request $request){
+
+        $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_diterima','status_dana')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_diterima, status_dana')
+        ->where('bulan_gaji', $request->bulan_gaji)->where('tahun_gaji', $request->tahun_gaji)->first();
+
+        $jurnal = new Jurnalpengeluaran;
+        $jurnal->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+        $jurnal->tanggal_jurnal = Carbon::now();
+        $jurnal->ref = $gajipegawai->bulan_gaji;
+        $jurnal->keterangan = $gajipegawai->jumlah_pegawai;
+        $jurnal->grand_total = $gajipegawai->total_gaji;
+        $jurnal->jenis_jurnal = 'Gaji_Karyawan';
+        $jurnal->save();
+
     }
 
     /**

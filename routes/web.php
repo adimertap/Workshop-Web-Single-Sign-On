@@ -539,6 +539,9 @@ Route::group(
             ->middleware(['admin_account_payable', 'verified'])
             ->group(function () {
                 Route::resource('gaji-accounting', 'GajiAccountingController');
+
+                Route::post('gaji-accounting/posting-jurnal', 'GajiAccountingController@postingjurnal')
+                ->name('gaji-pegawai-jurnal');
             });
 
 

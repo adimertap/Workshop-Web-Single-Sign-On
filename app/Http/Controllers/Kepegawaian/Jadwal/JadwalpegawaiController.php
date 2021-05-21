@@ -7,6 +7,8 @@ use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 
 class JadwalpegawaiController extends Controller
 {
@@ -18,7 +20,7 @@ class JadwalpegawaiController extends Controller
     public function index()
     {
 
-        $jamkerja = Bengkel::get();
+        $bengkel = Auth::user()->bengkel;
 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
@@ -26,7 +28,7 @@ class JadwalpegawaiController extends Controller
         $pegawai = Pegawai::all();
 
 
-        return view('pages.kepegawaian.jadwal.jadwal', compact('today', 'tanggal','pegawai'));
+        return view('pages.kepegawaian.jadwal.jadwal', compact('today', 'tanggal','pegawai','bengkel'));
     }
 
     /**

@@ -28,6 +28,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header ">Data Gaji Pegawai
+                    @csrf
                 </div>
             </div>
             <div class="card-body ">
@@ -107,7 +108,7 @@
                                             <td>  @if($item->status_dana == 'Dana Belum Cair')
                                                     <span>Menunggu Pembayaran Gaji..</span>
                                                 @elseif ($item->status_dana == 'Dana Telah Diberikan')
-                                                <button class="btn btn-danger btn-xs" type="button" data-dismiss="modal">Posting Jurnal?</button>
+                                                <button class="btn btn-danger btn-xs" onclick="postingjurnal('{{ $item->bulan_gaji }}', '{{ $item->tahun_gaji }}')" type="button" data-dismiss="modal">Posting Jurnal?</button>
                                                 @endif
                                             </a>
                                             </td>
@@ -154,6 +155,28 @@
 
 <script>
 
+    function postingjurnal(bulan_gaji, tahun_gaji) {
+
+        var _token = $('input[name="_token"]').val()
+
+        $.ajax({
+                method: 'post',
+                url: '/Accounting/gaji-accounting/posting-jurnal',
+                data: {
+                    _token: _token,
+                    bulan_gaji: bulan_gaji,
+                    tahun_gaji: tahun_gaji,
+                },
+                success: function (response) {
+                    // window.location.href = '/Accounting/gaji-accounting'
+                    console.log(response)
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+
+    }
 
     setInterval(displayclock, 500);
 

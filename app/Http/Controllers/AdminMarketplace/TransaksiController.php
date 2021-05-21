@@ -35,6 +35,13 @@ class TransaksiController extends Controller
             foreach($detailtransaksi as $item){
                 $sparepart= Sparepart::findOrFail($item->id_sparepart);
                 $sparepart->stock = $sparepart->stock - $item->jumlah_produk;
+                if($sparepart->stock >= $sparepart->stock_min){
+                    $sparepart->status_jumlah = 'Cukup';
+                } else if($sparepart->stock == 0){
+                    $sparepart->status_jumlah = 'Habis';
+                }else{
+                    $sparepart->status_jumlah ='Kurang';
+                }
                 $sparepart->save();
 
                 $kartu_gudang = new Kartugudang;

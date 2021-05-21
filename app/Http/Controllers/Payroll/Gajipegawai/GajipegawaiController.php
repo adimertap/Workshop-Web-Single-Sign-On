@@ -11,6 +11,7 @@ use App\Model\Payroll\Mastertunjangan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\New_;
 
 class GajipegawaiController extends Controller
 {
@@ -58,15 +59,22 @@ class GajipegawaiController extends Controller
     {
         $pegawai = Pegawai::where('nama_pegawai',$request->nama_pegawai)->first();
         $id_pegawai = $pegawai->id_pegawai;
+        $data = Gajipegawai::where('id_bengkel', Auth::user()->id_bengkel)->where('id_pegawai', $id_pegawai)->where('tahun_gaji', $request->tahun_gaji)->where('bulan_gaji', $request->bulan_gaji)->first();
 
-        $gaji = Gajipegawai::create([
-            'id_pegawai'=>$id_pegawai,
-            'bulan_gaji'=>$request->bulan_gaji,
-            'tahun_gaji'=>$request->tahun_gaji,
-            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
-        ]);
-        
-        return $gaji;
+        if (empty($data)){
+
+            $gaji = Gajipegawai::create([
+                'id_pegawai'=>$id_pegawai,
+                'bulan_gaji'=>$request->bulan_gaji,
+                'tahun_gaji'=>$request->tahun_gaji,
+                'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
+            ]);
+            
+            return $gaji;
+        }else{
+            throw new \Exception('Gaji Sudah Ada');
+        }
+
     }
 
     /**
