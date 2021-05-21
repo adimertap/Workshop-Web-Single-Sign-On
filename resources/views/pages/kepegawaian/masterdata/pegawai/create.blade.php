@@ -68,23 +68,32 @@
                                 <h5 class="card-title">Input Formulir Identitas Diri</h5>
                                 <form action="{{ route('pegawai.store') }}" method="POST">
                                     @csrf
+                                    <div class="form-group">
+                                        <label class="small mb-1 mr-1" for="nama_pegawai">Nama Lengkap</label><span
+                                            class="mr-4 mb-3" style="color: red">*</span>
+                                        <input class="form-control" id="nama_pegawai" type="text"
+                                            name="nama_pegawai" placeholder="Input Nama Lengkap"
+                                            class="form-control @error('nama_pegawai') is-invalid @enderror" />
+                                        @error('nama_pegawai')<div class="text-danger small mb-1">{{ $message }}
+                                        </div> @enderror
+                                    </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="kode_pegawai">Kode Pegawai</label>
-                                            <input class="form-control" id="kode_pegawai" type="text"
-                                                name="kode_pegawai" placeholder="Input Kode Pegawai"
-                                                value="{{ $kode_pegawai }}"
-                                                class="form-control @error('kode_pegawai') is-invalid @enderror" readonly/>
-                                            @error('kode_pegawai')<div class="text-danger small mb-1">{{ $message }}
+                                            <label class="small mb-1 mr-1" for="nik_pegawai">NIK Pegawai</label><span
+                                            class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="nik_pegawai" type="text"
+                                                name="nik_pegawai" placeholder="Input NIK Pegawai"
+                                                class="form-control @error('nik_pegawai') is-invalid @enderror"/>
+                                            @error('nik_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="nama_pegawai">Nama Lengkap</label><span
+                                            <label class="small mb-1 mr-1" for="npwp_pegawai">NPWP</label><span
                                                 class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="nama_pegawai" type="text"
-                                                name="nama_pegawai" placeholder="Input Nama Lengkap"
-                                                class="form-control @error('nama_pegawai') is-invalid @enderror" />
-                                            @error('nama_pegawai')<div class="text-danger small mb-1">{{ $message }}
+                                            <input class="form-control" id="npwp_pegawai" type="text"
+                                                name="npwp_pegawai" placeholder="Input NPWP Pegawai"
+                                                class="form-control @error('npwp_pegawai') is-invalid @enderror" />
+                                            @error('npwp_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>

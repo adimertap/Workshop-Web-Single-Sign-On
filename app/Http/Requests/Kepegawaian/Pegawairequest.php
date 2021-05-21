@@ -25,8 +25,9 @@ class Pegawairequest extends FormRequest
     {
         return [
             'nama_pegawai' => 'required|unique:tb_kepeg_master_pegawai,id_pegawai|min:5|max:30',
+            'nik_pegawai' => 'required|unique:tb_kepeg_master_pegawai,id_pegawai|min:16|max:16',
+            'npwp_pegawai' => 'required|unique:tb_kepeg_master_pegawai,id_pegawai|min:16|max:16',
             'nama_panggilan' => 'required|unique:tb_kepeg_master_pegawai,id_pegawai|min:4|max:20',
-            'kode_pegawai' => 'required',
             'id_jabatan' => 'required|exists:tb_kepeg_master_jabatan,id_jabatan',
             'tempat_lahir' => 'required|min:5|max:20',
             'tanggal_lahir' => 'required|date',
@@ -45,6 +46,16 @@ class Pegawairequest extends FormRequest
     public function messages()
     {
         return [
+            'nik_pegawai.required' => 'Error! Anda Belum Mengisi NIK Pegawai',
+            'nik_pegawai.unique' => 'Error! NIK Sudah Ada',
+            'nik_pegawai.min' => 'Error! Character Minimal :min digit',
+            'nik_pegawai.max' => 'Error! Character Maximal :max digit',
+
+            'npwp_pegawai.required' => 'Error! Anda Belum Mengisi NPWP Pegawai',
+            'npwp_pegawai.unique' => 'Error! NPWP Sudah Ada',
+            'npwp_pegawai.min' => 'Error! Character Minimal :min digit',
+            'npwp_pegawai.max' => 'Error! Character Maximal :max digit',
+
             'nama_pegawai.required' => 'Error! Anda Belum Mengisi Nama Pegawai',
             'nama_pegawai.unique' => 'Error! Nama Pegawai Sudah Ada',
             'nama_pegawai.min' => 'Error! Character Minimal :min digit',
@@ -57,6 +68,29 @@ class Pegawairequest extends FormRequest
             'nama_panggilan.max' => 'Error! Character Maximal :max digit',
 
             'id_jabatan.required' => 'Error! Anda Belum Memilih Jabatan Pegawai',
+            'tempat_lahir.required' => 'Error! Anda Belum Mengisi Tempat Lahir',
+            'tempat_lahir.min' => 'Error! Character Minimal :min digit',
+            'tempat_lahir.max' => 'Error! Character Maximal :max digit',
+            'tanggal_lahir.required' => 'Error! Anda Belum Mengisi Tanggal Lahir',
+            'jenis_kelamin.required' => 'Error! Anda Belum Mengisi Jenis Kelamin',
+
+            'alamat.required' => 'Error! Anda Belum Mengisi Alamat',
+            'alamat.min' => 'Error! Character Minimal :min digit',
+            'alamat.max' => 'Error! Character Maximal :max digit',
+
+            'kota_asal.required' => 'Error! Anda Belum Mengisi Kota Asal',
+            'kota_asal.min' => 'Error! Character Minimal :min digit',
+            'kota_asal.max' => 'Error! Character Maximal :max digit',
+
+            'no_telp.required' => 'Error! Anda Belum Mengisi No. Telp',
+            'no_telp.min' => 'Error! Character Minimal :min digit',
+            'no_telp.max' => 'Error! Character Maximal :max digit',
+
+            'agama.required' => 'Error! Anda Belum Mengisi Agama',
+            'status_perkawinan.required' => 'Error! Anda Belum Mengisi Status Perkawinan',
+            'email.required' => 'Error! Anda Belum Mengisi Email',
+            'pendidikan_terakhir.required' => 'Error! Anda Belum Mengisi Pendidikan Terakhir',
+            'tanggal_masuk.required' => 'Error! Anda Belum Mengisi Tanggal Masuk',
         ];
     }
 }

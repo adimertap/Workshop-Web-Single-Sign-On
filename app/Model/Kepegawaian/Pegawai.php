@@ -22,6 +22,8 @@ class Pegawai extends Model
         'id_jabatan',
         'nama_pegawai',
         'nama_panggilan',
+        'nik_pegawai',
+        'npwp_pegawai',
         'kode_pegawai',
         'tempat_lahir',
         'tanggal_lahir',

@@ -59,7 +59,7 @@
                                             No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 60px;">Kode Pegawai</th>
+                                            style="width: 60px;">NIK</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
                                             style="width: 150px;">Nama Pegawai</th>
@@ -84,7 +84,7 @@
                                     @forelse ($pegawai as $item)
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                        <td class="text-center">{{ $item->kode_pegawai }}</td>
+                                        <td class="text-center">{{ $item->nik_pegawai }}</td>
                                         <td>{{ $item->nama_pegawai }}</td>
                                         <td>{{ $item->jabatan->nama_jabatan }}</td>
                                         <td>{{ $item->alamat }}</td>

@@ -58,6 +58,8 @@ class MasterdatapegawaiController extends Controller
     {
         $pegawai = new Pegawai;
         $pegawai->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+        $pegawai->nik_pegawai = $request->nik_pegawai;
+        $pegawai->npwp_pegawai = $request->npwp_pegawai;
         $pegawai->id_jabatan = $request->id_jabatan;
         $pegawai->nama_pegawai = $request->nama_pegawai;
         $pegawai->nama_panggilan = $request->nama_panggilan;
@@ -73,7 +75,6 @@ class MasterdatapegawaiController extends Controller
         $pegawai->pendidikan_terakhir = $request->pendidikan_terakhir;
         $pegawai->tanggal_masuk = $request->tanggal_masuk;
         $pegawai->kode_pegawai = $request->kode_pegawai;
-
 
         $pegawai->save();
 
