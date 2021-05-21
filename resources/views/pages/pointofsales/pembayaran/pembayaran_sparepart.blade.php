@@ -65,7 +65,7 @@
                                     <tbody>
                                         @forelse ($penjualan_sparepart as $item)
                                         <tr role="row" class="odd">
-                                            <th scope="row" class="small" class="sorting_1">1</th>
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration }}</th>
                                             <td>{{ $item->kode_penjualan }}</td>
                                             <td>{{ $item->tanggal }}</td>
                                             <td>{{ $item->Customer->nama_customer }}</td>
