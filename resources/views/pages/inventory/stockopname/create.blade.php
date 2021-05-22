@@ -275,6 +275,7 @@
 <script>
     function calculateSelisih(id_sparepart, stock){
         var jumlah_real = $(`#stock-real-${id_sparepart}`).val()
+        console.log(jumlah_real)
         var selisih =parseInt(stock) - ( parseInt(jumlah_real)  | 0)
         $(`#selisih-${id_sparepart}`).val(selisih)
     }

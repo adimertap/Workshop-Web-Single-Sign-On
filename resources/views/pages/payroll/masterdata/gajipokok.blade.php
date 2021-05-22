@@ -188,15 +188,24 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mr-1" for="besaran_gaji">Besaran Gaji</label><span class="mr-4 mb-3" style="color: red">*</span>
-                        <input class="form-control" name="besaran_gaji" type="text" id="besaran_gaji"
-                            value="{{ $item->besaran_gaji }}"
-                            class="form-control @error('besaran_gaji') is-invalid @enderror" />
-                        @error('besaran_gaji')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
+                                <label class="small mb-1 mr-1" for="besaran_gaji">Besaran Gaji</label><span class="mr-4 mb-3" style="color: red">*</span>
+                            </div>
+                            <div class="col-12 col-lg-auto text-center text-lg-right">
+                                <div class="small text-lg-right">
+                                    <span class="font-weight-500 text-primary">Nominal : </span>
+                                    <span id="detailgajiedit"
+                                    class="detailgajiedit">Rp.{{ number_format($item->besaran_gaji,2,',','.')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input class="form-control edit_gaji" name="besaran_gaji" type="number" id="besaran_gaji"
+                            value="{{ $item->besaran_gaji}}"  class="form-control @error('besaran_gaji') is-invalid @enderror"></input>
+                            @error('besaran_gaji')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror 
                     </div>
                 </div>
-               
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-primary" type="Submit">Ubah</button>
@@ -256,6 +265,18 @@
             }).format(nominal)
 
             $('#detailbesarangaji').html(nominal_fix);
+        })
+
+        $('.edit_gaji').each(function () {
+            $(this).on('input', function () {
+                var harga = $(this).val()
+                var harga_fix = new Intl.NumberFormat('id', {
+                    style: 'currency',
+                    currency: 'IDR'
+                }).format(harga)
+                var harga_paling_fix = $(this).parent().find('.detailgajiedit')
+                $(harga_paling_fix).html(harga_fix);
+            })
         })
     });
 

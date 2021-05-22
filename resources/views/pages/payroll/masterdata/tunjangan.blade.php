@@ -199,9 +199,21 @@
                                 value="{{ $item->nama_tunjangan }}"></input>
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1 mr-1" for="jumlah_tunjangan">Besaran Tunjangan</label><span class="mr-4 mb-3" style="color: red">*</span>
-                            <input class="form-control" name="jumlah_tunjangan" type="number" id="jumlah_tunjangan"
-                                value="{{ number_format($item->jumlah_tunjangan,0,',','.') }}"></input>
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
+                                    <label class="small mb-1 mr-1" for="jumlah_tunjangan">Besaran Tunjangan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                </div>
+                                <div class="col-12 col-lg-auto text-center text-lg-right">
+                                    <div class="small text-lg-right">
+                                        <span class="font-weight-500 text-primary">Nominal : </span>
+                                        <span id="detailtunjanganedit"
+                                        class="detailtunjanganedit">Rp.{{ number_format($item->jumlah_tunjangan,2,',','.')}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input class="form-control edit_tunjangan" name="jumlah_tunjangan" type="number" id="jumlah_tunjangan_edit"
+                                value="{{ $item->jumlah_tunjangan}}"></input>
+                           
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="keterangan">Keterangan</label>
@@ -268,6 +280,21 @@
             }).format(nominal)
 
             $('#detailtunjangan').html(nominal_fix);
+        }),
+
+        $('.edit_tunjangan').each(function () {
+            $(this).on('input', function () {
+                var harga = $(this).val()
+                var harga_fix = new Intl.NumberFormat('id', {
+                    style: 'currency',
+                    currency: 'IDR'
+                }).format(harga)
+
+                $('#detailtunjanganedit').html(harga_fix);
+
+                var harga_paling_fix = $(this).parent().find('.detailtunjanganedit')
+                $(harga_paling_fix).html(harga_fix);
+            })
         })
     });
 </script>

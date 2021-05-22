@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
-                        <a href="{{ route('Rcv.destroy', $rcv->id_rcv) }}"
+                        <a href="{{ route('Rcv.index')}}"
                             class="btn btn-sm btn-light text-primary">Kembali</a>
                     </div>
                 </div>
@@ -150,10 +150,10 @@
                                                         {{ $loop->iteration}}</th>
                                                     <td class="kode_sparepart">{{ $item->kode_sparepart }}</td>
                                                     <td class="nama_sparepart">{{ $item->nama_sparepart }}</td>
-
                                                     <td class="merk_sparepart">
                                                         {{ $item->Merksparepart->merk_sparepart }}</td>
-                                                    <td class="qty">{{ $item->pivot->qty_po_sementara }}</td>
+                                                    <td><input class="form-control form-control-sm qty"id="selisih-{{ $item->id_sparepart }}" type="text" value="{{ $item->pivot->qty_po_sementara }}" name="qty" disabled/></td>
+                                                    {{-- <td class="qty" id="selisih-{{ $item->id_sparepart }}">{{ $item->pivot->qty_po_sementara }}</td> --}}
                                                     <td class="satuan">{{ $item->Kemasan->nama_kemasan }}</td>
                                                     <td>@if ($item->pivot->harga_satuan == '')
                                                         <div class="small text-muted d-none d-md-block">Tidak ada
@@ -166,11 +166,10 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="" class="btn btn-success btn-datatable" type="button"
-                                                            data-toggle="modal"
+                                                        <button id="{{ $item->kode_sparepart }}-button" class="btn btn-success btn-datatable" type="button" data-toggle="modal"
                                                             data-target="#Modaltambah-{{ $item->id_sparepart }}">
                                                             <i class="fas fa-plus"></i>
-                                                        </a>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                                 @empty
@@ -218,6 +217,10 @@
                                                 aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">
                                                 No</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 50px;">
+                                                Kode</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 100px;">
@@ -363,6 +366,9 @@
     <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
         <i class="fas fa-trash"></i>
     </button>
+    <button class="btn btn-primary btn-datatable" onclick="editsparepart(this)" type="button">
+        <i class="fas fa-edit"></i>
+    </button>
 </template>
 
 <template id="template_add_button">
@@ -467,30 +473,54 @@
                 var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
                 var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
                 var satuan = $(data.find('.satuan')[0]).text()
-                var qty = $(data.find('.qty')[0]).text()
+                // var qty = $(data.find('.qty')[0]).text()
+                var qty = data.find('input[name="qty"]').val()
+                console.log(qty)
+                
+                // Langsung Selisih
+                // var selisih =parseInt(qty) - ( parseInt(qty_rcv)  | 0)
+                // $(`#selisih-${id_sparepart}`).val(selisih)
+
                 var harga_beli = $(data.find('.harga_beli')[0]).text()
                 var template = $($('#template_delete_button').html())
                 var table = $('#dataTablekonfirmasi').DataTable()
                 // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
-                var row = $(`#${$.escapeSelector(nama_sparepart.trim())}`).parent().parent()
+                var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
                 table.row(row).remove().draw();
         
                 $('#dataTablekonfirmasi').DataTable().row.add([
-                    nama_sparepart, `<span id=${nama_sparepart}>${nama_sparepart}</span>`, merk_sparepart, satuan,
+                    nama_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`,nama_sparepart, merk_sparepart, satuan,
                     qty, qty_rcv, harga_diterima_fix, keterangan
                 ]).draw();
             }
         }
     }
 
-    function hapussparepart(element) {
+    function hapussparepart(element, id_sparepart) {
+        console.log(id_sparepart)
         var table = $('#dataTablekonfirmasi').DataTable()
+
+        // Langsung Selisih Tapi Error
+        // var row2 = $(element).parent().parent()
+        // var qty_po = $(row2.children()[4]).text()
+        // var qty_rcv = $(row2.children()[5]).text()
+        // $(`#selisih-${id_sparepart}`).val(qty_po)
         // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
         table.row(row).remove().draw();
         alert('Data Sparepart Berhasil di Hapus')
         // draw() Reset Ulang Table
         var table = $('#dataTable').DataTable()
+    }
+
+    function editsparepart(element){
+        var table = $('#dataTablekonfirmasi').DataTable()
+        // Akses Parent Sampai <tr></tr>
+        var row = $(element).parent().parent()
+        var children = $(row).children()[1]
+        var kode = $($(children).children()[0]).html().trim()
+        
+        $(`#${$.escapeSelector(kode)}-button`).trigger('click');
     }
 
     $(document).ready(function () {

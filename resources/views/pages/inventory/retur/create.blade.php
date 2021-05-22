@@ -154,11 +154,10 @@
                                                     <td class="text-center kemasan">{{ $item->Kemasan->nama_kemasan }}
                                                     </td>
                                                     <td>
-                                                        <a href="" class="btn btn-success btn-datatable" type="button"
-                                                            data-toggle="modal"
+                                                        <button id="{{ $item->kode_sparepart }}-button" class="btn btn-success btn-datatable" type="button" data-toggle="modal"
                                                             data-target="#Modaltambah-{{ $item->id_sparepart }}">
                                                             <i class="fas fa-plus"></i>
-                                                        </a>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                                 @empty
@@ -210,13 +209,13 @@
                                                 style="width: 20px;">
                                                 No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                style="width: 50px;">
+                                                Kode Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 90px;">
                                                 Sparepart</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 70px;">
-                                                Jenis Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
                                                 style="width: 70px;">
@@ -227,11 +226,11 @@
                                                 Satuan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 70px;">
+                                                style="width: 40px;">
                                                 Jumlah Retur</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 100px;">
+                                                style="width: 150px;">
                                                 Keterangan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
@@ -321,6 +320,9 @@
 <template id="template_delete_button">
     <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
         <i class="fas fa-trash"></i>
+    </button>
+    <button class="btn btn-primary btn-datatable" onclick="editsparepart(this)" type="button">
+        <i class="fas fa-edit"></i>
     </button>
 </template>
 
@@ -432,6 +434,7 @@
             alert('Berhasil Menambahkan Sparepart')
             var data = $('#item-' + id_sparepart)
             var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
+            var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
             var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
             var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
             var satuan = $(data.find('.satuan')[0]).text()
@@ -439,11 +442,11 @@
 
             var table = $('#dataTablekonfirmasi').DataTable()
             // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
-            var row = $(`#${$.escapeSelector(nama_sparepart.trim())}`).parent().parent()
+            var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
             table.row(row).remove().draw();
 
             $('#dataTablekonfirmasi').DataTable().row.add([
-                nama_sparepart, `<span id=${nama_sparepart}>${nama_sparepart}</span>`, jenis_sparepart,
+                nama_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
                 merk_sparepart, satuan, qty_retur, keterangan
             ]).draw();
         }
@@ -457,6 +460,17 @@
         alert('Data Sparepart Berhasil di Hapus')
         // draw() Reset Ulang Table
         var table = $('#dataTable').DataTable()
+    }
+
+    function editsparepart(element){
+        var table = $('#dataTablekonfirmasi').DataTable()
+        // Akses Parent Sampai <tr></tr>
+        var row = $(element).parent().parent()
+        var children = $(row).children()[1]
+        console.log(children)
+        var kode = $($(children).children()[0]).html().trim()
+        
+        $(`#${$.escapeSelector(kode)}-button`).trigger('click');
     }
 
 </script>
