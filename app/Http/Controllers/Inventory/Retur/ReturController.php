@@ -13,6 +13,7 @@ use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReturController extends Controller
 {
@@ -56,10 +57,10 @@ class ReturController extends Controller
         $supplier = Supplier::where('nama_supplier',$request->nama_supplier)->first();
         $id_supplier = $supplier->id_supplier;
 
-
         $retur = Retur::create([
             'id_supplier'=>$id_supplier,
             'tanggal_retur'=>$request->tanggal_retur,
+            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
         ]);
         
         return $retur;
@@ -109,7 +110,7 @@ class ReturController extends Controller
         $supplier = Supplier::all();
         $pegawai = Pegawai::all();
 
-        return view('pages.inventory.retur.create', compact('retur','pegawai','supplier','kode_retur','sparepart'));
+        return view('pages.inventory.retur.create', compact('retur','pegawai','supplier','kode_retur'));
     }
 
     /**
@@ -124,6 +125,7 @@ class ReturController extends Controller
         // $supplier = Supplier::where('nama_supplier', $request->nama_supplier)->first();
         $retur = Retur::findOrFail($id_retur);
         $retur->id_pegawai = $request->id_pegawai;
+        $retur->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
         // $retur->id_supplier = $supp->id_supplier;
         $retur->kode_retur = $request->kode_retur;
         $retur->tanggal_retur = $request->tanggal_retur;

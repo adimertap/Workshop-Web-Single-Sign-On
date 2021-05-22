@@ -48,14 +48,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="small mb-1" for="id_pegawai">Pegawai</label>
-                                <select class="form-control" name="id_pegawai" id="id_pegawai"
-                                    class="form-control @error('id_supplier') is-invalid @enderror">
-                                    <option>Pilih Pegawai</option>
-                                    @foreach ($pegawai as $item)
-                                    <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
-                                    </option>
-                                    @endforeach
-                                </select>
+                                <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
+                                    placeholder="Input Kode Receiving" value="{{ Auth::user()->pegawai->nama_pegawai }}" readonly>
                                 @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
                             </div>
@@ -342,7 +336,7 @@
         var form1 = $('#form1')
         var kode_retur = form1.find('input[name="kode_retur"]').val()
         var id_supplier = $('#id_supplier').val()
-        var id_pegawai = $('#id_pegawai').val()
+        var id_pegawai = form1.find('input[name="id_pegawai"]').val()
         var tanggal_retur = form1.find('input[name="tanggal_retur"]').val()
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
@@ -374,7 +368,6 @@
                 _token: _token,
                 kode_retur: kode_retur,
                 id_supplier: id_supplier,
-                id_pegawai: id_pegawai,
                 tanggal_retur: tanggal_retur,
                 sparepart: dataform2
             }

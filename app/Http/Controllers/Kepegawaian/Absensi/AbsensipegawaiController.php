@@ -9,6 +9,7 @@ use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AbsensipegawaiController extends Controller
 {
@@ -27,12 +28,13 @@ class AbsensipegawaiController extends Controller
             'Pegawai',
         ])->whereDate('tanggal_absensi', Carbon::today())->count();
 
+        $bengkel = Auth::user()->bengkel;
+
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
-
         $pegawai = Pegawai::all();
 
-        return view('pages.kepegawaian.absensi.absensi',['jumlah_pegawai'=> Pegawai::count()], compact('absensi','jumlah_absensi','pegawai','today','tanggal'));
+        return view('pages.kepegawaian.absensi.absensi',['jumlah_pegawai'=> Pegawai::count()], compact('absensi','jumlah_absensi','pegawai','today','tanggal','bengkel'));
     }
 
     /**
@@ -61,13 +63,14 @@ class AbsensipegawaiController extends Controller
         }else{
             $absensi = 'Absen_Pagi';
         }
-        
+
         $absensi = Absensi::create([
             'id_pegawai'=>$request->id_pegawai,
             'tanggal_absensi'=>Carbon::today(),
             'absensi'=>$absensi,
             'keterangan'=>$request->keterangan,
-            'jam_masuk' => Carbon::now()->format('H:i:s')
+            'jam_masuk' => Carbon::now()->format('H:i:s'),
+            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
         ]);
         
         $absensi->save();

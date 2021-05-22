@@ -127,7 +127,7 @@ class RcvController extends Controller
     {
         $po = PO::where('kode_po', $request->kode_po)->first();
         $rcv = Rcv::findOrFail($id_rcv);
-        $rcv->id_pegawai = $request->id_pegawai;
+        $rcv->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
         $rcv->id_supplier = $po->id_supplier;
         $rcv->id_po = $po->id_po;
         $rcv->kode_rcv = $request->kode_rcv;
@@ -148,7 +148,6 @@ class RcvController extends Controller
             }else{
                 $sparepart->status_jumlah ='Kurang';
             }
-            
             $sparepart->save();
 
             // Mengurangi Qty PO
@@ -183,7 +182,6 @@ class RcvController extends Controller
             $po->save();
 
             $rcv->grand_total = $temp;
-            $rcv->status = 'aktif';
             $rcv->status_bayar = 'Pending';
             $rcv->status_invoice = 'Belum dibuat';
             $rcv->save();
@@ -195,8 +193,8 @@ class RcvController extends Controller
         else{
             $po->status ='Diterima';
             $po->save();
+
             $rcv->grand_total = $temp;
-            $rcv->status = 'aktif';
             $rcv->status_bayar = 'Pending';
             $rcv->status_invoice = 'Belum dibuat';
             $rcv->save();

@@ -328,15 +328,12 @@
                                 <a class="nav-link" href="{{ route('approval-opname.index') }}">
                                     Stock Opname
                                 </a>
-                                @endif
-
                                 @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'owner')
                                 <a class="nav-link " href="{{ route('approval-po-ap.index') }}">
                                     Purchase Order AP
                                 </a>
                                 @endif
-
-
+                                @endif
                             </nav>
                         </div>
                     </div>

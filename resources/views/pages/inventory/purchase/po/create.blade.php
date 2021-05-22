@@ -24,8 +24,17 @@
                     </div>
                 </div>
             </div>
+            <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
+                class="fas fa-times"></i>
+            Error! Anda belum menambahkan sparepart!
+            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
         </div>
     </header>
+
+    
 
     <div class="container mt-n10">
         <div class="row">
@@ -44,16 +53,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="small mb-1" for="id_pegawai">Pegawai</label>
-                                <select class="form-control" name="id_pegawai" id="id_pegawai"
-                                    class="form-control @error('id_supplier') is-invalid @enderror">
-                                    <option>Pilih Pegawai</option>
-                                    @foreach ($pegawai as $item)
-                                    <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
+                                <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
+                                    placeholder="Input Kode Receiving" value="{{ Auth::user()->pegawai->nama_pegawai }}" readonly />
                             </div>
                             <div class="form-group">
                                 <label class="small mb-1 mr-1" for="id_supplier">Supplier</label>
@@ -142,28 +143,24 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($sparepartSupplier as $item)
+                                                @forelse ($po->Supplier->Sparepart as $item)
                                                 <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
-                                                    <th scope="row" class="small" class="sorting_1">
-                                                        {{ $loop->iteration}}</th>
-                                                    <td class="kode_sparepart" >
-                                                        {{ $item->sparepart->kode_sparepart }}</td>
-                                                    <td class="nama_sparepart">
-                                                        {{ $item->sparepart->nama_sparepart }}</td>
-                                                    <td class="merk_sparepart">
-                                                        {{ $item->sparepart->Merksparepart->merk_sparepart }}</td>
-                                                    <td class="kemasan">{{ $item->sparepart->Kemasan->nama_kemasan }}
+                                                    <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                                    <td class="kode_sparepart">{{ $item->kode_sparepart }}</td>
+                                                    <td class="nama_sparepart">{{ $item->nama_sparepart }}</td>
+                                                    <td class="merk_sparepart">{{ $item->Merksparepart->merk_sparepart }}</td>
+                                                    <td class="kemasan">{{ $item->Kemasan->nama_kemasan }}
                                                     </td>
-                                                    <td class="text-center stock">{{ $item->sparepart->stock }}</td>
+                                                    <td class="text-center stock">{{ $item->stock }}</td>
                                                     <td class="text-center status">
-                                                        @if($item->sparepart->status_jumlah == 'Cukup')
+                                                        @if($item->status_jumlah == 'Cukup')
                                                         <span class="badge badge-success">
-                                                            @elseif($item->sparepart->status_jumlah == 'Habis')
+                                                            @elseif($item->status_jumlah == 'Habis')
                                                             <span class="badge badge-danger">
                                                                 @else
                                                                 <span>
                                                                     @endif
-                                                                    {{ $item->sparepart->status_jumlah }}
+                                                                    {{ $item->status_jumlah }}
                                                                 </span>
                                                     </td>
                                                     {{-- <td class="harga_beli">@if ($item->Hargasparepart == '' | $item->Hargasparepart == '0')
@@ -172,8 +169,7 @@
                                                     @endif
                                                     </td> --}}
                                                     <td>
-                                                        <button id="{{ $item->kode_sparepart }}-button" href="" class="btn btn-success btn-datatable" type="button"
-                                                            data-toggle="modal"
+                                                        <button id="{{ $item->kode_sparepart }}-button" class="btn btn-success btn-datatable" type="button" data-toggle="modal"
                                                             data-target="#Modaltambah-{{ $item->id_sparepart }}">
                                                             <i class="fas fa-plus"></i>
                                                         </button>
@@ -205,13 +201,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
-                        class="fas fa-times"></i>
-                    Error! Anda belum menambahkan sparepart!
-                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
+
                 <div class="datatable">
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
@@ -261,7 +251,24 @@
                                         </tr>
                                     </thead>
                                     <tbody id='konfirmasi'>
-
+                                        @forelse ($po->Detailsparepart as $sparepart)
+                                        <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td class="kode_sparepartedit" id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</td>
+                                            <td class="nama_sparepartedit">{{ $sparepart->nama_sparepart }}</td>
+                                            <td class="merk_sparepartedit">{{ $sparepart->Merksparepart->merk_sparepart }}</td>
+                                            <td class="kemasanedit">{{ $sparepart->Kemasan->nama_kemasan }}</td>
+                                            <td class="qtyedit">{{ $sparepart->pivot->qty }}</td>
+                                            <td class="harga_satuanedit">{{ $sparepart->pivot->harga_satuan }}</td>
+                                            <td class="total_hargaedit">{{ $sparepart->pivot->total_harga }}</td>
+                                            <td>
+                                               
+                                            </td>
+                                        <tr>
+                                            
+                                        @empty
+                                            
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -276,7 +283,7 @@
 
 {{-- MODAL TAMBAH SPAREPART --}}
 {{-- @forelse ($po->Supplier->Sparepart as $item) --}}
-@forelse ($sparepartSupplier as $item)
+@forelse ($po->Supplier->Sparepart as $item)
 <div class="modal fade" id="Modaltambah-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -286,7 +293,7 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="" method="POST" id="form-{{ $item->sparepart->id_sparepart }}" class="d-inline">
+            <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="small mb-1" for="qty">Masukan Quantity Pesanan</label>
@@ -297,13 +304,13 @@
                         <label class="small mb-1" for="harga_diterima">Harga Satuan</label>
                         <input class="form-control harga_diterima" name="harga_diterima" type="number"
                             id="harga_diterima" placeholder="Input Harga Beli diterima"
-                            value="{{ $item->sparepart->Kartugudangterakhir['harga_beli'] }}"></input>
+                            value="{{ $item->Kartugudangterakhir['harga_beli'] }}"></input>
                         <div class="small text-primary">Detail Harga
                             <span id="detailhargaditerima" class="detailhargaditerima">
-                                @if ($item->sparepart->Kartugudangterakhir == '')
+                                @if ($item->Kartugudangterakhir == '')
 
                                 @else
-                                Rp.{{ number_format($item->sparepart->Kartugudangterakhir->harga_beli,2,',','.')}}
+                                Rp.{{ number_format($item->Kartugudangterakhir->harga_beli,2,',','.')}}
                                 @endif
 
                             </span>
@@ -312,7 +319,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" onclick="konfirmsparepart(event, {{ $item->sparepart->id_sparepart }})"
+                    <button class="btn btn-success" onclick="konfirmsparepart(event, {{ $item->id_sparepart }})"
                         type="button" data-dismiss="modal">Tambah</button>
                 </div>
             </form>
@@ -323,7 +330,7 @@
 @endforelse
 
 {{-- @forelse ($po->Supplier->Sparepart as $sparepart) --}}
-@forelse ($sparepartSupplier as $item)
+@forelse ($po->Supplier->Sparepart as $item)
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -339,7 +346,7 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary" type="button"
-                    onclick="tambahsparepart(event,{{ $sparepartSupplier }},{{ $po->id_po }})">Ya!Sudah</button>
+                    onclick="tambahsparepart(event,{{ $po->Supplier->Sparepart }},{{ $po->id_po }})">Ya!Sudah</button>
             </div>
         </div>
     </div>
@@ -369,13 +376,12 @@
         var form1 = $('#form1')
         var kode_po = form1.find('input[name="kode_po"]').val()
         var id_supplier = $('#id_supplier').val()
-        var id_pegawai = $('#id_pegawai').val()
+        var id_pegawai =form1.find('input[name="id_pegawai"]').val()
         var tanggal_po = form1.find('input[name="tanggal_po"]').val()
         var approve_po = form1.find('input[name="approve_po"]').val()
         var approve_ap = form1.find('input[name="approve_ap"]').val()
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
-
 
         for (var i = 0; i < sparepart.length; i++) {
             var form = $('#form-' + sparepart[i].id_sparepart)
@@ -397,11 +403,11 @@
                 }
                 dataform2.push(obj)
             }
-
         }
 
         if (dataform2.length == 0) {
             var alert = $('#alertsparepartkosong').show()
+            
         } else {
             var data = {
                 _token: _token,
@@ -453,14 +459,8 @@
             var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
             var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
             var kemasan = $(data.find('.kemasan')[0]).text()
-            // var harga_beli = $(data.find('.harga_beli')[0]).text()
             var template = $($('#template_delete_button').html())
-            // var splitqty = harga_beli.split('Rp.')[1].replace('.', '').replace(',00', '')
-            // var total = new Intl.NumberFormat('id', {
-            //     style: 'currency',
-            //     currency: 'IDR'
-            // }).format(qty * splitqty)
-
+           
             //Delete Data di Table Konfirmasi sebelum di add
             var table = $('#dataTablekonfirmasi').DataTable()
             // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
@@ -478,6 +478,7 @@
         var table = $('#dataTablekonfirmasi').DataTable()
         // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
+        console.log(row)
         table.row(row).remove().draw();
         alert('Data Sparepart Berhasil di Hapus')
         // draw() Reset Ulang Table
@@ -489,9 +490,10 @@
         // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
         var children = $(row).children()[1]
+        console.log(children)
         var kode = $($(children).children()[0]).html().trim()
-        $(`#${$.escapeSelector(kode)}-button`).trigger('click')
-
+        
+        $(`#${$.escapeSelector(kode)}-button`).trigger('click');
     }
 
     // 

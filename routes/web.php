@@ -242,7 +242,6 @@ Route::group(
             ->group(function () {
 
                 Route::resource('purchase-order', 'PurchaseorderController');
-
                 Route::post('PO/{id_po}/set-status', 'PurchaseorderController@setStatus')
                     ->name('po-status-kirim');
             });

@@ -57,8 +57,6 @@
                                         <div class="col-md-4">
                                             <button type="button" name="filter" onclick="filter_tanggal(event)"
                                                 class="btn btn-sm btn-primary px-4">Filter</button>
-                                            <button type="button" name="refresh" id="refresh"
-                                                class="btn btn-sm btn-secondary">Refresh</button>
                                         </div>
                                   
                                 </div>

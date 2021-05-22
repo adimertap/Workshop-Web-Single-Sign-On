@@ -65,11 +65,14 @@
                 </div>
                 <div class="card-body">
                     <div class="text-center">
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 12rem;"
+                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 10rem;"
                             src="/backend/src/assets/img/freepik/absen3.png" alt="">
                     </div>
                     <h2 class="m-0 font-weight-bold text-primary" id="clock" style="text-align: center"></h2>
-                    <div class="m-0 font-weight-bold text-primary" style="text-align: center">{{ $tanggal }}</div>
+                    <div class="text-center">
+                    <span class="m-0 font-weight-bold text-primary">Jam Kerja : </span><span class="m-0 font-weight-bold text-primary">{{\Carbon\Carbon::createFromFormat('H:i:s',$bengkel->jam_masuk_kerja)->format('h:i')}} AM - {{\Carbon\Carbon::createFromFormat('H:i:s',$bengkel->jam_keluar_kerja)->format('h:i')}} PM</span>
+                    </div>
+                  
                     <hr class="my-2">
                     <p style="text-align: center">Klik <span class="font-weight-bold text-primary"> Mulai Absensi </span> untuk
                         melakukan
@@ -172,15 +175,15 @@
                                                     </span>
                                                 </td>
                                                 <td id="item-{{ $item->id_pegawai }}">
-                                                    @if($item->absensi == 'Absen_Pagi')
+                                                    @if($item->absensi == 'Absen_Pagi' | $item->absensi == 'Terlambat')
                                                     {{-- <button class="btn btn-secondary btn-sm" id="pulang"
                                                             onclick="pulang(event, {{ $absensi }})"
                                                     type="button" data-dismiss="modal">Pulang!</button> --}}
 
                                                     <a href="{{ route('absensipulang',$item->id_absensi) }}?status=Masuk"
-                                                        class="btn btn-secondary btn-sm"> Pulang!
+                                                        class="btn btn-secondary btn-xs"> Pulang!
                                                     </a>
-                                                    @elseif($item->absensi == 'Masuk')
+                                                    @elseif($item->absensi == 'Masuk' | $item->absensi == 'Terlambat')
                                                     {{ $item->jam_pulang }}
                                                     @else
                                                     <span>
@@ -254,8 +257,7 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="keterangan" id="keteranganlabel" style="display:none">Masukan
-                            Keterangan</label>
+                        <label class="small mb-1" for="keterangan" id="keteranganlabel" style="display:none">Keterangan</label>
                         <input class="form-control" name="keterangan" type="text" id="keterangan"
                             placeholder="Input Keterangan" style="display:none"></input>
                     </div>
@@ -297,7 +299,15 @@
                 $('#keteranganlabel').hide();
             }
         })
-        var tableabsensi = $('#dataTableAbsensi').DataTable()
+       
+        var tableabsensi = $('#dataTableAbsensi').DataTable({
+            "pageLength": 5,
+            "lengthMenu": [
+                [5, 10, 20, -1],
+                [5, 10, 20, ]
+            ]
+        })
+
 
     });
 

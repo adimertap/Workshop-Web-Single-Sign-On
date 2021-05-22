@@ -106,8 +106,8 @@ class PurchaseorderController extends Controller
             'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailsparepart','Supplier.Sparepart.Kartugudang','Supplier.Sparepart.Kartugudangterakhir'
         ])->find($id);
 
-        $po = PO::find($id);
-        $sparepartSupplier = Hargasparepart::where('id_supplier', $po->id_supplier)->get();
+        // $po = PO::find($id);
+        // $sparepartSupplier = Hargasparepart::where('id_supplier', $po->id_supplier)->get();
 
         $id = PO::getId();
         foreach($id as $value);
@@ -121,8 +121,9 @@ class PurchaseorderController extends Controller
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
 
-        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','pegawai','kode_po','sparepartSupplier'));
+        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','pegawai','kode_po'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -135,7 +136,7 @@ class PurchaseorderController extends Controller
     {
         
         $po = PO::findOrFail($id_po);
-        $po->id_pegawai = $request->id_pegawai;
+        $po->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
         $po->kode_po = $request->kode_po;
         $po->tanggal_po = $request->tanggal_po;
         $temp = 0;
