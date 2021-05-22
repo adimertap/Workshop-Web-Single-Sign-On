@@ -32,7 +32,13 @@ class PenerimaanService extends Model
     // relations
     public static function getId()
     {
-        return $getId = DB::table('tb_service_advisor')->orderBy('id_service_advisor', 'DESC')->take(1)->get();
+        $getId = DB::table('tb_service_advisor')->orderBy('id_service_advisor', 'DESC')->take(1)->get();
+        if (count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_service_advisor' => 0
+            ]
+        ];
     }
 
     public function kendaraan()

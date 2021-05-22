@@ -2,6 +2,7 @@
 
 namespace App\Model\FrontOffice;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +27,17 @@ class MasterDataMerkKendaraan extends Model
 
     public static function getId()
     {
-        // return $this->orderBy('id_sparepart')->take(1)->get();
-        return $getId = DB::table('tb_fo_master_merk_kendaraan')->orderBy('id_merk_kendaraan', 'DESC')->take(1)->get();
+        $getId = DB::table('tb_fo_master_merk_kendaraan')->orderBy('id_merk_kendaraan', 'DESC')->take(1)->get();
+        if (count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_merk_kendaraan' => 0
+            ]
+        ];
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

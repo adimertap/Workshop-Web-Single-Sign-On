@@ -4,6 +4,7 @@ namespace App\Model\FrontOffice;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class CustomerBengkel extends Model
 {
@@ -27,4 +28,15 @@ class CustomerBengkel extends Model
     ];
 
     public $timestamps = true;
+
+    public static function getId()
+    {
+        $getId = DB::table('tb_fo_customer_bengkel')->orderBy('id_merk_kendaraan', 'DESC')->take(1)->get();
+        if (count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_merk_kendaraan' => 0
+            ]
+        ];
+    }
 }
