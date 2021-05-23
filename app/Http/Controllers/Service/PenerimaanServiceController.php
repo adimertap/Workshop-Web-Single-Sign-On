@@ -7,9 +7,11 @@ use App\Model\FrontOffice\CustomerBengkel;
 use App\Model\FrontOffice\MasterDataJenisPerbaikan;
 use App\Model\FrontOffice\MasterDataKendaraan;
 use App\Model\Inventory\Sparepart;
+use App\Model\Kepegawaian\Jabatan;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\Service\PenerimaanService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenerimaanServiceController extends Controller
 {
@@ -32,9 +34,12 @@ class PenerimaanServiceController extends Controller
         $idlama = $value->id_service_advisor;
         $idbaru = $idlama + 1;
         $blt = date('m');
-        $kode_sa = 'SA-' . $blt . '/' . $idbaru;
+        $kode_sa = 'SPK-' . $blt . '/' . $idbaru;
 
-        return view('pages.service.penerimaan_service.main', compact('service_advisor', 'kode_sa', 'kendaraan', 'customer_bengkel', 'pegawai', 'sparepart', 'jasa_perbaikan'));
+        $mekanik = Jabatan::with('pegawai.absensi_mekanik')->where('nama_jabatan', 'Mekanik')->get();
+        $mekanik_asli = $mekanik[0]->pegawai;
+
+        return view('pages.service.penerimaan_service.main', compact('service_advisor', 'kode_sa', 'kendaraan', 'idbaru', 'customer_bengkel', 'pegawai', 'sparepart', 'jasa_perbaikan', 'mekanik_asli'));
     }
 
     /**
@@ -55,7 +60,26 @@ class PenerimaanServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $service = new PenerimaanService;
+        $service->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
+        $service->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+
+
+        $service->kode_sa = $request->kode_sa;
+        $service->id_customer_bengkel = $request->id_customer_bengkel;
+        $service->id_kendaraan = $request->id_kendaraan;
+        $service->odo_meter =  $request->odo_meter;
+        $service->plat_kendaraan =  $request->plat_kendaraan;
+        $service->keluhan_kendaraan =  $request->keluhan_kendaraan;
+        $service->nama_mekanik =  $request->nama_mekanik;
+        $service->waktu_estimasi =  $request->waktu_estimasi;
+
+
+        $service->save();
+        $service->detail_sparepart()->sync($request->sparepart);
+        $service->detail_perbaikan()->sync($request->jasa_perbaikan);
+
+        return $request;
     }
 
     /**

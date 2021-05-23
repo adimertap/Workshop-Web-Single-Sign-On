@@ -14,6 +14,9 @@
                         </h1>
                         <div class="page-header-subtitle">Formulir penerimaan service kendaraan yang dilakukan Service
                             Advisor</div>
+
+                        <span class="font-weight-500 text-primary" id="id_bengkel"
+                            style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
                     </div>
                 </div>
             </div>
@@ -28,13 +31,14 @@
             <div class="card-header"> Form Service Advisor
             </div>
             <div class="card-body">
-                <form action="">
+                <form action="{{ route('penerimaanservice.store') }}" id="form1" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-4">
-                            <label for="kode_penjualan">Kode SA</label>
-                            <input class="form-control" id="kode_penjualan" name="kode_penjualan" type="text"
-                                value="{{ $kode_sa }}" readonly />
+                            <label for="kode_sa">Kode SPK</label>
+                            <input class="form-control" id="kode_sa" name="kode_sa" type="text" value="{{ $kode_sa }}"
+                                readonly />
                         </div>
                         <div class="form-group col-4">
                             <label for="id_pegawai">Pegawai</label>
@@ -55,10 +59,10 @@
                                     </a>
                                 </div>
                                 <select class="form-control" name="id_customer_bengkel" id="id_customer_bengkel"
-                                    class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
+                                    class="form-control @error('id_customer_bengkel') is-invalid @enderror">
                                     <option>Pilih Customer</option>
                                     @foreach ($customer_bengkel as $item)
-                                    <option value="{{ $item->nama_customer }}">
+                                    <option value="{{ $item->id_customer_bengkel }}">
                                         {{ $item->nama_customer }}
                                     </option>
                                     @endforeach
@@ -71,7 +75,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-4">
-                            <label for="id_jenis_kendaraan">Pilih Jenis
+                            <label for="id_kendaraan">Pilih Jenis
                                 Kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <div class="input-group input-group-joined">
                                 <div class="input-group-append">
@@ -80,43 +84,56 @@
                                         <i class="fas fa-plus"></i>
                                     </a>
                                 </div>
-                                <select class="form-control" name="id_jenis_kendaraan" id="id_jenis_kendaraan"
-                                    class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
+                                <select class="form-control" name="id_kendaraan" id="id_kendaraan"
+                                    class="form-control @error('id_kendaraan') is-invalid @enderror">
                                     <option>Pilih Kendaraan</option>
                                     @foreach ($kendaraan as $item)
-                                    <option value="{{ $item->nama_kendaraan }}">
+                                    <option value="{{ $item->id_kendaraan }}">
                                         {{ $item->nama_kendaraan }}
                                     </option>
                                     @endforeach
                                 </select>
                             </div>
-                            @error('id_jenis_kendaraan')<div class="text-danger small mb-1">{{ $message }}
+                            @error('id_kendaraan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
                         <div class="form-group col-4">
-                            <label for="inputOdoMeter">Odo Meter</label>
-                            <input type="text" class="form-control" id="inputOdoMeter" placeholder="Input Odo Meter">
+                            <label for="odo_meter">Odo Meter</label>
+                            <input type="text" class="form-control" id="odo_meter" name="odo_meter"
+                                placeholder="Input Odo Meter">
                         </div>
                         <div class="form-group col-4">
                             <label for="plat_kendaraan">No. Plat Kendaraan</label>
-                            <input type="text" class="form-control" id="plat_kendaraan"
+                            <input type="text" class="form-control" id="plat_kendaraan" name="plat_kendaraan"
                                 placeholder="Input Plat Kendaraan">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-4">
-                            <label for="inputKeluhanKendaraan">Keluhan Kendaraan</label>
-                            <input type="text" class="form-control" id="inputKeluhanKendaraan"
+                            <label for="keluhan_kendaraan">Keluhan Kendaraan</label>
+                            <input type="text" class="form-control" id="keluhan_kendaraan" name="keluhan_kendaraan"
                                 placeholder="Input Keluhan Kendaraan">
                         </div>
                         <div class="form-group col-4">
-                            <label for="inputMekanik">Mekanik</label>
-                            <input type="text" class="form-control" id="inputMekanik" placeholder="Input Nama Mekanik">
+                            <label for="nama_mekanik">Pilih Mekanik</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
+                            <select class="form-control" name="nama_mekanik" id="nama_mekanik"
+                                class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
+                                <option>Pilih Mekanik</option>
+                                @foreach ($mekanik_asli as $item)
+                                <option value="{{ $item->nama_pegawai }}">
+                                    {{ $item->nama_pegawai }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('nama_mekanik')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                         <div class="form-group col-4">
-                            <label for="inputWaktuEstimasi">Waktu Pengerjaan (menit)</label>
-                            <input type="text" class="form-control" id="inputWaktuEstimasi" placeholder="Input Waktu">
+                            <label for="waktu_estimasi">Estimasi Pengerjaan (menit)</label>
+                            <input type="text" class="form-control" id="waktu_estimasi" name="waktu_estimasi"
+                                placeholder="Input Waktu Estimasi">
                         </div>
                     </div>
                 </form>
@@ -251,7 +268,7 @@
                                                 style="width: 20px;">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody id='konfirmasi'>
+                                    <tbody id='konfirmasiPerbaikan'>
 
                                     </tbody>
                                 </table>
@@ -441,7 +458,8 @@
         </div>
 
         <div class="text-center">
-            <button type="submit" class="btn btn-primary mt-5">Kirim ke Front Office</button>
+            <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#Modalsumbit">Kirim ke
+                Front Office</button>
         </div>
 
     </div>
@@ -484,7 +502,29 @@
     @empty
     @endforelse
 
+    <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success-soft">
+                    <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Form Pembelian</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">Apakah Form yang Anda inputkan sudah benar?</div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="button"
+                        onclick="kirimfrontoffice(event,{{ $sparepart }},{{ $jasa_perbaikan }},{{ $idbaru }})">Ya!Sudah</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
+
+
 
 <template id="template_delete_button">
     <button class="btn btn-danger btn-datatable" onclick="hapusPerbaikan(this)" type="button">
@@ -554,7 +594,7 @@
 
         alert('Berhasil menambahkan jasa perbaikan')
         $('#dataPerbaikan').DataTable().row.add([
-            kode_jenis_perbaikan, `<span id=${kode_jenis_perbaikan}>${kode_jenis_perbaikan}</span>`,
+            kode_jenis_perbaikan, `<span id=${id_jenis_perbaikan}>${kode_jenis_perbaikan}</span>`,
             nama_jenis_perbaikan,
             group_jenis_perbaikan, harga_jenis_perbaikan
         ]).draw();
@@ -622,15 +662,114 @@
         var table = $('#dataTable').DataTable()
     }
 
-    function editSparepart(element){
+    function editSparepart(element) {
         var table = $('#dataSparepart').DataTable()
         // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
         var children = $(row).children()[1]
         console.log(children)
         var kode = $($(children).children()[0]).html().trim()
-        
+
         $(`#${$.escapeSelector(kode)}-button`).trigger('click');
+    }
+
+    function kirimfrontoffice(event, sparepart, jasa_perbaikan, idbaru) {
+        event.preventDefault();
+        var form1 = $('#form1')
+        var kode_sa = form1.find('input[name="kode_sa"]').val()
+        var id_pegawai = form1.find('input[name="id_pegawai"]').val()
+        var id_customer_bengkel = $('#id_customer_bengkel').val()
+        var id_kendaraan = $('#id_kendaraan').val()
+        var odo_meter = form1.find('input[name="odo_meter"]').val()
+        var plat_kendaraan = form1.find('input[name="plat_kendaraan"]').val()
+        var keluhan_kendaraan = form1.find('input[name="keluhan_kendaraan"]').val()
+        var nama_mekanik = form1.find('input[name="nama_mekanik"]').val()
+        var waktu_estimasi = form1.find('input[name="waktu_estimasi"]').val()
+        var dataform2 = []
+        var dataform3 = []
+        var _token = form1.find('input[name="_token"]').val()
+
+        for (var i = 0; i < sparepart.length; i++) {
+            var form = $('#form-' + sparepart[i].id_sparepart)
+            var jumlah = form.find('input[name="jumlah"]').val()
+            var harga = form.find('input[name="harga"]').val()
+            var id_bengkel = $('#id_bengkel').text()
+            var total_harga = jumlah * harga
+
+            if (jumlah == 0 | jumlah == '') {
+                continue
+            } else {
+                var id_sparepart = sparepart[i].id_sparepart
+                var obj = {
+                    id_service_advisor: idbaru,
+                    id_sparepart: id_sparepart,
+                    jumlah: jumlah,
+                    harga: harga,
+                    id_bengkel: id_bengkel,
+                    total_harga: total_harga
+                }
+                dataform2.push(obj)
+            }
+        }
+
+        var dataperbaikan = $('#konfirmasiPerbaikan').children()
+        for (let index = 0; index < dataperbaikan.length; index++) {
+            var children = $(dataperbaikan[index]).children()
+            var td = children[1]
+            var span = $(td).children()[0]
+              console.log(span)
+            var id_jenis_perbaikan = $(span).attr('id')
+
+            var id_bengkel = $('#id_bengkel').text()
+            // HARGA
+            var td_harga = children[4]
+            var harga = $(td_harga).html().trim()
+            var splitharga = harga.split('Rp.')[1].replace('.', '').replace(',00', '').trim()
+          
+            dataform3.push({
+                id_service_advisor: idbaru,
+                id_jenis_perbaikan: id_jenis_perbaikan,
+                total_harga: splitharga,
+                id_bengkel: id_bengkel,
+            })
+        }
+
+        if (dataform3.length == 0) {
+            alert('Data Perbaikan Kosong')
+        } else {
+            var data = {
+                _token: _token,
+                kode_sa: kode_sa,
+                id_pegawai: id_pegawai,
+                id_customer_bengkel: id_customer_bengkel,
+                id_kendaraan: id_kendaraan,
+                odo_meter: odo_meter,
+                plat_kendaraan: plat_kendaraan,
+                keluhan_kendaraan: keluhan_kendaraan,
+                nama_mekanik: nama_mekanik,
+                waktu_estimasi: waktu_estimasi,
+                sparepart: dataform2,
+                jasa_perbaikan: dataform3
+
+            }
+            console.log(data)
+
+            $.ajax({
+                method: 'post',
+                url: '/service/penerimaanservice',
+                data: data,
+                success: function (response) {
+                    window.location.href = '/frontoffice/pelayananservice'
+
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        }
+
+
+        
     }
 
 </script>

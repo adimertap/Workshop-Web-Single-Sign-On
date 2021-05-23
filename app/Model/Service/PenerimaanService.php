@@ -50,4 +50,14 @@ class PenerimaanService extends Model
     {
         return $this->belongsTo(CustomerBengkel::class, 'id_customer_bengkel', 'id_customer_bengkel');
     }
+
+    public function detail_sparepart()
+    {
+        return $this->belongsToMany(Sparepart::class, 'tb_service_detail_sparepart', 'id_service_advisor', 'id_sparepart')->withPivot('jumlah', 'total_harga', 'harga');
+    }
+
+    public function detail_perbaikan()
+    {
+        return $this->belongsToMany(Sparepart::class, 'tb_service_detail_perbaikan', 'id_service_advisor', 'id_jenis_perbaikan')->withPivot('total_harga');
+    }
 }
