@@ -193,7 +193,7 @@
                             Dashboard
                         </a>
 
-                        @if (Auth::user()->role == 'owner')
+                        @if (Auth::user()->role == 'owner' || Auth::user()->role == 'admin_accounting')
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
                         <div class="sidenav-menu-heading">Master Data</div>
@@ -223,7 +223,7 @@
 
 
                         <div class="sidenav-menu-heading">Account</div>
-                        @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'owner')
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-wallet"></i></div>
@@ -251,7 +251,7 @@
                         </div>
                         @endif
 
-                        @if (Auth::user()->role == 'admin_account_receivable' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'owner')
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
                             <div class="nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>

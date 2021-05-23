@@ -451,7 +451,7 @@ Route::group(
         // MASTER DATA ---------------------------------------------------- Master Data Accounting
         Route::prefix('accounting/masterdatafop')
             ->namespace('Accounting\Masterdata')
-            ->middleware(['owner', 'verified'])
+            ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdatafopController@index')
                     ->name('masterdatafop');
@@ -461,7 +461,7 @@ Route::group(
 
         Route::prefix('accounting/masterdatabankaccount')
             ->namespace('Accounting\Masterdata')
-            ->middleware(['owner', 'verified'])
+            ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdatabankaccountController@index')
                     ->name('masterdatabankaccount');
@@ -471,7 +471,7 @@ Route::group(
 
         Route::prefix('accounting/masterdataakun')
             ->namespace('Accounting\Masterdata')
-            ->middleware(['owner', 'verified'])
+            ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdataakunController@index')
                     ->name('masterdataakun');
@@ -481,7 +481,7 @@ Route::group(
 
         Route::prefix('accounting/masterjenistransaksi')
             ->namespace('Accounting\Masterdata')
-            ->middleware(['owner', 'verified'])
+            ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::get('/', 'MasterdatajenistransaksiController@index')
                     ->name('masterdatajenistransaksi');
@@ -493,7 +493,7 @@ Route::group(
         // InvoicePayable ----------------------------------------------------------------- Invoice Payable   
         Route::prefix('Accounting')
             ->namespace('Accounting\Payable')
-            ->middleware(['admin_account_payable', 'verified'])
+            ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::resource('invoice-payable', 'InvoicePayableController');
             });
@@ -501,7 +501,7 @@ Route::group(
         // PRF ---------------------------------------------------------------------------- PRF
         Route::prefix('accounting')
             ->namespace('Accounting\Payable')
-            ->middleware(['admin_account_payable', 'verified'])
+            ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::resource('prf', 'PrfController');
 
@@ -512,7 +512,7 @@ Route::group(
         // Approval Prf ----------------------------------------------------------------- Approval PRF
         Route::prefix('accounting/ApprovalPRF')
             ->namespace('Accounting\Payable')
-            ->middleware(['admin_account_payable', 'verified'])
+            ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::get('/', 'ApprovalprfController@index')
                     ->name('approval-prf');
@@ -526,7 +526,7 @@ Route::group(
         // PAJAK -------------------------------------------------------------------------- Pajak
         Route::prefix('accounting')
             ->namespace('Accounting\Payable')
-            ->middleware(['admin_account_payable', 'verified'])
+            ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
 
                 Route::resource('pajak', 'PajakController');
@@ -535,25 +535,25 @@ Route::group(
         // Gaji Pegawai Accounting ----------------------------------------------------------------- Gaji Pegawai Accounting  
         Route::prefix('Accounting')
             ->namespace('Accounting\Payable')
-            ->middleware(['admin_account_payable', 'verified'])
+            ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::resource('gaji-accounting', 'GajiAccountingController');
 
                 Route::post('gaji-accounting/posting-jurnal', 'GajiAccountingController@postingjurnal')
-                ->name('gaji-pegawai-jurnal');
+                    ->name('gaji-pegawai-jurnal');
             });
 
 
-         // Jurnal Pengeluaran ----------------------------------------------------------------- Jurnal Pengeluaran 
-         Route::prefix('Accounting')
+        // Jurnal Pengeluaran ----------------------------------------------------------------- Jurnal Pengeluaran 
+        Route::prefix('Accounting')
             ->namespace('Accounting\Jurnal')
-            ->middleware(['admin_account_payable', 'verified'])
+            ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::resource('jurnal-pengeluaran', 'JurnalPengeluaranController');
 
                 Route::post('Pajak/{id_pajak}', 'JurnalPengeluaranController@Pajak')
                     ->name('jurnal-pengeluaran-pajak');
-         });
+            });
 
         // CATATAN ADIM -------------------------------------------------------------------- Catatan Adim
         // NOTES ADIM

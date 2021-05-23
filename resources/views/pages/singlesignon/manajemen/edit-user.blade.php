@@ -75,8 +75,8 @@
                                                 <option value="admin_kasir">Admin Kasir</option>
                                                 <option value="admin_gudang">Admin Gudang</option>
                                                 <option value="admin_purchasing">Admin Purchasing</option>
-                                                <option value="admin_account_payable">Admin Account Payable</option>
-                                                <option value="admin_account_receivable">Admin Account Receivable
+                                                <option value="admin_accounting">Admin Account Payable</option>
+                                                <option value="admin_accounting">Admin Account Receivable
                                                 </option>
                                                 <option value="admin_marketplace">Admin Marketplace</option>
                                             </select>

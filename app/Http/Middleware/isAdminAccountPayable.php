@@ -16,7 +16,7 @@ class isAdminAccountPayable
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() && Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'owner') {
+        if (Auth::user() && Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'owner') {
             return $next($request);
         }
         abort(403);

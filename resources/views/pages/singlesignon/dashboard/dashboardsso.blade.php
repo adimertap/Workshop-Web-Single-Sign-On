@@ -175,7 +175,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'admin_account_receivable' ||
+        @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'admin_accounting' ||
         Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->

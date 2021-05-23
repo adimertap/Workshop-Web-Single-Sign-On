@@ -90,11 +90,8 @@ class User extends Authenticatable implements MustVerifyEmail
             case 'admin_purchasing':
                 $RoleName = 'Admin Purchasing';
                 break;
-            case 'admin_account_payable':
-                $RoleName = 'Admin Account Payable';
-                break;
-            case 'admin_account_receivable':
-                $RoleName = 'Admin Account Receivable';
+            case 'admin_accounting':
+                $RoleName = 'Admin Accounting';
                 break;
             case 'admin_marketplace':
                 $RoleName = 'Admin Marketplace';

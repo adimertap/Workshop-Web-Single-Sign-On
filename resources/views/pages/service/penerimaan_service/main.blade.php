@@ -45,8 +45,8 @@
                             </div> @enderror
                         </div>
                         <div class="form-group col-4">
-                            <label for="id_customer_bengkel">Pilih Customer</label><span
-                                class="mr-4 mb-3" style="color: red">*</span>
+                            <label for="id_customer_bengkel">Pilih Customer</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
                             <div class="input-group input-group-joined">
                                 <div class="input-group-append">
                                     <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
@@ -99,7 +99,8 @@
                         </div>
                         <div class="form-group col-4">
                             <label for="plat_kendaraan">No. Plat Kendaraan</label>
-                            <input type="text" class="form-control" id="plat_kendaraan" placeholder="Input Plat Kendaraan">
+                            <input type="text" class="form-control" id="plat_kendaraan"
+                                placeholder="Input Plat Kendaraan">
                         </div>
                     </div>
 
@@ -142,8 +143,9 @@
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
-                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <table class="table table-bordered table-hover dataTable" id="dataTablePerbaikan"
+                                    width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                    style="width: 100%;">
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
@@ -183,20 +185,74 @@
                                                 {{ number_format($item->harga_jenis_perbaikan,2,',','.') }}
                                             </td>
                                             <td>
-                                                <a href="" class="btn btn-success btn-datatable" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modaltambah-{{ $item->id_jenis_perbaikan }}">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
+                                                <button class="btn btn-success btn-datatable"
+                                                    onclick="konfirmperbaikan(event, {{ $item->id_jenis_perbaikan }})"
+                                                    type="button" data-dismiss="modal"><i
+                                                        class="fas fa-plus"></i></button>
                                             </td>
                                         </tr>
                                         @empty
                                         <tr>
                                             <td colspan="7" class="tex-center">
-                                                Data Sparepart Kosong
+                                                Data Jasa Perbaikan Kosong
                                             </td>
                                         </tr>
                                         @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card card-header-actions">
+                <div class="card-header ">Detail Jasa Perbaikan
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
+                        class="fas fa-times"></i>
+                    Error! Anda belum menambahkan sparepart!
+                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="datatable">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataPerbaikan"
+                                    width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                    style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
+                                                No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 60px;">Kode</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 150px;">Nama Jasa Perbaikan</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 50px;">Jenis Jasa Perbaikan</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                style="width: 80px;">Harga</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Actions: activate to sort column ascending"
+                                                style="width: 20px;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='konfirmasi'>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -225,8 +281,9 @@
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
-                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <table class="table table-bordered table-hover dataTable" id="dataTableSparepart"
+                                    width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                    style="width: 100%;">
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
@@ -262,7 +319,7 @@
                                     </thead>
                                     <tbody>
                                         @forelse ($sparepart as $item)
-                                        <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
+                                        <tr id="sparepart-{{ $item->id_sparepart }}" role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">
                                                 {{ $loop->iteration}}</th>
                                             <td class="kode_sparepart">
@@ -281,11 +338,12 @@
                                                 {{ number_format($item->Hargasparepart->harga_jual,2,',','.') }}
                                             </td>
                                             <td>
-                                                <a href="" class="btn btn-success btn-datatable" type="button"
+                                                <button id="{{ $item->kode_sparepart }}-button"
+                                                    class="btn btn-success btn-datatable" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modaltambah-{{ $item->id_sparepart }}">
                                                     <i class="fas fa-plus"></i>
-                                                </a>
+                                                </button>
                                             </td>
                                         </tr>
                                         @empty
@@ -304,59 +362,7 @@
             </div>
         </div>
 
-        <div class="card mb-4">
-            <div class="card card-header-actions">
-                <div class="card-header ">Detail Jasa Perbaikan
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
-                        class="fas fa-times"></i>
-                    Error! Anda belum menambahkan sparepart!
-                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="datatable">
-                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table class="table table-bordered table-hover dataTable" id="dataService" width="100%"
-                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                    <thead>
-                                        <tr role="row">
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">
-                                                No</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 60px;">Kode</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 150px;">Nama Jasa Perbaikan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Office: activate to sort column ascending"
-                                                style="width: 50px;">Jenis Jasa Perbaikan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 80px;">Harga</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 20px;">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id='konfirmasi'>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="card mb-4">
             <div class="card card-header-actions">
@@ -435,20 +441,197 @@
         </div>
 
         <div class="text-center">
-            <button type="submit" class="btn btn-primary mt-5">Submit to Front Office</button>
+            <button type="submit" class="btn btn-primary mt-5">Kirim ke Front Office</button>
         </div>
 
     </div>
 
+    {{-- MODAL TAMBAH SPAREPART --}}
+    @forelse ($sparepart as $item)
+    <div class="modal fade" id="Modaltambah-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary-soft">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Jumlah Pesanan</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="small mb-1" for="jumlah">Masukan Quantity Pesanan</label>
+                            <input class="form-control" name="jumlah" type="text" id="jumlah"
+                                placeholder="Input Jumlah Pesanan" value="{{ old('jumlah') }}"></input>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="harga">Harga</label>
+                            <input class="form-control" name="harga" type="text" id="harga"
+                                placeholder="Input Jumlah Pesanan" value="{{ $item->Hargasparepart->harga_jual }}"
+                                readonly></input>
+                        </div>
+                    </div>
 
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-success" onclick="konfirmsparepart(event, {{ $item->id_sparepart }})"
+                            type="button" data-dismiss="modal">Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @empty
+    @endforelse
 
 </main>
 
+<template id="template_delete_button">
+    <button class="btn btn-danger btn-datatable" onclick="hapusPerbaikan(this)" type="button">
+        <i class="fas fa-trash"></i>
+    </button>
+</template>
+
+<template id="template_delete_button_sparepart">
+    <button class="btn btn-danger btn-datatable" onclick="hapusSparepart(this)" type="button">
+        <i class="fas fa-trash"></i>
+    </button>
+
+    <button class="btn btn-primary btn-datatable" onclick="editSparepart(this)" type="button">
+        <i class="fas fa-edit"></i>
+    </button>
+</template>
+
+
 <script>
     $(document).ready(function () {
-        var table1 = $('#dataService').DataTable()
-        var table2 = $('#dataSparepart').DataTable()
+        var template = $('#template_delete_button').html()
+        $('#dataPerbaikan').DataTable({
+            "columnDefs": [{
+                    "targets": -1,
+                    "data": null,
+                    "defaultContent": template
+                },
+                {
+                    "targets": 0,
+                    "data": null,
+                    'render': function (data, type, row, meta) {
+                        return meta.row + 1
+                    }
+                }
+            ]
+        })
+
+        var template2 = $('#template_delete_button_sparepart').html()
+        $('#dataSparepart').DataTable({
+            "columnDefs": [{
+                    "targets": -1,
+                    "data": null,
+                    "defaultContent": template2
+                },
+                {
+                    "targets": 0,
+                    "data": null,
+                    'render': function (data, type, row, meta) {
+                        return meta.row + 1
+                    }
+                }
+            ]
+        });
     });
+
+    function konfirmperbaikan(event, id_jenis_perbaikan) {
+        var data = $('#item-' + id_jenis_perbaikan)
+        var kode_jenis_perbaikan = $(data.find('.kode_jenis_perbaikan')[0]).text()
+        var nama_jenis_perbaikan = $(data.find('.nama_jenis_perbaikan')[0]).text()
+        var group_jenis_perbaikan = $(data.find('.group_jenis_perbaikan')[0]).text()
+        var harga_jenis_perbaikan = $(data.find('.harga_jenis_perbaikan')[0]).text()
+
+        var table = $('#dataPerbaikan').DataTable()
+        // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
+        var row = $(`#${$.escapeSelector(kode_jenis_perbaikan.trim())}`).parent().parent()
+        table.row(row).remove().draw();
+
+        alert('Berhasil menambahkan jasa perbaikan')
+        $('#dataPerbaikan').DataTable().row.add([
+            kode_jenis_perbaikan, `<span id=${kode_jenis_perbaikan}>${kode_jenis_perbaikan}</span>`,
+            nama_jenis_perbaikan,
+            group_jenis_perbaikan, harga_jenis_perbaikan
+        ]).draw();
+    }
+
+    function hapusPerbaikan(element) {
+        var table = $('#dataPerbaikan').DataTable()
+        // Akses Parent Sampai <tr></tr>
+        var row = $(element).parent().parent()
+        table.row(row).remove().draw();
+        alert('Data Jasa Perbaikan Berhasil di Hapus')
+        // draw() Reset Ulang Table
+        var table = $('#dataTable').DataTable()
+    }
+
+    function konfirmsparepart(event, id_sparepart) {
+        var form = $('#form-' + id_sparepart)
+        var jumlah = form.find('input[name="jumlah"]').val()
+        if (jumlah == 0 | jumlah == '') {
+            alert('Jumlah Kosong')
+        } else {
+
+            var data = $('#sparepart-' + id_sparepart)
+            var stock = $(data.find('.stock')[0]).text()
+
+            // Kondisi tidak boleh melebihi qty po
+            if (parseInt(jumlah) > parseInt(stock)) {
+                alert('Qty Stock tidak Memenuhi')
+            } else {
+                alert('Berhasil Menambahkan Sparepart')
+                var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
+                var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
+                var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
+                var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
+                var satuan = $(data.find('.satuan')[0]).text()
+                var harga_jual = $(data.find('.harga_jual')[0]).text()
+                var template = $($('#template_delete_button_sparepart').html())
+                var splitqty = harga_jual.split('Rp.')[1].replace('.', '').replace(',00', '')
+                var total = new Intl.NumberFormat('id', {
+                    style: 'currency',
+                    currency: 'IDR'
+                }).format(jumlah * splitqty)
+                //Delete Data di Table Konfirmasi sebelum di add
+                var table = $('#dataSparepart').DataTable()
+                // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
+                var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
+                table.row(row).remove().draw();
+
+                $('#dataSparepart').DataTable().row.add([
+                    kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
+                    jenis_sparepart, merk_sparepart, satuan,
+                    harga_jual, jumlah, total,
+                ]).draw();
+            }
+        }
+    }
+
+    function hapusSparepart(element) {
+        var table = $('#dataSparepart').DataTable()
+        // Akses Parent Sampai <tr></tr>
+        var row = $(element).parent().parent()
+        table.row(row).remove().draw();
+        alert('Data Sparepart Berhasil di Hapus')
+        // draw() Reset Ulang Table
+        var table = $('#dataTable').DataTable()
+    }
+
+    function editSparepart(element){
+        var table = $('#dataSparepart').DataTable()
+        // Akses Parent Sampai <tr></tr>
+        var row = $(element).parent().parent()
+        var children = $(row).children()[1]
+        console.log(children)
+        var kode = $($(children).children()[0]).html().trim()
+        
+        $(`#${$.escapeSelector(kode)}-button`).trigger('click');
+    }
 
 </script>
 

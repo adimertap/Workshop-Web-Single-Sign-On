@@ -152,11 +152,12 @@
                                                 {{ number_format($item->Hargasparepart->harga_jual,2,',','.') }}
                                             </td>
                                             <td>
-                                                <a href="" class="btn btn-success btn-datatable" type="button"
+                                                <button id="{{ $item->kode_sparepart }}-button"
+                                                    class="btn btn-success btn-datatable" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modaltambah-{{ $item->id_sparepart }}">
                                                     <i class="fas fa-plus"></i>
-                                                </a>
+                                                </button>
                                             </td>
                                         </tr>
                                         @empty
@@ -400,12 +401,16 @@
     <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
         <i class="fas fa-trash"></i>
     </button>
+    <button class="btn btn-primary btn-datatable" onclick="editSparepart(this)" type="button">
+        <i class="fas fa-edit"></i>
+    </button>
 </template>
 
 <template id="template_add_button">
     <button class="btn btn-success btn-datatable" type="button" data-toggle="modal" data-target="#Modaltambah">
         <i class="fas fa-plus"></i>
     </button>
+    
 </template>
 
 {{-- javascript --}}
@@ -526,6 +531,17 @@
         alert('Data Sparepart Berhasil di Hapus')
         // draw() Reset Ulang Table
         var table = $('#dataTable').DataTable()
+    }
+
+    function editSparepart(element){
+        var table = $('#dataSparepart').DataTable()
+        // Akses Parent Sampai <tr></tr>
+        var row = $(element).parent().parent()
+        var children = $(row).children()[1]
+        console.log(children)
+        var kode = $($(children).children()[0]).html().trim()
+        
+        $(`#${$.escapeSelector(kode)}-button`).trigger('click');
     }
 
 
