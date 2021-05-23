@@ -2,6 +2,7 @@
 
 namespace App\Model\Payroll;
 
+use App\Model\Accounting\Jenistransaksi;
 use App\Model\Kepegawaian\Pegawai;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,7 @@ class Gajipegawai extends Model
     protected $fillable = [
         'id_bengkel',
         'id_pegawai',
+        'id_jenis_transaksi',
         'bulan_gaji',
         'tahun_gaji',
         'gaji_diterima',
@@ -43,6 +45,10 @@ class Gajipegawai extends Model
 
     public function Pegawai(){
         return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
+    }
+
+    public function Jenistransaksi(){
+        return $this->belongsTo(Jenistransaksi::class,'id_jenis_transaksi','id_jenis_transaksi');
     }
 
     protected static function booted()

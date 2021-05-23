@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Payroll\Gajipegawai;
 
 use App\Http\Controllers\Controller;
+use App\Model\Accounting\Jenistransaksi;
 use App\Model\Inventory\Retur\Retur;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\Payroll\Detailgaji;
@@ -105,11 +106,12 @@ class GajipegawaiController extends Controller
             'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi'
         ])->find($id);
 
+        $jenis_transaksi = Jenistransaksi::all();
         $seluruhpegawai = Pegawai::all();
         $tunjangan = Mastertunjangan::all();
         $today = Carbon::now()->format('D, d/m/Y');
 
-        return view('pages.payroll.gajipegawai.create', compact('gaji','seluruhpegawai','tunjangan','today'));
+        return view('pages.payroll.gajipegawai.create', compact('gaji','seluruhpegawai','tunjangan','today','jenis_transaksi'));
     }
 
     /**
@@ -127,6 +129,7 @@ class GajipegawaiController extends Controller
         $gaji->gaji_diterima = $request->gaji_diterima;
         $gaji->total_tunjangan = $request->total_tunjangan;
         $gaji->keterangan = $request->keterangan;
+        $gaji->id_jenis_transaksi = $request->id_jenis_transaksi;
         
         $gaji->save();
         $gaji->Detailtunjangan()->sync($request->tunjangan);
@@ -164,7 +167,6 @@ class GajipegawaiController extends Controller
 
     public function setStatusPerBulanTahun(Request $request, $bulan_gaji, $tahun_gaji)
     {
-       
         $item = Gajipegawai::where('bulan_gaji',$bulan_gaji)->where('tahun_gaji', $tahun_gaji)->get();
         foreach ($item as $key => $value) {
             $value->status_dana = 'Dana Telah Diberikan';

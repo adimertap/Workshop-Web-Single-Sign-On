@@ -113,7 +113,7 @@ class RcvController extends Controller
         $supplier = Supplier::all();
         $po = PO::where([['status', '=', 'Dikirim']])->get();
         
-        return view('pages.inventory.rcv.create', compact('rcv','pegawai','po','supplier', 'kode_rcv'));
+        return view('pages.inventory.rcv.create', compact('rcv','pegawai','po','supplier','kode_rcv'));
     }
 
     /**

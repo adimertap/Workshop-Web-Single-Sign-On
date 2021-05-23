@@ -16,6 +16,7 @@
                         <div class="small">
                             <span class="font-weight-500">Receiving</span>
                             · Tambah · Data
+                            <span class="font-weight-500 text-primary" id="id_bengkel" style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
@@ -152,8 +153,8 @@
                                                     <td class="nama_sparepart">{{ $item->nama_sparepart }}</td>
                                                     <td class="merk_sparepart">
                                                         {{ $item->Merksparepart->merk_sparepart }}</td>
-                                                    <td><input class="form-control form-control-sm qty"id="selisih-{{ $item->id_sparepart }}" type="text" value="{{ $item->pivot->qty_po_sementara }}" name="qty" disabled/></td>
-                                                    {{-- <td class="qty" id="selisih-{{ $item->id_sparepart }}">{{ $item->pivot->qty_po_sementara }}</td> --}}
+                                                    {{-- <td><input class="form-control form-control-sm qty"id="selisih-{{ $item->id_sparepart }}" type="text" value="{{ $item->pivot->qty_po_sementara }}" name="qty" disabled/></td> --}}
+                                                    <td class="text-center qty">{{ $item->pivot->qty_po_sementara }}</td>
                                                     <td class="satuan">{{ $item->Kemasan->nama_kemasan }}</td>
                                                     <td>@if ($item->pivot->harga_satuan == '')
                                                         <div class="small text-muted d-none d-md-block">Tidak ada
@@ -348,8 +349,7 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <div class="form-group">Apakah Form Receiving dengan kode {{ $kode_rcv }} yang Anda inputkan sudah
-                    benar?</div>
+                <div class="form-group">Apakah Form Receiving yang Anda inputkan sudah benar?</div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -397,6 +397,7 @@
             var keterangan = form.find('textarea[name="keterangan"]').val()
             var harga_diterima = form.find('input[name="harga_diterima"]').val()
             var total_harga = qty_rcv * harga_diterima
+            var id_bengkel = $('#id_bengkel').text()
 
             if (qty_rcv == 0 | qty_rcv == '' | harga_diterima == 0 | harga_diterima == '') {
                 continue
@@ -405,6 +406,7 @@
                 var obj = {
                     id_sparepart: id_sparepart,
                     id_rcv: id_rcv,
+                    id_bengkel: id_bengkel,
                     qty_rcv: qty_rcv,
                     qty_po: qty_po,
                     keterangan: keterangan,
@@ -473,9 +475,10 @@
                 var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
                 var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
                 var satuan = $(data.find('.satuan')[0]).text()
-                // var qty = $(data.find('.qty')[0]).text()
-                var qty = data.find('input[name="qty"]').val()
+                var qty = $(data.find('.qty')[0]).text()
                 console.log(qty)
+                // var qty = data.find('input[name="qty"]').val()
+                // console.log(qty)
                 
                 // Langsung Selisih
                 // var selisih =parseInt(qty) - ( parseInt(qty_rcv)  | 0)

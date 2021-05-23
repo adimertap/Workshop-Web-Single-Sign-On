@@ -109,19 +109,19 @@ class PurchaseorderController extends Controller
         // $po = PO::find($id);
         // $sparepartSupplier = Hargasparepart::where('id_supplier', $po->id_supplier)->get();
 
-        $id = PO::getId();
-        foreach($id as $value);
-        $idlama = $value->id_po;
-        $idbaru = $idlama + 1;
-        $blt = date('y-m');
+        // $id = PO::getId();
+        // foreach($id as $value);
+        // $idlama = $value->id_po;
+        // $idbaru = $idlama + 1;
+        // $blt = date('y-m');
 
-        $kode_po = 'PO-'.$blt.'/'.$idbaru;
+        // $kode_po = 'PO-'.$blt.'/'.$idbaru;
  
         $supplier = Supplier::all();
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
 
-        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','pegawai','kode_po'));
+        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','pegawai'));
     }
 
 

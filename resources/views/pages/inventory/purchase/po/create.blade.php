@@ -15,7 +15,8 @@
                         </h1>
                         <div class="small">
                             <span class="font-weight-500">Pembelian</span>
-                            · Tambah · Data
+                            · Tambah · Data 
+                            <span class="font-weight-500 text-primary" id="id_bengkel" style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
@@ -49,7 +50,7 @@
                             <div class="form-group">
                                 <label class="small mb-1" for="kode_po">Kode Pembelian</label>
                                 <input class="form-control" id="kode_po" type="text" name="kode_po"
-                                    placeholder="Input Kode Receiving" value="{{ $kode_po }}" readonly />
+                                    placeholder="Input Kode Receiving" value="{{ $po->kode_po }}" readonly />
                             </div>
                             <div class="form-group">
                                 <label class="small mb-1" for="id_pegawai">Pegawai</label>
@@ -157,6 +158,8 @@
                                                         <span class="badge badge-success">
                                                             @elseif($item->status_jumlah == 'Habis')
                                                             <span class="badge badge-danger">
+                                                                @elseif($item->status_jumlah == 'Kurang')
+                                                                <span class="badge badge-warning">
                                                                 @else
                                                                 <span>
                                                                     @endif
@@ -382,14 +385,14 @@
         var approve_ap = form1.find('input[name="approve_ap"]').val()
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
-
+      
         for (var i = 0; i < sparepart.length; i++) {
             var form = $('#form-' + sparepart[i].id_sparepart)
-            console.log(form)
             var qty = form.find('input[name="qty"]').val()
             var harga_satuan = form.find('input[name="harga_diterima"]').val()
+            var id_bengkel = $('#id_bengkel').text()
             var total_harga = qty * harga_satuan
-
+          
             if (qty == 0 | qty == '') {
                 continue
             } else {
@@ -398,6 +401,7 @@
                     id_sparepart: id_sparepart,
                     qty: qty,
                     qty_po_sementara: qty,
+                    id_bengkel: id_bengkel,
                     total_harga: total_harga,
                     harga_satuan: harga_satuan
                 }

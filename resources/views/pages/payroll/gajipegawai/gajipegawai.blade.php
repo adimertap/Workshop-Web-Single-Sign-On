@@ -11,6 +11,7 @@
                 <div class="small">
                     <span class="font-weight-500 text-primary">{{ $today }}</span>
                     · Tanggal {{ $tanggal }} · <span id="clock">12:16 PM</span>
+                  
                 </div>
             </div>
             <div class="small">

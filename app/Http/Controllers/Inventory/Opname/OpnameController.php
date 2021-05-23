@@ -72,7 +72,7 @@ class OpnameController extends Controller
         // $kode_opname = 'OP-'.'/'.$blt.$idbaru;
 
         $opname = new Opname;
-        $opname->id_pegawai = $request->id_pegawai;
+        $opname->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
         $opname->kode_opname = $request->kode_opname;
         $opname->tanggal_opname = $request->tanggal_opname;
         $opname->keterangan = $request->keterangan;

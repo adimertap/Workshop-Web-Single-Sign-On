@@ -16,6 +16,7 @@
                         <div class="small">
                             <span class="font-weight-500">Retur</span>
                             · Tambah · Data
+                            <span class="font-weight-500 text-primary" id="id_bengkel" style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
@@ -347,6 +348,7 @@
             var form = $('#form-' + sparepart[i].id_sparepart)
             var qty_retur = form.find('input[name="qty_retur"]').val()
             var keterangan = form.find('textarea[name="keterangan"]').val()
+            var id_bengkel = $('#id_bengkel').text()
 
             if (qty_retur == 0 | qty_retur == '') {
                 continue
@@ -355,6 +357,7 @@
                 var obj = {
                     id_sparepart: id_sparepart,
                     id_retur: id_retur,
+                    id_bengkel: id_bengkel,
                     qty_retur: qty_retur,
                     keterangan: keterangan,
                 }

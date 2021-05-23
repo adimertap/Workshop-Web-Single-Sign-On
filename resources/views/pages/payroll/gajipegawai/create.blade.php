@@ -17,6 +17,8 @@
                         <div class="small">
                             <span class="font-weight-500">Gaji Pegawai</span>
                             · Tambah · Data
+                            <span class="font-weight-500 text-primary" id="id_bengkel"
+                                style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
@@ -39,12 +41,14 @@
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label class="small mb-1" for="tahun_gaji">Tahun Gaji</label>
+                                    <label class="small mb-1 mr-1" for="tahun_gaji">Tahun Gaji</label><span
+                                        class="mr-4 mb-3" style="color: red">*</span>
                                     <input class="form-control" id="tahun_gaji" type="text" name="tahun_gaji"
                                         placeholder="Input Tahun Gaji" value="{{ $gaji->tahun_gaji }}" />
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="small mb-1" for="bulan_gaji">Bulan Gaji</label>
+                                    <label class="small mb-1 mr-1" for="bulan_gaji">Bulan Gaji</label><span
+                                        class="mr-4 mb-3" style="color: red">*</span>
                                     <select name="bulan_gaji" id="bulan_gaji" class="form-control"
                                         class="form-control @error('bulan_gaji') is-invalid @enderror">
                                         <option value="{{ $gaji->bulan_gaji }}">{{ $gaji->bulan_gaji }}</option>
@@ -66,6 +70,29 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="small mb-1 mr-1" for="id_jenis_transaksi">Pilih Jenis
+                                    Transaksi</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                <div class="input-group input-group-joined">
+                                    <div class="input-group-append">
+                                        <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
+                                            data-target="#Modaltransaksi">
+                                            Tambah
+                                        </a>
+                                    </div>
+                                    <select class="form-control" name="id_jenis_transaksi" id="id_jenis_transaksi"
+                                        class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
+                                        <option>Pilih Jenis Transaksi</option>
+                                        @foreach ($jenis_transaksi as $transaksi)
+                                        <option value="{{ $transaksi->id_jenis_transaksi }}">
+                                            {{ $transaksi->nama_transaksi }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    @error('id_jenis_transaksi')<div class="text-danger small mb-1">{{ $message }}
+                                    </div> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="small mb-1" for="id_pegawai">Nama Pegawai</label>
                                 <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
                                     value="{{ $gaji->Pegawai->nama_pegawai }}" readonly>
@@ -83,7 +110,7 @@
                                             Rp.
                                         </span>
                                     </div>
-                                        <input class="form-control" id="gaji_diterima" type="text" name="gaji_diterima"
+                                    <input class="form-control" id="gaji_diterima" type="text" name="gaji_diterima"
                                         placeholder="Keterangan Pembayaran"
                                         value=" {{ $gaji->Pegawai->Jabatan->Gajipokok->besaran_gaji }}"
                                         class="form-control @error('keterangan') is-invalid @enderror" readonly>
@@ -216,7 +243,7 @@
                                                     <td colspan="2" class="text-center font-weight-500">
                                                         Total Tunjangan
                                                     </td>
-                                                    <td  colspan="2" class="grand_total text-center font-weight-500">
+                                                    <td colspan="2" class="grand_total text-center font-weight-500">
                                                         <span>Rp. </span><span id="totaltunjangan2">0</span>
                                                     </td>
                                                 </tr>
@@ -280,11 +307,12 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($tunjangan as $item)
-                                            <tr id="item-{{ $item->id_tunjangan }}" role="row" class="odd" >
+                                            <tr id="item-{{ $item->id_tunjangan }}" role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">
                                                     {{ $loop->iteration}}</th>
                                                 <td class="nama_tunjangan">{{ $item->nama_tunjangan }}</td>
-                                                <td class="jumlah_tunjangan">Rp {{ number_format($item->jumlah_tunjangan,2,',','.') }}</td>
+                                                <td class="jumlah_tunjangan">Rp
+                                                    {{ number_format($item->jumlah_tunjangan,2,',','.') }}</td>
                                                 </td>
                                                 <td class="keterangan">{{ $item->keterangan }}</td>
                                                 <td>
@@ -432,6 +460,33 @@
     </div>
 </div>
 
+<div class="modal fade" id="Modaltransaksi" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Data Jenis Transaksi</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('jenis-transaksi.store') }}" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="small mb-1" for="nama_transaksi">Jenis Transaksi</label>
+                        <textarea class="form-control" name="nama_transaksi" type="text" id="nama_transaksi"
+                            placeholder="Input Jenis Transaksi" value="{{ old('nama_transaksi') }}"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <template id="template_delete_button">
     <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
         <i class="fas fa-trash"></i>
@@ -450,9 +505,11 @@
         var form1 = $('#form1')
         var tahun_gaji = form1.find('input[name="tahun_gaji"]').val()
         var bulan_gaji = $('#bulan_gaji').val()
+        var id_jenis_transaksi = $('#id_jenis_transaksi').val()
         var gaji_diterima = form1.find('input[name="gaji_diterima"]').val()
         var keterangan = form1.find('textarea[name="keterangan"]').val()
         var total_tunjangan = $('#totaltunjangan2').html()
+        var id_bengkel = $('#id_bengkel').text()
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
 
@@ -462,8 +519,10 @@
             var td = children[1]
             var span = $(td).children()[0]
             var id_tunjangan = $(span).attr('id')
+
             dataform2.push({
-                id_tunjangan: id_tunjangan
+                id_tunjangan: id_tunjangan,
+                id_bengkel: id_bengkel,
             })
         }
 
@@ -471,6 +530,7 @@
             _token: _token,
             tahun_gaji: tahun_gaji,
             bulan_gaji: bulan_gaji,
+            id_jenis_transaksi: id_jenis_transaksi,
             gaji_diterima: gaji_diterima,
             total_tunjangan: total_tunjangan,
             keterangan: keterangan,
@@ -510,7 +570,7 @@
         var totalfix = parseInt(splittunjangan) + parseInt(totaltunjangan)
         console.log(totalfix)
         $('#totaltunjangan2').html(totalfix)
-      
+
         var table = $('#dataTabletunjangan').DataTable()
         var row = $(`#${$.escapeSelector(nama_tunjangan.trim())}`).parent().parent()
         table.row(row).remove().draw();
@@ -547,11 +607,11 @@
         var gajiberkurang = $(row2.children()[2]).text()
         var totaltambahtunjangan = $('#gaji_diterima').val()
         var splittunjangan = gajiberkurang.split('Rp')[1].replace('.', '').replace(',00', '').trim()
-        var jumlahfix = parseInt(totaltambahtunjangan) -  parseInt(splittunjangan)
+        var jumlahfix = parseInt(totaltambahtunjangan) - parseInt(splittunjangan)
         $('#gaji_diterima').val(jumlahfix)
 
         var totaltunjangan = $('#totaltunjangan2').html()
-        var totaltunjanganfix = parseInt(totaltunjangan) -  parseInt(splittunjangan)
+        var totaltunjanganfix = parseInt(totaltunjangan) - parseInt(splittunjangan)
         $('#totaltunjangan2').html(totaltunjanganfix)
         table2.row(row2).remove().draw();
 

@@ -17,6 +17,7 @@
                             <span class="font-weight-500">Stock Opname</span>
                             · Tambah · Data
                         </div>
+                        <span class="font-weight-500 text-primary" id="id_bengkel" style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
                     </div>
                     <div class="col-12 col-xl-auto">
                         <a href="{{ route('Opname.index') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
@@ -39,18 +40,10 @@
                             <input class="form-control" id="kode_opname" type="text" name="kode_opname"
                                 placeholder="Input Kode Opname" value="{{ $kode_opname }}" readonly />
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group">
                             <label class="small mb-1" for="id_pegawai">Pegawai</label>
-                            <select class="form-control" name="id_pegawai" id="id_pegawai"
-                                class="form-control @error('id_supplier') is-invalid @enderror">
-                                <option>Pilih Pegawai</option>
-                                @foreach ($pegawai as $item)
-                                <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                            <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
+                                value="{{ Auth::user()->pegawai->nama_pegawai }}" readonly />
                         </div>
                         <div class="form-group col-md-3">
                             <label class="small mb-1" for="approve">Approval</label>
@@ -275,7 +268,6 @@
 <script>
     function calculateSelisih(id_sparepart, stock){
         var jumlah_real = $(`#stock-real-${id_sparepart}`).val()
-        console.log(jumlah_real)
         var selisih =parseInt(stock) - ( parseInt(jumlah_real)  | 0)
         $(`#selisih-${id_sparepart}`).val(selisih)
     }
@@ -295,6 +287,7 @@
             var form = $('#form-' + sparepart[i].id_sparepart)
             var jumlah_real = form.find('input[name="jumlah_real"]').val()
             var keterangan_detail = form.find('input[name="keterangan_detail"]').val()
+            var id_bengkel = $('#id_bengkel').text()
 
             if (jumlah_real == 0 | jumlah_real == '') {
                 continue
@@ -303,6 +296,7 @@
                 var obj = {
                     id_opname: idbaru,
                     id_sparepart: id_sparepart,
+                    id_bengkel: id_bengkel,
                     jumlah_real: jumlah_real,
                     keterangan_detail: keterangan_detail
                 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Accounting\Payable;
 
 use App\Http\Controllers\Controller;
+use App\Model\Accounting\Jenistransaksi;
 use App\Model\Accounting\Jurnal\Jurnalpengeluaran;
 use App\Model\Payroll\Gajipegawai;
 use Carbon\Carbon;
@@ -24,7 +25,8 @@ class GajiAccountingController extends Controller
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.accounting.payable.gajiaccounting.gajiaccounting', compact('today','tanggal','gajipegawai'));
+        $jenis_transaksi = Jenistransaksi::all();
+        return view('pages.accounting.payable.gajiaccounting.gajiaccounting', compact('today','tanggal','gajipegawai','jenis_transaksi'));
     }
 
     public function postingjurnal(Request $request){
@@ -40,7 +42,6 @@ class GajiAccountingController extends Controller
         $jurnal->grand_total = $gajipegawai->total_gaji;
         $jurnal->jenis_jurnal = 'Gaji_Karyawan';
         $jurnal->save();
-
     }
 
     /**
