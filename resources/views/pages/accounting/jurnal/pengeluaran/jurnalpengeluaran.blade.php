@@ -90,6 +90,9 @@
                                                 @elseif ($item->jenis_jurnal == 'Pajak')
                                                 {{ $item->Pajak->Jenistransaksi->nama_transaksi}} tanggal
                                                 {{ date('j F, Y', strtotime($item->Pajak->tanggal_bayar)) }}
+                                                @elseif ($item->jenis_jurnal == 'Gaji_Karyawan')
+                                                {{ $item->Jenistransaksi->nama_transaksi}} Bulan {{ $item->keterangan }}
+                                                {{-- {{ date('j F, Y', strtotime($item->Gajipegawai->bulan_gaji)) }} --}}
                                                 @else
                                             @endif
                                             </td>

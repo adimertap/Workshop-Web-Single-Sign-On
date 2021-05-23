@@ -20,7 +20,6 @@ class JurnalPengeluaranController extends Controller
     public function index()
     {
         $jurnal = Jurnalpengeluaran::with(['Jenistransaksi','Invoicepayable','Prf','Pajak'])->get();
-
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 

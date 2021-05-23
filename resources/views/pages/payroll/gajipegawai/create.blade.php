@@ -27,6 +27,13 @@
                     </div>
                 </div>
             </div>
+            <div class="alert alert-danger" id="alertdatakosong" role="alert" style="display:none"> <i
+                class="fas fa-times"></i>
+            Error! Terdapat Data yang Masih Kosong!
+            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
         </div>
     </header>
 
@@ -526,29 +533,33 @@
             })
         }
 
-        var data = {
-            _token: _token,
-            tahun_gaji: tahun_gaji,
-            bulan_gaji: bulan_gaji,
-            id_jenis_transaksi: id_jenis_transaksi,
-            gaji_diterima: gaji_diterima,
-            total_tunjangan: total_tunjangan,
-            keterangan: keterangan,
-            tunjangan: dataform2
-        }
-
-        $.ajax({
-            method: 'put',
-            url: '/payroll/gaji-pegawai/' + id_gaji_pegawai,
-            data: data,
-            success: function (response) {
-                window.location.href = '/payroll/gaji-pegawai'
-
-            },
-            error: function (response) {
-                console.log(response)
+        if (id_jenis_transaksi == 'Pilih Jenis Transaksi' | id_jenis_transaksi == '' | tahun_gaji == '' | bulan_gaji == '') {
+            var alert = $('#alertdatakosong').show()
+        } else {
+            var data = {
+                _token: _token,
+                tahun_gaji: tahun_gaji,
+                bulan_gaji: bulan_gaji,
+                id_jenis_transaksi: id_jenis_transaksi,
+                gaji_diterima: gaji_diterima,
+                total_tunjangan: total_tunjangan,
+                keterangan: keterangan,
+                tunjangan: dataform2
             }
-        });
+
+            $.ajax({
+                method: 'put',
+                url: '/payroll/gaji-pegawai/' + id_gaji_pegawai,
+                data: data,
+                success: function (response) {
+                    window.location.href = '/payroll/gaji-pegawai'
+
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        }
     }
 
 

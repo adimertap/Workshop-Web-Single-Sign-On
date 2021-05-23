@@ -31,15 +31,16 @@ class GajiAccountingController extends Controller
 
     public function postingjurnal(Request $request){
 
-        $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_diterima','status_dana')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_diterima, status_dana')
+        $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_diterima','status_dana','id_jenis_transaksi')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_diterima, status_dana, id_jenis_transaksi')
         ->where('bulan_gaji', $request->bulan_gaji)->where('tahun_gaji', $request->tahun_gaji)->first();
 
         $jurnal = new Jurnalpengeluaran;
         $jurnal->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $jurnal->tanggal_jurnal = Carbon::now();
         $jurnal->ref = $gajipegawai->bulan_gaji;
-        $jurnal->keterangan = $gajipegawai->jumlah_pegawai;
+        $jurnal->keterangan = $gajipegawai->bulan_gaji;
         $jurnal->grand_total = $gajipegawai->total_gaji;
+        $jurnal->id_jenis_transaksi = $gajipegawai->id_jenis_transaksi;
         $jurnal->jenis_jurnal = 'Gaji_Karyawan';
         $jurnal->save();
     }

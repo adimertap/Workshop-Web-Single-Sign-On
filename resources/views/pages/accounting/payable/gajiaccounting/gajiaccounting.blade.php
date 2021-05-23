@@ -114,7 +114,10 @@
                                                     onclick="postingjurnal('{{ $item->bulan_gaji }}', '{{ $item->tahun_gaji }}')"
                                                     type="button" data-dismiss="modal">Posting Jurnal?</button>
                                                 @endif
-                                                </a>
+
+                                                @if ($item->status_jurnal == '')
+                                                    
+                                                @endif
                                             </td>
                                         </tr>
                                         @empty
@@ -180,7 +183,7 @@
                 tahun_gaji: tahun_gaji,
             },
             success: function (response) {
-                // window.location.href = '/Accounting/gaji-accounting'
+                window.location.href = '/Accounting/gaji-accounting'
                 console.log(response)
             },
             error: function (response) {

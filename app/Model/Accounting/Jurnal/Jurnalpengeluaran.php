@@ -6,6 +6,7 @@ use App\Model\Accounting\Jenistransaksi;
 use App\Model\Accounting\Payable\InvoicePayable;
 use App\Model\Accounting\Payable\Pajak;
 use App\Model\Accounting\Prf\Prf;
+use App\Model\Payroll\Gajipegawai;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,6 +34,7 @@ class Jurnalpengeluaran extends Model
     protected $hidden =[ 
         'deleted_at'
     ];
+
 
     public function Jenistransaksi()
     {
