@@ -27,7 +27,8 @@ class Gajipegawai extends Model
         'total_tunjangan',
         'keterangan',
         'status_diterima',
-        'status_dana'
+        'status_dana',
+        'status_jurnal'
     ];
 
     protected $hidden =[ 

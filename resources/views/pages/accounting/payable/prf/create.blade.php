@@ -19,10 +19,11 @@
                         <div class="small">
                             <span class="font-weight-500">PRF</span>
                             · Tambah · Data
+                            <span class="font-weight-500 text-primary" id="id_bengkel" style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
-                        <a href="{{ route('prf.destroy', $prf->id_prf) }}" class="btn btn-sm btn-light text-primary">Kembali</a>
+                        <a href="{{ route('prf.index') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
                     </div>
                 </div>
             </div>
@@ -67,6 +68,18 @@
                                     class="form-control @error('tanggal_prf') is-invalid @enderror" />
                                 @error('tanggal_prf')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
+                                {{-- <div class="small" id="alerttanggal" style="display:none">
+                                    <span class="font-weight-500 text-danger">Error! Tanggal Belum Terisi!</span>
+                                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div> --}}
+                                <div class="small" id="alerttanggal" style="display:none">
+                                    <span class="font-weight-500 text-danger">Error! Tanggal Belum Terisi!</span>
+                                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -77,6 +90,12 @@
                                     class="form-control @error('keperluan_prf') is-invalid @enderror"> </textarea>
                                 @error('keperluan_prf')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
+                                <div class="small" id="alertdeskripsi" style="display:none">
+                                    <span class="font-weight-500 text-danger">Error! Deskripsi Belum Terisi!</span>
+                                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
                             </div>
                     </div>
                 </div>
@@ -182,6 +201,13 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="alert alert-danger" id="alertinvoicekosong" role="alert" style="display:none"> <i
+                            class="fas fa-times"></i>
+                        Error! Anda belum menambahkan Invoice Supplier!
+                        <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
                         <div class="datatable">
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
@@ -268,7 +294,6 @@
                         <div class="form-group">
                             <label class="small mb-1 mr-1" for="id_fop">Pilih Metode Pembayaran</label><span
                                 class="mr-4 mb-3" style="color: red">*</span>
-
                             <div class="input-group input-group-joined">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -283,7 +308,14 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="small" id="alertpembayaran" style="display:none">
+                                <span class="font-weight-500 text-danger">Error! Metode Pembayaran Belum Di Pilih!</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
                         </div>
+                       
                         <div class="row" id="bank" style="display:none">
                             <div class="form-group col-md-6">
                                 <label class="small mb-1 mr-1" for="id_akun_bank">Pilih Bank</label><span
@@ -373,7 +405,7 @@
                                             <td class="jenis_account">{{ $bank->jenis_account }}</td>
                                             <td class="nomor_rekening">{{ $bank->nomor_rekening }}</td>
                                             <td>
-                                                <button class="btn btn-success btn-sm"
+                                                <button class="btn btn-success btn-xs"
                                                     onclick="tambahbank(event, {{ $bank->id_bank_account }})"
                                                     type="button" data-dismiss="modal">Tambah
                                                 </button>
@@ -554,37 +586,53 @@
             var td = children[1]
             var span = $(td).children()[0]
             var id = $(span).attr('id')
-            dataform2.push({
-                id_payable_invoice: id
-            })
+            var id_bengkel = $('#id_bengkel').text()
+            var obj = {
+                    id_payable_invoice: id,
+                    id_bengkel: id_bengkel
+                }
+            dataform2.push(obj)
+            
+            // dataform2.push({
+            //     id_payable_invoice: id
+            // })
         }
 
-        var data = {
-            _token: _token,
-            kode_prf: kode_prf,
-            id_jenis_transaksi: id_jenis_transaksi,
-            tanggal_prf: tanggal_prf,
-            keperluan_prf: keperluan_prf,
-            grand_total: grand_total,
-            id_fop: id_fop,
-            nama_bank: nama_bank,
-            invoice: dataform2
-        }
-
-        console.log(data)
-
-        $.ajax({
-            method: 'put',
-            url: '/accounting/prf/' + id_prf,
-            data: data,
-            success: function (response) {
-                window.location.href = '/accounting/prf'
-
-            },
-            error: function (response) {
-                console.log(response)
+        if (dataform2.length == 0) {
+            var alertinvoicekosong = $('#alertinvoicekosong').show()
+        } else if (tanggal_prf == '' | tanggal_prf == 0 |keperluan_prf == '' | keperluan_prf == 0 | keperluan_prf == 'NULL'){
+            var alertdatakosong = $('#alerttanggal').show()
+            var alertdeskripsi = $('#alertdeskripsi').show()    
+        } else if (id_fop == 'Pilih Metode Pembayaran'){
+            var alertdatakosong = $('#alertpembayaran').show()
+        } else {
+            var data = {
+                _token: _token,
+                kode_prf: kode_prf,
+                id_jenis_transaksi: id_jenis_transaksi,
+                tanggal_prf: tanggal_prf,
+                keperluan_prf: keperluan_prf,
+                grand_total: grand_total,
+                id_fop: id_fop,
+                nama_bank: nama_bank,
+                invoice: dataform2
             }
-        });
+
+            console.log(data)
+
+            $.ajax({
+                method: 'put',
+                url: '/accounting/prf/' + id_prf,
+                data: data,
+                success: function (response) {
+                    window.location.href = '/accounting/prf'
+
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        }
     }
 
 
@@ -621,6 +669,8 @@
         var table = $('#dataTableKonfirmasi').DataTable()
         var row = $(`#${$.escapeSelector(kode_invoice.trim())}`).parent().parent()
         table.row(row).remove().draw();
+
+        alert('Berhasil Menambahkan Invoice')
 
         $('#dataTableKonfirmasi').DataTable().row.add([
             kode_invoice, `<span id=${id_payable_invoice}>${kode_invoice}</span>`, kode_rcv, total_pembayaran,

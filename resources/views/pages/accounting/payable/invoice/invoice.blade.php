@@ -121,7 +121,7 @@
                                                             {{ $item->status_prf }}
                                                         </span>
                                             </td>
-                                            <td>@if($item->status_prf == 'Telah Dibuat')
+                                            <td>@if($item->status_prf == 'Telah Dibuat' and $item->status_jurnal == 'Belum Diposting')
                                                 <a href="" class="btn btn-danger btn-xs" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modaljurnal-{{ $item->id_payable_invoice }}">
@@ -140,7 +140,7 @@
                                                     data-placement="top" title="" data-original-title="Detail Invoice">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                <a href="{{ route('invoice-payable.edit', $item->id_payable_invoice) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Edit Invoice">
                                                     <i class="fas fa-edit"></i>
                                                 </a>

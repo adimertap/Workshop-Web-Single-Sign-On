@@ -88,7 +88,6 @@ class GajipegawaiController extends Controller
     {
         $gaji = Gajipegawai::with('Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan')->findOrFail($id_gaji_pegawai);
 
-        
         return view('pages.payroll.gajipegawai.detail')->with([
             'gaji' => $gaji
         ]);

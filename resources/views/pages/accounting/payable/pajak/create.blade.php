@@ -23,6 +23,13 @@
                     </div>
                 </div>
             </div>
+            <div class="alert alert-danger" id="alertpajakkosong" role="alert" style="display:none"> <i
+                class="fas fa-times"></i>
+            Error! Terdapat Data Kosong!
+            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
         </div>
     </header>
 
@@ -51,6 +58,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="small mb-1" for="id_pegawai">Pegawai</label>
+                                <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
+                                    placeholder="Input Kode Receiving" value="{{ Auth::user()->pegawai->nama_pegawai }}" readonly />
+                            </div>
+                            <div class="form-group">
                                 <label class="small mb-1 mr-1" for="id_jenis_transaksi">Pilih Jenis Transaksi</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
                                 <div class="input-group input-group-joined">
@@ -70,19 +82,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="small mb-1" for="id_pegawai">Pegawai</label>
-                                <select class="form-control" name="id_pegawai" id="id_pegawai"
-                                    class="form-control @error('id_supplier') is-invalid @enderror">
-                                    <option>Pilih Pegawai</option>
-                                    @foreach ($pegawai as $item)
-                                    <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
+                           
                             <div class="form-group">
                                 <label class="small mb-1" for="tanggal_bayar">Tanggal Pembayaran</label>
                                 <input class="form-control" id="tanggal_bayar" type="date" name="tanggal_bayar"
@@ -335,7 +335,7 @@
             var td_nilai_pajak = children[3]
             var nilaipajak = $(td_nilai_pajak).html()
             var nilaipajak_fix = nilaipajak.split('Rp&nbsp;')[1].replace('.', '').replace('.', '').replace(',00', '').trim()
-            
+
             dataform2.push({
                 id_pajak: id_pajak,
                 data_pajak: datapajak,
@@ -345,8 +345,8 @@
         }
 
 
-        if (dataform2.length == 0) {
-            alert('ERROR')
+        if (dataform2.length == 0 | id_jenis_transaksi == 'Pilih Jenis Transaksi' | tanggal_bayar == '') {
+            var alertpajak = $('#alertpajakkosong').show()
         } else {
             var data = {
                 _token: _token,
@@ -358,6 +358,8 @@
                 total_pajak: total_pajak,
                 pajak: dataform2
             }
+
+            console.log(data)
          
 
             $.ajax({
@@ -385,8 +387,6 @@
         }).format(nilai_pajak)
         var keterangan_pajak = form.find('textarea[name="keterangan_pajak"]').val()
 
-      
-            
 
         if (nilai_pajak == 0 | nilai_pajak == '' | data_pajak == '') {
             alert('Data Inputan Ada yang belum terisi')
@@ -429,20 +429,7 @@
 
             $('#detailnominalpajak').html(nominal_fix);
         })
-        $('#id_pegawai').on('change', function () {
-            var select = $(this).find('option:selected')
-            var textpegawai = select.text()
-            if (textpegawai == 'Pilih Pegawai') {
-                $('#detailpegawai').html('');
-            } else {
-                $('#detailpegawai').html(textpegawai);
-            }
-        })
-        $('#deskripsi_pajak').on('change', function () {
-            var deskripsi = $(this).val()
-
-            $('#detaildeskripsi').html(deskripsi);
-        })
+       
         $('#tanggal_bayar').on('change', function () {
             var select = $(this)
             var textdate = select.val()

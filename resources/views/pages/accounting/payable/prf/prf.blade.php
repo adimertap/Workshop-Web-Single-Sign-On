@@ -97,7 +97,7 @@
                                 <tbody>
                                     @forelse ($prf as $item)
                                     <tr role="row" class="odd">
-                                        <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                        <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
                                         <td>{{ $item->kode_prf }}</td>
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
                                         <td>Rp {{ number_format($item->grand_total,2,',','.') }}</td>
@@ -114,15 +114,17 @@
                                                             {{ $item->status_prf }}
                                                         </span>
                                         </td>
-                                        <td class="text-center"> @if($item->status_prf == 'Pending')
+                                        <td class="text-center"> @if($item->status_prf == 'Pending' and $item->status_bayar == 'Belum Dibayar')
                                             <span class="font-size-300" style="font-size: 12px;">Menunggu
                                                 Persetujuan..</span>
-                                            @elseif ($item->status_prf == 'Approved')
+                                            @elseif ($item->status_prf == 'Approved' and $item->status_bayar == 'Belum Dibayar')
                                             <a href="" class="btn btn-primary btn-xs" type="button"
                                                 data-toggle="modal"
                                                 data-target="#Modalbayar-{{ $item->id_prf }}">
                                                 Bayar
                                             </a>
+                                            @elseif ($item->status_bayar == 'Sudah Dibayar')
+                                            <span class="badge badge-secondary">{{ $item->tanggal_bayar }}
                                             @elseif($item->status_prf == 'Not Approved')
                                             <span class="font-size-300" style="font-size: 12px;">Data diTolak</span>
                                             @else
@@ -130,11 +132,13 @@
                                                 @endif
                                             </span>
                                         <td>
-                                            @if($item->status_bayar == 'Belum Dibayar')
-                                            <span class="font-size-200" style="font-size: 12px;">Menunggu
-                                                Pembayaran..</span>
-                                            @elseif ($item->status_bayar == 'Sudah Dibayar')
-                                            <button class="btn btn-secondary btn-xs" type="button" data-dismiss="modal">Posting Jurnal</button>
+                                            @if($item->status_bayar == 'Belum Dibayar' and $item->status_jurnal == 'Belum Diposting')
+                                                <span class="font-size-200" style="font-size: 12px;">Menunggu
+                                                    Pembayaran..</span>
+                                            @elseif ($item->status_bayar == 'Sudah Dibayar' and $item->status_jurnal == 'Belum Diposting')
+                                                <button class="btn btn-secondary btn-xs" type="button" data-dismiss="modal">Posting Jurnal</button>
+                                            @elseif ($item->status_jurnal == 'Sudah Diposting' )
+                                                <span class="badge badge-secondary">{{ $item->status_jurnal }}
                                             @else
                                             <span>
                                                 @endif

@@ -79,7 +79,7 @@ class PajakController extends Controller
         $pajak = new Pajak;
         $pajak->kode_pajak = $kode_pajak;
         $pajak->id_jenis_transaksi = $request->id_jenis_transaksi;
-        $pajak->id_pegawai = $request->id_pegawai;
+        $pajak->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
         $pajak->tanggal_bayar = $request->tanggal_bayar;
         $pajak->deskripsi_pajak = $request->deskripsi_pajak;
         $pajak->total_pajak = $request->total_pajak;

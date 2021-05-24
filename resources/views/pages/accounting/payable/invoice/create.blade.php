@@ -18,6 +18,7 @@
                         <div class="small">
                             <span class="font-weight-500">Invoice</span>
                             · Tambah · Data
+                            <span class="font-weight-500 text-primary" id="id_bengkel" style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
@@ -26,6 +27,13 @@
                     </div>
                 </div>
             </div>
+            <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
+                class="fas fa-times"></i>
+            Error! Terdapat Data Kosong!
+            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
         </div>
     </header>
 
@@ -72,17 +80,17 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label class="small mb-1" for="tanggal_invoice">Tanggal Invoice</label>
+                                    <label class="small mb-1 mr-1" for="tanggal_invoice">Tanggal Invoice</label><span class="mr-4 mb-3" style="color: red">*</span>
                                     <input class="form-control" id="tanggal_invoice" type="date" name="tanggal_invoice"
-                                        placeholder="Input Tanggal Invoice" value="{{ old('tanggal_invoice') }}"
+                                        placeholder="Input Tanggal Invoice" value="{{ $invoice->tanggal_invoice }}"
                                         class="form-control @error('tanggal_invoice') is-invalid @enderror" />
                                     @error('tanggal_invoice')<div class="text-danger small mb-1">{{ $message }}
                                     </div> @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="small mb-1" for="tenggat_invoice">Tanggal Bayar Terakhir</label>
+                                    <label class="small mb-1 mr-1" for="tenggat_invoice">Tanggal Bayar Terakhir</label><span class="mr-4 mb-3" style="color: red">*</span>
                                     <input class="form-control" id="tenggat_invoice" type="date" name="tenggat_invoice"
-                                        placeholder="Input Tanggal Bayar Terakhir" value="{{ old('tenggat_invoice') }}"
+                                        placeholder="Input Tanggal Bayar Terakhir" value="{{ $invoice->tenggat_invoice }}"
                                         class="form-control @error('tenggat_invoice') is-invalid @enderror" />
                                     @error('tenggat_invoice')<div class="text-danger small mb-1">{{ $message }}
                                     </div> @enderror
@@ -91,7 +99,7 @@
                             <div class="form-group">
                                 <label class="small mb-1" for="deskripsi_invoice">Deskripsi Keperluan</label>
                                 <textarea class="form-control" id="deskripsi_invoice" type="text"
-                                    name="deskripsi_invoice" placeholder="" value="{{ old('deskripsi_invoice') }}"
+                                    name="deskripsi_invoice" placeholder="" value="{{ $invoice->deskripsi_invoice }}"
                                     class="form-control @error('deskripsi_invoice') is-invalid @enderror"> </textarea>
                                 @error('deskripsi_invoice')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
@@ -154,13 +162,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
-                        class="fas fa-times"></i>
-                    Error! Anda belum menambahkan sparepart!
-                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
+              
                 <div class="datatable">
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
@@ -343,9 +345,11 @@
             var qty_rcv = $($('#sparepart-' + sparepart[i].id_sparepart).find('.qty_rcv')[0]).html()
             var harga_diterima = $($('#sparepart-' + sparepart[i].id_sparepart).find('.harga_diterima')[0]).html()
             var harga_item = harga_diterima.split('Rp.')[1].replace('.', '').replace(',00', '')
+            var id_bengkel = $('#id_bengkel').text()
 
             var id_sparepart = sparepart[i].id_sparepart
             var obj = {
+                id_bengkel: id_bengkel,
                 id_sparepart: id_sparepart,
                 total_harga: splitqty,
                 qty_rcv: qty_rcv,
@@ -355,7 +359,7 @@
         }
 
 
-        if (dataform2.length == 0) {
+        if (dataform2.length == 0 | tanggal_invoice == '' | tenggat_invoice == '' | deskripsi_invoice == '') {
             var alert = $('#alertsparepartkosong').show()
         } else {
             var data = {

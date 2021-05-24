@@ -15,6 +15,7 @@ use App\Model\Inventory\Supplier;
 use App\Model\Kepegawaian\Pegawai;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PrfController extends Controller
 {
@@ -85,7 +86,8 @@ class PrfController extends Controller
         $prf = Prf::create([
             'id_jenis_transaksi'=>$request->id_jenis_transaksi,
             'id_supplier'=>$id_supplier,
-            'kode_prf'=>$request->kode_prf
+            'kode_prf'=>$request->kode_prf,
+            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
         ]);
         
         return $prf;
@@ -149,7 +151,6 @@ class PrfController extends Controller
     public function update(Request $request, $id_prf)
     {
         $bank = Bankaccount::where('nama_bank', $request->nama_bank)->first();
-        
 
         if (empty($bank)) {
             $prf = Prf::findOrFail($id_prf);
@@ -160,7 +161,7 @@ class PrfController extends Controller
             $prf->grand_total = $request->grand_total;
             $prf->id_fop = $request->id_fop;
             $prf->status_prf = 'Pending';
-            $prf->status_jurnal = 'Pending';
+            $prf->status_jurnal = 'Belum Diposting';
             $prf->status_bayar = 'Belum Dibayar';
         }else{
             $prf = Prf::findOrFail($id_prf);
@@ -172,7 +173,7 @@ class PrfController extends Controller
             $prf->id_fop = $request->id_fop;
             $prf->id_bank_account = $bank->id_bank_account;
             $prf->status_prf = 'Pending';
-            $prf->status_jurnal = 'Pending';
+            $prf->status_jurnal = 'Belum Diposting';
             $prf->status_bayar = 'Belum Dibayar';
         }
 

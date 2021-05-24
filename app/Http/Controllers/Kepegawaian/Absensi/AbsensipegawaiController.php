@@ -59,16 +59,16 @@ class AbsensipegawaiController extends Controller
         $bengkel = Bengkel::first();
         $jammasuk = Carbon::now()->format('H:i:s');
         if($jammasuk > $bengkel->jam_masuk_kerja){
-            $absensi = 'Terlambat';
+            $keterangan = 'Terlambat';
         }else{
-            $absensi = 'Absen_Pagi';
+            $keterangan = $request->keterangan;
         }
 
         $absensi = Absensi::create([
             'id_pegawai'=>$request->id_pegawai,
             'tanggal_absensi'=>Carbon::today(),
-            'absensi'=>$absensi,
-            'keterangan'=>$request->keterangan,
+            'absensi'=>$request->absensi,
+            'keterangan'=>$keterangan,
             'jam_masuk' => Carbon::now()->format('H:i:s'),
             'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
         ]);
