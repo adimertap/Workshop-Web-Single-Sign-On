@@ -43,12 +43,19 @@
                         <div class="form-group col-4">
                             <label for="id_pegawai">Pegawai</label>
                             <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
-                                placeholder="Input Kode Receiving" value="{{ Auth::user()->pegawai->nama_pegawai }}"
+                                placeholder="Input Pegawai" value="{{ Auth::user()->pegawai->nama_pegawai }}"
                                 readonly>
                             @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
                         <div class="form-group col-4">
+                            <label for="date">Tanggal</label>
+                            <input class="form-control" id="date" name="date" type="text" value="{{ $date }}" readonly/>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-3">
                             <label for="id_customer_bengkel">Pilih Customer</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
                             <div class="input-group input-group-joined">
@@ -71,10 +78,7 @@
                             @error('id_customer_bengkel')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-4">
+                        <div class="form-group col-3">
                             <label for="id_kendaraan">Pilih Jenis
                                 Kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <div class="input-group input-group-joined">
@@ -97,12 +101,12 @@
                             @error('id_kendaraan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-                        <div class="form-group col-4">
+                        <div class="form-group col-3">
                             <label for="odo_meter">Odo Meter</label>
                             <input type="text" class="form-control" id="odo_meter" name="odo_meter"
                                 placeholder="Input Odo Meter">
                         </div>
-                        <div class="form-group col-4">
+                        <div class="form-group col-3">
                             <label for="plat_kendaraan">No. Plat Kendaraan</label>
                             <input type="text" class="form-control" id="plat_kendaraan" name="plat_kendaraan"
                                 placeholder="Input Plat Kendaraan">
@@ -116,13 +120,13 @@
                                 placeholder="Input Keluhan Kendaraan">
                         </div>
                         <div class="form-group col-4">
-                            <label for="nama_mekanik">Pilih Mekanik</label><span class="mr-4 mb-3"
+                            <label for="id_mekanik">Pilih Mekanik</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
-                            <select class="form-control" name="nama_mekanik" id="nama_mekanik"
+                            <select class="form-control" name="id_mekanik" id="id_mekanik"
                                 class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
                                 <option>Pilih Mekanik</option>
                                 @foreach ($mekanik_asli as $item)
-                                <option value="{{ $item->nama_pegawai }}">
+                                <option value="{{ $item->id_pegawai }}">
                                     {{ $item->nama_pegawai }}
                                 </option>
                                 @endforeach
@@ -378,8 +382,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <div class="card mb-4">
             <div class="card card-header-actions">
@@ -681,9 +683,10 @@
         var id_customer_bengkel = $('#id_customer_bengkel').val()
         var id_kendaraan = $('#id_kendaraan').val()
         var odo_meter = form1.find('input[name="odo_meter"]').val()
+        var date = form1.find('input[name="date"]').val()
         var plat_kendaraan = form1.find('input[name="plat_kendaraan"]').val()
         var keluhan_kendaraan = form1.find('input[name="keluhan_kendaraan"]').val()
-        var nama_mekanik = form1.find('input[name="nama_mekanik"]').val()
+        var id_mekanik = $('#id_mekanik').val()
         var waktu_estimasi = form1.find('input[name="waktu_estimasi"]').val()
         var dataform2 = []
         var dataform3 = []
@@ -717,7 +720,7 @@
             var children = $(dataperbaikan[index]).children()
             var td = children[1]
             var span = $(td).children()[0]
-              console.log(span)
+            console.log(span)
             var id_jenis_perbaikan = $(span).attr('id')
 
             var id_bengkel = $('#id_bengkel').text()
@@ -725,7 +728,7 @@
             var td_harga = children[4]
             var harga = $(td_harga).html().trim()
             var splitharga = harga.split('Rp.')[1].replace('.', '').replace(',00', '').trim()
-          
+
             dataform3.push({
                 id_service_advisor: idbaru,
                 id_jenis_perbaikan: id_jenis_perbaikan,
@@ -744,9 +747,10 @@
                 id_customer_bengkel: id_customer_bengkel,
                 id_kendaraan: id_kendaraan,
                 odo_meter: odo_meter,
+                date: date,
                 plat_kendaraan: plat_kendaraan,
                 keluhan_kendaraan: keluhan_kendaraan,
-                nama_mekanik: nama_mekanik,
+                id_mekanik: id_mekanik,
                 waktu_estimasi: waktu_estimasi,
                 sparepart: dataform2,
                 jasa_perbaikan: dataform3
@@ -759,7 +763,7 @@
                 url: '/service/penerimaanservice',
                 data: data,
                 success: function (response) {
-                    window.location.href = '/frontoffice/pelayananservice'
+                    window.location.href = '/service/penerimaanservice'
 
                 },
                 error: function (response) {
@@ -769,7 +773,7 @@
         }
 
 
-        
+
     }
 
 </script>

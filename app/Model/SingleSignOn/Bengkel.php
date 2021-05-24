@@ -20,8 +20,9 @@ class Bengkel extends Model
         'slug',
         'nohp_bengkel',
         'logo_bengkel',
-        'jam_masuk_kerja',
-        'jam_keluar_kerja'
+        'jam_buka_kerja',
+        'jam_tutup_kerja',
+        'id_desa'
     ];
 
     public $timestamps = false;
@@ -30,5 +31,4 @@ class Bengkel extends Model
     {
         static::addGlobalScope(new OwnershipScope);
     }
-    
 }

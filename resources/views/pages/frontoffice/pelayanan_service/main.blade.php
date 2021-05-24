@@ -70,9 +70,6 @@
                                                 style="width: 77px;">Kendaraan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Keluhan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Pitstop</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
@@ -82,11 +79,46 @@
                                                 style="width: 77px;">Tanggal</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
+                                                style="width: 77px;">Status</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($pelayanan as $item)
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$item->kode_sa}}</td>
+                                            <td>{{$item->kendaraan->nama_kendaraan}}</td>
+                                            <td>{{$item->customer_bengkel->nama_customer}}</td>
+                                            <td>-</td>
+                                            <td>{{$item->mekanik->nama_pegawai}}</td>
+                                            <td>{{$item->date}}</td>
+                                            <td>
+                                                <span class="badge badge-danger"> Menunggu </span>
 
+                                            </td>
+                                            <td>
+                                                <a href=""
+                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Detail">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modalhapus-">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @empty
+
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

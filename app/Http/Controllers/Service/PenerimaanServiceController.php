@@ -10,6 +10,7 @@ use App\Model\Inventory\Sparepart;
 use App\Model\Kepegawaian\Jabatan;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\Service\PenerimaanService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,7 @@ class PenerimaanServiceController extends Controller
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
         $jasa_perbaikan = MasterDataJenisPerbaikan::all();
+        $date = Carbon::today()->toDateString();
 
         $id = PenerimaanService::getId();
         foreach ($id as $value);
@@ -39,7 +41,7 @@ class PenerimaanServiceController extends Controller
         $mekanik = Jabatan::with('pegawai.absensi_mekanik')->where('nama_jabatan', 'Mekanik')->get();
         $mekanik_asli = $mekanik[0]->pegawai;
 
-        return view('pages.service.penerimaan_service.main', compact('service_advisor', 'kode_sa', 'kendaraan', 'idbaru', 'customer_bengkel', 'pegawai', 'sparepart', 'jasa_perbaikan', 'mekanik_asli'));
+        return view('pages.service.penerimaan_service.main', compact('service_advisor', 'kode_sa', 'kendaraan', 'idbaru', 'customer_bengkel', 'pegawai', 'sparepart', 'jasa_perbaikan', 'mekanik_asli', 'date'));
     }
 
     /**
@@ -69,9 +71,11 @@ class PenerimaanServiceController extends Controller
         $service->id_customer_bengkel = $request->id_customer_bengkel;
         $service->id_kendaraan = $request->id_kendaraan;
         $service->odo_meter =  $request->odo_meter;
+        $service->date =  $request->date;
         $service->plat_kendaraan =  $request->plat_kendaraan;
         $service->keluhan_kendaraan =  $request->keluhan_kendaraan;
-        $service->nama_mekanik =  $request->nama_mekanik;
+        $service->id_mekanik =  $request->id_mekanik;
+        $service->status =  'menunggu';
         $service->waktu_estimasi =  $request->waktu_estimasi;
 
 

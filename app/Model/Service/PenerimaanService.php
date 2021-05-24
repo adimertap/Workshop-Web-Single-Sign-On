@@ -6,6 +6,7 @@ use App\Model\FrontOffice\CustomerBengkel;
 use App\Model\FrontOffice\MasterDataJenisPerbaikan;
 use App\Model\FrontOffice\MasterDataKendaraan;
 use App\Model\Inventory\Sparepart;
+use App\Model\Kepegawaian\Pegawai;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class PenerimaanService extends Model
     protected $primaryKey = 'id_service_advisor';
 
     protected $fillable = [
-        'id_kendaraan', 'date', 'id_customer_bengkel', 'id_bengkel', 'keluhan_kendaraan', 'id_jenis_perbaikan', 'id_sparepart', 'id_pegawai', 'waktu_estimasi'
+        'id_kendaraan', 'date', 'id_customer_bengkel', 'id_bengkel', 'keluhan_kendaraan', 'id_jenis_perbaikan', 'id_sparepart', 'id_pegawai', 'waktu_estimasi', 'id_mekanik', 'status'
     ];
 
     protected $hidden = [];
@@ -44,6 +45,16 @@ class PenerimaanService extends Model
     public function kendaraan()
     {
         return $this->belongsTo(MasterDataKendaraan::class, 'id_kendaraan');
+    }
+
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class, 'id_pegawai');
+    }
+
+    public function mekanik()
+    {
+        return $this->belongsTo(Pegawai::class, 'id_mekanik');
     }
 
     public function customer_bengkel()

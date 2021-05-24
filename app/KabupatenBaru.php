@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Provinsi extends Model
+class KabupatenBaru extends Model
 {
-    protected $table = 'tb_provinsi';
-
+    protected $table = 'tb_kabupaten_baru';
 }

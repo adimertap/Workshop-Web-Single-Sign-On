@@ -74,6 +74,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
+                                            <label for="jam_buka_bengkel">Jam Buka Bengkel</label>
+                                            <input id="jam_buka_bengkel" type="time" class="form-control"
+                                                placeholder="Input No. Telp Bengkel" name="jam_buka_bengkel">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="jam_tutup_bengkel">Jam Tutup Bengkel</label>
+                                            <input id="jam_tutup_bengkel" type="time" class="form-control"
+                                                placeholder="Input No. Telp Bengkel" name="jam_tutup_bengkel">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-6">
                                             <label class="small mb-1" for="logo_bengkel">Logo Bengkel</label>
                                             <input class="form-control" id="logo_bengkel" type="file"
                                                 name="logo_bengkel" accept="image/*">
@@ -93,7 +105,7 @@
                                                 <option value="" holder>Pilih Provinsi</option>
                                                 @foreach ($provinsi as $item)
                                                 <option value="{{ $item->id_provinsi }}">
-                                                    {{ $item->nama_provinsi }}</option>
+                                                    {{ $item->name }}</option>
                                                 @endforeach
 
                                             </select>
@@ -135,7 +147,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col">
-                                            <small class="text-muted">Silahkan klik peta untuk menentukan lokasi (latitude dan longitude) bengkel</small>
+                                            <small class="text-muted">Silahkan klik peta untuk menentukan lokasi
+                                                (latitude dan longitude) bengkel</small>
                                             <div id="mapid">
 
                                             </div>
@@ -161,12 +174,14 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-4">
-                                            <label class="small mb-1" for="nik_pegawai">NIK Pemilik <small class="text-muted">*16 digit</small></label>
+                                            <label class="small mb-1" for="nik_pegawai">NIK Pemilik <small
+                                                    class="text-muted">*16 digit</small></label>
                                             <input id="nik_pegawai" type="text" class="form-control"
                                                 placeholder="Input NIK Pemilik" name="nik_pegawai" minlength="16">
                                         </div>
                                         <div class="form-group col-4">
-                                            <label class="small mb-1" for="npwp_pegawai">NPWP Pemilik <small class="text-muted">*16 digit</small></label>
+                                            <label class="small mb-1" for="npwp_pegawai">NPWP Pemilik <small
+                                                    class="text-muted">*16 digit</small></label>
                                             <input id="npwp_pegawai" type="text" class="form-control"
                                                 placeholder="Input NPWP Pemilik" name="npwp_pegawai" minlength="16">
                                         </div>
@@ -219,7 +234,8 @@
 
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label class="small mb-1" for="username">Username <small class="text-muted">*Min. 6 digit</small></label>
+                                            <label class="small mb-1" for="username">Username <small
+                                                    class="text-muted">*Min. 6 digit</small></label>
                                             <input id="username" type="text"
                                                 class="form-control @error('username') is-invalid @enderror"
                                                 name="username" placeholder="Input Username"
@@ -249,7 +265,8 @@
 
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="password" class="d-block">Password <small class="text-muted">*Min. 8 digit</small></label>
+                                            <label for="password" class="d-block">Password <small
+                                                    class="text-muted">*Min. 8 digit</small></label>
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 placeholder="Input Password" name="password" required
@@ -262,7 +279,8 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="password-confirm" class="d-block">Password Confirmation <small class="text-muted">*Min. 8 digit</small></label>
+                                            <label for="password-confirm" class="d-block">Password Confirmation <small
+                                                    class="text-muted">*Min. 8 digit</small></label>
                                             <input id="password-confirm" type="password" class="form-control"
                                                 placeholder="Konfirmasi Password" name="password_confirmation" required
                                                 autocomplete="new-password">
@@ -368,6 +386,14 @@
                         dataType: "json",
                         success: function (data) {
                             $('select[name="id_kabupaten"]').empty();
+                            $('select[name="id_kecamatan"]').empty();
+                            $('select[name="id_desa"]').empty();
+                            $('select[name="id_kabupaten"]').append(
+                                '<option value="" holder>Pilih Kabupaten/Kota</option>');
+                            $('select[name="id_kecamatan"]').append(
+                                '<option value="" holder>Pilih Kecamatan</option>');
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>');
                             $.each(data, function (key, value) {
                                 $('select[name="id_kabupaten"]').append(
                                     '<option value="' +
@@ -377,6 +403,64 @@
                     });
                 } else {
                     $('select[name="id_kabupaten"]').empty();
+                }
+            });
+
+        });
+
+        $(document).ready(function () {
+            $('select[name="id_kabupaten"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'getkecamatan/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_kecamatan"]').empty();
+                            $('select[name="id_desa"]').empty();
+
+                            $('select[name="id_kecamatan"]').append(
+                                '<option value="" holder>Pilih Kecamatan</option>'
+                            );
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>')
+
+                            $.each(data, function (key, value) {
+                                $('select[name="id_kecamatan"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_kecamatan"]').empty();
+                }
+            });
+
+        });
+
+        $(document).ready(function () {
+            $('select[name="id_kecamatan"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'getdesa/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_desa"]').empty();
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>')
+                            $.each(data, function (key, value) {
+                                $('select[name="id_desa"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_desa"]').empty();
                 }
             });
 

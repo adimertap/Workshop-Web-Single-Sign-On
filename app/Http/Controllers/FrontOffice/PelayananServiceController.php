@@ -4,6 +4,8 @@ namespace App\Http\Controllers\FrontOffice;
 
 use App\Model\FrontOffice\PelayananService;
 use App\Http\Controllers\Controller;
+use App\Model\Service\PenerimaanService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PelayananServiceController extends Controller
@@ -15,7 +17,11 @@ class PelayananServiceController extends Controller
      */
     public function index()
     {
-        return view('pages.frontoffice.pelayanan_service.main');
+        $pelayanan = PenerimaanService::with(['customer_bengkel', 'kendaraan', 'pegawai', 'mekanik'])->get();
+
+        // return $pelayanan;
+        $now = Carbon::now();
+        return view('pages.frontoffice.pelayanan_service.main', compact('pelayanan', 'now'));
     }
 
     /**
