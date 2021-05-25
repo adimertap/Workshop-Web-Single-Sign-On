@@ -105,7 +105,6 @@
                                                 @elseif ($item->status_dana == 'Dana Telah Diberikan')
                                                 <span class="badge badge-success"> Dana Telah Cair
                                                     @endif
-
                                             </td>
                                             <td> @if($item->status_dana == 'Dana Belum Cair' and $item->status_jurnal == 'Belum Diposting')
                                                 <span>Menunggu Pembayaran Gaji..</span>

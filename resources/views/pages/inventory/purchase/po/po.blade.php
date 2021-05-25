@@ -105,7 +105,7 @@
                                         <td>{{ $item->Pegawai->nama_pegawai ?? '' }}</td>
                                         <td>{{ $item->Supplier->nama_supplier }}</td>
                                         <td>{{ $item->tanggal_po }}</td>
-                                        <td>
+                                        <td class="text-center">
                                             @if($item->approve_po == 'Approved')
                                             <span class="badge badge-success">
                                                 @elseif($item->approve_po == 'Not Approved')
@@ -118,7 +118,7 @@
                                                             {{ $item->approve_po }}
                                                         </span>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @if($item->approve_ap == 'Approved')
                                             <span class="badge badge-success">
                                                 @elseif($item->approve_ap == 'Not Approved')
@@ -131,28 +131,35 @@
                                                             {{ $item->approve_ap }}
                                                         </span>
                                         </td>
-                                        <td>
-                                            @if($item->approve_po == 'Pending' and $item->approve_ap == 'Pending')
-                                            <span class="font-size-300" style="font-size: 12px;">Menunggu
-                                                Approval</span>
-                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Pending')
-                                            <span class="font-size-300" style="font-size: 12px;">Menunggu
-                                                Approval</span>
-                                            @elseif($item->approve_po == 'Not Approved')
-                                            <span class="font-size-300" style="font-size: 12px;">Data diTolak</span>
-                                            @elseif($item->approve_po == 'Approved' and $item->approve_ap == 'Approved')
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                        <td class="text-center">
+                                            @if($item->approve_po == 'Pending' and $item->approve_ap == 'Pending' and $item->status == 'Pending')
+                                                <span class="font-size-300" style="font-size: 11px;">Menunggu
+                                                    Approval...</span>
+                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Pending' and $item->status == 'Pending')
+                                                <span class="font-size-300" style="font-size: 11px;">Menunggu
+                                                    Approval...</span>
+                                            @elseif($item->approve_po == 'Not Approved' and $item->status == 'Pending')
+                                                <span class="font-size-300" style="font-size: 11px;">Data diTolak</span>
+                                            @elseif($item->approve_po == 'Approved' and $item->approve_ap == 'Approved' and $item->status == 'Pending')
+                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Cetak PO">
+                                                    <i class="fas fa-print"></i></i>
+                                                </a>
+                                                <a href="" class="btn btn-dark btn-datatable" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modalkirimsupplier-{{ $item->id_po }}">
+                                                    <i class="fas fa-share-square"></i>
+                                                </a>
+                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Approved' and $item->status == 'Dikirim')
+                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak PO">
                                                 <i class="fas fa-print"></i></i>
-                                            </a>
-                                            <a href="" class="btn btn-dark btn-datatable" type="button"
-                                                data-toggle="modal"
-                                                data-target="#Modalkirimsupplier-{{ $item->id_po }}">
-                                                <i class="fas fa-share-square"></i>
-                                            </a>
-                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Approved'
-                                            and $status == 'Diterima')
-                                            Tes
+                                                </a>
+                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Approved' and $item->status == 'Diterima')
+                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Cetak PO">
+                                                <i class="fas fa-print"></i></i>
+                                                </a>
                                             @else
                                             <span>
                                                 @endif
@@ -175,11 +182,6 @@
                                                 data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
-                                            {{-- <a href="{{ route('po-status', $item->id_po) }}?status=Not Approved"
-                                            class="btn btn-danger btn-datatable" data-toggle="tooltip"
-                                            data-placement="top" title="" data-original-title="Tolak Data">
-                                            <i class="fas fa-times"></i>
-                                            </a> --}}
                                             @elseif($item->approve_po == 'Not Approved')
                                             <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Edit">
@@ -215,6 +217,7 @@
 </div>
 </main>
 
+{{-- MODAL HAPUS --}}
 @forelse ($po as $item)
 <div class="modal fade" id="Modalhapus-{{ $item->id_po }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -228,7 +231,7 @@
             <form action="{{ route('purchase-order.destroy', $item->id_po) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pembelian {{ $item->kode_po }} pada tanggal
+                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Pembelian pada Supplier <b>{{ $item->Supplier->nama_supplier }}</b> dengan kode <b>{{ $item->kode_po }}</b> pada tanggal
                     {{ $item->tanggal_po }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -248,15 +251,15 @@
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-info-soft">
+            <div class="modal-header bg-light">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Pengiriman Data Pembelian</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
             <form action="{{ route('po-status-kirim', $item->id_po) }}?status=Dikirim" method="POST" class="d-inline">
                 @csrf
-                <div class="modal-body">Pengiriman Data Pembelian pada supplier {{ $item->Supplier->nama_supplier }}
-                    dengan kode {{ $item->kode_po }} pada tanggal
+                <div class="modal-body text-center">Pengiriman Data Pembelian pada supplier <b>{{ $item->Supplier->nama_supplier }}</b>
+                    dengan kode <b>{{ $item->kode_po }}</b> pada tanggal
                     {{ $item->tanggal_po }}</div>
                 <div class="modal-footer ">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -304,6 +307,12 @@
                                 class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" id="tanggal_po" type="date" name="tanggal_po"
                                 placeholder="Input Tanggal Pembelian" value="{{ old('tanggal_po') }}">
+                            <div class="small" id="alerttanggal" style="display:none">
+                                <span class="font-weight-500 text-danger">Error! Tanggal Belum Terisi!</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -319,6 +328,12 @@
                                         <i class="fas fa-folder-open"></i>
                                     </a>
                                 </div>
+                            </div>
+                            <div class="small" id="alertsupplier" style="display:none">
+                                <span class="font-weight-500 text-danger">Error! Anda Belum Memilih Supplier!</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
                             </div>
                         </div>
                         <div class="form-group col-md-3">
@@ -435,9 +450,11 @@
             kode_po: kode_po
         }
 
-        if (nama_supplier == 0 | nama_supplier == '' | tanggal_po == 0 | tanggal_po == '') {
-            var alert = $('#alertdatakosong').show()
-        } else {
+        if (tanggal_po == 0 | tanggal_po == '') {
+            $('#alerttanggal').show()
+        }else if (nama_supplier == 0 | nama_supplier =='')
+            $('#alertsupplier').show()
+        else {
             $.ajax({
                 method: 'post',
                 url: '/inventory/purchase-order',

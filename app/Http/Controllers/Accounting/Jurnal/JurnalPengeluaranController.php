@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Accounting\Jurnal\Jurnalpengeluaran;
 use App\Model\Accounting\Payable\InvoicePayable;
 use App\Model\Accounting\Payable\Pajak;
+use App\Model\Accounting\Prf\Prf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -117,6 +118,28 @@ class JurnalPengeluaranController extends Controller
         $pajak->save();
        
         return redirect()->back()->with('messagejurnal','Data Pajak Berhasil DiPosting ke Jurnal Pengeluaran');
+    }
+
+    public function Prf(Request $request, $id_prf)
+    {
+
+        $prf = Prf::findOrFail($id_prf);
+
+        $jurnal = new Jurnalpengeluaran;
+        $jurnal->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+        $jurnal->id_jenis_transaksi = $prf->id_jenis_transaksi;
+        $jurnal->tanggal_jurnal = Carbon::now();
+        $jurnal->id_prf = $prf->id_prf;
+        $jurnal->ref = $prf->kode_prf;
+        $jurnal->keterangan = $prf->keperluan_prf;
+        $jurnal->grand_total = $prf->grand_total;
+        $jurnal->jenis_jurnal = 'Prf';
+        $jurnal->save();
+
+        $prf->status_jurnal = 'Sudah Diposting';
+        $prf->save();
+       
+        return redirect()->back()->with('messagejurnal','Data PRF Berhasil DiPosting ke Jurnal Pengeluaran');
     }
 
     /**

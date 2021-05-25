@@ -553,6 +553,8 @@ Route::group(
 
                 Route::post('Pajak/{id_pajak}', 'JurnalPengeluaranController@Pajak')
                     ->name('jurnal-pengeluaran-pajak');
+                Route::post('PRF/{id_prf}', 'JurnalPengeluaranController@Prf')
+                    ->name('jurnal-pengeluaran-prf');
          });
 
         // CATATAN ADIM -------------------------------------------------------------------- Catatan Adim

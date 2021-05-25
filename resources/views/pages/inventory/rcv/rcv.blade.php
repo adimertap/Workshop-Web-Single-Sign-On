@@ -207,6 +207,12 @@
                                     </a>
                                 </div>
                             </div>
+                            <div class="small" id="alertkodepo" style="display:none">
+                                <span class="font-weight-500 text-danger">Error! Anda Belum Menambahkan Kode PO!</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="id_supplier">Supplier</label>
@@ -223,6 +229,12 @@
                                 class="form-control @error('no_do') is-invalid @enderror" />
                             @error('no_do')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
+                            <div class="small" id="alertdo" style="display:none">
+                                <span class="font-weight-500 text-danger">Error! Anda Belum Mengisi Nomor Delivery Order!</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="tanggal_rcv">Tanggal Receive</label><span
@@ -232,6 +244,12 @@
                                 class="form-control @error('tanggal_rcv') is-invalid @enderror" />
                             @error('tanggal_rcv')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
+                            <div class="small" id="alerttanggal" style="display:none">
+                                <span class="font-weight-500 text-danger">Error! Tanggal Belum Terisi!</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -352,9 +370,14 @@
             tanggal_rcv: tanggal_rcv
         }
 
-        if (kode_po == 0 | kode_po == '' | no_do == 0 | no_do == '' | tanggal_rcv == 0 | tanggal_rcv == '' ) {
-            var alert = $('#alertdatakosong').show()
-        } else {
+        if (kode_po == 0 | kode_po == '' ) {
+            $('#alertkodepo').show()
+        }else if ( no_do == 0 | no_do =='')
+            $('#alertdo').show()
+        else if ( tanggal_rcv == 0 | tanggal_rcv == '')
+            $('#alerttanggal').show() 
+        
+        else {
 
             $.ajax({
                 method: 'post',
@@ -371,8 +394,6 @@
         }
 
     }
-    
-
     setInterval(displayclock, 500);
 
     function displayclock() {

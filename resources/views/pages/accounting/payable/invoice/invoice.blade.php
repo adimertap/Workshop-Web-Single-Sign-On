@@ -233,6 +233,12 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="small" id="alerttransaksi" style="display:none">
+                                <span class="font-weight-500 text-danger">Error! Anda Belum Memilih Jenis Transaksi!</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="kode_rcv">Pilih Receiving</label><span class="mr-4 mb-3"
@@ -246,6 +252,12 @@
                                         <i class="fas fa-folder-open"></i>
                                     </a>
                                 </div>
+                            </div>
+                            <div class="small" id="alertrcv" style="display:none">
+                                <span class="font-weight-500 text-danger">Error! Anda Belum Memilih Receiving</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
                             </div>
                         </div>
                         
@@ -473,9 +485,11 @@
             nama_supplier: nama_supplier,
         }
 
-        if (kode_rcv == 0 | kode_rcv == '' | id_jenis_transaksi == 0 | id_jenis_transaksi == 'Pilih Jenis Transaksi' ) {
-            var alert = $('#alertdatakosong').show()
-        } else {
+        if (id_jenis_transaksi == 0 | id_jenis_transaksi == 'Pilih Jenis Transaksi' ) {
+            $('#alerttransaksi').show()
+        } else if (kode_rcv == 0 | kode_rcv == '' )
+            $('#alertrcv').show()
+        else {
 
             $.ajax({
                 method: 'post',

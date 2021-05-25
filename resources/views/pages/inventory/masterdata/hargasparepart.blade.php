@@ -127,8 +127,6 @@
                             @error('id_sparepart')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-              
-           
                         <div class="form-group">
                             <label class="small mb-1 mr-1" for="id_supplier">Supplier</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
@@ -161,9 +159,6 @@
                             @error('harga_jual')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-
-                   
-                    
                     {{-- Validasi Error --}}
                     @if (count($errors) > 0)
                     @endif
@@ -195,6 +190,16 @@
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
                     <hr>
                     </hr>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="id_supplier">Pilih Supplier</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <select class="form-control" name="id_supplier" id="id_supplier">
+                            <option value="{{ $item->Supplier->id_supplier }}">
+                                {{ $item->Supplier->nama_supplier }}</option>
+                            @foreach ($supplier as $sup)
+                            <option value="{{ $sup->id_supplier }}">{{ $sup->nama_supplier }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label class="small mb-1 mr-1" for="harga_jual">Harga Jual</label><span class="mr-4 mb-3"
                             style="color: red">*</span>

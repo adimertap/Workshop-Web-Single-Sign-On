@@ -90,6 +90,7 @@ class MasterdatahargasparepartController extends Controller
     {
         $harga = Hargasparepart::findOrFail($id_harga);
         $harga->harga_jual = $request->harga_jual;
+        $harga->id_supplier = $request->id_supplier;
 
         $harga->update();
         return redirect()->back()->with('messageberhasil','Data Harga Sparepart Berhasil diubah');

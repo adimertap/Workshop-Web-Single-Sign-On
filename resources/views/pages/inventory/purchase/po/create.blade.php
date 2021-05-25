@@ -25,13 +25,6 @@
                     </div>
                 </div>
             </div>
-            <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
-                class="fas fa-times"></i>
-            Error! Anda belum menambahkan sparepart!
-            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
         </div>
     </header>
 
@@ -204,7 +197,13 @@
                 </div>
             </div>
             <div class="card-body">
-
+                <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
+                    class="fas fa-times"></i>
+                Error! Anda belum menambahkan sparepart!
+                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
                 <div class="datatable">
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
@@ -494,7 +493,6 @@
         // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
         var children = $(row).children()[1]
-        console.log(children)
         var kode = $($(children).children()[0]).html().trim()
         
         $(`#${$.escapeSelector(kode)}-button`).trigger('click');

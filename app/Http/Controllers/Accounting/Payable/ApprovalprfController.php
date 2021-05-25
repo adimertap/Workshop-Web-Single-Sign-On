@@ -49,9 +49,15 @@ class ApprovalprfController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_prf)
     {
-        //
+        $prf = Prf::with('Detailprf.Detailinvoice','Jenistransaksi','FOP','Akunbank','Supplier','Supplier.InvoicePayable.Detailinvoice','Supplier.InvoicePayable')->findOrFail($id_prf);
+
+        // return $prf;
+
+        return view('pages.accounting.payable.approvalprf.detailapprovalprf')->with([
+            'prf' => $prf
+        ]);
     }
 
     /**

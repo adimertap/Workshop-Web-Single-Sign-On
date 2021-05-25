@@ -43,9 +43,9 @@
                     </button>
                 </div>
                 @endif
-                @if(session('messagekirim'))
+                @if(session('messagejurnal'))
                 <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                    {{ session('messagekirim') }}
+                    {{ session('messagejurnal') }}
                     <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -136,7 +136,11 @@
                                                 <span class="font-size-200" style="font-size: 12px;">Menunggu
                                                     Pembayaran..</span>
                                             @elseif ($item->status_bayar == 'Sudah Dibayar' and $item->status_jurnal == 'Belum Diposting')
-                                                <button class="btn btn-secondary btn-xs" type="button" data-dismiss="modal">Posting Jurnal</button>
+                                            <a href="" class="btn btn-danger btn-xs" type="button"
+                                                data-toggle="modal"
+                                                data-target="#Modaljurnal-{{ $item->id_prf }}">
+                                                Posting?
+                                            </a>
                                             @elseif ($item->status_jurnal == 'Sudah Diposting' )
                                                 <span class="badge badge-secondary">{{ $item->status_jurnal }}
                                             @else
@@ -264,7 +268,12 @@
                                     </option>
                                     @endforeach
                                 </select>
-                                
+                            </div>
+                            <div class="small" id="alerttransaksi" style="display:none">
+                                <span class="font-weight-500 text-danger">Error! Anda Belum Memilih Jenis Transaksi!</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
                             </div>
                         </div>
 
@@ -281,6 +290,12 @@
                                         <i class="fas fa-folder-open"></i>
                                     </a>
                                 </div>
+                            </div>
+                            <div class="small" id="alertsupplier" style="display:none">
+                                <span class="font-weight-500 text-danger">Error! Anda Belum Memilih Supplier!</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
@@ -436,6 +451,33 @@
 
 @endforelse
 
+
+@forelse ($prf as $item)
+<div class="modal fade" id="Modaljurnal-{{ $item->id_prf }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Posting Jurnal</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('jurnal-pengeluaran-prf', $item->id_prf) }}" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body text-center">Apakah Anda Yakin Memposting Data Invoice <b>{{ $item->kode_prf }} </b>pada tanggal
+                    {{ $item->tanggal_prf }}?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Posting</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+
+@endforelse
+
 @if (count($errors) > 0)
 <button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modalbayar-{{ $item->id_prf }}">Open
     Modal</button>
@@ -465,9 +507,11 @@
             nama_supplier: nama_supplier,
         }
 
-        if (id_jenis_transaksi == 'Pilih Jenis Transaksi' | nama_supplier == '' | nama_supplier == 0 ) {
-            var alert = $('#alertdatakosong').show()
-        } else {
+        if (id_jenis_transaksi == 'Pilih Jenis Transaksi' ) {
+            $('#alerttransaksi').show()
+        } else if(nama_supplier == '' | nama_supplier == 0 )
+            $('#alertsupplier').show()
+        else {
             $.ajax({
                 method: 'post',
                 url: "/accounting/prf",

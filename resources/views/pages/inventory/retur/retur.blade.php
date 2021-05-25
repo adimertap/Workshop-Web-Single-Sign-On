@@ -95,7 +95,7 @@
                                         <td>{{ $item->Pegawai->nama_pegawai ?? '' }}</td>
                                         <td>{{ $item->Supplier->nama_supplier ?? '' }}</td>
                                         <td>{{ $item->tanggal_retur }}</td>
-                                        <td>
+                                        <td class="text-center">
                                             @if($item->status == 'Aktif')
                                             <span class="badge badge-success">
                                                 @elseif($item->status == 'Tidak Aktif')
@@ -106,7 +106,7 @@
                                                         {{ $item->status }}
                                                     </span>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak Retur">
                                                 <i class="fas fa-print"></i></i>
@@ -183,6 +183,12 @@
                                     </a>
                                 </div>
                             </div>
+                            <div class="small" id="alertsupplier" style="display:none">
+                                <span class="font-weight-500 text-danger">Error! Anda Belum Menambahkan Supplier!</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="form-group col-md-5">
                             <label class="small mb-1" for="telephone">Nomor Telp.</label>
@@ -196,6 +202,12 @@
                             class="form-control @error('tanggal_retur') is-invalid @enderror" />
                         @error('tanggal_retur')<div class="text-danger small mb-1">{{ $message }}
                         </div> @enderror
+                        <div class="small" id="alerttanggal" style="display:none">
+                            <span class="font-weight-500 text-danger">Error! Tanggal Belum Terisi!</span>
+                            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -334,9 +346,11 @@
             tanggal_retur: tanggal_retur,
         }
 
-        if (nama_supplier == 0 | nama_supplier == '' | tanggal_retur == 0 | tanggal_retur == '' ) {
-            var alert = $('#alertdatakosong').show()
-        } else {
+        if (nama_supplier == 0 | nama_supplier == '') {
+            $('#alertsupplier').show()
+        } else if (tanggal_retur == 0 | tanggal_retur == '')
+            $('#alerttanggal').show()
+        else {
             $.ajax({
                 method: 'post',
                 url: '/inventory/retur',
