@@ -96,24 +96,38 @@
                                             <td>{{$item->mekanik->nama_pegawai}}</td>
                                             <td>{{$item->date}}</td>
                                             <td>
+                                                @if ($item->status == 'menunggu')
                                                 <span class="badge badge-danger"> Menunggu </span>
+                                                @else
+                                                <span class="badge badge-success"> Dikerjakan </span>
+                                                @endif
+
+
 
                                             </td>
                                             <td>
-                                                <a href=""
-                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+
+                                                <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Detail">
                                                     <i class="fa fa-eye"></i>
+                                                </a>
+                                                @if ($item->status == 'menunggu')
+
+                                                <a href="" class="btn btn-success btn-datatable" data-placement="top"
+                                                    title="" data-original-title="Kerjakan" data-toggle="modal"
+                                                    data-target="#Modaltambah-{{ $item->id_service_advisor }}">
+                                                    <i class="fa fa-tools"></i>
                                                 </a>
                                                 <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                    data-toggle="modal"
+                                                    data-toggle="modal" data-original-title="Hapus"
                                                     data-target="#Modalhapus-">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
+                                                @endif
                                             </td>
                                         </tr>
                                         @empty
@@ -128,6 +142,49 @@
             </div>
         </div>
     </div>
+
+    @forelse ($pelayanan as $item)
+    {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
+    <div class="modal fade" id="Modaltambah-{{ $item->id_service_advisor }}" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Kendaraan</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('abc',$item->id_service_advisor) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <label class="small mb-1">Pilih Pitstop</label>
+                        <hr>
+                        </hr>
+                        <div class="form-group col-12">
+                            <label class="small mb-1" for="pitstop">Pitstop</label>
+                            <select class="form-control" name="pitstop">
+                                <option value="" holder>Pilih Pitstop</option>
+                                @foreach ($pitstop as $item)
+                                <option value="{{ $item->id_pitstop }}">
+                                    {{ $item->nama_pitstop }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="Submit">Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @empty
+
+    @endforelse
+
 </main>
 
 

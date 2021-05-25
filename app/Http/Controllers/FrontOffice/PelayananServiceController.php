@@ -4,9 +4,11 @@ namespace App\Http\Controllers\FrontOffice;
 
 use App\Model\FrontOffice\PelayananService;
 use App\Http\Controllers\Controller;
+use App\Model\FrontOffice\MasterDataPitstop;
 use App\Model\Service\PenerimaanService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PelayananServiceController extends Controller
 {
@@ -18,10 +20,10 @@ class PelayananServiceController extends Controller
     public function index()
     {
         $pelayanan = PenerimaanService::with(['customer_bengkel', 'kendaraan', 'pegawai', 'mekanik'])->get();
-
+        $pitstop = MasterDataPitstop::where('id_bengkel', Auth::user()->id_bengkel)->get();
         // return $pelayanan;
         $now = Carbon::now();
-        return view('pages.frontoffice.pelayanan_service.main', compact('pelayanan', 'now'));
+        return view('pages.frontoffice.pelayanan_service.main', compact('pelayanan', 'now', 'pitstop'));
     }
 
     /**
@@ -40,9 +42,9 @@ class PelayananServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        // 
     }
 
     /**
@@ -74,10 +76,20 @@ class PelayananServiceController extends Controller
      * @param  \App\PelayananService  $pelayananService
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PelayananService $pelayananService)
+    public function update(Request $request, PenerimaanService $id_service_advisor)
     {
-        //
+        // $pitstop = PenerimaanService::where('id_service_advisor', $id_service_advisor)->get();
+        $pitstop = PenerimaanService::findOrFail($id_service_advisor);
+        return $id_service_advisor;
     }
+
+    public function status(Request $request, $id_service_advisor)
+    {
+        // $pitstop = PenerimaanService::where('id_service_advisor', $id_service_advisor)->get();
+        $pitstop = PenerimaanService::findOrFail($id_service_advisor);
+        return $id_service_advisor;
+    }
+
 
     /**
      * Remove the specified resource from storage.

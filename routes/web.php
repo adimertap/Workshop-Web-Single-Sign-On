@@ -67,6 +67,8 @@ Route::group(
                 Route::resource('pelayananservice', 'PelayananServiceController');
                 Route::resource('customerterdaftar', 'CustomerBengkelController');
                 Route::resource('penjualansparepart', 'PenjualanSparepartController');
+                Route::put('/pengerjaan/{id}', 'PelayananServiceController@status')
+                    ->name('abc');
             });
 
         // ------------------------------------------------------------------------
