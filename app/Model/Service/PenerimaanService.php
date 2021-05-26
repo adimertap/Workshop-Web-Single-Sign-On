@@ -5,6 +5,7 @@ namespace App\Model\Service;
 use App\Model\FrontOffice\CustomerBengkel;
 use App\Model\FrontOffice\MasterDataJenisPerbaikan;
 use App\Model\FrontOffice\MasterDataKendaraan;
+use App\Model\FrontOffice\MasterDataPitstop;
 use App\Model\Inventory\Sparepart;
 use App\Model\Kepegawaian\Pegawai;
 use App\Scopes\OwnershipScope;
@@ -55,6 +56,11 @@ class PenerimaanService extends Model
     public function mekanik()
     {
         return $this->belongsTo(Pegawai::class, 'id_mekanik');
+    }
+
+    public function pitstop()
+    {
+        return $this->belongsTo(MasterDataPitstop::class, 'id_pitstop');
     }
 
     public function customer_bengkel()

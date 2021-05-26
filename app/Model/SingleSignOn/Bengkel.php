@@ -20,8 +20,8 @@ class Bengkel extends Model
         'slug',
         'nohp_bengkel',
         'logo_bengkel',
-        'jam_buka_kerja',
-        'jam_tutup_kerja',
+        'jam_buka_bengkel',
+        'jam_tutup_bengkel',
         'id_desa'
     ];
 

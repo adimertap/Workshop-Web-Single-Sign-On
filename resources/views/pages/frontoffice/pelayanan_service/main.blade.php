@@ -92,7 +92,7 @@
                                             <td>{{$item->kode_sa}}</td>
                                             <td>{{$item->kendaraan->nama_kendaraan}}</td>
                                             <td>{{$item->customer_bengkel->nama_customer}}</td>
-                                            <td>-</td>
+                                            <td>{{ $item->pitstop? $item->pitstop->nama_pitstop:"-" }}</td>
                                             <td>{{$item->mekanik->nama_pegawai}}</td>
                                             <td>{{$item->date}}</td>
                                             <td>
@@ -154,7 +154,7 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('abc',$item->id_service_advisor) }}" method="POST">
+                <form action="{{ route('dikerjakan',$item->id_service_advisor) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="modal-body">

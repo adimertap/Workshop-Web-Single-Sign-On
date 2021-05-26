@@ -75,13 +75,11 @@
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label for="jam_buka_bengkel">Jam Buka Bengkel</label>
-                                            <input id="jam_buka_bengkel" type="time" class="form-control"
-                                                placeholder="Input No. Telp Bengkel" name="jam_buka_bengkel">
+                                            <input id="jam_buka_bengkel" type="time" class="form-control" name="jam_buka_bengkel" >
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="jam_tutup_bengkel">Jam Tutup Bengkel</label>
-                                            <input id="jam_tutup_bengkel" type="time" class="form-control"
-                                                placeholder="Input No. Telp Bengkel" name="jam_tutup_bengkel">
+                                            <input id="jam_tutup_bengkel" type="time" class="form-control" name="jam_tutup_bengkel">
                                         </div>
                                     </div>
                                     <div class="row">

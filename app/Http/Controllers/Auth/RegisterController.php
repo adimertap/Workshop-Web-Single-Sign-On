@@ -76,7 +76,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // return $data['id_desa'];
+        // dd(date('H:i:s', strtotime($data['jam_buka_bengkel'])));
+        // return $data ['jam_buka_bengkel'];
         $file = $data['logo_bengkel'];
         $name_file = time() . '_' . $file->getClientOriginalName();
         $file->move(public_path() . '/image/', $name_file);
@@ -90,11 +91,10 @@ class RegisterController extends Controller
             'latitude' => $data['latitude'],
             'nohp_bengkel' => $data['nohp_bengkel'],
             'id_desa' => $data['id_desa'],
-            'jam_buka_bengkel' => Carbon::parse($data['jam_buka_bengkel'])->format('h:i a'),
-            'jam_tutup_bengkel' => Carbon::parse($data['jam_buka_bengkel'])->format('h:i a'),
+            'jam_buka_bengkel' => date('H:i:s', strtotime($data['jam_buka_bengkel'])),
+            'jam_tutup_bengkel' => date('H:i:s', strtotime($data['jam_tutup_bengkel'])),
             'logo_bengkel' => $name_file
         ]);
-
 
         $pegawai = Pegawai::create([
             'nama_pegawai' => $data['name'],
