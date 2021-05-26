@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body p-4 p-md-5">
+            <div class="card-body mt-3 mb-0 p-md-5">
                 <!-- Invoice table-->
                 <div class="row">
                     <div class="table-responsive">
@@ -108,7 +108,7 @@
                                 <!-- Invoice total-->
                                 <tr>
                                     <td class="pb-0">
-                                        <div class="text-uppercase small font-weight-700 text-muted">Total Bayar:
+                                        <div class="text-uppercase small font-weight-700 text-muted">Total Tagihan:
                                         </div>
                                     </td>
                                     <td class="text-right pb-0">
@@ -198,10 +198,11 @@
                 <div class="modal-body bg-grey">
                     <div class="row">
                         <div class="col-12 text-center mb-4">
+                            <img src="{{ asset('gif/success4.gif') }}" style="width: 60%">
                             <h4 class="transaction-success-text">Transaksi Berhasil</h4>
                         </div>
                         <div class="col-12">
-                            <table class="table-receipt">
+                            <table class="table">
                                 <tr>
                                     <td>
                                         <span class="d-block little-td">Kode Transaksi</span>
@@ -219,36 +220,33 @@
                                             class="d-block font-weight-bold">{{ Auth::user()->pegawai->nama_pegawai }}</span>
                                     </td>
                                     <td>
-                                        <span class="d-block little-td">Total</span>
+                                        <span class="d-block little-td">Total Tagihan</span>
                                         <div id="totalModal"
-                                            class="h5 mb-0 font-weight-700 text-green nilai-total-modal">Rp.
+                                            class="h5 mb-0 font-weight-600 text-primary nilai-total-modal">Rp.
                                             {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
                                     </td>
                                 </tr>
-                            </table>
-                            <table class="table-summary mt-3">
                                 <tr>
-                                    <td class="line-td" colspan="2"></td>
-                                </tr>
-                                <tr>
-                                    <td class="little-td big-td">Bayar</td>
-                                    <td><div id="bayarModal"
-                                            class="h5 mb-0 font-weight-700 text-green nilai-total-modal">Rp.
-                                            {{ number_format($pembayaran->total_bayar,2,',','.') }}</div></td>
-                                </tr>
-                                <tr>
-                                    <td class="little-td big-td">Kembali</td>
-                                    <td><div id="kembaliModal"
-                                            class="h5 mb-0 font-weight-700 text-green nilai-total-modal">Rp.
-                                            {{ number_format($pembayaran->total_bayar,2,',','.') }}</div></td>
+                                    <td>
+                                        <span class="d-block little-td">Nominal Bayar</span>
+                                        <div id="bayarModal"
+                                            class="h5 mb-0 font-weight-400 text-green nilai-total-modal"> Rp. 
+                                            {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
+                                    </td>
+                                    <td>
+                                        <span class="d-block little-td">Kembalian</span>
+                                        <div id="kembaliModal"
+                                            class="h5 mb-0 font-weight-400 text-danger nilai-total-modal"> Rp. 
+                                            {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-close-modal" data-dismiss="modal">Tutup</button>
-                    <a href="" target="_blank" class="btn btn-sm btn-cetak-pdf">Cetak Struk</a>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Tutup</button>
+                    <a href="" target="_blank" class="btn btn-sm btn-primary">Simpan</a>
                 </div>
             </div>
         </div>
