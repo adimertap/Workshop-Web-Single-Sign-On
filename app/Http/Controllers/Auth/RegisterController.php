@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\DesaBaru;
 use App\Http\Controllers\Controller;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
@@ -9,6 +10,10 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Provinsi;
 use App\Kabupaten;
+use App\KabupatenBaru;
+use App\KecamatanBaru;
+use App\ProvinsiBaru;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -71,7 +76,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // dd($data);
+        // dd(date('H:i:s', strtotime($data['jam_buka_bengkel'])));
+        // return $data ['jam_buka_bengkel'];
         $file = $data['logo_bengkel'];
         $name_file = time() . '_' . $file->getClientOriginalName();
         $file->move(public_path() . '/image/', $name_file);
@@ -84,9 +90,11 @@ class RegisterController extends Controller
             'longitude' => $data['longitude'],
             'latitude' => $data['latitude'],
             'nohp_bengkel' => $data['nohp_bengkel'],
+            'id_desa' => $data['id_desa'],
+            'jam_buka_bengkel' => date('H:i:s', strtotime($data['jam_buka_bengkel'])),
+            'jam_tutup_bengkel' => date('H:i:s', strtotime($data['jam_tutup_bengkel'])),
             'logo_bengkel' => $name_file
         ]);
-
 
         $pegawai = Pegawai::create([
             'nama_pegawai' => $data['name'],
@@ -96,6 +104,8 @@ class RegisterController extends Controller
             'alamat' => $data['alamat'],
             'email' => $data['email'],
             'no_telp' => $data['no_telp'],
+            'nik_pegawai' => $data['nik_pegawai'],
+            'npwp_pegawai' => $data['npwp_pegawai'],
             'jenis_kelamin' => $data['jenis_kelamin'],
             'id_bengkel' => $bengkel->id_bengkel,
             'id_jabatan' => 4
@@ -116,15 +126,28 @@ class RegisterController extends Controller
 
     public function showRegisterForm()
     {
-        $provinsi = Provinsi::all();
+        $provinsi = ProvinsiBaru::all();
 
         return view('pages.singlesignon.register', [
-            'provinsi' =>$provinsi
+            'provinsi' => $provinsi
         ]);
     }
 
-    public function kabupaten ($id){
-        $kabupaten = Kabupaten::where('id_provinsi', '=', $id)->pluck('nama_kabupaten', 'id_kabupaten');
+    public function kabupaten_baru($id)
+    {
+        $kabupaten = KabupatenBaru::where('id_provinsi', '=', $id)->pluck('name', 'id_kabupaten');
         return json_encode($kabupaten);
+    }
+
+    public function kecamatan_baru($id)
+    {
+        $kecamatan = KecamatanBaru::where('id_kabupaten', '=', $id)->pluck('name', 'id_kecamatan');
+        return json_encode($kecamatan);
+    }
+
+    public function desa_baru($id)
+    {
+        $desa = DesaBaru::where('id_kecamatan', '=', $id)->pluck('name', 'id_desa');
+        return json_encode($desa);
     }
 }

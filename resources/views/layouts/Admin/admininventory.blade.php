@@ -306,7 +306,7 @@
                         </div>
                         @endif
 
-                        @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'owner')
                         {{-- MANAJEMEN ASET --}}
                         {{-- Manajemen Aset Side Bar --}}
                         <div class="sidenav-menu-heading">Approval</div>
@@ -328,7 +328,7 @@
                                 <a class="nav-link" href="{{ route('approval-opname.index') }}">
                                     Stock Opname
                                 </a>
-                                @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'owner')
+                                @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'owner')
                                 <a class="nav-link " href="{{ route('approval-po-ap.index') }}">
                                     Purchase Order AP
                                 </a>

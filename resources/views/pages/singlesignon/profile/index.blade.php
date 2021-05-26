@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label class="small text-muted line-height-normal">: {{ Auth::user()->pegawai->nama_panggilan }}
+                                <label class="small text-muted line-height-normal">: {{ Auth::user()->username }}
                             </div>
                         </div>
                         <div class="row">
@@ -114,6 +114,9 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="text-center">
+            <a href="{{ route('password.edit') }}" class="btn btn-primary"><i data-feather="key" class="mr-2"></i>  Ganti Password</a>
             </div>
         </div>
     </div>

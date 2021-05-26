@@ -36,8 +36,8 @@
 @endif
 <div class="container">
     <div class="alert alert-info alert-dismissible fade show" role="alert">
-        <h5 class="alert-heading">Informasi, Simak dengan Baik</h5>
-        Getting Started, Seluruh panduan kami berikan pada link berikut <a class="alert-link"
+        <h4 class="alert-heading">Halo, {{ Auth::user()->pegawai->nama_pegawai }}</h4>
+        Seluruh panduan penggunaan sistem dapat diakses pada link berikut <a class="alert-link"
             href="javascript:void(0);">Panduan Penggunaan Sistem</a>
     </div>
 </div>
@@ -52,7 +52,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
                             <h5>Front Office<i class="mdi mdi-office-building-marker-outline:"></i></h5>
-                            <div class="text-muted">Pengelolaan Office Bengkel</div>
+                            <div class="text-muted">Pengelolaan Layanan Bengkel</div>
                         </div>
                         <img class="card-img-top" src="/backend/src/assets/img/freepik/browser-stats-pana.svg" alt="..."
                             style="width: 5rem;">
@@ -88,7 +88,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
                             <h5>Point Of Sales</h5>
-                            <div class="text-muted">Pengelolaan Penjualan Bengkel</div>
+                            <div class="text-muted">Pengelolaan Transaksi Penjualan</div>
                         </div>
                         <img class="card-img-top" src="/backend/src/assets/img/freepik/cashier.svg" alt="..."
                             style="width: 7rem;">
@@ -106,7 +106,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
                             <h5>Marketplace</h5>
-                            <div class="text-muted">Marketplace Bengkel</div>
+                            <div class="text-muted">Pengelolaan Marketplace Bengkel</div>
                         </div>
                         <img class="card-img-top" src="/backend/src/assets/img/freepik/marketplace.svg" alt="..."
                             style="width: 6.8rem;">
@@ -175,7 +175,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->role == 'admin_account_payable' || Auth::user()->role == 'admin_account_receivable' ||
+        @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'admin_accounting' ||
         Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->

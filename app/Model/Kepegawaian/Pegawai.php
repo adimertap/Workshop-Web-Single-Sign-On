@@ -52,21 +52,22 @@ class Pegawai extends Model
     {
         return $this->hasMany(Absensi::class, 'id_pegawai');
     }
-   
-    public static function getId(){
+
+    public static function getId()
+    {
         // return $this->orderBy('id_sparepart')->take(1)->get();
-        $getId = DB::table('tb_kepeg_master_pegawai')->orderBy('id_pegawai','DESC')->take(1)->get();
-        if(count($getId) > 0) return $getId;
+        $getId = DB::table('tb_kepeg_master_pegawai')->orderBy('id_pegawai', 'DESC')->take(1)->get();
+        if (count($getId) > 0) return $getId;
         return (object)[
             (object)[
-                'id_pegawai'=> 0
+                'id_pegawai' => 0
             ]
-            ];
-        }
+        ];
+    }
 
     public function absensi_mekanik()
     {
-        return $this->hasOne(Absensi::class, 'id_pegawai')->whereDate('tanggal_absensi', Carbon::today())->where('absensi', 'Absen_Pagi');
+        return $this->hasMany(Absensi::class, 'id_pegawai')->whereDate('tanggal_absensi', Carbon::today())->where('absensi', 'Absen_Pagi');
     }
 
     protected static function booted()

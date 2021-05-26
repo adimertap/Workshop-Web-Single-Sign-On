@@ -21,7 +21,7 @@
                     {{ __(' Jika Anda tidak menerima email') }},
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('kirim verifikasi ulang') }}</button>.
+                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('kirim email verifikasi') }}</button>.
                     </form>
                 </div>
             </div>

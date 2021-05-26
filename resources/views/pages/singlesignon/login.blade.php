@@ -69,7 +69,7 @@
                                             <button class="close" data-dismiss="alert">
                                                 <span>×</span>
                                             </button>
-                                            <h10><i class="icon fas fa-ban"></i> Login Error!</h10>
+                                            <h10><i class="icon fas fa-ban"></i><b> LOGIN ERROR!</b></h10>
                                             <br>
                                             @foreach ($errors->all() as $e)
                                             {{$e}}
@@ -85,31 +85,31 @@
                                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
                                         @foreach ($errors->all() as $e)
                                         {{$e}}
-                                        @endforeach
-                                    </div>
-                                    @endif --}}
-
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Login
-                                        </button>
-                                    </div>
-                                </form>
-
+                                    @endforeach
                             </div>
-                        </div>
+                            @endif --}}
 
-                        <div class="mt-0 text-muted text-center">
-                            Tidak punya akun? <a href="{{ route('register') }}">Buat Akun</a>
-                        </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                    Login
+                                </button>
+                            </div>
+                            </form>
 
-                        <div class="simple-footer">
-                            Copyright &copy; BengkelKuy 2021
                         </div>
+                    </div>
+
+                    <div class="mt-0 text-muted text-center">
+                        Tidak punya akun? <a href="{{ route('register') }}">Buat Akun</a>
+                    </div>
+
+                    <div class="simple-footer">
+                        Copyright &copy; BengkelKuy 2021
                     </div>
                 </div>
             </div>
-        </section>
+    </div>
+    </section>
     </div>
 
     <!-- General JS Scripts -->
