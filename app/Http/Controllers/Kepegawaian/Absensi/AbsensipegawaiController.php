@@ -10,6 +10,7 @@ use App\Model\SingleSignOn\Bengkel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\Environment\Console;
 
 class AbsensipegawaiController extends Controller
 {
@@ -55,10 +56,15 @@ class AbsensipegawaiController extends Controller
      */
     public function store(Request $request)
     {
+        $absen = Absensi::where('id_pegawai',$request->id_pegawai)->first();
+        return $absen;
+        // $id_pegawai = $pegawai->id_pegawai;
+        // $data = Gajipegawai::where('id_bengkel', Auth::user()->id_bengkel)->where('id_pegawai', $id_pegawai)->where('tahun_gaji', $request->tahun_gaji)->where('bulan_gaji', $request->bulan_gaji)->first();
+
 
         $bengkel = Bengkel::first();
         $jammasuk = Carbon::now()->format('H:i:s');
-        if($jammasuk > $bengkel->jam_masuk_kerja){
+        if($jammasuk > $bengkel->jam_buka_bengkel){
             $keterangan = 'Terlambat';
         }else{
             $keterangan = $request->keterangan;

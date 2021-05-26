@@ -24,32 +24,49 @@
                     </div>
                 </div>
             </div>
+            <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
+                class="fas fa-times"></i>
+            Error! Anda belum menambahkan sparepart!
+            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
         </div>
     </header>
 
     <div class="container-fluid mt-n10">
         <div class="card mb-4">
-            <div class="card-header">Detail Formulir Pembelian
+            <div class="card-header">Detail Formulir Opname
             </div>
             <div class="card-body">
                 <form action="{{ route('Opname.store') }}" id="form1" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
                             <label class="small mb-1" for="kode_opname">Kode Opname</label>
                             <input class="form-control" id="kode_opname" type="text" name="kode_opname"
                                 placeholder="Input Kode Opname" value="{{ $kode_opname }}" readonly />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-4">
                             <label class="small mb-1" for="id_pegawai">Pegawai</label>
                             <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
                                 value="{{ Auth::user()->pegawai->nama_pegawai }}" readonly />
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
                             <label class="small mb-1" for="approve">Approval</label>
                             <input class="form-control" id="approve" type="text" name="approve" value="Pending" readonly>
                         </div>
-                        <div class="form-group col-md-3">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label class="small mb-1" for="keterangan">Keterangan Opname</label>
+                            <textarea class="form-control" id="keterangan" type="text" name="keterangan"
+                                placeholder="Masukan Keterangan Opname"
+                                class="form-control @error('keterangan') is-invalid @enderror"></textarea>
+                            @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+                        <div class="form-group col-md-4">
                             <label class="small mb-1 mr-1" for="tanggal_opname">Tanggal Opname</label><span
                                 class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" id="tanggal_opname" type="date" name="tanggal_opname"
@@ -58,6 +75,7 @@
                             @error('tanggal_opname')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
+                       
                     </div>
                     <div class="form-group text-right">
                         <hr>
@@ -160,17 +178,10 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card card-header-actions">
-                <div class="card-header ">Detail Pembelian Sparepart
+                <div class="card-header ">Detail Opname Sparepart
                 </div>
             </div>
             <div class="card-body">
-                <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
-                        class="fas fa-times"></i>
-                    Error! Anda belum menambahkan sparepart!
-                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
                 <div class="datatable">
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
@@ -207,6 +218,10 @@
                                                 Stock Real</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
+                                                style="width: 40px;">
+                                                Selisih</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Salary: activate to sort column ascending"
                                                 style="width: 20px;">
                                                 Keterangan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
@@ -229,6 +244,7 @@
     </div>
 </main>
 
+@forelse ($sparepart as $item)
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -251,7 +267,8 @@
         </div>
     </div>
 </div>
-
+@empty
+@endforelse
 
 <template id="template_delete_button">
     <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
@@ -279,33 +296,70 @@
         var id_pegawai = $('#id_pegawai').val()
         var tanggal_opname = form1.find('input[name="tanggal_opname"]').val()
         var approve = form1.find('input[name="approve"]').val()
-        var keterangan = form1.find('input[name="keterangan"]').val()
+        var keterangan = form1.find('textarea[name="keterangan"]').val()
         var dataform2 = []
+ 
+        console.log(dataform2)
         var _token = form1.find('input[name="_token"]').val()
+      
 
-        for (var i = 0; i < sparepart.length; i++) {
-            var form = $('#form-' + sparepart[i].id_sparepart)
-            var jumlah_real = form.find('input[name="jumlah_real"]').val()
-            var keterangan_detail = form.find('input[name="keterangan_detail"]').val()
+        var datasparepart = $('#konfirmasi').children()
+        for (let index = 0; index < datasparepart.length; index++) {
+            var children = $(datasparepart[index]).children()
+         
+            // ID SPAREPART
+            var td = children[1]
+            var span = $(td).children()[0]  
+            var id_sparepart = $(span).attr('id')
+            
+            // JUMLAH REAL
+            var tdjumlahreal = children[5]
+            var jumlah_real = $(tdjumlahreal).html()
+
+            // Selisih
+            var tdselisih = children[6]
+            var selisih = $(tdselisih).html()
+            
+            // Keterangan
+            var tdketerangan = children[7]
+            var keterangandetail = $(tdketerangan).html()
             var id_bengkel = $('#id_bengkel').text()
-
-            if (jumlah_real == 0 | jumlah_real == '') {
-                continue
-            } else {
-                var id_sparepart = sparepart[i].id_sparepart
-                var obj = {
-                    id_opname: idbaru,
+            var obj = {
                     id_sparepart: id_sparepart,
                     id_bengkel: id_bengkel,
                     jumlah_real: jumlah_real,
-                    keterangan_detail: keterangan_detail
+                    selisih: selisih,
+                    keterangan_detail: keterangandetail,
+                    id_opname: idbaru
                 }
                 dataform2.push(obj)
-            }
         }
 
-        if (dataform2.length == 0) {
-            var alert = $('#alertsparepartkosong').show()
+        // for (var i = 0; i < sparepart.length; i++) {
+        //     var form = $('#item-' + sparepart[i].id_sparepart)
+        //     // console.log(form)
+        //     var jumlah_real = form.find('input[name="jumlah_real"]').val()
+        //     var keterangan_detail = form.find('input[name="keterangan_detail"]').val()
+        //     var id_bengkel = $('#id_bengkel').text()
+
+        //     if (jumlah_real == 0 | jumlah_real == '') {
+        //         continue
+        //     } else {
+        //         var id_sparepart = sparepart[i].id_sparepart
+        //         console.log(id_sparepart)
+        //         var obj = {
+        //             id_opname: idbaru,
+        //             id_sparepart: id_sparepart,
+        //             id_bengkel: id_bengkel,
+        //             jumlah_real: jumlah_real,
+        //             keterangan_detail: keterangan_detail
+        //         }
+        //         dataform2.push(obj)
+        //     }
+        // }
+
+        if (dataform2.length == 0 | dataform2 == '') {
+            $('#alertsparepartkosong').show()
         } else {
             var data = {
                 _token: _token,
@@ -324,6 +378,7 @@
                 data: data,
                 success: function (response) {
                     window.location.href = '/inventory/Opname'
+                   
                 },
                 error: function (response) {
                     console.log(response)
@@ -339,6 +394,7 @@
 
         var jumlah_real = $(`#stock-real-${id_sparepart}`).val()
         var keterangan_detail = $(`#keterangan-${id_sparepart}`).val()
+        var selisih = $(`#selisih-${id_sparepart}`).val()
 
         if (jumlah_real == 0 | jumlah_real == '') {
             alert('Quantity Kosong')
@@ -350,15 +406,14 @@
             var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
             var satuan = $(data.find('.satuan')[0]).text()
             var template = $($('#template_delete_button').html())
-
             var table = $('#dataTablekonfirmasi').DataTable()
             // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
             var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
             table.row(row).remove().draw();
 
             $('#dataTablekonfirmasi').DataTable().row.add([
-                kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart, merk_sparepart, satuan,
-                jumlah_real, keterangan_detail
+                kode_sparepart, `<span id=${id_sparepart}>${kode_sparepart}</span>`, nama_sparepart, merk_sparepart, satuan,
+                jumlah_real,selisih, keterangan_detail
             ]).draw();
         }
     }

@@ -346,6 +346,7 @@
 
         for (var i = 0; i < sparepart.length; i++) {
             var form = $('#form-' + sparepart[i].id_sparepart)
+            // console.log(form)
             var qty_retur = form.find('input[name="qty_retur"]').val()
             var keterangan = form.find('textarea[name="keterangan"]').val()
             var id_bengkel = $('#id_bengkel').text()
@@ -354,6 +355,7 @@
                 continue
             } else {
                 var id_sparepart = sparepart[i].id_sparepart
+                console.log(id_sparepart)
                 var obj = {
                     id_sparepart: id_sparepart,
                     id_retur: id_retur,
@@ -361,7 +363,7 @@
                     qty_retur: qty_retur,
                     keterangan: keterangan,
                 }
-
+                
                 dataform2.push(obj)
             }
         }
@@ -377,18 +379,18 @@
                 sparepart: dataform2
             }
 
-            console.log(data)
+            // console.log(data)
 
             $.ajax({
                 method: 'put',
                 url: '/inventory/retur/' + id_retur,
                 data: data,
                 success: function (response) {
-                    window.location.href = '/inventory/retur'
+                    // window.location.href = '/inventory/retur'
 
                 },
                 error: function (response) {
-                    console.log(response)
+                    // console.log(response)
                 }
             });
         }
@@ -428,8 +430,6 @@
         var form = $('#form-' + id_sparepart)
         var qty_retur = form.find('input[name="qty_retur"]').val()
         var keterangan = form.find('textarea[name="keterangan"]').val()
-
-        console.log(keterangan)
 
         if (qty_retur == 0 | qty_retur == '') {
             alert('Data Inputan Ada yang belum terisi')

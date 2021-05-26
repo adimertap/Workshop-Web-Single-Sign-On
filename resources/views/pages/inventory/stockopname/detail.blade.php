@@ -136,17 +136,7 @@
                                                         @endif
                                                     </span>
                                                 </td>
-                                                <td>
-                                                    @if($opname->approve == 'Pending')
-                                                    Menunggu Approval
-                                                    @elseif($opname->approve == 'Not Approved')
-                                                    {{ $opname->approve }}
-                                                    @elseif($opname->approve == 'Approved')
-                                                    {{ $detail->selisih }}
-                                                    @else
-                                                    <span>
-                                                        @endif
-                                                    </span>
+                                                <td>{{ $detail->pivot->selisih }}
                                                 </td>
                                                 <td>{{ $detail->pivot->keterangan_detail }}</td>
                                             </tr>

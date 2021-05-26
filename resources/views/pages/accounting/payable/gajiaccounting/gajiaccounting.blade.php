@@ -107,13 +107,15 @@
                                                     @endif
                                             </td>
                                             <td> @if($item->status_dana == 'Dana Belum Cair' and $item->status_jurnal == 'Belum Diposting')
-                                                <span>Menunggu Pembayaran Gaji..</span>
+                                                <span class="font-size-300 text-center" style="font-size: 11px;">Menunggu
+                                                    Pembayaran Gaji..</span>
                                                 @elseif ($item->status_dana == 'Dana Telah Diberikan' and $item->status_jurnal == 'Belum Diposting')
                                                 <button class="btn btn-danger btn-xs"
                                                     onclick="postingjurnal('{{ $item->bulan_gaji }}', '{{ $item->tahun_gaji }}')"
                                                     type="button" data-dismiss="modal">Posting Jurnal?</button>
-                                                @elseif ($item->status_jurnal == 'Sudah Diposting')
-                                                Gas
+                                                @elseif ($item->status_dana == 'Dana Telah Diberikan' and $item->status_jurnal == 'Sudah Diposting')
+                                                <span class="badge badge-success"> {{ $item->status_jurnal }}
+                                                @else
                                                 <span>
                                                     @endif
                                                 </span>

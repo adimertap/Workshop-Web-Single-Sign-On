@@ -20,7 +20,7 @@ class GajiAccountingController extends Controller
      */
     public function index()
     {
-        $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_diterima','status_dana')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_diterima, status_dana')->get();
+        $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_diterima','status_dana','status_jurnal')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_diterima, status_dana, status_jurnal')->get();
 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
@@ -31,7 +31,7 @@ class GajiAccountingController extends Controller
 
     public function postingjurnal(Request $request){
 
-        $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_diterima','status_dana','id_jenis_transaksi')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_diterima, status_dana, id_jenis_transaksi')
+        $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_diterima','status_dana','id_jenis_transaksi','status_jurnal')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_diterima, status_dana, id_jenis_transaksi, status_jurnal')
         ->where('bulan_gaji', $request->bulan_gaji)->where('tahun_gaji', $request->tahun_gaji)->first();
 
         $jurnal = new Jurnalpengeluaran;
@@ -43,6 +43,10 @@ class GajiAccountingController extends Controller
         $jurnal->id_jenis_transaksi = $gajipegawai->id_jenis_transaksi;
         $jurnal->jenis_jurnal = 'Gaji_Karyawan';
         $jurnal->save();
+
+
+        $gajipegawai->status_jurnal = 'Sudah Diposting';
+        $gajipegawai->save();
     }
 
     /**

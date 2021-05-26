@@ -70,7 +70,7 @@
                     </div>
                     <h2 class="m-0 font-weight-bold text-primary" id="clock" style="text-align: center"></h2>
                     <div class="text-center">
-                    <span class="m-0 font-weight-bold text-primary">Jam Kerja : </span><span class="m-0 font-weight-bold text-primary">{{\Carbon\Carbon::createFromFormat('H:i:s',$bengkel->jam_masuk_kerja)->format('h:i')}} AM - {{\Carbon\Carbon::createFromFormat('H:i:s',$bengkel->jam_keluar_kerja)->format('h:i')}} PM</span>
+                    <span class="m-0 font-weight-bold text-primary">Jam Kerja : </span><span class="m-0 font-weight-bold text-primary">{{\Carbon\Carbon::createFromFormat('H:i:s',$bengkel->jam_buka_bengkel)->format('h:i')}} AM - {{\Carbon\Carbon::createFromFormat('H:i:s',$bengkel->jam_tutup_bengkel)->format('h:i')}} PM</span>
                     </div>
                   
                     <hr class="my-2">
@@ -247,7 +247,6 @@
                             class="form-control @error('absensi') is-invalid @enderror">
                             <option> Pilih Absen Pegawai</option>
                             <option value="Absen_Pagi">Masuk</option>
-                            {{-- <option value="Masuk">Masuk</option> --}}
                             <option value="Ijin">Ijin</option>
                             <option value="Sakit">Sakit</option>
                             <option value="Cuti">Cuti</option>

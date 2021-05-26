@@ -121,7 +121,7 @@
                                                 </th>
                                                 <td>{{ $detail->nama_sparepart }}</td>
                                                 <td>{{ $detail->Rak->nama_rak }}</td>
-                                                <td>{{ $detail->jumlah_real }}</td>
+                                                <td>{{ $detail->pivot->jumlah_real }}</td>
                                                 <td>
                                                     @if($opname->approve == 'Pending')
                                                     Menunggu Approval
@@ -134,19 +134,9 @@
                                                         @endif
                                                     </span>
                                                 </td>
-                                                <td>
-                                                    @if($opname->approve == 'Pending')
-                                                    Menunggu Approval
-                                                    @elseif($opname->approve == 'Not Approved')
-                                                    {{ $opname->approve }}
-                                                    @elseif($opname->approve == 'Approved')
-                                                    {{ $detail->selisih }}
-                                                    @else
-                                                    <span>
-                                                        @endif
-                                                    </span>
+                                                <td>{{ $detail->pivot->selisih }}
                                                 </td>
-                                                <td>{{ $detail->keterangan_detail }}</td>
+                                                <td>{{ $detail->pivot->keterangan_detail }}</td>
                                             </tr>
                                             @empty
                                             <tr>
