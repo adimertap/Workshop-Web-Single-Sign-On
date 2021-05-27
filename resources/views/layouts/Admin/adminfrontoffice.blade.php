@@ -9,30 +9,25 @@
     <meta name="author" content="" />
     <title>Front Office System</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
-    <link href="{{ asset('node_modules\air-datepicker\dist\css\datepicker.min.css')}}" rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}">
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="{{ url('/node_modules/air-datepicker/dist/css/datepicker.css') }}">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
-    <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet"
-        crossorigin="anonymous" />
     <link rel="icon" type="image/x-icon" href={{ url('backend/dist/assets/img/favicon.png')}} />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script data-search-pseudo-elements defer
         src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.27.0/feather.min.js" crossorigin="anonymous">
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ url('/node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('node_modules\air-datepicker\dist\js\datepicker.min.js') }}"></script>
-    <script src="{{ asset('node_modules\air-datepicker\dist\js\i18n\datepicker.en.js') }}"></script>
 </head>
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
         <a class="navbar-brand" href="{{ route('dashboardfrontoffice')}}">
             <i class="fas fa-users-cog mr-2"></i>
-            Front Office System 
+            Front Office System
         </a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
                 data-feather="menu"></i></button>
@@ -164,8 +159,7 @@
                         <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                         Account
                     </a>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                         Logout
@@ -231,7 +225,8 @@
                         {{-- FRONTOFFICE SYSTEM --}}
                         <div class="sidenav-menu-heading">Front Office System</div>
 
-                        <a class="nav-link collapsed" href="{{route('pelayananservice.index')}}"  aria-expanded="false" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="{{route('pelayananservice.index')}}" aria-expanded="false"
+                            aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
                                 <i class="fas fa-cog"></i>
                             </div>
@@ -239,12 +234,14 @@
                         </a>
 
                         {{-- Inventory --}}
-                        <a class="nav-link collapsed" href="{{route('penjualansparepart.index')}}"  aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="{{route('penjualansparepart.index')}}" aria-expanded="false"
+                            aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
                             Penjualan Sparepart
                         </a>
 
-                        <a class="nav-link collapsed" href="{{route('customerterdaftar.index')}}"  aria-expanded="false" aria-controls="collapseComponents">
+                        <a class="nav-link collapsed" href="{{route('customerterdaftar.index')}}" aria-expanded="false"
+                            aria-controls="collapseComponents">
                             <div class="nav-link-icon"><i class="fas fa-users"></i></div>
                             Customer Terdaftar
                         </a>
@@ -318,6 +315,7 @@
             document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
             document.getElementById('clockmodal').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
         }
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
@@ -326,11 +324,11 @@
     <script src="{{ url('/backend/dist/js/scripts.js')}}"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="{{ url('/backend/dist/assets/demo/datatables-demo.js')}}"></script>
-    <script src="{{ url('/node_modules/air-datepicker/dist/js/datepicker.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" crossorigin="anonymous"></script>
-    <script src="{{ url('/backend/dist/assets/demo/date-range-picker-demo.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="{{ url('/backend/dist/assets/demo/datatables-demo.js') }}"></script>

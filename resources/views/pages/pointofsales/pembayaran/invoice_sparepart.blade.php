@@ -136,9 +136,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr class="text-right pb-0 nominal-error" hidden="">
-                                    <td class="text-danger nominal-min">Nominal bayar kurang</td>
-                                </tr>
                             </tbody>
                             </thead>
                         </table>
@@ -152,8 +149,8 @@
                                 <td class="text-right">
                                     <button class="btn btn-bayar btn-outline-success btn-block" id="validasibayar"
                                         data-toggle="modal" data-target="#modal_success" style="display: none"
-                                        type="button">Bayar
-                                        Sekarang</button>
+                                        type="button">Bayar Sekarang</button>
+                                    </form>
                                 </td>
                             </tr>
                         </table>
@@ -230,13 +227,13 @@
                                     <td>
                                         <span class="d-block little-td">Nominal Bayar</span>
                                         <div id="bayarModal"
-                                            class="h5 mb-0 font-weight-400 text-green nilai-total-modal"> Rp. 
+                                            class="h5 mb-0 font-weight-400 text-green nilai-total-modal"> Rp.
                                             {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
                                     </td>
                                     <td>
                                         <span class="d-block little-td">Kembalian</span>
                                         <div id="kembaliModal"
-                                            class="h5 mb-0 font-weight-400 text-danger nilai-total-modal"> Rp. 
+                                            class="h5 mb-0 font-weight-400 text-danger nilai-total-modal"> Rp.
                                             {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
                                     </td>
                                 </tr>

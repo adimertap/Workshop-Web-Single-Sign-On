@@ -51,7 +51,7 @@ class PembayaranSparepartController extends Controller
     public function show($id_penjualan_sparepart)
     {
         $pembayaran = PenjualanSparepart::with('Detailsparepart', 'Bengkel', 'Customer')->findOrFail($id_penjualan_sparepart);
-
+        // return $pembayaran;
         return view('pages.pointofsales.pembayaran.invoice_sparepart', compact('pembayaran'));
     }
 
@@ -75,7 +75,10 @@ class PembayaranSparepartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $status = PenjualanSparepart::findOrFail($id);
+        $status->status_bayar = 'Lunas';
+
+        $status->update();
     }
 
     /**
