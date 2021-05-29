@@ -24,7 +24,8 @@
     <div class="container-fluid mt-n10">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header">Pelayanan Service
+                <div class="card-header">
+                    Pelayanan Service
                 </div>
             </div>
             <div class="card-body">
@@ -98,11 +99,13 @@
                                             <td>
                                                 @if ($item->status == 'menunggu')
                                                 <span class="badge badge-danger"> Menunggu </span>
-                                                @else
-                                                <span class="badge badge-success"> Dikerjakan </span>
+                                                @elseif ($item->status == 'dikerjakan')
+                                                <span class="badge badge-primary"> Dikerjakan </span>
+                                                @elseif ($item->status == 'check_out')
+                                                <span class="badge badge-warning"> Pembayaran </span>
+                                                @elseif ($item->status == 'selesai')
+                                                <span class="badge badge-success"> Selesai Service </span>
                                                 @endif
-
-
 
                                             </td>
                                             <td>
@@ -145,8 +148,8 @@
 
     @forelse ($pelayanan as $item)
     {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
-    <div class="modal fade" id="Modaltambah-{{ $item->id_service_advisor }}" data-backdrop="static" tabindex="-1" role="dialog"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="Modaltambah-{{ $item->id_service_advisor }}" data-backdrop="static" tabindex="-1"
+        role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -186,6 +189,38 @@
     @endforelse
 
 </main>
+
+<script type="text/javascript">
+    $(function () {
+
+        var start = moment().subtract(29, 'days');
+        var end = moment();
+
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        }
+
+        $('#reportrange').daterangepicker({
+            startDate: start,
+            endDate: end,
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
+                    'month').endOf('month')]
+            }
+        }, cb);
+
+        cb(start, end);
+
+    });
+
+</script>
+
+
 
 
 @endsection
