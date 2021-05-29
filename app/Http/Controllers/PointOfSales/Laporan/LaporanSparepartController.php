@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\PointOfSales\Laporan;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PointOfSales\Pembayaran\PembayaranSparepartController;
+use App\Model\PointOfSales\LaporanPenjualanSparepart;
 use Illuminate\Http\Request;
 
 class LaporanSparepartController extends Controller
@@ -14,7 +16,8 @@ class LaporanSparepartController extends Controller
      */
     public function index()
     {
-        return view('pages.pointofsales.laporan.laporan_sparepart');
+        $laporan = LaporanPenjualanSparepart::with(['penjualan_sparepart.customer', 'pegawai'])->get();
+        return view('pages.pointofsales.laporan.laporan_sparepart', compact('laporan'));
     }
 
     /**

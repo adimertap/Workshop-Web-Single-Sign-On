@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Service;
 
 use App\Http\Controllers\Controller;
+use App\Model\Service\PenerimaanService;
 use App\Model\Service\PengerjaanService;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class PengerjaanServiceController extends Controller
      */
     public function index()
     {
-        return view('pages.service.pengerjaan_service.main');
+        $pengerjaan = PenerimaanService::with(['customer_bengkel', 'kendaraan', 'pegawai', 'mekanik', 'pitstop'])->get();
+        // return $pengerjaan;
+        return view('pages.service.pengerjaan_service.main', compact('pengerjaan'));
     }
 
     /**

@@ -84,7 +84,7 @@
                                     </td>
                                     <td class="text-right pb-0 d-flex justify-content-end mt-2">
                                         <input type="number" class="form-control diskon-input mr-2 col-4" min="0"
-                                            max="100" name="diskon" value="0" hidden="">
+                                            max="100" name="diskon" value="0" hidden="" id="laporan_diskon">
                                         <span class="nilai-diskon-td mr-1 h5 mb-0 font-weight-700">0</span>
                                         <span class="h5 mb-0 font-weight-700">%</span>
                                     </td>
@@ -99,8 +99,8 @@
                                             hidden="">Simpan</a>
                                     </td>
                                     <td class="text-right pb-0 d-flex justify-content-end mt-2">
-                                        <input type="number" class="form-control ppn-input mr-2 col-4" min="0" max="100"
-                                            name="ppn" value="0" hidden="">
+                                        <input type="number" class="form-control ppn-input mr-2 col-4" id="laporan_ppn"
+                                            min="0" max="100" name="ppn" value="0" hidden="">
                                         <span class="nilai-ppn-td mr-1 h5 mb-0 font-weight-700">0</span>
                                         <span class="h5 mb-0 font-weight-700">%</span>
                                     </td>
@@ -192,65 +192,131 @@
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-body bg-grey">
-                    <div class="row">
-                        <div class="col-12 text-center mb-4">
-                            <img src="{{ asset('gif/success4.gif') }}" style="width: 60%">
-                            <h4 class="transaction-success-text">Transaksi Berhasil</h4>
-                        </div>
-                        <div class="col-12">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <span class="d-block little-td">Kode Transaksi</span>
-                                        <span class="d-block font-weight-bold">{{ $pembayaran->kode_penjualan }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="d-block little-td">Tanggal</span>
-                                        <span class="d-block font-weight-bold">{{ $pembayaran->tanggal }}</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="d-block little-td">Kasir</span>
-                                        <span
-                                            class="d-block font-weight-bold">{{ Auth::user()->pegawai->nama_pegawai }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="d-block little-td">Total Tagihan</span>
-                                        <div id="totalModal"
-                                            class="h5 mb-0 font-weight-600 text-primary nilai-total-modal">Rp.
-                                            {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="d-block little-td">Nominal Bayar</span>
-                                        <div id="bayarModal"
-                                            class="h5 mb-0 font-weight-400 text-green nilai-total-modal"> Rp.
-                                            {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
-                                    </td>
-                                    <td>
-                                        <span class="d-block little-td">Kembalian</span>
-                                        <div id="kembaliModal"
-                                            class="h5 mb-0 font-weight-400 text-danger nilai-total-modal"> Rp.
-                                            {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
-                                    </td>
-                                </tr>
-                            </table>
+                <form action="{{ route('pembayaransparepart.store') }}" method="POST" id="form1">
+                    @csrf
+                    <div class="modal-body bg-grey">
+                        <div class="row">
+                            <div class="col-12 text-center mb-4">
+                                <img src="{{ asset('gif/success4.gif') }}" style="width: 60%">
+                                <h4 class="transaction-success-text">Transaksi Berhasil</h4>
+                            </div>
+                            <div class="col-12">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            <span class="d-block little-td">Kode Transaksi</span>
+                                            <span id="laporan_kode_penjualan"
+                                                class="d-block font-weight-bold">{{ $pembayaran->kode_penjualan }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="d-block little-td">Tanggal</span>
+                                            <span id="laporan_tanggal"
+                                                class="d-block font-weight-bold">{{ $pembayaran->tanggal }}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="d-block little-td">Kasir</span>
+                                            <span id="laporan_kasir"
+                                                class="d-block font-weight-bold">{{ Auth::user()->pegawai->nama_pegawai }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="d-block little-td">Total Tagihan</span>
+                                            <div id="totalModal"
+                                                class="h5 mb-0 font-weight-600 text-primary nilai-total-modal">Rp.
+                                                {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="d-block little-td">Total Diskon</span>
+                                            <div id="totalDiskon"
+                                                class="h5 mb-0 font-weight-600 text-primary nilai-total-modal"></div>
+                                        </td>
+                                        <td>
+                                            <span class="d-block little-td">Total PPN</span>
+                                            <div id="totalPPN"
+                                                class="h5 mb-0 font-weight-600 text-primary nilai-total-modal"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="d-block little-td">Nominal Bayar</span>
+                                            <div id="bayarModal"
+                                                class="h5 mb-0 font-weight-400 text-green nilai-total-modal"> Rp.
+                                                {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
+                                        </td>
+                                        <td>
+                                            <span class="d-block little-td">Kembalian</span>
+                                            <div id="kembaliModal"
+                                                class="h5 mb-0 font-weight-400 text-danger nilai-total-modal"> Rp.
+                                                {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Tutup</button>
-                    <a href="" target="_blank" class="btn btn-sm btn-primary">Simpan</a>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-sm btn-primary"
+                            onclick="tambah_invoice({{ $pembayaran->id_penjualan_sparepart }})">Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </main>
 
 <script>
+    function tambah_invoice(id_penjualan_sparepart) {
+        var _token = $('#form1').find('input[name="_token"]').val()
+        var kode = $('#laporan_kode_penjualan').html()
+        var tanggal = $('#laporan_tanggal').html()
+        var total_tagihan = $('#totalModal').html()
+        var split_total_tagihan = total_tagihan.split('Rp.')[1].replace(',', '')
+            .trim()
+
+        var total_diskon = $('#totalDiskon').html()
+        var total_ppn = $('#totalPPN').html()
+        var total_bayar = $('#bayarModal').html()
+        var split_total_bayar = total_bayar.split('Rp.')[1].replace(',', '')
+            .trim()
+        
+        var total_kembalian = $('#kembaliModal').html()
+        var split_total_kembalian = total_kembalian.split('Rp.')[1].replace(',', '')
+            .trim()
+
+        // console.log(_token, kode, tanggal, total_tagihan, total_diskon, total_ppn, total_bayar, total_kembalian)
+
+
+        var data = {
+            _token: _token,
+            kode_penjualan: kode,
+            tanggal: tanggal,
+            total_tagihan: split_total_tagihan,
+            diskon: total_diskon,
+            ppn: total_ppn,
+            nominal_bayar: split_total_bayar,
+            kembalian: split_total_kembalian
+        }
+
+        $.ajax({
+            method: 'put',
+            url: '/pos/pembayaransparepart/' + id_penjualan_sparepart,
+            data: data,
+            success: function (response) {
+                window.location.href = '/pos/pembayaransparepart',
+                // console.log(response)
+                alert('Pembayaran telah berhasil')
+            },
+            error: function (error) {
+                console.log(error)
+            }
+
+        });
+    }
+
     function diskon() {
         var temp = parseInt($('input[name=temp]').val());
         var diskon = parseInt($('input[name=diskon]').val());
@@ -297,6 +363,10 @@
         $('#bayarModal').html('Rp. ' + parseInt(bayar).toLocaleString());
         var kembali = parseInt(bayar) - parseInt(total);
         $('#kembaliModal').html('Rp. ' + parseInt(kembali).toLocaleString());
+        var diskon = $('#laporan_diskon').val();
+        $('#totalDiskon').html(diskon);
+        var ppn = $('#laporan_ppn').val();
+        $('#totalPPN').html(ppn);
     });
 
     $(document).on('click', '.ubah-diskon-td', function (e) {
