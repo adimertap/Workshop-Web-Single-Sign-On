@@ -218,4 +218,11 @@ class MasterdatasparepartController extends Controller
             'gallery' => $gallery,
         ]);
     }
+
+    public function getmerk($id)
+    {
+        $merk = Merksparepart::where('id_jenis_sparepart', '=', $id)->pluck('merk_sparepart', 'id_merk');
+        // return $merk;
+        return json_encode($merk);
+    }
 }

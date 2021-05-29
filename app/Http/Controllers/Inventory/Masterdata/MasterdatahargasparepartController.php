@@ -23,7 +23,8 @@ class MasterdatahargasparepartController extends Controller
             'Sparepart', 'Supplier'
         ])->get();
 
-        $sparepart = Sparepart::all();
+        $sparepart = Sparepart::where([['status_harga', '=', 'Belum Terisi']])->get();
+        // $sparepart = Sparepart::all();
         $supplier = Supplier::all();
 
         return view('pages.inventory.masterdata.hargasparepart', compact('harga','sparepart','supplier'));
@@ -52,6 +53,11 @@ class MasterdatahargasparepartController extends Controller
         $harga->id_sparepart = $request->id_sparepart;
         $harga->id_supplier = $request->id_supplier;
         $harga->harga_jual = $request->harga_jual;
+
+        $sparepart = Sparepart::findOrFail($harga->id_sparepart);
+        $sparepart->status_harga = 'Sudah Terisi';
+        $sparepart->save();
+        // $sparepart = Sparepart::where('id_sparepart',$request->id_sparepart)->first();
 
         $harga->save();
         return redirect()->back()->with('messageberhasil','Data Harga Sparepart Berhasil ditambahkan');

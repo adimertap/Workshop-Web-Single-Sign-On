@@ -386,11 +386,11 @@
                 url: '/inventory/retur/' + id_retur,
                 data: data,
                 success: function (response) {
-                    // window.location.href = '/inventory/retur'
+                    window.location.href = '/inventory/retur'
 
                 },
                 error: function (response) {
-                    // console.log(response)
+                    console.log(response)
                 }
             });
         }

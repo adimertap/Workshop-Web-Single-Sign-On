@@ -93,7 +93,7 @@
                                                 <select class="form-control" name="id_jenis_sparepart"
                                                     id="id_jenis_sparepart"
                                                     class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
-                                                    <option>Pilih Jenis</option>
+                                                    <option value="" holder>Pilih Jenis</option>
                                                     @foreach ($jenis_sparepart as $item)
                                                     <option value="{{ $item->id_jenis_sparepart }}">
                                                         {{ $item->jenis_sparepart }}
@@ -106,7 +106,7 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="id_merk">Merk Sparepart</label><span
+                                            <label class="small mb-1 mr-1" for="merk">Merk Sparepart</label><span
                                                 class="mr-4 mb-3" style="color: red">*</span>
                                             <div class="input-group input-group-joined">
                                                 <div class="input-group-append">
@@ -117,13 +117,8 @@
                                                 </div>
                                                 <select class="form-control" name="id_merk" id="id_merk"
                                                     class="form-control @error('id_merk') is-invalid @enderror">
-                                                    <option>Pilih Merk</option>
-                                                    @foreach ($merk_sparepart as $item)
-                                                    <option value="{{ $item->id_merk }}">{{ $item->merk_sparepart }}
-                                                    </option>
-                                                    @endforeach
+                                                    <option value="" holder>Pilih Merk</option>
                                                 </select>
-
                                             </div>
                                             @error('id_merk')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
@@ -498,6 +493,32 @@
 <script>
     $(document).ready(function () {
         $('#validasierror').click();
+
+        $('select[name="id_jenis_sparepart"]').on('change', function () {
+                var id_jenis_sparepart = $(this).val();
+                if (id_jenis_sparepart) {
+                    $.ajax({
+                        url: 'getmerk/' + id_jenis_sparepart,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_merk"]').empty();
+                            $('select[name="id_merk"]').append(
+                                '<option value="" holder>Pilih Merk</option>')
+                            $.each(data, function (key, value) {
+                                $('select[name="id_merk"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        },
+                        error: function (response) {
+                            console.log(response)
+                        }
+                    });
+                } else {
+                    $('select[name="id_merk"]').empty();
+                }
+            });
     });
 
 </script>

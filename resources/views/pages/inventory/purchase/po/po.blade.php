@@ -419,9 +419,6 @@
     </div>
 </div>
 
-
-
-
 <script>
     function tambahsupplier(event, id_supplier) {
         var data = $('#item-' + id_supplier)

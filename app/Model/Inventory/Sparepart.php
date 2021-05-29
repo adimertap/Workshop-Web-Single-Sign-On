@@ -29,6 +29,7 @@ class Sparepart extends Model
         'stock',
         'stock_min',
         'status_jumlah',
+        'status_harga',
         'berat_sparepart'
     ];
 

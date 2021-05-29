@@ -124,7 +124,7 @@
                                                 Bayar
                                             </a>
                                             @elseif ($item->status_bayar == 'Sudah Dibayar')
-                                            <span class="badge badge-secondary">{{ $item->tanggal_bayar }}
+                                            <span class="badge badge-warning">  <i class="fa fa-check mr-1"></i>{{ $item->tanggal_bayar }}
                                             @elseif($item->status_prf == 'Not Approved')
                                             <span class="font-size-300" style="font-size: 12px;">Data diTolak</span>
                                             @else

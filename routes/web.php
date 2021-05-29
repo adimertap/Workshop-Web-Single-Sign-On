@@ -27,6 +27,7 @@ Route::get("/getkabupaten/{id}", "Auth\RegisterController@kabupaten_baru");
 Route::get("/getkecamatan/{id}", "Auth\RegisterController@kecamatan_baru");
 Route::get("/getdesa/{id}", "Auth\RegisterController@desa_baru");
 
+
 Route::get('account/password', 'Account\PasswordController@edit')->name('password.edit');
 Route::patch('account/password', 'Account\PasswordController@update')->name('password.edit');
 
@@ -170,11 +171,10 @@ Route::group(
             ->group(function () {
                 Route::get('/', 'MasterdatasparepartController@index')
                     ->name('masterdatasparepart');
-
                 Route::get('sparepart/{id_sparepart}/gallery', 'MasterdatasparepartController@gallery')
                     ->name('sparepart.gallery');
-
                 Route::resource('sparepart', 'MasterdatasparepartController');
+                Route::get('sparepart/getmerk/{id}', 'MasterdatasparepartController@getmerk');
             });
 
         Route::prefix('inventory/gallerysparepart')

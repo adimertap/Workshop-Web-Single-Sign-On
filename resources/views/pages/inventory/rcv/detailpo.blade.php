@@ -118,10 +118,10 @@
                                             <td>{{ $detail->pivot->qty_po_sementara }}</td>
                                             <td>{{ $detail->Kemasan->nama_kemasan }}</td>
                                             <td>Rp.
-                                                {{ number_format($detail->pivot->harga_satuan,0,',','.') }}
+                                                {{ number_format($detail->pivot->harga_satuan,2,',','.') }}
                                             </td>
                                             <td>Rp.
-                                                {{ number_format($detail->pivot->total_harga,0,',','.') }}
+                                                {{ number_format($detail->pivot->total_harga,2,',','.') }}
                                             </td>
                                         </tr>
                                         @empty
@@ -136,7 +136,7 @@
                                             Total Harga
                                         </td>
                                         <td >
-                                            Rp.{{ number_format($po->grand_total,0,',','.') }}
+                                            Rp.{{ number_format($po->grand_total,2,',','.') }}
                                         </td>
                                         </tr>
                                     </tbody>

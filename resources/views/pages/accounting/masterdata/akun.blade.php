@@ -111,7 +111,7 @@
 {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
 <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
                 <h5 class="modal-title" id="staticBackdropLabel">Set Akun</h5>
@@ -124,6 +124,9 @@
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
                     <hr>
                     </hr>
+                    <div class="form-group">
+                        
+                    </div>
                     <div class="form-group">
                         <label class="small mb-1 mr-1" for="kode_akun">Kode akun</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="kode_akun" type="text" id="kode_akun"

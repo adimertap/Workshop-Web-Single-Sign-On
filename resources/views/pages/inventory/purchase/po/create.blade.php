@@ -297,6 +297,9 @@
             </div>
             <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
                 <div class="modal-body">
+                    <div class="small mb-2">
+                        <span class="font-weight-500 text-primary">{{ $item->nama_sparepart }}</span>
+                    </div>
                     <div class="form-group">
                         <label class="small mb-1" for="qty">Masukan Quantity Pesanan</label>
                         <input class="form-control" name="qty" type="text" id="qty" placeholder="Input Jumlah Pesanan"

@@ -121,7 +121,7 @@
                                                             {{ $item->status_prf }}
                                                         </span>
                                             </td>
-                                            <td>@if($item->status_prf == 'Telah Dibuat' and $item->status_jurnal == 'Belum Diposting')
+                                            <td>@if($item->status_jurnal == 'Belum Diposting')
                                                 <a href="" class="btn btn-danger btn-xs" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modaljurnal-{{ $item->id_payable_invoice }}">
