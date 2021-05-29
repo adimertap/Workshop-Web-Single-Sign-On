@@ -119,7 +119,7 @@ Route::group(
                 Route::resource('pembayaranservice', 'PembayaranServiceController');
                 Route::resource('invoiceservice', 'InvoiceServiceController');
                 Route::resource('pembayaransparepart', 'PembayaranSparepartController');
-                Route::resource('invoicesparepart', 'InvoiceSparepartController');
+                // Route::resource('invoicesparepart', 'InvoiceSparepartController');
             });
 
 
@@ -559,7 +559,7 @@ Route::group(
                     ->name('jurnal-pengeluaran-pajak');
                 Route::post('PRF/{id_prf}', 'JurnalPengeluaranController@Prf')
                     ->name('jurnal-pengeluaran-prf');
-         });
+            });
 
         // CATATAN ADIM -------------------------------------------------------------------- Catatan Adim
         // NOTES ADIM

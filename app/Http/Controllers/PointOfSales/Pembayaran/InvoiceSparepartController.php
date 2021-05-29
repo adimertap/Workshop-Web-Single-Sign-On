@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PointOfSales\Pembayaran;
 
 use App\Http\Controllers\Controller;
 use App\Model\FrontOffice\PenjualanSparepart;
+use App\Model\PointOfSales\LaporanPenjualanSparepart;
 use Illuminate\Http\Request;
 
 class InvoiceSparepartController extends Controller
@@ -15,8 +16,8 @@ class InvoiceSparepartController extends Controller
      */
     public function index()
     {
-        $penjualan_sparepart = PenjualanSparepart::where([['status_bayar', '=', 'Belum Bayar']])->get();
-        return view('pages.pointofsales.pembayaran.invoice_sparepart', compact('penjualan_sparepart'));
+        // $penjualan_sparepart = PenjualanSparepart::where([['status_bayar', '=', 'Belum Bayar']])->get();
+        // return view('pages.pointofsales.pembayaran.invoice_sparepart', compact('penjualan_sparepart'));
     }
 
     /**
@@ -69,9 +70,16 @@ class InvoiceSparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_penjualan_sparepart)
     {
-        //
+        $penjualan_sparepart = PenjualanSparepart::findOrFail($id_penjualan_sparepart);
+
+        $penjualan_sparepart->status = 'Lunas';
+        $penjualan_sparepart->save();
+
+        $laporan_sparepart = new LaporanPenjualanSparepart;
+        $laporan_sparepart->id_penjualan_sparepart = $id_penjualan_sparepart;
+        $laporan_sparepart->diskon = 
     }
 
     /**

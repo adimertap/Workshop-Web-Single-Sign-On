@@ -5,8 +5,10 @@ namespace App\Http\Controllers\PointOfSales\Pembayaran;
 use App\Http\Controllers\Controller;
 use App\Model\FrontOffice\CustomerBengkel;
 use App\Model\FrontOffice\PenjualanSparepart;
+use App\Model\PointOfSales\LaporanPenjualanSparepart;
 use App\Model\SingleSignOn\Bengkel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PembayaranSparepartController extends Controller
 {
@@ -73,12 +75,25 @@ class PembayaranSparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_penjualan_sparepart)
     {
-        $status = PenjualanSparepart::findOrFail($id);
+        $status = PenjualanSparepart::findOrFail($id_penjualan_sparepart);
         $status->status_bayar = 'Lunas';
-
         $status->update();
+
+        $laporan_sparepart = new LaporanPenjualanSparepart;
+        $laporan_sparepart->id_penjualan_sparepart = $id_penjualan_sparepart;
+        $laporan_sparepart->diskon = $request->diskon;
+        $laporan_sparepart->ppn = $request->ppn;
+        $laporan_sparepart->total_tagihan = $request->total_tagihan;
+        $laporan_sparepart->nominal_bayar = $request->nominal_bayar;
+        $laporan_sparepart->kembalian = $request->kembalian;
+        $laporan_sparepart->id_pegawai = Auth::user()->pegawai->id_pegawai;
+        $laporan_sparepart->id_bengkel = Auth::user()->bengkel->id_bengkel;
+
+        $laporan_sparepart->save();
+
+        return $request;
     }
 
     /**

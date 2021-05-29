@@ -45,14 +45,13 @@
                         </button>
                     </div>
                     @endif
-                    {{-- SHOW ENTRIES --}}
+
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
                                 <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
                                     cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                     <thead>
-                                        <thead>
                                         <tr role="row">
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
@@ -61,7 +60,7 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Kode SA</th>
+                                                style="width: 20px;">Kode SPK</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
@@ -71,27 +70,72 @@
                                                 style="width: 77px;">Kendaraan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Keluhan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Pitstop</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Mekanik</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Jasa Service</th>
+                                                style="width: 77px;">Tanggal</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Sparepart</th>
+                                                style="width: 77px;">Status</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Action</th>
                                         </tr>
                                     </thead>
-                                    </thead>
                                     <tbody>
+                                        @forelse ($pengerjaan as $item)
+                                        @if ($item->status == 'dikerjakan' || $item->status == 'check_out')
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$item->kode_sa}}</td>
+                                            <td>{{$item->kendaraan->nama_kendaraan}}</td>
+                                            <td>{{$item->customer_bengkel->nama_customer}}</td>
+                                            <td>{{ $item->pitstop? $item->pitstop->nama_pitstop:"-" }}</td>
+                                            <td>{{$item->mekanik->nama_pegawai}}</td>
+                                            <td>{{$item->date}}</td>
+                                            <td>
+                                                @if ($item->status == 'dikerjakan')
+                                                <span class="badge badge-primary"> Dikerjakan </span>
+                                                @elseif ($item->status == 'check_out')
+                                                <span class="badge badge-warning"> Selesai Dikerjakan </span>
+                                                @elseif ($item->status == 'selesai')
+                                                <span class="badge badge-success"> Selesai Service </span>
+                                                @endif
 
+                                            </td>
+                                            <td>
+
+                                                @if ($item->status == 'dikerjakan')
+
+                                                <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Detail">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="" class="btn btn-success btn-datatable" data-placement="top"
+                                                    title="" data-original-title="Kerjakan" data-toggle="modal"
+                                                    data-target="#Modaltambah-{{ $item->id_service_advisor }}">
+                                                    <i class="fa fa-tools"></i>
+                                                </a>
+                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                    data-toggle="modal" data-original-title="Hapus"
+                                                    data-target="#Modalhapus-">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endif
+
+                                        @empty
+
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
