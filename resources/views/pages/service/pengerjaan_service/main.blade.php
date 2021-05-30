@@ -108,26 +108,28 @@
                                             </td>
                                             <td>
 
-                                                @if ($item->status == 'dikerjakan')
+                                                @if ($item->status == 'dikerjakan'|| $item->status == 'check_out')
 
                                                 <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Detail">
+                                                    data-placement="top" data-original-title="Detail">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="" class="btn btn-success btn-datatable" data-placement="top"
-                                                    title="" data-original-title="Kerjakan" data-toggle="modal"
-                                                    data-target="#Modaltambah-{{ $item->id_service_advisor }}">
-                                                    <i class="fa fa-tools"></i>
-                                                </a>
+
+                                                @endif
+
+                                                @if($item->status == 'dikerjakan')
                                                 <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Edit">
+                                                    data-placement="top" data-original-title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                    data-toggle="modal" data-original-title="Hapus"
-                                                    data-target="#Modalhapus-">
-                                                    <i class="fas fa-trash"></i>
+                                                <a href="" class="btn btn-success btn-sm mt-1" type="button">
+                                                    Selesai
                                                 </a>
+                                                {{-- <a href="" class="btn btn-success btn-datatable" data-placement="top"
+                                                    data-original-title="Kerjakan" data-toggle="modal"
+                                                    data-target="#Modaltambah-{{ $item->id_service_advisor }}">
+                                                    <i class="fa fa-tools"></i>
+                                                </a> --}}
                                                 @endif
                                             </td>
                                         </tr>

@@ -83,7 +83,7 @@
                                                 style="width: 77px;">Status</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Action</th>
+                                                style="width: 107px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -116,19 +116,20 @@
                                                 </a>
                                                 @if ($item->status == 'menunggu')
 
-                                                <a href="" class="btn btn-success btn-datatable" data-placement="top"
-                                                    title="" data-original-title="Kerjakan" data-toggle="modal"
-                                                    data-target="#Modaltambah-{{ $item->id_service_advisor }}">
-                                                    <i class="fa fa-tools"></i>
-                                                </a>
                                                 <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                    data-toggle="modal" data-original-title="Hapus"
-                                                    data-target="#Modalhapus-">
+                                                    data-original-title="Hapus" data-toggle="modal"
+                                                    data-target="#Modalhapus-{{ $item->id_service_advisor }}">
                                                     <i class="fas fa-trash"></i>
+                                                </a>
+
+                                                <a data-target="#Modaltambah-{{ $item->id_service_advisor }}"
+                                                    data-toggle="modal" class="btn btn-success btn-sm mt-1 px-3"
+                                                    type="button" style="color: white">
+                                                    Kerjakan
                                                 </a>
                                                 @endif
                                             </td>
@@ -179,6 +180,35 @@
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                         <button class="btn btn-primary" type="Submit">Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @empty
+
+    @endforelse
+
+    @forelse ($pelayanan as $item)
+    <div class="modal fade" id="Modalhapus-{{ $item->id_service_advisor }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger-soft">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('pelayananservice.destroy', $item->id_service_advisor) }}" method="POST"
+                    class="d-inline">
+                    @csrf
+                    @method('delete')
+                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Service {{ $item->kode_sa }} pada
+                        tanggal
+                        {{ $item->date }}?</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-danger" type="submit">Ya! Hapus</button>
                     </div>
                 </form>
             </div>
