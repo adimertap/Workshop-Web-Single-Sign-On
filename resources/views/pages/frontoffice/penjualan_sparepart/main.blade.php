@@ -105,19 +105,26 @@
 
                                             </td>
                                             <td>
+                                                @if ($item->status_bayar == 'Belum Bayar' ||
+                                                $penjualan->status_bayar = 'Lunas')
                                                 <a href="{{ route('penjualansparepart.show', $item->id_penjualan_sparepart) }}"
                                                     class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Detail">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
+                                                @endif
+
+                                                @if ($item->status_bayar == 'Belum Bayar')
                                                 <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_penjualan_sparepart }}">
+                                                <a href="" class="btn btn-danger btn-datatable" type="button" data-original-title="Hapus"
+                                                    data-toggle="modal"
+                                                    data-target="#Modalhapus-{{ $item->id_penjualan_sparepart }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
+                                                @endif
                                             </td>
                                         </tr>
                                         @empty

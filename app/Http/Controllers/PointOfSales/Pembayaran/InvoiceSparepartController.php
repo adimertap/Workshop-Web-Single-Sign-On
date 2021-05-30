@@ -72,14 +72,7 @@ class InvoiceSparepartController extends Controller
      */
     public function update(Request $request, $id_penjualan_sparepart)
     {
-        $penjualan_sparepart = PenjualanSparepart::findOrFail($id_penjualan_sparepart);
-
-        $penjualan_sparepart->status = 'Lunas';
-        $penjualan_sparepart->save();
-
-        $laporan_sparepart = new LaporanPenjualanSparepart;
-        $laporan_sparepart->id_penjualan_sparepart = $id_penjualan_sparepart;
-        $laporan_sparepart->diskon = 
+        // 
     }
 
     /**

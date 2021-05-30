@@ -4,6 +4,8 @@ namespace App\Http\Controllers\FrontOffice;
 
 use App\Model\FrontOffice\PelayananService;
 use App\Http\Controllers\Controller;
+use App\Model\FrontOffice\DetailPenerimaanServiceJasa;
+use App\Model\FrontOffice\DetailPenerimaanServiceSparepart;
 use App\Model\FrontOffice\MasterDataPitstop;
 use App\Model\Service\PenerimaanService;
 use Carbon\Carbon;
@@ -106,8 +108,14 @@ class PelayananServiceController extends Controller
      * @param  \App\PelayananService  $pelayananService
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PelayananService $pelayananService)
+    public function destroy(PenerimaanService $id_service_advisor)
     {
-        //
+        $pelayanan = PenerimaanService::findOrFail($id_service_advisor);
+        $pelayanan = DetailPenerimaanServiceJasa::where('id_service_advisor', $id_service_advisor);
+        $pelayanan = DetailPenerimaanServiceSparepart::where('id_service_advisor', $id_service_advisor);
+
+        $pelayanan->delete();
+
+        return redirect()->back()->with('messagehapus', 'Data Pelayanan Service Berhasil dihapus');
     }
 }
