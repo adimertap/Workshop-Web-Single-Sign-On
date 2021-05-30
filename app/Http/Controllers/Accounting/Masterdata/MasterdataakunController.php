@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Accounting\Masterdata;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Accounting\Akunrequest;
 use App\Model\Accounting\Akun;
+use App\Model\Accounting\AkunInduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,8 @@ class MasterdataakunController extends Controller
      */
     public function index()
     {
-        $akun = Akun::get();
+        $akun = Akun::all();
+     
 
         return view('pages.accounting.masterdata.akun', compact('akun'));
     }

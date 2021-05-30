@@ -12,20 +12,27 @@ class Akun extends Model
     protected $primaryKey = 'id_akun';
 
     protected $fillable = [
+        // 'id_bengkel',
+        'id_akun_induk',
         'kode_akun',
-        'id_bengkel',
         'nama_akun',
-        'akun_grup'
+        'akun_grup',
+        'level_akun',
+        'status_akun',
+        'nama_akun_induk',
+        'kode_akun_induk',
+
     ];
 
     protected $hidden =[ 
-    
+        'deleted_at'
     ];
 
     public $timestamps = false;
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope(new OwnershipScope);
+    // }
+
 }
