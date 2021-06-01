@@ -72,7 +72,7 @@
                                             <td>Rp. {{ number_format($item->total_bayar,2,',','.') }}</td>
                                             <td>
                                                 <a href="{{route('pembayaransparepart.show', $item->id_penjualan_sparepart)}}"
-                                                    class="btn btn-outline-success btn-sm" type="button">
+                                                    class="btn btn-success btn-sm" type="button">
                                                     Pembayaran
                                                 </a>
                                             </td>

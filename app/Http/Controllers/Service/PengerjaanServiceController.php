@@ -71,9 +71,13 @@ class PengerjaanServiceController extends Controller
      * @param  \App\PengerjaanService  $pengerjaanService
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PengerjaanService $pengerjaanService)
+    public function update(Request $request, $id_service_advisor)
     {
-        //
+        $selesai = PenerimaanService::findOrFail($id_service_advisor);
+        $selesai->status = 'selesai_service';
+
+        $selesai->update();
+        return redirect()->back()->with('messageberhasil', 'Service berhasil diselesaikan');
     }
 
     /**

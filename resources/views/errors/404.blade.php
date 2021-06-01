@@ -32,7 +32,7 @@
                             <div class="text-center mt-4">
                                 <img class="img-fluid p-4"
                                     src="/backend/src/assets/img/freepik/404-error-with-a-cute-animal-pana.svg" alt="">
-                                <p class="lead">Sistem Bengkel Mengalami Error, Mungkin Anda Salah Memasukan URL. Coba Lagi!</p>
+                                <p class="lead">URL yang anda masukkan salah!</p>
                                 <a class="text-arrow-icon" href="{{ route('dashboardsso') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -52,7 +52,7 @@
             <footer class="footer mt-auto footer-light">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6 small">Copyright © Your Website 2020</div>
+                        <div class="col-md-6 small">Copyright © BengkelKuy 2021</div>
                         <div class="col-md-6 text-md-right small">
                             <a href="#!">Privacy Policy</a>
                             ·

@@ -66,7 +66,7 @@
                                             <td>Wayan</td>
                                             <td>Adim</td>
                                             <td>
-                                                <a href="{{route('invoiceservice.index')}}" class="btn btn-outline-success btn-sm" type="button">
+                                                <a href="{{route('invoiceservice.index')}}" class="btn btn-success btn-sm" type="button">
                                                     Pembayaran
                                                 </a>
                                             </td>
