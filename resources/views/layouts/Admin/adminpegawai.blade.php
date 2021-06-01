@@ -57,13 +57,9 @@
                         </div>
                     </h6>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#!">
-                        <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                        Account
-                    </a>
                     <a class="dropdown-item" href="{{ route('dashboardsso') }}">
-                        <div class="dropdown-item-icon"> <i class="fas fa-cubes"></i></div>
-                        Menu SSO
+                        <div class="dropdown-item-icon"><i data-feather="columns"></i></div>
+                        Dashboard SSO
                     </a>
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
