@@ -30,22 +30,23 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-5">
                             <label class="small mb-1" for="kode_pajak">Kode Pajak</label>
                             <input class="form-control form-control-sm" id="kode_pajak" type="text" name="kode_pajak"
                                 value="{{ $pajak->kode_pajak }}" readonly />
                         </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="id_jenis_transaksi">Nama Pajak</label>
-                            <input class="form-control form-control-sm" id="id_jenis_transaksi" type="text"
-                                name="id_jenis_transaksi" value="{{ $pajak->Jenistransaksi->nama_transaksi }}"
-                                readonly />
+                        <div class="form-group col-md-7">
+                            <label class="small mb-1" for="id_pegawai">Pegawai</label>
+                            <input class="form-control form-control-sm" id="id_pegawai" type="text" name="id_pegawai"
+                                value="{{ $pajak->Pegawai->nama_pegawai }}" readonly />
                         </div>
+                       
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="id_pegawai">Pegawai</label>
-                        <input class="form-control form-control-sm" id="id_pegawai" type="text" name="id_pegawai"
-                            value="{{ $pajak->Pegawai->nama_pegawai }}" readonly />
+                        <label class="small mb-1" for="id_jenis_transaksi">Jenis Transaksi</label>
+                        <input class="form-control form-control-sm" id="id_jenis_transaksi" type="text"
+                            name="id_jenis_transaksi" value="{{ $pajak->Jenistransaksi->nama_transaksi }}"
+                            readonly />
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="tanggal_bayar">Tanggal Bayar</label>
@@ -60,10 +61,9 @@
                     <hr class="my-4" />
                     <div class="small mb-2">
                         <span class="font-weight-500 text-primary">Detail</span>
-                        Pembayaran
                     </div>
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-6">
                             <div class="d-flex flex-column font-weight-bold">
                                 <label class="small text-muted line-height-normal">Status Jurnal
                             </div>
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-6">
                             <div class="d-flex flex-column font-weight-bold">
                                 <label class="small text-muted line-height-normal">Total Pembayaran
                             </div>
@@ -133,13 +133,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($pajak->Detail as $detail)
+                                            @forelse ($pajak->detailpajak as $detail)
                                             <tr role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
                                                 <td>{{ $detail->data_pajak }}</td>
                                                 <td>Rp. {{ number_format($detail->nilai_pajak,0,',','.') }}</td>
-                                                <td>{{ $detail->keterangan }}</td>
+                                                <td>{{ $detail->keterangan_pajak }}</td>
                                             </tr>
                                             @empty
                                             <tr>
@@ -147,6 +147,7 @@
                                                     Data Detail Pajak Kosong
                                                 </td>
                                             </tr>
+
                                             @endforelse
                                         </tbody>
                                     </table>

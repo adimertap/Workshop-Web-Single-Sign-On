@@ -7,6 +7,7 @@ use App\Model\FrontOffice\CustomerBengkel;
 use App\Model\FrontOffice\PenjualanSparepart;
 use App\Model\PointOfSales\LaporanPenjualanSparepart;
 use App\Model\SingleSignOn\Bengkel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -82,6 +83,7 @@ class PembayaranSparepartController extends Controller
         $status->update();
 
         $laporan_sparepart = new LaporanPenjualanSparepart;
+        $laporan_sparepart->tanggal_laporan = Carbon::now();
         $laporan_sparepart->id_penjualan_sparepart = $id_penjualan_sparepart;
         $laporan_sparepart->diskon = $request->diskon;
         $laporan_sparepart->ppn = $request->ppn;

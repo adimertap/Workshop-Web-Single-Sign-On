@@ -13,7 +13,7 @@ class Transaksi extends Model
     protected $primaryKey = 'id_transaksi_online';
 
     protected $fillable = [
-        'id_transaksi_online','id_user', 'harga_pengiriman', 'harga_total', 'id_bengkel',
+        'id_transaksi_online','id_user', 'harga_pengiriman', 'harga_total', 'id_bengkel','tanggal_transaksi',
         'code_transaksi', 'transaksi_status','resi', 'nama_penerima', 'alamat_penerima', 'nohp_penerima', 'id_kabupaten', 'kurir_pengiriman'
     ];
 

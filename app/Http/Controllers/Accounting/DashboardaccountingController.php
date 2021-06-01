@@ -28,15 +28,7 @@ class DashboardaccountingController extends Controller
         'prf' => Prf::count(),
         'prf_pending' => Prf::where('status_prf','Pending')->count(),
         'prf_approve' => Prf::where('status_prf','Approved')->count(),
-        'prf_tolak' => Prf::where('status_prf','Not Approved')->count(),
-    
-        ], 
-        
-        
-        
-        
-        
-        compact('today','tanggal'));
+        'prf_tolak' => Prf::where('status_prf','Not Approved')->count(),], compact('today','tanggal'));
     }
 
     /**

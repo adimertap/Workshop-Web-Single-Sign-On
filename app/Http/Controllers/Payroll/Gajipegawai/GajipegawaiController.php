@@ -102,7 +102,7 @@ class GajipegawaiController extends Controller
     public function edit($id)
     {
         $gaji = Gajipegawai::with([
-            'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi'
+            'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan'
         ])->find($id);
 
         $jenis_transaksi = Jenistransaksi::all();
@@ -110,7 +110,7 @@ class GajipegawaiController extends Controller
         $tunjangan = Mastertunjangan::all();
         $today = Carbon::now()->format('D, d/m/Y');
 
-        return view('pages.payroll.gajipegawai.create', compact('gaji','seluruhpegawai','tunjangan','today','jenis_transaksi'));
+        return view('pages.payroll.gajipegawai.create',['gaji_total' => Gajipegawai::sum('total_tagihan')], compact('gaji','seluruhpegawai','tunjangan','today','jenis_transaksi'));
     }
 
     /**

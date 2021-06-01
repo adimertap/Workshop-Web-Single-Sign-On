@@ -156,8 +156,8 @@
                         </a>
                         <div class="collapse" id="collapseComponents" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link " href="invoice.html">
-                                    Pemasukan dan Piutang
+                                <a class="nav-link " href="{{ route('pemasukan-kasir.index') }}">
+                                    Pemasukan
                                 </a>
                             </nav>
                         </div>
@@ -180,7 +180,6 @@
                                 </a>
                             </nav>
                         </div>
-
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="nav-link-icon"><i class="fas fa-clipboard-list"></i></div>

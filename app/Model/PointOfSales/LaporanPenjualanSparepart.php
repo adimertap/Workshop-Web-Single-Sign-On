@@ -4,6 +4,7 @@ namespace App\Model\PointOfSales;
 
 use App\Model\FrontOffice\PenjualanSparepart;
 use App\Model\Kepegawaian\Pegawai;
+use App\Model\Service\PenerimaanService;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,4 +36,5 @@ class LaporanPenjualanSparepart extends Model
     {
         return $this->belongsTo(Pegawai::class, 'id_pegawai');
     }
+
 }

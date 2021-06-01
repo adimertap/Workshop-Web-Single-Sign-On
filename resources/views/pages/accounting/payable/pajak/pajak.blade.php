@@ -121,7 +121,7 @@
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('pajak.edit', $item->id_pajak) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>

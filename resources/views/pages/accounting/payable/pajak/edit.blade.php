@@ -11,11 +11,11 @@
                         <h1 class="page-header-title">
                             <div class="page-header-icon" style="color: white"><i class="fas fa-hand-holding-usd"></i>
                             </div>
-                            <div class="page-header-subtitle" style="color: white">Tambah Data Pembayaran Pajak</div>
+                            <div class="page-header-subtitle" style="color: white">Edit Data Pembayaran Pajak</div>
                         </h1>
                         <div class="small">
                             <span class="font-weight-500">Pajak</span>
-                            · Tambah · Data
+                            · Edit · Data
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
@@ -42,21 +42,26 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('pajak.store') }}" id="form1" method="POST"
+                        <form action="{{ route('pajak.update', $pajak->id_pajak) }}" id="form1" method="POST"
                             enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-5">
                                     <label class="small mb-1" for="kode_pajak">Kode Pajak</label>
                                     <input class="form-control" id="kode_pajak" type="text" name="kode_pajak"
-                                        placeholder="Input Kode Pajak" value="{{ $kode_pajak }}" readonly />
+                                        placeholder="Input Kode Pajak" value="{{ $pajak->kode_pajak }}" readonly />
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label class="small mb-1" for="status_jurnal">Status Jurnal</label>
-                                    <input class="form-control" id="status_jurnal" type="text" name="status_jurnal"
-                                        value="Pending" readonly>
+                                <div class="form-group col-md-7">
+                                    <label class="small mb-1" for="tanggal_bayar">Tanggal Pembayaran</label>
+                                    <input class="form-control" id="tanggal_bayar" type="date" name="tanggal_bayar"
+                                        placeholder="Input Tanggal Receive" value="{{ $pajak->tanggal_bayar }}"
+                                        class="form-control @error('tanggal_bayar') is-invalid @enderror" />
+                                    @error('tanggal_bayar')<div class="text-danger small mb-1">{{ $message }}
+                                    </div> @enderror
                                 </div>
                             </div>
+                               
                             <div class="form-group">
                                 <label class="small mb-1" for="id_pegawai">Pegawai</label>
                                 <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
@@ -65,43 +70,31 @@
                             <div class="form-group">
                                 <label class="small mb-1 mr-1" for="id_jenis_transaksi">Pilih Jenis Transaksi</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
-                                <div class="input-group input-group-joined">
-                                    <div class="input-group-append">
-                                        <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
-                                            data-target="#Modaltransaksi">
-                                            Tambah
-                                        </a>
-                                    </div>
                                     <select class="form-control" name="id_jenis_transaksi" id="id_jenis_transaksi"
                                         class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
-                                        <option>Pilih Jenis Transaksi</option>
+                                        <option value="{{ $pajak->Jenistransaksi->id_jenis_transaksi }}">{{ $pajak->Jenistransaksi->nama_transaksi }}</option>
                                         @foreach ($jenis_transaksi as $item)
                                         <option value="{{ $item->id_jenis_transaksi }}">{{ $item->nama_transaksi }}
                                         </option>
                                         @endforeach
                                     </select>
+                            </div>
+                                <div class="form-group">
+                                    <label class="small mb-1" for="status_jurnal">Status Jurnal</label>
+                                    <input class="form-control" id="status_jurnal" type="text" name="status_jurnal"
+                                        value="{{ $pajak->status_jurnal  }}" readonly>
                                 </div>
-                            </div>
-                           
-                            <div class="form-group">
-                                <label class="small mb-1" for="tanggal_bayar">Tanggal Pembayaran</label>
-                                <input class="form-control" id="tanggal_bayar" type="date" name="tanggal_bayar"
-                                    placeholder="Input Tanggal Receive" value="{{ old('tanggal_bayar') }}"
-                                    class="form-control @error('tanggal_bayar') is-invalid @enderror" />
-                                @error('tanggal_bayar')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
                             <div class="form-group">
                                 <label class="small mb-1" for="deskripsi_pajak">Deskripsi</label>
-                                <textarea class="form-control" id="deskripsi_pajak" type="text" name="deskripsi_pajak"
-                                    placeholder="Deskripsi Pembayaran"
-                                    class="form-control @error('deskripsi_pajak') is-invalid @enderror"></textarea>
+                                <input class="form-control" id="deskripsi_pajak" type="text" name="deskripsi_pajak"
+                                    placeholder="Deskripsi Pembayaran" value="{{ $pajak->deskripsi_pajak }}"
+                                    class="form-control @error('deskripsi_pajak') is-invalid @enderror"></input>
                                 @error('deskripsi_pajak')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
                             </div>
                             <div class="form-group text-right">
                                 <hr>
-                                <a href="{{ route('Opname.index') }}" class="btn btn-sm btn-light">Kembali</a>
+                                <a href="{{ route('pajak.index') }}" class="btn btn-sm btn-light">Kembali</a>
                                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
                                     data-target="#Modalsumbit">Simpan</button>
                             </div>
@@ -156,14 +149,24 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id='konfirmasi'>
-
+                                                    @forelse ($pajak->detailpajak as $detail)
+                                                    <tr role="row" class="odd">
+                                                        <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
+                                                        <td>{{ $detail->data_pajak }}</td>
+                                                        <td>{{ $detail->keterangan_pajak }}</td>
+                                                        <td>{{ $detail->nilai_pajak }}</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    @empty
+                                                        
+                                                    @endforelse
                                                 </tbody>
                                                 <tr id="grandtotal">
                                                     <td colspan="3" class="text-center font-weight-500">
                                                         Total Pajak
                                                     </td>
                                                     <td  colspan="2" class="grand_total text-center font-weight-500">
-                                                        <span>Rp. </span><span id="totalpajak">0</span>
+                                                        <span>Rp. </span><span id="totalpajak">{{ $pajak->total_pajak }}</span>
                                                 </tr>
                                             </table>
                                         </div>
@@ -247,36 +250,6 @@
     </div>
 </div>
 
-
-
-<div class="modal fade" id="Modaltransaksi" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-light">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Data Jenis Transaksi</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <form action="{{ route('jenis-transaksi.store') }}" method="POST" class="d-inline">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="small mb-1" for="nama_transaksi">Jenis Transaksi</label>
-                        <textarea class="form-control" name="nama_transaksi" type="text" id="nama_transaksi"
-                            placeholder="Input Jenis Transaksi" value="{{ old('nama_transaksi') }}"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="submit">Ya! Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -318,31 +291,33 @@
         var id_pegawai = $('#id_pegawai').val()
         var id_jenis_transaksi = $('#id_jenis_transaksi').val()
         var tanggal_bayar = form1.find('input[name="tanggal_bayar"]').val()
-        var deskripsi_pajak = form1.find('textarea[name="deskripsi_pajak"]').val()
+        var deskripsi_pajak = form1.find('input[name="deskripsi_pajak"]').val()
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
         var total_pajak = $('#totalpajak').html()
 
         var pajak = $('#konfirmasi').children()
-     
+       
         for (let index = 0; index < pajak.length; index++) {
             var children = $(pajak[index]).children()
-            console.log(children)
             var td_datapajak = children[1]
             var datapajak = $(td_datapajak).html()
-            
+           
             var td_keterangan_pajak = children[2]
             var keteranganpajak = $(td_keterangan_pajak).html()
-
+    
             var td_nilai_pajak = children[3]
             var nilaipajak = $(td_nilai_pajak).html()
-            var nilaipajak_fix = nilaipajak.split('Rp')[1].replace('.', '').replace('.', '').replace(',00', '').trim()
-            console.log(nilaipajak_fix)
+           
+
+            console.log(nilaipajak)
+
+
             dataform2.push({
                 id_pajak: id_pajak,
                 data_pajak: datapajak,
                 keterangan_pajak: keteranganpajak,
-                nilai_pajak: nilaipajak_fix
+                nilai_pajak: nilaipajak
             })
         }
 
@@ -365,8 +340,8 @@
          
 
             $.ajax({
-                method: 'post',
-                url: '/accounting/pajak',
+                method: 'put',
+                url: '/accounting/pajak/' + id_pajak,
                 data: data,
                 success: function (response) {
                     window.location.href = '/accounting/pajak'
@@ -383,10 +358,10 @@
         var _token = form.find('input[name="_token"]').val()
         var data_pajak = form.find('input[name="data_pajak"]').val()
         var nilai_pajak = form.find('input[name="nilai_pajak"]').val()
-        var nilai_pajak_fix = new Intl.NumberFormat('id', {
-            style: 'currency',
-            currency: 'IDR'
-        }).format(nilai_pajak)
+        // var nilai_pajak_fix = new Intl.NumberFormat('id', {
+        //     style: 'currency',
+        //     currency: 'IDR'
+        // }).format(nilai_pajak)
         var keterangan_pajak = form.find('textarea[name="keterangan_pajak"]').val()
 
 
@@ -400,7 +375,7 @@
            
 
             $('#dataTablekonfirmasi').DataTable().row.add([
-                data_pajak, data_pajak, keterangan_pajak, nilai_pajak_fix
+                data_pajak, data_pajak, keterangan_pajak, nilai_pajak
             ]).draw();
         }
     }
