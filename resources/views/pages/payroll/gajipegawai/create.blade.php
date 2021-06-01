@@ -244,14 +244,22 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id='konfirmasi'>
-
+                                                    @forelse ($gaji->Detailtunjangan as $items)
+                                                    <tr role="row" class="odd">
+                                                        <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
+                                                        <td>{{ $items->nama_tunjangan }}</td>
+                                                        <td>Rp {{ number_format($items->jumlah_tunjangan,2,',','.') }}</td>
+                                                        <td></td>
+                                                    @empty
+                                                        
+                                                    @endforelse
                                                 </tbody>
                                                 <tr id="totaltunjangan">
                                                     <td colspan="2" class="text-center font-weight-500">
                                                         Total Tunjangan
                                                     </td>
                                                     <td colspan="2" class="grand_total text-center font-weight-500">
-                                                        <span>Rp. </span><span id="totaltunjangan2">0</span>
+                                                        <span>Rp. </span><span id="totaltunjangan2">{{ $gaji->total_tunjangan }}</span>
                                                     </td>
                                                 </tr>
                                             </table>

@@ -100,7 +100,7 @@ class PajakController extends Controller
      */
     public function show($id_pajak)
     {
-        $pajak = Pajak::with('Detail')->findOrFail($id_pajak);
+        $pajak = Pajak::with('detailpajak')->findOrFail($id_pajak);
 
         return view('pages.accounting.payable.pajak.detail')->with([
             'pajak' => $pajak
@@ -114,9 +114,17 @@ class PajakController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_pajak)
     {
-        //
+        $pajak = Pajak::with([
+            'detailpajak', 'Jenistransaksi'
+        ])->findOrFail($id_pajak);
+
+        // return $pajak;
+
+        $jenis_transaksi = Jenistransaksi::all();
+
+        return view('pages.accounting.payable.pajak.edit', compact('jenis_transaksi','pajak','id_pajak')); 
     }
 
     /**
@@ -126,9 +134,17 @@ class PajakController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_pajak)
     {
-        //
+        $pajak = Pajak::find($id_pajak);
+        $pajak->id_jenis_transaksi = $request->id_jenis_transaksi;
+        $pajak->tanggal_bayar = $request->tanggal_bayar;
+        $pajak->deskripsi_pajak = $request->deskripsi_pajak;
+        $pajak->total_pajak = $request->total_pajak;
+        $pajak->update();
+        
+        $pajak->detailpajak()->insert($request->pajak);
+        return $request;
     }
 
     /**

@@ -545,7 +545,17 @@ Route::group(
 
                 Route::post('gaji-accounting/posting-jurnal', 'GajiAccountingController@postingjurnal')
                     ->name('gaji-pegawai-jurnal');
+                
             });
+        
+        Route::prefix('Accounting')
+        ->namespace('Accounting\Receiveable')
+        ->middleware(['admin_accounting_gabung', 'verified'])
+        ->group(function () {
+            Route::resource('pemasukan-kasir', 'PemasukanController');
+            Route::get('pemasukan-online/{updated_at}', 'PemasukanController@Pemasukanonline')
+                    ->name('pemasukan-online');
+        });
 
 
         // Jurnal Pengeluaran ----------------------------------------------------------------- Jurnal Pengeluaran 

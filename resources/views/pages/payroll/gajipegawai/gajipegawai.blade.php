@@ -116,69 +116,61 @@
                                                             {{ $item->status_diterima }}
                                                         </span>
                                             <td>
-                                                @if($item->status_dana == 'Dana Telah Diberikan')
-                                                <a href="" class="btn btn-success btn-datatable" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modalbayar-{{ $item->id_gaji_pegawai }}">
-                                                    <i class="fas fa-check"></i>
-                                                </a>
-                                                <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Cetak Slip">
-                                                    <i class="fas fa-print"></i></i>
-                                                </a>
-                                                <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}"
-                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Detail Slip">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Edit Slip">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
+                                                @if($item->status_diterima == 'Belum Dibayarkan' and $item->status_dana == 'Dana Telah Diberikan')
+                                                    <a href="" class="btn btn-success btn-datatable" type="button"
+                                                        data-toggle="modal"
+                                                        data-target="#Modalbayar-{{ $item->id_gaji_pegawai }}">
+                                                        <i class="fas fa-check"></i>
+                                                    </a>
+                                                    <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Cetak Slip">
+                                                        <i class="fas fa-print"></i></i>
+                                                    </a>
+                                                    <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}"
+                                                        class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Detail Slip">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <a href="{{ route('gaji-pegawai.edit', $item->id_gaji_pegawai) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Edit Slip">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                        data-toggle="modal"
+                                                        data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
                                                 @elseif ($item->status_diterima == 'Belum Dibayarkan' and
                                                 $item->status_dana =='Dana Belum Cair')
-                                                <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Cetak Slip">
-                                                    <i class="fas fa-print"></i></i>
-                                                </a>
-                                                <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}"
-                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Detail Slip">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Edit Slip">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                                @elseif ($item->status_diterima == 'Dibayarkan')
-                                                <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Cetak Slip">
-                                                    <i class="fas fa-print"></i></i>
-                                                </a>
-                                                <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}"
-                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Detail Slip">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Edit Slip">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
+                                                    <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Cetak Slip">
+                                                        <i class="fas fa-print"></i></i>
+                                                    </a>
+                                                    <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}"
+                                                        class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Detail Slip">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <a href="{{ route('gaji-pegawai.edit', $item->id_gaji_pegawai) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Edit Slip">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                        data-toggle="modal"
+                                                        data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                @elseif ($item->status_diterima == 'Dibayarkan' and $item->status_dana == 'Dana Telah Diberikan')
+                                                    <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Cetak Slip">
+                                                        <i class="fas fa-print"></i></i>
+                                                    </a>
+                                                    <a href="{{ route('gaji-pegawai.show', $item->id_gaji_pegawai) }}"
+                                                        class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Detail Slip">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                
                                                 @else
                                                 @endif
                                             </td>
