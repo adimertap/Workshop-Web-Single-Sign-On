@@ -15,7 +15,7 @@ class PembayaranServiceController extends Controller
      */
     public function index()
     {
-        $service_selesai = PenerimaanService::where([['status_bayar', '=', 'selesai_service']])->get();
+        $service_selesai = PenerimaanService::where([['status', '=', 'selesai_service']])->get();
         return view('pages.pointofsales.pembayaran.pembayaran_service', compact('service_selesai'));
     }
 
