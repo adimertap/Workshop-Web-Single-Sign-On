@@ -118,9 +118,7 @@ Route::group(
             ->middleware(['admin_kasir', 'verified'])
             ->group(function () {
                 Route::resource('pembayaranservice', 'PembayaranServiceController');
-                Route::resource('invoiceservice', 'InvoiceServiceController');
                 Route::resource('pembayaransparepart', 'PembayaranSparepartController');
-                // Route::resource('invoicesparepart', 'InvoiceSparepartController');
             });
 
 
@@ -545,17 +543,16 @@ Route::group(
 
                 Route::post('gaji-accounting/posting-jurnal', 'GajiAccountingController@postingjurnal')
                     ->name('gaji-pegawai-jurnal');
-                
             });
-        
+
         Route::prefix('Accounting')
-        ->namespace('Accounting\Receiveable')
-        ->middleware(['admin_accounting_gabung', 'verified'])
-        ->group(function () {
-            Route::resource('pemasukan-kasir', 'PemasukanController');
-            Route::get('pemasukan-online/{updated_at}', 'PemasukanController@Pemasukanonline')
+            ->namespace('Accounting\Receiveable')
+            ->middleware(['admin_accounting_gabung', 'verified'])
+            ->group(function () {
+                Route::resource('pemasukan-kasir', 'PemasukanController');
+                Route::get('pemasukan-online/{updated_at}', 'PemasukanController@Pemasukanonline')
                     ->name('pemasukan-online');
-        });
+            });
 
 
         // Jurnal Pengeluaran ----------------------------------------------------------------- Jurnal Pengeluaran 

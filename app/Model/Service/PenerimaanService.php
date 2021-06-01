@@ -8,6 +8,7 @@ use App\Model\FrontOffice\MasterDataKendaraan;
 use App\Model\FrontOffice\MasterDataPitstop;
 use App\Model\Inventory\Sparepart;
 use App\Model\Kepegawaian\Pegawai;
+use App\Model\SingleSignOn\Bengkel;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -41,6 +42,13 @@ class PenerimaanService extends Model
                 'id_service_advisor' => 0
             ]
         ];
+    }
+
+
+
+    public function bengkel()
+    {
+        return $this->belongsTo(Bengkel::class, 'id_bengkel');
     }
 
     public function kendaraan()

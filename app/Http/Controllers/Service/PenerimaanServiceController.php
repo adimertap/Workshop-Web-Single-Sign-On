@@ -78,6 +78,18 @@ class PenerimaanServiceController extends Controller
         $service->status =  'menunggu';
         $service->waktu_estimasi =  $request->waktu_estimasi;
 
+        $temp1 = 0;
+        foreach ($request->sparepart as $key => $item1) {
+            $temp1 = $temp1 + $item1['total_harga'];
+        }
+
+        $temp2 = 0;
+        foreach ($request->jasa_perbaikan as $key => $item2) {
+            $temp2 = $temp2 + $item2['total_harga'];
+        }
+
+        $service->total_bayar = $temp1 + $temp2;
+
 
         $service->save();
         $service->detail_sparepart()->sync($request->sparepart);
