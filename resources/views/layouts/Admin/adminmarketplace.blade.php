@@ -55,29 +55,9 @@
                         </div>
                     </h6>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#!">
-                        <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                        Account
-                    </a>
-                    <a class="dropdown-item" href="{{ route('Note') }}">
-                        <div class="dropdown-item-icon"><i class="fas fa-clipboard"></i></div>
-                        Catatan Progress
-                    </a>
-                    <a class="dropdown-item" href="{{ route('dashboardinventory') }}">
-                        <div class="dropdown-item-icon"><i class="fas fa-user"></i></div>
-                        Sistem Inventory
-                    </a>
-                    <a class="dropdown-item" href="{{ route('dashboardpegawai') }}">
-                        <div class="dropdown-item-icon"><i class="fas fa-user"></i></div>
-                        Sistem Kepegawaian
-                    </a>
-                    <a class="dropdown-item" href="{{ route('dashboardpayroll') }}">
-                        <div class="dropdown-item-icon"><i class="fas fa-wallet"></i></div>
-                        Sistem Payroll
-                    </a>
-                    <a class="dropdown-item" href="{{ route('dashboardaccounting') }}">
-                        <div class="dropdown-item-icon"><i class="fas fa-calculator"></i></div>
-                        Sistem Accounting
+                    <a class="dropdown-item" href="{{ route('dashboardsso') }}">
+                        <div class="dropdown-item-icon"><i data-feather="columns"></i></div>
+                        Dashboard SSO
                     </a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();

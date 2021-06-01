@@ -87,7 +87,7 @@
                                     </thead>
                                     <tbody>
                                         @forelse ($pengerjaan as $item)
-                                        @if ($item->status == 'dikerjakan' || $item->status == 'check_out')
+                                        @if ($item->status == 'dikerjakan' || $item->status == 'selesai_service')
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$item->kode_sa}}</td>
@@ -99,37 +99,28 @@
                                             <td>
                                                 @if ($item->status == 'dikerjakan')
                                                 <span class="badge badge-primary"> Dikerjakan </span>
-                                                @elseif ($item->status == 'check_out')
-                                                <span class="badge badge-warning"> Selesai Dikerjakan </span>
-                                                @elseif ($item->status == 'selesai')
+                                                @elseif ($item->status == 'selesai_service')
                                                 <span class="badge badge-success"> Selesai Service </span>
                                                 @endif
 
                                             </td>
                                             <td>
-
-                                                @if ($item->status == 'dikerjakan'|| $item->status == 'check_out')
-
                                                 <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" data-original-title="Detail">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
 
-                                                @endif
-
-                                                @if($item->status == 'dikerjakan')
-                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" data-original-title="Edit">
+                                                @if ($item->status == 'dikerjakan')
+                                                <a href="" class="btn btn-primary btn-datatable ml-1"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    data-original-title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="" class="btn btn-success btn-sm mt-1" type="button">
+                                                <a data-target="#ModalSelesai-{{ $item->id_service_advisor }}"
+                                                    data-toggle="modal" class="btn btn-success btn-sm mt-1 px-4"
+                                                    type="button" style="color: white">
                                                     Selesai
                                                 </a>
-                                                {{-- <a href="" class="btn btn-success btn-datatable" data-placement="top"
-                                                    data-original-title="Kerjakan" data-toggle="modal"
-                                                    data-target="#Modaltambah-{{ $item->id_service_advisor }}">
-                                                    <i class="fa fa-tools"></i>
-                                                </a> --}}
                                                 @endif
                                             </td>
                                         </tr>
@@ -147,6 +138,33 @@
             </div>
         </div>
     </div>
+
+    @forelse ($pengerjaan as $item)
+    <div class="modal fade" id="ModalSelesai-{{ $item->id_service_advisor }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success-soft">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Selesai Service</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('pengerjaanservice.update', $item->id_service_advisor) }}" method="POST"
+                    class="d-inline">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">Selesaikan service  {{ $item->kode_sa }} ?</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-success" type="submit">Ya! Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @empty
+
+    @endforelse
 </main>
 
 

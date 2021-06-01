@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\PointOfSales\Pembayaran;
 
 use App\Http\Controllers\Controller;
+use App\Model\Service\PenerimaanService;
 use Illuminate\Http\Request;
 
 class PembayaranServiceController extends Controller
@@ -14,7 +15,8 @@ class PembayaranServiceController extends Controller
      */
     public function index()
     {
-        return view('pages.pointofsales.pembayaran.pembayaran_service');
+        $service_selesai = PenerimaanService::where([['status_bayar', '=', 'selesai_service']])->get();
+        return view('pages.pointofsales.pembayaran.pembayaran_service', compact('service_selesai'));
     }
 
     /**
@@ -44,9 +46,11 @@ class PembayaranServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_service_advisor)
     {
-        //
+        $pembayaran_service = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_service')->findOrFail($id_service_advisor);
+
+        return view('pages.pointofsales.pembayaran.invoice_service', compact('pembayaran_service'));
     }
 
     /**

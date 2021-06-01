@@ -101,10 +101,10 @@
                                                 <span class="badge badge-danger"> Menunggu </span>
                                                 @elseif ($item->status == 'dikerjakan')
                                                 <span class="badge badge-primary"> Dikerjakan </span>
-                                                @elseif ($item->status == 'check_out')
-                                                <span class="badge badge-warning"> Pembayaran </span>
-                                                @elseif ($item->status == 'selesai')
-                                                <span class="badge badge-success"> Selesai Service </span>
+                                                @elseif ($item->status == 'selesai_service')
+                                                <span class="badge badge-warning"> Menunggu <br> Pembayaran </span>
+                                                @elseif ($item->status == 'selesai_pembayaran')
+                                                <span class="badge badge-success"> Selesai </span>
                                                 @endif
 
                                             </td>
@@ -127,7 +127,7 @@
                                                 </a>
 
                                                 <a data-target="#Modaltambah-{{ $item->id_service_advisor }}"
-                                                    data-toggle="modal" class="btn btn-success btn-sm mt-1 px-3"
+                                                    data-toggle="modal" class="btn btn-success btn-sm mt-1 px-4"
                                                     type="button" style="color: white">
                                                     Kerjakan
                                                 </a>
@@ -154,7 +154,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Kendaraan</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Pilih Pitstop</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
