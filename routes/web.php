@@ -552,6 +552,8 @@ Route::group(
             Route::resource('pemasukan-kasir', 'PemasukanController');
             Route::get('pemasukan-online/{tanggal_transaksi}', 'PemasukanController@Pemasukanonline')
                     ->name('pemasukan-online');
+            Route::get('pemasukan-service/{tanggal_laporan}', 'PemasukanController@Pemasukanservice')
+                    ->name('pemasukan-service');
             });
 
 

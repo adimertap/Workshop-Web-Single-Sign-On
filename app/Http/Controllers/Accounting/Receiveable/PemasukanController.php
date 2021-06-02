@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Accounting\Receiveable;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PointOfSales\Laporan\LaporanServiceController;
 use App\Http\Controllers\PointOfSales\Pembayaran\PembayaranSparepartController;
 use App\Model\Marketplace\Transaksi;
 use App\Model\PointOfSales\LaporanPenjualanSparepart;
@@ -19,7 +20,7 @@ class PemasukanController extends Controller
     public function index()
     {
         $pemasukankasir = LaporanPenjualanSparepart::groupBy('tanggal_laporan','status_jurnal')->selectRaw('SUM(total_tagihan) as grand_total, tanggal_laporan, COUNT(id_laporan) as jumlah_transaksi, status_jurnal')->get();
-        $transaksionline = Transaksi::groupBy('tanggal_transaksi')->selectRaw('SUM(harga_total) as total_harga, tanggal_transaksi, COUNT(id_transaksi_online) as jumlah_transaksi_online')->get();
+        $transaksionline = Transaksi::groupBy('tanggal_transaksi')->selectRaw('SUM(harga_total) as total_harga, tanggal_transaksi, COUNT(id_transaksi_online) as jumlah_transaksi_online')->get(); 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
