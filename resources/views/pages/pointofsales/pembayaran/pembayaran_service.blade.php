@@ -53,24 +53,34 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Nama Mekanik</th>
+                                                style="width: 20px;">Kendaraan</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Mekanik</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($service_selesai as $item)
                                         <tr role="row" class="odd">
-                                            <th scope="row" class="small" class="sorting_1">1</th>
-                                            <td>PKB-001</td>
-                                            <td>Wayan</td>
-                                            <td>Adim</td>
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration }}</th>
+                                            <td>{{ $item->kode_sa }}</td>
+                                            <td>{{ $item->customer_bengkel->nama_customer }}</td>
+                                            <td>{{ $item->kendaraan->nama_kendaraan }}</td>
+                                            <td>{{ $item->mekanik->nama_pegawai }}</td>
                                             <td>
-                                                <a href="{{route('invoiceservice.index')}}" class="btn btn-success btn-sm" type="button">
+                                                <a href="{{route('pembayaranservice.show', $item->id_service_advisor)}}"
+                                                    class="btn btn-success btn-sm" type="button">
                                                     Pembayaran
                                                 </a>
                                             </td>
                                         </tr>
+                                        @empty
+
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

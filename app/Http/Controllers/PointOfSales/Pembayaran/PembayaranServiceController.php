@@ -15,7 +15,8 @@ class PembayaranServiceController extends Controller
      */
     public function index()
     {
-        $service_selesai = PenerimaanService::where([['status_bayar', '=', 'selesai_service']])->get();
+        $service_selesai = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_perbaikan', 'mekanik')->where([['status', '=', 'selesai_service']])->get();
+        // return $service_selesai;
         return view('pages.pointofsales.pembayaran.pembayaran_service', compact('service_selesai'));
     }
 
@@ -48,8 +49,8 @@ class PembayaranServiceController extends Controller
      */
     public function show($id_service_advisor)
     {
-        $pembayaran_service = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_service')->findOrFail($id_service_advisor);
-
+        $pembayaran_service = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_perbaikan', 'bengkel')->findOrFail($id_service_advisor);
+        // return $pembayaran_service;
         return view('pages.pointofsales.pembayaran.invoice_service', compact('pembayaran_service'));
     }
 
