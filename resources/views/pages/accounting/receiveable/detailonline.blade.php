@@ -16,7 +16,7 @@
                             </div>
                         </h1>
                         <div class="small">
-                            <span class="font-weight-500">Detail · Pembayaran Tanggal {{ date('j F, Y', strtotime($updated_at)) }}</span>
+                            <span class="font-weight-500">Detail · Pembayaran Tanggal {{ date('j F, Y', strtotime($tanggal_transaksi)) }}</span>
                            
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                                         @forelse ($online as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
-                                            <td>{{ date('j F, Y', strtotime($item->updated_at)) }}</td>
+                                            <td>{{ date('j F, Y', strtotime($item->tanggal_transaksi)) }}</td>
                                             <td>{{ $item->code_transaksi }}</td>
                                             <td>Rp. {{ number_format($item->harga_pengiriman,2,',','.') }}</td>
                                             <td>Rp. {{ number_format($item->harga_total,2,',','.') }}</td>

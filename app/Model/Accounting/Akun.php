@@ -4,23 +4,26 @@ namespace App\Model\Accounting;
 
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Akun extends Model
 {
+    use SoftDeletes;
+
     protected $table = "tb_accounting_master_akun";
 
     protected $primaryKey = 'id_akun';
 
     protected $fillable = [
         // 'id_bengkel',
-        'id_akun_induk',
         'kode_akun',
         'nama_akun',
+        'nama_akun_induk',
+        'kode_akun_induk',
+        'super_level_akun',
         'akun_grup',
         'level_akun',
         'status_akun',
-        'nama_akun_induk',
-        'kode_akun_induk',
 
     ];
 

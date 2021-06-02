@@ -12,7 +12,7 @@
                             <div class="page-header-icon" style="color: white"><i
                                     class="fas fa-file-invoice-dollar"></i>
                             </div>
-                            <div class="page-header-title small mr-2" style="color: white">Pembayaran Service & Sparepart 
+                            <div class="page-header-title small mr-2" style="color: white">Pembayaran Penjualan Sparepart 
                             </div>
                         </h1>
                         <div class="small">
@@ -60,10 +60,7 @@
                                                 style="width: 100px;">Tanggal Pembayaran</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 80px;">Biaya Sparepart</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 60px;">Biaya Service</th>
+                                                style="width: 80px;">Kode Transaksi</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 20px;">Diskon</th>
@@ -80,8 +77,7 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
                                             <td>{{ $item->tanggal_laporan }}</td>
-                                            <td>Rp. {{ number_format($item->penjualan_sparepart->total_bayar,2,',','.') }}</td>
-                                            <td>Angga Belum Buat</td>
+                                            <td>{{ $item->penjualan_sparepart->kode_penjualan }}</td>
                                             <td>{{ $item->diskon }} %</td>
                                             <td>{{ $item->ppn }} %</td>
                                             <td>Rp. {{ number_format($item->total_tagihan,2,',','.') }}</td>
@@ -89,7 +85,7 @@
                                         @endforelse
                                     </tbody>
                                     <tr>
-                                        <td colspan="6" class="text-center font-weight-500">
+                                        <td colspan="5" class="text-center font-weight-500">
                                             Total Keseluruhan
                                         </td>
                                         <td colspan="1" class="font-weight-500">

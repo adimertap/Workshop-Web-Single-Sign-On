@@ -19,8 +19,8 @@ class MasterdataakunController extends Controller
     public function index()
     {
         $akun = Akun::all();
-     
 
+        // return $akun;
         return view('pages.accounting.masterdata.akun', compact('akun'));
     }
 

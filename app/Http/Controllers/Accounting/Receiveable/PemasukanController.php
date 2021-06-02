@@ -19,11 +19,11 @@ class PemasukanController extends Controller
     public function index()
     {
         $pemasukankasir = LaporanPenjualanSparepart::groupBy('tanggal_laporan','status_jurnal')->selectRaw('SUM(total_tagihan) as grand_total, tanggal_laporan, COUNT(id_laporan) as jumlah_transaksi, status_jurnal')->get();
-        $transaksionline = Transaksi::groupBy('updated_at')->selectRaw('SUM(harga_total) as total_harga, updated_at, COUNT(id_transaksi_online) as jumlah_transaksi_online')->get();
+        $transaksionline = Transaksi::groupBy('tanggal_transaksi')->selectRaw('SUM(harga_total) as total_harga, tanggal_transaksi, COUNT(id_transaksi_online) as jumlah_transaksi_online')->get();
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.accounting.receiveable.pemasukan',['total_pemasukan' => LaporanPenjualanSparepart::sum('total_tagihan'), 'total_pemasukan_online' => Transaksi::sum('harga_total')], compact('today','tanggal','pemasukankasir','transaksionline'));
+        return view('pages.accounting.receiveable.pemasukan',['total_pemasukan' => LaporanPenjualanSparepart::sum('total_tagihan'), 'total_pemasukan_online' => Transaksi::where('transaksi_status','DIKIRIM')->sum('harga_total')], compact('today','tanggal','pemasukankasir','transaksionline'));
     }
 
     /**
@@ -55,16 +55,16 @@ class PemasukanController extends Controller
      */
     public function show($tanggal_laporan)
     {
-        $detail = LaporanPenjualanSparepart::with(['penjualan_sparepart','service_advisor'])->where('tanggal_laporan', $tanggal_laporan)->get();
+        $detail = LaporanPenjualanSparepart::with(['penjualan_sparepart'])->where('tanggal_laporan', $tanggal_laporan)->get();
         
         return view('pages.accounting.receiveable.detailpemasukan', ['total_per_tanggal' => LaporanPenjualanSparepart::where('tanggal_laporan', $tanggal_laporan)->sum('total_tagihan')], compact('detail','tanggal_laporan'));
     }
 
-    public function Pemasukanonline($updated_at)
+    public function Pemasukanonline($tanggal_transaksi)
     {
-        $online = Transaksi::with(['Detailtransaksi'])->where('updated_at', $updated_at)->get();
+        $online = Transaksi::with(['Detailtransaksi'])->where('tanggal_transaksi', $tanggal_transaksi)->get();
         
-        return view('pages.accounting.receiveable.detailonline', ['sub_total' => Transaksi::where('updated_at', $updated_at)->sum('harga_total')], compact('online','updated_at'));
+        return view('pages.accounting.receiveable.detailonline', ['sub_total' => Transaksi::where('tanggal_transaksi', $tanggal_transaksi)->sum('harga_total')], compact('online','tanggal_transaksi'));
     }
 
 

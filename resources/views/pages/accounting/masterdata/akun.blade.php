@@ -105,6 +105,52 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($akun as $item)
+                                        <tr role="row" class="odd">
+                                            @if ($item->level_akun == '1')
+                                                <td>{{ $item->level_akun }}</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            @elseif ($item->level_akun == '2')
+                                                <td>{{ $item->kode_akun_induk }}</td>
+                                                <td>{{ $item->kode_akun }}</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            @elseif ($item->level_akun == '3')
+                                                <td>{{ $item->super_level_akun }}</td>
+                                                <td>{{ $item->kode_akun_induk }}</td>
+                                                <td>{{ $item->kode_akun }}</td>
+                                                <td></td>
+                                                <td></td>
+                                            @elseif($item->level_akun == '4')
+                                                <td>{{ $item->super_level_akun }}</td>
+                                                <td>{{ $item->moderate_level_akun }}</td>
+                                                <td>{{ $item->kode_akun_induk }}</td>
+                                                <td>{{ $item->kode_akun }}</td>
+                                                <td></td>
+                                            @elseif ($item->level_akun == '5')
+                                                <td>{{ $item->super_level_akun }}</td>
+                                                <td>{{ $item->moderate_level_akun }}</td>
+                                                <td>{{ $item->kode_akun_induk }}</td>
+                                                <td>{{ $item->kode_akun }}</td>
+                                                <td>{{ $item->level_akun }}</td>
+                                            @endif
+
+                                            <td class="text-center">{{ $item->nama_akun }}</td>
+                                            @if ($item->akun_grup == 'Debet')
+                                                <td class="text-center"><span class="badge badge-warning">Debet</span></td>
+                                                <td></td>
+                                            @elseif ($item->akun_grup == 'Kredit')
+                                                <td></td>
+                                                <td class="text-center"><span class="badge badge-warning">Kredit</span></td>
+                                            @endif
+                                        </tr>
+                                        @empty
+                                            
+                                        @endforelse
                                         {{-- @forelse ($akuninduk as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">

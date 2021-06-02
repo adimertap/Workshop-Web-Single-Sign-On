@@ -28,11 +28,11 @@
                 <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab"
-                            aria-controls="overview" aria-selected="true">Pemasukan Kasir</a>
+                            aria-controls="overview" aria-selected="true">Pemasukan Penjualan Sparepart</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="example-tab" href="#example" data-toggle="tab" role="tab"
-                            aria-controls="example" aria-selected="false">Pemasukan Penjualan Online</a>
+                            aria-controls="example" aria-selected="false">Pemasukan Marketplace</a>
                     </li>
                 </ul>
             </div>
@@ -106,7 +106,7 @@
                                             </tbody>
                                             <tr>
                                                 <td colspan="3" class="text-center font-weight-500">
-                                                    Total Pemasukan Kasir
+                                                    Total Pemasukan Penjualan Sparepart
                                                 </td>
                                                 <td colspan="2" class="grand_total font-weight-500">
                                                     Rp. {{ number_format($total_pemasukan,2,',','.') }}
@@ -170,24 +170,36 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @php
+                                                    $urutan = 0
+                                                @endphp
+                                              
                                                @forelse ($transaksionline as $item)
+                                               @if ($item->tanggal_transaksi )
+                                               @php
+                                                    $urutan ++
+                                               @endphp
+                                         
                                                <tr role="row" class="odd">
-                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
-                                                <td>{{ date('j F, Y', strtotime($item->updated_at)) }}</td>
+                                                <th scope="row" class="small" class="sorting_1">{{ $urutan }}.</th>
+                                                <td>{{ date('j F, Y', strtotime($item->tanggal_transaksi)) }}</td>
                                                 <td class="text-center">{{ $item->jumlah_transaksi_online }}</td>
                                                 <td>Rp. {{ number_format($item->total_harga,2,',','.') }}</td>
-                                                <td class="text-center"> <a href="{{ route('pemasukan-online', $item->updated_at) }}" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                <td class="text-center"> <a href="{{ route('pemasukan-online', $item->tanggal_transaksi) }}" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Detail Laporan">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                            </td>
+                                                </td>
+                                               </tr>   
+                                               @endif
+                                               
                                                @empty
                                                    
                                                @endforelse
                                             </tbody>
                                             <tr>
                                                 <td colspan="3" class="text-center font-weight-500">
-                                                    Total Penjualan Online
+                                                    Total Penjualan Online Marketplace
                                                 </td>
                                                 <td colspan="2" class="grand_total font-weight-500">
                                                     Rp. {{ number_format($total_pemasukan_online,2,',','.') }}

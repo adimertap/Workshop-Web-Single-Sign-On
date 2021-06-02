@@ -553,7 +553,7 @@ Route::group(
         ->middleware(['admin_accounting_gabung', 'verified'])
         ->group(function () {
             Route::resource('pemasukan-kasir', 'PemasukanController');
-            Route::get('pemasukan-online/{updated_at}', 'PemasukanController@Pemasukanonline')
+            Route::get('pemasukan-online/{tanggal_transaksi}', 'PemasukanController@Pemasukanonline')
                     ->name('pemasukan-online');
         });
 
