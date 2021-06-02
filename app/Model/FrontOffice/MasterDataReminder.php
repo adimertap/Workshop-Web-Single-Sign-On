@@ -12,7 +12,7 @@ class MasterDataReminder extends Model
     protected $primaryKey = 'id_master_reminder';
 
     protected $fillable = [
-        'nama_reminder', 'masa_berlaku', 'km_berlaku'
+        'nama_reminder', 'masa_berlaku', 'km_berlaku', 'id_bengkel'
     ];
 
     protected $hidden = [];

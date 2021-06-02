@@ -3,6 +3,7 @@
 namespace App\Model\FrontOffice;
 
 use App\Model\Inventory\Sparepart;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -33,5 +34,10 @@ class DetailPenjualanSparepart extends Model
     public function Penjualan()
     {
         return $this->belongsTo(PenjualanSparepart::class, 'id_penjualan_sparepart', 'id_penjualan_sparepart');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

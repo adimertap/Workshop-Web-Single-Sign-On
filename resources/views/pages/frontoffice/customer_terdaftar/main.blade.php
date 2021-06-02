@@ -286,6 +286,12 @@
         $('#validasierror').click();
     });
 
+    $(function () {
+        $("input[name='nohp_customer']").on('input', function (e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
+        });
+    });
+
 </script>
 
 

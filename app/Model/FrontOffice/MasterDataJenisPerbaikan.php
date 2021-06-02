@@ -13,7 +13,7 @@ class MasterDataJenisPerbaikan extends Model
     protected $primaryKey = 'id_jenis_perbaikan';
 
     protected $fillable = [
-        'kode_jenis_perbaikan', 'nama_jenis_perbaikan', 'group_jenis_perbaikan', 'harga_jenis_perbaikan'
+        'kode_jenis_perbaikan', 'nama_jenis_perbaikan', 'group_jenis_perbaikan', 'harga_jenis_perbaikan', 'id_bengkel'
     ];
 
     protected $hidden = [];

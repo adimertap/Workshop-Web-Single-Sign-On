@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\MasterData\Reminderrequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataReminder;
+use Illuminate\Support\Facades\Auth;
 
 class MasterDataReminderController extends Controller
 {
@@ -39,6 +40,7 @@ class MasterDataReminderController extends Controller
      */
     public function store(Reminderrequest $request)
     {
+        $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
 
         MasterDataReminder::create($data);

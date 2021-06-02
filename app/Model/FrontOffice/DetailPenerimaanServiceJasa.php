@@ -4,6 +4,7 @@ namespace App\Model\FrontOffice;
 
 use App\Model\Inventory\Sparepart;
 use App\Model\Service\PenerimaanService;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -35,5 +36,10 @@ class DetailPenerimaanServiceJasa extends Model
     public function penerimaan_jasa()
     {
         return $this->belongsTo(PenerimaanService::class, 'id_service_advisor', 'id_service_advisor');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

@@ -20,6 +20,7 @@ class JadwalMekanikController extends Controller
     {
         $mekanik = Jabatan::with('pegawai', 'pegawai.absensi_mekanik')->where('nama_jabatan', 'Mekanik')->get();
         $mekanik_asli = $mekanik[0]->pegawai;
+        // return $mekanik_asli;
 
         return view('pages.service.jadwal_mekanik.main', compact('mekanik_asli'));
     }

@@ -20,6 +20,7 @@ class CustomerBengkel extends Model
         'email_customer',
         'nohp_customer',
         'alamat_customer',
+        'id_bengkel'
     ];
 
     protected $hidden = [
