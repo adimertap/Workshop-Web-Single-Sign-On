@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\PointOfSales\Laporan;
 
 use App\Http\Controllers\Controller;
+use App\Model\PointOfSales\LaporanService;
 use Illuminate\Http\Request;
 
 class LaporanServiceController extends Controller
@@ -14,7 +15,8 @@ class LaporanServiceController extends Controller
      */
     public function index()
     {
-        return view('pages.pointofsales.laporan.laporan_service');
+        $laporan = LaporanService::with(['penerimaan_service.customer_bengkel', 'pegawai'])->get();
+        return view('pages.pointofsales.laporan.laporan_service', compact('laporan'));
     }
 
     /**

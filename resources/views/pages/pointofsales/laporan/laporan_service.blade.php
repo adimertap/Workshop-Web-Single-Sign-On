@@ -72,15 +72,23 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Jam</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">Harga</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($laporan as $item)
+                                        <tr role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration }}</th>
+                                            <td>{{ $item->penerimaan_service->kode_sa }}</td>
+                                            <td>{{ $item->penerimaan_service->customer_bengkel->nama_customer }}</td>
+                                            <td>{{ $item->penerimaan_service->date }}</td>
+                                            <td>Rp.
+                                                {{ number_format($item->penerimaan_service->total_bayar,0,',','.') }}
+                                            </td>
+                                        </tr>
+                                        @empty
 
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
