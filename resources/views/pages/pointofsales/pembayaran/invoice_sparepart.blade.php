@@ -274,17 +274,17 @@
         var kode = $('#laporan_kode_penjualan').html()
         var tanggal = $('#laporan_tanggal').html()
         var total_tagihan = $('#totalModal').html()
-        var split_total_tagihan = total_tagihan.split('Rp.')[1].replace(',', '')
+        var split_total_tagihan = total_tagihan.split('Rp.')[1].replace(',', '').replace(',', '')
             .trim()
 
         var total_diskon = $('#totalDiskon').html()
         var total_ppn = $('#totalPPN').html()
         var total_bayar = $('#bayarModal').html()
-        var split_total_bayar = total_bayar.split('Rp.')[1].replace(',', '')
+        var split_total_bayar = total_bayar.split('Rp.')[1].replace(',', '').replace(',', '')
             .trim()
         
         var total_kembalian = $('#kembaliModal').html()
-        var split_total_kembalian = total_kembalian.split('Rp.')[1].replace(',', '')
+        var split_total_kembalian = total_kembalian.split('Rp.')[1].replace(',', '').replace(',', '')
             .trim()
 
         // console.log(_token, kode, tanggal, total_tagihan, total_diskon, total_ppn, total_bayar, total_kembalian)

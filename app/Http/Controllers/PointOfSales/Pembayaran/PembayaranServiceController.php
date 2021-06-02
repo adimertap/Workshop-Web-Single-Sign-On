@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\PointOfSales\Pembayaran;
 
 use App\Http\Controllers\Controller;
+use App\Model\PointOfSales\LaporanService;
 use App\Model\Service\PenerimaanService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PembayaranServiceController extends Controller
 {
@@ -72,9 +75,26 @@ class PembayaranServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_service_advisor)
     {
-        //
+        $status_selesai = PenerimaanService::findOrFail($id_service_advisor);
+        $status_selesai->status = 'selesai_pembayaran';
+        $status_selesai->update();
+
+        $laporan_service = new LaporanService;
+        $laporan_service->tanggal_laporan = Carbon::now();
+        $laporan_service->id_service_advisor = $id_service_advisor;
+        $laporan_service->diskon = $request->diskon;
+        $laporan_service->ppn = $request->ppn;
+        $laporan_service->total_tagihan = $request->total_tagihan;
+        $laporan_service->nominal_bayar = $request->nominal_bayar;
+        $laporan_service->kembalian = $request->kembalian;
+        $laporan_service->id_pegawai = Auth::user()->pegawai->id_pegawai;
+        $laporan_service->id_bengkel = Auth::user()->bengkel->id_bengkel;
+
+        $laporan_service->save();
+
+        return $request;
     }
 
     /**
