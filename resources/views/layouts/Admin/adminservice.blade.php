@@ -164,47 +164,6 @@
         </div>
     </div>
 
-    <script>
-        // Waktu
-        setInterval(displayclock, 500);
-
-        function displayclock() {
-            var time = new Date()
-            var hrs = time.getHours()
-            var min = time.getMinutes()
-            var sec = time.getSeconds()
-            var en = 'AM';
-
-            if (hrs > 12) {
-                en = 'PM'
-            }
-
-            if (hrs > 12) {
-                hrs = hrs - 12;
-            }
-
-            if (hrs == 0) {
-                hrs = 12;
-            }
-
-            if (hrs < 10) {
-                hrs = '0' + hrs;
-            }
-
-            if (min < 10) {
-                min = '0' + min;
-            }
-
-            if (sec < 10) {
-                sec = '0' + sec;
-            }
-
-            document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
-            document.getElementById('clockmodal').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
-        }
-
-    </script>
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
@@ -214,7 +173,6 @@
     <script src="{{ url('/backend/dist/assets/demo/datatables-demo.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="{{ url('/backend/dist/assets/demo/datatables-demo.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>

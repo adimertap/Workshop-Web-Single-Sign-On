@@ -31,6 +31,10 @@
                             aria-controls="overview" aria-selected="true">Pemasukan Penjualan Sparepart</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" id="example2-tab" href="#example2" data-toggle="tab" role="tab"
+                            aria-controls="example" aria-selected="false">Pemasukan Service</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" id="example-tab" href="#example" data-toggle="tab" role="tab"
                             aria-controls="example" aria-selected="false">Pemasukan Marketplace</a>
                     </li>
@@ -211,6 +215,86 @@
                             </div>
                         </div>
                     </div>
+                    <div class="tab-pane fade" id="example2" role="tabpanel" aria-labelledby="example2-tab">
+                        <div class="datatable">
+                            @if(session('messageberhasil'))
+                            <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
+                                {{ session('messageberhasil') }}
+                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            @endif
+                            @if(session('messagebayar'))
+                            <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
+                                {{ session('messagebayar') }}
+                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            @endif
+
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-hover dataTable" id="dataTableService"
+                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 10px;">
+                                                        No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 100px;">Tanggal Transaksi</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 50px;">Jumlah Transaksi</th>
+                                                    <th class="sorting text-center" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 150px;">Grand Total</th>
+                                                    <th class="sorting text-center" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Salary: activate to sort column ascending"
+                                                        style="width: 80px;">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($laporanservice as $service)
+                                               <tr role="row" class="odd">
+                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
+                                                <td>{{ date('j F, Y', strtotime($service->tanggal_laporan)) }}</td>
+                                                <td class="text-center">{{ $service->jumlah_service }}</td>
+                                                <td>Rp. {{ number_format($service->tagihan_total,2,',','.') }}</td>
+                                                <td class="text-center"> <a href="{{ route('pemasukan-service', $service->tanggal_laporan) }}" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Detail Laporan">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            </td>
+                                               @empty
+                                                   
+                                               @endforelse
+                                            </tbody>
+                                            <tr>
+                                                <td colspan="3" class="text-center font-weight-500">
+                                                    Total Pemasukan Service
+                                                </td>
+                                                <td colspan="2" class="grand_total font-weight-500">
+                                                    Rp. {{ number_format($total_service,2,',','.') }}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -321,6 +405,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     $(document).ready(function () {
         var tablercv = $('#dataTableRcv').DataTable()
         var tableutama = $('#dataTableUtama').DataTable()
+        var tableservice = $('#dataTableService').DataTable()
     });
 
 </script>

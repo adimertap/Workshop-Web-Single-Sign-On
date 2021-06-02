@@ -107,6 +107,7 @@
                                     <tbody>
                                         @forelse ($akun as $item)
                                         <tr role="row" class="odd">
+
                                             @if ($item->level_akun == '1')
                                                 <td>{{ $item->level_akun }}</td>
                                                 <td></td>
@@ -136,7 +137,7 @@
                                                 <td>{{ $item->moderate_level_akun }}</td>
                                                 <td>{{ $item->kode_akun_induk }}</td>
                                                 <td>{{ $item->kode_akun }}</td>
-                                                <td>{{ $item->level_akun }}</td>
+                                                <td>{{ $item->kode_akun_terakhir }}</td>
                                             @endif
 
                                             <td class="text-center">{{ $item->nama_akun }}</td>
@@ -147,6 +148,17 @@
                                                 <td></td>
                                                 <td class="text-center"><span class="badge badge-warning">Kredit</span></td>
                                             @endif
+
+                                            <td class="text-center"><a href=""
+                                                class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Detail">
+                                                <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_akun }}">
+                                                <i class="fas fa-trash"></i>
+                                                </a>
+                                        </td>
                                         </tr>
                                         @empty
                                             

@@ -83,6 +83,6 @@ class PenerimaanService extends Model
 
     public function detail_perbaikan()
     {
-        return $this->belongsToMany(Sparepart::class, 'tb_service_detail_perbaikan', 'id_service_advisor', 'id_jenis_perbaikan')->withPivot('total_harga');
+        return $this->belongsToMany(MasterDataJenisPerbaikan::class, 'tb_service_detail_perbaikan', 'id_service_advisor', 'id_jenis_perbaikan')->withPivot('total_harga');
     }
 }
