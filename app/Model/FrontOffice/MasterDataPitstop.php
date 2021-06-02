@@ -2,6 +2,7 @@
 
 namespace App\Model\FrontOffice;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -22,5 +23,10 @@ class MasterDataPitstop extends Model
     public static function getId()
     {
         return $getId = DB::table('tb_fo_master_pitstop')->orderBy('id_pitstop', 'DESC')->take(1)->get();
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
     }
 }

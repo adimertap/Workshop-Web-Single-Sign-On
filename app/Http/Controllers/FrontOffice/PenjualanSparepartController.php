@@ -9,6 +9,7 @@ use App\Model\FrontOffice\DetailPenjualanSparepart;
 use App\Model\Inventory\Sparepart;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenjualanSparepartController extends Controller
 {
@@ -62,6 +63,7 @@ class PenjualanSparepartController extends Controller
         $penjualan->id_customer_bengkel = $customer->id_customer_bengkel;
         $penjualan->tanggal = $request->tanggal;
         $penjualan->status_bayar = 'Belum Bayar';
+        $penjualan->id_bengkel = Auth::user()->id_bengkel;
 
         $temp = 0;
         foreach ($request->sparepart as $key => $item) {

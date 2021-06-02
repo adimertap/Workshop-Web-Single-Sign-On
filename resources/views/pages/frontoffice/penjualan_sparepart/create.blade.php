@@ -16,6 +16,8 @@
                         <div class="small">
                             <span class="font-weight-500">Penjualan</span>
                             · Tambah · Data
+                            <span class="font-weight-500 text-primary" id="id_bengkel"
+                                style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
@@ -46,7 +48,8 @@
                         <div class="form-group col-md-12">
                             <label class="small mb-1" for="id_pegawai">Nama Pegawai</label>
                             <input class="form-control" id="id_pegawai" name="id_pegawai" type="text"
-                                placeholder="Enter your last name" value="{{Auth::user()->pegawai->nama_pegawai}}" readonly />
+                                placeholder="Enter your last name" value="{{Auth::user()->pegawai->nama_pegawai}}"
+                                readonly />
                         </div>
                     </div>
                     <div class="form-row">
@@ -410,7 +413,7 @@
     <button class="btn btn-success btn-datatable" type="button" data-toggle="modal" data-target="#Modaltambah">
         <i class="fas fa-plus"></i>
     </button>
-    
+
 </template>
 
 {{-- javascript --}}
@@ -437,6 +440,7 @@
             var jumlah = form.find('input[name="jumlah"]').val()
             var harga = form.find('input[name="harga"]').val()
             var total_harga = jumlah * harga
+            var id_bengkel = $('#id_bengkel').text()
 
             if (jumlah == 0 | jumlah == '') {
                 continue
@@ -445,7 +449,8 @@
                 var obj = {
                     id_sparepart: id_sparepart,
                     jumlah: jumlah,
-                    total_harga: total_harga
+                    total_harga: total_harga,
+                    id_bengkel: id_bengkel
                 }
                 dataform2.push(obj)
             }
@@ -533,14 +538,14 @@
         var table = $('#dataTable').DataTable()
     }
 
-    function editSparepart(element){
+    function editSparepart(element) {
         var table = $('#dataSparepart').DataTable()
         // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
         var children = $(row).children()[1]
         console.log(children)
         var kode = $($(children).children()[0]).html().trim()
-        
+
         $(`#${$.escapeSelector(kode)}-button`).trigger('click');
     }
 

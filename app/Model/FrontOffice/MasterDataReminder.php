@@ -2,6 +2,7 @@
 
 namespace App\Model\FrontOffice;
 
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 
 class MasterDataReminder extends Model
@@ -17,4 +18,9 @@ class MasterDataReminder extends Model
     protected $hidden = [];
 
     public $timestamps = false;
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
+    }
 }
