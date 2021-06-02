@@ -17,6 +17,47 @@
         </div>
     </div>
 </main>
+
+<script>
+    // Waktu
+    setInterval(displayclock, 500);
+
+    function displayclock() {
+        var time = new Date()
+        var hrs = time.getHours()
+        var min = time.getMinutes()
+        var sec = time.getSeconds()
+        var en = 'AM';
+
+        if (hrs > 12) {
+            en = 'PM'
+        }
+
+        if (hrs > 12) {
+            hrs = hrs - 12;
+        }
+
+        if (hrs == 0) {
+            hrs = 12;
+        }
+
+        if (hrs < 10) {
+            hrs = '0' + hrs;
+        }
+
+        if (min < 10) {
+            min = '0' + min;
+        }
+
+        if (sec < 10) {
+            sec = '0' + sec;
+        }
+
+        document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
+    }
+
+</script>
+
 @if (Auth::check() && !Auth::user()->email_verified_at)
 <div class="container">
     <div class="alert alert-danger" role="alert">
@@ -131,8 +172,8 @@
                             <h5>Inventory</h5>
                             <div class="text-muted">Pengelolaan Persediaan Barang</div>
                         </div>
-                        <img class="card-img-top" src="/backend/src/assets/img/freepik/logistic5.png"
-                            alt="..." style="width: 5rem;">
+                        <img class="card-img-top" src="/backend/src/assets/img/freepik/logistic5.png" alt="..."
+                            style="width: 5rem;">
                     </div>
                 </div>
             </a>
