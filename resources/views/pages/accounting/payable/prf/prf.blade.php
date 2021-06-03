@@ -149,6 +149,7 @@
                                             </span>
                                         </td>
                                         <td>
+                                            @if($item->status_bayar == 'Belum Dibayar' and $item->status_jurnal == 'Belum Diposting')
                                             <a href="{{ route('prf.show', $item->id_prf) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail">
@@ -162,6 +163,14 @@
                                                 data-toggle="modal" data-target="#Modalhapus-{{ $item->id_prf }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
+                                            @elseif ($item->status_bayar == 'Sudah Dibayar' and $item->status_jurnal == 'Sudah Diposting')
+                                            <a href="{{ route('prf.show', $item->id_prf) }}"
+                                                class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Detail">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            @else
+                                            @endif
                                         </td>
                                     </tr>
                                     @empty

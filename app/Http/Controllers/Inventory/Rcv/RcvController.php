@@ -169,6 +169,8 @@ class RcvController extends Controller
             $kartu_gudang->jenis_kartu = 'Receiving';
             $kartu_gudang->save();
 
+            
+
             // NGAMBIL TOTAL
             $temp = $temp + $item['total_harga'];
             $qtyrcv = $qtyrcv + $item['qty_rcv'];

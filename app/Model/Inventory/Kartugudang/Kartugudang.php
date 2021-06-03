@@ -2,6 +2,7 @@
 
 namespace App\Model\Inventory\Kartugudang;
 
+use App\Model\FrontOffice\PenjualanSparepart;
 use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Retur\Retur;
 use App\Model\Inventory\Sparepart;
@@ -24,6 +25,8 @@ class Kartugudang extends Model
         'id_rcv',
         'id_retur',
         'id_transaksi_online',
+        'kode_penjualan',
+        'kode_service',
         'saldo_awal',
         'tanggal_transaksi',
         'jumlah_masuk',

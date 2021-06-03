@@ -70,11 +70,11 @@ class PemasukanController extends Controller
         return view('pages.accounting.receiveable.detailonline', ['sub_total' => Transaksi::where('tanggal_transaksi', $tanggal_transaksi)->sum('harga_total')], compact('online','tanggal_transaksi'));
     }
 
-    public function Laporanservice($tanggal_transaksi)
+    public function Laporanservice($tanggal_laporan)
     {
-        $online = Transaksi::with(['Detailtransaksi'])->where('tanggal_transaksi', $tanggal_transaksi)->get();
+        $service = LaporanService::with(['penerimaan_service'])->where('tanggal_laporan', $tanggal_laporan)->get();
         
-        return view('pages.accounting.receiveable.detailonline', ['sub_total' => Transaksi::where('tanggal_transaksi', $tanggal_transaksi)->sum('harga_total')], compact('online','tanggal_transaksi'));
+        return view('pages.accounting.receiveable.detailservice', ['sub_total' => LaporanService::where('tanggal_laporan', $tanggal_laporan)->sum('total_tagihan')], compact('service','tanggal_laporan'));
     }
 
 

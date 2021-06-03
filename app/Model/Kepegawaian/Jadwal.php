@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Jadwal extends Model
 {
-    use SoftDeletes;
-
     protected $table = "tb_kepeg_jadwal";
 
     protected $primaryKey = 'id_jadwal';
@@ -26,7 +24,6 @@ class Jadwal extends Model
     protected $hidden =[ 
         'created_at',
         'updated_at',
-        'deleted_at'
     ];
 
     public $timestamps = true;

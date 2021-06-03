@@ -21,6 +21,8 @@ class Akun extends Model
         'nama_akun_induk',
         'kode_akun_induk',
         'super_level_akun',
+        'moderate_level_akun',
+        'kode_akun_terakhir',
         'akun_grup',
         'level_akun',
         'status_akun',

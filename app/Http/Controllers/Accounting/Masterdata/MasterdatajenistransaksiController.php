@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Accounting\Masterdata;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Accounting\Jenistransaksirequest;
+use App\Model\Accounting\Akun;
 use App\Model\Accounting\Jenistransaksi;
+use App\Model\Accounting\PenentuanAkun;
+use App\Model\Inventory\Retur\Retur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,10 +20,13 @@ class MasterdatajenistransaksiController extends Controller
      */
     public function index()
     {
-        $jenis_transaksi = Jenistransaksi::get();
-        
+        $jenis_transaksi = Jenistransaksi::with(['Penentuanakun.Akun'])->get();
+        $penentuanakun = PenentuanAkun::with(['Akun'])->get();
+        $transaksi = Jenistransaksi::all();
+        $akun = Akun::all();
+        // return $penentuanakun;
 
-        return view('pages.accounting.masterdata.jenistransaksi', compact('jenis_transaksi'));
+        return view('pages.accounting.masterdata.jenistransaksi', compact('jenis_transaksi','penentuanakun','akun','transaksi'));
     }
 
     /**

@@ -40,18 +40,21 @@ class MasterdataakunController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Akunrequest $request)
+    public function store(Request $request)
     {
-        $akun = new Akun;
-        $akun->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
-        $akun->kode_akun = $request->kode_akun;
-        $akun->nama_akun = $request->nama_akun;
-        $akun->akun_grup = $request->akun_grup;
+      
+        $akun = Akun::create([
+            'nama_akun'=>$request->nama_akun,
+            'kode_akun'=>$request->kode_akun,
+            'kode_akun_induk'=>$request->kode_akun_induk,
+            'super_level_akun'=>$request->super_level_akun,
+            'moderate_level_akun'=>$request->moderate_level_akun,
+            'kode_akun_terakhir'=>$request->kode_akun_terakhir,
+            'akun_grup'=>$request->akun_grup,
+            'level_akun'=>$request->level_akun,
+        ]);
         
-        // $rak=Rak::all()
-
-        $akun->save();
-        return redirect()->back()->with('messageberhasil','Data Akun Berhasil ditambahkan');
+        return $akun;
     }
 
     /**

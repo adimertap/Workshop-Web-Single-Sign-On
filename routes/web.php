@@ -390,6 +390,9 @@ Route::group(
             ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::resource('jadwal-pegawai', 'JadwalpegawaiController');
+                Route::post('jadwal-pegawai/tanggal', 'JadwalpegawaiController@getJadwal');
+                Route::post('jadwal-pegawai/masuk', 'JadwalpegawaiController@masuk');
+                Route::post('jadwal-pegawai/libur', 'JadwalpegawaiController@libur');
             });
 
 
@@ -490,6 +493,13 @@ Route::group(
 
                 Route::resource('jenis-transaksi', 'MasterdatajenistransaksiController');
             });
+        
+        Route::prefix('accounting')
+        ->namespace('Accounting\Masterdata')
+        ->middleware(['admin_accounting_gabung', 'verified'])
+        ->group(function () {
+            Route::resource('penentuan-akun', 'PenentuanAkunController');
+        });
 
         // PAYABLE ---------------------------------------------------------------------------------------------- PAYABLE
         // InvoicePayable ----------------------------------------------------------------- Invoice Payable   
@@ -552,7 +562,7 @@ Route::group(
             Route::resource('pemasukan-kasir', 'PemasukanController');
             Route::get('pemasukan-online/{tanggal_transaksi}', 'PemasukanController@Pemasukanonline')
                     ->name('pemasukan-online');
-            Route::get('pemasukan-service/{tanggal_laporan}', 'PemasukanController@Pemasukanservice')
+            Route::get('pemasukan-service/{tanggal_laporan}', 'PemasukanController@Laporanservice')
                     ->name('pemasukan-service');
             });
 

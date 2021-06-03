@@ -107,6 +107,10 @@
                                             {{ $item->Retur->kode_retur }}
                                             @elseif ($item->jenis_kartu =='Online')
                                             {{ $item->TransaksiOnline->code_transaksi }}
+                                            @elseif ($item->jenis_kartu == 'Penjualan')
+                                            {{ $item->kode_penjualan }}
+                                            @elseif ($item->jenis_kartu == 'Service')
+                                            {{ $item->kode_service }}
                                             @else
                                         @endif
                                         </td>
