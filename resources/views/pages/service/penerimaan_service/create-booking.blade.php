@@ -10,7 +10,7 @@
                     <div class="col-auto mt-4">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i data-feather="file-plus"></i></div>
-                            Service Advisor
+                            Service Advisor - Layanan Booking
                         </h1>
                         <div class="page-header-subtitle">Formulir penerimaan service kendaraan yang dilakukan Service
                             Advisor</div>
@@ -30,7 +30,6 @@
         <div class="card mb-4">
             <div class="card-header-actions">
                 <div class="card-header"> Form Service Advisor
-                    <a href="{{ route('penerimaanservice.create') }}" class="btn btn-sm btn-primary"> Booking Service</a>
                 </div>
             </div>
             <div class="card-body">
@@ -58,6 +57,19 @@
                     </div>
 
                     <div class="form-row">
+                        <div class="form-group col-3">
+                            <label for="id_customer_bengkel">Kode Reservasi</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
+                            <select class="form-control" name="id_customer_bengkel" id="id_customer_bengkel"
+                                class="form-control @error('id_customer_bengkel') is-invalid @enderror">
+                                <option>Pilih Kode Reservasi</option>
+                                @foreach ($customer_bengkel as $item)
+                                <option value="{{ $item->id_customer_bengkel }}">
+                                    {{ $item->nama_customer }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group col-3">
                             <label for="id_customer_bengkel">Pilih Customer</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
@@ -99,11 +111,6 @@
                             </div> @enderror
                         </div>
                         <div class="form-group col-3">
-                            <label for="odo_meter">Odo Meter</label>
-                            <input type="text" class="form-control" id="odo_meter" name="odo_meter"
-                                placeholder="Input Odo Meter">
-                        </div>
-                        <div class="form-group col-3">
                             <label for="plat_kendaraan">No. Plat Kendaraan</label>
                             <input type="text" class="form-control" id="plat_kendaraan" name="plat_kendaraan"
                                 placeholder="Input Plat Kendaraan">
@@ -111,12 +118,17 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-4">
+                        <div class="form-group col-3">
+                            <label for="odo_meter">Odo Meter</label>
+                            <input type="text" class="form-control" id="odo_meter" name="odo_meter"
+                                placeholder="Input Odo Meter">
+                        </div>
+                        <div class="form-group col-3">
                             <label for="keluhan_kendaraan">Keluhan Kendaraan</label>
                             <input type="text" class="form-control" id="keluhan_kendaraan" name="keluhan_kendaraan"
                                 placeholder="Input Keluhan Kendaraan">
                         </div>
-                        <div class="form-group col-4">
+                        <div class="form-group col-3">
                             <label for="id_mekanik">Pilih Mekanik</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
                             <select class="form-control" name="id_mekanik" id="id_mekanik"
@@ -131,7 +143,7 @@
                             @error('nama_mekanik')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-                        <div class="form-group col-4">
+                        <div class="form-group col-3">
                             <label for="waktu_estimasi">Estimasi Pengerjaan (menit)</label>
                             <input type="text" class="form-control" id="waktu_estimasi" name="waktu_estimasi"
                                 placeholder="Input Waktu Estimasi">
@@ -521,73 +533,75 @@
             </div>
         </div>
     </div>
-</main>
 
-{{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
-<div class="modal fade" id="ModalCustomer" data-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah Customer</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
+    {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
+    <div class="modal fade" id="ModalCustomer" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Customer</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('customerterdaftar.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                        <hr>
+                        </hr>
+                        <div class="form-group">
+                            <label class="small mb-1" for="nama_customer">Nama Customer <span
+                                    style="color: red">*</span>
+                            </label>
+                            <input class="form-control" name="nama_customer" type="text" id="nama_customer"
+                                placeholder="Input Nama Customer" value="{{ old('nama_customer') }}"
+                                class="form-control @error('nama_customer') is-invalid @enderror">
+                            @error('nama_customer')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="email_customer">Email Customer <span
+                                    style="color: red">*</span>
+                            </label>
+                            <input class="form-control" name="email_customer" type="email" id="email_customer"
+                                placeholder="Input Email Customer" value="{{ old('email_customer') }}"
+                                class="form-control @error('email_customer') is-invalid @enderror">
+                            @error('email_customer')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="nohp_customer">No. Telp Customer <span
+                                    style="color: red">*</span>
+                            </label>
+                            <input class="form-control" name="nohp_customer" type="text" id="nohp_customer"
+                                placeholder="Input No. Telp Customer" value="{{ old('nohp_customer') }}"
+                                class="form-control @error('nohp_customer') is-invalid @enderror">
+                            @error('nohp_customer')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label class="small mb-1" for="alamat_customer">Alamat</label>
+                            <input class="form-control" name="alamat_customer" type="text" id="alamat_customer"
+                                placeholder="Input Alamat Customer" value="{{ old('alamat_customer') }}"
+                                class="form-control @error('alamat_customer') is-invalid @enderror">
+                            @error('alamat_customer')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+                    </div>
+                    @if (count($errors) > 0)
+                    @endif
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="Submit">Tambah</button>
+                    </div>
+                </form>
             </div>
-            <form action="{{ route('customerterdaftar.store') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
-                    <hr>
-                    </hr>
-                    <div class="form-group">
-                        <label class="small mb-1" for="nama_customer">Nama Customer <span style="color: red">*</span>
-                        </label>
-                        <input class="form-control" name="nama_customer" type="text" id="nama_customer"
-                            placeholder="Input Nama Customer" value="{{ old('nama_customer') }}"
-                            class="form-control @error('nama_customer') is-invalid @enderror">
-                        @error('nama_customer')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
-                    </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="email_customer">Email Customer <span style="color: red">*</span>
-                        </label>
-                        <input class="form-control" name="email_customer" type="email" id="email_customer"
-                            placeholder="Input Email Customer" value="{{ old('email_customer') }}"
-                            class="form-control @error('email_customer') is-invalid @enderror">
-                        @error('email_customer')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
-                    </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="nohp_customer">No. Telp Customer <span
-                                style="color: red">*</span>
-                        </label>
-                        <input class="form-control" name="nohp_customer" type="text" id="nohp_customer"
-                            placeholder="Input No. Telp Customer" value="{{ old('nohp_customer') }}"
-                            class="form-control @error('nohp_customer') is-invalid @enderror">
-                        @error('nohp_customer')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label class="small mb-1" for="alamat_customer">Alamat</label>
-                        <input class="form-control" name="alamat_customer" type="text" id="alamat_customer"
-                            placeholder="Input Alamat Customer" value="{{ old('alamat_customer') }}"
-                            class="form-control @error('alamat_customer') is-invalid @enderror">
-                        @error('alamat_customer')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
-                    </div>
-                </div>
-                @if (count($errors) > 0)
-                @endif
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="Submit">Tambah</button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
 
+</main>
 
 
 <template id="template_delete_button">

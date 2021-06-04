@@ -52,7 +52,25 @@ class PenerimaanServiceController extends Controller
      */
     public function create()
     {
-        //
+        $service_advisor = PenerimaanService::all();
+        $kendaraan = MasterDataKendaraan::all();
+        $customer_bengkel = CustomerBengkel::all();
+        $sparepart = Sparepart::all();
+        $pegawai = Pegawai::all();
+        $jasa_perbaikan = MasterDataJenisPerbaikan::all();
+        $date = Carbon::today()->toDateString();
+
+        $id = PenerimaanService::getId();
+        foreach ($id as $value);
+        $idlama = $value->id_service_advisor;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+        $kode_sa = 'SPK-' . $blt . '/' . $idbaru;
+
+        $mekanik = Jabatan::with('pegawai.absensi_mekanik')->where('nama_jabatan', 'Mekanik')->get();
+        $mekanik_asli = $mekanik[0]->pegawai;
+
+        return view('pages.service.penerimaan_service.create-booking', compact('service_advisor', 'kode_sa', 'kendaraan', 'idbaru', 'customer_bengkel', 'pegawai', 'sparepart', 'jasa_perbaikan', 'mekanik_asli', 'date'));
     }
 
     /**
