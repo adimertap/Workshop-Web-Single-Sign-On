@@ -149,7 +149,7 @@
                                             </span>
                                         </td>
                                         <td>
-                                            @if($item->status_bayar == 'Belum Dibayar' and $item->status_jurnal == 'Belum Diposting')
+                                            @if($item->status_prf == 'Pending' and $item->status_bayar == 'Belum Dibayar' and $item->status_jurnal == 'Belum Diposting')
                                             <a href="{{ route('prf.show', $item->id_prf) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail">
@@ -163,13 +163,26 @@
                                                 data-toggle="modal" data-target="#Modalhapus-{{ $item->id_prf }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
-                                            @elseif ($item->status_bayar == 'Sudah Dibayar' and $item->status_jurnal == 'Sudah Diposting')
+                                            @elseif ($item->status_prf == 'Not Approved' and $item->status_bayar == 'Belum Dibayar' and $item->status_jurnal == 'Belum Diposting')
+                                                <a href="{{ route('prf.show', $item->id_prf) }}"
+                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Detail">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_prf }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                           @else
                                             <a href="{{ route('prf.show', $item->id_prf) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            @else
                                             @endif
                                         </td>
                                     </tr>

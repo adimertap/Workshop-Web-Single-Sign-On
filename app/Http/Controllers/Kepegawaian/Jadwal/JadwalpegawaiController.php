@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Kepegawaian\Jadwal;
 
 use App\Http\Controllers\Controller;
+use App\Model\Inventory\Retur\Retur;
 use App\Model\Kepegawaian\Jadwal;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
@@ -26,6 +27,7 @@ class JadwalpegawaiController extends Controller
 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
+       
 
         return view('pages.kepegawaian.jadwal.jadwal', compact('today', 'tanggal','bengkel'));
     }

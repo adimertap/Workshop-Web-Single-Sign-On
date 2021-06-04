@@ -255,19 +255,18 @@
                                     <tbody id='konfirmasi'>
                                         @forelse ($po->Detailsparepart as $sparepart)
                                         <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
-                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                            <td class="kode_sparepartedit" id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</td>
+                                            <td></td>
+                                            <td class="kode_sparepartedit"><span id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span></td>
                                             <td class="nama_sparepartedit">{{ $sparepart->nama_sparepart }}</td>
                                             <td class="merk_sparepartedit">{{ $sparepart->Merksparepart->merk_sparepart }}</td>
                                             <td class="kemasanedit">{{ $sparepart->Kemasan->nama_kemasan }}</td>
                                             <td class="qtyedit">{{ $sparepart->pivot->qty }}</td>
-                                            <td class="harga_satuanedit">{{ $sparepart->pivot->harga_satuan }}</td>
-                                            <td class="total_hargaedit">{{ $sparepart->pivot->total_harga }}</td>
+                                            <td class="total_hargaedit">Rp {{ number_format($sparepart->pivot->harga_satuan,2,',','.')}}</td>
+                                            <td class="total_hargaedit">Rp {{ number_format($sparepart->pivot->total_harga,2,',','.')}}</td>
                                             <td>
-                                               
+                                              
                                             </td>
                                         <tr>
-                                            
                                         @empty
                                             
                                         @endforelse
@@ -495,9 +494,11 @@
         var table = $('#dataTablekonfirmasi').DataTable()
         // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
+ 
         var children = $(row).children()[1]
+        console.log(children)
         var kode = $($(children).children()[0]).html().trim()
-        
+        console.log(kode)
         $(`#${$.escapeSelector(kode)}-button`).trigger('click');
     }
 

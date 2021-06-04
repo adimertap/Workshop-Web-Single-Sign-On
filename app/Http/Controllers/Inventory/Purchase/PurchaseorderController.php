@@ -147,7 +147,7 @@ class PurchaseorderController extends Controller
         $po->grand_total = $temp;
       
         
-        $po->save();
+        $po->update();
         $po->Detailsparepart()->sync($request->sparepart);
         return $request;
     }
