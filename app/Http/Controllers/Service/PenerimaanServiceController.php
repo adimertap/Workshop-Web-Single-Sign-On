@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\FrontOffice\CustomerBengkel;
 use App\Model\FrontOffice\MasterDataJenisPerbaikan;
 use App\Model\FrontOffice\MasterDataKendaraan;
+use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Sparepart;
 use App\Model\Kepegawaian\Jabatan;
 use App\Model\Kepegawaian\Pegawai;
@@ -51,7 +52,25 @@ class PenerimaanServiceController extends Controller
      */
     public function create()
     {
-        //
+        $service_advisor = PenerimaanService::all();
+        $kendaraan = MasterDataKendaraan::all();
+        $customer_bengkel = CustomerBengkel::all();
+        $sparepart = Sparepart::all();
+        $pegawai = Pegawai::all();
+        $jasa_perbaikan = MasterDataJenisPerbaikan::all();
+        $date = Carbon::today()->toDateString();
+
+        $id = PenerimaanService::getId();
+        foreach ($id as $value);
+        $idlama = $value->id_service_advisor;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+        $kode_sa = 'SPK-' . $blt . '/' . $idbaru;
+
+        $mekanik = Jabatan::with('pegawai.absensi_mekanik')->where('nama_jabatan', 'Mekanik')->get();
+        $mekanik_asli = $mekanik[0]->pegawai;
+
+        return view('pages.service.penerimaan_service.create-booking', compact('service_advisor', 'kode_sa', 'kendaraan', 'idbaru', 'customer_bengkel', 'pegawai', 'sparepart', 'jasa_perbaikan', 'mekanik_asli', 'date'));
     }
 
     /**
@@ -81,6 +100,26 @@ class PenerimaanServiceController extends Controller
         $temp1 = 0;
         foreach ($request->sparepart as $key => $item1) {
             $temp1 = $temp1 + $item1['total_harga'];
+            $sparepart = Sparepart::findOrFail($item1['id_sparepart']);
+            $sparepart->stock = $sparepart->stock - $item1['jumlah'];
+            if ($sparepart->stock >= $sparepart->stock_min) {
+                $sparepart->status_jumlah = 'Cukup';
+            } else if ($sparepart->stock == 0) {
+                $sparepart->status_jumlah = 'Habis';
+            } else {
+                $sparepart->status_jumlah = 'Kurang';
+            }
+            $sparepart->save();
+
+            $kartu_gudang = new Kartugudang;
+            $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+            $kartu_gudang->saldo_akhir =  $sparepart->stock;
+            $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item1['jumlah'];
+            $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
+            $kartu_gudang->kode_service = $service->kode_sa;
+            $kartu_gudang->tanggal_transaksi = $service->date;
+            $kartu_gudang->jenis_kartu = 'Service';
+            $kartu_gudang->save();
         }
 
         $temp2 = 0;

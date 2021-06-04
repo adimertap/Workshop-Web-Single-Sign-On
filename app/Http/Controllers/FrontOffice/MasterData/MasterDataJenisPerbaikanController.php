@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\MasterData\JenisPerbaikanrequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataJenisPerbaikan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class MasterDataJenisPerbaikanController extends Controller
@@ -48,6 +49,7 @@ class MasterDataJenisPerbaikanController extends Controller
      */
     public function store(JenisPerbaikanrequest $request)
     {
+        $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
         $data['slug'] = Str::slug($request->group_jenis_perbaikan);
 

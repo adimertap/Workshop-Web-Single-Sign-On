@@ -13,7 +13,7 @@ class MasterDataMerkKendaraan extends Model
     protected $primaryKey = 'id_merk_kendaraan';
 
     protected $fillable = [
-        'id_jenis_kendaraan', 'merk_kendaraan'
+        'id_jenis_kendaraan', 'merk_kendaraan', 'id_bengkel'
     ];
 
     protected $hidden = [];

@@ -8,6 +8,7 @@ use App\Model\FrontOffice\MasterDataJenisKendaraan;
 use App\Model\FrontOffice\MasterDataKendaraan;
 use App\Model\FrontOffice\MasterDataMerkKendaraan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterDataKendaraanController extends Controller
 {
@@ -63,6 +64,7 @@ class MasterDataKendaraanController extends Controller
      */
     public function store(KendaraanRequest $request)
     {
+        $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
 
         MasterDataKendaraan::create($data);

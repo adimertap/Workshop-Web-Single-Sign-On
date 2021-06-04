@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\MasterData\Pitstoprequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataPitstop;
+use Illuminate\Support\Facades\Auth;
 
 class MasterDataPitstopController extends Controller
 {
@@ -47,6 +48,7 @@ class MasterDataPitstopController extends Controller
      */
     public function store(Pitstoprequest $request)
     {
+        $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
 
         MasterDataPitstop::create($data);

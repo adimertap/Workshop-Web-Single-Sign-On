@@ -6,9 +6,11 @@ use App\Model\FrontOffice\PenjualanSparepart;
 use App\Http\Controllers\Controller;
 use App\Model\FrontOffice\CustomerBengkel;
 use App\Model\FrontOffice\DetailPenjualanSparepart;
+use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Sparepart;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenjualanSparepartController extends Controller
 {
@@ -62,10 +64,31 @@ class PenjualanSparepartController extends Controller
         $penjualan->id_customer_bengkel = $customer->id_customer_bengkel;
         $penjualan->tanggal = $request->tanggal;
         $penjualan->status_bayar = 'Belum Bayar';
+        $penjualan->id_bengkel = Auth::user()->id_bengkel;
 
         $temp = 0;
         foreach ($request->sparepart as $key => $item) {
             $temp = $temp + $item['total_harga'];
+            $sparepart = Sparepart::findOrFail($item['id_sparepart']);
+            $sparepart->stock = $sparepart->stock - $item['jumlah'];
+            if ($sparepart->stock >= $sparepart->stock_min) {
+                $sparepart->status_jumlah = 'Cukup';
+            } else if ($sparepart->stock == 0) {
+                $sparepart->status_jumlah = 'Habis';
+            } else {
+                $sparepart->status_jumlah = 'Kurang';
+            }
+            $sparepart->save();
+
+            $kartu_gudang = new Kartugudang;
+            $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+            $kartu_gudang->saldo_akhir =  $sparepart->stock;
+            $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item['jumlah'];
+            $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
+            $kartu_gudang->kode_penjualan = $penjualan->kode_penjualan;
+            $kartu_gudang->tanggal_transaksi = $penjualan->tanggal;
+            $kartu_gudang->jenis_kartu = 'Penjualan';
+            $kartu_gudang->save();
         }
         $penjualan->total_bayar = $temp;
 

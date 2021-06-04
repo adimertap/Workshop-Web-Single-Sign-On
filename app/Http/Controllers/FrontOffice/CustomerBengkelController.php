@@ -6,6 +6,7 @@ use App\Model\FrontOffice\CustomerBengkel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\CustomerBengkelRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerBengkelController extends Controller
 {
@@ -38,6 +39,7 @@ class CustomerBengkelController extends Controller
      */
     public function store(CustomerBengkelRequest $request)
     {
+        $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
 
         CustomerBengkel::create($data);

@@ -4,6 +4,7 @@ namespace App\Model\FrontOffice;
 
 use App\Model\Inventory\Sparepart;
 use App\Model\SingleSignOn\Bengkel;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +33,11 @@ class PenjualanSparepart extends Model
     ];
 
     public $timestamps = true;
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OwnershipScope);
+    }
 
     // relations
     public function Customer()
