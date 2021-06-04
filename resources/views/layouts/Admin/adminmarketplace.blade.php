@@ -109,6 +109,9 @@
                                 <a class="nav-link" href="{{ route('transaksi-marketplace')}}">
                                     Penjualan
                                 </a>
+                                <a class="nav-link" href="{{ route('keuangan')}}">
+                                    Keuangan
+                                </a>
                             </nav>
                         </div>
 
