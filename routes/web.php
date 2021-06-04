@@ -602,6 +602,12 @@ Route::group(
                     ->name('transaksi-marketplace');
                 Route::put('/transaksiupdate/{id}', 'TransaksiController@update')
                     ->name('transaksi-marketplace-update');
+                Route::get('/transaksi/keuangan', 'KeuanganController@index')
+                    ->name('keuangan');
+                Route::delete('/keuangandestroy/{id}', 'KeuanganController@destroy')
+                    ->name('keuangan-destroy');
+                Route::post('/tariksaldo', 'KeuanganController@create')
+                    ->name('tarik-saldo');
             });
 
         // PENJUALAN ONLINE ---------------------------------------------------------------------- Penjualan Online
