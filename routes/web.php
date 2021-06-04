@@ -98,6 +98,8 @@ Route::group(
             ->middleware(['admin_service_advisor', 'verified'])
             ->group(function () {
                 Route::resource('penerimaanservice', 'PenerimaanServiceController');
+                Route::get("/kode-reservasi", "PenerimaanServiceController@reservasi");
+
             });
 
 
