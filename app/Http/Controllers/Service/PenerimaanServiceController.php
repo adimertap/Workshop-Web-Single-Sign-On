@@ -11,12 +11,19 @@ use App\Model\Inventory\Sparepart;
 use App\Model\Kepegawaian\Jabatan;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\Service\PenerimaanService;
+use App\Model\Service\Reservasi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PenerimaanServiceController extends Controller
 {
+
+    public function reservasi(Request $request)
+    {
+        $reservasi = Reservasi::where('kode_reservasi', $request->kode_reservasi)->first();
+        return json_encode($reservasi);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -81,6 +88,12 @@ class PenerimaanServiceController extends Controller
      */
     public function store(Request $request)
     {
+
+        $reservasi = Reservasi::where('kode_reservasi', $request->kode_reservasi)->first();
+        $reservasi->status = 'BERHASIL';
+        $reservasi->save();
+
+
         $service = new PenerimaanService;
         $service->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
         $service->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;

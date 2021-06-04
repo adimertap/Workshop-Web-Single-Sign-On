@@ -37,11 +37,28 @@
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
+                        <div class="form-group col-3">
+                            <label for="kode_reservasi">Kode Reservasi</label>
+                            <div class="d-flex justify-content-between">
+                                <input type="text" class="form-control" id="kode_reservasi" name="kode_reservasi"
+                                    placeholder="Input Kode Reservasi">
+                                <button class="btn btn-secondary ml-1" type="button" id="reservasi">Cari</button>
+                            </div>
+
+                        </div>
+                        <div class="form-group col-3">
+                        </div>
+
+
+                    </div>
+                    <div class="form-row">
                         <div class="form-group col-4">
                             <label for="kode_sa">Kode SPK</label>
                             <input class="form-control" id="kode_sa" name="kode_sa" type="text" value="{{ $kode_sa }}"
                                 readonly />
-                        </div>
+                               
+                        </div>                           
+                        
                         <div class="form-group col-4">
                             <label for="id_pegawai">Pegawai</label>
                             <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
@@ -57,19 +74,6 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-3">
-                            <label for="id_customer_bengkel">Kode Reservasi</label><span class="mr-4 mb-3"
-                                style="color: red">*</span>
-                            <select class="form-control" name="id_customer_bengkel" id="id_customer_bengkel"
-                                class="form-control @error('id_customer_bengkel') is-invalid @enderror">
-                                <option>Pilih Kode Reservasi</option>
-                                @foreach ($customer_bengkel as $item)
-                                <option value="{{ $item->id_customer_bengkel }}">
-                                    {{ $item->nama_customer }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="form-group col-3">
                             <label for="id_customer_bengkel">Pilih Customer</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
@@ -623,6 +627,32 @@
 
 <script>
     $(document).ready(function () {
+
+        $("#reservasi").click(function () {
+            var kode_reservasi = $("#kode_reservasi").val();
+            $.ajax({
+                type: 'get',
+                url: '/service/kode-reservasi',
+                dataType: "json",
+                data: {
+                    kode_reservasi: kode_reservasi,
+                },
+                success: function (data) {
+                    if(!data){
+                         alert('Kode Reservasi Tidak Ada');
+                    }
+
+                    // alert(data.no_plat)
+                    $("#id_customer_bengkel").val(data.id_customer_bengkel).change();
+                    $("#id_kendaraan").val(data.id_kendaraan).change();
+                    $("#plat_kendaraan").val(data.no_plat);
+                    $("#keluhan_kendaraan").val(data.keluhan_kendaraan);
+                },
+            });
+
+        });
+
+
         var template = $('#template_delete_button').html()
         $('#dataPerbaikan').DataTable({
             "columnDefs": [{
@@ -754,6 +784,7 @@
     function kirimfrontoffice(event, sparepart, jasa_perbaikan, idbaru) {
         event.preventDefault();
         var form1 = $('#form1')
+        var kode_reservasi = $('#kode_reservasi').val()
         var kode_sa = form1.find('input[name="kode_sa"]').val()
         var id_pegawai = form1.find('input[name="id_pegawai"]').val()
         var id_customer_bengkel = $('#id_customer_bengkel').val()
@@ -818,6 +849,7 @@
         } else {
             var data = {
                 _token: _token,
+                kode_reservasi:kode_reservasi,
                 kode_sa: kode_sa,
                 id_pegawai: id_pegawai,
                 id_customer_bengkel: id_customer_bengkel,
