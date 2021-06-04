@@ -403,14 +403,12 @@
 <script>
     $(document).ready(function () {
         $('#validasierror').click();
-        
         var tablercv = $('#dataTableAkun').DataTable()
     });
 
     function submit1(event, akun) {
         event.preventDefault()
         var _token = $('#form1').find('input[name="_token"]').val()
-       
         var dataform2 = []
 
         for (var i = 0; i < akun.length; i++) {
