@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Accounting;
 use App\Http\Controllers\Controller;
 use App\Model\Accounting\Payable\InvoicePayable;
 use App\Model\Accounting\Prf\Prf;
+use App\Model\Marketplace\Transaksi;
+use App\Model\PointOfSales\LaporanPenjualanSparepart;
+use App\Model\PointOfSales\LaporanService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -22,6 +25,9 @@ class DashboardaccountingController extends Controller
 
         return view('pages.accounting.dashboard.dashboardaccounting',
         ['hutang_supplier' => InvoicePayable::where('status_prf','Belum Dibuat')->sum('total_pembayaran'),
+        'pendapatan_penjualan' => LaporanPenjualanSparepart::sum('total_tagihan'),
+        'pendapatan_service' => LaporanService::sum('total_tagihan'),
+        'pendapatan_marketplace' => Transaksi::sum('harga_total'),
         'invoice' => InvoicePayable::count(),
         'invoice_prf_belum' => InvoicePayable::where('status_prf','Belum Dibuat')->count(),
         'invoice_prf_sudah' => InvoicePayable::where('status_prf','Sudah Dibuat')->count(),

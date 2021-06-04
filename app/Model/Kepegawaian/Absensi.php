@@ -23,6 +23,7 @@ class Absensi extends Model
         'keterangan',
         'jam_masuk',
         'jam_pulang',
+        'id_jadwal'
     ];
 
     protected $hidden =[ 
@@ -37,6 +38,11 @@ class Absensi extends Model
     public function Pegawai()
     {
         return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
+    }
+
+    public function Jadwal()
+    {
+        return $this->belongsTo(Jadwal::class,'id_jadwal','id_jadwal');
     }
 
     protected static function booted()

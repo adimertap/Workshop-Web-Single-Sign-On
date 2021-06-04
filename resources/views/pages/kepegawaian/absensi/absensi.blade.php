@@ -31,7 +31,7 @@
         </div>
         <div class="alert-icon-content">
             <h6 class="alert-heading">Informasi Hari ini!</h6>
-            Anda Belum Melakukan Absensi Kepada Pegawai Bengkel
+            Anda Belum Melakukan Absensi Pagi Kepada Pegawai dengan Jadwal Hari Ini
            
         </div>
     </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="alert-icon-content">
             <h6 class="alert-heading">Informasi Hari ini!</h6>
-            Anda Telah Melakukan Absensi Kepada Seluruh pegawai
+            Anda Telah Melakukan Absensi Pagi Kepada Pegawai dengan Jadwal Hari Ini
            
         </div>
     </div>
@@ -223,7 +223,7 @@
             <form action="{{ route('absensi.store') }}" id="form1" method="POST">
                 @csrf
                 <div class="modal-body">
-                    <h6>Hari ini</h6>
+                    <h6>Jadwal Hari ini</h6>
                     <div class="small mb-2">
                         <span class="font-weight-500 text-primary">{{ $tanggal }}</span>
                         <div class="font-weight-500 text-primary" id="clockmodal"></div>
@@ -235,12 +235,14 @@
                         <select class="form-control" name="id_pegawai" id="id_pegawai"
                             class="form-control @error('id_pegawai') is-invalid @enderror">
                             <option>Pilih Pegawai</option>
-                            @foreach ($pegawai as $item)
-                            <option value="{{ $item->id_pegawai }}">{{ $item->nama_pegawai }}
+                            @foreach ($jadwalpegawai as $item)
+                            <option value="{{ $item->Pegawai->id_pegawai }}">{{ $item->Pegawai->nama_pegawai }}, {{ $item->Pegawai->Jabatan->nama_jabatan }}
                             </option>
                             @endforeach
                         </select>
+                        <span class="small">Belum ada jadwal Pegawai Hari ini?</span><a target="_blank" href="{{ route('jadwal-pegawai.index') }}" class="small font-weight-500 text-primary"> Klik disini </a>
                     </div>
+                   
                     <div class="form-group">
                         <label class="small mb-1 mr-1" for="absensi">Absensi</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <select name="absensi" id="absensi" class="form-control"

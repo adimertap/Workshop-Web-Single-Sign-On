@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Kepegawaian\Absensi;
 use App\Http\Controllers\Controller;
 use App\Model\Inventory\Retur\Retur;
 use App\Model\Kepegawaian\Absensi;
+use App\Model\Kepegawaian\Jadwal;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
 use Illuminate\Http\Request;
@@ -35,7 +36,9 @@ class AbsensipegawaiController extends Controller
         $tanggal = Carbon::now()->format('j F Y');
         $pegawai = Pegawai::all();
 
-        return view('pages.kepegawaian.absensi.absensi',['jumlah_pegawai'=> Pegawai::count()], compact('absensi','jumlah_absensi','pegawai','today','tanggal','bengkel'));
+        $jadwalpegawai = Jadwal::with(['Pegawai'])->whereDate('tanggal_jadwal', Carbon::today())->get();
+
+        return view('pages.kepegawaian.absensi.absensi',['jumlah_pegawai'=> Jadwal::with(['Pegawai'])->whereDate('tanggal_jadwal', Carbon::today())->count()], compact('absensi','jumlah_absensi','pegawai','today','tanggal','bengkel','jadwalpegawai'));
     }
 
     /**
