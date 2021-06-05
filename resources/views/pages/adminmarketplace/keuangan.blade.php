@@ -185,9 +185,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="small mr-1" for="nama_bank">Nama Bank</label><span class="mr-4 mb-3"
-                            style="color: red">*</span>
-                        <input class="form-control" name="nama_bank" type="text" id="nama_bank" />
+                        <select class="form-control select2" id="kt_select2_1" name="nama_bank">
+                            <option value="" holder>Pilih Bank</option>
+                            @foreach ($bank as $item)
+                            <option value="{{ $item->id_bank }}">
+                                {{ $item->nama_bank }}</option>
+                            @endforeach
+
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="small mr-1" for="no_rekening">No Rekening</label><span class="mr-4 mb-3"
@@ -216,14 +221,20 @@
 <button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open
     Modal</button>
 @endif
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script src="{{ asset('assets/select2.js') }}"></script>
 
 {{-- Script Open Modal Callback --}}
 <script>
     $(document).ready(function () {
         $('#validasierror').click();
+        	KTSelect2.init();
+
     });
 
 </script>
-
 
 @endsection

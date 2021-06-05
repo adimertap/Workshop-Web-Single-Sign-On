@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AdminMarketplace;
 
+use App\Bank;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Marketplace\Keuangan;
@@ -29,6 +30,7 @@ class KeuanganController extends Controller
         }else{
             $saldo = 0;
         }
+        $bank = Bank::get();
 
         $keuangan = Keuangan::where('id_bengkel', Auth::user()->id_bengkel)->orderBy('id_keuangan', 'DESC')->get();
         // $keuangan_debet = Keuangan::where('id_bengkel', Auth::user()->id_bengkel)->where('status', 'DEBET')->get();
@@ -36,6 +38,7 @@ class KeuanganController extends Controller
 
         return view('pages.adminmarketplace.keuangan',
             ['saldo' => $saldo, 
+            'bank'=>$bank,
             'keuangan' => $keuangan]);        
     //    return view('pages.adminmarketplace.transaksi',[
     //        "transaksi" => $transaksi
