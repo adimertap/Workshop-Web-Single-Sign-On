@@ -15,7 +15,7 @@ class TransaksiController extends Controller
 {
     public function index()
     {
-        $transaksi = Transaksi::with('User', 'Detailtransaksi', 'Kabupaten.Provinsi')->where('id_bengkel', Auth::user()->id_bengkel)->get();
+        $transaksi = Transaksi::with('User', 'Detailtransaksi', 'Kabupaten.Provinsi')->where('id_bengkel', Auth::user()->id_bengkel)->where('transaksi_status', 'DIBAYAR')->orwhere('transaksi_status', 'DIKIRIM')->orwhere('transaksi_status', 'DITERIMA')->get();
     //    dd($transaksi);
 
         
@@ -28,7 +28,7 @@ class TransaksiController extends Controller
 
         $transaksi= Transaksi::findOrFail($id);
         $transaksi->resi= $request->resi;
-        if($request->transaksi_status == "PENDING"){
+        if($request->transaksi_status == "DIBAYAR"){
             $transaksi->transaksi_status = "DIKIRIM";
 
             $detailtransaksi=DetailTransaksi::where('id_transaksi_online', $id)->get();
