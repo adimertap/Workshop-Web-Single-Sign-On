@@ -20,7 +20,7 @@ class PenerimaanService extends Model
     protected $primaryKey = 'id_service_advisor';
 
     protected $fillable = [
-        'id_kendaraan', 'date', 'id_customer_bengkel', 'id_bengkel', 'keluhan_kendaraan', 'id_jenis_perbaikan', 'id_sparepart', 'id_pegawai', 'waktu_estimasi', 'id_mekanik', 'status'
+        'id_kendaraan', 'date', 'id_customer_bengkel', 'id_bengkel', 'keluhan_kendaraan', 'id_jenis_perbaikan', 'id_sparepart', 'id_pegawai', 'id_mekanik', 'status'
     ];
 
     protected $hidden = [];

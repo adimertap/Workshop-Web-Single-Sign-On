@@ -40,7 +40,7 @@
                         <div class="form-group col-3">
                             <label for="kode_reservasi">Kode Reservasi</label>
                             <div class="d-flex justify-content-between">
-                                <input type="text" class="form-control" id="kode_reservasi" name="kode_reservasi"
+                                <input type="text" class="form-control col-12" id="kode_reservasi" name="kode_reservasi"
                                     placeholder="Input Kode Reservasi">
                                 <button class="btn btn-secondary ml-1" type="button" id="reservasi">Cari</button>
                             </div>
@@ -56,9 +56,8 @@
                             <label for="kode_sa">Kode SPK</label>
                             <input class="form-control" id="kode_sa" name="kode_sa" type="text" value="{{ $kode_sa }}"
                                 readonly />
-                               
-                        </div>                           
-                        
+                        </div>
+
                         <div class="form-group col-4">
                             <label for="id_pegawai">Pegawai</label>
                             <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
@@ -74,7 +73,7 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label for="id_customer_bengkel">Pilih Customer</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
                             <div class="input-group input-group-joined">
@@ -97,7 +96,7 @@
                             @error('id_customer_bengkel')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label for="id_kendaraan">Pilih
                                 Kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <div class="input-group input-group-joined">
@@ -114,7 +113,7 @@
                             @error('id_kendaraan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label for="plat_kendaraan">No. Plat Kendaraan</label>
                             <input type="text" class="form-control" id="plat_kendaraan" name="plat_kendaraan"
                                 placeholder="Input Plat Kendaraan">
@@ -122,17 +121,17 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label for="odo_meter">Odo Meter</label>
                             <input type="text" class="form-control" id="odo_meter" name="odo_meter"
                                 placeholder="Input Odo Meter">
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label for="keluhan_kendaraan">Keluhan Kendaraan</label>
                             <input type="text" class="form-control" id="keluhan_kendaraan" name="keluhan_kendaraan"
                                 placeholder="Input Keluhan Kendaraan">
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label for="id_mekanik">Pilih Mekanik</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
                             <select class="form-control" name="id_mekanik" id="id_mekanik"
@@ -146,11 +145,6 @@
                             </select>
                             @error('nama_mekanik')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
-                        </div>
-                        <div class="form-group col-3">
-                            <label for="waktu_estimasi">Estimasi Pengerjaan (menit)</label>
-                            <input type="text" class="form-control" id="waktu_estimasi" name="waktu_estimasi"
-                                placeholder="Input Waktu Estimasi">
                         </div>
                     </div>
                 </form>
@@ -638,8 +632,8 @@
                     kode_reservasi: kode_reservasi,
                 },
                 success: function (data) {
-                    if(!data){
-                         alert('Kode Reservasi Tidak Ada');
+                    if (!data) {
+                        alert('Kode Reservasi Tidak Ada');
                     }
 
                     // alert(data.no_plat)
@@ -794,7 +788,6 @@
         var plat_kendaraan = form1.find('input[name="plat_kendaraan"]').val()
         var keluhan_kendaraan = form1.find('input[name="keluhan_kendaraan"]').val()
         var id_mekanik = $('#id_mekanik').val()
-        var waktu_estimasi = form1.find('input[name="waktu_estimasi"]').val()
         var dataform2 = []
         var dataform3 = []
         var _token = form1.find('input[name="_token"]').val()
@@ -849,7 +842,7 @@
         } else {
             var data = {
                 _token: _token,
-                kode_reservasi:kode_reservasi,
+                kode_reservasi: kode_reservasi,
                 kode_sa: kode_sa,
                 id_pegawai: id_pegawai,
                 id_customer_bengkel: id_customer_bengkel,
@@ -859,7 +852,6 @@
                 plat_kendaraan: plat_kendaraan,
                 keluhan_kendaraan: keluhan_kendaraan,
                 id_mekanik: id_mekanik,
-                waktu_estimasi: waktu_estimasi,
                 sparepart: dataform2,
                 jasa_perbaikan: dataform3
 

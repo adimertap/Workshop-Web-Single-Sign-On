@@ -108,7 +108,6 @@ class PenerimaanServiceController extends Controller
         $service->keluhan_kendaraan =  $request->keluhan_kendaraan;
         $service->id_mekanik =  $request->id_mekanik;
         $service->status =  'menunggu';
-        $service->waktu_estimasi =  $request->waktu_estimasi;
 
         $temp1 = 0;
         foreach ($request->sparepart as $key => $item1) {
