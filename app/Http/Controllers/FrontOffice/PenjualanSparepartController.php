@@ -21,7 +21,7 @@ class PenjualanSparepartController extends Controller
      */
     public function index()
     {
-        $penjualan = PenjualanSparepart::with(['Customer'])->get();
+        $penjualan = PenjualanSparepart::with(['Customer'])->orderBy('id_penjualan_sparepart', 'DESC')->get();
         $blt = date('D, d/m/Y');
         return view('pages.frontoffice.penjualan_sparepart.main', compact('blt', 'penjualan'));
     }

@@ -62,9 +62,9 @@
                                     <h6>Data Bengkel</h6>
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="nama_bengkel">Nama Bengkel</label>
+                                            <label for="nama_bengkel">Nama Bengkel</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="nama_bengkel" type="text" class="form-control"
-                                                name="nama_bengkel" placeholder="Input Nama Bengkel" autofocus>
+                                                name="nama_bengkel" placeholder="Input Nama Bengkel" autofocus required>
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="alamat_bengkel">Alamat Bengkel</label>
@@ -74,25 +74,25 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="jam_buka_bengkel">Jam Buka Bengkel</label>
+                                            <label for="jam_buka_bengkel">Jam Buka Bengkel</label> <span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="jam_buka_bengkel" type="time" class="form-control" name="jam_buka_bengkel" >
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="jam_tutup_bengkel">Jam Tutup Bengkel</label>
+                                            <label for="jam_tutup_bengkel">Jam Tutup Bengkel</label> <span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="jam_tutup_bengkel" type="time" class="form-control" name="jam_tutup_bengkel">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label class="small mb-1" for="logo_bengkel">Logo Bengkel</label>
+                                            <label class="small mb-1" for="logo_bengkel">Logo Bengkel</label> <span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="logo_bengkel" type="file"
                                                 name="logo_bengkel" accept="image/*">
                                         </div>
 
                                         <div class="form-group col-6">
-                                            <label for="nohp_bengkel">No. Telp Bengkel</label>
+                                            <label for="nohp_bengkel">No. Telp Bengkel</label> <span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="nohp_bengkel" type="text" class="form-control"
-                                                placeholder="Input No. Telp Bengkel" name="nohp_bengkel">
+                                                placeholder="Input No. Telp Bengkel" name="nohp_bengkel" required>
                                         </div>
                                     </div>
 
@@ -132,15 +132,15 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="latitude">Latitude Bengkel</label>
+                                            <label for="latitude">Latitude Bengkel</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="latitude" name="latitude" type="text" class="form-control"
-                                                placeholder="Input Latitude Bengkel" name="latitude" autofocus>
+                                                placeholder="Input Latitude Bengkel" name="latitude" autofocus required>
                                         </div>
 
                                         <div class="form-group col-6">
-                                            <label for="longitude">Longitude Bengkel</label>
+                                            <label for="longitude">Longitude Bengkel</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="longitude" name="longitude" type="text" class="form-control"
-                                                placeholder="Input Longitude bengkel" name="longitude">
+                                                placeholder="Input Longitude bengkel" name="longitude" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -159,11 +159,11 @@
 
                                     <div class="row">
                                         <div class="form-group col-4">
-                                            <label class="small mb-1" for="name">Nama</label>
+                                            <label class="small mb-1" for="name">Nama</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="name" type="text"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
                                                 value="{{ old('name') }}" required placeholder="Input Nama Pemilik"
-                                                autocomplete="name" autofocus>
+                                                autocomplete="name" autofocus required>
 
                                             @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -173,15 +173,15 @@
                                         </div>
                                         <div class="form-group col-4">
                                             <label class="small mb-1" for="nik_pegawai">NIK Pemilik <small
-                                                    class="text-muted">*16 digit</small></label>
+                                                    class="text-muted">*16 digit</small></label> <span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="nik_pegawai" type="text" class="form-control"
-                                                placeholder="Input NIK Pemilik" name="nik_pegawai" minlength="16">
+                                                placeholder="Input NIK Pemilik" name="nik_pegawai" minlength="16" maxlength="16" required>
                                         </div>
                                         <div class="form-group col-4">
                                             <label class="small mb-1" for="npwp_pegawai">NPWP Pemilik <small
                                                     class="text-muted">*16 digit</small></label>
                                             <input id="npwp_pegawai" type="text" class="form-control"
-                                                placeholder="Input NPWP Pemilik" name="npwp_pegawai" minlength="16">
+                                                placeholder="Input NPWP Pemilik" name="npwp_pegawai" minlength="16" maxlength="16" required>
                                         </div>
                                     </div>
 
@@ -198,9 +198,9 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-4">
-                                            <label class="small mb-1" for="no_telp">No.Telp Pemilik</label>
+                                            <label class="small mb-1" for="no_telp">No.Telp Pemilik</label> <span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="no_telp" type="text" class="form-control"
-                                                placeholder="Input No. Telp Pemilik" name="no_telp">
+                                                placeholder="Input No. Telp Pemilik" name="no_telp" required>
                                         </div>
                                         <div class="form-group col-4">
                                             <label for="alamat">Alamat</label>
@@ -233,7 +233,7 @@
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label class="small mb-1" for="username">Username <small
-                                                    class="text-muted">*Min. 6 digit</small></label>
+                                                    class="text-muted">*Min. 6 digit</small></label> <span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="username" type="text"
                                                 class="form-control @error('username') is-invalid @enderror"
                                                 name="username" placeholder="Input Username"
@@ -247,7 +247,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="email">Email</label>
+                                            <label for="email">Email</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="email" type="email"
                                                 class="form-control @error('email') is-invalid @enderror" name="email"
                                                 placeholder="Input Email" value="{{ old('email') }}" required
@@ -263,8 +263,8 @@
 
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="password" class="d-block">Password <small
-                                                    class="text-muted">*Min. 8 digit</small></label>
+                                            <label for="password" class="">Password <small
+                                                    class="text-muted">*Min. 8 digit</small></label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 placeholder="Input Password" name="password" required
@@ -277,8 +277,8 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="password-confirm" class="d-block">Password Confirmation <small
-                                                    class="text-muted">*Min. 8 digit</small></label>
+                                            <label for="password-confirm" class="">Password Confirmation <small
+                                                    class="text-muted">*Min. 8 digit</small></label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="password-confirm" type="password" class="form-control"
                                                 placeholder="Konfirmasi Password" name="password_confirmation" required
                                                 autocomplete="new-password">

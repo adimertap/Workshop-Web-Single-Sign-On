@@ -20,7 +20,7 @@ class PembayaranSparepartController extends Controller
      */
     public function index()
     {
-        $penjualan_sparepart = PenjualanSparepart::where([['status_bayar', '=', 'Belum Bayar']])->get();
+        $penjualan_sparepart = PenjualanSparepart::where([['status_bayar', '=', 'Belum Bayar']])->orderBy('id_penjualan_sparepart', 'DESC')->get();
         return view('pages.pointofsales.pembayaran.pembayaran_sparepart', compact('penjualan_sparepart'));
     }
 

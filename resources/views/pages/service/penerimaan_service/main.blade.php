@@ -59,8 +59,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-3">
-                            <label for="id_customer_bengkel">Pilih Customer</label><span class="mr-4 mb-3"
-                                style="color: red">*</span>
+                            <label for="id_customer_bengkel">Pilih Customer</label>
                             <div class="input-group input-group-joined">
                                 <div class="input-group-append">
                                     <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
@@ -117,8 +116,7 @@
                                 placeholder="Input Keluhan Kendaraan">
                         </div>
                         <div class="form-group col-4">
-                            <label for="id_mekanik">Pilih Mekanik</label><span class="mr-4 mb-3"
-                                style="color: red">*</span>
+                            <label for="id_mekanik">Pilih Mekanik</label>
                             <select class="form-control" name="id_mekanik" id="id_mekanik"
                                 class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
                                 <option>Pilih Mekanik</option>
@@ -600,14 +598,22 @@
     <button class="btn btn-danger btn-datatable" onclick="hapusSparepart(this)" type="button">
         <i class="fas fa-trash"></i>
     </button>
-
-    <button class="btn btn-primary btn-datatable" onclick="editSparepart(this)" type="button">
-        <i class="fas fa-edit"></i>
-    </button>
 </template>
 
 
 <script>
+    $(function () {
+        $("input[name='odo_meter']").on('input', function (e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
+        });
+    });
+
+    $(function () {
+        $("input[name='waktu_estimasi']").on('input', function (e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
+        });
+    });
+
     $(document).ready(function () {
         var template = $('#template_delete_button').html()
         $('#dataPerbaikan').DataTable({
@@ -641,6 +647,12 @@
                     }
                 }
             ]
+        });
+
+        $('#dataTablePerbaikan').DataTable({
+        });
+
+        $('#dataTableSparepart').DataTable({
         });
     });
 

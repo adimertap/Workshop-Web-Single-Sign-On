@@ -16,7 +16,7 @@ class PengerjaanServiceController extends Controller
      */
     public function index()
     {
-        $pengerjaan = PenerimaanService::with(['customer_bengkel', 'kendaraan', 'pegawai', 'mekanik', 'pitstop'])->get();
+        $pengerjaan = PenerimaanService::with(['customer_bengkel', 'kendaraan', 'pegawai', 'mekanik', 'pitstop'])->orderBy('id_service_advisor', 'DESC')->get();
         // return $pengerjaan;
         return view('pages.service.pengerjaan_service.main', compact('pengerjaan'));
     }

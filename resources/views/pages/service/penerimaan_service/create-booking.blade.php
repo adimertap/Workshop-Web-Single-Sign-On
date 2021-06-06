@@ -37,7 +37,7 @@
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
-                        <div class="form-group col-3">
+                        <div class="form-group col-5">
                             <label for="kode_reservasi">Kode Reservasi</label>
                             <div class="d-flex justify-content-between">
                                 <input type="text" class="form-control" id="kode_reservasi" name="kode_reservasi"
@@ -56,9 +56,9 @@
                             <label for="kode_sa">Kode SPK</label>
                             <input class="form-control" id="kode_sa" name="kode_sa" type="text" value="{{ $kode_sa }}"
                                 readonly />
-                               
-                        </div>                           
-                        
+
+                        </div>
+
                         <div class="form-group col-4">
                             <label for="id_pegawai">Pegawai</label>
                             <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
@@ -74,16 +74,9 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-3">
-                            <label for="id_customer_bengkel">Pilih Customer</label><span class="mr-4 mb-3"
-                                style="color: red">*</span>
-                            <div class="input-group input-group-joined">
-                                <div class="input-group-append">
-                                    <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
-                                        data-target="#ModalCustomer">
-                                        <i class="fas fa-plus"></i>
-                                    </a>
-                                </div>
+                        <div class="form-group col-4">
+                            <label for="id_customer_bengkel">Pilih Customer</label>
+                            <div class="input-group input-group-joined">    
                                 <select class="form-control" name="id_customer_bengkel" id="id_customer_bengkel"
                                     class="form-control @error('id_customer_bengkel') is-invalid @enderror">
                                     <option>Pilih Customer</option>
@@ -97,9 +90,9 @@
                             @error('id_customer_bengkel')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label for="id_kendaraan">Pilih
-                                Kendaraan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                Kendaraan</label>
                             <div class="input-group input-group-joined">
                                 <select class="form-control" name="id_kendaraan" id="id_kendaraan"
                                     class="form-control @error('id_kendaraan') is-invalid @enderror">
@@ -114,7 +107,7 @@
                             @error('id_kendaraan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label for="plat_kendaraan">No. Plat Kendaraan</label>
                             <input type="text" class="form-control" id="plat_kendaraan" name="plat_kendaraan"
                                 placeholder="Input Plat Kendaraan">
@@ -123,7 +116,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-3">
-                            <label for="odo_meter">Odo Meter</label>
+                            <label for="odo_meter">Odo Meter (KM)</label>
                             <input type="text" class="form-control" id="odo_meter" name="odo_meter"
                                 placeholder="Input Odo Meter">
                         </div>
@@ -133,8 +126,7 @@
                                 placeholder="Input Keluhan Kendaraan">
                         </div>
                         <div class="form-group col-3">
-                            <label for="id_mekanik">Pilih Mekanik</label><span class="mr-4 mb-3"
-                                style="color: red">*</span>
+                            <label for="id_mekanik">Pilih Mekanik</label>
                             <select class="form-control" name="id_mekanik" id="id_mekanik"
                                 class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
                                 <option>Pilih Mekanik</option>
@@ -618,14 +610,22 @@
     <button class="btn btn-danger btn-datatable" onclick="hapusSparepart(this)" type="button">
         <i class="fas fa-trash"></i>
     </button>
-
-    <button class="btn btn-primary btn-datatable" onclick="editSparepart(this)" type="button">
-        <i class="fas fa-edit"></i>
-    </button>
 </template>
 
 
 <script>
+    $(function () {
+        $("input[name='odo_meter']").on('input', function (e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
+        });
+    });
+
+    $(function () {
+        $("input[name='waktu_estimasi']").on('input', function (e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
+        });
+    });
+
     $(document).ready(function () {
 
         $("#reservasi").click(function () {
@@ -638,8 +638,8 @@
                     kode_reservasi: kode_reservasi,
                 },
                 success: function (data) {
-                    if(!data){
-                         alert('Kode Reservasi Tidak Ada');
+                    if (!data) {
+                        alert('Kode Reservasi Tidak Ada');
                     }
 
                     // alert(data.no_plat)
@@ -685,6 +685,12 @@
                     }
                 }
             ]
+        });
+
+        $('#dataTablePerbaikan').DataTable({
+        });
+        
+        $('#dataTableSparepart').DataTable({
         });
     });
 
@@ -849,7 +855,7 @@
         } else {
             var data = {
                 _token: _token,
-                kode_reservasi:kode_reservasi,
+                kode_reservasi: kode_reservasi,
                 kode_sa: kode_sa,
                 id_pegawai: id_pegawai,
                 id_customer_bengkel: id_customer_bengkel,

@@ -134,7 +134,7 @@
                         <div class="form-group">
                             <label class="small mb-1" for="keterangan">Keterangan</label>
                             <input class="form-control" name="keterangan" type="text" id="keterangan"
-                                placeholder="Input Nama Kendaraan" value="{{ old('keterangan') }}"
+                                placeholder="Input Keterangan" value="{{ old('keterangan') }}"
                                 class="form-control @error('keterangan') is-invalid @enderror">
                             @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror

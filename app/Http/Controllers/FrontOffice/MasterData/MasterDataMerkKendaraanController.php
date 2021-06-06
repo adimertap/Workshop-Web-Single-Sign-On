@@ -8,6 +8,7 @@ use App\Http\Requests\FrontOffice\MasterData\MerkKendaraanRequest;
 use App\Model\FrontOffice\MasterDataJenisKendaraan;
 use App\Model\FrontOffice\MasterDataMerkKendaraan as FrontOfficeMasterDataMerkKendaraan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterDataMerkKendaraanController extends Controller
 {
@@ -51,6 +52,7 @@ class MasterDataMerkKendaraanController extends Controller
      */
     public function store(MerkKendaraanRequest $request)
     {
+        $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
 
         $id = FrontOfficeMasterDataMerkKendaraan::getId();
