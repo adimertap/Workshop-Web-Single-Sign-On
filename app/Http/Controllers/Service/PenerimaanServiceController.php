@@ -86,7 +86,7 @@ class PenerimaanServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function booking(Request $request)
     {
 
         $reservasi = Reservasi::where('kode_reservasi', $request->kode_reservasi)->first();
@@ -149,6 +149,65 @@ class PenerimaanServiceController extends Controller
 
         return $request;
     }
+
+     public function store(Request $request)
+    {
+        $service = new PenerimaanService;
+        $service->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
+        $service->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+
+
+        $service->kode_sa = $request->kode_sa;
+        $service->id_customer_bengkel = $request->id_customer_bengkel;
+        $service->id_kendaraan = $request->id_kendaraan;
+        $service->odo_meter =  $request->odo_meter;
+        $service->date =  $request->date;
+        $service->plat_kendaraan =  $request->plat_kendaraan;
+        $service->keluhan_kendaraan =  $request->keluhan_kendaraan;
+        $service->id_mekanik =  $request->id_mekanik;
+        $service->status =  'menunggu';
+        $service->waktu_estimasi =  $request->waktu_estimasi;
+
+        $temp1 = 0;
+        foreach ($request->sparepart as $key => $item1) {
+            $temp1 = $temp1 + $item1['total_harga'];
+            $sparepart = Sparepart::findOrFail($item1['id_sparepart']);
+            $sparepart->stock = $sparepart->stock - $item1['jumlah'];
+            if ($sparepart->stock >= $sparepart->stock_min) {
+                $sparepart->status_jumlah = 'Cukup';
+            } else if ($sparepart->stock == 0) {
+                $sparepart->status_jumlah = 'Habis';
+            } else {
+                $sparepart->status_jumlah = 'Kurang';
+            }
+            $sparepart->save();
+
+            $kartu_gudang = new Kartugudang;
+            $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+            $kartu_gudang->saldo_akhir =  $sparepart->stock;
+            $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item1['jumlah'];
+            $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
+            $kartu_gudang->kode_transaksi = $service->kode_sa;
+            $kartu_gudang->tanggal_transaksi = $service->date;
+            $kartu_gudang->jenis_kartu = 'Service';
+            $kartu_gudang->save();
+        }
+
+        $temp2 = 0;
+        foreach ($request->jasa_perbaikan as $key => $item2) {
+            $temp2 = $temp2 + $item2['total_harga'];
+        }
+
+        $service->total_bayar = $temp1 + $temp2;
+
+
+        $service->save();
+        $service->detail_sparepart()->sync($request->sparepart);
+        $service->detail_perbaikan()->sync($request->jasa_perbaikan);
+
+        return $request;
+    }
+
 
     /**
      * Display the specified resource.
