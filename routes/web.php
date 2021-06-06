@@ -98,6 +98,7 @@ Route::group(
             ->middleware(['admin_service_advisor', 'verified'])
             ->group(function () {
                 Route::resource('penerimaanservice', 'PenerimaanServiceController');
+                Route::post('penerimaanservice-booking', 'PenerimaanServiceController@booking')->name('penerimaan-booking');
                 Route::get("/kode-reservasi", "PenerimaanServiceController@reservasi");
 
             });
