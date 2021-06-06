@@ -85,7 +85,7 @@ class PenjualanSparepartController extends Controller
             $kartu_gudang->saldo_akhir =  $sparepart->stock;
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item['jumlah'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
-            $kartu_gudang->kode_penjualan = $penjualan->kode_penjualan;
+            $kartu_gudang->kode_transaksi = $penjualan->kode_penjualan;
             $kartu_gudang->tanggal_transaksi = $penjualan->tanggal;
             $kartu_gudang->jenis_kartu = 'Penjualan';
             $kartu_gudang->save();

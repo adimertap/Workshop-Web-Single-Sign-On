@@ -169,7 +169,7 @@
                                             </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="7" class="tex-center">
+                                                <td colspan="3" class="text-center">
                                                     Foto Sparepart Kosong
                                                 </td>
                                             </tr>

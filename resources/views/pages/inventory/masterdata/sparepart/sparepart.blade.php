@@ -60,7 +60,7 @@
                                                 style="width: 50px;">Kode</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 110px;">Nama Sparepart</th>
+                                                style="width: 150px;">Nama Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
                                                 style="width: 40px;">Jenis Sparepart</th>
@@ -69,7 +69,7 @@
                                                 style="width: 40px;">Merk</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 40px;">Satuan</th>
+                                                style="width: 20px;">Satuan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
                                                 style="width: 20px;">Min Stock </th>

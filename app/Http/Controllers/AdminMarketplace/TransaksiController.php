@@ -49,7 +49,7 @@ class TransaksiController extends Controller
                 $kartu_gudang->jumlah_keluar = $item->jumlah_produk;
                 $kartu_gudang->saldo_akhir =  $sparepart->stock - $item->jumlah_produk;
                 $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
-                $kartu_gudang->id_transaksi_online = $transaksi->id_transaksi_online;
+                $kartu_gudang->kode_transaksi = $transaksi->code_transaksi;
                 $kartu_gudang->tanggal_transaksi = $transaksi->created_at;
                 $kartu_gudang->jenis_kartu = 'Online';
                 $kartu_gudang->save();

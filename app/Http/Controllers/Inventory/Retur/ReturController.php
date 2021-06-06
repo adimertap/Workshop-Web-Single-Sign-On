@@ -130,21 +130,6 @@ class ReturController extends Controller
         $retur->kode_retur = $request->kode_retur;
         $retur->tanggal_retur = $request->tanggal_retur;
 
-        foreach($request->sparepart as $key=>$item){
-            $sparepart = Sparepart::findOrFail($item['id_sparepart']);
-            $sparepart->stock = $sparepart->stock + $item['qty_retur'];
-            $sparepart->save();
-
-            $kartu_gudang = new Kartugudang;
-            $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
-            $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_mauk + $item['qty_retur'];
-            $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
-            $kartu_gudang->id_retur = $retur->id_retur;
-            $kartu_gudang->tanggal_transaksi = $retur->tanggal_retur;
-            $kartu_gudang->jenis_kartu = 'Retur';
-            $kartu_gudang->save();
-        }
-
         $retur->status = 'Aktif';
         $retur->save();
 

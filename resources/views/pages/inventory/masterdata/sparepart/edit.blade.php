@@ -143,7 +143,7 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <button class="btn btn-light" type="button">Back</button>
+                                        <button href="{{ route('sparepart.index') }}" class="btn btn-light" type="button">Back</button>
                                         <button class="btn btn-primary" type="Submit">Submit</button>
                                     </div>
                                 </form>

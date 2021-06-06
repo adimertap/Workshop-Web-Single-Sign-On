@@ -164,12 +164,10 @@ class RcvController extends Controller
             $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_masuk + $item['qty_rcv'];
             $kartu_gudang->harga_beli = $kartu_gudang->harga_beli + $item['harga_diterima'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
-            $kartu_gudang->id_rcv = $rcv->id_rcv;
+            $kartu_gudang->kode_transaksi = $rcv->kode_rcv;
             $kartu_gudang->tanggal_transaksi = $rcv->tanggal_rcv;
             $kartu_gudang->jenis_kartu = 'Receiving';
             $kartu_gudang->save();
-
-            
 
             // NGAMBIL TOTAL
             $temp = $temp + $item['total_harga'];

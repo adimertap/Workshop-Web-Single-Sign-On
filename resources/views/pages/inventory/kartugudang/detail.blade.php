@@ -73,10 +73,10 @@
                                             colspan="1" aria-sort="ascending"
                                             aria-label="Name: activate to sort column descending" style="width: 20px;">
                                             No</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
                                             style="width: 130px;">Tanggal Transaksi</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
                                             style="width: 130px;">Kode Transaksi</th>
                                         <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
@@ -101,7 +101,8 @@
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                         <td class="text-center">{{ $item->tanggal_transaksi }}</td>
-                                        <td class="text-center">@if ($item->jenis_kartu == 'Receiving')
+                                        <td class="text-center">{{ $item->kode_transaksi }}</td>
+                                        {{-- <td class="text-center">@if ($item->jenis_kartu == 'Receiving')
                                             {{ $item->Rcv->kode_rcv }}
                                             @elseif ($item->jenis_kartu == 'Retur')
                                             {{ $item->Retur->kode_retur }}
@@ -113,7 +114,7 @@
                                             {{ $item->kode_service }}
                                             @else
                                         @endif
-                                        </td>
+                                        </td> --}}
                                         <td class="text-center"><span class="badge badge-warning">{{ $item->jumlah_masuk }}</span></td>
                                         <td class="text-center"><span class="badge badge-warning">{{ $item->jumlah_keluar }}</span></td>
                                         <td>{{ $item->Sparepart->Konversi->satuan }}</td>

@@ -22,11 +22,7 @@ class Kartugudang extends Model
     protected $fillable = [
         'id_sparepart',
         'id_bengkel',
-        'id_rcv',
-        'id_retur',
-        'id_transaksi_online',
-        'kode_penjualan',
-        'kode_service',
+        'kode_transaksi',
         'saldo_awal',
         'tanggal_transaksi',
         'jumlah_masuk',
@@ -46,21 +42,6 @@ class Kartugudang extends Model
     public function Sparepart()
     {
         return $this->belongsTo(Sparepart::class,'id_sparepart','id_sparepart');
-    }
-
-    public function Rcv()
-    {
-        return $this->belongsTo(Rcv::class,'id_rcv','id_rcv');
-    }
-
-    public function TransaksiOnline()
-    {
-        return $this->belongsTo(Transaksi::class,'id_transaksi_online','id_transaksi_online');
-    }
-
-    public function Retur()
-    {
-        return $this->belongsTo(Retur::class,'id_retur','id_retur');
     }
 
     protected static function booted()

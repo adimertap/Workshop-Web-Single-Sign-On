@@ -129,7 +129,7 @@ class PenerimaanServiceController extends Controller
             $kartu_gudang->saldo_akhir =  $sparepart->stock;
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item1['jumlah'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
-            $kartu_gudang->kode_service = $service->kode_sa;
+            $kartu_gudang->kode_transaksi = $service->kode_sa;
             $kartu_gudang->tanggal_transaksi = $service->date;
             $kartu_gudang->jenis_kartu = 'Service';
             $kartu_gudang->save();
