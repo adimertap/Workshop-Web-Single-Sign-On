@@ -74,7 +74,6 @@ class MasterdatapegawaiController extends Controller
         $pegawai->email = $request->email;
         $pegawai->pendidikan_terakhir = $request->pendidikan_terakhir;
         $pegawai->tanggal_masuk = $request->tanggal_masuk;
-        $pegawai->kode_pegawai = $request->kode_pegawai;
 
         $pegawai->save();
 
