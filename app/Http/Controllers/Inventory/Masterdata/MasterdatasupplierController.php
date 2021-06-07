@@ -103,7 +103,7 @@ class MasterdatasupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Supplierrequest $request, $id_supplier)
+    public function update(Request $request, $id_supplier)
     {
         $supplier = Supplier::findOrFail($id_supplier);
         $supplier->kode_supplier = $request->kode_supplier;
@@ -116,7 +116,7 @@ class MasterdatasupplierController extends Controller
         $supplier->nama_sales = $request->nama_sales;
 
         $supplier->update();
-        return redirect()->route('masterdatasupplier')->with('messageberhasil','Data Supplier Berhasil diubah');
+        return redirect()->route('supplier.index')->with('messageberhasil','Data Supplier Berhasil diubah');
     }
 
     /**

@@ -53,9 +53,9 @@
                         </div>
                     </div>
                     <hr class="my-4" />
-                    <div class="d-flex justify-content-between">
+                    {{-- <div class="d-flex justify-content-between">
                         <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Tampilkan Jumlah Sistem</button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -122,17 +122,7 @@
                                                 <td>{{ $detail->nama_sparepart }}</td>
                                                 <td>{{ $detail->Rak->nama_rak }}</td>
                                                 <td>{{ $detail->pivot->jumlah_real }}</td>
-                                                <td>
-                                                    @if($opname->approve == 'Pending')
-                                                    Menunggu Approval
-                                                    @elseif($opname->approve == 'Not Approved')
-                                                    {{ $opname->approve }}
-                                                    @elseif($opname->approve == 'Approved')
-                                                    {{ $detail->Sparepart->stock }}
-                                                    @else
-                                                    <span>
-                                                        @endif
-                                                    </span>
+                                                <td>{{ $detail->pivot->jumlah_real + $detail->pivot->selisih }}
                                                 </td>
                                                 <td>{{ $detail->pivot->selisih }}
                                                 </td>
