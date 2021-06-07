@@ -47,7 +47,7 @@ class TransaksiController extends Controller
                 $kartu_gudang = new Kartugudang;
                 $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
                 $kartu_gudang->jumlah_keluar = $item->jumlah_produk;
-                $kartu_gudang->saldo_akhir =  $sparepart->stock - $item->jumlah_produk;
+                $kartu_gudang->saldo_akhir =  $sparepart->saldo_akhir + $item->jumlah_produk;
                 $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
                 $kartu_gudang->kode_transaksi = $transaksi->code_transaksi;
                 $kartu_gudang->tanggal_transaksi = $transaksi->created_at;
