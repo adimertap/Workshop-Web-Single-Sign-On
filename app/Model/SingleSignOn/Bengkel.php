@@ -22,6 +22,7 @@ class Bengkel extends Model
         'logo_bengkel',
         'jam_buka_bengkel',
         'jam_tutup_bengkel',
+        'id_kabupaten',
         'id_desa'
     ];
 

@@ -90,6 +90,7 @@ class RegisterController extends Controller
             'longitude' => $data['longitude'],
             'latitude' => $data['latitude'],
             'nohp_bengkel' => $data['nohp_bengkel'],
+            'id_kabupaten' => $data['id_kabupaten'],
             'id_desa' => $data['id_desa'],
             'jam_buka_bengkel' => date('H:i:s', strtotime($data['jam_buka_bengkel'])),
             'jam_tutup_bengkel' => date('H:i:s', strtotime($data['jam_tutup_bengkel'])),
