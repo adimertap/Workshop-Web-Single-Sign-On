@@ -34,7 +34,8 @@ class GajipegawaiController extends Controller
         $tahun_bayar = Carbon::now()->format('Y');
         $pegawai = Pegawai::with([
             'Jabatan.Gajipokok'
-        ])->get();
+        ])->join('tb_kepeg_master_jabatan', 'tb_kepeg_master_pegawai.id_jabatan', 'tb_kepeg_master_jabatan.id_jabatan')
+        ->where('nama_jabatan', '!=', 'Owner')->get();
        
 
         return view('pages.payroll.gajipegawai.gajipegawai', compact('gaji','pegawai','tahun_bayar','today','tanggal'));
