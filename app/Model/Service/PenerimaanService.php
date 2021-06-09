@@ -3,6 +3,7 @@
 namespace App\Model\Service;
 
 use App\Model\FrontOffice\CustomerBengkel;
+use App\Model\FrontOffice\DetailPenerimaanServiceSparepart;
 use App\Model\FrontOffice\MasterDataJenisPerbaikan;
 use App\Model\FrontOffice\MasterDataKendaraan;
 use App\Model\FrontOffice\MasterDataPitstop;
