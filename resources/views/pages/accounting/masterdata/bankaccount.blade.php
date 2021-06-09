@@ -62,16 +62,16 @@
                                                 style="width: 20px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 80px;">Kode Bank</th>
+                                                style="width: 40px;">Kode Bank</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 80px;">Nama Bank</th>
+                                                style="width: 140px;">Nama Bank</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 120px;">Nama Account</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 100px;">Jenis Account</th>
+                                                style="width: 50px;">Jenis Account</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 120px;">Nomor Rekening</th>
@@ -88,7 +88,7 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->kode_bank }}</td>
-                                            <td>{{ $item->nama_bank }}</td>
+                                            <td>{{ $item->Bank->nama_bank }}</td>
                                             <td>{{ $item->nama_account }}</td>
                                             <td>{{ $item->jenis_account }}</td>
                                             <td>{{ $item->nomor_rekening }}</td>
@@ -141,17 +141,22 @@
                     <hr>
                     </hr>
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label class="small mb-1" for="kode_bank">Kode Bank</label>
                             <input class="form-control" name="kode_bank" type="text" id="kode_bank"
-                                placeholder="Input Nama Bank" value="{{ $kode_bank }}" readonly />
+                                placeholder="Input Kode Bank" value="{{ $kode_bank }}" readonly />
                         </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1 mr-1" for="nama_bank">Nama Bank</label><span class="mr-4 mb-3" style="color: red">*</span>
-                            <input class="form-control" name="nama_bank" type="text" id="nama_bank"
-                                placeholder="Input Nama Bank" value="{{ old('nama_bank') }}"
-                                class="form-control @error('nama_bank') is-invalid @enderror" />
-                            @error('nama_bank')<div class="text-danger small mb-1">{{ $message }}
+                        <div class="form-group col-md-8">
+                            <label class="small mb-1 mr-1" for="id_bank">Pilih Bank</label><span class="mr-4 mb-3" style="color: red">*</span>
+                            <select class="form-control" name="id_bank" id="id_bank"
+                                class="form-control @error('id_bank') is-invalid @enderror">
+                                <option>Pilih Bank</option>
+                                @foreach ($bank as $banks)
+                                <option value="{{ $banks->id_bank }}">{{ $banks->nama_bank }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('id_bank')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
                     </div>
@@ -225,9 +230,16 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="nama_bank">Nama Bank</label><span class="mr-4 mb-3" style="color: red">*</span>
-                        <input class="form-control" name="nama_bank" type="text" id="nama_bank"
-                            value="{{ $item->nama_bank }}"></input>
+                        <label class="small mb-1 mr-1" for="id_bank">Nama Bank</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <select class="form-control" name="id_bank" id="id_bank">
+                            <option value="{{ $item->Bank->id_bank }}">
+                                {{ $item->Bank->nama_bank }}</option>
+                            @foreach ($bank as $banks)
+                            <option value="{{ $banks->id_bank }}">
+                                {{ $banks->nama_bank }}
+                            </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="small mb-1 mr-1" for="nama_account">Nama Account</label><span class="mr-4 mb-3" style="color: red">*</span>

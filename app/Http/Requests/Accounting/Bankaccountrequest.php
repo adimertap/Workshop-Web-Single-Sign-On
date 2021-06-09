@@ -24,21 +24,19 @@ class Bankaccountrequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_bank' => 'required|min:2|max:10',
+            'id_bank' => 'required',
             'nama_account' => 'required|min:10|max:30',
             'jenis_account' => 'required|string|in:Utang,Piutang',
             'nomor_rekening' => 'required|numeric|unique:tb_accounting_master_bank_account,nomor_rekening|min:3',
-            'alamat_account' => 'required|min:10|max:40',
+            'alamat_account' => 'required|min:10|max:60',
         ];
     }
 
     public function messages()
     {
         return [
-            'nama_bank.required' => 'Error! Anda Belum Mengisi Nama Bank',
-            'nama_bank.min' => 'Error! Character Minimal :min digit',
-            'nama_bank.max' => 'Error! Character Maximal :max digit',
-
+            'id_bank.required' => 'Error! Anda Belum Memilih Nama Bank',
+            
             'nama_account.required' => 'Error! Anda Belum Mengisi Nama Lengkap Account Bank',
             'nama_account.min' => 'Error! Character Minimal :min digit',
             'nama_account.max' => 'Error! Character Maximal :max digit',

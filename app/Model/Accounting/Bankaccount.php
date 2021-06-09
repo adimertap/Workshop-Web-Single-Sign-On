@@ -2,6 +2,7 @@
 
 namespace App\Model\Accounting;
 
+use App\Bank;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,7 +17,7 @@ class Bankaccount extends Model
     protected $primaryKey = 'id_bank_account';
 
     protected $fillable = [
-        'nama_bank',
+        'id_bank',
         'id_bengkel',
         'kode_bank',
         'nama_account',
@@ -32,6 +33,13 @@ class Bankaccount extends Model
     ];
 
     public $timestamps = true;
+
+    public function Bank()
+    {
+        return $this->belongsTo(Bank::class,'id_bank','id_bank');
+    }
+
+
 
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
