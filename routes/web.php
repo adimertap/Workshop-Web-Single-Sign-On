@@ -200,7 +200,7 @@ Route::group(
             ->namespace('Inventory\Masterdata')
             ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
-                Route::resource('jenis-sparepart', 'MasterdataJenissparepartController');
+                Route::resource('jenis-sparepart', 'MasterdatajenissparepartController');
             });
 
         Route::prefix('inventory')
