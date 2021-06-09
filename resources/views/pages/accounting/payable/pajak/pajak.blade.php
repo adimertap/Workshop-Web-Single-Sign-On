@@ -175,6 +175,33 @@
 
 @endforelse
 
+@forelse ($pajak as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_pajak }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger-soft">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('pajak.destroy', $item->id_pajak) }}" method="POST" class="d-inline">
+                @csrf
+                @method('delete')
+                <div class="modal-body text-center">
+                    Apakah Anda Yakin Menghapus Data Pajak {{ $item->kode_pajak }},tanggal bayar {{ $item->tanggal_bayar }} ?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+
+@endforelse
 
 {{-- Script Open Modal Callback --}}
 <script>

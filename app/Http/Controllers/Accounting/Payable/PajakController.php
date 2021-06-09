@@ -153,8 +153,13 @@ class PajakController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_pajak)
     {
-        //
+        $pajak = Pajak::findOrFail($id_pajak);
+        
+        Pajakdetail::where('id_pajak', $id_pajak)->delete();
+        $pajak->delete();
+
+        return redirect()->back()->with('messagehapus','Data Pajak Berhasil dihapus');
     }
 }
