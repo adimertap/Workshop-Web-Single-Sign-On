@@ -114,8 +114,16 @@
                                                     data-placement="top" title="" data-original-title="Detail">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                @if ($item->status == 'menunggu')
 
+                                                @if ($item->status == 'dikerjakan')
+                                                <a href="{{ route('cetak-wo', $item->id_service_advisor) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title=""
+                                                    data-original-title="Cetak Work Order">
+                                                    <i class="fas fa-print"></i></i>
+                                                </a>
+                                                @endif
+
+                                                @if ($item->status == 'menunggu')
                                                 <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-edit"></i>

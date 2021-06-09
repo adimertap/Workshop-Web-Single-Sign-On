@@ -28,6 +28,14 @@ class PelayananServiceController extends Controller
         return view('pages.frontoffice.pelayanan_service.main', compact('pelayanan', 'now', 'pitstop'));
     }
 
+    public function cetakWorkOrder($id_service_advisor)
+    {
+        $pembayaran_service = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_perbaikan', 'bengkel')->findOrFail($id_service_advisor);
+        // return $pelayanan;
+        $now = Carbon::now();
+        return view('print.FrontOffice.cetak-work-order', compact('pembayaran_service'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

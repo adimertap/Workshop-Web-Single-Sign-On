@@ -70,6 +70,7 @@ Route::group(
                 Route::resource('penjualansparepart', 'PenjualanSparepartController');
                 Route::put('/pengerjaan/{id}', 'PelayananServiceController@status')
                     ->name('dikerjakan');
+                Route::get('/cetak-work-order/{id}', 'PelayananServiceController@cetakWorkOrder')->name('cetak-wo');
             });
 
         // ------------------------------------------------------------------------
@@ -100,7 +101,6 @@ Route::group(
                 Route::resource('penerimaanservice', 'PenerimaanServiceController');
                 Route::post('penerimaanservice-booking', 'PenerimaanServiceController@booking')->name('penerimaan-booking');
                 Route::get("/kode-reservasi", "PenerimaanServiceController@reservasi");
-
             });
 
 
@@ -496,13 +496,13 @@ Route::group(
 
                 Route::resource('jenis-transaksi', 'MasterdatajenistransaksiController');
             });
-        
+
         Route::prefix('accounting')
-        ->namespace('Accounting\Masterdata')
-        ->middleware(['admin_accounting_gabung', 'verified'])
-        ->group(function () {
-            Route::resource('penentuan-akun', 'PenentuanAkunController');
-        });
+            ->namespace('Accounting\Masterdata')
+            ->middleware(['admin_accounting_gabung', 'verified'])
+            ->group(function () {
+                Route::resource('penentuan-akun', 'PenentuanAkunController');
+            });
 
         // PAYABLE ---------------------------------------------------------------------------------------------- PAYABLE
         // InvoicePayable ----------------------------------------------------------------- Invoice Payable   
@@ -559,13 +559,13 @@ Route::group(
             });
 
         Route::prefix('Accounting')
-        ->namespace('Accounting\Receiveable')
-        ->middleware(['admin_accounting_gabung', 'verified'])
-        ->group(function () {
-            Route::resource('pemasukan-kasir', 'PemasukanController');
-            Route::get('pemasukan-online/{tanggal_transaksi}', 'PemasukanController@Pemasukanonline')
+            ->namespace('Accounting\Receiveable')
+            ->middleware(['admin_accounting_gabung', 'verified'])
+            ->group(function () {
+                Route::resource('pemasukan-kasir', 'PemasukanController');
+                Route::get('pemasukan-online/{tanggal_transaksi}', 'PemasukanController@Pemasukanonline')
                     ->name('pemasukan-online');
-            Route::get('pemasukan-service/{tanggal_laporan}', 'PemasukanController@Laporanservice')
+                Route::get('pemasukan-service/{tanggal_laporan}', 'PemasukanController@Laporanservice')
                     ->name('pemasukan-service');
             });
 
