@@ -30,10 +30,10 @@ class PelayananServiceController extends Controller
 
     public function cetakWorkOrder($id_service_advisor)
     {
-        $pembayaran_service = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_perbaikan', 'bengkel')->findOrFail($id_service_advisor);
+        $cetak_wo = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_perbaikan', 'bengkel')->findOrFail($id_service_advisor);
         // return $pelayanan;
         $now = Carbon::now();
-        return view('print.FrontOffice.cetak-work-order', compact('pembayaran_service'));
+        return view('print.FrontOffice.cetak-work-order', compact('cetak_wo', 'now'));
     }
 
     /**
