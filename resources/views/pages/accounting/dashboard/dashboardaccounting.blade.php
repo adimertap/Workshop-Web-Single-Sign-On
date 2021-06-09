@@ -91,7 +91,7 @@
             </div>
         </div>
         <div class="col-xxl-3 col-lg-3">
-            <div class="card bg-info text-white mb-4">
+            <div class="card bg-secondary text-white mb-4">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="mr-3">
@@ -114,7 +114,7 @@
             </div>
         </div>
         <div class="col-xxl-3 col-lg-3">
-            <div class="card bg-secondary text-white mb-4">
+            <div class="card bg-danger text-white mb-4">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="mr-3">

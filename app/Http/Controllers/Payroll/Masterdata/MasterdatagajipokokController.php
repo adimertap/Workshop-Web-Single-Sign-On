@@ -90,7 +90,7 @@ class MasterdatagajipokokController extends Controller
     {
 
         $gajipokok = Mastergajipokok::findOrFail($id_gaji_pokok);
-        $gajipokok->besaran_gaji = $request->nominal;
+        $gajipokok->besaran_gaji = $request->besaran_gaji;
 
         $gajipokok->update();
         return redirect()->back()->with('messageberhasil','Data Gaji Pokok Berhasil diubah');

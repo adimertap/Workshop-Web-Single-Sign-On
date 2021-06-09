@@ -37,18 +37,7 @@
     </div>
 </div>
 @else
-<div class="container-fluid">
-    <div class="alert alert-success alert-icon" role="alert">
-        <div class="alert-icon-aside">
-            <i class="fas fa-calendar-check"></i>
-        </div>
-        <div class="alert-icon-content">
-            <h6 class="alert-heading">Informasi Hari ini!</h6>
-            Anda Telah Melakukan Absensi Pagi Kepada Pegawai dengan Jadwal Hari Ini
-           
-        </div>
-    </div>
-</div>
+
 @endif
 
 

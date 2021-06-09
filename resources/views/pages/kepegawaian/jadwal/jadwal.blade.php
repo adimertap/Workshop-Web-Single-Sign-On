@@ -173,7 +173,7 @@
                                 if (data == null){
                                     return `<button class="btn btn-secondary btn-xs" onclick="masuk(event,${row.id_pegawai},'${date.dateStr}')">Masuk</button>`
                                 }else{
-                                    return `<button class="btn btn-danger btn-xs" onclick="libur(event, ${row.id_pegawai},'${date.dateStr}')">Libur</button>`
+                                    return `<button class="btn btn-danger btn-xs" onclick="libur(event, ${row.id_pegawai},'${date.dateStr}')"><i class="fas fa-trash"></i></button>`
                                 } 
                             }},
                             
