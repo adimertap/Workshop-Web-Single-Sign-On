@@ -141,7 +141,7 @@
                                             @elseif($item->approve_po == 'Not Approved' and $item->status == 'Pending')
                                                 <span class="font-size-300" style="font-size: 11px;">Data diTolak</span>
                                             @elseif($item->approve_po == 'Approved' and $item->approve_ap == 'Approved' and $item->status == 'Pending')
-                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                <a href="{{ route('cetak-po', $item->id_po) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Cetak PO">
                                                     <i class="fas fa-print"></i></i>
                                                 </a>
@@ -156,7 +156,7 @@
                                                 <i class="fas fa-print"></i></i>
                                                 </a>
                                             @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Approved' and $item->status == 'Diterima')
-                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                <a href="{{ route('cetak-po', $item->id_po) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak PO">
                                                 <i class="fas fa-print"></i></i>
                                                 </a>

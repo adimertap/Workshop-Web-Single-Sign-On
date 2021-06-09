@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Work Order</title>
+    <title>CETAK PO</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}">
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
@@ -25,6 +25,7 @@
 <body>
     <div>
         <main>
+            <!-- Main page content-->
             <div class="container mt-4">
                 <!-- Invoice-->
 
@@ -40,10 +41,10 @@
                             </div>
                             <div class="col-12 col-lg-auto text-center text-lg-right">
                                 <!-- Invoice details-->
-                                <div class="h3 text-white">Work Order</div>
-                                #SPK001
+                                <div class="h3 text-white">Purchase Order</div>
+                                {{ $po->kode_po }}
                                 <br />
-                                January 1, 2020
+                                {{ $now }}
                             </div>
                         </div>
                     </div>
@@ -63,52 +64,35 @@
                                 <div class="small">Yorktown, MA 39201</div>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="table-responsive">
-                                <table class="table table-borderless mb-0">
-                                    <thead class="border-bottom">
-                                        <tr class="small text-uppercase text-muted">
-                                            <th scope="col" colspan="10">List Jasa Perbaikan</th>
-                                            <th class="text-right" scope="col">Harga</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Invoice item 1-->
-                                        @forelse ($pembayaran_service->detail_perbaikan as $item)
-                                        <tr class="border-bottom">
-                                            <td colspan="10">
-                                                <div class="font-weight-bold">{{ $item->nama_jenis_perbaikan }}</div>
-                                            </td>
-                                            <td class="text-right font-weight-bold">Rp.
-                                                {{ number_format($item->pivot->total_harga,0,',','.') }}</td>
-                                        </tr>
-                                        @empty
-
-                                        @endforelse
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
                         <div class="row">
                             <div class="table-responsive">
                                 <table class="table table-borderless mb-0 mt-5">
                                     <thead class="border-bottom">
                                         <tr class="small text-uppercase text-muted">
-                                            <th scope="col" colspan="10">List Sparepart</th>
-                                            <th class="text-right" scope="col">Harga</th>
+                                            <th scope="col" colspan="10">Sparepart</th>
+                                            <th scope="col" colspan="10">Merk Sparepart</th>
+                                            <th scope="col" colspan="10">Qty</th>
+                                            <th scope="col" colspan="10">Kemasan</th>
+                                            <th scope="col" class="text-right">Harga</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <!-- Invoice item 1-->
-                                        @forelse ($pembayaran_service->detail_sparepart as $item)
+                                        @forelse ($po->Detailsparepart as $item)
                                         <tr class="border-bottom">
                                             <td colspan="10">
                                                 <div class="font-weight-bold">{{ $item->nama_sparepart }}</div>
                                             </td>
-                                            <td class="text-right font-weight-bold">Rp.
-                                                {{ number_format($item->pivot->total_harga,0,',','.') }}</td>
+                                            <td colspan="10">
+                                                <div class="font-weight-bold">{{ $item->Merksparepart->merk_sparepart }}</div>
+                                            </td>
+                                            <td colspan="10">
+                                                <div class="font-weight-bold">{{ $item->pivot->qty }}</div>
+                                            </td>
+                                            <td colspan="10">
+                                                <div class="font-weight-bold">{{ $item->Kemasan->nama_kemasan }}</div>
+                                            </td>
+                                            <td class="text-right font-weight-bold">Rp.{{ number_format($item->pivot->total_harga,0,',','.') }}</td>
                                         </tr>
                                         @empty
 
@@ -119,7 +103,7 @@
                         </div>
                     </div>
                     <div class="card-footer p-4 p-lg-5 border-top-0">
-                        <div class="row">
+                        <div class="row mx-auto col-8 text-center d-flex justify-content-between">
                             <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
                                 <!-- Invoice - sent to info-->
                                 <div class="h6 mb-1">Pemilik/Pemakai <br> Kendaraan,</div>
@@ -133,14 +117,14 @@
                                 <div class="small">------------------</div>
                             </div>
 
-                            <div class="col-lg-6">
-                                <!-- Invoice - additional notes-->
-                                <div class="small text-muted text-uppercase font-weight-700 mb-2">Keterangan</div>
-                                <div class="small mb-0">Semua pekerjaan dan pergantian suku cadang yang tertulis pada
-                                    Perintah Kerja ini telah disetujui oleh Pemilik/Pemakai Kendaraan <br> Kami tidak
-                                    bertanggung jawab atas kehilangan/kerusakan kendaraan atau benda-benda lain yang ada
-                                    di kendaraan yang diakibatkan oleh sebab-sebab diluar kekuasaan kami </div>
-                            </div>
+                        </div>
+                        <div>
+                            <!-- Invoice - additional notes-->
+                            <div class="small text-muted text-uppercase font-weight-700 mb-2">Keterangan</div>
+                            <div class="small mb-0">Semua pekerjaan dan pergantian suku cadang yang tertulis pada
+                                Perintah Kerja ini telah disetujui oleh Pemilik/Pemakai Kendaraan <br> Kami tidak
+                                bertanggung jawab atas kehilangan/kerusakan kendaraan atau benda-benda lain yang ada
+                                di kendaraan yang diakibatkan oleh sebab-sebab diluar kekuasaan kami </div>
                         </div>
                     </div>
 

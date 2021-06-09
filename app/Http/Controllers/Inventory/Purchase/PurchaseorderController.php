@@ -180,4 +180,13 @@ class PurchaseorderController extends Controller
         $item->save();
         return redirect()->route('purchase-order.index')->with('messagekirim','Data Pembelian Berhasil dikirim ke Supplier');
     }
+
+    public function CetakPO($id_po)
+    {
+        $po = PO::with('Detailsparepart')->findOrFail($id_po);
+        // return $pelayanan;
+        $now = Carbon::now();
+        return view('print.PO.cetakpo', compact('po','now'));
+    }
+
 }

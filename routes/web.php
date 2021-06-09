@@ -245,10 +245,10 @@ Route::group(
             ->namespace('Inventory\Purchase')
             ->middleware(['admin_purchasing', 'verified'])
             ->group(function () {
-
                 Route::resource('purchase-order', 'PurchaseorderController');
                 Route::post('PO/{id_po}/set-status', 'PurchaseorderController@setStatus')
                     ->name('po-status-kirim');
+                Route::get('cetak-po/{id}', 'PurchaseorderController@CetakPO')->name('cetak-po');
             });
 
         Route::prefix('inventory/approvalpembelian')
