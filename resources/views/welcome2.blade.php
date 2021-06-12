@@ -9,7 +9,7 @@
     <meta name="author" content="" />
     <title>Login SSO</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
-    <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('logo.png') }}">
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
