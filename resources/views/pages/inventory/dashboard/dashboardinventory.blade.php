@@ -27,9 +27,9 @@
             <div class="card-body p-5">
                 <div class="row align-items-center justify-content-between">
                     <div class="col">
-                        <h2 class="text-primary">Selamat Datang, your dashboard is ready!</h2>
-                        <p class="text-gray-700">Great job, your affiliate dashboard is ready to go! You can view sales,
-                            generate links, prepare coupons, and download affiliate reports using this dashboard.</p>
+                        <h2 class="text-primary">Selamat Datang, {{ Auth::user()->pegawai->nama_pegawai}}!</h2>
+                        <p class="text-gray-700">Bengkel-Kuy menggunakan teknologi web secara online yang memudahkan
+                            Anda untuk memonitor inventory atau persediaan sparepart Anda selama 7x24 jam.</p>
                         <a class="btn btn-primary btn-sm px-3 py-2" href="#!">
                             Get Started
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -46,38 +46,6 @@
             </div>
         </div>
     </div>
-
-    {{-- CHART --}}
-
-    {{-- <div class="card h-100">
-    <div class="card-header">Traffic Sources</div>
-    <div class="card-body">
-        <div class="chart-pie mb-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><canvas id="myPieChart" width="409" height="324" style="display: block; height: 240px; width: 303px;" class="chartjs-render-monitor"></canvas></div>
-        <div class="list-group list-group-flush">
-            <div class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
-                <div class="mr-3">
-                    <svg class="svg-inline--fa fa-circle fa-w-16 fa-sm mr-1 text-blue" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <i class="fas fa-circle fa-sm mr-1 text-blue"></i> -->
-                    Direct
-                </div>
-                <div class="font-weight-500 text-dark">55%</div>
-            </div>
-            <div class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
-                <div class="mr-3">
-                    <svg class="svg-inline--fa fa-circle fa-w-16 fa-sm mr-1 text-purple" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <i class="fas fa-circle fa-sm mr-1 text-purple"></i> -->
-                    Social
-                </div>
-                <div class="font-weight-500 text-dark">15%</div>
-            </div>
-            <div class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
-                <div class="mr-3">
-                    <svg class="svg-inline--fa fa-circle fa-w-16 fa-sm mr-1 text-green" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <i class="fas fa-circle fa-sm mr-1 text-green"></i> -->
-                    Referral
-                </div>
-                <div class="font-weight-500 text-dark">30%</div>
-            </div>
-        </div>
-    </div>
-</div> --}}
     <div class="container">
         <div class="row">
             <div class="col-xl-3 col-md-6 mb-4">
@@ -279,8 +247,64 @@
                 </div>
             </div>
         </div>
+        
         <p></p>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mr-3">
+                                <div class="text-white-75 small">Jumlah Sparepart Akan Habis</div>
+                                <div class="font-weight-bold ">Jumlah : <span>{{ $sparepart_akan_habis }}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" target="_blank"
+                            href="{{ route('purchase-order.index') }}">Lakukan Pembelian </a>
+                        <div class="small text-white"><svg class="svg-inline--fa fa-angle-right fa-w-8"
+                                aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right"
+                                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                    d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
+                                </path>
+                            </svg><!-- <i class="fas fa-angle-right"></i> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-warning text-white mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mr-3">
+                                <div class="text-white-75 small">Jumlah Sparepart Habis</div>
+                                <div class=" font-weight-bold ">Jumlah : <span>{{ $sparepart_habis }}</span></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" target="_blank"
+                            href="{{ route('purchase-order.index') }}">Lakukan Pembelian</a>
+                        <div class="small text-white"><svg class="svg-inline--fa fa-angle-right fa-w-8"
+                                aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right"
+                                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                    d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
+                                </path>
+                            </svg><!-- <i class="fas fa-angle-right"></i> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </main>
 
 <script>
