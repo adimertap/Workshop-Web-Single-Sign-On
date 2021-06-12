@@ -20,7 +20,7 @@ class GajiAccountingController extends Controller
      */
     public function index()
     {
-        $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_diterima','status_dana','status_jurnal')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_diterima, status_dana, status_jurnal')->get();
+        $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_dana','status_jurnal')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_dana, status_jurnal')->get();
 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
@@ -31,12 +31,17 @@ class GajiAccountingController extends Controller
 
     public function postingjurnal(Request $request){
 
-        $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_diterima','status_dana','id_jenis_transaksi','status_jurnal')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_diterima, status_dana, id_jenis_transaksi, status_jurnal')
+        $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_diterima','status_dana','id_jenis_transaksi','status_jurnal','updated_at')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_diterima, status_dana, id_jenis_transaksi, status_jurnal, updated_at')
         ->where('bulan_gaji', $request->bulan_gaji)->where('tahun_gaji', $request->tahun_gaji)->first();
+
+        return $gajipegawai;
+
 
         $jurnal = new Jurnalpengeluaran;
         $jurnal->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $jurnal->tanggal_jurnal = Carbon::now();
+        $jurnal->tanggal_transaksi = $gajipegawai->updated_at;
+        $jurnal->kode_transaksi = $gajipegawai->bulan_gaji;
         $jurnal->ref = $gajipegawai->bulan_gaji;
         $jurnal->keterangan = $gajipegawai->bulan_gaji;
         $jurnal->grand_total = $gajipegawai->total_gaji;

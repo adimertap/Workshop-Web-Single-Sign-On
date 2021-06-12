@@ -112,9 +112,7 @@
                                                 @elseif ($item->status_dana == 'Dana Telah Diberikan' and $item->status_jurnal == 'Belum Diposting')
                                                 <button class="btn btn-danger btn-xs"
                                                     onclick="postingjurnal('{{ $item->bulan_gaji }}', '{{ $item->tahun_gaji }}')"
-                                                    type="button" data-dismiss="modal">Posting Jurnal?</button>
-                                                @elseif ($item->status_dana == 'Dana Telah Diberikan' and $item->status_jurnal == 'Sudah Diposting')
-                                                <span class="badge badge-success"> {{ $item->status_jurnal }}
+                                                    type="button" data-dismiss="modal">Posting Jurnal?</button> 
                                                 @else
                                                 <span>
                                                     @endif
@@ -184,7 +182,7 @@
                 tahun_gaji: tahun_gaji,
             },
             success: function (response) {
-                window.location.href = '/Accounting/gaji-accounting'
+                // window.location.href = '/Accounting/gaji-accounting'
                 console.log(response)
             },
             error: function (response) {

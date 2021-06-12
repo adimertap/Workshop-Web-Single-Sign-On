@@ -153,4 +153,11 @@ class ReturController extends Controller
 
         return redirect()->back()->with('messagehapus','Data Retur Berhasil dihapus');
     }
+
+    public function CetakRetur($id_retur){
+        $retur = Retur::with('Rcv.Detailrcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur.Hargasparepart')->findOrFail($id_retur);
+        // return $pelayanan;
+        $now = Carbon::now();
+        return view('print.Inventory.cetakretur', compact('retur','now'));
+    }
 }

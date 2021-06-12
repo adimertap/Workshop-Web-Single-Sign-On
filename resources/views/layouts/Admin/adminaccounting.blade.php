@@ -175,8 +175,8 @@
                                 <a class="nav-link" href="{{ route('jurnal-pengeluaran.index') }}">
                                     Jurnal Pengeluaran
                                 </a>
-                                <a class="nav-link " href="invoice.html">
-                                    Jurnal Pemasukan
+                                <a class="nav-link " href="{{ route('jurnal-penerimaan.index') }}">
+                                    Jurnal Penerimaan
                                 </a>
                             </nav>
                         </div>

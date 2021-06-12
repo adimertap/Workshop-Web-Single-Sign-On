@@ -286,6 +286,7 @@ Route::group(
                 Route::resource('receiving', 'RcvController', ['names' => 'Rcv']);
                 Route::get('detail/{id_po}', 'RcvController@detailpo')
                     ->name('Rcv-detail-po');
+                Route::get('cetak-rcv/{id}', 'RcvController@CetakRcv')->name('cetak-rcv');
             });
 
         // RETUR ---------------------------------------------------------------------- Retur
@@ -295,6 +296,7 @@ Route::group(
             ->group(function () {
 
                 Route::resource('retur', 'ReturController');
+                Route::get('cetak-retur/{id}', 'ReturController@CetakRetur')->name('cetak-retur');
             });
 
         // OPNAME ---------------------------------------------------------------------- Stock Opname
@@ -581,6 +583,14 @@ Route::group(
                     ->name('jurnal-pengeluaran-pajak');
                 Route::post('PRF/{id_prf}', 'JurnalPengeluaranController@Prf')
                     ->name('jurnal-pengeluaran-prf');
+            });
+
+        Route::prefix('Accounting')
+        ->namespace('Accounting\Jurnal')
+        ->middleware(['admin_accounting_gabung', 'verified'])
+        ->group(function () {
+            Route::resource('jurnal-penerimaan', 'JurnalPenerimaanController');
+
             });
 
         // CATATAN ADIM -------------------------------------------------------------------- Catatan Adim

@@ -107,7 +107,7 @@
                                                     </span>
                                         </td>
                                         <td class="text-center">
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('cetak-retur', $item->id_retur) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak Retur">
                                                 <i class="fas fa-print"></i></i>
                                             </a>

@@ -146,7 +146,7 @@
                                                 data-toggle="modal" data-target="#Modalhapus-{{ $item->id_rcv }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
-                                            <a href="{{ route('Rcv.edit', $item->id_rcv) }}" class="btn btn-info btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('cetak-rcv', $item->id_rcv) }}" target="_blank" class="btn btn-info btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak Data Rcv">
                                                 <i class="fas fa-print"></i></i>
                                             </a>

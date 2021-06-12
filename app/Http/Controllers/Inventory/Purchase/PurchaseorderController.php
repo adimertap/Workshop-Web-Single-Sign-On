@@ -186,7 +186,7 @@ class PurchaseorderController extends Controller
         $po = PO::with('Detailsparepart')->findOrFail($id_po);
         // return $pelayanan;
         $now = Carbon::now();
-        return view('print.PO.cetakpo', compact('po','now'));
+        return view('print.Inventory.cetakpo', compact('po','now'));
     }
 
 }

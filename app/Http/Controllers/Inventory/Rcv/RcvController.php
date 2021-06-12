@@ -230,5 +230,12 @@ class RcvController extends Controller
         ]);
     }
 
+    public function CetakRcv($id_rcv){
+        $rcv = Rcv::with('PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart.Hargasparepart')->findOrFail($id_rcv);
+        // return $pelayanan;
+        $now = Carbon::now();
+        return view('print.Inventory.cetakrcv', compact('rcv','now'));
+    }
+
 }
 
