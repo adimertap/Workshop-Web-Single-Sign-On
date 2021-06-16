@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventory\Masterdata;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Konversirequest;
+use App\Http\Requests\Inventory\Masterdata\Konversirequest as MasterdataKonversirequest;
 use App\Model\Inventory\Konversi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +39,7 @@ class MasterdatakonversiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Konversirequest $request)
+    public function store(MasterdataKonversirequest $request)
     {
         $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
@@ -77,7 +78,7 @@ class MasterdatakonversiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Konversirequest $request, $id_konversi)
+    public function update(Request $request, $id_konversi)
     {
         $konversi = Konversi::findOrFail($id_konversi);
         $konversi->satuan = $request->satuan;

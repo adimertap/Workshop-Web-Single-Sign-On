@@ -11,11 +11,11 @@
                         <h1 class="page-header-title">
                             <div class="page-header-icon" style="color: white"><i class="fas fa-dolly-flatbed"></i>
                             </div>
-                            <div class="page-header-subtitle" style="color: white">Tambah Data Opname</div>
+                            <div class="page-header-subtitle" style="color: white">Edit Data Opname</div>
                         </h1>
                         <div class="small">
                             <span class="font-weight-500">Stock Opname</span>
-                            · Tambah · Data
+                            {{ $opname->kode_opname }}
                         </div>
                         <span class="font-weight-500 text-primary" id="id_bengkel"
                             style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
@@ -49,7 +49,7 @@
                                 <div class="form-group col-md-6">
                                     <label class="small mb-1" for="kode_opname">Kode Opname</label>
                                     <input class="form-control" id="kode_opname" type="text" name="kode_opname"
-                                        placeholder="Input Kode Opname" value="{{ $kode_opname }}" readonly />
+                                        placeholder="Input Kode Opname" value="{{ $opname->kode_opname }}" readonly />
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="small mb-1" for="id_pegawai">Pegawai</label>
@@ -61,14 +61,14 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="small mb-1" for="approve">Approval</label>
-                                    <input class="form-control" id="approve" type="text" name="approve" value="Pending"
+                                    <input class="form-control" id="approve" type="text" name="approve" value="{{ $opname->approve }}"
                                         readonly>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="small mb-1 mr-1" for="tanggal_opname">Tanggal Opname</label><span
                                         class="mr-4 mb-3" style="color: red">*</span>
                                     <input class="form-control" id="tanggal_opname" type="date" name="tanggal_opname"
-                                        placeholder="Input Tanggal Opname" value="{{ old('tanggal_opname') }}">
+                                        placeholder="Input Tanggal Opname" value="{{ $opname->tanggal_opname }}">
                                     <div class="small" id="alerttanggal" style="display:none">
                                         <span class="font-weight-500 text-danger">Error! Tanggal Belum Terisi!</span>
                                         <button class="close" type="button" onclick="$(this).parent().hide()"
@@ -259,7 +259,25 @@
                                         </tr>
                                     </thead>
                                     <tbody id='konfirmasi'>
-
+                                        @forelse ($opname->Detailsparepart as $detail)
+                                        <tr role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td>{{ $detail->kode_sparepart }}</td>
+                                            <td>{{ $detail->nama_sparepart }}</td>
+                                            <td>{{ $detail->Merksparepart->merk_sparepart }}</td>
+                                            <td>{{ $detail->Konversi->satuan }}</td>
+                                            <td>{{ $detail->pivot->jumlah_real }}</td>
+                                            <td>{{ $detail->pivot->selisih }}</td>
+                                            <td>{{ $detail->pivot->keterangan_detail }}</td>
+                                            <td></td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="7" class="text-center">
+                                                Data Sparepart Kosong
+                                            </td>
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -290,7 +308,7 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary" type="button"
-                    onclick="tambahsparepart(event,{{ $sparepart }},{{ $idbaru}})">Ya!Sudah</button>
+                    onclick="tambahsparepart(event,{{ $sparepart }},{{ $opname->id_opname}})">Ya!Sudah</button>
             </div>
         </div>
     </div>
@@ -317,7 +335,7 @@
         $(`#selisih-${id_sparepart}`).val(selisih)
     }
 
-    function tambahsparepart(event, sparepart, idbaru) {
+    function tambahsparepart(event, sparepart, id_opname) {
         event.preventDefault()
         var form1 = $('#form1')
         var kode_opname = form1.find('input[name="kode_opname"]').val()
@@ -358,10 +376,9 @@
                 jumlah_real: jumlah_real,
                 selisih: selisih,
                 keterangan_detail: keterangan_detail,
-                id_opname: idbaru
+                id_opname: id_opname
             }
             dataform2.push(obj)
-            // console.log(obj)
         }
 
         // for (var i = 0; i < sparepart.length; i++) {
@@ -402,12 +419,12 @@
             console.log(data)
 
             $.ajax({
-                method: 'post',
-                url: '/inventory/Opname',
+                method: 'put',
+                url: '/inventory/Opname/' + id_opname,
+                // url: '/inventory/purchase-order/' + id_po,
                 data: data,
                 success: function (response) {
                     window.location.href = '/inventory/Opname'
-
                 },
                 error: function (response) {
                     console.log(response)

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Inventory\Masterdata;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Inventory\Masterdata\Rakrequest as MasterdataRakrequest;
 use App\Http\Requests\Inventory\Rakrequest;
 use App\Model\Inventory\Rak;
 use Illuminate\Http\Request;
@@ -47,7 +48,7 @@ class MasterdatarakController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Rakrequest $request)
+    public function store(MasterdataRakrequest $request)
     {
         $id = Rak::getId();
         foreach($id as $value);
@@ -96,7 +97,7 @@ class MasterdatarakController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Rakrequest $request, $id_rak)
+    public function update(Request $request, $id_rak)
     {
 
         $rak = Rak::findOrFail($id_rak);

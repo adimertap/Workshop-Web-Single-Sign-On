@@ -32,8 +32,6 @@ class Pegawai extends Model
         'kota_asal',
         'no_telp',
         'agama',
-        'status_perkawinan',
-        'email',
         'pendidikan_terakhir',
         'tanggal_masuk',
         'id_bengkel'

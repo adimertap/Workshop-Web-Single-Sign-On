@@ -60,8 +60,11 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="nama_sparepart">Nama Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="nama_sparepart" type="text"
-                                                name="nama_sparepart" value="{{ $item->nama_sparepart }}" />
+                                            <input class="form-control" id="nama_sparepart" type="text" 
+                                                name="nama_sparepart" value="{{ $item->nama_sparepart }}" 
+                                                class="form-control @error('nama_sparepart') is-invalid @enderror" />
+                                            @error('nama_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
                                         </div>
                                     </div>
                                     <div class="row">
@@ -121,12 +124,16 @@
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="berat_sparepart">Berat Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="berat_sparepart" type="text" name="berat_sparepart"
-                                                value="{{ $item->berat_sparepart }}" />
+                                                value="{{ $item->berat_sparepart }}" class="form-control @error('berat_sparepart') is-invalid @enderror" />
+                                                @error('berat_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                                                </div> @enderror
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="stock_min">Stock Min</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="stock_min" type="text" name="stock_min"
-                                                value="{{ $item->stock_min }}" />
+                                                value="{{ $item->stock_min }}" class="form-control @error('stock_min') is-invalid @enderror" />
+                                                @error('stock_min')<div class="text-danger small mb-1">{{ $message }}
+                                                </div> @enderror
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="id_kemasan">Kemasan</label><span class="mr-4 mb-3" style="color: red">*</span>

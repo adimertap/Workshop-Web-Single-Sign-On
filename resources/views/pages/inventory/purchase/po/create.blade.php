@@ -254,7 +254,7 @@
                                     </thead>
                                     <tbody id='konfirmasi'>
                                         @forelse ($po->Detailsparepart as $sparepart)
-                                        <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
+                                        <tr id="gas-{{ $item->id_sparepart }}" role="row" class="odd">
                                             <td></td>
                                             <td class="kode_sparepartedit"><span id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span></td>
                                             <td class="nama_sparepartedit">{{ $sparepart->nama_sparepart }}</td>

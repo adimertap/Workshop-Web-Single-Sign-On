@@ -46,7 +46,7 @@
                     <div class="tab-pane py-5 py-xl-5 fade show active" id="wizard1" role="tabpanel"
                         aria-labelledby="wizard1-tab">
                         <div class="row justify-content-center">
-                            <div class="col-xxl-6 col-xl-8">
+                            <div class="col-xxl-6 col-xl-10">
                                 @if(session('messageberhasil'))
                                 <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
                                     {{ session('messageberhasil') }}
@@ -66,23 +66,23 @@
                                                 name="nama_pegawai" value="{{ $item->nama_pegawai }}" />
                                         </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1" for="nama_panggilan">Nama Panggilan</label>
+                                            <input class="form-control" id="nama_panggilan" type="text"
+                                                name="nama_panggilan" value="{{ $item->nama_panggilan }}" />
+                                        </div>
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="nik_pegawai">NIK Pegawai</label>
                                             <input class="form-control" id="nik_pegawai" type="text"
                                                 name="nik_pegawai" value="{{ $item->nik_pegawai }}" />
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="npwp_pegawai">NPWP Pegawai</label>
                                             <input class="form-control" id="npwp_pegawai" type="text"
                                                 name="npwp_pegawai" value="{{ $item->npwp_pegawai }}" />
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label class="small mb-1" for="nama_panggilan">Nama Panggilan</label>
-                                            <input class="form-control" id="nama_panggilan" type="text"
-                                                name="nama_panggilan" value="{{ $item->nama_panggilan }}" />
-                                        </div>
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1" for="id_jabatan">Jabatan</label>
                                             <select class="form-control" name="id_jabatan" id="id_jabatan">
@@ -94,6 +94,19 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-4">
+                                            <label class="small mb-1" for="tempat_lahir">Tempat Lahir</label>
+                                            <input class="form-control" id="tempat_lahir" type="text"
+                                                name="tempat_lahir" value="{{ $item->tempat_lahir }}" />
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1" for="tanggal_lahir">Tanggal Lahir</label>
+                                            <input class="form-control" id="tanggal_lahir" type="date"
+                                                name="tanggal_lahir" value="{{ $item->tanggal_lahir }}" />
+                                        </div>
+                                      
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="jenis_kelamin">Jenis Kelamin</label>
                                             <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                                 <option value="{{ $item->jenis_kelamin }}">{{ $item->jenis_kelamin }}</option>
@@ -101,31 +114,12 @@
                                                 <option value="Perempuan">Perempuan</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="tempat_lahir">Tempat Lahir</label>
-                                            <input class="form-control" id="tempat_lahir" type="text"
-                                                name="tempat_lahir" value="{{ $item->tempat_lahir }}" />
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="tanggal_lahir">Tanggal Lahir</label>
-                                            <input class="form-control" id="tanggal_lahir" type="date"
-                                                name="tanggal_lahir" value="{{ $item->tanggal_lahir }}" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="small mb-1" for="email">Email</label>
-                                        <input class="form-control" id="email" type="email" name="email"
-                                            value="{{ $item->email }}" />
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="no_telp">Phone number</label>
                                             <input class="form-control" id="no_telp" name="no_telp" type="number"
                                                 value="{{ $item->no_telp }}" />
                                         </div>
-                                        <div class="form-group col-md-6 mb-0">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="agama">Agama</label>
                                             <select name="agama" id="agama" class="form-control">
                                                 <option value="{{ $item->agama }}">{{ $item->agama }}</option>
@@ -139,15 +133,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="status_perkawinan">Status Perkawinan</label>
-                                            <select name="status_perkawinan" id="status_perkawinan" class="form-control">
-                                                <option value="{{ $item->status_perkawinan }}">{{ $item->status_perkawinan }}</option>
-                                                <option value="lajang">Lajang</option>
-                                                <option value="Sudah Menikah">Sudah Menikah</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="pendidikan_terakhir">Pendidikan
                                                 Terakhir</label>
                                             <select name="pendidikan_terakhir" id="pendidikan_terakhir"
@@ -161,17 +147,15 @@
                                                 <option value="PASCA SARJANA">Pasca Sarjana</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1" for="kota_asal">Kota Asal</label>
-                                            <input class="form-control" name="kota_asal" id="kota_asal" type="text"
-                                                placeholder="Masukan Kota Asal" value="{{ $item->kota_asal }}"/>
-                                        </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1" for="tanggal_masuk">Tanggal Masuk</label>
                                             <input class="form-control" name="tanggal_masuk" id="tanggal_masuk" type="date"
                                                 value="{{ $item->tanggal_masuk }}" />
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1" for="kota_asal">Kota Asal</label>
+                                            <input class="form-control" name="kota_asal" id="kota_asal" type="text"
+                                                placeholder="Masukan Kota Asal" value="{{ $item->kota_asal }}"/>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -183,7 +167,7 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <button class="btn btn-light" type="button">Previous</button>
+                                        <a href="{{ route('pegawai.index') }}" class="btn btn-light" type="button">Kembali</a>
                                         <button class="btn btn-primary" type="Submit">Submit</button>
                                     </div>
                                 </form>   

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Inventory\Masterdata;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Galleryrequest;
+use App\Http\Requests\Inventory\Masterdata\Spareparteditrequest as MasterdataSpareparteditrequest;
+use App\Http\Requests\Inventory\Masterdata\Sparepartrequest as MasterdataSparepartrequest;
+use App\Http\Requests\Inventory\Spareparteditrequest;
 use App\Http\Requests\Inventory\Sparepartrequest;
 use App\Model\Inventory\Gallery;
 use App\Model\Inventory\Hargasparepart;
@@ -68,7 +71,7 @@ class MasterdatasparepartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Sparepartrequest $request)
+    public function store(MasterdataSparepartrequest $request)
     {
         // $data = $request->all();
         // $data = Sparepart::create($data);
@@ -167,7 +170,7 @@ class MasterdatasparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_sparepart)
+    public function update(MasterdataSpareparteditrequest $request, $id_sparepart)
     {
 
         $sparepart = Sparepart::findOrFail($id_sparepart);

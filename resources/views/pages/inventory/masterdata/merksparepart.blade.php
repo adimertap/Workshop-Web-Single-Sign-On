@@ -203,13 +203,14 @@
                     <div class="form-group">
                         <label class="small mr-1" for="merk_sparepart">Merk Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
-                            value="{{ $item->merk_sparepart }}" />
+                            value="{{ $item->merk_sparepart }}"  class="form-control @error('merk_sparepart') is-invalid @enderror"></input>
+                            @error('merk_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
-                    
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="Submit">Ubah</button>
+                    <button class="btn btn-primary" type="submit">Ubah</button>
                 </div>
             </form>
         </div>
@@ -259,6 +260,8 @@
     $(document).ready(function () {
         $('#validasierror').click();
     });
+
+    
 
 </script>
 

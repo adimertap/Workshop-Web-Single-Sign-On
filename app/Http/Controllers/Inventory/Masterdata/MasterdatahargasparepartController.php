@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Inventory\Masterdata;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Hargasparepartrequest;
+use App\Http\Requests\Inventory\Masterdata\Hargaspareparteditrequest;
+use App\Http\Requests\Inventory\Masterdata\Hargasparepartrequest as MasterdataHargasparepartrequest;
 use App\Model\Inventory\Hargasparepart;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
@@ -46,7 +48,7 @@ class MasterdatahargasparepartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Hargasparepartrequest $request)
+    public function store(MasterdataHargasparepartrequest $request)
     {
         $harga = new Hargasparepart;
         $harga->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
@@ -99,7 +101,7 @@ class MasterdatahargasparepartController extends Controller
         $harga->id_supplier = $request->id_supplier;
 
         $harga->update();
-        return redirect()->back()->with('messageberhasil','Data Harga Sparepart Berhasil diubah');
+        return $request;
     }
 
     /**
@@ -113,6 +115,11 @@ class MasterdatahargasparepartController extends Controller
         
         $harga = Hargasparepart::findOrFail($id_harga);
         $harga->delete();
+
+        $sparepart = Sparepart::findOrFail($harga->id_sparepart);
+        $sparepart->status_harga = 'Belum Terisi';
+        $sparepart->save();
+        
 
         return redirect()->back()->with('messagehapus','Data Harga Sparepart Berhasil dihapus');
     }

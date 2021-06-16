@@ -100,7 +100,7 @@ class ApprovalopnameController extends Controller
 
         $item = Opname::findOrFail($id_opname);
         $item->approve = $request->status;
-        $item->keterangan = $request->keterangan;
+        $item->keterangan_approval = $request->keterangan_approval;
 
         $item->save();
         return redirect()->route('approval-opname.index');

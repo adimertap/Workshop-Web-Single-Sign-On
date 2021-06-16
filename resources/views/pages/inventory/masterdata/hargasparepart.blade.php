@@ -162,6 +162,7 @@
                     {{-- Validasi Error --}}
                     @if (count($errors) > 0)
                     @endif
+
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                         <button class="btn btn-primary" onclick="submit1()" type="Submit">Tambah</button>
@@ -183,16 +184,16 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('hargasparepart.update', $item->id_harga) }}" method="POST">
+            <form action="{{ route('hargasparepart.update', $item->id_harga) }}" id="formedit" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="modal-body">
-                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <div class="small">{{ $item->Sparepart->nama_sparepart }} </div>
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="id_supplier">Pilih Supplier</label><span class="mr-4 mb-3" style="color: red">*</span>
-                        <select class="form-control" name="id_supplier" id="id_supplier">
+                        <label class="small mb-1 mr-1" for="id_supplier_edit">Pilih Supplier</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <select class="form-control" name="id_supplier_edit" id="id_supplier_edit">
                             <option value="{{ $item->Supplier->id_supplier }}">
                                 {{ $item->Supplier->nama_supplier }}</option>
                             @foreach ($supplier as $sup)
@@ -201,18 +202,24 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="harga_jual">Harga Jual</label><span class="mr-4 mb-3"
+                        <label class="small mb-1 mr-1" for="harga_jual_edit">Harga Jual</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
-                        <input class="form-control edit_harga_jual" name="harga_jual" type="number" id="edit_harga_jual"
-                            value="{{ $item->harga_jual }}">
+                        <input class="form-control edit_harga_jual" name="harga_jual_edit" type="number" id="edit_harga_jual"
+                            value="{{ $item->harga_jual }}"/>
                         <div class="small text-primary">Detail Harga :
                             <span id="detaileditjual"
                                 class="detaileditjual">Rp.{{ number_format($item->harga_jual,2,',','.')}}</span>
                         </div>
+                        <div class="small" id="alerttanggal" style="display:none">
+                            <span class="font-weight-500 text-danger">Error! Anda Belum Memasukan Harga Jual</span>
+                            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="Submit">Ubah</button>
+                        <button class="btn btn-primary" onclick="submit1({{ $item->id_harga }})" type="button">Ubah</button>
                     </div>
             </form>
         </div>
@@ -236,7 +243,7 @@
             <form action="{{ route('hargasparepart.destroy', $item->id_harga) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Harga Sparepart?</div>
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Harga Sparepart {{ $item->Sparepart->nama_sparepart }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>
@@ -258,10 +265,43 @@
 {{-- Script Open Modal Callback --}}
 <script>
 
+    function submit1(id_harga) {
+        var _token = $('#formedit').find('input[name="_token"]').val()
+        var harga_jual = $('#formedit').find('input[name="harga_jual_edit"]').val()
+        var id_supplier = $('#id_supplier_edit').val()
+        console.log(id_supplier)
+      
+        var data = {
+            _token: _token,
+            id_harga: id_harga,
+            harga_jual: harga_jual,
+            id_supplier: id_supplier
+        }
+
+        if (harga_jual == '' | harga_jual == 0) {
+            $('#alerttanggal').show()
+        } else {
+
+            $.ajax({
+                method: 'put',
+                url: '/inventory/hargasparepart/' + id_harga,
+                data: data,
+                success: function (response) {
+                    window.location.href = '/inventory/hargasparepart'
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+
+            });
+        }
+
+    }
 
     $(document).ready(function () {
         var table = $('#dataTablesparepart').DataTable()
         $('#validasierror').click();
+        // $('#validasierroredit').click();
 
         $('#harga_jual').on('input', function () {
             var harga_jual = $(this).val()

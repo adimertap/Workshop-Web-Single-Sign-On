@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Inventory\Masterdata;
 use App\Model\Inventory\Jenissparepart;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Jenissparepartrequest;
+use App\Http\Requests\Inventory\Masterdata\Jenisspareparteditrequest;
+use App\Http\Requests\Inventory\Masterdata\Jenissparepartrequest as MasterdataJenissparepartrequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -42,7 +44,7 @@ class MasterdatajenissparepartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Jenissparepartrequest $request)
+    public function store(MasterdataJenissparepartrequest $request)
     {
         $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
@@ -81,9 +83,10 @@ class MasterdatajenissparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_jenis_sparepart)
+    public function update(Jenisspareparteditrequest $request, $id_jenis_sparepart)
     {
         $jenissparepart = Jenissparepart::findOrFail($id_jenis_sparepart);
+        $jenissparepart->fungsi = $request->fungsi;
         $jenissparepart->jenis_sparepart = $request->jenis_sparepart;
         $jenissparepart->keterangan = $request->keterangan;
 

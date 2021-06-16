@@ -152,17 +152,6 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="d-flex flex-column font-weight-bold">
-                                                        <label class="small text-muted line-height-normal">Email
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <label class="small text-muted line-height-normal">:
-                                                        {{ $item->email }}
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="d-flex flex-column font-weight-bold">
                                                         <label class="small text-muted line-height-normal">Telepon
                                                     </div>
                                                 </div>
@@ -180,18 +169,6 @@
                                                 <div class="col">
                                                     <label class="small text-muted line-height-normal">:
                                                         {{ $item->agama }}
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="d-flex flex-column font-weight-bold">
-                                                        <label class="small text-muted line-height-normal">Status
-                                                            Perkawinan
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <label class="small text-muted line-height-normal">:
-                                                        {{ $item->status_perkawinan }}
                                                 </div>
                                             </div>
                                             <div class="row">

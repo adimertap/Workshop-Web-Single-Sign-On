@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventory\Masterdata;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Kemasanrequest;
+use App\Http\Requests\Inventory\Masterdata\Kemasanrequest as MasterdataKemasanrequest;
 use App\Model\Inventory\Kemasan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +39,7 @@ class MasterdatakemasanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Kemasanrequest $request)
+    public function store(MasterdataKemasanrequest $request)
     {
         $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();

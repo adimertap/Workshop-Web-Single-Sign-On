@@ -56,7 +56,7 @@
                         <span class="font-weight-500 text-secondary">Keterangan Approval</span>
                     </div>
                     <label class="small">
-                        - {{ $opname->keterangan }}
+                        - {{ $opname->keterangan_approval }}
                     </label>
                 </div>
             </div>
@@ -124,8 +124,8 @@
                                                 <td>{{ $detail->nama_sparepart }}</td>
                                                 <td>{{ $detail->Rak->nama_rak }}</td>
                                                 <td>{{ $detail->pivot->jumlah_real }}</td>
-                                                <td>
-                                                    @if($opname->approve == 'Pending')
+                                                <td>{{ $detail->pivot->jumlah_real + $detail->pivot->selisih }}
+                                                    {{-- @if($opname->approve == 'Pending')
                                                     Menunggu Approval
                                                     @elseif($opname->approve == 'Not Approved')
                                                     {{ $opname->approve }}
@@ -134,7 +134,7 @@
                                                     @else
                                                     <span>
                                                         @endif
-                                                    </span>
+                                                    </span> --}}
                                                 </td>
                                                 <td>{{ $detail->pivot->selisih }}
                                                 </td>

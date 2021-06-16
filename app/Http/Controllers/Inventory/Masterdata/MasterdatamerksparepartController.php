@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Inventory\Masterdata;
 use App\Http\Requests\Inventory\Merksparepartrequest;
 use App\Model\Inventory\Merksparepart;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Inventory\Masterdata\Merkspareparteditrequest;
+use App\Http\Requests\Inventory\Masterdata\Merksparepartrequest as MasterdataMerksparepartrequest;
 use App\Model\Inventory\Jenissparepart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,7 +55,7 @@ class MasterdatamerksparepartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Merksparepartrequest $request)
+    public function store(MasterdataMerksparepartrequest $request)
     {
         $id = Merksparepart::getId();
         foreach($id as $value);
@@ -103,7 +105,7 @@ class MasterdatamerksparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_merk)
+    public function update(Merkspareparteditrequest $request, $id_merk)
     {
         $merksparepart = Merksparepart::findOrFail($id_merk);
         $merksparepart->id_jenis_sparepart = $request->id_jenis_sparepart;

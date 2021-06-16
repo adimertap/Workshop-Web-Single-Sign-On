@@ -61,7 +61,7 @@
                                                 style="width: 20px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 50px;">Kode</th>
+                                                style="width: 30px;">Kode</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 120px;">Nama Supplier</th>
@@ -70,13 +70,13 @@
                                                 style="width: 60px;">Telephone</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 70px;">Email</th>
+                                                style="width: 60px;">Email</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 70px;">Nama Sales</th>
+                                                style="width: 50px;">Nama Sales</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 60px;">Actions</th>
+                                                style="width: 80px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -128,7 +128,7 @@
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-danger-soft">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>

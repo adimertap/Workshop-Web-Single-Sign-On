@@ -139,9 +139,9 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="small mb-1" for="keterangan">Masukan Keterangan Setuju</label>
-                        <textarea class="form-control" name="keterangan" type="text" id="keterangan"
-                            placeholder="Input Keterangan" value="{{ old('keterangan') }}"></textarea>
+                        <label class="small mb-1" for="keterangan_approval">Masukan Keterangan Setuju</label>
+                        <textarea class="form-control" name="keterangan" type="text" id="keterangan_approval"
+                            placeholder="Input Keterangan" value="{{ old('keterangan_approval') }}"></textarea>
                     </div>
                     <div class="form-group">Apakah Anda Yakin Menyetujui Opname {{ $item->kode_opname }} pada tanggal
                         {{ $item->tanggal_opname }}?</div>
@@ -172,9 +172,9 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="small mb-1" for="keterangan">Masukan Keterangan Menolak</label>
-                        <textarea class="form-control" name="keterangan" type="text" id="keterangan"
-                            placeholder="Input Keterangan" value="{{ old('keterangan') }}"></textarea>
+                        <label class="small mb-1" for="keterangan_approval">Masukan Keterangan Menolak</label>
+                        <textarea class="form-control" name="keterangan_approval" type="text" id="keterangan_approval"
+                            placeholder="Input Keterangan" value="{{ old('keterangan_approval') }}"></textarea>
                     </div>
                     <div class="form-group">Apakah Anda Yakin Menolak Data Opname {{ $item->kode_opname }} pada tanggal
                         {{ $item->tanggal_opname }}?</div>

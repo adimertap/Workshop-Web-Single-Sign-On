@@ -46,7 +46,7 @@ class OpnameController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('y-m');
 
-        $kode_opname = 'OPM-'.'/'.$blt.'-'.$idbaru;
+        $kode_opname = 'OPM-'.$blt.'/'.$idbaru;
         
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
@@ -62,21 +62,12 @@ class OpnameController extends Controller
      */
     public function store(Request $request)
     {
-        // $id = Opname::getId();
-        // foreach($id as $value);
-        // $idlama = $value->id_opname;
-        // return $idlama;
-        // $idbaru = $idlama + 1;
-        // $blt = date('y-m');
-
-        // $kode_opname = 'OP-'.'/'.$blt.$idbaru;
 
         $opname = new Opname;
         $opname->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
         $opname->kode_opname = $request->kode_opname;
         $opname->tanggal_opname = $request->tanggal_opname;
-        $opname->keterangan = $request->keterangan;
-        $opname->approve =  $request->approve;
+        $opname->approve =  'Pending';
         $opname->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
 
         $opname->save();
@@ -106,9 +97,15 @@ class OpnameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_opname)
     {
-        //
+        $opname = Opname::with([
+            'Pegawai', 'Detailsparepart'
+        ])->findOrFail($id_opname);
+
+        $sparepart = Sparepart::all();
+
+        return view('pages.inventory.stockopname.edit', compact('opname','sparepart'));
     }
 
     /**
@@ -118,9 +115,15 @@ class OpnameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_opname)
     {
-        //
+        $opname = Opname::find($id_opname);
+        $opname->tanggal_opname = $request->tanggal_opname;
+
+        $opname->update();
+        $opname->Detailsparepart()->attach($request->sparepart);
+
+        return $request;
     }
 
     /**
@@ -138,4 +141,5 @@ class OpnameController extends Controller
 
         return redirect()->back()->with('messagehapus','Data Opname Berhasil dihapus');
     }
+    
 }

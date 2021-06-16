@@ -22,7 +22,7 @@ class Opname extends Model
         'id_bengkel',
         'kode_opname',
         'tanggal_opname',
-        'keterangan',
+        'keterangan_approval',
         'approve',
     ];
 

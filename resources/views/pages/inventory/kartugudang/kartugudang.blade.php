@@ -31,8 +31,7 @@
                     <div class="col-xl-8 col-xxl-12">
                         <div class="text-center px-4 mb-4 mb-xl-0 mb-xxl-4">
                             <h1 class="text-primary" style="font-size: 15pt">Kartu Gudang, Reporting Sparepart</h1>
-                            <p class="text-gray-700 mb-0">It's time to get started! View new opportunities now, or
-                                continue on your previous work.</p>
+                            <p class="text-gray-700 mb-0">Klik Spareprat Report untuk melihat data transaksi sparepart.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"

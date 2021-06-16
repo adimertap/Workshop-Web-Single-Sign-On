@@ -32,12 +32,10 @@ class Pegawairequest extends FormRequest
             'tempat_lahir' => 'required|min:5|max:20',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|string|in:Laki-Laki,Perempuan',
-            'alamat' => 'required|min:5|max:30',
+            'alamat' => 'required|min:5|max:50',
             'kota_asal' => 'required|min:5|max:15',
             'no_telp' => 'required|min:12|max:15',
             'agama' => 'required|string|in:Hindu,Islam,Budha,Konghucu,Katolik,Protestan',
-            'status_perkawinan' => 'required|string|in:lajang,Sudah Menikah',
-            'email' => 'required|email',
             'pendidikan_terakhir' =>'required|string|in:SLTP,SLTA,STM/SMK,DIPLOMA,SARJANA,PASCA SARJANA',
             'tanggal_masuk' => 'required|date',
         ];
@@ -87,8 +85,6 @@ class Pegawairequest extends FormRequest
             'no_telp.max' => 'Error! Character Maximal :max digit',
 
             'agama.required' => 'Error! Anda Belum Mengisi Agama',
-            'status_perkawinan.required' => 'Error! Anda Belum Mengisi Status Perkawinan',
-            'email.required' => 'Error! Anda Belum Mengisi Email',
             'pendidikan_terakhir.required' => 'Error! Anda Belum Mengisi Pendidikan Terakhir',
             'tanggal_masuk.required' => 'Error! Anda Belum Mengisi Tanggal Masuk',
         ];

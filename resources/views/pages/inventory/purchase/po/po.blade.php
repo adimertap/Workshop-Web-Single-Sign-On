@@ -151,7 +151,7 @@
                                                     <i class="fas fa-share-square"></i>
                                                 </a>
                                             @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Approved' and $item->status == 'Dikirim')
-                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                <a href="{{ route('cetak-po', $item->id_po) }}" target="_blank" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak PO">
                                                 <i class="fas fa-print"></i></i>
                                                 </a>

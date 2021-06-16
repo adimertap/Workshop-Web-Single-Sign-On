@@ -70,8 +70,6 @@ class MasterdatapegawaiController extends Controller
         $pegawai->kota_asal = $request->kota_asal;
         $pegawai->no_telp = $request->no_telp;
         $pegawai->agama = $request->agama;
-        $pegawai->status_perkawinan = $request->status_perkawinan;
-        $pegawai->email = $request->email;
         $pegawai->pendidikan_terakhir = $request->pendidikan_terakhir;
         $pegawai->tanggal_masuk = $request->tanggal_masuk;
 
@@ -123,7 +121,7 @@ class MasterdatapegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Pegawairequest $request, $id_pegawai)
+    public function update(Request $request, $id_pegawai)
     {
         $item = Pegawai::findOrFail($id_pegawai);
         $data = $request->all();

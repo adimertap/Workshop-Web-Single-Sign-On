@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Inventory;
+namespace App\Http\Requests\Inventory\Masterdata;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +25,6 @@ class Merksparepartrequest extends FormRequest
     {
         return [
             'id_jenis_sparepart' => 'required|exists:tb_inventory_master_jenis_sparepart,id_jenis_sparepart',
-            // 'kode_merk' => 'required',
     	    'merk_sparepart' => 'required|unique:tb_inventory_master_merk_sparepart,merk_sparepart|min:3|max:30'
         ];
     }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Inventory\Masterdata;
 use App\Http\Requests\Inventory\Supplierrequest;
 use App\Model\Inventory\Supplier;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Inventory\Masterdata\Suppliereditrequest;
+use App\Http\Requests\Inventory\Masterdata\SupplierRequest as MasterdataSupplierRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -45,7 +47,7 @@ class MasterdatasupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Supplierrequest $request)
+    public function store(MasterdataSupplierRequest $request)
     {
         $id = Supplier::getId();
         foreach($id as $value);
@@ -103,7 +105,7 @@ class MasterdatasupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_supplier)
+    public function update(Suppliereditrequest $request, $id_supplier)
     {
         $supplier = Supplier::findOrFail($id_supplier);
         $supplier->kode_supplier = $request->kode_supplier;

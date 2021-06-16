@@ -342,6 +342,7 @@
         var id_pegawai = form1.find('input[name="id_pegawai"]').val()
         var tanggal_retur = form1.find('input[name="tanggal_retur"]').val()
         var dataform2 = []
+        console.log(dataform2)
         var _token = form1.find('input[name="_token"]').val()
 
         for (var i = 0; i < sparepart.length; i++) {
