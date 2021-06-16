@@ -308,7 +308,7 @@
                         <label class="small mb-1" for="harga_diterima">Harga Satuan</label>
                         <input class="form-control harga_diterima" name="harga_diterima" type="number"
                             id="harga_diterima" placeholder="Input Harga Beli diterima"
-                            value="{{ $item->Kartugudangterakhir->harga_beli }}"></input>
+                            value="{{ $item->Kartugudangterakhir['harga_beli'] }}"></input>
                         <div class="small text-primary">Detail Harga
                             <span id="detailhargaditerima" class="detailhargaditerima">
                                 @if ($item->Kartugudangterakhir == '')
