@@ -63,7 +63,7 @@ class AbsensipegawaiController extends Controller
       
         $bengkel = Bengkel::first();
         $jammasuk = Carbon::now()->format('H:i:s');
-        if($jammasuk > $bengkel->jam_buka_bengkel){
+        if($jammasuk > $bengkel->jam_buka_bengkel && ($request->absensi == 'Absen_Pagi' || $request->absensi == 'Masuk')){
             $keterangan = 'Terlambat';
         }else{
             $keterangan = $request->keterangan;

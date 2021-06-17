@@ -90,7 +90,7 @@ class ReturController extends Controller
     public function edit($id)
     {
         $retur = Retur::with([
-            'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart'
+            'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur'
         ])->find($id);
         
         $id = Retur::getId();
@@ -101,16 +101,16 @@ class ReturController extends Controller
 
         $kode_retur = 'RTR-'.$blt.'/'.$idbaru;
 
-        // Generate Code Manggil Fungsi getId()
-        // $id = Retur::getId();
-        // $blt = date('y-m');
-        // $kode_retur = 'RTR-'.$blt.'/'.$retur->id_retur;
+        for($i = 0;  $i < count($retur->Detailretur); $i++ ){
+            for($j = 0;  $j < count($retur->Supplier->Sparepart); $j++ ){
+               if ($retur->Detailretur[$i]->id_sparepart == $retur->Supplier->Sparepart[$j]->id_sparepart ){
+                $retur->Supplier->Sparepart[$j]->qty_retur = $retur->Detailretur[$i]->pivot->qty_retur;
+                $retur->Supplier->Sparepart[$j]->keterangan = $retur->Detailretur[$i]->pivot->keterangan;
+               };
+            }
+        }
 
-        // Panggil
-        $supplier = Supplier::all();
-        $pegawai = Pegawai::all();
-
-        return view('pages.inventory.retur.create', compact('retur','pegawai','supplier','kode_retur'));
+        return view('pages.inventory.retur.create', compact('retur','kode_retur'));
     }
 
     /**

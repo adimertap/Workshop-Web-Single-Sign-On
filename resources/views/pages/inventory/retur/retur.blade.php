@@ -107,7 +107,7 @@
                                                     </span>
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('cetak-retur', $item->id_retur) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('cetak-retur', $item->id_retur) }}" target="_blank" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak Retur">
                                                 <i class="fas fa-print"></i></i>
                                             </a>
@@ -118,7 +118,7 @@
                                                 data-placement="top" title="" data-original-title="Detail Retur">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('retur.edit', $item->id_retur) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Edit Retur">
                                                 <i class="fas fa-edit"></i>
                                             </a>

@@ -146,7 +146,8 @@
                                                 data-toggle="modal" data-target="#Modalhapus-{{ $item->id_rcv }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
-                                            <a href="{{ route('cetak-rcv', $item->id_rcv) }}" target="_blank" class="btn btn-info btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('cetak-rcv', $item->id_rcv) }}" target="_blank"
+                                                class="btn btn-info btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak Data Rcv">
                                                 <i class="fas fa-print"></i></i>
                                             </a>
@@ -184,11 +185,11 @@
                 @csrf
                 <div class="modal-body">
                     <div class="alert alert-danger" id="alertdatakosong" role="alert" style="display:none"> <i
-                        class="fas fa-times"></i>
-                    Error! Terdapat Data yang Masih Kosong!
-                    <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                            class="fas fa-times"></i>
+                        Error! Terdapat Data yang Masih Kosong!
+                        <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
                     </div>
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
                     <hr>
@@ -209,7 +210,8 @@
                             </div>
                             <div class="small" id="alertkodepo" style="display:none">
                                 <span class="font-weight-500 text-danger">Error! Anda Belum Menambahkan Kode PO!</span>
-                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                <button class="close" type="button" onclick="$(this).parent().hide()"
+                                    aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
@@ -230,8 +232,10 @@
                             @error('no_do')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                             <div class="small" id="alertdo" style="display:none">
-                                <span class="font-weight-500 text-danger">Error! Anda Belum Mengisi Nomor Delivery Order!</span>
-                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                <span class="font-weight-500 text-danger">Error! Anda Belum Mengisi Nomor Delivery
+                                    Order!</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()"
+                                    aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
@@ -246,7 +250,8 @@
                             </div> @enderror
                             <div class="small" id="alerttanggal" style="display:none">
                                 <span class="font-weight-500 text-danger">Error! Tanggal Belum Terisi!</span>
-                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                <button class="close" type="button" onclick="$(this).parent().hide()"
+                                    aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
@@ -264,53 +269,73 @@
 
 {{-- MODAL PO --}}
 <div class="modal fade" id="Modalpo" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light ">
-                <h5 class="modal-title">Pilih Kode Pembelian/ PO</h5>
+                <h5 class="modal-title">Pilih Kode Pembelian Sparepart</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-borderless mb-0">
-                        <thead class="border-bottom">
-                            <tr class="small text-uppercase text-muted">
-                                <th scope="col">Kode PO</th>
-                                <th scope="col">Supplier</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($po as $item)
-                            <tr id="item-{{ $item->id_po }}" class="border-bottom">
-                                <td>
-                                    <div class="font-weight-bold kode_po">{{ $item->kode_po }}</div>
-                                </td>
-                                <td>
-                                    <div class="small text-muted d-none d-md-block nama_supplier">{{ $item->Supplier->nama_supplier }}</div>
-                                </td>
-                                <td>
-                                    <button class="btn btn-success btn-sm btn-datatable"
-                                        onclick="tambahpo(event, {{ $item->id_po }})" type="button"
-                                        data-dismiss="modal">Tambah
-                                    </button>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="7" class="tex-center">
-                                    Data Sparepart Kosong
-                                </td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                <div class="datatable">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataTablePO" width="100%" cellspacing="0"
+                                role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                        aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                                        style="width: 30px;">No.</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                            aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                                            style="width: 70px;">Kode PO</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                            aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                                            style="width: 70px;">Tanggal PO</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                            aria-label="Position: activate to sort column ascending" style="width: 80px;">Supplier</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                            aria-label="Position: activate to sort column ascending" style="width: 50px;">Telephone</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                            aria-label="Office: activate to sort column ascending" style="width: 50px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($po as $item)
+                                    <tr id="item-{{ $item->id_po }}">
+                                        <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                        <td><div class="kode_po">{{ $item->kode_po }}</div></td>
+                                        <td>{{ $item->tanggal_po }}</td>
+                                        <td><div class="nama_supplier">{{ $item->Supplier->nama_supplier }}</div></td>
+                                        <td>{{ $item->Supplier->telephone }}</td>
+                                        <td class="text-center"><button class="btn btn-success btn-xs" 
+                                            onclick="tambahpo(event, {{ $item->id_po }})" type="button" 
+                                            data-dismiss="modal">Tambah</button>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="3" class="text-center">
+                                            Data Pembelian Kosong
+                                        </td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+           
         </div>
     </div>
 </div>
+
+
 
 
 {{-- MODAL HAPUS --}}
@@ -370,13 +395,13 @@
             tanggal_rcv: tanggal_rcv
         }
 
-        if (kode_po == 0 | kode_po == '' ) {
+        if (kode_po == 0 | kode_po == '') {
             $('#alertkodepo').show()
-        }else if ( no_do == 0 | no_do =='')
+        } else if (no_do == 0 | no_do == '')
             $('#alertdo').show()
-        else if ( tanggal_rcv == 0 | tanggal_rcv == '')
-            $('#alerttanggal').show() 
-        
+        else if (tanggal_rcv == 0 | tanggal_rcv == '')
+            $('#alerttanggal').show()
+
         else {
 
             $.ajax({
@@ -430,6 +455,9 @@
         document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
     }
 
+    $(document).ready(function () {
+        $('#dataTablePO').DataTable()
+    });
 
 </script>
 

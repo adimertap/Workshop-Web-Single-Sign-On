@@ -105,11 +105,20 @@ class PurchaseorderController extends Controller
         $po = PO::with([
             'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailsparepart','Supplier.Sparepart.Kartugudang','Supplier.Sparepart.Kartugudangterakhir'
         ])->find($id);
+
+        // return $po;
  
         $supplier = Supplier::all();
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
-
+        for($i = 0;  $i < count($po->Detailsparepart); $i++ ){
+            for($j = 0;  $j < count($po->Supplier->Sparepart); $j++ ){
+               if ($po->Detailsparepart[$i]->id_sparepart == $po->Supplier->Sparepart[$j]->id_sparepart ){
+                $po->Supplier->Sparepart[$j]->qty = $po->Detailsparepart[$i]->pivot->qty;
+                $po->Supplier->Sparepart[$j]->harga_satuan = $po->Detailsparepart[$i]->pivot->harga_satuan;
+               };
+            }
+        }
         return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','pegawai'));
     }
 
@@ -125,20 +134,43 @@ class PurchaseorderController extends Controller
     {
         
         $po = PO::findOrFail($id_po);
-        $po->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
-        $po->kode_po = $request->kode_po;
-        $po->tanggal_po = $request->tanggal_po;
-        $temp = 0;
-        foreach($request->sparepart as $key=>$item){
-            $temp = $temp + $item['total_harga'];
+
+        if($po->approve_po == 'Not Approved' && $po->approve_ap == 'Pending'){
+            $po->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
+            $po->kode_po = $request->kode_po;
+            $po->tanggal_po = $request->tanggal_po;
+            $temp = 0;
+            foreach($request->sparepart as $key=>$item){
+                $temp = $temp + $item['total_harga'];
+            }
+    
+            $po->grand_total = $temp;
+            $po->approve_po = 'Pending';
+            $po->approve_ap = 'Pending';
+          
+            
+            $po->update();
+            $po->Detailsparepart()->sync($request->sparepart);
+            return $request;
+        }else{
+            $po->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
+            $po->kode_po = $request->kode_po;
+            $po->tanggal_po = $request->tanggal_po;
+            $temp = 0;
+            foreach($request->sparepart as $key=>$item){
+                $temp = $temp + $item['total_harga'];
+            }
+    
+            $po->grand_total = $temp;
+          
+            
+            $po->update();
+            $po->Detailsparepart()->sync($request->sparepart);
+            return $request;
         }
 
-        $po->grand_total = $temp;
-      
-        
-        $po->update();
-        $po->Detailsparepart()->sync($request->sparepart);
-        return $request;
+
+       
     }
 
     /**

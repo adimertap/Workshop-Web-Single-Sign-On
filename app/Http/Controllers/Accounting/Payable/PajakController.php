@@ -143,6 +143,8 @@ class PajakController extends Controller
         $pajak->total_pajak = $request->total_pajak;
         $pajak->update();
         
+        $pajak->detailpajak()->delete();
+
         $pajak->detailpajak()->insert($request->pajak);
         return $request;
     }

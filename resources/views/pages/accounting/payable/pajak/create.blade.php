@@ -336,7 +336,8 @@
 
             var td_nilai_pajak = children[3]
             var nilaipajak = $(td_nilai_pajak).html()
-            var nilaipajak_fix = nilaipajak.split('Rp')[1].replace('.', '').replace('.', '').replace(',00', '').trim()
+            var nilaipajak_fix = nilaipajak.split('Rp')[1].replace('&nbsp;','').replace('.', '').replace('.', '').replace(',00', '').trim()
+            console.log(nilaipajak, nilaipajak_fix)
             console.log(nilaipajak_fix)
             dataform2.push({
                 id_pajak: id_pajak,

@@ -98,7 +98,7 @@ class RcvController extends Controller
     public function edit($id)
     {
         $rcv = Rcv::with([
-            'PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart.Hargasparepart'
+            'PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart.Hargasparepart','Detailrcv'
         ])->find($id);
 
         $id = Rcv::getId();
@@ -109,11 +109,20 @@ class RcvController extends Controller
 
         $kode_rcv = 'Rcv-'.$blt.'/'.$idbaru;
 
-        $pegawai = Pegawai::all();
-        $supplier = Supplier::all();
-        $po = PO::where([['status', '=', 'Dikirim']])->get();
-        
-        return view('pages.inventory.rcv.create', compact('rcv','pegawai','po','supplier','kode_rcv'));
+        // return $rcv;
+        for($i = 0;  $i < count($rcv->Detailrcv); $i++ ){
+            for($j = 0;  $j < count($rcv->PO->Detailsparepart); $j++ ){
+               if ($rcv->Detailrcv[$i]->id_sparepart == $rcv->PO->Detailsparepart[$j]->id_sparepart ){
+                $rcv->PO->Detailsparepart[$j]->qty_rcv = $rcv->Detailrcv[$i]->pivot->qty_rcv;
+                $rcv->PO->Detailsparepart[$j]->harga_diterima = $rcv->Detailrcv[$i]->pivot->harga_diterima;
+                $rcv->PO->Detailsparepart[$j]->keterangan = $rcv->Detailrcv[$i]->pivot->keterangan;
+               };
+            }
+        }
+
+        // return $rcv;
+
+        return view('pages.inventory.rcv.create', compact('rcv','kode_rcv'));
     }
 
     /**
@@ -160,7 +169,14 @@ class RcvController extends Controller
             // KARTU GUDANG
             $kartu_gudang = new Kartugudang;
             $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
-            $kartu_gudang->saldo_akhir =  $sparepart->saldo_akhir + $item['qty_rcv'];
+
+            $kartugudangterakhir =  $sparepart->Kartugudangterakhir;
+            if($kartugudangterakhir != null)
+            $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir +  $item['qty_rcv'];
+
+            if($kartugudangterakhir == null)
+            $kartu_gudang->saldo_akhir =  $item['qty_rcv'];
+
             $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_masuk + $item['qty_rcv'];
             $kartu_gudang->harga_beli = $kartu_gudang->harga_beli + $item['harga_diterima'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;

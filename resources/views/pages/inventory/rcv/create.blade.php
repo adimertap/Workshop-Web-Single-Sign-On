@@ -233,7 +233,7 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
                                                 style="width: 70px;">
-                                                Satuan</th>
+                                                Kemasan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
                                                 style="width: 70px;">
@@ -257,7 +257,22 @@
                                         </tr>
                                     </thead>
                                     <tbody id='konfirmasi'>
-
+                                        @forelse ($rcv->Detailrcv as $sparepart )
+                                        <tr id="gas-{{ $sparepart->id_sparepart }}" role="row" class="odd">
+                                            <td></td>
+                                            <td class="kode_sparepartedit"><span id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span></td>
+                                            <td class="nama_sparepartedit">{{ $sparepart->nama_sparepart }}</td>
+                                            <td class="merk_sparepartedit">{{ $sparepart->Merksparepart->merk_sparepart }}</td>
+                                            <td class="kemasanedit">{{ $sparepart->Kemasan->nama_kemasan }}</td>
+                                            <td class="qtypoedit">{{ $sparepart->pivot->qty_po }}</td>
+                                            <td class="qtyrcvedit">{{ $sparepart->pivot->qty_rcv }}</td>
+                                            <td class="total_hargaedit">Rp {{ number_format($sparepart->pivot->harga_diterima,2,',','.')}}</td>
+                                            <td class="keterangan_edit">{{ $sparepart->pivot->keterangan }}</td>
+                                            <td></td>
+                                        </tr>
+                                        @empty
+                                            
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -277,7 +292,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Detail Receiving</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Form Receiving</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
@@ -305,7 +320,7 @@
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="qty_rcv">Quantity Receive</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" name="qty_rcv" type="number" id="qty_rcv"
-                                placeholder="Input Quantity Rcv" value="{{ old('qty_rcv') }}"></input>
+                                placeholder="Input Quantity Rcv" value="{{ $item->qty_rcv }}"></input>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="harga_diterima">Harga diterima</label>
@@ -322,7 +337,7 @@
                     <div class="form-group">
                         <label class="small mb-1" for="keterangan">Masukan Keterangan Penerimaan</label>
                         <textarea class="form-control" name="keterangan" type="text" id="keterangan"
-                            placeholder="Input Keterangan diterima">{{ old('keterangan') }}</textarea>
+                            placeholder="Input Keterangan diterima">{{ $item->keterangan }}</textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -99,6 +99,8 @@ class Sparepart extends Model
         return $this->hasOne(Kartugudang::class, 'id_sparepart','id_sparepart')->where('jenis_kartu', 'Receiving')->orderBy('updated_at', 'DESC');
     }
 
+    
+
     public static function getId()
     {
         $getId = DB::table('tb_inventory_master_sparepart')->orderBy('id_sparepart', 'DESC')->take(1)->get();

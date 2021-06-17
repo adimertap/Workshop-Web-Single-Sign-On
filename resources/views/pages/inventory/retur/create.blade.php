@@ -240,7 +240,20 @@
                                         </tr>
                                     </thead>
                                     <tbody id='konfirmasi'>
-
+                                        @forelse ($retur->Detailretur as $sparepart)
+                                        <tr id="gas-{{ $sparepart->id_sparepart }}" role="row" class="odd">
+                                            <td></td>
+                                            <td class="kode_sparepartedit"><span id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span></td>
+                                            <td class="nama_sparepartedit">{{ $sparepart->nama_sparepart }}</td>
+                                            <td class="merk_sparepartedit">{{ $sparepart->Merksparepart->merk_sparepart }}</td>
+                                            <td class="satuan_edit">{{ $sparepart->Konversi->satuan }}</td>
+                                            <td class="qty_retur_edit">{{ $sparepart->pivot->qty_retur }}</td>
+                                            <td class="keterangan_retur_edit">{{ $sparepart->pivot->keterangan }}</td>
+                                            <td></td>
+                                        </tr>
+                                        @empty
+                                            
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -272,12 +285,12 @@
                     <div class="form-group">
                         <label class="small mb-1" for="qty_retur">Masukan Quantity Retur</label>
                         <input class="form-control" name="qty_retur" type="number" id="qty_retur"
-                            placeholder="Input Quantity Retur" value="{{ old('qty_retur') }}"></input>
+                            placeholder="Input Quantity Retur" value="{{ $item->qty_retur }}"></input>
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="keterangan">Masukan Keterangan Retur</label>
                         <textarea class="form-control" name="keterangan" type="text" id="keterangan"
-                            placeholder="Input Keterangan Retur">{{ old('keterangan') }}</textarea>
+                            placeholder="Input Keterangan Retur">{{ $item->keterangan }}</textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

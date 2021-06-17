@@ -204,7 +204,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-                <div class="datatable">
+                {{-- <div class="datatable">
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
@@ -253,8 +253,8 @@
                                         </tr>
                                     </thead>
                                     <tbody id='konfirmasi'>
-                                        @forelse ($po->Detailsparepart as $sparepart)
-                                        <tr id="gas-{{ $item->id_sparepart }}" role="row" class="odd">
+                                        @forelse ($po->Supplier->Sparepart as $sparepart)
+                                        <tr id="gas-{{ $sparepart->id_sparepart }}">
                                             <td></td>
                                             <td class="kode_sparepartedit"><span id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span></td>
                                             <td class="nama_sparepartedit">{{ $sparepart->nama_sparepart }}</td>
@@ -269,6 +269,84 @@
                                         <tr>
                                         @empty
                                             
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+
+                <div class="datatable">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataTableKonfirmasi"
+                                    width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                    style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Position: activate to sort column ascending"
+                                                style="width: 30px;">Kode</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Position: activate to sort column ascending"
+                                                style="width: 150px;">Nama Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Start date: activate to sort column ascending"
+                                                style="width: 50px;">Merk</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Salary: activate to sort column ascending"
+                                                style="width: 40px;">Kemasan</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Salary: activate to sort column ascending"
+                                                style="width: 20px;">Quantity</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Position: activate to sort column ascending"
+                                                style="width: 60px;">Harga Beli</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Position: activate to sort column ascending"
+                                                style="width: 60px;">Total Harga</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Actions: activate to sort column ascending"
+                                                style="width: 10px;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($po->Detailsparepart as $item)
+                                        <tr id="gas-{{ $item->id_sparepart }}" role="row" class="odd">
+                                            {{-- <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th> --}}
+                                            <td></td>
+                                            <td class="kode_sparepartedit"><span id="{{ $item->kode_sparepart }}">{{ $item->kode_sparepart }}</span></td>
+                                            <td class="nama_sparepartedit">{{ $item->nama_sparepart }}</td>
+                                            <td class="merk_sparepartedit">{{ $item->Merksparepart->merk_sparepart }}</td>
+                                            <td class="kemasanedit">{{ $item->Kemasan->nama_kemasan }}</td>
+                                            <td class="qtyedit">{{ $item->pivot->qty }}</td>
+                                            <td class="total_hargaedit">Rp {{ number_format($item->pivot->harga_satuan,2,',','.')}}</td>
+                                            <td class="total_hargaedit">Rp {{ number_format($item->pivot->total_harga,2,',','.')}}</td>
+                                            {{-- <td class="harga_beli">@if ($item->Hargasparepart == '' | $item->Hargasparepart == '0')
+                                                <span class="text-center">Tidak ada Harga</span> 
+                                            @else Rp.{{ number_format($item->Hargasparepart->harga_beli,2,',','.') }}
+                                            @endif
+                                            </td> --}}
+                                            <td>
+                                              
+                                            </td>
+                                        </tr>
+                                        @empty
+
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -302,13 +380,13 @@
                     <div class="form-group">
                         <label class="small mb-1" for="qty">Masukan Quantity Pesanan</label>
                         <input class="form-control" name="qty" type="text" id="qty" placeholder="Input Jumlah Pesanan"
-                            value="{{ old('qty') }}"></input>
+                            value="{{ $item->qty }}"></input>
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="harga_diterima">Harga Satuan</label>
                         <input class="form-control harga_diterima" name="harga_diterima" type="number"
                             id="harga_diterima" placeholder="Input Harga Beli diterima"
-                            value="{{ $item->Kartugudangterakhir['harga_beli'] }}"></input>
+                            value="{{ $item->harga_satuan !=  null ? $item->harga_satuan : $item->Kartugudangterakhir['harga_beli'] }}"></input>
                         <div class="small text-primary">Detail Harga
                             <span id="detailhargaditerima" class="detailhargaditerima">
                                 @if ($item->Kartugudangterakhir == '')
@@ -467,12 +545,12 @@
             var template = $($('#template_delete_button').html())
            
             //Delete Data di Table Konfirmasi sebelum di add
-            var table = $('#dataTablekonfirmasi').DataTable()
+            var table = $('#dataTableKonfirmasi').DataTable()
             // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
             var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
             table.row(row).remove().draw();
 
-            $('#dataTablekonfirmasi').DataTable().row.add([
+            $('#dataTableKonfirmasi').DataTable().row.add([
                 kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
                 merk_sparepart, kemasan, qty, harga_fix, total_harga,
             ]).draw();
@@ -480,7 +558,7 @@
     }
 
     function hapussparepart(element) {
-        var table = $('#dataTablekonfirmasi').DataTable()
+        var table = $('#dataTableKonfirmasi').DataTable()
         // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
         console.log(row)
@@ -491,7 +569,7 @@
     }
 
     function editsparepart(element){
-        var table = $('#dataTablekonfirmasi').DataTable()
+        var table = $('#dataTableKonfirmasi').DataTable()
         // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
  
@@ -526,7 +604,7 @@
         })
 
         var template = $('#template_delete_button').html()
-        $('#dataTablekonfirmasi').DataTable({
+        $('#dataTableKonfirmasi').DataTable({
             "columnDefs": [{
                     "targets": -1,
                     "data": null,
@@ -541,6 +619,13 @@
                 }
             ]
         });
+        // var tablekonfirmasi = $('#dataTableKonfirmasi').DataTable({
+        //     "pageLength": 5,
+        //     "lengthMenu": [
+        //         [5, 10, 20, -1],
+        //         [5, 10, 20, ]
+        //     ]
+        // })
     });
 
 </script>

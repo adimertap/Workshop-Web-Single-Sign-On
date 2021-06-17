@@ -174,23 +174,23 @@
                                             </a>
 
                                             @if($item->approve_po == 'Pending')
-                                            <a href="{{ route('purchase-order.edit',$item->id_po) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
+                                                <a href="{{ route('purchase-order.edit',$item->id_po) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
                                             @elseif($item->approve_po == 'Not Approved')
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
+                                                <a href="{{ route('purchase-order.edit', $item->id_po) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
                                             @elseif($item->approve_po == 'Approved')
                                             </a>
                                             @else
