@@ -34,7 +34,7 @@ class GajiAccountingController extends Controller
         $gajipegawai = Gajipegawai::groupBy('bulan_gaji','tahun_gaji','status_diterima','status_dana','id_jenis_transaksi','status_jurnal','updated_at')->selectRaw('SUM(gaji_diterima) as total_gaji, bulan_gaji, COUNT(id_pegawai) as jumlah_pegawai, SUM(total_tunjangan) as total_tunjangan, tahun_gaji, status_diterima, status_dana, id_jenis_transaksi, status_jurnal, updated_at')
         ->where('bulan_gaji', $request->bulan_gaji)->where('tahun_gaji', $request->tahun_gaji)->first();
 
-        return $gajipegawai;
+        // return $gajipegawai;
 
 
         $jurnal = new Jurnalpengeluaran;

@@ -24,18 +24,42 @@
 </main>
 
 @if ($jumlah_absensi != $jumlah_pegawai)
-<div class="container-fluid">
-    <div class="alert alert-danger alert-icon" role="alert">
-        <div class="alert-icon-aside">
-            <i class="fas fa-calendar-times"></i>
-        </div>
-        <div class="alert-icon-content">
-            <h6 class="alert-heading">Informasi Hari ini!</h6>
-            Anda Belum Melakukan Absensi Pagi Kepada Pegawai dengan Jadwal Hari Ini
-           
+    <div class="container-fluid">
+        <div class="alert alert-danger alert-icon" role="alert">
+            <div class="alert-icon-aside">
+                <i class="fas fa-calendar-times"></i>
+            </div>
+            <div class="alert-icon-content">
+                <h6 class="alert-heading">Informasi Absen Hari ini!</h6>
+                Anda Belum Melakukan Absensi Pagi Kepada Pegawai dengan Jadwal Hari ini
+            
+            </div>
         </div>
     </div>
-</div>
+@elseif ($jumlah_pegawai == 0 | $jumlah_pegawai == null)
+    <div class="container-fluid">
+        <div class="alert alert-warning alert-icon" role="alert">
+            <div class="alert-icon-aside">
+                <i class="fas fa-calendar-times"></i>
+            </div>
+            <div class="alert-icon-content">
+                <h6 class="alert-heading">Hari ini jadwal belum diatur!</h6>
+                <span>Tambahkan jadwal Pegawai Hari ini</span><a target="_blank" href="{{ route('jadwal-pegawai.index') }}" class="font-weight-500 text-primary"> Klik disini </a>
+            </div>
+        </div>
+    </div>
+@elseif ($jumlah_absensi == $jumlah_pegawai)
+    <div class="container-fluid">
+        <div class="alert alert-success alert-icon" role="alert">
+            <div class="alert-icon-aside">
+                <i class="far fa-calendar-check"></i>
+            </div>
+            <div class="alert-icon-content">
+                <h6 class="alert-heading">Informasi Absen Hari ini</h6>
+                <span>Anda Telah Melakukan Absensi Pagi Kepada Seluruh Pegawai dengan Jadwal Hari ini</span>
+            </div>
+        </div>
+    </div>
 @else
 
 @endif
@@ -230,6 +254,12 @@
                             @endforeach
                         </select>
                         <span class="small">Belum ada jadwal Pegawai Hari ini?</span><a target="_blank" href="{{ route('jadwal-pegawai.index') }}" class="small font-weight-500 text-primary"> Klik disini </a>
+                        <div class="small" id="alertpegawai" style="display:none">
+                            <span class="font-weight-500 text-danger">Error! Anda Belum Menambahkan Pegawai</span>
+                            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
                     </div>
                    
                     <div class="form-group">
@@ -243,8 +273,12 @@
                             <option value="Cuti">Cuti</option>
                             <option value="Alpha">Alpha</option>
                         </select>
-                        @error('absensi')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
+                        <div class="small" id="alertabsensi" style="display:none">
+                            <span class="font-weight-500 text-danger">Error! Anda Belum Menambahkan Absensi</span>
+                            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="keterangan" id="keteranganlabel" style="display:none">Keterangan</label>
@@ -254,7 +288,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="submit">Absen</button>
+                    <button class="btn btn-primary" onclick="submit1()" type="button">Absen!</button>
                 </div>
             </form>
         </div>
@@ -275,6 +309,44 @@
 </template>
 
 <script>
+    function submit1() {
+        // event.preventDefault();
+        var _token = $('#form1').find('input[name="_token"]').val()
+        var absensi = $('#absensi').val()
+        var id_pegawai = $('#id_pegawai').val()
+        var keterangan = $('#form1').find('input[name="keterangan"]').val()
+      
+        console.log(absensi, id_pegawai, keterangan)
+
+        var data = {
+            _token: _token,
+            absensi: absensi,
+            id_pegawai: id_pegawai,
+            keterangan: keterangan
+        }
+
+        if (id_pegawai == '' | id_pegawai == 0 | id_pegawai == 'Pilih Pegawai' ) {
+            $('#alertpegawai').show()
+        }else if(absensi == '' | absensi == 0 | absensi == 'Pilih Absen Pegawai')
+            $('#alertabsensi').show()
+        else {
+            
+            $.ajax({
+                method: 'post',
+                url: '/kepegawaian/absensi',
+                data: data,
+                success: function (response) {
+                    window.location.href = '/kepegawaian/absensi'
+                },
+                error: function (error) {
+                    console.log(error)
+                    alert(error.responseJSON.message)
+                }
+
+            });
+        }
+
+    }
     // On Change Absensi Field
     $(document).ready(function () {
         $('#absensi').on('change', function () {

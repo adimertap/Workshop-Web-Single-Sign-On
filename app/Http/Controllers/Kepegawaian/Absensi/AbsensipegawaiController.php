@@ -59,7 +59,7 @@ class AbsensipegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $absen = Absensi::where('id_pegawai',$request->id_pegawai)->first();
+        // $absen = Absensi::where('nama_pegawai',$request->nama_pegawai)->first();
       
         $bengkel = Bengkel::first();
         $jammasuk = Carbon::now()->format('H:i:s');
@@ -69,18 +69,30 @@ class AbsensipegawaiController extends Controller
             $keterangan = $request->keterangan;
         }
 
-        $absensi = Absensi::create([
-            'id_pegawai'=>$request->id_pegawai,
-            'tanggal_absensi'=>Carbon::today(),
-            'absensi'=>$request->absensi,
-            'keterangan'=>$keterangan,
-            'jam_masuk' => Carbon::now()->format('H:i:s'),
-            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
-        ]);
-        
-        $absensi->save();
+        $data = Absensi::where('id_bengkel', Auth::user()->id_bengkel)
+        ->where('id_pegawai', $request->id_pegawai)
+        ->whereDate('tanggal_absensi', Carbon::today())->first();
 
-        return redirect()->back()->with('messageberhasil','Berhasil Melakukan Absensi');
+        if (empty($data)){
+
+            $absen = Absensi::create([
+                'id_pegawai'=>$request->id_pegawai,
+                'tanggal_absensi'=>Carbon::today(),
+                'absensi'=>$request->absensi,
+                'keterangan' => $keterangan,
+                'jam_masuk' => Carbon::now()->format('H:i:s'),
+                'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
+            ]);
+            
+            return $absen;
+        }else{
+            throw new \Exception ('Pegawai Sudah di Absen');
+        }
+
+
+        
+
+        // return $request;
 
     }
 
