@@ -106,11 +106,8 @@ class PurchaseorderController extends Controller
             'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailsparepart','Supplier.Sparepart.Kartugudang','Supplier.Sparepart.Kartugudangterakhir'
         ])->find($id);
 
-        // return $po;
- 
-        $supplier = Supplier::all();
         $sparepart = Sparepart::all();
-        $pegawai = Pegawai::all();
+       
         for($i = 0;  $i < count($po->Detailsparepart); $i++ ){
             for($j = 0;  $j < count($po->Supplier->Sparepart); $j++ ){
                if ($po->Detailsparepart[$i]->id_sparepart == $po->Supplier->Sparepart[$j]->id_sparepart ){
@@ -119,7 +116,7 @@ class PurchaseorderController extends Controller
                };
             }
         }
-        return view('pages.inventory.purchase.po.create', compact('po','sparepart','supplier','pegawai'));
+        return view('pages.inventory.purchase.po.create', compact('po','sparepart'));
     }
 
 

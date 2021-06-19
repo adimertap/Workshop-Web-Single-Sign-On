@@ -51,7 +51,7 @@ class OpnameController extends Controller
         $sparepart = Sparepart::all();
         $pegawai = Pegawai::all();
         
-        return view('pages.inventory.stockopname.create', compact('opname','pegawai', 'sparepart', 'kode_opname','idbaru'));
+        return view('pages.inventory.stockopname.create', compact('opname','pegawai', 'sparepart', 'kode_opname','idlama'));
     }
 
     /**
@@ -121,7 +121,7 @@ class OpnameController extends Controller
         $opname->tanggal_opname = $request->tanggal_opname;
 
         $opname->update();
-        $opname->Detailsparepart()->attach($request->sparepart);
+        $opname->Detailsparepart()->sync($request->sparepart);
 
         return $request;
     }

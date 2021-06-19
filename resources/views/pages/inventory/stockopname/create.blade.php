@@ -290,7 +290,7 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary" type="button"
-                    onclick="tambahsparepart(event,{{ $sparepart }},{{ $idbaru}})">Ya!Sudah</button>
+                    onclick="tambahsparepart(event,{{ $sparepart }},{{ $idlama}})">Ya!Sudah</button>
             </div>
         </div>
     </div>
@@ -317,7 +317,7 @@
         $(`#selisih-${id_sparepart}`).val(selisih)
     }
 
-    function tambahsparepart(event, sparepart, idbaru) {
+    function tambahsparepart(event, sparepart, idlama) {
         event.preventDefault()
         var form1 = $('#form1')
         var kode_opname = form1.find('input[name="kode_opname"]').val()
@@ -358,7 +358,7 @@
                 jumlah_real: jumlah_real,
                 selisih: selisih,
                 keterangan_detail: keterangan_detail,
-                id_opname: idbaru
+                id_opname: idlama
             }
             dataform2.push(obj)
             // console.log(obj)

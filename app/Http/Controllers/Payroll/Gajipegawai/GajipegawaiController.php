@@ -113,8 +113,23 @@ class GajipegawaiController extends Controller
         $tunjangan = Mastertunjangan::all();
         $today = Carbon::now()->format('D, d/m/Y');
 
-        return view('pages.payroll.gajipegawai.create',['gaji_total' => Gajipegawai::sum('total_tagihan')], compact('gaji','seluruhpegawai','tunjangan','today','jenis_transaksi'));
+        return view('pages.payroll.gajipegawai.create',['gaji_total' => Gajipegawai::sum('gaji_diterima')], compact('gaji','seluruhpegawai','tunjangan','today','jenis_transaksi'));
     }
+
+    public function edit2(Request $request, $id_gaji_pegawai)
+    {
+        $gaji = Gajipegawai::with([
+            'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan'
+        ])->find($id_gaji_pegawai);
+
+        $jenis_transaksi = Jenistransaksi::all();
+        $seluruhpegawai = Pegawai::all();
+        $tunjangan = Mastertunjangan::all();
+        $today = Carbon::now()->format('D, d/m/Y');
+
+        return view('pages.payroll.gajipegawai.edit',['gaji_total' => Gajipegawai::sum('gaji_diterima')], compact('gaji','seluruhpegawai','tunjangan','today','jenis_transaksi'));
+    }
+
 
     /**
      * Update the specified resource in storage.

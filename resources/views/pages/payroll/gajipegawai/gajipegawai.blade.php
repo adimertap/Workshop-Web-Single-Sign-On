@@ -131,7 +131,7 @@
                                                         data-placement="top" title="" data-original-title="Detail Slip">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('gaji-pegawai.edit', $item->id_gaji_pegawai) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    <a href="{{ route('gaji-pegawai-edit', $item->id_gaji_pegawai) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                         data-placement="top" title="" data-original-title="Edit Slip">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
@@ -151,7 +151,7 @@
                                                         data-placement="top" title="" data-original-title="Detail Slip">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('gaji-pegawai.edit', $item->id_gaji_pegawai) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                    <a href="{{ route('gaji-pegawai-edit', $item->id_gaji_pegawai) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                         data-placement="top" title="" data-original-title="Edit Slip">
                                                         <i class="fas fa-edit"></i>
                                                     </a>

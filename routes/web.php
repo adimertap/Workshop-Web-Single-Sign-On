@@ -439,6 +439,8 @@ Route::group(
             ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::resource('gaji-pegawai', 'GajipegawaiController');
+                Route::get('/gaji-pegawai/{id_gaji_pegawai}/edit2', 'GajipegawaiController@edit2')
+                    ->name('gaji-pegawai-edit');
 
                 Route::post('gaji-pegawai/{id_gaji_pegawai}/set-status', 'GajipegawaiController@setStatus')
                     ->name('gaji-pegawai-status');
