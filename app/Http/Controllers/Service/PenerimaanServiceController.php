@@ -173,6 +173,7 @@ class PenerimaanServiceController extends Controller
             $temp1 = $temp1 + $item1['total_harga'];
             $sparepart = Sparepart::findOrFail($item1['id_sparepart']);
             $sparepart->stock = $sparepart->stock - $item1['jumlah'];
+            
             if ($sparepart->stock >= $sparepart->stock_min) {
                 $sparepart->status_jumlah = 'Cukup';
             } else if ($sparepart->stock == 0) {
@@ -184,7 +185,14 @@ class PenerimaanServiceController extends Controller
 
             $kartu_gudang = new Kartugudang;
             $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
-            $kartu_gudang->saldo_akhir =  $sparepart->stock;
+          
+            $kartugudangterakhir =  $sparepart->Kartugudangterakhirservice;
+            if($kartugudangterakhir != null)
+            $kartu_gudang->saldo_akhir = $sparepart->stock - $item1['jumlah'];
+
+            if($kartugudangterakhir == null)
+            $kartu_gudang->saldo_akhir =  $item1['jumlah'];
+
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item1['jumlah'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
             $kartu_gudang->kode_transaksi = $service->kode_sa;

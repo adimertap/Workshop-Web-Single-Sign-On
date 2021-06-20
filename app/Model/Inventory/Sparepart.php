@@ -99,6 +99,18 @@ class Sparepart extends Model
         return $this->hasOne(Kartugudang::class, 'id_sparepart','id_sparepart')->where('jenis_kartu', 'Receiving')->orderBy('updated_at', 'DESC');
     }
 
+    public function Kartugudangterakhironline(){
+        return $this->hasOne(Kartugudang::class, 'id_sparepart','id_sparepart')->where('jenis_kartu', 'Online')->orderBy('updated_at', 'DESC');
+    }
+
+    public function Kartugudangterakhirpenjualan(){
+        return $this->hasOne(Kartugudang::class, 'id_sparepart','id_sparepart')->where('jenis_kartu', 'Penjualan')->orderBy('updated_at', 'DESC');
+    }
+
+    public function Kartugudangterakhirservice(){
+        return $this->hasOne(Kartugudang::class, 'id_sparepart','id_sparepart')->where('jenis_kartu', 'Service')->orderBy('updated_at', 'DESC');
+    }
+
     
 
     public static function getId()

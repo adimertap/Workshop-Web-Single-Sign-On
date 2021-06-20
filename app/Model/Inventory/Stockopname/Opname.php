@@ -43,6 +43,7 @@ class Opname extends Model
     {
         return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
     }
+   
     
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();

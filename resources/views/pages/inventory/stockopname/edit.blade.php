@@ -262,7 +262,7 @@
                                         @forelse ($opname->Detailsparepart as $detail)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                            <td>{{ $detail->kode_sparepart }}</td>
+                                            <td><span id="{{ $detail->id_sparepart }}"></span>{{ $detail->kode_sparepart }}</td>
                                             <td>{{ $detail->nama_sparepart }}</td>
                                             <td>{{ $detail->Merksparepart->merk_sparepart }}</td>
                                             <td>{{ $detail->Konversi->satuan }}</td>
@@ -290,7 +290,7 @@
     </div>
 </main>
 
-@forelse ($sparepart as $item)
+
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -313,8 +313,7 @@
         </div>
     </div>
 </div>
-@empty
-@endforelse
+
 
 <template id="template_delete_button">
     <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">

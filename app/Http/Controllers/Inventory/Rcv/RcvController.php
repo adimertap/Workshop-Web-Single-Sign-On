@@ -158,7 +158,7 @@ class RcvController extends Controller
                 $sparepart->status_jumlah ='Kurang';
             }
             $sparepart->save();
-
+        // tes
             // Mengurangi Qty PO
             $detailpo = POdetail::where('id_po',$po->id_po)->where('id_sparepart',$item['id_sparepart'])->first();
             $detailpo->qty_po_sementara = $detailpo->qty_po_sementara - $item['qty_rcv'];

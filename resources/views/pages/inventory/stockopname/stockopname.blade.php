@@ -28,7 +28,7 @@
     <div class="card mb-4">
         <div class="card card-header-actions">
             <div class="card-header ">List Opname
-                <a href="{{ route('Opname.create') }}" class="btn btn-sm btn-primary"> Tambah Opname Stock</a>
+                <a href="{{ route('Opname.create') }}" class="btn btn-sm btn-primary"> Tambah Stok Opname</a>
             </div>
         </div>
         <div class="card-body ">
