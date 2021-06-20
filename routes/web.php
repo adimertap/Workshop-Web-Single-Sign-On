@@ -446,6 +446,7 @@ Route::group(
                     ->name('gaji-pegawai-status');
                 Route::post('gaji-pegawai/{bulan_gaji}/{tahun_gaji}/set-status', 'GajipegawaiController@setStatusPerBulanTahun')
                     ->name('gaji-pegawai-status-bulan-tahun');
+                Route::get('slip-gaji/{id}', 'GajipegawaiController@CetakSlip')->name('cetak-slip-gaji');
             });
 
 
@@ -526,6 +527,8 @@ Route::group(
 
                 Route::post('Prf/{id_prf}', 'PrfController@statusBayar')
                     ->name('prf-bayar');
+                Route::get('/prf/{id_prf}/edit2', 'PrfController@edit2')
+                    ->name('prf-edit');
             });
 
         // Approval Prf ----------------------------------------------------------------- Approval PRF

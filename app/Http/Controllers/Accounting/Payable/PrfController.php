@@ -122,6 +122,8 @@ class PrfController extends Controller
         $prf = Prf::with([
             'Jenistransaksi','Supplier.InvoicePayable','Supplier.InvoicePayable.Detailinvoice','FOP','Akunbank','Detailprf','Detailprf.Detailinvoice'
         ])->find($id_prf);
+        
+        // return $prf;
 
         $jenis_transaksi = Jenistransaksi::all();
         $pegawai = Pegawai::all();
@@ -141,6 +143,33 @@ class PrfController extends Controller
         return view('pages.accounting.payable.prf.create', compact('prf2','invoice','jenis_transaksi','pegawai','supplier','fop','akun_bank','kode_prf','prf'));  
     }
 
+    public function edit2($id_prf)
+    {
+
+        $prf = Prf::with([
+            'Jenistransaksi','Supplier.InvoiceEdit','Supplier.InvoiceEdit.Detailinvoice','FOP','Akunbank','Detailprf','Detailprf.Detailinvoice'
+        ])->find($id_prf);
+        
+        // return $prf;
+
+        $jenis_transaksi = Jenistransaksi::all();
+        $pegawai = Pegawai::all();
+        $supplier = Supplier::all();
+        $fop = Fop::all();
+        $akun_bank = Bankaccount::all();
+        $invoice = InvoicePayable::all();
+
+        $id = Prf::getId();
+        foreach($id as $value);
+        $idlama = $value->id_prf;
+        $idbaru = $idlama + 1;
+        $blt = date('y-m');
+
+        $kode_prf = 'PRF-'.$blt.'/'.$idbaru;
+
+        return view('pages.accounting.payable.prf.edit', compact('prf2','invoice','jenis_transaksi','pegawai','supplier','fop','akun_bank','kode_prf','prf'));  
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -150,7 +179,8 @@ class PrfController extends Controller
      */
     public function update(Request $request, $id_prf)
     {
-        $bank = Bankaccount::where('nama_bank', $request->nama_bank)->first();
+        $bank = Bankaccount::where('kode_bank', $request->kode_bank)->first();
+        // $id_bank_account = $bank->id_bank_account;
 
         if (empty($bank)) {
             $prf = Prf::findOrFail($id_prf);

@@ -111,26 +111,26 @@
                                 
                             </div>
                             <div class="form-group col-md-6">
-                                <label class="small mb-1" for="keperluan_prf">Metode Pembayaran</label>
-                                <input class="form-control" id="keperluan_prf" type="text" name="keperluan_prf"
+                                <label class="small mb-1" for="id_prf">Metode Pembayaran</label>
+                                <input class="form-control" id="id_prf" type="text" name="id_prf"
                                     value="{{ $prf->FOP->nama_fop }}" readonly />
                             </div>
                         </div>
-                        @if ($prf->Akunbank == '')
+                        @if ($prf->Akunbank == '' || $prf->FOP->nama_fop == 'Cash')
 
                         @else
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label class="small mb-1" for="keperluan_prf">Bank</label>
-                                <input class="form-control" id="keperluan_prf" type="text" name="keperluan_prf"
-                                    value="{{ $prf->Akunbank->nama_bank }}" readonly />
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="keperluan_prf">Bank</label>
+                                    <input class="form-control" id="keperluan_prf" type="text" name="keperluan_prf"
+                                        value="{{ $prf->Akunbank->Bank->nama_bank }}" readonly />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="keperluan_prf">No. Rek Bank</label>
+                                    <input class="form-control" id="keperluan_prf" type="text" name="keperluan_prf"
+                                        value="{{ $prf->Akunbank->nomor_rekening }}" readonly />
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label class="small mb-1" for="keperluan_prf">No. Rek Bank</label>
-                                <input class="form-control" id="keperluan_prf" type="text" name="keperluan_prf"
-                                    value="{{ $prf->Akunbank->nomor_rekening }}" readonly />
-                            </div>
-                        </div>
                         @endif
                     </div>
                 </div>

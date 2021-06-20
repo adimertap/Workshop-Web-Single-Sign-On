@@ -337,6 +337,7 @@
                 data: data,
                 success: function (response) {
                     window.location.href = '/kepegawaian/absensi'
+                    // alert('Berhasil Melakukan Absensi');
                 },
                 error: function (error) {
                     console.log(error)
@@ -345,8 +346,8 @@
 
             });
         }
-
     }
+    
     // On Change Absensi Field
     $(document).ready(function () {
         $('#absensi').on('change', function () {
@@ -372,6 +373,7 @@
 
 
     });
+
 
     // Waktu
     setInterval(displayclock, 500);

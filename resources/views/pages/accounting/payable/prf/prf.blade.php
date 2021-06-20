@@ -155,7 +155,7 @@
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('prf-edit', $item->id_prf) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
@@ -169,7 +169,7 @@
                                                     data-placement="top" title="" data-original-title="Detail">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                <a href="{{ route('prf-edit', $item->id_prf) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
@@ -188,7 +188,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">
+                                        <td colspan="8" class="text-center">
                                             Data Pembayaran Kosong
                                         </td>
                                     </tr>

@@ -116,14 +116,14 @@
                                     value="{{ $prf->FOP->nama_fop }}" readonly />
                             </div>
                         </div>
-                        @if ($prf->Akunbank == '')
+                        @if ($prf->Akunbank == '' || $prf->FOP->nama_fop == 'Cash')
 
                         @else
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="small mb-1" for="keperluan_prf">Bank</label>
                                 <input class="form-control" id="keperluan_prf" type="text" name="keperluan_prf"
-                                    value="{{ $prf->Akunbank->nama_bank }}" readonly />
+                                    value="{{ $prf->Akunbank->Bank->nama_bank }}" readonly />
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="small mb-1" for="keperluan_prf">No. Rek Bank</label>

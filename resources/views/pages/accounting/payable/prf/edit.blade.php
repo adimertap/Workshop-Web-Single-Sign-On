@@ -64,7 +64,7 @@
                                 <label class="small mb-1" for="tanggal_prf">Tanggal Pembuatan PRF</label><span
                                     class="mr-4 mb-3" style="color: red">*</span>
                                 <input class="form-control" id="tanggal_prf" type="date" name="tanggal_prf"
-                                    placeholder="Input Tanggal Prf" value="{{ old('tanggal_prf') }}"
+                                    placeholder="Input Tanggal Prf" value="{{ $prf->tanggal_prf }}"
                                     class="form-control @error('tanggal_prf') is-invalid @enderror" />
                                 @error('tanggal_prf')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
@@ -86,10 +86,7 @@
                                 <label class="small mb-1" for="keperluan_prf">Deskripsi Keperluan</label><span
                                     class="mr-4 mb-3" style="color: red">*</span>
                                 <textarea class="form-control" id="keperluan_prf" type="text" name="keperluan_prf"
-                                    placeholder="Input Keperluan PRF" value="{{ old('keperluan_prf') }}"
-                                    class="form-control @error('keperluan_prf') is-invalid @enderror"> </textarea>
-                                @error('keperluan_prf')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
+                                    placeholder="Input Keperluan PRF">{{ $prf->keperluan_prf }}</textarea>
                                 <div class="small" id="alertdeskripsi" style="display:none">
                                     <span class="font-weight-500 text-danger">Error! Deskripsi Belum Terisi!</span>
                                     <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
@@ -153,7 +150,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($prf->Supplier->InvoicePayable as $item)
+                                                @forelse ($prf->Supplier->InvoiceEdit as $item)
                                                 <tr id="invoice-{{ $item->id_payable_invoice }}" role="row" class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
@@ -241,14 +238,27 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="konfirmasi">
-                                                
+                                                @forelse ($prf->Detailprf as $detail)
+                                                <tr id="gas-{{ $item->id_payable_invoice }}" role="row" class="odd">
+                                                    {{-- <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th> --}}
+                                                    <td></td>
+                                                    <td class="kode_sparepartedit"><span id="{{ $detail->id_payable_invoice }}">{{ $detail->kode_invoice }}</span></td>
+                                                    <td class="nama_sparepartedit">{{ $detail->Rcv->kode_rcv }}</td>
+                                                    <td class="total_hargaedit">Rp.{{ number_format($detail->total_pembayaran,2,',','.')}}</td>
+                                                    <td>
+                                                      
+                                                    </td>
+                                                </tr>
+                                                @empty
+                                                    
+                                                @endforelse
                                             </tbody>
                                             <tr id="totalgrand">
                                                 <td colspan="3" class="text-center font-weight-500">
                                                     Total Pembayaran
                                                 </td>
                                                 <td colspan="2" class="text-center font-weight-500">
-                                                    <span>Rp. </span><span id="totalgrand2">0</span>
+                                                    <span>Rp. </span><span id="totalgrand2">{{ $prf->grand_total }}</span>
                                                 </td>
                                             </tr>
                                         </table>
@@ -288,7 +298,7 @@
                                     </span>
                                 </div>
                                 <input class="form-control" id="grand_total" type="text" name="grand_total"
-                                    placeholder="Grand Total" value="0" readonly />
+                                    placeholder="Grand Total" value="{{ $prf->grand_total }}" readonly />
                             </div>
                         </div>
                         <div class="form-group">
@@ -301,7 +311,7 @@
                                     </span>
                                 </div>
                                 <select class="form-control" name="id_fop" id="id_fop">
-                                    <option>Pilih Metode Pembayaran</option>
+                                    <option value="{{ $prf->FOP->id_fop }}">{{ $prf->FOP->nama_fop }}</option>
                                     @foreach ($fop as $fops)
                                     <option value="{{ $fops->id_fop }}">{{ $fops->nama_fop }}
                                     </option>
@@ -316,13 +326,13 @@
                             </div>
                         </div>
                        
-                        <div class="row" id="bank" style="display:none">
+                        <div class="row" id="bank">
                             <div class="form-group col-md-6">
                                 <label class="small mb-1 mr-1" for="id_akun_bank">Pilih Bank</label><span
                                     class="mr-4 mb-3" style="color: red">*</span>
                                 <div class="input-group input-group-joined">
                                     <input class="form-control" type="text" placeholder="Pilih Bank" aria-label="Search"
-                                        id="detailbank">
+                                        id="detailbank" value="{{ $prf->AkunBank->Bank->nama_bank }}">
                                     <div class="input-group-append">
                                         <a href="" class="input-group-text" type="button" data-toggle="modal"
                                             data-target="#ModalBank">
@@ -333,7 +343,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="small mb-1" for="nomor_rekening">Nomor Rekening</label>
-                                <input class="form-control" id="detailrekening" type="text" name="nomor_rekening"
+                                <input class="form-control" id="detailrekening" type="text" name="nomor_rekening" value="{{ $prf->AkunBank->nomor_rekening }}"
                                     readonly />
                             </div>
                         </div>

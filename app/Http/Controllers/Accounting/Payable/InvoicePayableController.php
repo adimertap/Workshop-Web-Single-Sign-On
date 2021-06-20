@@ -100,12 +100,8 @@ class InvoicePayableController extends Controller
     public function edit($id)
     {
         $invoice = InvoicePayable::with([
-            'Rcv.Detailrcv','Rcv','Jenistransaksi'
+            'Rcv.Detailrcv','Rcv','Jenistransaksi','Detailinvoice'
         ])->find($id);
-
-        // $id = InvoicePayable::getId();
-        // $blt = date('y-m');
-        // $kode_invoice = 'INVC-'.$blt.'/'.$invoice->id_payable_invoice;
 
         $jenis_transaksi = Jenistransaksi::all();
         $pegawai = Pegawai::all();

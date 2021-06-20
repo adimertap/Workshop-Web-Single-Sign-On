@@ -27,13 +27,12 @@
                     </div>
                 </div>
             </div>
-            <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
-                class="fas fa-times"></i>
-            Error! Terdapat Data Kosong!
-            <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
+            <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"><i class="far fa-times-circle"></i>
+                <span class="small">Error! Terdapat Data yang Masih Kosong!</span> 
+                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -51,21 +50,14 @@
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-6">
                                     <label class="small mb-1" for="kode_invoice">Kode Invoice</label>
                                     <input class="form-control" id="kode_invoice" type="text" name="kode_invoice"
                                         placeholder="Input Kode Invoice" value="{{ $kode_invoice }}" readonly />
                                 </div>
-                                <div class="form-group col-md-8">
+                                <div class="form-group col-md-6">
                                     <label class="small mb-1 mr-1" for="id_jenis_transaksi">Pilih Jenis
                                         Transaksi</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                    <div class="input-group input-group-joined">
-                                        <div class="input-group-append">
-                                            <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
-                                                data-target="#Modaltransaksi">
-                                                Tambah
-                                            </a>
-                                        </div>
                                         <select class="form-control" name="id_jenis_transaksi" id="id_jenis_transaksi">
                                             <option value="{{ $invoice->Jenistransaksi->id_jenis_transaksi }}">
                                                 {{ $invoice->Jenistransaksi->nama_transaksi }}</option>
@@ -75,7 +67,6 @@
                                             </option>
                                             @endforeach
                                         </select>
-                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -96,15 +87,29 @@
                                     </div> @enderror
                                 </div>
                             </div>
-                            <div class="form-group">
+                         <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
+                                        <label class="small mb-1" for="total_harga">Total Keseluruhan</label>
+                                    </div>
+                                </div>
+                                <div class="input-group input-group-joined">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-gray-200">
+                                            Rp.
+                                        </span>
+                                    </div>
+                                    <input class="form-control" id="total_harga_keseluruhan" type="number" name="total_harga" value="{{ $invoice->total_pembayaran !=  null ? $invoice->total_pembayaran : 0  }}" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label class="small mb-1" for="deskripsi_invoice">Deskripsi Keperluan</label>
                                 <textarea class="form-control" id="deskripsi_invoice" type="text"
                                     name="deskripsi_invoice" placeholder="" value="{{ $invoice->deskripsi_invoice }}"
-                                    class="form-control @error('deskripsi_invoice') is-invalid @enderror"> </textarea>
-                                @error('deskripsi_invoice')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
+                                    class="form-control @error('deskripsi_invoice') is-invalid @enderror">{{ $invoice->deskripsi_invoice }} </textarea>
                             </div>
-                            
+                         </div>
                     </div>
                 </div>
             </div>
@@ -136,8 +141,8 @@
                                         readonly />
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="small mb-1" for="kode_invoice">Alamat Supplier</label>
-                                    <input class="form-control" id="kode_invoice" type="text" name="kode_invoice"
+                                    <label class="small mb-1" for="alamat_supplier">Alamat Supplier</label>
+                                    <input class="form-control" id="alamat_supplier" type="text" name="alamat_supplier"
                                         placeholder="Input Kode Invoice"
                                         value="{{ $invoice->Rcv->Supplier->alamat_supplier }}" readonly />
                                 </div>
@@ -158,7 +163,7 @@
     <div class="container">
         <div class="card">
             <div class="card card-header-actions">
-                <div class="card-header ">Detail Sparepart
+                <div class="card-header ">Detail Penerimaan
                 </div>
             </div>
             <div class="card-body">
@@ -178,25 +183,25 @@
                                                 style="width: 20px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 60px;">Kode Rcv</th>
+                                                style="width: 60px;">Kode Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 150px;">Nama Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
-                                                style="width: 50px;">Jenis</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Office: activate to sort column ascending"
                                                 style="width: 50px;">Merk</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
-                                                style="width: 30px;">Qty Rcv</th>
+                                                style="width: 30px;">Qty</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
                                                 style="width: 50px;">Harga Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
                                                 style="width: 50px;">Total Harga</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 50px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -206,21 +211,17 @@
                                                 {{ $loop->iteration}}</th>
                                             <td class="kode_sparepart">{{ $item->kode_sparepart }}</td>
                                             <td class="nama_sparepart">{{ $item->nama_sparepart }}</td>
-                                            <td class="jenis_sparepart">
-                                                {{ $item->Merksparepart->Jenissparepart->jenis_sparepart }}
+                                            <td class="merk_sparepart">{{ $item->Merksparepart->merk_sparepart }}</td>
+                                            <td class="qty_rcv">{{ $item->pivot->qty_rcv }}</td>
+                                            <td class="harga_diterima">Rp.{{ number_format($item->pivot->harga_diterima,2,',','.') }}</td>
+                                            <td class="total_harga">Rp.{{ number_format($item->pivot->total_harga,2,',','.') }}</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-success btn-datatable"
+                                                    onclick="tambahinvoice(event, {{ $item->id_sparepart }})"
+                                                    type="button" data-dismiss="modal"><i
+                                                        class="fas fa-plus"></i>
+                                                </button>
                                             </td>
-                                            <td class="merk_sparepart">
-                                                {{ $item->Merksparepart->merk_sparepart }}
-                                            </td>
-                                            <td class="qty_rcv">{{ $item->pivot->qty_rcv }}
-                                            </td>
-                                            <td class="harga_diterima">
-                                                Rp.{{ number_format($item->pivot->harga_diterima,2,',','.') }}
-                                            </td>
-                                            <td class="total_harga">
-                                                Rp.{{ number_format($item->pivot->total_harga,2,',','.') }}
-                                            </td>
-
 
                                         </tr>
                                         @empty
@@ -228,13 +229,81 @@
                                         @endforelse
                                     </tbody>
                                     <tr id="grandtotal">
-                                        <td colspan="7" class="text-center font-weight-500">
+                                        <td colspan="6" class="text-center font-weight-500">
                                             Total Harga
                                         </td>
                                         <td class="grand_total">
                                             Rp.{{ number_format($invoice->Rcv->grand_total,2,',','.') }}
                                         </td>
                                     </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card card-header-actions">
+                <div class="card-header ">Detail Invoice
+                </div>
+            </div>
+            <div class="card-body">
+              
+                <div class="datatable">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataTableInvoice"
+                                    width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                    style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 60px;">Kode Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 150px;">Nama Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 30px;">Qty</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 50px;">Harga Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 50px;">Total Harga</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 50px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="konfirmasi">
+                                       @forelse ($invoice->Detailinvoice as $detail)
+                                        <tr id="gas-{{ $detail->id_sparepart }}" role="row" class="odd">
+                                            {{-- <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th> --}}
+                                            <td></td>
+                                            <td class="kode_sparepartedit"><span id="{{ $detail->kode_sparepart }}">{{ $detail->kode_sparepart }}</span></td>
+                                            <td class="nama_sparepartedit">{{ $detail->nama_sparepart }}</td>
+                                            <td class="qtyedit">{{ $detail->pivot->qty_rcv }}</td>
+                                            <td class="total_hargaedit">Rp {{ number_format($detail->pivot->harga_item,2,',','.')}}</td>
+                                            <td class="total_hargaedit">Rp.{{ number_format($detail->pivot->total_harga,2,',','.')}}</td>
+                                            <td>
+                                            
+                                            </td>
+                                        </tr>
+                                       @empty
+                                           
+                                       @endforelse
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -298,8 +367,7 @@
 </div>
 
 
-
-{{-- <template id="template_delete_button">
+<template id="template_delete_button">
     <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
         <i class="fas fa-trash"></i>
     </button>
@@ -309,7 +377,7 @@
     <button class="btn btn-success btn-datatable" type="button" data-toggle="modal" data-target="#Modaltambah">
         <i class="fas fa-plus"></i>
     </button>
-</template> --}}
+</template>
 
 
 <script>
@@ -324,6 +392,7 @@
     }
 
     function submit(event, sparepart, id_payable_invoice) {
+        console.log(id_payable_invoice)
         event.preventDefault()
         var form1 = $('#form1')
         var kode_invoice = form1.find('input[name="kode_invoice"]').val()
@@ -331,35 +400,44 @@
         var tanggal_invoice = form1.find('input[name="tanggal_invoice"]').val()
         var tenggat_invoice = form1.find('input[name="tenggat_invoice"]').val()
         var deskripsi_invoice = form1.find('textarea[name="deskripsi_invoice"]').val()
-        var formgrandtotal = $('#grandtotal')
-        var grand_total = $(formgrandtotal.find('.grand_total')[0]).html()
-        var total_pembayaran = grand_total.split('Rp.')[1].replace('.', '').replace('.', '').replace(',00', '')
-
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
+        var formgrandtotal = $('#total_harga_keseluruhan').val()
+        // var grand_total = $(formgrandtotal.find('.grand_total')[0]).html()
+        // var total_pembayaran = grand_total.split('Rp.')[1].replace('.', '').replace('.', '').replace(',00', '')
 
-        for (var i = 0; i < sparepart.length; i++) {
-            var data = $('#sparepart-' + id_sparepart)
-            var total_harga = $($('#sparepart-' + sparepart[i].id_sparepart).find('.total_harga')[0]).html()
-            var splitqty = total_harga.split('Rp.')[1].replace('.', '').replace(',00', '')
-            var qty_rcv = $($('#sparepart-' + sparepart[i].id_sparepart).find('.qty_rcv')[0]).html()
-            var harga_diterima = $($('#sparepart-' + sparepart[i].id_sparepart).find('.harga_diterima')[0]).html()
-            var harga_item = harga_diterima.split('Rp.')[1].replace('.', '').replace(',00', '')
+        var datasparepart = $('#konfirmasi').children()
+        for (let index = 0; index < datasparepart.length; index++) {
+            var children = $(datasparepart[index]).children()
+            var td = children[1]
+            var span = $(td).children()[0]
+            var id = $(span).attr('id')
+
+            var tdqty = children[3]
+            var qty = $(tdqty).html()
+            
+            var tdharga = children[4]
+            var getharga = $(tdharga).html()
+            var hargafix = getharga.split('Rp.')[1].replace('.', '').replace('.', '').replace(',00', '').trim()
+
+            var tdhtotalarga = children[5]
+            var gethargatotal = $(tdhtotalarga).html()
+            var hargatotalfix = gethargatotal.split('Rp.')[1].replace('.', '').replace('.', '').replace(',00', '').trim()
+           
             var id_bengkel = $('#id_bengkel').text()
-
-            var id_sparepart = sparepart[i].id_sparepart
             var obj = {
-                id_bengkel: id_bengkel,
-                id_sparepart: id_sparepart,
-                total_harga: splitqty,
-                qty_rcv: qty_rcv,
-                harga_item: harga_item,
-            }
+                    id_sparepart: id,
+                    id_payable_invoice: id_payable_invoice,
+                    id_bengkel: id_bengkel,
+                    qty_rcv: qty,
+                    harga_item: hargafix,
+                    total_harga: hargatotalfix
+                }
             dataform2.push(obj)
+            console.log(obj)
         }
 
-
-        if (dataform2.length == 0 | tanggal_invoice == '' | tenggat_invoice == '' | deskripsi_invoice == '') {
+        if (dataform2.length == 0 | tanggal_invoice == '' | tenggat_invoice == '') {
             var alert = $('#alertsparepartkosong').show()
         } else {
             var data = {
@@ -368,10 +446,11 @@
                 id_jenis_transaksi: id_jenis_transaksi,
                 tanggal_invoice: tanggal_invoice,
                 tenggat_invoice: tenggat_invoice,
-                total_pembayaran: total_pembayaran,
+                total_pembayaran: formgrandtotal,
                 deskripsi_invoice: deskripsi_invoice,
                 sparepart: dataform2
             }
+            console.log(data)
 
             $.ajax({
                 method: 'put',
@@ -388,9 +467,73 @@
         }
     }
 
+    function tambahinvoice(event, id_sparepart) {
+        var data = $('#sparepart-' + id_sparepart)
+        var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
+        var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
+        var qty_rcv = $(data.find('.qty_rcv')[0]).text()
+        var harga_diterima = $(data.find('.harga_diterima')[0]).text()
+        var total_harga = $(data.find('.total_harga')[0]).text()
+        var template = $($('#template_delete_button').html())
+
+        var grandtotal = $('#total_harga_keseluruhan').val()
+        var grandtotalsplit = total_harga.split('Rp.')[1].replace('.', '').replace('.', '').replace(',00', '').trim()
+        var grandtotalfix = parseInt(grandtotal) + parseInt(grandtotalsplit)
+        $('#total_harga_keseluruhan').val(grandtotalfix)
+
+        var table = $('#dataTableInvoice').DataTable()
+        var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
+        table.row(row).remove().draw();
+
+        alert('Berhasil Menambahkan Detail Sparepart')
+
+        $('#dataTableInvoice').DataTable().row.add([
+            kode_sparepart, `<span id=${id_sparepart}>${kode_sparepart}</span>`, nama_sparepart, qty_rcv, harga_diterima, total_harga,
+            kode_sparepart
+        ]).draw();
+    }
+
+    function hapussparepart(element) {
+        var table = $('#dataTableInvoice').DataTable()
+
+        // Akses Parent Sampai <tr></tr>
+        var row = $(element).parent().parent()
+        table.row(row).remove().draw();
+        alert('Data Invoice Berhasil di Hapus')
+        // draw() Reset Ulang Table
+        var table = $('#dataTable').DataTable()
+
+        // Akses Parent Sampai <tr></tr>
+        var row2 = $(element).parent().parent()
+
+        // Gaji diterima berkurang
+        var biayarberkurang = $(row2.children()[5]).text()
+        var grandtotal = $('#total_harga_keseluruhan').val()
+        var grandtotalsplit = biayarberkurang.split('Rp.')[1].replace('.', '').replace('.', '').replace(',00', '').trim()
+        var jumlahfix = parseInt(grandtotal) - parseInt(grandtotalsplit)
+        $('#total_harga_keseluruhan').val(jumlahfix)
+    }
+
     $(document).ready(function () {
         var tablercv = $('#dataTableRcv').DataTable()
         var tabledetail = $('#dataTableDetail').DataTable()
+
+        var template = $('#template_delete_button').html()
+        $('#dataTableInvoice').DataTable({
+            "columnDefs": [{
+                    "targets": -1,
+                    "data": null,
+                    "defaultContent": template
+                },
+                {
+                    "targets": 0,
+                    "data": null,
+                    'render': function (data, type, row, meta) {
+                        return meta.row + 1
+                    }
+                }
+            ]
+        });
 
     });
 

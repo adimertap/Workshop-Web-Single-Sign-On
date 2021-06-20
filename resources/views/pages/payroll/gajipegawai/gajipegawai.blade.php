@@ -122,7 +122,7 @@
                                                         data-target="#Modalbayar-{{ $item->id_gaji_pegawai }}">
                                                         <i class="fas fa-check"></i>
                                                     </a>
-                                                    <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
+                                                    <a href="{{ route('cetak-slip-gaji', $item->id_gaji_pegawai) }}" target="_blank" class="btn btn-teal btn-datatable" data-toggle="tooltip"
                                                         data-placement="top" title="" data-original-title="Cetak Slip">
                                                         <i class="fas fa-print"></i></i>
                                                     </a>
@@ -142,7 +142,7 @@
                                                     </a>
                                                 @elseif ($item->status_diterima == 'Belum Dibayarkan' and
                                                 $item->status_dana =='Dana Belum Cair')
-                                                    <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
+                                                    <a href="{{ route('cetak-slip-gaji', $item->id_gaji_pegawai) }}" target="_blank" class="btn btn-teal btn-datatable" data-toggle="tooltip"
                                                         data-placement="top" title="" data-original-title="Cetak Slip">
                                                         <i class="fas fa-print"></i></i>
                                                     </a>
@@ -161,7 +161,7 @@
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 @elseif ($item->status_diterima == 'Dibayarkan' and $item->status_dana == 'Dana Telah Diberikan')
-                                                    <a href="" class="btn btn-teal btn-datatable" data-toggle="tooltip"
+                                                    <a href="{{ route('cetak-slip-gaji', $item->id_gaji_pegawai) }}" target="_blank" class="btn btn-teal btn-datatable" data-toggle="tooltip"
                                                         data-placement="top" title="" data-original-title="Cetak Slip">
                                                         <i class="fas fa-print"></i></i>
                                                     </a>
@@ -176,7 +176,6 @@
                                             </td>
                                         </tr>
                                         @empty
-
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -203,9 +202,8 @@
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
-                    <div class="alert alert-danger" id="alertdatakosong" role="alert" style="display:none"> <i
-                            class="fas fa-times"></i>
-                        Error! Terdapat Data yang Masih Kosong!
+                    <div class="alert alert-danger" id="alertdatakosong" role="alert" style="display:none"><i class="far fa-times-circle"></i>
+                        <span class="small">Error! Terdapat Data yang Masih Kosong!</span> 
                         <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -242,6 +240,7 @@
                             @error('bulan_gaji')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
+                        
                     </div>
                     <div class="row">
                         <div class="form-group col-md-5">
@@ -467,10 +466,8 @@
                     console.log(error)
                     alert(error.responseJSON.message)
                 }
-
             });
         }
-
     }
 
     $(document).ready(function () {

@@ -79,25 +79,14 @@
                             <div class="form-group">
                                 <label class="small mb-1 mr-1" for="id_jenis_transaksi">Pilih Jenis
                                     Transaksi</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                <div class="input-group input-group-joined">
-                                    <div class="input-group-append">
-                                        <a href="" class="btn btn-sm btn-secondary" type="button" data-toggle="modal"
-                                            data-target="#Modaltransaksi">
-                                            Tambah
-                                        </a>
-                                    </div>
                                     <select class="form-control" name="id_jenis_transaksi" id="id_jenis_transaksi"
                                         class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
-                                        <option>Pilih Jenis Transaksi</option>
+                                        <option value="{{ $gaji->Jenistransaksi->id_jenis_transaksi }}">{{ $gaji->Jenistransaksi->nama_transaksi }}</option>
                                         @foreach ($jenis_transaksi as $transaksi)
-                                        <option value="{{ $transaksi->id_jenis_transaksi }}">
-                                            {{ $transaksi->nama_transaksi }}
+                                        <option value="{{ $transaksi->id_jenis_transaksi }}">{{ $transaksi->nama_transaksi }}
                                         </option>
                                         @endforeach
                                     </select>
-                                    @error('id_jenis_transaksi')<div class="text-danger small mb-1">{{ $message }}
-                                    </div> @enderror
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="small mb-1" for="id_pegawai">Nama Pegawai</label>
@@ -247,7 +236,7 @@
                                                     @forelse ($gaji->Detailtunjangan as $items)
                                                     <tr role="row" class="odd">
                                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
-                                                        <td>{{ $items->nama_tunjangan }}</td>
+                                                        <td><span id="{{ $items->id_tunjangan }}"></span>{{ $items->nama_tunjangan }}</td>
                                                         <td>Rp {{ number_format($items->jumlah_tunjangan,2,',','.') }}</td>
                                                         <td></td>
                                                     @empty

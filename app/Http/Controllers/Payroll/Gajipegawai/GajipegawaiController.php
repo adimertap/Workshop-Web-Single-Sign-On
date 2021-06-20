@@ -192,4 +192,13 @@ class GajipegawaiController extends Controller
         
         return redirect()->back()->with('messagebayar','Proses Pencairan Dana Berhasil Dilakukan');
     }
+
+    public function CetakSlip($id_gaji_pegawai)
+    {
+        $gaji = Gajipegawai::with('Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan')
+        ->findOrFail($id_gaji_pegawai);
+        
+        $now = Carbon::now();
+        return view('print.Payroll.cetakslip', compact('gaji','now'));
+    }
 }
