@@ -2,6 +2,7 @@
 
 namespace App\Model\Marketplace;
 
+use App\DesaBaru;
 use App\Kabupaten;
 use App\Model\Inventory\Sparepart;
 use Illuminate\Database\Eloquent\Model;
@@ -25,7 +26,8 @@ class Transaksi extends Model
         return $this->belongsToMany(Sparepart::class, 'tb_marketplace_detail_transaksi', 'id_transaksi_online', 'id_sparepart')->withPivot('id_detail_transaksi','jumlah_produk','rating', 'review'
         , 'code_detail_transaksi');
     }
-    public function Kabupaten(){
-        return $this->hasOne(Kabupaten::class, 'id_kabupaten', 'id_kabupaten');
+     public function Desa(){
+        return $this->hasOne(DesaBaru::class, 'id_desa', 'id_desa');
     }
+
 }

@@ -137,7 +137,7 @@
                         <div class="form-group">
                             <label class="small" for="kode_merk">Alamat</label>
                             <input class="form-control" type="text" id="kode_merk"
-                                value="{{ $item->alamat_penerima }}, {{ $item->Kabupaten->nama_kabupaten }}, {{ $item->Kabupaten->Provinsi->nama_provinsi }}, {{ $item->Kabupaten->postal_code }}"
+                                value="{{ $item->alamat_penerima }}, {{ $item->Desa->name }}, {{ $item->Desa->Kecamatan->name }}, {{ $item->Desa->Kecamatan->Kabupaten->name }},{{ $item->Desa->Kecamatan->Kabupaten->Provinsi->name }}, {{ $item->Kabupaten->postal_code }}"
                                 readonly>
                         </div>
                         <div class="form-group">
