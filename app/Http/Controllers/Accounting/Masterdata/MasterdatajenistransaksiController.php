@@ -20,13 +20,11 @@ class MasterdatajenistransaksiController extends Controller
      */
     public function index()
     {
-        $jenis_transaksi = Jenistransaksi::with(['Penentuanakun.Akun'])->get();
-        $penentuanakun = PenentuanAkun::with(['Akun'])->get();
-        $transaksi = Jenistransaksi::all();
+        $jenis_transaksi = Jenistransaksi::with('DetailPenentuanAkun')->get();
+        // return $jenis_transaksi;
         $akun = Akun::all();
-        // return $penentuanakun;
-
-        return view('pages.accounting.masterdata.jenistransaksi', compact('jenis_transaksi','penentuanakun','akun','transaksi'));
+     
+        return view('pages.accounting.masterdata.jenistransaksi', compact('jenis_transaksi','akun'));
     }
 
     /**
@@ -63,9 +61,11 @@ class MasterdatajenistransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_jenis_transaksi)
     {
-        //
+        $jenis_transaksi = Jenistransaksi::with('DetailPenentuanAkun')->find($id_jenis_transaksi);
+
+        return $jenis_transaksi;
     }
 
     /**

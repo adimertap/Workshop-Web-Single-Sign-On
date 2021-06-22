@@ -24,7 +24,7 @@ class Jenistransaksirequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_transaksi' => 'required|unique:tb_accounting_master_jenis_transaksi,nama_transaksi|min:3|max:30',
+            'nama_transaksi' => 'required|unique:tb_accounting_master_jenis_transaksi,nama_transaksi|min:3|max:50',
             'id_akun' => 'exists:tb_accounting_master_akun,id_akun',
         ];
     }
