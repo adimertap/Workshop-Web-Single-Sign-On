@@ -82,11 +82,14 @@ class PenjualanSparepartController extends Controller
 
             $kartu_gudang = new Kartugudang;
             $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
-            $kartugudangterakhir =  $sparepart->Kartugudangterakhirpenjualan;
+            
+            $kartugudangterakhir =  $sparepart->Kartugudangsaldoakhir;
             if($kartugudangterakhir != null)
-            $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir +  $item['jumlah'];
+            $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir - $item['jumlah'];
+
             if($kartugudangterakhir == null)
-            $kartu_gudang->saldo_akhir =  $item['jumlah'];
+            $kartu_gudang->saldo_akhir =  $sparepart->stock - $item['jumlah'];
+
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item['jumlah'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
             $kartu_gudang->kode_transaksi = $penjualan->kode_penjualan;

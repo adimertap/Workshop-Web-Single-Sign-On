@@ -170,12 +170,12 @@ class RcvController extends Controller
             $kartu_gudang = new Kartugudang;
             $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
 
-            $kartugudangterakhir =  $sparepart->Kartugudangterakhir;
+            $kartugudangterakhir =  $sparepart->Kartugudangsaldoakhir;
             if($kartugudangterakhir != null)
             $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir +  $item['qty_rcv'];
 
             if($kartugudangterakhir == null)
-            $kartu_gudang->saldo_akhir =  $item['qty_rcv'];
+            $kartu_gudang->saldo_akhir =  $sparepart->stock + $item['qty_rcv'];
 
             $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_masuk + $item['qty_rcv'];
             $kartu_gudang->harga_beli = $kartu_gudang->harga_beli + $item['harga_diterima'];

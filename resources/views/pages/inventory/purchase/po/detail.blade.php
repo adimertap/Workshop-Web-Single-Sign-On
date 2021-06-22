@@ -58,7 +58,7 @@
                     <hr class="my-2" />
                     <div class="small mb-2">
                         <span class="font-weight-500 text-secondary">Keterangan</span>
-                        Approval
+                        Approval Owner
                     </div>
                     <label class="small">
                         - {{ $po->keterangan_owner }}
@@ -66,7 +66,7 @@
                     <hr class="my-2" />
                     <div class="small mb-2">
                         <span class="font-weight-500 text-secondary">Keterangan</span>
-                        Approval
+                        Approval AP
                     </div>
                     <label class="small">
                         - {{ $po->keterangan_ap }}

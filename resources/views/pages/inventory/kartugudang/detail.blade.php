@@ -28,19 +28,21 @@
             <div class="card-body h-100 d-flex flex-column justify-content-center py-5 py-xl-4">
                 <div class="row align-items-center">
                     <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"
-                            src="/backend/src/assets/img/freepik/data-report-pana.svg" style="max-width: 20rem;"></div>
+                            src="/backend/src/assets/img/freepik/data-report-pana.svg" style="max-width: 17rem;"></div>
                     <div class="col-xl-8 col-xxl-12">
-                        <h2 class="text-primary" style="font-size: 15pt">{{ $item->nama_sparepart }}</h2>
+                        <h2 class="text-primary mb-3" style="font-size: 15pt">{{ $item->nama_sparepart }}</h2>
+                        <hr></hr>
                         <span class="font-weight-500 text-gray">Jenis Sparepart</span>
                         {{ $item->Jenissparepart->jenis_sparepart }} ·
                         <span class="font-weight-500 text-gray">Merk Sparepart</span>
                         {{ $item->Merksparepart->merk_sparepart }}
                         <div class="small">
-                            <p class="font-weight-500 text-gray">Jumlah Stock · {{ $item->stock }} </p> 
-                            <span class="font-weight-500 text-gray">Saldo Awal ·</span>
+                            <p class="font-weight-500 text-gray">Jumlah Stock · <span class="font-weight-500 text-primary">{{ $item->stock }}</span> </p> 
+                           
+                            {{-- <span class="font-weight-500 text-gray">Saldo Awal ·</span>
                             Bulan: {{ $tanggal }} ·
                             <span class="font-weight-500 text-gray">Jumlah</span>
-                            {{ $item->stock }}
+                            {{ $item->stock }} --}}
                         </div>
                     </div>
                 </div>

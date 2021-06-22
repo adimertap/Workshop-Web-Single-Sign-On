@@ -59,7 +59,7 @@
                                 </div> @enderror
                             </div>
                             <div class="form-group">
-                                <label class="small mb-1 mr-1" for="tanggal_po">Tanggal Receive</label><span
+                                <label class="small mb-1 mr-1" for="tanggal_po">Tanggal PO</label><span
                                     class="mr-4 mb-3" style="color: red">*</span>
                                 <input class="form-control" id="tanggal_po" type="date" name="tanggal_po"
                                     placeholder="Input Tanggal Receive" value="{{ $po->tanggal_po }}"
