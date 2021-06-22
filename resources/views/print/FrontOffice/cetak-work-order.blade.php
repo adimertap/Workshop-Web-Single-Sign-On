@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Work Order - {{ $cetak_wo->kode_sa }}</title>
+    <title>Cetak Work Order - {{ $cetak_wo->kode_sa }}</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}">
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
@@ -26,52 +26,103 @@
 <body>
     <div>
         <main>
-            <div class="container mt-4">
+            <div class="container col-8 mt-4">
                 <!-- Invoice-->
 
                 <div class="card invoice">
-                    <div class="card-header border-bottom-0 bg-gradient-primary-to-secondary text-white-50">
+                    <div class="card-header border-bottom-0 bg-gradient-light-to-secondary text-white-50">
                         <div class="row justify-content-between align-items-center mt-2 ">
-                            <div class="col-2 col-lg-auto text-center text-lg-left">
+                            <div class="col-2 text-center text-lg-left">
                                 <!-- Invoice branding-->
                                 <img class="invoice-brand-img rounded-circle" src="{{ asset('logo.png') }}" alt="" />
                             </div>
-                            <div class="col-5 col-lg-auto text-center text-lg-left">
-                                <div class="h2 text-white ">{{ Auth::user()->bengkel->nama_bengkel }}</div>
-                                {{ Auth::user()->bengkel->alamat_bengkel }}
+                            <div class="col-5 text-center text-lg-left">
+                                <div class="h2 text-primary">{{ Auth::user()->bengkel->nama_bengkel }}</div>
+                                <span class="text-dark">{{ Auth::user()->bengkel->alamat_bengkel }}</span>
                             </div>
-                            <div class="col-5 col-lg-auto text-center text-lg-right">
+                            <div class="col-5 text-right">
                                 <!-- Invoice details-->
-                                <div class="h3 text-white ">Work Order</div>
-                                {{ $cetak_wo->kode_sa }}
+                                <div class="h3 text-primary">Work Order</div>
+                                <span class="text-dark">{{ $cetak_wo->kode_sa }}</span>
                                 <br>
-                                {{ $now }}
+                                <span class="text-dark">{{ $now }}</span>
                             </div>
-                            <div class="col-12">
-                                <hr>
-                            </div>
-
                         </div>
                     </div>
 
-
-
-                    <div class="card-body">
+                    <div class="card-body mt-4">
                         <!-- Invoice table-->
-                        <div class="row mx-auto col-8 text-center d-flex justify-content-between">
-                            <div>
-                                <!-- Invoice - sent to info-->
-                                <div class="h6 mb-1">Pemilik/Pemakai</div>
-                                <div class="small">{{ $cetak_wo->customer_bengkel->nama_customer }}</div>
-                                <div class="small">{{ $cetak_wo->customer_bengkel->alamat_customer }}</div>
-                                <div class="small">{{ $cetak_wo->customer_bengkel->nohp_customer }}</div>
+                        <div class="row justify-content-between align-items-center" style="margin-left: 200px">
+                            <div class="col-6 text-lg-left" style="line-height: 1rem">
+                                <label class="small font-weight-700">Pemilik/Pemakai: </label>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="d-flex flex-column">
+                                            <label class="small"> Nama </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label class="small">:
+                                            {{ $cetak_wo->customer_bengkel->nama_customer }} </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="d-flex flex-column font-weight-bold">
+                                            <label class="small"> Alamat </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label class="small">: {{ $cetak_wo->customer_bengkel->alamat_customer }}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="d-flex flex-column font-weight-bold">
+                                            <label class="small">No. HP </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label class="small">: {{ $cetak_wo->customer_bengkel->nohp_customer }} </label>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <!-- Invoice - sent from info-->
-                                <div class="h6 mb-0">Kendaraan</div>
-                                <div class="small">{{ $cetak_wo->kendaraan->nama_kendaraan }}</div>
-                                <div class="small">{{ $cetak_wo->kendaraan->merk_kendaraan->merk_kendaraan }}</div>
-                                <div class="small">{{ $cetak_wo->kendaraan->jenis_kendaraan->jenis_kendaraan }}</div>
+
+                            <div class="col-6 text-lg-left" style="line-height: 1rem">
+                                <label class="small font-weight-700">Kendaraan: </label>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <div class="font-weight-bold">
+                                            <label class="small "> Nama </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label class="small">: {{ $cetak_wo->kendaraan->nama_kendaraan }} </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <div class="font-weight-bold">
+                                            <label class="small"> Merk </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label class="smal">: {{ $cetak_wo->kendaraan->merk_kendaraan->merk_kendaraan }}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <div class="font-weight-bold">
+                                            <label class="small"> Jenis </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label class="smal">:
+                                            {{ $cetak_wo->kendaraan->jenis_kendaraan->jenis_kendaraan }} </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
