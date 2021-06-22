@@ -342,7 +342,7 @@
 
                 map.flyTo(e.latlng, 15)
                 L.marker(e.latlng).addTo(map)
-                    .bindPopup("You are here").openPopup();
+                    .bindPopup("Anda berada disini!").openPopup();
 
             }
 
