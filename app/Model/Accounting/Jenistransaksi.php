@@ -25,13 +25,13 @@ class Jenistransaksi extends Model
 
     public $timestamps = true;
 
+    public function DetailPenentuanAkun()
+    {
+        return $this->belongsToMany(Akun::class, 'tb_accounting_master_penentuan_akun', 'id_jenis_transaksi', 'id_akun');
+    }
+
     protected static function booted()
     {
         static::addGlobalScope(new OwnershipScope);
-    }
-
-    public function Penentuanakun()
-    {
-        return $this->hasMany(PenentuanAkun::class,'id_jenis_transaksi');
     }
 }

@@ -19,189 +19,85 @@
         </div>
     </header>
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-header border-bottom">
-                <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab" aria-controls="overview" aria-selected="true">Penentuan Akun</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="example-tab" href="#example" data-toggle="tab" role="tab" aria-controls="example" aria-selected="false">Master Jenis Transaksi</a>
-                    </li>
-                </ul>
+        <div class="card mb-4">
+            <div class="card card-header-actions">
+                <div class="card-header">List Jenis Transaksi
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
+                        data-target="#Modaltambah">Tambah Jenis Transaksi</button>
+                </div>
             </div>
             <div class="card-body">
-                <div class="tab-content" id="cardTabContent">
-                    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                        <div class="text-right">
-                            <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
-                                data-target="#Modalsetakun">Set Akun & Transaksi</button>
-                        </div>
-                        <p></p>
-                        <div class="datatable">
-                            @if(session('messageberhasilakun'))
-                            <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                                {{ session('messageberhasilakun') }}
-                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            @endif
-                            @if(session('messagehapusakun'))
-                            <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
-                                {{ session('messagehapusakun') }}
-                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            @endif
 
-                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table class="table table-bordered table-hover dataTable" id="dataTableAkun"
-                                            width="100%" cellspacing="0" role="grid"
-                                            aria-describedby="dataTable_info" style="width: 100%;">
-                                            <thead>
-                                                <tr role="row">
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 30px;">No</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
-                                                        style="width: 120px;">Debet</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
-                                                        style="width: 120px;">Kredit</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
-                                                        style="width: 180px;">Jenis Transaksi</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Actions: activate to sort column ascending"
-                                                        style="width: 40px;">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @forelse ($penentuanakun as $item)
-                                                <tr role="row" class="odd">
-                                                    <th scope="row" class="small" class="sorting_1">
-                                                        {{ $loop->iteration}}</th>
-                                                        <td>{{ $item->Akun->nama_akun }}</td>
-                                                        <td>{{ $item->Akun->nama_akun }}</td>
-                                                    <td>{{ $item->Jenistransaksi->nama_transaksi }}</td>
-                                                    <td>
-                                                        <a href="" class="btn btn-secondary btn-datatable"
-                                                            type="button" data-toggle="modal"
-                                                            data-target="#Modaldetail-{{ $item->id_penentuan_akun }}">
-                                                            <i class="fas fa-eye"></i>
-                                                        </a>
-                                                        <a href="" class="btn btn-primary btn-datatable"
-                                                            type="button" data-toggle="modal"
-                                                            data-target="#Modaledit-{{ $item->id_penentuan_akun }}">
-                                                            <i class="fas fa-edit"></i>
-                                                        </a>
-                                                        <a href="" class="btn btn-danger btn-datatable"
-                                                            type="button" data-toggle="modal"
-                                                            data-target="#Modalhapus-{{ $item->id_penentuan_akun }}">
-                                                            <i class="fas fa-trash"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                @empty
-                                                <tr>
-                                                    <td colspan="7" class="tex-center">
-                                                        Data Jenis Transaksi Kosong
-                                                    </td>
-                                                </tr>
-                                                @endforelse
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="datatable">
+                    @if(session('messageberhasil'))
+                    <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
+                        {{ session('messageberhasil') }}
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
                     </div>
-                    <div class="tab-pane fade" id="example" role="tabpanel" aria-labelledby="example-tab">
-                        <div class="text-right">
-                            <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
-                                data-target="#Modaltambah">Tambah Data</button>
-                        </div>
-                        <p></p>
-                        <div class="datatable">
-                            @if(session('messageberhasil'))
-                            <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                                {{ session('messageberhasil') }}
-                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            @endif
-                            @if(session('messagehapus'))
-                            <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
-                                {{ session('messagehapus') }}
-                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            @endif
+                    @endif
+                    @if(session('messagehapus'))
+                    <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
+                        {{ session('messagehapus') }}
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    @endif
 
-                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
-                                            width="100%" cellspacing="0" role="grid"
-                                            aria-describedby="dataTable_info" style="width: 100%;">
-                                            <thead>
-                                                <tr role="row">
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 30px;">No</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
-                                                        style="width: 300px;">Jenis Transaksi</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Actions: activate to sort column ascending"
-                                                        style="width: 77px;">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @forelse ($jenis_transaksi as $item)
-                                                <tr role="row" class="odd">
-                                                    <th scope="row" class="small" class="sorting_1">
-                                                        {{ $loop->iteration}}</th>
-                                                    <td>{{ $item->nama_transaksi }}</td>
-                                                    <td>
-                                                        <a href="" class="btn btn-primary btn-datatable  mr-2"
-                                                            type="button" data-toggle="modal"
-                                                            data-target="#Modaledit-{{ $item->id_jenis_transaksi }}">
-                                                            <i class="fas fa-edit"></i>
-                                                        </a>
-                                                        <a href="" class="btn btn-danger btn-datatable  mr-2"
-                                                            type="button" data-toggle="modal"
-                                                            data-target="#Modalhapus-{{ $item->id_jenis_transaksi }}">
-                                                            <i class="fas fa-trash"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                @empty
-                                                <tr>
-                                                    <td colspan="7" class="tex-center">
-                                                        Data Jenis Transaksi Kosong
-                                                    </td>
-                                                </tr>
-                                                @endforelse
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
+                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 30px;">No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 300px;">Jenis Transaksi</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Actions: activate to sort column ascending"
+                                                style="width: 77px;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($jenis_transaksi as $item)
+                                        <tr role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">
+                                                {{ $loop->iteration}}</th>
+                                            <td>{{ $item->nama_transaksi }}</td>
+                                            <td class="text-center">
+                                                <a href="{{ route('jenis-transaksi.show', $item->id_jenis_transaksi) }}" class="btn btn-secondary btn-xs" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Detail Invoice">
+                                                    {{-- <i class="fas fa-eye"></i> --}}
+                                                    Set Akun
+                                                </a>
+                                                <a href="" class="btn btn-primary btn-datatable" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modaledit-{{ $item->id_jenis_transaksi }}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modalhapus-{{ $item->id_jenis_transaksi }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="7" class="tex-center">
+                                                Data Jenis Transaksi Kosong
+                                            </td>
+                                        </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -228,12 +124,13 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="id_jenis_transaksi">Jenis Transaksi</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <label class="small mb-1 mr-1" for="id_jenis_transaksi">Jenis Transaksi</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
                         <select class="form-control" name="id_jenis_transaksi"
                             class="form-control @error('id_jenis_transaksi') is-invalid @enderror"
                             id="id_jenis_transaksi">
                             <option>Pilih Jenis Transaksi</option>
-                            @foreach ($transaksi as $item)
+                            @foreach ($jenis_transaksi as $item)
                             <option value="{{ $item->id_jenis_transaksi }}">
                                 {{ $item->nama_transaksi }}
                             </option>
@@ -243,10 +140,10 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="id_akun">Akun Debet</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <label class="small mb-1 mr-1" for="id_akun">Akun Debet</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
                         <select class="form-control" name="id_akun"
-                            class="form-control @error('id_akun') is-invalid @enderror"
-                            id="id_akun_debet">
+                            class="form-control @error('id_akun') is-invalid @enderror" id="id_akun_debet">
                             <option>Pilih Akun Debet</option>
                             @foreach ($akun as $item)
                             <option value="{{ $item->id_akun }}">
@@ -258,10 +155,10 @@
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="id_akun">Akun Kredit</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <label class="small mb-1 mr-1" for="id_akun">Akun Kredit</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
                         <select class="form-control" name="id_akun"
-                            class="form-control @error('id_akun') is-invalid @enderror"
-                            id="id_akun_kredit">
+                            class="form-control @error('id_akun') is-invalid @enderror" id="id_akun_kredit">
                             <option>Pilih Akun Kredit</option>
                             @foreach ($akun as $item)
                             <option value="{{ $item->id_akun }}">
@@ -426,7 +323,7 @@
             // dataform2.push(obj)
         }
 
-        
+
 
         // var data = {
         //     _token: _token,
