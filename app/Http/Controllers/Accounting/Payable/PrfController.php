@@ -140,7 +140,7 @@ class PrfController extends Controller
 
         $kode_prf = 'PRF-'.$blt.'/'.$idbaru;
 
-        return view('pages.accounting.payable.prf.create', compact('prf2','invoice','jenis_transaksi','pegawai','supplier','fop','akun_bank','kode_prf','prf'));  
+        return view('pages.accounting.payable.prf.create', compact('invoice','jenis_transaksi','pegawai','supplier','fop','akun_bank','kode_prf','prf'));  
     }
 
     public function edit2($id_prf)
