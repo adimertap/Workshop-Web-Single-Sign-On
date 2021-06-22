@@ -34,7 +34,11 @@ class PenjualanSparepartController extends Controller
     public function create()
     {
         $customer = CustomerBengkel::all();
-        $sparepart = Sparepart::where('stock', > 0)->get();
+        $sparepart = Sparepart::where('stock', '>', 0)->get();
+
+        // ->where('nama_jabatan', '!=', 'Owner')->get();
+        
+
         $today = Carbon::today();
 
         $id = PenjualanSparepart::getId();
