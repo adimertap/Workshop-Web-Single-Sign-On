@@ -326,6 +326,12 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
+    var BengkelIcon = L.icon({
+        iconUrl: 'assets/bengkel.png',
+        iconSize: [35, 35],
+        iconAnchore: [22, 94],
+        popupAnchore: [-3, -76]
+    });
         $(document).ready(function () {
             map = L.map('mapid').fitWorld();
             L.tileLayer(
@@ -363,7 +369,8 @@
                 if (mark) { // check
                     map.removeLayer(mark); // remove
                 }
-                mark = new L.Marker(e.latlng).addTo(map);
+                mark = new L.Marker(e.latlng, {icon: BengkelIcon
+                }).addTo(map);
                 var coord = e.latlng;
                 var lat = coord.lat;
                 var lng = coord.lng;
