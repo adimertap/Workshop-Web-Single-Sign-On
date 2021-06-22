@@ -56,7 +56,7 @@ class PajakController extends Controller
         $kode_pajak = 'PJK-'.$blt.'/'.$idbaru;
         $id_pajak = $idbaru;
 
-        return view('pages.accounting.payable.pajak.create', compact('id_pajak','jenis_transaksi','pegawai','kode_pajak','pajak', 'detailpajak')); 
+        return view('pages.accounting.payable.pajak.create', compact('id_pajak','jenis_transaksi','pegawai','kode_pajak','pajak')); 
     }
 
     /**
