@@ -16,7 +16,7 @@ class TransaksiController extends Controller
     public function index()
     {
         $transaksi = Transaksi::with('User', 'Detailtransaksi', 'Desa.Kecamatan.Kabupaten.Provinsi')->where('id_bengkel', Auth::user()->id_bengkel)->where('transaksi_status', 'DIBAYAR')->orwhere('transaksi_status', 'DIKIRIM')->orwhere('transaksi_status', 'DITERIMA')->get();
-       return ($transaksi);
+    //    return ($transaksi);
 
         
        return view('pages.adminmarketplace.transaksi',[
