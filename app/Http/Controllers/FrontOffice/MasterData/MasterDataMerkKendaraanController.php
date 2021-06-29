@@ -52,9 +52,6 @@ class MasterDataMerkKendaraanController extends Controller
      */
     public function store(MerkKendaraanRequest $request)
     {
-        $request['id_bengkel'] = Auth::user()->id_bengkel;
-        $data = $request->all();
-
         $id = FrontOfficeMasterDataMerkKendaraan::getId();
         foreach ($id as $value);
         $idlama = $value->id_merk_kendaraan;
@@ -67,6 +64,7 @@ class MasterDataMerkKendaraanController extends Controller
         $merkkendaraan->id_jenis_kendaraan = $request->id_jenis_kendaraan;
         $merkkendaraan->kode_merk_kendaraan = $kode_merk_kendaraan;
         $merkkendaraan->merk_kendaraan = $request->merk_kendaraan;
+        $merkkendaraan->id_bengkel = Auth::user()->id_bengkel;
         $merkkendaraan->save();
 
         return redirect()->route('merk-kendaraan.index')->with('messageberhasil', 'Data Merk Kendaraan Berhasil ditambahkan');

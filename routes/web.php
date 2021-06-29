@@ -159,7 +159,7 @@ Route::group(
         // DASHBOARD
         Route::prefix('inventory')
             ->namespace('Inventory')
-            ->middleware(['admin_inventory_gabung', 'verified'])
+            ->middleware(['admin_inventory_accounting', 'verified'])
 
             ->group(function () {
                 Route::get('/', 'DashboardinventoryController@index')
@@ -267,7 +267,7 @@ Route::group(
 
         Route::prefix('inventory/approvalappembelian')
             ->namespace('Inventory\Purchase')
-            ->middleware(['admin_purchasing', 'verified'])
+            ->middleware(['admin_inventory_accounting', 'verified'])
             ->group(function () {
                 Route::get('/', 'ApprovalpurchaseAPController@index')
                     ->name('approvalpoap');

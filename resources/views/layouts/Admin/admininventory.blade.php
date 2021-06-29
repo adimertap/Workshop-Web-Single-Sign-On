@@ -83,11 +83,13 @@
 
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
+                        @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'admin_purchasing' || Auth::user()->role == 'owner')
                         <div class="sidenav-menu-heading">Dashboard</div>
                         <a class="nav-link" href="{{ route('dashboardinventory')}}">
                             <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
                             Dashboard
                         </a>
+                        @endif
 
                         @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'owner')
                         {{-- MASTER DATA --}}
@@ -133,9 +135,10 @@
 
                         {{-- INVENTORY SYSTEM --}}
                         {{-- Inventory System Side Bar --}}
-                        <div class="sidenav-menu-heading">Inventory System</div>
+                        
 
                         @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'owner')
+                        <div class="sidenav-menu-heading">Inventory System</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
                             <div class="nav-link-icon">
@@ -222,11 +225,11 @@
                                 <a class="nav-link" href="{{ route('approval-opname.index') }}">
                                     Stock Opname
                                 </a>
-                                @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'owner')
+                                @endif
+                                @if (Auth::user()->role == 'admin_accounting')
                                 <a class="nav-link " href="{{ route('approval-po-ap.index') }}">
                                     Purchase Order AP
                                 </a>
-                                @endif
                                 @endif
                             </nav>
                         </div>
