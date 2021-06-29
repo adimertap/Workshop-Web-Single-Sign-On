@@ -76,10 +76,6 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Jumlah</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
                                                 style="width: 80px;">Harga Jual</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
@@ -88,20 +84,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($sparepart as $item)
+                                        @foreach ($harga as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                            <td>{{ $item->kode_sparepart }}</td>
-                                            <td>{{ $item->nama_sparepart }}</td>
-                                            <td>{{ $item->jenissparepart->jenis_sparepart }}</td>
-                                            <td>{{ $item->merksparepart->merk_sparepart }}</td>
-                                            <td>{{ $item->stock }}</td>
+                                            <td>{{ $item->sparepart->kode_sparepart }}</td>
+                                            <td>{{ $item->sparepart->nama_sparepart }}</td>
+                                            <td>{{ $item->sparepart->jenissparepart->jenis_sparepart }}</td>
+                                            <td>{{ $item->sparepart->merksparepart->merk_sparepart }}</td>
                                             <td>Rp.
-                                                {{ number_format($item->Hargasparepart->harga_jual,2,',','.') }}</td>
+                                                {{ number_format($item->harga_jual,2,',','.') }}</td>
                                             <td>
-                                                <a data-target="#ModalEdit-{{ $item->id_sparepart }}"
-                                                    data-toggle="modal" class="btn btn-primary btn-sm" type="button"
-                                                    style="color: white" data-original-title="Edit">
+                                                <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
+                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_harga }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                             </td>
@@ -117,37 +111,50 @@
         </div>
     </div>
 
-    @forelse ($sparepart as $item)
-    {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
-    <div class="modal fade" id="ModalEdit-{{ $item->id_sparepart }}" data-backdrop="static" tabindex="-1" role="dialog"
+    {{-- MODAL EDIT ------------------------------------------------------------------------}}
+    @forelse ($harga as $item)
+    <div class="modal fade" id="Modaledit-{{ $item->id_harga }}" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Harga Jual Sparepart</h5>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Data Harga Sparepart</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('dikerjakan',$item->id_sparepart) }}" method="POST">
-                    @csrf
+                <form action="{{ route('harga-jual.update', $item->id_harga) }}" id="formedit" method="POST">
                     @method('PUT')
+                    @csrf
                     <div class="modal-body">
-                        <label class="small mb-1">Tentukan Harga Jual Sparepart</label>
+                        <div class="small">{{ $item->Sparepart->nama_sparepart }} </div>
                         <hr>
                         </hr>
-                        <div class="form-group col-12">
-                            <label class="small mb-1" for="pitstop">Harga Jual</label>
-                            <input id="harga_jual" type="text" class="form-control"
-                                placeholder="Input Harga Jual Sparepart" name="harga_jual" required>
+                        <div class="form-group">
+                            <label class="small mb-1 mr-1" for="harga_jual_edit">Harga Jual</label><span
+                                class="mr-4 mb-3" style="color: red">*</span>
+                            <input class="form-control edit_harga_jual" name="harga_jual_edit" type="number"
+                                id="edit_harga_jual" value="{{ $item->harga_jual }}" />
+                            <div class="small text-primary">Detail Harga :
+                                <span id="detaileditjual"
+                                    class="detaileditjual">Rp.{{ number_format($item->harga_jual,2,',','.')}}</span>
+                            </div>
+                            <div class="small" id="alerttanggal" style="display:none">
+                                <span class="font-weight-500 text-danger">Error! Anda Belum Memasukan Harga Jual</span>
+                                <button class="close" type="button" onclick="$(this).parent().hide()"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="Submit">Simpan</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                            <button class="btn btn-primary" onclick="submit1({{ $item->id_harga }})"
+                                type="button">Ubah</button>
+                        </div>
                 </form>
             </div>
         </div>
+    </div>
     </div>
     @empty
 
@@ -156,10 +163,61 @@
 
 <script>
     $(function () {
-            $("input[name='harga_jual']").on('input', function (e) {
-                $(this).val($(this).val().replace(/[^0-9]/g, ''));
-            });
+        $("input[name='harga_jual']").on('input', function (e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
         });
+    });
+
+    function submit1(id_harga) {
+        var _token = $('#formedit').find('input[name="_token"]').val()
+        var harga_jual = $('#formedit').find('input[name="harga_jual_edit"]').val()
+
+        var data = {
+            _token: _token,
+            id_harga: id_harga,
+            harga_jual: harga_jual
+        }
+
+        if (harga_jual == '' | harga_jual == 0) {
+            $('#alerttanggal').show()
+        } else {
+            $.ajax({
+                method: 'put',
+                url: '/frontoffice/harga-jual/' + id_harga,
+                data: data,
+                success: function (response) {
+                    window.location.href = '/frontoffice/harga-jual'
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+
+            });
+        }
+
+    }
+
+    $(document).ready(function () {
+        var table = $('#dataTablesparepart').DataTable()
+        $('#validasierror').click();
+        // $('#validasierroredit').click();
+
+        $('.edit_harga_jual').each(function () {
+            $(this).on('input', function () {
+                var harga = $(this).val()
+                var harga_fix = new Intl.NumberFormat('id', {
+                    style: 'currency',
+                    currency: 'IDR'
+                }).format(harga)
+
+                var harga_paling_fix = $(this).parent().find('.detaileditjual')
+                $(harga_paling_fix).html(harga_fix);
+            })
+        })
+
+
+    });
+
 </script>
 
 
