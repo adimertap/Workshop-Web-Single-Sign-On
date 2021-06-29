@@ -162,7 +162,7 @@
 <div class="container">
     <div class="row">
         @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'admin_purchasing' || Auth::user()->role ==
-        'owner')
+        'owner' || Auth::user()->role == 'admin_accounting')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
             <a class="card lift h-100" href="{{ route('dashboardinventory') }}">

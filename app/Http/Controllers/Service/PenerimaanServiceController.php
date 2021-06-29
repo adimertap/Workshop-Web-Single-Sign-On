@@ -34,7 +34,7 @@ class PenerimaanServiceController extends Controller
         $service_advisor = PenerimaanService::all();
         $kendaraan = MasterDataKendaraan::all();
         $customer_bengkel = CustomerBengkel::all();
-        $sparepart = Sparepart::all();
+        $sparepart = Sparepart::where('stock', '>', 0)->get();
         $pegawai = Pegawai::all();
         $jasa_perbaikan = MasterDataJenisPerbaikan::all();
         $date = Carbon::today()->toDateString();
@@ -62,7 +62,7 @@ class PenerimaanServiceController extends Controller
         $service_advisor = PenerimaanService::all();
         $kendaraan = MasterDataKendaraan::all();
         $customer_bengkel = CustomerBengkel::all();
-        $sparepart = Sparepart::all();
+        $sparepart = Sparepart::where('stock', '>', 0)->get();
         $pegawai = Pegawai::all();
         $jasa_perbaikan = MasterDataJenisPerbaikan::all();
         $date = Carbon::today()->toDateString();
@@ -127,11 +127,11 @@ class PenerimaanServiceController extends Controller
             $kartu_gudang = new Kartugudang;
             $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
             $kartugudangterakhir =  $sparepart->Kartugudangsaldoakhir;
-            if($kartugudangterakhir != null)
-            $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir - $item1['jumlah'];
+            if ($kartugudangterakhir != null)
+                $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir - $item1['jumlah'];
 
-            if($kartugudangterakhir == null)
-            $kartu_gudang->saldo_akhir =  $sparepart->stock - $item1['jumlah'];
+            if ($kartugudangterakhir == null)
+                $kartu_gudang->saldo_akhir =  $sparepart->stock - $item1['jumlah'];
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item1['jumlah'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
             $kartu_gudang->kode_transaksi = $service->kode_sa;
@@ -155,7 +155,7 @@ class PenerimaanServiceController extends Controller
         return $request;
     }
 
-     public function store(Request $request)
+    public function store(Request $request)
     {
         $service = new PenerimaanService;
         $service->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
@@ -178,7 +178,7 @@ class PenerimaanServiceController extends Controller
             $temp1 = $temp1 + $item1['total_harga'];
             $sparepart = Sparepart::findOrFail($item1['id_sparepart']);
             $sparepart->stock = $sparepart->stock - $item1['jumlah'];
-            
+
             if ($sparepart->stock >= $sparepart->stock_min) {
                 $sparepart->status_jumlah = 'Cukup';
             } else if ($sparepart->stock == 0) {
@@ -190,13 +190,13 @@ class PenerimaanServiceController extends Controller
 
             $kartu_gudang = new Kartugudang;
             $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
-          
-            $kartugudangterakhir =  $sparepart->Kartugudangsaldoakhir;
-            if($kartugudangterakhir != null)
-            $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir - $item1['jumlah'];
 
-            if($kartugudangterakhir == null)
-            $kartu_gudang->saldo_akhir =  $sparepart->stock - $item1['jumlah'];
+            $kartugudangterakhir =  $sparepart->Kartugudangsaldoakhir;
+            if ($kartugudangterakhir != null)
+                $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir - $item1['jumlah'];
+
+            if ($kartugudangterakhir == null)
+                $kartu_gudang->saldo_akhir =  $sparepart->stock - $item1['jumlah'];
 
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item1['jumlah'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;

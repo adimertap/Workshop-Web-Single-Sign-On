@@ -57,6 +57,7 @@ Route::group(
                 Route::resource('faq', 'MasterDataFAQController');
                 Route::resource('merk-kendaraan', 'MasterDataMerkKendaraanController');
                 Route::resource('kendaraan', 'MasterDataKendaraanController');
+                Route::resource('harga-jual', 'HargaJualSparepartController');
             });
 
 
@@ -158,7 +159,7 @@ Route::group(
         // DASHBOARD
         Route::prefix('inventory')
             ->namespace('Inventory')
-            ->middleware(['admin_inventory_gabung', 'verified'])
+            ->middleware(['admin_inventory_accounting', 'verified'])
 
             ->group(function () {
                 Route::get('/', 'DashboardinventoryController@index')
@@ -266,7 +267,7 @@ Route::group(
 
         Route::prefix('inventory/approvalappembelian')
             ->namespace('Inventory\Purchase')
-            ->middleware(['admin_purchasing', 'verified'])
+            ->middleware(['admin_inventory_accounting', 'verified'])
             ->group(function () {
                 Route::get('/', 'ApprovalpurchaseAPController@index')
                     ->name('approvalpoap');
@@ -497,7 +498,6 @@ Route::group(
             ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::resource('jenis-transaksi', 'MasterdatajenistransaksiController');
-                
             });
 
         Route::prefix('accounting')
@@ -589,11 +589,10 @@ Route::group(
             });
 
         Route::prefix('Accounting')
-        ->namespace('Accounting\Jurnal')
-        ->middleware(['admin_accounting_gabung', 'verified'])
-        ->group(function () {
-            Route::resource('jurnal-penerimaan', 'JurnalPenerimaanController');
-
+            ->namespace('Accounting\Jurnal')
+            ->middleware(['admin_accounting_gabung', 'verified'])
+            ->group(function () {
+                Route::resource('jurnal-penerimaan', 'JurnalPenerimaanController');
             });
 
         // CATATAN ADIM -------------------------------------------------------------------- Catatan Adim
