@@ -38,7 +38,7 @@ class PenjualanSparepartController extends Controller
 
         // ->where('nama_jabatan', '!=', 'Owner')->get();
         
-
+        
         $today = Carbon::today();
 
         $id = PenjualanSparepart::getId();

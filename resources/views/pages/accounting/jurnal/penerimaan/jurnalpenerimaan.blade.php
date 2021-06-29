@@ -84,13 +84,8 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
                                             <td>{{ $item->tanggal_jurnal }}</td>
-                                            <td>@if ($item->jenis_jurnal == 'Gaji_Karyawan')
-                                                {{ $item->Jenistransaksi->nama_transaksi}} bulan {{ $item->kode_transaksi }}, tanggal
-                                                {{ date('j F, Y', strtotime($item->tanggal_transaksi)) }}
-                                                @else
-                                                {{ $item->Jenistransaksi->nama_transaksi}} tanggal
-                                                {{ date('j F, Y', strtotime($item->tanggal_transaksi)) }}
-                                                @endif
+                                            <td>
+                                                {{ $item->Jenistransaksi->nama_transaksi}} tanggal {{ date('j F, Y', strtotime($item->tanggal_transaksi)) }}
                                             </td>
                                                 
                                                 
@@ -115,7 +110,7 @@
                                             <td>Rp. {{ number_format($item->grand_total,2,',','.') }}</td>
                                             <td> <a href="" class="btn btn-danger btn-datatable" type="button"
                                                     data-toggle="modal"
-                                                    data-target="#Modalhapus-{{ $item->id_jurnal_pengeluaran }}">
+                                                    data-target="#Modalhapus-{{ $item->id_jurnal_penerimaan }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -152,7 +147,7 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('jurnal-pengeluaran.destroy', $item->id_jurnal_pengeluaran) }}" method="POST" class="d-inline">
+            <form action="{{ route('jurnal-penerimaan.destroy', $item->id_jurnal_penerimaan) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
                 <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Jurnal ini ?</div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\PointOfSales\Pembayaran;
 
 use App\Http\Controllers\Controller;
+use App\Model\Accounting\Jurnal\Jurnalpenerimaan;
 use App\Model\PointOfSales\LaporanService;
 use App\Model\Service\PenerimaanService;
 use Carbon\Carbon;
@@ -93,6 +94,22 @@ class PembayaranServiceController extends Controller
         $laporan_service->id_bengkel = Auth::user()->bengkel->id_bengkel;
 
         $laporan_service->save();
+
+        $jurnal = new Jurnalpenerimaan;
+        $jurnal->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+        $jurnal->id_jenis_transaksi = '8';
+        $jurnal->tanggal_jurnal = Carbon::now();
+        $jurnal->kode_transaksi = $status_selesai->kode_sa;
+        $jurnal->tanggal_transaksi = $status_selesai->date;
+        $jurnal->ref = $status_selesai->kode_sa;
+        $jurnal->keterangan = 'Pendapatan Service';
+        $jurnal->grand_total = $status_selesai->total_bayar;
+        $jurnal->jenis_jurnal = 'Transaksi Service';
+        $jurnal->save();
+
+
+        // $jurnal_penerimaan = new Jurnalpenerimaan;
+        // $jurnal_penerimaan = 
 
         return $request;
     }

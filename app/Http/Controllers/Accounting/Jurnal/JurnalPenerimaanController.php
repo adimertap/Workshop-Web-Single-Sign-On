@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Accounting\Jurnal;
 
 use App\Http\Controllers\Controller;
+use App\Model\Accounting\Jurnal\Jurnalpenerimaan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class JurnalPenerimaanController extends Controller
@@ -14,7 +16,11 @@ class JurnalPenerimaanController extends Controller
      */
     public function index()
     {
-        
+        $jurnal = Jurnalpenerimaan::with('Jenistransaksi')->get();
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
+
+        return view('pages.accounting.jurnal.penerimaan.jurnalpenerimaan',['total' => Jurnalpenerimaan::sum('grand_total')], compact('jurnal','today','tanggal'));
     }
 
     /**

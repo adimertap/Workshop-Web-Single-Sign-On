@@ -96,6 +96,19 @@ class PembayaranSparepartController extends Controller
 
         $laporan_sparepart->save();
 
+        $jurnal = new Jurnalpenerimaan;
+        $jurnal->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+        $jurnal->id_jenis_transaksi = '9';
+        $jurnal->tanggal_jurnal = Carbon::now();
+        $jurnal->kode_transaksi = $status->kode_penjualan;
+        $jurnal->tanggal_transaksi = $status->tanggal;
+        $jurnal->ref = $status->kode_penjualan;
+        $jurnal->keterangan = 'Pendapatan Penjualan Sparepart';
+        $jurnal->grand_total = $status->total_bayar;
+        $jurnal->jenis_jurnal = 'Transaksi Penjualan Sparepart';
+        $jurnal->save();
+
+
         // $jurnal = new Jurnalpenerimaan;
         // $jurnal->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         // $jurnal->id_jenis_transaksi = $invoice->id_jenis_transaksi;
