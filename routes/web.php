@@ -57,6 +57,7 @@ Route::group(
                 Route::resource('faq', 'MasterDataFAQController');
                 Route::resource('merk-kendaraan', 'MasterDataMerkKendaraanController');
                 Route::resource('kendaraan', 'MasterDataKendaraanController');
+                Route::resource('harga-jual', 'HargaJualSparepartController');
             });
 
 
@@ -497,7 +498,6 @@ Route::group(
             ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::resource('jenis-transaksi', 'MasterdatajenistransaksiController');
-                
             });
 
         Route::prefix('accounting')
@@ -589,11 +589,10 @@ Route::group(
             });
 
         Route::prefix('Accounting')
-        ->namespace('Accounting\Jurnal')
-        ->middleware(['admin_accounting_gabung', 'verified'])
-        ->group(function () {
-            Route::resource('jurnal-penerimaan', 'JurnalPenerimaanController');
-
+            ->namespace('Accounting\Jurnal')
+            ->middleware(['admin_accounting_gabung', 'verified'])
+            ->group(function () {
+                Route::resource('jurnal-penerimaan', 'JurnalPenerimaanController');
             });
 
         // CATATAN ADIM -------------------------------------------------------------------- Catatan Adim
