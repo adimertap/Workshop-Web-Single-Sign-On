@@ -109,17 +109,6 @@ class PembayaranSparepartController extends Controller
         $jurnal->save();
 
 
-        // $jurnal = new Jurnalpenerimaan;
-        // $jurnal->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
-        // $jurnal->id_jenis_transaksi = $invoice->id_jenis_transaksi;
-        // $jurnal->tanggal_jurnal = Carbon::now();
-        // $jurnal->kode_transaksi = $invoice->kode_invoice;
-        // $jurnal->tanggal_transaksi = $invoice->tanggal_invoice;
-        // $jurnal->ref = $invoice->kode_invoice;
-        // $jurnal->keterangan = $invoice->deskripsi_invoice;
-        // $jurnal->grand_total = $invoice->total_pembayaran;
-        // $jurnal->jenis_jurnal = 'Invoice_Payable';
-        // $jurnal->save();
 
 
         return $request;

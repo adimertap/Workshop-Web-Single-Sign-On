@@ -35,7 +35,7 @@ class Supplier extends Model
     ];
 
     public $timestamps = true;
-
+    
     public function Sparepart()
     {
         return $this->belongsToMany(Sparepart::class,'tb_inventory_master_harga_sparepart','id_supplier','id_sparepart')->withPivot('harga_jual');

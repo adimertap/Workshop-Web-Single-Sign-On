@@ -108,8 +108,6 @@ class PembayaranServiceController extends Controller
         $jurnal->save();
 
 
-        // $jurnal_penerimaan = new Jurnalpenerimaan;
-        // $jurnal_penerimaan = 
 
         return $request;
     }

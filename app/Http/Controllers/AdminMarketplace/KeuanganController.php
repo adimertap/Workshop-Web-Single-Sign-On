@@ -55,6 +55,8 @@ class KeuanganController extends Controller
             'no_rekening'=> $request->no_rekening,
             'nama_rekening'=> $request->nama_rekening,
         ]);
+
+        
         return redirect()->back()->with('messageberhasil','Pengajuan Penarikan Saldo Berhasil');
     
     }
