@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PenentuanAkun extends Model
 {
-    use SoftDeletes;
 
     protected $table = "tb_accounting_master_penentuan_akun";
 
@@ -16,13 +15,13 @@ class PenentuanAkun extends Model
 
     protected $fillable = [
         'id_akun',
+        'id_pasangan_akun',
         'id_jenis_transaksi',
-        'kepemilikan',
-        'id_bengkel'
+        'id_bengkel',
     ];
 
     protected $hidden =[ 
-        'deleted_at'
+       
     ];
 
     public $timestamps = true;
@@ -32,9 +31,16 @@ class PenentuanAkun extends Model
         static::addGlobalScope(new OwnershipScope);
     }
 
+    // DEBET
     public function Akun()
     {
         return $this->belongsTo(Akun::class,'id_akun','id_akun');
+    }
+
+    // KREDIT
+    public function PasanganAkun()
+    {
+        return $this->belongsTo(Akun::class,'id_pasangan_akun','id_akun');
     }
 
     public function Jenistransaksi()

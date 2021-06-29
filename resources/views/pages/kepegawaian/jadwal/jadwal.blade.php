@@ -184,7 +184,7 @@
             
             calendar.render();
         });
-        
+    
     
     function masuk(event, id_pegawai, date){
         event.preventDefault()
@@ -200,6 +200,7 @@
                 },
                 success: function (response) {
                     window.location.href = '/kepegawaian/jadwal-pegawai'
+                    alert('Berhasil Menambahkan Jadwal')
                    
                 },
                 error: function (response) {
@@ -221,6 +222,7 @@
                 },
                 success: function (response) {
                     window.location.href = '/kepegawaian/jadwal-pegawai'
+                    alert('Berhasil Menghapus Jadwal')
                    
                 },
                 error: function (response) {

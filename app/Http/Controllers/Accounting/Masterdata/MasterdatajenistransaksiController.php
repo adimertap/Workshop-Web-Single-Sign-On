@@ -20,7 +20,8 @@ class MasterdatajenistransaksiController extends Controller
      */
     public function index()
     {
-        $jenis_transaksi = Jenistransaksi::with('DetailPenentuanAkun')->get();
+        $jenis_transaksi = Jenistransaksi::with('DetailPenentuanAkun','PenentuanAkun.Akun','PenentuanAkun.PasanganAkun')->get();
+        // return $jenis_transaksi;
         // return $jenis_transaksi;
         $akun = Akun::all();
      
@@ -63,9 +64,10 @@ class MasterdatajenistransaksiController extends Controller
      */
     public function show($id_jenis_transaksi)
     {
-        $jenis_transaksi = Jenistransaksi::with('DetailPenentuanAkun')->find($id_jenis_transaksi);
-
-        return $jenis_transaksi;
+        $jenis_transaksi = Jenistransaksi::with('PenentuanAkun.Akun','PenentuanAkun.PasanganAkun')->find($id_jenis_transaksi);
+        $akun = Akun::all();
+      
+        return view('pages.accounting.masterdata.detail_jenis_transaksi', compact('jenis_transaksi','akun'));
     }
 
     /**
@@ -104,8 +106,10 @@ class MasterdatajenistransaksiController extends Controller
     public function destroy($id_jenis_transaksi)
     {
         $jenis_transaksi = Jenistransaksi::findOrFail($id_jenis_transaksi);
+        PenentuanAkun::where('id_jenis_transaksi', $id_jenis_transaksi)->delete();
         $jenis_transaksi->delete();
 
         return redirect()->back()->with('messagehapus','Data Jenis Transaksi Berhasil dihapus');
     }
+
 }

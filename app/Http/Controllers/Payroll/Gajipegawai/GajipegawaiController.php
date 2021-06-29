@@ -25,20 +25,20 @@ class GajipegawaiController extends Controller
     {
 
         $gaji = Gajipegawai::with([
-            'Pegawai'
+            'Detailpegawai','Jenistransaksi'
         ])->get();
 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
-
+        $jenis_transaksi = Jenistransaksi::all();
         $tahun_bayar = Carbon::now()->format('Y');
-        $pegawai = Pegawai::with([
-            'Jabatan.Gajipokok'
-        ])->join('tb_kepeg_master_jabatan', 'tb_kepeg_master_pegawai.id_jabatan', 'tb_kepeg_master_jabatan.id_jabatan')
-        ->where('nama_jabatan', '!=', 'Owner')->get();
+        // $pegawai = Pegawai::with([
+        //     'Jabatan.Gajipokok'
+        // ])->join('tb_kepeg_master_jabatan', 'tb_kepeg_master_pegawai.id_jabatan', 'tb_kepeg_master_jabatan.id_jabatan')
+        // ->where('nama_jabatan', '!=', 'Owner')->get();
        
 
-        return view('pages.payroll.gajipegawai.gajipegawai', compact('gaji','pegawai','tahun_bayar','today','tanggal'));
+        return view('pages.payroll.gajipegawai.revisigajipegawai', compact('gaji','tahun_bayar','today','tanggal','jenis_transaksi'));
     }
 
     /**
@@ -59,25 +59,25 @@ class GajipegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $pegawai = Pegawai::where('nama_pegawai',$request->nama_pegawai)->first();
-        $id_pegawai = $pegawai->id_pegawai;
-        $data = Gajipegawai::where('id_bengkel', Auth::user()->id_bengkel)
-        ->where('id_pegawai', $id_pegawai)->where('tahun_gaji', $request->tahun_gaji)
+        // $pegawai = Pegawai::where('nama_pegawai',$request->nama_pegawai)->first();
+        // $id_pegawai = $pegawai->id_pegawai;
+        $data = Gajipegawai::where('id_bengkel', Auth::user()->id_bengkel)->where('tahun_gaji', $request->tahun_gaji)
         ->where('bulan_gaji', $request->bulan_gaji)->first();
 
         if (empty($data)){
 
             $gaji = Gajipegawai::create([
-                'id_pegawai'=>$id_pegawai,
                 'bulan_gaji'=>$request->bulan_gaji,
                 'tahun_gaji'=>$request->tahun_gaji,
-                'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
-            ]);
+                'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel,
+                'id_jenis_transaksi' => $request->id_jenis_transaksi
+            ]); 
             
             return $gaji;
         }else{
             throw new \Exception('Gaji Sudah Ada');
         }
+        
 
     }
 
@@ -105,15 +105,21 @@ class GajipegawaiController extends Controller
     public function edit($id)
     {
         $gaji = Gajipegawai::with([
-            'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan'
+            // 'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan'
+            'Detailpegawai','Jenistransaksi'
         ])->find($id);
 
+       
         $jenis_transaksi = Jenistransaksi::all();
-        $seluruhpegawai = Pegawai::all();
+        $pegawai = Pegawai::with([
+            'Jabatan.Gajipokok','absensi'
+        ])->join('tb_kepeg_master_jabatan', 'tb_kepeg_master_pegawai.id_jabatan', 'tb_kepeg_master_jabatan.id_jabatan')
+        ->where('nama_jabatan', '!=', 'Owner')->get();
+        // return $pegawai;
         $tunjangan = Mastertunjangan::all();
         $today = Carbon::now()->format('D, d/m/Y');
 
-        return view('pages.payroll.gajipegawai.create',['gaji_total' => Gajipegawai::sum('gaji_diterima')], compact('gaji','seluruhpegawai','tunjangan','today','jenis_transaksi'));
+        return view('pages.payroll.gajipegawai.revisicreate',['gaji_total' => Gajipegawai::sum('grand_total_gaji')], compact('gaji','pegawai','tunjangan','today','jenis_transaksi'));
     }
 
     public function edit2(Request $request, $id_gaji_pegawai)

@@ -492,14 +492,12 @@ Route::group(
                 Route::resource('akun', 'MasterdataakunController');
             });
 
-        Route::prefix('accounting/masterjenistransaksi')
+        Route::prefix('accounting')
             ->namespace('Accounting\Masterdata')
             ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
-                Route::get('/', 'MasterdatajenistransaksiController@index')
-                    ->name('masterdatajenistransaksi');
-
                 Route::resource('jenis-transaksi', 'MasterdatajenistransaksiController');
+                
             });
 
         Route::prefix('accounting')

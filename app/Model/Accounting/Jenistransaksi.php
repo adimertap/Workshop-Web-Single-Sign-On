@@ -30,6 +30,23 @@ class Jenistransaksi extends Model
         return $this->belongsToMany(Akun::class, 'tb_accounting_master_penentuan_akun', 'id_jenis_transaksi', 'id_akun');
     }
 
+    public function PenentuanAkun()
+    {
+        return $this->hasOne(PenentuanAkun::class,'id_jenis_transaksi','id_jenis_transaksi');
+    }
+
+    
+
+    // public function PenentuanAkun()
+    // {
+    //     return $this->hasOne(Akun::class, 'id_akun');
+    // }
+
+    // public function PasanganAkun()
+    // {
+    //     return $this->hasOne(Akun::class, 'id_akun', 'id_pasangan_akun');
+    // }
+
     protected static function booted()
     {
         static::addGlobalScope(new OwnershipScope);

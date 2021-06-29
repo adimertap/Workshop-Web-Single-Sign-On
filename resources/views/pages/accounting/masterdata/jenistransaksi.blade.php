@@ -73,7 +73,7 @@
                                             <td>{{ $item->nama_transaksi }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('jenis-transaksi.show', $item->id_jenis_transaksi) }}" class="btn btn-secondary btn-xs" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Detail Invoice">
+                                                    data-placement="top" title="" data-original-title="Set Debet & Kredit">
                                                     {{-- <i class="fas fa-eye"></i> --}}
                                                     Set Akun
                                                 </a>
@@ -108,7 +108,7 @@
 </main>
 
 {{-- MODAL SET AKUN --}}
-<div class="modal fade" id="Modalsetakun" data-backdrop="static" tabindex="-1" role="dialog"
+{{-- <div class="modal fade" id="Modalsetakun" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -170,7 +170,7 @@
                         </div> @enderror
                     </div>
                 </div>
-                {{-- Validasi Error --}}
+               
                 @if (count($errors) > 0)
                 @endif
 
@@ -181,7 +181,7 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}
 
 {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
 <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"

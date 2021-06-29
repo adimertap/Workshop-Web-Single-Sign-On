@@ -19,12 +19,12 @@ class Gajipegawai extends Model
 
     protected $fillable = [
         'id_bengkel',
-        'id_pegawai',
         'id_jenis_transaksi',
         'bulan_gaji',
         'tahun_gaji',
-        'gaji_diterima',
-        'total_tunjangan',
+        'grand_total_gaji',
+        'grand_total_tunjangan',
+        'grand_total_pph21',
         'keterangan',
         'status_diterima',
         'status_dana',
@@ -38,13 +38,9 @@ class Gajipegawai extends Model
 
     public $timestamps = true;
 
-    public function Detailtunjangan()
+    public function Detailpegawai()
     {
-        return $this->belongsToMany(Mastertunjangan::class,'tb_payroll_detgaji','id_gaji_pegawai','id_tunjangan');
-    }
-
-    public function Pegawai(){
-        return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
+        return $this->belongsToMany(Pegawai::class,'tb_payroll_detpegawai','id_gaji_pegawai','id_pegawai')->withPivot('total_tunjangan','total_gaji','total_pph21');
     }
 
     public function Jenistransaksi(){
