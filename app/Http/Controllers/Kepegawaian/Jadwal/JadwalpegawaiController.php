@@ -76,6 +76,13 @@ class JadwalpegawaiController extends Controller
         $jadwal->delete();
     }
 
+    public function JadwalPegawaiBulan(){
+        $jadwal = Jadwal::select('tanggal_jadwal')->groupBy('tanggal_jadwal')->get();
+        return $jadwal;
+
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

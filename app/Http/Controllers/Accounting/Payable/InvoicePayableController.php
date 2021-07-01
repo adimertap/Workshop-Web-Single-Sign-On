@@ -157,4 +157,12 @@ class InvoicePayableController extends Controller
 
         return redirect()->back()->with('messagehapus','Data Invoice Berhasil dihapus');
     }
+
+    public function CetakInvoice($id_payable_invoice)
+    {
+        $invoice = InvoicePayable::with('Detailinvoice','Rcv','PO','Supplier','Pegawai')->findOrFail($id_payable_invoice);
+        // return $invoice;
+        $now = Carbon::now();
+        return view('print.Accounting.cetak-invoice', compact('invoice','now'));
+    }
 }

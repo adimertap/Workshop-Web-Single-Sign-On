@@ -2,6 +2,7 @@
 
 namespace App\Model\Accounting\Jurnal;
 
+use App\Model\Accounting\Jenistransaksi;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

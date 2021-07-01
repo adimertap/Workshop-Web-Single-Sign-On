@@ -16,7 +16,8 @@ class JurnalPenerimaanController extends Controller
      */
     public function index()
     {
-        $jurnal = Jurnalpenerimaan::with('Jenistransaksi')->get();
+        $jurnal = Jurnalpenerimaan::with('Jenistransaksi','Jenistransaksi.PenentuanAkun','Jenistransaksi.PenentuanAkun.Akun','Jenistransaksi.PenentuanAkun.PasanganAkun')->get();
+        // return $jurnal;
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
@@ -84,8 +85,11 @@ class JurnalPenerimaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_jurnal_penerimaan)
     {
-        //
+        $jurnal = Jurnalpenerimaan::findOrFail($id_jurnal_penerimaan);
+        $jurnal->delete();
+
+        return redirect()->back()->with('messagehapus','Data Jurnal Berhasil dihapus');
     }
 }

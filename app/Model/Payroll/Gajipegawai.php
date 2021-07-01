@@ -43,6 +43,11 @@ class Gajipegawai extends Model
         return $this->belongsToMany(Pegawai::class,'tb_payroll_detpegawai','id_gaji_pegawai','id_pegawai')->withPivot('total_tunjangan','total_gaji','total_pph21');
     }
 
+    public function Detailtunjangan()
+    {
+        return $this->belongsToMany(Mastertunjangan::class,'tb_payroll_detgaji','id_gaji_pegawai','id_tunjangan');
+    }
+
     public function Jenistransaksi(){
         return $this->belongsTo(Jenistransaksi::class,'id_jenis_transaksi','id_jenis_transaksi');
     }

@@ -140,7 +140,13 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
+            var month = new Date().getMonth()+1;
+            var year = new Date().getFullYear();
+
+            makecalendar()
+
             var calendar = new FullCalendar.Calendar(calendarEl, {
+
                 initialView: 'dayGridMonth',
                 dateClick: function(date) {
                     $('#ButtonTambah').click()
@@ -185,7 +191,71 @@
             calendar.render();
         });
     
-    
+    function makecalendar(){
+        var calendarEl = document.getElementById('calendar');
+
+        $.ajax({
+                method: 'get',
+                url: '/kepegawaian/jadwal-pegawai/tanggal',
+                success:function(response){
+                    var event = []
+                    response.forEach(element => {
+
+                        event.push({
+                            title: 'Sudah Dijadwalkan', // a property!
+                            start: element.tanggal_jadwal, // a property!
+                            end: element.tanggal_jadwal
+                        })
+                    });
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        events: event,
+                        initialView: 'dayGridMonth',
+
+                        dateClick: function(date) {
+                            $('#ButtonTambah').click()
+                            var form1 = $('#form1')
+                            var _token = form1.find('input[name="_token"]').val()
+                            var table = $('#dataTablePegawai').DataTable().destroy()
+                            var table = $('#dataTablePegawai').DataTable({
+                                "pageLength": 5,
+                                "lengthMenu": [
+                                    [5, 10, 20, -1],
+                                    [5, 10, 20, ]
+                                ],
+                                "ajax":{
+                                    'type': 'POST',
+                                    'url': '/kepegawaian/jadwal-pegawai/tanggal',
+                                    'data':{
+                                            date: date.dateStr,
+                                            _token: _token
+                                            },
+                                    'dataSrc': ""
+                                },
+                                "columns":[
+                                    {"data": null, render:function(data, type, row, meta){
+                                        return meta.row + meta.settings._iDisplayStart+1;
+                                    }},
+                                    {"data": "nama_pegawai"},
+                                    {"data": "nama_jabatan"},
+                                    {"data": "tanggal_jadwal",render:function(data, type, row, meta){
+                                        console.log(row)
+                                        if (data == null){
+                                            return `<button class="btn btn-secondary btn-xs" onclick="masuk(event,${row.id_pegawai},'${date.dateStr}')">Masuk</button>`
+                                        }else{
+                                            return `<button class="btn btn-danger btn-xs" onclick="libur(event, ${row.id_pegawai},'${date.dateStr}')"><i class="fas fa-trash"></i></button>`
+                                        } 
+                                    }},
+                                    
+                                ]
+                            })
+                        }
+                    });
+                    calendar.render();
+
+                }
+            })
+    }
+
     function masuk(event, id_pegawai, date){
         event.preventDefault()
         var form1 = $('#form1')
@@ -199,8 +269,45 @@
                     date: date,
                 },
                 success: function (response) {
-                    window.location.href = '/kepegawaian/jadwal-pegawai'
                     alert('Berhasil Menambahkan Jadwal')
+
+                    var form1 = $('#form1')
+                    var _token = form1.find('input[name="_token"]').val()
+                    var table = $('#dataTablePegawai').DataTable().destroy()
+                    var table = $('#dataTablePegawai').DataTable({
+                        "pageLength": 5,
+                        "lengthMenu": [
+                            [5, 10, 20, -1],
+                            [5, 10, 20, ]
+                        ],
+                        "ajax":{
+                            'type': 'POST',
+                            'url': '/kepegawaian/jadwal-pegawai/tanggal',
+                            'data':{
+                                    date: date,
+                                    _token: _token
+                                    },
+                            'dataSrc': ""
+                        },
+                        "columns":[
+                            {"data": null, render:function(data, type, row, meta){
+                                return meta.row + meta.settings._iDisplayStart+1;
+                            }},
+                            {"data": "nama_pegawai"},
+                            {"data": "nama_jabatan"},
+                            {"data": "tanggal_jadwal",render:function(data, type, row, meta){
+                                console.log(row)
+                                if (data == null){
+                                    return `<button class="btn btn-secondary btn-xs" onclick="masuk(event,${row.id_pegawai},'${date.dateStr}')">Masuk</button>`
+                                }else{
+                                    return `<button class="btn btn-danger btn-xs" onclick="libur(event, ${row.id_pegawai},'${date.dateStr}')"><i class="fas fa-trash"></i></button>`
+                                } 
+                            }},
+                            
+                        ]
+                    })
+
+                    makecalendar()
                    
                 },
                 error: function (response) {
@@ -221,9 +328,43 @@
                     date: date,
                 },
                 success: function (response) {
-                    window.location.href = '/kepegawaian/jadwal-pegawai'
+                    var form1 = $('#form1')
+                    var _token = form1.find('input[name="_token"]').val()
+                    var table = $('#dataTablePegawai').DataTable().destroy()
+                    var table = $('#dataTablePegawai').DataTable({
+                        "pageLength": 5,
+                        "lengthMenu": [
+                            [5, 10, 20, -1],
+                            [5, 10, 20, ]
+                        ],
+                        "ajax":{
+                            'type': 'POST',
+                            'url': '/kepegawaian/jadwal-pegawai/tanggal',
+                            'data':{
+                                    date: date,
+                                    _token: _token
+                                    },
+                            'dataSrc': ""
+                        },
+                        "columns":[
+                            {"data": null, render:function(data, type, row, meta){
+                                return meta.row + meta.settings._iDisplayStart+1;
+                            }},
+                            {"data": "nama_pegawai"},
+                            {"data": "nama_jabatan"},
+                            {"data": "tanggal_jadwal",render:function(data, type, row, meta){
+                                console.log(row)
+                                if (data == null){
+                                    return `<button class="btn btn-secondary btn-xs" onclick="masuk(event,${row.id_pegawai},'${date.dateStr}')">Masuk</button>`
+                                }else{
+                                    return `<button class="btn btn-danger btn-xs" onclick="libur(event, ${row.id_pegawai},'${date.dateStr}')"><i class="fas fa-trash"></i></button>`
+                                } 
+                            }},
+                            
+                        ]
+                    })
                     alert('Berhasil Menghapus Jadwal')
-                   
+                   makecalendar()
                 },
                 error: function (response) {
                 }

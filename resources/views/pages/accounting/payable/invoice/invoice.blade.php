@@ -149,7 +149,7 @@
                                                     data-target="#Modalhapus-{{ $item->id_payable_invoice }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
-                                                <a href="" class="btn btn-warning btn-datatable" data-toggle="tooltip"
+                                                <a href="{{ route('cetak-invoice', $item->id_payable_invoice) }}" class="btn btn-warning btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Cetak Invoice">
                                                     <i class="fas fa-print"></i></i>
                                                 </a>
@@ -158,7 +158,7 @@
                                                     data-placement="top" title="" data-original-title="Detail Invoice">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="" class="btn btn-warning btn-datatable" data-toggle="tooltip"
+                                                <a href="{{ route('cetak-invoice', $item->id_payable_invoice) }}" class="btn btn-warning btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Cetak Invoice">
                                                     <i class="fas fa-print"></i></i>
                                                 </a>

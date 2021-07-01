@@ -100,6 +100,36 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="small mb-1" for="gaji_diterima">Total Gaji Pokok</label>
+                                <div class="input-group input-group-joined">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-gray-200">
+                                            Rp.
+                                        </span>
+                                    </div>
+                                    <input class="form-control" id="total_gaji" type="text" name="gaji_diterima"
+                                        placeholder="Keterangan Pembayaran" value="0"
+                                        class="form-control @error('keterangan') is-invalid @enderror" readonly>
+                                    @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
+                                    </div> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="small mb-1" for="gaji_diterima">Total Tunjangan</label>
+                                <div class="input-group input-group-joined">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-gray-200">
+                                            Rp.
+                                        </span>
+                                    </div>
+                                    <input class="form-control" id="total_tunjangan" type="text" name="gaji_diterima"
+                                        placeholder="Keterangan Pembayaran" value="0"
+                                        class="form-control @error('keterangan') is-invalid @enderror" readonly>
+                                    @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
+                                    </div> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="small mb-1" for="gaji_diterima">Total Gaji Keseluruhan</label>
                                 <div class="input-group input-group-joined">
                                     <div class="input-group-prepend">
@@ -190,15 +220,13 @@
                                                     @forelse ($pegawai as $item)
                                                     <tr role="row" class="odd">
                                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
-                                                        <td>{{ $item->nama_pegawai}}</td>
-                                                        {{-- <td>{{ $item->npwp_pegawai}}</td> --}}
-                                                        <td>{{ $item->Jabatan->nama_jabatan}}</td>
+                                                        <td id="nama_pegawai-{{ $item->id_pegawai }}">{{ $item->nama_pegawai}}</td>
+                                                        <td id="jabatan-{{ $item->id_pegawai }}">{{ $item->Jabatan->nama_jabatan}}</td>
                                                        
-                                                        <td>Rp.
-                                                            {{ number_format($item->Jabatan->Gajipokok->besaran_gaji,2,',','.') }}
+                                                        <td id="gajipokok-{{ $item->id_pegawai }}">Rp.{{ number_format($item->Jabatan->Gajipokok->besaran_gaji,2,',','.') }}
                                                         </td>
                                                         <td>
-                                                            <button id="{{ $item->npwp_pegawai }}-button" class="btn btn-success btn-xs" type="button" data-toggle="modal"
+                                                            <button id="{{ $item->id_pegawai }}-button" class="btn btn-success btn-xs" type="button" data-toggle="modal"
                                                                 data-target="#Modaltambah-{{ $item->id_pegawai }}">
                                                                 Tambah
                                                             </button>
@@ -236,7 +264,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <table class="table table-bordered table-hover dataTable"
-                                                id="dataTablePegawai" width="100%" cellspacing="0" role="grid"
+                                                id="dataTableKonfirmasi" width="100%" cellspacing="0" role="grid"
                                                 aria-describedby="dataTable_info" style="width: 100%;">
                                                 <thead>
                                                     <tr role="row">
@@ -260,6 +288,16 @@
                                                             aria-label="Position: activate to sort column ascending"
                                                             style="width: 150px;">
                                                             Gaji Pokok</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Position: activate to sort column ascending"
+                                                            style="width: 80px;">
+                                                            Total Tunjangan</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Position: activate to sort column ascending"
+                                                            style="width: 80px;">
+                                                            Total Gaji</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Position: activate to sort column ascending"
@@ -278,14 +316,6 @@
                                                         
                                                     @endforelse --}}
                                                 </tbody>
-                                                <tr id="totaltunjangan">
-                                                    <td colspan="2" class="text-center font-weight-500">
-                                                        Total Tunjangan
-                                                    </td>
-                                                    <td colspan="2" class="grand_total text-center font-weight-500">
-                                                        {{-- <span>Rp. </span><span id="totaltunjangan2">{{ $gaji->total_tunjangan }}</span> --}}
-                                                    </td>
-                                                </tr>
                                             </table>
                                         </div>
                                     </div>
@@ -343,7 +373,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                 Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tunjangan-{{ $items->id_pegawai }}">
                                         @forelse ($tunjangan as $item)
                                         <tr id="item-{{ $item->id_tunjangan }}" role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">
@@ -354,9 +384,9 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             </td>
                                             <td class="keterangan">{{ $item->keterangan }}</td>
                                             <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" id="customCheck1-{{ $item->id_tunjangan }}" type="checkbox" />
-                                                    <label class="custom-control-label" for="customCheck1">Pilih</label>
+                                                <div class="">
+                                                    <input class="checktunjangan" id="customCheck1-{{ $item->id_tunjangan }}" type="checkbox" />
+                                                    <label class="" for="customCheck1">Pilih</label>
                                                 </div>  
                                             </td>
                                         </tr>
@@ -365,6 +395,9 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     </tbody>
                                 </table>
                             </div>
+                            <button class="btn btn-success btn-sm text-right"
+                            onclick="tambahtunjangan(event, {{ $items->id_pegawai }})"
+                            type="button" data-dismiss="modal">Tambah</button>
                         </div>
                     </div>
                 </div>
@@ -380,7 +413,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
 
 {{-- MODAL TAMBAH TUNJANGAN --}}
-<div class="modal fade" id="Modaltambahtunjangan" data-backdrop="static" tabindex="-1" role="dialog"
+{{-- <div class="modal fade" id="Modaltambahtunjangan" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -452,7 +485,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 {{-- 
 <div class="modal fade" id="Modalabsensi" data-backdrop="static" tabindex="-1" role="dialog"
@@ -607,8 +640,11 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 </div>
 
 <template id="template_delete_button">
-    <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
+    <button class="btn btn-danger btn-datatable" onclick="hapusgaji(this)" type="button">
         <i class="fas fa-trash"></i>
+    </button>
+    <button class="btn btn-primary btn-datatable" onclick="editgaji(this)" type="button">
+        <i class="fas fa-edit"></i>
     </button>
 </template>
 
@@ -619,29 +655,114 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 </template>
 
 <script>
+
+    function tambahtunjangan(event, id_pegawai){
+        var tbody = $(`#tunjangan-${id_pegawai}`)
+        var tunjangan = 0
+        var check = tbody.find('.checktunjangan').each(function(index, element){
+            var value = $(element).is(':checked')
+            if(value == true){
+                var tr = $(element).parent().parent().parent()
+                var td = $(tr).find('.jumlah_tunjangan')[0]
+                var jumlah = $(td).html()
+                var splitjumlah = jumlah.split('Rp')[1].replace('.', '').replace(',00', '').trim()
+                
+                tunjangan = tunjangan + parseInt(splitjumlah)
+                
+            }
+
+            console.log(tunjangan)
+        })
+
+        var nama_pegawai = $(`#nama_pegawai-${id_pegawai}`).html()
+        var jabatan = $(`#jabatan-${id_pegawai}`).html()
+        var gajipokok = $(`#gajipokok-${id_pegawai}`).html()
+        var totalgaji = parseInt(gajipokok.split('Rp.')[1].replace('.', '').replace(',00', '').trim()) + tunjangan
+        
+        var table = $('#dataTableKonfirmasi').DataTable()
+        var row = $(`#pegawai-${id_pegawai}`).parent().parent()
+        table.row(row).remove().draw();
+
+        var totaltambahtunjangan = $('#gaji_diterima').val()
+        var jumlahfix = totalgaji + parseInt(totaltambahtunjangan)
+        $('#gaji_diterima').val(jumlahfix)
+
+        var totalgajipokok = $('#total_gaji').val()
+        var splitgajipokok = parseInt(gajipokok.split('Rp.')[1].replace('.', '').replace(',00', '').trim())
+        var jumlahfix2 = splitgajipokok + parseInt(totalgajipokok)
+
+        $('#total_gaji').val(jumlahfix2)
+
+        var totaltunjangan = $('#total_tunjangan').val()
+        var jumlahfix3 = tunjangan + parseInt(totaltunjangan)
+        $('#total_tunjangan').val(jumlahfix3)
+
+
+        $('#dataTableKonfirmasi').DataTable().row.add([
+            nama_pegawai, `<span id=pegawai-${id_pegawai}>${nama_pegawai}</span>`, jabatan, gajipokok,   new Intl.NumberFormat('id', {
+            style: 'currency',
+            currency: 'IDR'
+        }).format(tunjangan), 
+        new Intl.NumberFormat('id', {
+            style: 'currency',
+            currency: 'IDR'
+        }).format(totalgaji)
+        ]).draw();
+        
+        
+    }
+
+
     function tambahgaji(event, tunjangan, id_gaji_pegawai) {
         event.preventDefault()
         var form1 = $('#form1')
         var tahun_gaji = form1.find('input[name="tahun_gaji"]').val()
         var bulan_gaji = $('#bulan_gaji').val()
         var id_jenis_transaksi = $('#id_jenis_transaksi').val()
-        var gaji_diterima = form1.find('input[name="gaji_diterima"]').val()
-        var keterangan = form1.find('textarea[name="keterangan"]').val()
-        var total_tunjangan = $('#totaltunjangan2').html()
+        var grand_total_gaji = $('#gaji_diterima').val()
+        var grand_total_tunjangan = $('#total_tunjangan').val()
         var id_bengkel = $('#id_bengkel').text()
-        var dataform2 = []
+        var keterangan = form1.find('textarea[name="keterangan"]').val()
         var _token = form1.find('input[name="_token"]').val()
+        var pegawai = []
+        var tunjangan = []
 
-        var datatunjangan = $('#konfirmasi').children()
-        for (let index = 0; index < datatunjangan.length; index++) {
-            var children = $(datatunjangan[index]).children()
+        var datapegawai = $('#konfirmasi').children()
+        for (let index = 0; index < datapegawai.length; index++) {
+            var children = $(datapegawai[index]).children()
             var td = children[1]
             var span = $(td).children()[0]
-            var id_tunjangan = $(span).attr('id')
 
-            dataform2.push({
-                id_tunjangan: id_tunjangan,
+            var id_pegawai = $(span).attr('id')
+            var id = id_pegawai.split('pegawai-')[1]
+            var tes1 = $($(td).parent().children())
+            console.log(tes1)
+            var total_tunjangan = $($(td).parent().children()[4]).html().split('Rp')[1].replace('&nbsp;','').replace('.', '').replace(',00', '').trim()
+            var total_gaji = $($(td).parent().children()[5]).html().split('Rp')[1].replace('&nbsp;','').replace('.', '').replace(',00', '').trim()
+
+
+            pegawai.push({
+                id_pegawai: id,
                 id_bengkel: id_bengkel,
+                total_tunjangan: total_tunjangan,
+                total_gaji: total_gaji
+            })
+
+            var tbody = $(`#tunjangan-${id}`)
+            var check = tbody.find('.checktunjangan').each(function(index, element){
+                var value = $(element).is(':checked')
+                if(value == true){
+                    var tr = $(element).parent().parent().parent()
+                    var id_tunjangan = $(tr).attr('id').split('item-')[1]
+
+                    tunjangan.push({
+                        id_pegawai: id,
+                        id_tunjangan: id_tunjangan,
+                        id_bengkel: id_bengkel
+                    })
+                    
+                }
+
             })
         }
 
@@ -653,18 +774,21 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 tahun_gaji: tahun_gaji,
                 bulan_gaji: bulan_gaji,
                 id_jenis_transaksi: id_jenis_transaksi,
-                gaji_diterima: gaji_diterima,
-                total_tunjangan: total_tunjangan,
+                grand_total_gaji: grand_total_gaji,
+                grand_total_tunjangan: grand_total_tunjangan,
                 keterangan: keterangan,
-                tunjangan: dataform2
+                pegawai: pegawai,
+                tunjangan: tunjangan
+                // tunjangan: dataform2
             }
+            console.log(data)
 
             $.ajax({
                 method: 'put',
                 url: '/payroll/gaji-pegawai/' + id_gaji_pegawai,
                 data: data,
                 success: function (response) {
-                    window.location.href = '/payroll/gaji-pegawai'
+                    // window.location.href = '/payroll/gaji-pegawai'
 
                 },
                 error: function (response) {
@@ -676,44 +800,55 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
 
 
-    function tambahtunjangan(event, id_tunjangan) {
-        var data = $('#item-' + id_tunjangan)
-        var nama_tunjangan = $(data.find('.nama_tunjangan')[0]).text()
-        var jumlah_tunjangan = $(data.find('.jumlah_tunjangan')[0]).text()
-        var template = $($('#template_delete_button').html())
+    // function tambahtunjangan(event, id_tunjangan) {
+    //     var data = $('#item-' + id_tunjangan)
+    //     var nama_tunjangan = $(data.find('.nama_tunjangan')[0]).text()
+    //     var jumlah_tunjangan = $(data.find('.jumlah_tunjangan')[0]).text()
+    //     var template = $($('#template_delete_button').html())
 
-        // GAJI DITERIMA
-        var totaltambahtunjangan = $('#gaji_diterima').val()
-        var splittunjangan = jumlah_tunjangan.split('Rp')[1].replace('.', '').replace(',00', '').trim()
-        var jumlahfix = parseInt(splittunjangan) + parseInt(totaltambahtunjangan)
-        $('#gaji_diterima').val(jumlahfix)
+    //     // GAJI DITERIMA
+    //     var totaltambahtunjangan = $('#gaji_diterima').val()
+    //     var splittunjangan = jumlah_tunjangan.split('Rp')[1].replace('.', '').replace(',00', '').trim()
+    //     var jumlahfix = parseInt(splittunjangan) + parseInt(totaltambahtunjangan)
+    //     $('#gaji_diterima').val(jumlahfix)
 
-        // TUNJANGAN
-        var totaltunjangan = $('#totaltunjangan2').html()
-        var totalfix = parseInt(splittunjangan) + parseInt(totaltunjangan)
-        console.log(totalfix)
-        $('#totaltunjangan2').html(totalfix)
+    //     // TUNJANGAN
+    //     var totaltunjangan = $('#totaltunjangan2').html()
+    //     var totalfix = parseInt(splittunjangan) + parseInt(totaltunjangan)
+    //     console.log(totalfix)
+    //     $('#totaltunjangan2').html(totalfix)
 
-        var table = $('#dataTabletunjangan').DataTable()
-        var row = $(`#${$.escapeSelector(nama_tunjangan.trim())}`).parent().parent()
-        table.row(row).remove().draw();
+    //     var table = $('#dataTabletunjangan').DataTable()
+    //     var row = $(`#${$.escapeSelector(nama_tunjangan.trim())}`).parent().parent()
+    //     table.row(row).remove().draw();
 
-        $('#dataTabletunjangan').DataTable().row.add([
-            nama_tunjangan, `<span id=${id_tunjangan}>${nama_tunjangan}</span>`, jumlah_tunjangan,
-        ]).draw();
+    //     $('#dataTabletunjangan').DataTable().row.add([
+    //         nama_tunjangan, `<span id=${id_tunjangan}>${nama_tunjangan}</span>`, jumlah_tunjangan,
+    //     ]).draw();
 
-        // TABLE TAB 3
-        var table2 = $('#dataTabletunjangankonfirmasi').DataTable()
-        var row2 = $(`#${$.escapeSelector(nama_tunjangan.trim())}`).parent().parent()
-        table2.row(row2).remove().draw();
+    //     // TABLE TAB 3
+    //     var table2 = $('#dataTabletunjangankonfirmasi').DataTable()
+    //     var row2 = $(`#${$.escapeSelector(nama_tunjangan.trim())}`).parent().parent()
+    //     table2.row(row2).remove().draw();
 
-        $('#dataTabletunjangankonfirmasi').DataTable().row.add([
-            `<span id=${nama_tunjangan}>${nama_tunjangan}</span>`, jumlah_tunjangan,
-        ]).draw();
+    //     $('#dataTabletunjangankonfirmasi').DataTable().row.add([
+    //         `<span id=${nama_tunjangan}>${nama_tunjangan}</span>`, jumlah_tunjangan,
+    //     ]).draw();
+    // }
+
+    function editgaji(element){
+        var table = $('#dataTablekonfirmasi').DataTable()
+        // Akses Parent Sampai <tr></tr>
+        var row = $(element).parent().parent()
+        var children = $(row).children()[1]
+        var kode = $($(children).children()[0]).attr('id')
+        var id = kode.split('pegawai-')[1]
+        $(`#${id}-button`).trigger('click');
     }
+   
 
-    function hapussparepart(element) {
-        var table = $('#dataTabletunjangan').DataTable()
+    function hapusgaji(element) {
+        var table = $('#dataTableKonfirmasi').DataTable()
 
         // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
@@ -727,19 +862,18 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         var row2 = $(element).parent().parent()
 
         // Gaji diterima berkurang
-        var gajiberkurang = $(row2.children()[2]).text()
-        var totaltambahtunjangan = $('#gaji_diterima').val()
-        var splittunjangan = gajiberkurang.split('Rp')[1].replace('.', '').replace(',00', '').trim()
-        var jumlahfix = parseInt(totaltambahtunjangan) - parseInt(splittunjangan)
-        $('#gaji_diterima').val(jumlahfix)
+        // var gajiberkurang = $(row2.children()[2]).text()
+        // var totaltambahtunjangan = $('#gaji_diterima').val()
+        // var splittunjangan = gajiberkurang.split('Rp')[1].replace('.', '').replace(',00', '').trim()
+        // var jumlahfix = parseInt(totaltambahtunjangan) - parseInt(splittunjangan)
+        // $('#gaji_diterima').val(jumlahfix)
 
-        var totaltunjangan = $('#totaltunjangan2').html()
-        var totaltunjanganfix = parseInt(totaltunjangan) - parseInt(splittunjangan)
-        $('#totaltunjangan2').html(totaltunjanganfix)
-        table2.row(row2).remove().draw();
+        // var totaltunjangan = $('#totaltunjangan2').html()
+        // var totaltunjanganfix = parseInt(totaltunjangan) - parseInt(splittunjangan)
+        // $('#totaltunjangan2').html(totaltunjanganfix)
+        // table2.row(row2).remove().draw();
 
         // draw() Reset Ulang Table
-        var table2 = $('#dataTable').DataTable()
     }
 
     $(document).ready(function () {
@@ -756,7 +890,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         var table2 = $('#dataTableAbsensi').DataTable()
         var table = $('#dataTablesemuatunjangan').DataTable()
         var template = $('#template_delete_button').html()
-        $('#dataTabletunjangan').DataTable({
+        $('#dataTableKonfirmasi').DataTable({
             "columnDefs": [{
                     "targets": -1,
                     "data": null,

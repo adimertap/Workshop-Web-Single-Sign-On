@@ -395,6 +395,8 @@ Route::group(
             ->namespace('Kepegawaian\Jadwal')
             ->middleware(['owner', 'verified'])
             ->group(function () {
+                Route::get('jadwal-pegawai/tanggal', 'JadwalpegawaiController@JadwalPegawaiBulan');
+
                 Route::resource('jadwal-pegawai', 'JadwalpegawaiController');
                 Route::post('jadwal-pegawai/tanggal', 'JadwalpegawaiController@getJadwal');
                 Route::post('jadwal-pegawai/masuk', 'JadwalpegawaiController@masuk');
@@ -514,6 +516,7 @@ Route::group(
             ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::resource('invoice-payable', 'InvoicePayableController');
+                Route::get('cetak-invoice/{id}', 'InvoicePayableController@CetakInvoice')->name('cetak-invoice');
             });
 
         // PRF ---------------------------------------------------------------------------- PRF

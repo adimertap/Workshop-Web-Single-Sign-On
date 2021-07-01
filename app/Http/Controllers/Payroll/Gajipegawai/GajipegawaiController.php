@@ -149,13 +149,16 @@ class GajipegawaiController extends Controller
         $gaji = Gajipegawai::findOrFail($id_gaji_pegawai);
         $gaji->tahun_gaji = $request->tahun_gaji;
         $gaji->bulan_gaji = $request->bulan_gaji;
-        $gaji->gaji_diterima = $request->gaji_diterima;
-        $gaji->total_tunjangan = $request->total_tunjangan;
+        $gaji->grand_total_gaji = $request->grand_total_gaji;
+        $gaji->grand_total_tunjangan = $request->grand_total_tunjangan;
         $gaji->keterangan = $request->keterangan;
         $gaji->id_jenis_transaksi = $request->id_jenis_transaksi;
+        $gaji->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         
         $gaji->save();
+        $gaji->Detailpegawai()->sync($request->pegawai);
         $gaji->Detailtunjangan()->sync($request->tunjangan);
+
         return $request;
     }
 
