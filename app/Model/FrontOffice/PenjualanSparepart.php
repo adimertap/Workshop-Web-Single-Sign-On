@@ -52,7 +52,7 @@ class PenjualanSparepart extends Model
 
     public function Detailsparepart()
     {
-        return $this->belongsToMany(Sparepart::class, 'tb_fo_detail_penjualan_sparepart', 'id_penjualan_sparepart', 'id_sparepart')->withPivot('jumlah', 'total_harga');
+        return $this->belongsToMany(Sparepart::class, 'tb_fo_detail_penjualan_sparepart', 'id_penjualan_sparepart', 'id_sparepart')->withPivot('jumlah', 'total_harga','harga');
     }
 
     public static function getId()

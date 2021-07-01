@@ -64,13 +64,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($mekanik_asli as $item)
-                                        @if (($item->absensi_mekanik) == '')
+                                        @forelse ($pegawai as $item)
+                                    
                                         <tr role="row" class="odd">
                                             <td>{{ $item->nama_pegawai }}</td>
-                                            <td>{{ $item->absensi_mekanik->jam_masuk }}</td>
+                                            <td>{{ $item->jam_masuk }}</td>
                                         </tr>
-                                        @endif
+                                       
 
                                         @empty
                                         <tr>

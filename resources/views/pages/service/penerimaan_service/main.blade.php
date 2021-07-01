@@ -326,9 +326,6 @@
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
                                                 style="width: 20px;">Stock</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 80px;">Harga Jual</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 20px;">Actions</th>
                                         </tr>
@@ -350,9 +347,6 @@
                                             <td class="satuan">{{ $item->Konversi->satuan }}
                                             </td>
                                             <td class="stock">{{ $item->stock }}</td>
-                                            <td class="harga_jual">Rp.
-                                                {{ number_format($item->Hargasparepart->harga_jual,2,',','.') }}
-                                            </td>
                                             <td>
                                                 <button id="{{ $item->kode_sparepart }}-button"
                                                     class="btn btn-success btn-datatable" type="button"
@@ -482,8 +476,7 @@
                         <div class="form-group">
                             <label class="small mb-1" for="harga">Harga</label>
                             <input class="form-control" name="harga" type="text" id="harga"
-                                placeholder="Input Jumlah Pesanan" value="{{ $item->Hargasparepart->harga_jual }}"
-                                readonly></input>
+                                placeholder="Input Harga Sparepart" value="{{ $item->Kartugudangpenjualan['harga_beli'] }}"></input>
                         </div>
                     </div>
 
@@ -689,6 +682,7 @@
     function konfirmsparepart(event, id_sparepart) {
         var form = $('#form-' + id_sparepart)
         var jumlah = form.find('input[name="jumlah"]').val()
+        var harga = form.find('input[name="harga"]').val()
         if (jumlah == 0 | jumlah == '') {
             alert('Jumlah Kosong')
         } else {
@@ -706,13 +700,18 @@
                 var jenis_sparepart = $(data.find('.jenis_sparepart')[0]).text()
                 var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
                 var satuan = $(data.find('.satuan')[0]).text()
-                var harga_jual = $(data.find('.harga_jual')[0]).text()
                 var template = $($('#template_delete_button_sparepart').html())
-                var splitqty = harga_jual.split('Rp.')[1].replace('.', '').replace(',00', '')
+            
                 var total = new Intl.NumberFormat('id', {
                     style: 'currency',
                     currency: 'IDR'
-                }).format(jumlah * splitqty)
+                }).format(jumlah * harga)
+
+                var hargaidr = new Intl.NumberFormat('id', {
+                    style: 'currency',
+                    currency: 'IDR'
+                }).format(harga)
+
                 //Delete Data di Table Konfirmasi sebelum di add
                 var table = $('#dataSparepart').DataTable()
                 // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
@@ -722,7 +721,7 @@
                 $('#dataSparepart').DataTable().row.add([
                     kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
                     jenis_sparepart, merk_sparepart, satuan,
-                    harga_jual, jumlah, total,
+                    hargaidr, jumlah, total,
                 ]).draw();
             }
         }

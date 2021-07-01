@@ -102,6 +102,13 @@
                             </div>
                             Penerimaan Service
                         </a>
+                        <a class="nav-link collapsed" href="{{route('penerimaanservice.create')}}" aria-expanded="false"
+                        aria-controls="collapseUtilities">
+                        <div class="nav-link-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        Booking Service
+                    </a>
                         @endif
 
                         @if (Auth::user()->role == 'admin_service_instructor' || Auth::user()->role == 'owner')
