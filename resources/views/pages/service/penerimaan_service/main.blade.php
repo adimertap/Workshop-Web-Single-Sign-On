@@ -476,7 +476,7 @@
                         <div class="form-group">
                             <label class="small mb-1" for="harga">Harga</label>
                             <input class="form-control" name="harga" type="text" id="harga"
-                                placeholder="Input Harga Sparepart" value="{{ $item->Kartugudangpenjualan['harga_beli'] }}"></input>
+                                placeholder="Input Harga Sparepart" value="{{ isset($item->Kartugudangpenjualan['harga_beli']) }}"></input>
                         </div>
                     </div>
 
