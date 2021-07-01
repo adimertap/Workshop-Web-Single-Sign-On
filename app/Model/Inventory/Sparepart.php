@@ -46,7 +46,7 @@ class Sparepart extends Model
         return $this->belongsTo(Jenissparepart::class, 'id_jenis_sparepart', 'id_jenis_sparepart')->withTrashed();
     }
 
-    public $with = ['Merksparepart','Jenissparepart','Kemasan','Kartugudangterakhir'];
+    public $with = ['Merksparepart', 'Jenissparepart', 'Kemasan', 'Kartugudangterakhir'];
     public function Merksparepart()
     {
         return $this->belongsTo(Merksparepart::class, 'id_merk', 'id_merk')->withTrashed();
@@ -77,8 +77,9 @@ class Sparepart extends Model
         return $this->hasMany(Gallery::class, 'id_sparepart');
     }
 
-    public function Hargasparepart(){
-        return $this->hasOne(Hargasparepart::class,'id_sparepart');
+    public function Hargasparepart()
+    {
+        return $this->hasOne(Hargasparepart::class, 'id_sparepart');
     }
 
     public function PO()
@@ -91,28 +92,31 @@ class Sparepart extends Model
         return $this->belongsToMany(Opname::class, 'tb_inventory_detopname', 'id_sparepart', 'id_opname');
     }
 
-    public function Kartugudang(){
-        return $this->hasMany(Kartugudang::class, 'id_sparepart','id_sparepart');
+    public function Kartugudang()
+    {
+        return $this->hasMany(Kartugudang::class, 'id_sparepart', 'id_sparepart');
     }
 
-    public function Kartugudangsaldoakhir(){
-        return $this->hasOne(Kartugudang::class, 'id_sparepart','id_sparepart')->orderBy('updated_at', 'DESC');;
+    public function Kartugudangsaldoakhir()
+    {
+        return $this->hasOne(Kartugudang::class, 'id_sparepart', 'id_sparepart')->orderBy('updated_at', 'DESC');;
     }
 
-    public function Kartugudangterakhir(){
-        return $this->hasOne(Kartugudang::class, 'id_sparepart','id_sparepart')->where('jenis_kartu', 'Receiving')->orderBy('updated_at', 'DESC');
+    public function Kartugudangterakhir()
+    {
+        return $this->hasOne(Kartugudang::class, 'id_sparepart', 'id_sparepart')->where('jenis_kartu', 'Receiving')->orderBy('updated_at', 'DESC');
     }
-    
+
 
     public static function getId()
     {
         $getId = DB::table('tb_inventory_master_sparepart')->orderBy('id_sparepart', 'DESC')->take(1)->get();
-        if(count($getId) > 0) return $getId;
+        if (count($getId) > 0) return $getId;
         return (object)[
             (object)[
-                'id_sparepart'=> 0
+                'id_sparepart' => 0
             ]
-            ];
+        ];
     }
 
     protected static function booted()

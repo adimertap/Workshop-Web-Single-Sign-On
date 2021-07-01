@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\FrontOffice\MasterData;
 
 use App\Http\Controllers\Controller;
+use App\Model\Inventory\Hargasparepart;
 use App\Model\Inventory\Sparepart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HargaJualSparepartController extends Controller
 {
@@ -15,8 +17,10 @@ class HargaJualSparepartController extends Controller
      */
     public function index()
     {
-        $sparepart = Sparepart::where('stock', '>', 0)->get();
-        return view('pages.frontoffice.masterdata.harga_jual.main', compact('sparepart'));
+        $sparepart = Sparepart::where('stock', '>', 0)->with('Hargasparepart')->get();
+        $harga = Hargasparepart::where('id_bengkel', Auth::user()->id_bengkel)->get();
+        // return $sparepart;
+        return view('pages.frontoffice.masterdata.harga_jual.main', compact('sparepart', 'harga'));
     }
 
     /**
@@ -69,9 +73,13 @@ class HargaJualSparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_harga)
     {
-        //
+        $harga = Hargasparepart::findOrFail($id_harga);
+        $harga->harga_jual = $request->harga_jual;
+
+        $harga->update();
+        return $request;
     }
 
     /**

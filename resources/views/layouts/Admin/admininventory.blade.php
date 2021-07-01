@@ -226,7 +226,7 @@
                                     Stock Opname
                                 </a>
                                 @endif
-                                @if (Auth::user()->role == 'admin_accounting')
+                                @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'owner')
                                 <a class="nav-link " href="{{ route('approval-po-ap.index') }}">
                                     Purchase Order AP
                                 </a>
