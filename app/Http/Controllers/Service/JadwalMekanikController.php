@@ -7,6 +7,7 @@ use App\Model\Kepegawaian\Absensi;
 use App\Model\Kepegawaian\Jabatan;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\Service\JadwalMekanik;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class JadwalMekanikController extends Controller
@@ -18,11 +19,20 @@ class JadwalMekanikController extends Controller
      */
     public function index()
     {
-        $mekanik = Jabatan::with('pegawai', 'pegawai.absensi_mekanik')->where('nama_jabatan', 'Mekanik')->get();
-        $mekanik_asli = $mekanik[0]->pegawai;
+        // $mekanik = Jabatan::with('pegawai', 'pegawai.absensi_mekanik')->where('nama_jabatan', 'Mekanik')->get();
+        // $mekanik_asli = $mekanik[0]->pegawai;
+
+        $pegawai = Pegawai::leftJoin('tb_kepeg_absensi', 'tb_kepeg_master_pegawai.id_pegawai', 'tb_kepeg_absensi.id_pegawai')
+        ->join('tb_kepeg_master_jabatan', 'tb_kepeg_master_pegawai.id_jabatan', 'tb_kepeg_master_jabatan.id_jabatan')
+        ->select('tb_kepeg_master_pegawai.id_pegawai', 'nama_pegawai','nama_jabatan','tanggal_absensi','jam_masuk')
+        ->where('nama_jabatan', '=', 'Mekanik')
+        ->whereDate('tanggal_absensi',Carbon::today() )->get();
+        
+        // return $pegawai;
+
         // return $mekanik_asli;
 
-        return view('pages.service.jadwal_mekanik.main', compact('mekanik_asli'));
+        return view('pages.service.jadwal_mekanik.main', compact('pegawai'));
     }
 
     /**
