@@ -21,7 +21,7 @@ class PenjualanSparepartController extends Controller
      */
     public function index()
     {
-        $penjualan = PenjualanSparepart::with(['Customer'])->orderBy('id_penjualan_sparepart', 'DESC')->get();
+        $penjualan = PenjualanSparepart::with(['Customer', 'Pegawai'])->orderBy('id_penjualan_sparepart', 'DESC')->get();
         $blt = date('D, d/m/Y');
         return view('pages.frontoffice.penjualan_sparepart.main', compact('blt', 'penjualan'));
     }
@@ -35,11 +35,11 @@ class PenjualanSparepartController extends Controller
     {
         $customer = CustomerBengkel::all();
         $sparepart = Sparepart::with('Kartugudangpenjualan')->where('stock', '>', 0)->get();
-       
+
 
         // ->where('nama_jabatan', '!=', 'Owner')->get();
-        
-        
+
+
         $today = Carbon::today();
 
         $id = PenjualanSparepart::getId();
@@ -69,6 +69,7 @@ class PenjualanSparepartController extends Controller
         $penjualan->id_customer_bengkel = $customer->id_customer_bengkel;
         $penjualan->tanggal = $request->tanggal;
         $penjualan->status_bayar = 'Belum Bayar';
+        $penjualan->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
         $penjualan->id_bengkel = Auth::user()->id_bengkel;
 
         $temp = 0;
@@ -87,13 +88,13 @@ class PenjualanSparepartController extends Controller
 
             $kartu_gudang = new Kartugudang;
             $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
-            
-            $kartugudangterakhir =  $sparepart->Kartugudangsaldoakhir;
-            if($kartugudangterakhir != null)
-            $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir - $item['jumlah'];
 
-            if($kartugudangterakhir == null)
-            $kartu_gudang->saldo_akhir =  $sparepart->stock - $item['jumlah'];
+            $kartugudangterakhir =  $sparepart->Kartugudangsaldoakhir;
+            if ($kartugudangterakhir != null)
+                $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir - $item['jumlah'];
+
+            if ($kartugudangterakhir == null)
+                $kartu_gudang->saldo_akhir =  $sparepart->stock - $item['jumlah'];
 
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item['jumlah'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
@@ -120,7 +121,7 @@ class PenjualanSparepartController extends Controller
      */
     public function show($id_penjualan_sparepart)
     {
-        $penjualan = PenjualanSparepart::with('Detailsparepart')->findOrFail($id_penjualan_sparepart);
+        $penjualan = PenjualanSparepart::with('Detailsparepart', 'Pegawai')->findOrFail($id_penjualan_sparepart);
 
         return view('pages.frontoffice.penjualan_sparepart.detail')->with([
             'penjualan' => $penjualan
@@ -133,9 +134,19 @@ class PenjualanSparepartController extends Controller
      * @param  \App\PenjualanSparepart  $penjualanSparepart
      * @return \Illuminate\Http\Response
      */
-    public function edit(PenjualanSparepart $penjualanSparepart)
+    public function edit($id_penjualan_sparepart)
     {
-        //
+        $customer = CustomerBengkel::all();
+        $sparepart = Sparepart::with('Kartugudangpenjualan')->where('stock', '>', 0)->get();
+        $today = Carbon::today();
+        $penjualan = PenjualanSparepart::with('Detailsparepart', 'Customer')->findOrFail($id_penjualan_sparepart);
+
+        return view('pages.frontoffice.penjualan_sparepart.edit')->with([
+            'penjualan' => $penjualan,
+            'today' => $today,
+            'customer' => $customer,
+            'sparepart' => $sparepart
+        ]);
     }
 
     /**
