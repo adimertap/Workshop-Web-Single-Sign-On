@@ -34,7 +34,8 @@ class PenjualanSparepartController extends Controller
     public function create()
     {
         $customer = CustomerBengkel::all();
-        $sparepart = Sparepart::where('stock', '>', 0)->get();
+        $sparepart = Sparepart::with('Kartugudangpenjualan')->where('stock', '>', 0)->get();
+       
 
         // ->where('nama_jabatan', '!=', 'Owner')->get();
         
@@ -96,6 +97,7 @@ class PenjualanSparepartController extends Controller
 
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item['jumlah'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
+            $kartu_gudang->harga_beli = $kartu_gudang->harga + $item['harga'];
             $kartu_gudang->kode_transaksi = $penjualan->kode_penjualan;
             $kartu_gudang->tanggal_transaksi = $penjualan->tanggal;
             $kartu_gudang->jenis_kartu = 'Penjualan';

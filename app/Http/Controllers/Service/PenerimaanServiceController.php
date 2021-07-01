@@ -34,7 +34,7 @@ class PenerimaanServiceController extends Controller
         $service_advisor = PenerimaanService::all();
         $kendaraan = MasterDataKendaraan::all();
         $customer_bengkel = CustomerBengkel::all();
-        $sparepart = Sparepart::where('stock', '>', 0)->get();
+        $sparepart = Sparepart::with('Kartugudangpenjualan')->where('stock', '>', 0)->get();
         $pegawai = Pegawai::all();
         $jasa_perbaikan = MasterDataJenisPerbaikan::all();
         $date = Carbon::today()->toDateString();
@@ -62,7 +62,7 @@ class PenerimaanServiceController extends Controller
         $service_advisor = PenerimaanService::all();
         $kendaraan = MasterDataKendaraan::all();
         $customer_bengkel = CustomerBengkel::all();
-        $sparepart = Sparepart::where('stock', '>', 0)->get();
+        $sparepart = Sparepart::with('Kartugudangpenjualan')->where('stock', '>', 0)->get();
         $pegawai = Pegawai::all();
         $jasa_perbaikan = MasterDataJenisPerbaikan::all();
         $date = Carbon::today()->toDateString();
@@ -133,10 +133,11 @@ class PenerimaanServiceController extends Controller
             if ($kartugudangterakhir == null)
                 $kartu_gudang->saldo_akhir =  $sparepart->stock - $item1['jumlah'];
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item1['jumlah'];
+            $kartu_gudang->harga_beli = $kartu_gudang->harga + $item1['harga'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
             $kartu_gudang->kode_transaksi = $service->kode_sa;
             $kartu_gudang->tanggal_transaksi = $service->date;
-            $kartu_gudang->jenis_kartu = 'Service';
+            $kartu_gudang->jenis_kartu = 'Penjualan';
             $kartu_gudang->save();
         }
 
@@ -199,10 +200,11 @@ class PenerimaanServiceController extends Controller
                 $kartu_gudang->saldo_akhir =  $sparepart->stock - $item1['jumlah'];
 
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item1['jumlah'];
+            $kartu_gudang->harga_beli = $kartu_gudang->harga + $item1['harga'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
             $kartu_gudang->kode_transaksi = $service->kode_sa;
             $kartu_gudang->tanggal_transaksi = $service->date;
-            $kartu_gudang->jenis_kartu = 'Service';
+            $kartu_gudang->jenis_kartu = 'Penjualan';
             $kartu_gudang->save();
         }
 
