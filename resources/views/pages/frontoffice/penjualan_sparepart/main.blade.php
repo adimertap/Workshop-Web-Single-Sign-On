@@ -115,7 +115,7 @@
                                                 @endif
 
                                                 @if ($item->status_bayar == 'Belum Bayar')
-                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                <a href="{{ route('penjualansparepart.edit', $item->id_penjualan_sparepart) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
