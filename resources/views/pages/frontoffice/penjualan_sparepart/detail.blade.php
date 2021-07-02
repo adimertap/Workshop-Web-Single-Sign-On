@@ -36,7 +36,7 @@
             <div class="form-group">
                 <label class="small mb-1" for="id_pegawai">Pegawai</label>
                 <input class="form-control form-control-sm" id="id_pegawai" type="text" name="id_pegawai"
-                    value="{{Auth::user()->name}}" readonly />
+                    value="{{ $penjualan->Pegawai->nama_pegawai }}" readonly />
             </div>
             <div class="form-group">
                 <label class="small mb-1" for="tanggal">Tanggal Penjualan</label>

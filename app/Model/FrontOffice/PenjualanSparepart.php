@@ -3,6 +3,7 @@
 namespace App\Model\FrontOffice;
 
 use App\Model\Inventory\Sparepart;
+use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +24,8 @@ class PenjualanSparepart extends Model
         'tanggal',
         'status_bayar',
         'total_bayar',
-        'id_bengkel'
+        'id_bengkel',
+        'id_pegawai'
     ];
 
     protected $hidden = [
@@ -45,6 +47,11 @@ class PenjualanSparepart extends Model
         return $this->belongsTo(CustomerBengkel::class, 'id_customer_bengkel', 'id_customer_bengkel');
     }
 
+    public function Pegawai()
+    {
+        return $this->belongsTo(Pegawai::class, 'id_pegawai', 'id_pegawai');
+    }
+
     public function Bengkel()
     {
         return $this->belongsTo(Bengkel::class, 'id_bengkel', 'id_bengkel');
@@ -52,7 +59,7 @@ class PenjualanSparepart extends Model
 
     public function Detailsparepart()
     {
-        return $this->belongsToMany(Sparepart::class, 'tb_fo_detail_penjualan_sparepart', 'id_penjualan_sparepart', 'id_sparepart')->withPivot('jumlah', 'total_harga','harga');
+        return $this->belongsToMany(Sparepart::class, 'tb_fo_detail_penjualan_sparepart', 'id_penjualan_sparepart', 'id_sparepart')->withPivot('jumlah', 'total_harga', 'harga');
     }
 
     public static function getId()

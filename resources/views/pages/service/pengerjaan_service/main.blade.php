@@ -156,7 +156,7 @@
                     <div class="modal-body">Selesaikan service  {{ $item->kode_sa }} ?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-success" type="submit">Ya! Hapus</button>
+                        <button class="btn btn-success" type="submit">Ya! Selesai</button>
                     </div>
                 </form>
             </div>
