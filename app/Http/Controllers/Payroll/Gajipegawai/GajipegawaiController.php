@@ -7,6 +7,8 @@ use App\Model\Accounting\Jenistransaksi;
 use App\Model\Inventory\Retur\Retur;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\Payroll\Detailgaji;
+use App\Model\Payroll\Detailpegawai;
+use App\Model\Payroll\Detailtunjangan;
 use App\Model\Payroll\Gajipegawai;
 use App\Model\Payroll\Mastertunjangan;
 use Carbon\Carbon;
@@ -89,10 +91,13 @@ class GajipegawaiController extends Controller
      */
     public function show($id_gaji_pegawai)
     {
-        $gaji = Gajipegawai::with('Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan')->findOrFail($id_gaji_pegawai);
+        $gaji = Gajipegawai::with('Detailpegawai.Detailtunjangan')->findOrFail($id_gaji_pegawai);
+        // $gaji2 = Gajipegawai::with('Detailtunjangan')->findOrFail($id_gaji_pegawai);
+        // return $gaji;    
 
         return view('pages.payroll.gajipegawai.detail')->with([
-            'gaji' => $gaji
+            'gaji' => $gaji,
+            'jumlah_pegawai' => Detailgaji::where('id_gaji_pegawai', $id_gaji_pegawai)->count(),
         ]);
     }
 
@@ -112,7 +117,7 @@ class GajipegawaiController extends Controller
        
         $jenis_transaksi = Jenistransaksi::all();
         $pegawai = Pegawai::with([
-            'Jabatan.Gajipokok','absensi'
+            'Jabatan.Gajipokok'
         ])->join('tb_kepeg_master_jabatan', 'tb_kepeg_master_pegawai.id_jabatan', 'tb_kepeg_master_jabatan.id_jabatan')
         ->where('nama_jabatan', '!=', 'Owner')->get();
         // return $pegawai;
@@ -171,8 +176,8 @@ class GajipegawaiController extends Controller
     public function destroy($id_gaji_pegawai)
     {
         $gaji = Gajipegawai::findOrFail($id_gaji_pegawai);
-        
         Detailgaji::where('id_gaji_pegawai', $id_gaji_pegawai)->delete();
+        Detailtunjangan::where('id_gaji_pegawai', $id_gaji_pegawai)->delete();
         $gaji->delete();
 
         return redirect()->back()->with('messagehapus','Data Pembayaran Gaji Pegawai Berhasil dihapus');
@@ -191,14 +196,12 @@ class GajipegawaiController extends Controller
         return redirect()->route('gaji-pegawai.index')->with('messagebayar','Slip Gaji Pegawai berhasil Dibayarkan');
     }
 
-    public function setStatusPerBulanTahun(Request $request, $bulan_gaji, $tahun_gaji)
+    public function setStatusPerBulanTahun($id_gaji_pegawai)
     {
-        $item = Gajipegawai::where('bulan_gaji',$bulan_gaji)->where('tahun_gaji', $tahun_gaji)->get();
-        foreach ($item as $key => $value) {
-            $value->status_dana = 'Dana Telah Diberikan';
-            $value->save();
-        }
-        
+        $item = Gajipegawai::find($id_gaji_pegawai);
+        $item->status_dana = 'Dana Telah Diberikan';
+        $item->save();
+
         return redirect()->back()->with('messagebayar','Proses Pencairan Dana Berhasil Dilakukan');
     }
 

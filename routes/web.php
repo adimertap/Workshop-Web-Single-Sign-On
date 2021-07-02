@@ -447,8 +447,8 @@ Route::group(
 
                 Route::post('gaji-pegawai/{id_gaji_pegawai}/set-status', 'GajipegawaiController@setStatus')
                     ->name('gaji-pegawai-status');
-                Route::post('gaji-pegawai/{bulan_gaji}/{tahun_gaji}/set-status', 'GajipegawaiController@setStatusPerBulanTahun')
-                    ->name('gaji-pegawai-status-bulan-tahun');
+                Route::post('gaji-pegawai/{id_gaji_pegawai}/status-dana', 'GajipegawaiController@setStatusPerBulanTahun')
+                    ->name('gaji-pegawai-status-dana');
                 Route::get('slip-gaji/{id}', 'GajipegawaiController@CetakSlip')->name('cetak-slip-gaji');
             });
 
@@ -562,7 +562,7 @@ Route::group(
             ->group(function () {
                 Route::resource('gaji-accounting', 'GajiAccountingController');
 
-                Route::post('gaji-accounting/posting-jurnal', 'GajiAccountingController@postingjurnal')
+                Route::put('gaji-accounting/posting-jurnal/{id}', 'GajiAccountingController@postingjurnal')
                     ->name('gaji-pegawai-jurnal');
             });
 

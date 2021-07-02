@@ -21,7 +21,7 @@ class MasterdatagajipokokController extends Controller
         $gajipokok = Mastergajipokok::with([
             'Jabatan'])->get();
 
-        $jabatan = Jabatan::all();
+            $jabatan = Jabatan::where('nama_jabatan', '!=', 'Owner')->get();
         // // Cek nilai merksparepart -> array
         // // dd($merksparepart); 
         

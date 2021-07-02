@@ -102,9 +102,15 @@ class PurchaseorderController extends Controller
      */
     public function edit($id)
     {
+        // $po = PO::with([
+        //     'Pegawai','Supplier.SparepartRevisi.Merksparepart.Jenissparepart','Detailsparepart','Supplier.SparepartRevisi.Kartugudang','Supplier.SparepartRevisi.Kartugudangterakhir'
+        // ])->find($id);
+
         $po = PO::with([
-            'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailsparepart','Supplier.Sparepart.Kartugudang','Supplier.Sparepart.Kartugudangterakhir'
+           'Pegawai','Detailsparepart','Supplier.Sparepart.Merksparepart.Jenissparepart','Supplier.Sparepart.Kartugudang','Supplier.Sparepart.Kartugudangterakhir'
         ])->find($id);
+
+        // return $po;
 
         $sparepart = Sparepart::all();
        

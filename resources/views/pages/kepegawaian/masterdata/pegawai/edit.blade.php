@@ -86,7 +86,7 @@
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1" for="id_jabatan">Jabatan</label>
                                             <select class="form-control" name="id_jabatan" id="id_jabatan">
-                                                <option value="{{ $item->jabatan->nama_jabatan }}">{{ $item->jabatan->nama_jabatan }}</option>
+                                                <option value="{{ $item->jabatan->id_jabatan }}">{{ $item->jabatan->nama_jabatan }}</option>
                                                 @foreach ($jabatan as $jabatan)
                                                     <option value="{{ $jabatan->id_jabatan }}">{{ $jabatan->nama_jabatan }}
                                                 </option>

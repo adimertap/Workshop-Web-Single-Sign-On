@@ -203,6 +203,20 @@
                                             @error('id_kemasan')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
+                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1 mr-1" for="id_supplier">Pilih Supplier Asal</label><span class="mr-4 mb-3"
+                                            style="color: red">*</span>
+                                        <select class="form-control" name="id_supplier" id="id_supplier"
+                                            class="form-control @error('id_supplier') is-invalid @enderror">
+                                            <option> Pilih Supplier</option>
+                                            @foreach ($supplier as $item)
+                                            <option value="{{ $item->id_supplier }}">{{ $item->nama_supplier }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
+                                        </div> @enderror
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
@@ -302,7 +316,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="submit">Ya! Tambah</button>
+                    <button class="btn btn-primary" type="submit">Tambah</button>
                 </div>
             </form>
         </div>

@@ -95,7 +95,7 @@
                                         </div>
                                     </div>
                                     <div class="row"> 
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="id_konversi">Konversi Satuan</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_konversi" id="id_konversi">
                                                 <option value="{{ $item->Konversi->id_konversi }}">
@@ -107,7 +107,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="id_rak">Tempat Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select class="form-control" name="id_rak" id="id_rak">
                                                 <option value="{{ $item->Rak->id_rak }}">
@@ -115,6 +115,18 @@
                                                 @foreach ($rak as $raks)
                                                 <option value="{{ $raks->id_rak }}">
                                                     {{ $raks->nama_rak }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1 mr-1" for="id_supplier">Supplier Asal</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <select class="form-control" name="id_supplier" id="id_supplier">
+                                                <option value="{{ $item->Supplier->id_supplier }}">
+                                                    {{ $item->Supplier->nama_supplier }}</option>
+                                                @foreach ($supplier as $suppliers)
+                                                <option value="{{ $suppliers->id_supplier }}">
+                                                    {{ $suppliers->nama_supplier }}
                                                 </option>
                                                 @endforeach
                                             </select>

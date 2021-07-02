@@ -117,9 +117,6 @@
                                 <a class="nav-link" href="{{ route('supplier.index')}}">
                                     Supplier
                                 </a>
-                                <a class="nav-link" href="{{ route('hargasparepart.index')}}">
-                                    Harga Sparepart
-                                </a>
                                 <a class="nav-link" href="{{ route('rak.index')}}">
                                     Rak
                                 </a>

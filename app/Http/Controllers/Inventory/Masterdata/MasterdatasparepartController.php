@@ -52,6 +52,7 @@ class MasterdatasparepartController extends Controller
         $gallery = Gallery::all();
         $kemasan = Kemasan::all();
         $rak = Rak::all();
+        $supplier = Supplier::all();
 
         $id = Sparepart::getId();
         foreach ($id as $value);
@@ -62,7 +63,7 @@ class MasterdatasparepartController extends Controller
         $kode_sparepart = 'SP-' . $blt . '/' . $idbaru;
 
 
-        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_sparepart', 'merk_sparepart', 'konversi', 'gallery', 'rak', 'kode_sparepart', 'kemasan'));
+        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_sparepart', 'merk_sparepart', 'konversi', 'gallery', 'rak', 'kode_sparepart', 'kemasan','supplier'));
     }
 
     /**
@@ -102,6 +103,7 @@ class MasterdatasparepartController extends Controller
         $sparepart->id_merk = $request->id_merk;
         $sparepart->id_konversi = $request->id_konversi;
         $sparepart->id_rak = $request->id_rak;
+        $sparepart->id_supplier = $request->id_supplier;
         $sparepart->kode_sparepart = $kode_sparepart;
         $sparepart->nama_sparepart = $request->nama_sparepart;
         $sparepart->stock_min = $request->stock_min;
@@ -115,7 +117,7 @@ class MasterdatasparepartController extends Controller
         $gallery = new Gallery;
         $gallery->photo = $name;
         $gallery->id_sparepart = $sparepart->id_sparepart;
-        $sparepart->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+        $gallery->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $gallery->save();
 
         return redirect()->route('sparepart.index')->with('messageberhasil', 'Data Sparepart Berhasil ditambah');
@@ -151,6 +153,7 @@ class MasterdatasparepartController extends Controller
         $konversi = Konversi::all();
         $rak = Rak::all();
         $kemasan = Kemasan::all();
+        $supplier = Supplier::all();
 
         return view('pages.inventory.masterdata.sparepart.edit', [
             'item' => $item,
@@ -158,7 +161,8 @@ class MasterdatasparepartController extends Controller
             'merk_sparepart' => $merk_sparepart,
             'konversi' => $konversi,
             'rak' => $rak,
-            'kemasan' => $kemasan
+            'kemasan' => $kemasan,
+            'supplier' => $supplier
         ]);
         //
     }
@@ -178,6 +182,7 @@ class MasterdatasparepartController extends Controller
         $sparepart->id_merk = $request->id_merk;
         $sparepart->id_konversi = $request->id_konversi;
         $sparepart->id_rak = $request->id_rak;
+        $sparepart->id_supplier = $request->id_supplier;
         $sparepart->kode_sparepart = $request->kode_sparepart;
         $sparepart->nama_sparepart = $request->nama_sparepart;
         $sparepart->stock_min = $request->stock_min;

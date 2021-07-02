@@ -36,11 +36,16 @@ class Supplier extends Model
 
     public $timestamps = true;
     
+    // public function Sparepart()
+    // {
+    //     return $this->belongsToMany(Sparepart::class,'tb_inventory_master_harga_sparepart','id_supplier','id_sparepart')->withPivot('harga_jual');
+    // }
+
     public function Sparepart()
     {
-        return $this->belongsToMany(Sparepart::class,'tb_inventory_master_harga_sparepart','id_supplier','id_sparepart')->withPivot('harga_jual');
+        return $this->hasMany(Sparepart::class, 'id_supplier','id_supplier');
     }
-
+    
     public function MasterHarga()
     {
         return $this->belongsTo(Hargasparepart::class, 'id_supplier');

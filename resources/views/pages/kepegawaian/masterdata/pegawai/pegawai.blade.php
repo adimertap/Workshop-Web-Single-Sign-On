@@ -77,14 +77,14 @@
                                             style="width: 90px;">No Telephone</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
-                                            style="width: 100px;">Actions</th>
+                                            style="width: 130px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($pegawai as $item)
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                        <td class="text-center">{{ $item->nik_pegawai }}</td>
+                                        <td>{{ $item->nik_pegawai }}</td>
                                         <td>{{ $item->nama_pegawai }}</td>
                                         <td>{{ $item->jabatan->nama_jabatan }}</td>
                                         <td>{{ $item->alamat }}</td>

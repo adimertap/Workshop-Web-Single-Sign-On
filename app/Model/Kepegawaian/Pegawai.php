@@ -2,7 +2,9 @@
 
 namespace App\Model\Kepegawaian;
 
+use App\Model\Payroll\Detailtunjangan;
 use App\Model\Payroll\Mastergajipokok;
+use App\Model\Payroll\Mastertunjangan;
 use App\Scopes\OwnershipScope;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -46,9 +48,9 @@ class Pegawai extends Model
         return $this->belongsTo(Jabatan::class, 'id_jabatan', 'id_jabatan')->withTrashed();
     }
 
-    public function absensi()
+    public function Detailtunjangan()
     {
-        return $this->hasMany(Absensi::class, 'id_pegawai');
+        return $this->belongsToMany(Mastertunjangan::class,'tb_payroll_detail_tunjangan','id_pegawai','id_tunjangan');
     }
 
     public static function getId()

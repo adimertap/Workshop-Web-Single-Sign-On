@@ -20,7 +20,10 @@ class MasterdatapegawaiController extends Controller
      */
     public function index()
     {
-        $pegawai = Pegawai::get();
+        $pegawai = Pegawai::with([
+            'Jabatan'
+        ])->join('tb_kepeg_master_jabatan', 'tb_kepeg_master_pegawai.id_jabatan', 'tb_kepeg_master_jabatan.id_jabatan')
+        ->where('nama_jabatan', '!=', 'Owner')->get();
 
         return view('pages.kepegawaian.masterdata.pegawai.pegawai', compact('pegawai'));
     }
@@ -35,7 +38,7 @@ class MasterdatapegawaiController extends Controller
         $pegawai = Pegawai::with([
             'jabatan'])->get();
 
-        $jabatan = Jabatan::all();
+        $jabatan = Jabatan::where('nama_jabatan', '!=', 'Owner')->get();
 
         $id = Pegawai::getId();
         foreach($id as $value);

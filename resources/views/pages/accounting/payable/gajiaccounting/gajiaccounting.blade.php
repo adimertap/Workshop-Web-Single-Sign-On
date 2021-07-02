@@ -50,6 +50,15 @@
                     </div>
                     @endif
 
+                    @if(session('messagejurnal'))
+                    <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
+                        {{ session('messagejurnal') }}
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    @endif
+
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
@@ -70,14 +79,14 @@
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
                                                 style="width: 50px;">Tahun</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 40px;">Jumlah Pegawai</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
                                                 style="width: 150px;">Total Gaji</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
                                                 style="width: 100px;">Total Tunjangan</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Salary: activate to sort column ascending"
+                                                style="width: 40px;">Detail</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
                                                 style="width: 70px;">Status Penyerahan</th>
@@ -92,14 +101,20 @@
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->bulan_gaji }}</td>
                                             <td>{{ $item->tahun_gaji }}</td>
-                                            <td class="text-center">{{ $item->jumlah_pegawai }}</td>
-                                            <td>Rp. {{ number_format($item->total_gaji,2,',','.') }}</td>
-                                            <td>Rp. {{ number_format($item->total_tunjangan,2,',','.') }}</td>
+                                            <td>Rp. {{ number_format($item->grand_total_gaji,2,',','.') }}</td>
+                                            <td>Rp. {{ number_format($item->grand_total_tunjangan,2,',','.') }}</td>
+                                            <td class="text-center">
+                                                <a href="{{ route('gaji-accounting.show', $item->id_gaji_pegawai) }}" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Detail Gaji  ">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            </td>
+                                            
                                             <td class="text-center">
                                                 @if($item->status_dana == 'Dana Belum Cair')
                                                 <a href="" class="btn btn-warning btn-xs" type="button"
                                                     data-toggle="modal"
-                                                    data-target="#Modalbayar-{{ $item->bulan_gaji }}-{{ $item->tahun_gaji }}">
+                                                    data-target="#Modalbayar-{{ $item->id_gaji_pegawai }}">
                                                     Proses?
                                                 </a>
                                                 @elseif ($item->status_dana == 'Dana Telah Diberikan')
@@ -110,9 +125,13 @@
                                                 <span class="font-size-300 text-center" style="font-size: 11px;">Menunggu
                                                     Pembayaran Gaji..</span>
                                                 @elseif ($item->status_dana == 'Dana Telah Diberikan' and $item->status_jurnal == 'Belum Diposting')
-                                                <button class="btn btn-danger btn-xs"
-                                                    onclick="postingjurnal('{{ $item->bulan_gaji }}', '{{ $item->tahun_gaji }}')"
-                                                    type="button" data-dismiss="modal">Posting Jurnal?</button> 
+                                                <a href="" class="btn btn-danger btn-xs" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modalposting-{{ $item->id_gaji_pegawai }}">
+                                                    Posting Jurnal?
+                                                </a>
+                                                @elseif ($item->status_dana == 'Dana Telah Diberikan' and $item->status_jurnal == 'Sudah Diposting')
+                                                <span class="badge badge-success"> Telah Diposting </span>
                                                 @else
                                                 <span>
                                                     @endif
@@ -133,7 +152,7 @@
 </main>
 
 @forelse ($gajipegawai as $item)
-<div class="modal fade" id="Modalbayar-{{ $item->bulan_gaji }}-{{ $item->tahun_gaji }}" tabindex="-1" role="dialog"
+<div class="modal fade" id="Modalbayar-{{ $item->id_gaji_pegawai }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -142,15 +161,14 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('gaji-pegawai-status-bulan-tahun',
-            ['bulan_gaji'=>$item->bulan_gaji, 'tahun_gaji'=>$item->tahun_gaji]) }}" method="POST" class="d-inline">
+            <form action="{{ route('gaji-pegawai-status-dana', $item->id_gaji_pegawai) }}" method="POST" class="d-inline">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         Apakah Anda Yakin untuk Melanjutkan Proses Pembayaran Gaji Pegawai pada bulan
                         {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }} dengan jumlah pegawai
                         <span class="font-weight-700">{{ $item->jumlah_pegawai }}</span> Orang, sebesar <span
-                            class="font-weight-700">Rp. {{ number_format($item->total_gaji,2,',','.') }}</span>
+                            class="font-weight-700">Rp. {{ number_format($item->grand_total_gaji,2,',','.') }}</span>
                     </div>
                 </div>
                 {{-- Validasi Error --}}
@@ -168,29 +186,57 @@
 @empty
 @endforelse
 
+
+@forelse ($gajipegawai as $item)
+<div class="modal fade" id="Modalposting-{{ $item->id_gaji_pegawai }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Posting Jurnal</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('gaji-pegawai-jurnal', $item->id_gaji_pegawai) }}" method="POST" class="d-inline">
+                @method('PUT')
+                @csrf
+                <div class="modal-body text-center">
+                    Apakah Anda Yakin Memposting Data Pembayaran Gaji Pegawai Tahun {{ $item->tahun_gaji }}, bulan {{ $item->bulan_gaji }} ?
+                </div>
+                <div class="modal-footer ">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Posting</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+@endforelse
+
 <script>
-    function postingjurnal(bulan_gaji, tahun_gaji) {
+    // function postingjurnal(bulan_gaji, tahun_gaji) {
 
-        var _token = $('input[name="_token"]').val()
+    //     var _token = $('input[name="_token"]').val()
 
-        $.ajax({
-            method: 'post',
-            url: '/Accounting/gaji-accounting/posting-jurnal',
-            data: {
-                _token: _token,
-                bulan_gaji: bulan_gaji,
-                tahun_gaji: tahun_gaji,
-            },
-            success: function (response) {
-                // window.location.href = '/Accounting/gaji-accounting'
-                console.log(response)
-            },
-            error: function (response) {
-                console.log(response)
-            }
-        });
+    //     $.ajax({
+    //         method: 'post',
+    //         url: '/Accounting/gaji-accounting/posting-jurnal',
+    //         data: {
+    //             _token: _token,
+    //             bulan_gaji: bulan_gaji,
+    //             tahun_gaji: tahun_gaji,
+    //         },
+    //         success: function (response) {
+    //             // window.location.href = '/Accounting/gaji-accounting'
+    //             console.log(response)
+    //         },
+    //         error: function (response) {
+    //             console.log(response)
+    //         }
+    //     });
 
-    }
+    // }
 
     setInterval(displayclock, 500);
 

@@ -154,9 +154,8 @@
                             </div>
                             <div class="form-group text-right">
                                 <hr>
-                                <a href="" class="btn btn-secondary btn-sm" type="button" data-toggle="modal"
-                                    data-target="#Modalabsensi">
-                                    Lihat Absensi
+                                <a href="{{ route('laporanabsensi') }}" target="_blank" class="btn btn-secondary btn-sm" type="button" >
+                                    Cek Absensi Pegawai
                                 </a>
                                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
                                     data-target="#Modalsumbit">Simpan</button>
@@ -335,11 +334,20 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header bg-light">
-            <h5 class="modal-title" id="staticBackdropLabel">Pilih Tunjangan untuk Pegawai {{ $items->nama_pegawai }}</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">Pilih Tunjangan</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                     aria-hidden="true">×</span></button>
         </div>
         <div class="modal-body">
+            <div class="alert alert-info alert-icon" role="alert">
+                <div class="alert-icon-aside">
+                    <i class="far fa-check-square"></i>
+                </div>
+                <div class="alert-icon-content">
+                    <h6 class="alert-heading">Tunjangan {{ $items->nama_pegawai }}</h6>
+                    Pilih tunjangan dengan cara mencentang pada bagian pilih
+                </div>
+            </div>
             <div class="form-group">
                 <div class="datatable">
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -395,200 +403,24 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     </tbody>
                                 </table>
                             </div>
-                            <button class="btn btn-success btn-sm text-right"
-                            onclick="tambahtunjangan(event, {{ $items->id_pegawai }})"
-                            type="button" data-dismiss="modal">Tambah</button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>
         </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-sm text-right"
+            onclick="tambahtunjangan(event, {{ $items->id_pegawai }})"
+            type="button" data-dismiss="modal">Tambah Tunjangan</button>
+        </div>
     </div>
 </div>
 </div>
+
 @empty
     
 @endforelse
 
-
-
-{{-- MODAL TAMBAH TUNJANGAN --}}
-{{-- <div class="modal fade" id="Modaltambahtunjangan" data-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-light">
-                <h5 class="modal-title" id="staticBackdropLabel">Data Tunjangan</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <div class="datatable">
-                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="table table-bordered table-hover dataTable"
-                                        id="dataTablesemuatunjangan" width="100%" cellspacing="0" role="grid"
-                                        aria-describedby="dataTable_info" style="width: 100%;">
-                                        <thead>
-                                            <tr role="row">
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-sort="ascending"
-                                                    aria-label="Name: activate to sort column descending"
-                                                    style="width: 20px;">
-                                                    No</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 80px;">
-                                                    Tunjangan</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 180px;">
-                                                    Jumlah</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 180px;">
-                                                    Keterangan</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 180px;">
-                                                    Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($tunjangan as $item)
-                                            <tr id="item-{{ $item->id_tunjangan }}" role="row" class="odd">
-                                                <th scope="row" class="small" class="sorting_1">
-                                                    {{ $loop->iteration}}</th>
-                                                <td class="nama_tunjangan">{{ $item->nama_tunjangan }}</td>
-                                                <td class="jumlah_tunjangan">Rp
-                                                    {{ number_format($item->jumlah_tunjangan,2,',','.') }}</td>
-                                                </td>
-                                                <td class="keterangan">{{ $item->keterangan }}</td>
-                                                <td>
-                                                   
-                                                    <button class="btn btn-success btn-sm"
-                                                        onclick="tambahtunjangan(event, {{ $item->id_tunjangan }})"
-                                                        type="button" data-dismiss="modal">Tambah</button>
-                                                </td>
-                                            </tr>
-                                            @empty
-                                            @endforelse
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
-{{-- 
-<div class="modal fade" id="Modalabsensi" data-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-light">
-                <h5 class="modal-title" id="staticBackdropLabel">Data Absensi Pegawai</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <form action="" method="POST" id="form3" class="d-inline">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <div class="datatable">
-                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table class="table table-bordered table-hover dataTable" id="dataTableAbsensi"
-                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                            style="width: 100%;">
-                                            <thead>
-                                                <tr role="row">
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">
-                                                        No</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
-                                                        style="width: 100px;">
-                                                        Tanggal</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
-                                                        style="width: 80px;">
-                                                        Absensi</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
-                                                        style="width: 50px;">
-                                                        Jam Masuk</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
-                                                        style="width: 50px;">
-                                                        Jam Keluar</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
-                                                        style="width: 100px;">
-                                                        Keterangan</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @forelse ($gaji->Pegawai->absensi as $item)
-                                                <tr role="row" class="odd">
-                                                    <th scope="row" class="small" class="sorting_1">
-                                                        {{ $loop->iteration}}
-                                                    </th>
-                                                    <td>{{ $item->tanggal_absensi }}</td>
-                                                    <td>
-                                                        @if($item->absensi == 'Absen_Pagi')
-                                                        <span> Masuk </span>
-                                                        @elseif ($item->absensi == 'Masuk')
-                                                        <span> Masuk</span>
-                                                        @elseif ($item->absensi == 'Ijin' | $item->absensi == 'Sakit' |
-                                                        $item->absensi == 'Cuti' | $item->absensi == 'Alpha')
-                                                        {{ $item->absensi }}
-                                                        @else
-                                                        <span>
-                                                            @endif
-                                                        </span>
-                                                    </td>
-                                                    <td>
-                                                        @if($item->absensi == 'Absen_Pagi' | $item->absensi =='Masuk')
-                                                        {{ $item->jam_masuk }}
-                                                        @elseif ($item->absensi == 'Ijin' | $item->absensi == 'Sakit' |
-                                                        $item->absensi == 'Cuti' | $item->absensi == 'Alpha')
-                                                        @else
-                                                        <span>
-                                                            @endif
-                                                        </span>
-                                                    </td>
-                                                    <td>{{ $item->jam_pulang }}</td>
-                                                    <td>{{ $item->keterangan }}</td>
-                                                </tr>
-                                                @empty
-
-                                                @endforelse
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div> --}}
 
 
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
@@ -643,9 +475,9 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <button class="btn btn-danger btn-datatable" onclick="hapusgaji(this)" type="button">
         <i class="fas fa-trash"></i>
     </button>
-    <button class="btn btn-primary btn-datatable" onclick="editgaji(this)" type="button">
+    {{-- <button class="btn btn-primary btn-datatable" onclick="editgaji(this)" type="button">
         <i class="fas fa-edit"></i>
-    </button>
+    </button> --}}
 </template>
 
 <template id="template_add_button">
@@ -668,10 +500,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 var splitjumlah = jumlah.split('Rp')[1].replace('.', '').replace(',00', '').trim()
                 
                 tunjangan = tunjangan + parseInt(splitjumlah)
-                
-            }
-
-            console.log(tunjangan)
+            } 
         })
 
         var nama_pegawai = $(`#nama_pegawai-${id_pegawai}`).html()
@@ -712,6 +541,29 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         
     }
 
+    // function edittunjangan (event,id_pegawai){
+    //     var tbody = $(`#tunjangan-${id_pegawai}`)
+    //     var tunjangan = 0
+    //     var check = tbody.find('.checktunjangan').each(function(index, element){
+    //         var value = $(element).is(':checked')
+    //         if(value == true){
+    //             var tr = $(element).parent().parent().parent()
+    //             var td = $(tr).find('.jumlah_tunjangan')[0]
+    //             var jumlah = $(td).html()
+    //             var splitjumlah = jumlah.split('Rp')[1].replace('.', '').replace(',00', '').trim()
+               
+    //             tunjangan = tunjangan + parseInt(splitjumlah)
+    //             console.log(tunjangan)
+    //         }
+    //     })
+    //     // Pengurangan Tunjangan
+    //     var totaltunjangan = $('#total_tunjangan').val()
+    //     var splittunjangan = parseInt(totaltunjangan) - tunjangan
+    //     console.log(splittunjangan)
+        
+    //     $('#total_tunjangan').val(splittunjangan)
+    // }
+
 
     function tambahgaji(event, tunjangan, id_gaji_pegawai) {
         event.preventDefault()
@@ -736,7 +588,6 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             var id_pegawai = $(span).attr('id')
             var id = id_pegawai.split('pegawai-')[1]
             var tes1 = $($(td).parent().children())
-            console.log(tes1)
             var total_tunjangan = $($(td).parent().children()[4]).html().split('Rp')[1].replace('&nbsp;','').replace('.', '').replace(',00', '').trim()
             var total_gaji = $($(td).parent().children()[5]).html().split('Rp')[1].replace('&nbsp;','').replace('.', '').replace(',00', '').trim()
 
@@ -788,7 +639,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 url: '/payroll/gaji-pegawai/' + id_gaji_pegawai,
                 data: data,
                 success: function (response) {
-                    // window.location.href = '/payroll/gaji-pegawai'
+                    window.location.href = '/payroll/gaji-pegawai'
 
                 },
                 error: function (response) {
@@ -844,6 +695,8 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         var kode = $($(children).children()[0]).attr('id')
         var id = kode.split('pegawai-')[1]
         $(`#${id}-button`).trigger('click');
+
+
     }
    
 
@@ -861,24 +714,29 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         // Akses Parent Sampai <tr></tr>
         var row2 = $(element).parent().parent()
 
-        // Gaji diterima berkurang
-        // var gajiberkurang = $(row2.children()[2]).text()
-        // var totaltambahtunjangan = $('#gaji_diterima').val()
-        // var splittunjangan = gajiberkurang.split('Rp')[1].replace('.', '').replace(',00', '').trim()
-        // var jumlahfix = parseInt(totaltambahtunjangan) - parseInt(splittunjangan)
-        // $('#gaji_diterima').val(jumlahfix)
+        // Pengurangan Total Gaji Pokok
+        var totalgajipokok = $('#total_gaji').val()
+        var gajipokok = $(row2.children()[3]).html()
+        var splitgajipokok = parseInt(totalgajipokok) - parseInt(gajipokok.split('Rp.')[1].replace('.', '').replace(',00', '').trim())
+        $('#total_gaji').val(splitgajipokok)
 
-        // var totaltunjangan = $('#totaltunjangan2').html()
-        // var totaltunjanganfix = parseInt(totaltunjangan) - parseInt(splittunjangan)
-        // $('#totaltunjangan2').html(totaltunjanganfix)
-        // table2.row(row2).remove().draw();
-
-        // draw() Reset Ulang Table
+        // Pengurangan Tunjangan
+        var totaltunjangan = $('#total_tunjangan').val()
+        var tunjangan = $(row2.children()[4]).html()
+        var splittunjangan = parseInt(totaltunjangan) - parseInt(tunjangan.split('Rp')[1].replace('&nbsp;','').replace('.', '').replace(',00', '').trim())
+        console.log(splittunjangan)
+        
+        $('#total_tunjangan').val(splittunjangan)
+ 
+        // Pengurangan Grand Total Keseluruhan
+        var grandtotal = $('#gaji_diterima').val()
+        var grand = $(row2.children()[5]).html()
+        var splitgrand = parseInt(grandtotal) - parseInt(grand.split('Rp')[1].replace('&nbsp;','').replace('.', '').replace(',00', '').trim())
+        console.log(grand)
+        $('#gaji_diterima').val(splitgrand)    
     }
 
     $(document).ready(function () {
-
-      
         var table_pegawai = $('#dataTablePegawai').DataTable({
             "pageLength": 5,
             "lengthMenu": [
@@ -888,7 +746,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         })
     
         var table2 = $('#dataTableAbsensi').DataTable()
-        var table = $('#dataTablesemuatunjangan').DataTable()
+        // var table = $('#dataTablesemuatunjangan').DataTable()
         var template = $('#template_delete_button').html()
         $('#dataTableKonfirmasi').DataTable({
             "columnDefs": [{

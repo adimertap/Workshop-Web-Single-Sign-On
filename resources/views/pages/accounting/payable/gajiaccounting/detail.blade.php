@@ -1,4 +1,4 @@
-@extends('layouts.Admin.adminpayroll')
+@extends('layouts.Admin.adminaccounting')
 
 @section('content')
 {{-- HEADER --}}
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
-                        <a href="{{ route('gaji-pegawai.index') }}"
+                        <a href="{{ route('gaji-accounting.index') }}"
                             class="btn btn-sm btn-light text-primary">Kembali</a>
                     </div>
                 </div>

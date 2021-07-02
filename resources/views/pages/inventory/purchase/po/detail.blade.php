@@ -41,6 +41,11 @@
                             value="{{ $po->Pegawai->nama_pegawai }}" readonly />
                     </div>
                     <div class="form-group">
+                        <label class="small mb-1" for="id_pegawai">Supplier</label>
+                        <input class="form-control form-control-sm" id="id_pegawai" type="text" name="id_pegawai"
+                            value="{{ $po->Supplier->nama_supplier }}" readonly />
+                    </div>
+                    <div class="form-group">
                         <label class="small mb-1" for="tanggal_po">Tanggal Pembelian</label>
                         <input class="form-control form-control-sm" id="tanggal_po" type="date" name="tanggal_po"
                             value="{{ $po->tanggal_po }}" readonly />
@@ -88,7 +93,7 @@
                     </div>
                     <div class="alert-icon-content">
                         <h5 class="alert-heading" class="small">Sparepart Info</h5>
-                        Sparepart Pesanan Pembelian
+                        List Sparepart Pembelian pada Supplier {{ $po->Supplier->nama_supplier }}
                     </div>
                 </div>
                 <div class="datatable">
