@@ -74,7 +74,7 @@ class ReturController extends Controller
      */
     public function show($id_retur)
     {
-        $retur = Retur::with('Rcv.Detailrcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur.Hargasparepart')->findOrFail($id_retur);
+        $retur = Retur::with('Rcv.Detailrcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur')->findOrFail($id_retur);
 
         return view('pages.inventory.retur.detail')->with([
             'retur' => $retur
@@ -155,7 +155,7 @@ class ReturController extends Controller
     }
 
     public function CetakRetur($id_retur){
-        $retur = Retur::with('Rcv.Detailrcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur.Hargasparepart')->findOrFail($id_retur);
+        $retur = Retur::with('Rcv.Detailrcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur')->findOrFail($id_retur);
         // return $pelayanan;
         $now = Carbon::now();
         return view('print.Inventory.cetakretur', compact('retur','now'));

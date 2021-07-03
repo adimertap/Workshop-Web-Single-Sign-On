@@ -352,7 +352,7 @@
             <form action="{{ route('Rcv.destroy', $item->id_rcv) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Penerimaan {{ $item->kode_rcv }} pada tanggal
+                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Penerimaan <b>{{ $item->kode_rcv }}</b>  pada tanggal
                     {{ $item->tanggal_rcv }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>

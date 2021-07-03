@@ -78,11 +78,6 @@ class Sparepart extends Model
         return $this->hasMany(Gallery::class, 'id_sparepart');
     }
 
-    public function Hargasparepart()
-    {
-        return $this->hasOne(Hargasparepart::class, 'id_sparepart');
-    }
-
     public function PO()
     {
         return $this->belongsToMany(PO::class, 'tb_inventory_detpo', 'id_sparepart', 'id_po');

@@ -130,10 +130,6 @@
                         </div>
                         @endif
 
-                        {{-- INVENTORY SYSTEM --}}
-                        {{-- Inventory System Side Bar --}}
-                        
-
                         @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'owner')
                         <div class="sidenav-menu-heading">Inventory System</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
@@ -161,22 +157,22 @@
                         @endif
 
                         @if (Auth::user()->role == 'admin_purchasing' || Auth::user()->role == 'owner')
-                        {{-- Inventory --}}
-                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                            data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
-                            Purchasing
-                            <div class="sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
+                        <div class="sidenav-menu-heading">Purchasing</div>
+                            <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                                data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                                Purchasing
+                                <div class="sidenav-collapse-arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                            </a>
+                            <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
+                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
+                                    <a class="nav-link " href="{{ route('purchase-order.index') }}">
+                                        Purchase Order
+                                    </a>
+                                </nav>
                             </div>
-                        </a>
-                        <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
-                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                <a class="nav-link " href="{{ route('purchase-order.index') }}">
-                                    Purchase Order
-                                </a>
-                            </nav>
-                        </div>
                         @endif
 
                         @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'owner')

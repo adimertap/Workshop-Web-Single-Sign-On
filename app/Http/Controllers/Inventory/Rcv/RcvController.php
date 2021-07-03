@@ -82,7 +82,7 @@ class RcvController extends Controller
      */
     public function show($id_rcv)
     {
-        $rcv = Rcv::with('PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart.Hargasparepart')->findOrFail($id_rcv);
+        $rcv = Rcv::with('PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart')->findOrFail($id_rcv);
 
         return view('pages.inventory.rcv.detail')->with([
             'rcv' => $rcv
@@ -98,7 +98,7 @@ class RcvController extends Controller
     public function edit($id)
     {
         $rcv = Rcv::with([
-            'PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart.Hargasparepart','Detailrcv'
+            'PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart','Detailrcv'
         ])->find($id);
 
         $id = Rcv::getId();
@@ -247,7 +247,7 @@ class RcvController extends Controller
     }
 
     public function CetakRcv($id_rcv){
-        $rcv = Rcv::with('PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart.Hargasparepart')->findOrFail($id_rcv);
+        $rcv = Rcv::with('PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart')->findOrFail($id_rcv);
         // return $pelayanan;
         $now = Carbon::now();
         return view('print.Inventory.cetakrcv', compact('rcv','now'));
