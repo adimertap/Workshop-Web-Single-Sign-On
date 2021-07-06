@@ -152,7 +152,7 @@
 
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header ">List Sparepart
+                <div class="card-header ">List Jasa Perbaikan
                 </div>
             </div>
             <div class="card-body">
