@@ -26,7 +26,6 @@ class Mastertunjanganrequest extends FormRequest
         return [
             'nama_tunjangan' => 'required|unique:tb_payroll_master_tunjangan,nama_tunjangan',
             'jumlah_tunjangan' => 'required|min:3|max:12',
-            'keterangan' => 'min:3|max:1000',
         ];
     }
 
@@ -38,8 +37,6 @@ class Mastertunjanganrequest extends FormRequest
             'jumlah_tunjangan.required' => 'Error! Anda Belum Mengisi Jumlah Tunjangan',
             'jumlah_tunjangan.min' => 'Error! Nominal Minimal :min digit',
             'jumlah_tunjangan.max' => 'Error! Nominal Maximal :max digit',
-            'keterangan.min' => 'Error! Nominal Minimal :min digit',
-            'keterangan.max' => 'Error! Nominal Minimal :max digit',    
         ];
     }
 }

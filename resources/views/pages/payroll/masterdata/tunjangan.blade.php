@@ -26,7 +26,7 @@
             <div class="card card-header-actions">
                 <div class="card-header">List Tunjangan
                     <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
-                        Data Tunjangan</button>
+                        Tunjangan</button>
                 </div>
             </div>
             <div class="card-body">
@@ -64,10 +64,7 @@
                                                 style="width: 220px;">Nama Tunjangan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 200px;">Besaran Tunjangan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 130px;">Keterangan</th>
+                                                style="width: 250px;">Besaran Tunjangan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Actions</th>
@@ -79,7 +76,6 @@
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->nama_tunjangan }}</td>
                                             <td>Rp. {{ number_format($item->jumlah_tunjangan,2,',','.') }}</td>
-                                            <td>{{ $item->keterangan }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
                                                     data-toggle="modal"
@@ -152,14 +148,6 @@
                             @error('jumlah_tunjangan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="keterangan">Keterangan</label>
-                            <input class="form-control" name="keterangan" type="text" id="keterangan"
-                                placeholder="Input Keterangan" value="{{ old('keterangan') }}"
-                                class="form-control @error('keterangan') is-invalid @enderror" />
-                            @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
-                        </div>
                     </div>
 
                     {{-- Validasi Error --}}
@@ -215,11 +203,6 @@
                                 value="{{ $item->jumlah_tunjangan}}"></input>
                            
                         </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="keterangan">Keterangan</label>
-                            <input class="form-control" name="keterangan" type="text" id="keterangan"
-                                value="{{ $item->keterangan }}"></input>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -247,7 +230,7 @@
                 <form action="{{ route('tunjangan.destroy', $item->id_tunjangan) }}" method="POST" class="d-inline">
                     @csrf
                     @method('delete')
-                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Tunjangan {{ $item->nama_tunjangan }} ?
+                    <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Tunjangan <b>{{ $item->nama_tunjangan }}</b>  ?
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>

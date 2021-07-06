@@ -41,7 +41,6 @@
                                                 <input type="date" name="from_date" id="from_date"
                                                     class="form-control form-control-sm" placeholder="From Date" />
                                             </div>
-    
                                         </div>
                                         <div class="col-md-4">
                                             <div class="input-group input-group-joined">
@@ -58,7 +57,6 @@
                                             <button type="button" name="filter" onclick="filter_tanggal(event)"
                                                 class="btn btn-sm btn-primary px-4">Filter</button>
                                         </div>
-                                  
                                 </div>
                             </form>
                             </div>
@@ -162,18 +160,29 @@
                                             {{ $item->jam_masuk }}
                                             @elseif ($item->absensi == 'Ijin' | $item->absensi == 'Sakit' |
                                             $item->absensi == 'Cuti' | $item->absensi == 'Alpha')
+                                            <span>-</span>
                                             @else
                                             <span>
                                                 @endif
                                             </span>
                                         </td>
-                                        <td>{{ $item->jam_pulang }}</td>
+                                        <td>
+                                            @if($item->absensi == 'Absen_Pagi' | $item->absensi =='Masuk' | $item->absensi == 'Terlambat')
+                                            {{ $item->jam_pulang }}
+                                            @elseif ($item->absensi == 'Ijin' | $item->absensi == 'Sakit' |
+                                            $item->absensi == 'Cuti' | $item->absensi == 'Alpha')
+                                            <span>-</span>
+                                            @else
+                                            <span>
+                                                @endif
+                                            </span>
+                                        </td>
                                         <td>{{ $item->keterangan }}</td>
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">
-                                                Data Kosong
+                                            <td colspan="8" class="text-center">
+                                                Data Absensi Kosong
                                             </td>
                                         </tr>
                                         @endforelse

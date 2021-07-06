@@ -24,14 +24,13 @@
 </main>
 <!-- Main page content-->
 <div class="container-fluid">
-    <div class="card h-100">
+    <div class="card card-waves h-100">
         <div class="card-body h-100 d-flex flex-column justify-content-center py-5 py-xl-4">
             <div class="row align-items-center">
                 <div class="col-xl-8 col-xxl-12">
-                    <div class="text-center px-4 mb-4 mb-xl-0 mb-xxl-4">
-                        <h1 class="text-primary">Welcome Back!</h1>
-                        <p class="text-gray-700 mb-0">It's time to get started! View new opportunities now, or
-                            continue on your previous work.</p>
+                    <div class="text-left px-4 mb-4 mb-xl-0 mb-xxl-4">
+                        <h2 class="text-primary">Selamat Datang, {{ Auth::user()->pegawai->nama_pegawai}}!</h2>
+                        <p class="text-gray-700 mb-0"><b> Modul Accounting</b> membantu pembukuan & operasional bisnis bengkel menjadi lebih mudah & efisien. Kelola usaha dengan solusi automasi, real-time, kapanpun & dimanapun.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"
@@ -183,7 +182,7 @@
                         <!-- Timeline Item 4-->
                         <div class="timeline-item">
                             <div class="timeline-item-marker">
-                                <div class="timeline-item-marker-text font-weight-bold text-dark">Belum Buat</div>
+                                <div class="timeline-item-marker-text font-weight-bold text-dark">1</div>
                                 <div class="timeline-item-marker-indicator bg-danger"></div>
                             </div>
                             <div class="timeline-item-content">

@@ -95,7 +95,7 @@
                                             style="width: 70px;">Saldo</th>
                                         <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 70px;">Harga Beli</th>
+                                            style="width: 100px;">Beli / Jual</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -310,7 +310,7 @@
             <form action="{{ route('gaji-pegawai.destroy', $item->id_gaji_pegawai) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pembayaran Gaji Pegawai bulan
+                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Pembayaran Gaji Pegawai bulan
                     {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>

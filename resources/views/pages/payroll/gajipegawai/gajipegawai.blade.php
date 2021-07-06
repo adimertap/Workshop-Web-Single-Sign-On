@@ -382,8 +382,8 @@
                 @csrf
                 <div class="modal-body text-center">Apakah Anda Yakin untuk Melakukan Pembayaran Gaji Pegawai <span
                         class="font-weight-700">{{ $item->Pegawai->nama_pegawai }}</span>, bulan
-                    {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }} Sebesar Rp.
-                    {{ number_format($item->gaji_diterima,2,',','.') }} ?</div>
+                    {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }} Sebesar <b>Rp.
+                        {{ number_format($item->gaji_diterima,2,',','.') }}</b>  ?</div>
                 <div class="modal-footer ">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-success" type="submit">Ya! Bayar</button>
@@ -408,7 +408,7 @@
             <form action="{{ route('gaji-pegawai.destroy', $item->id_gaji_pegawai) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pembayaran Gaji Pegawai <span
+                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Pembayaran Gaji Pegawai <span
                         class="font-weight-700">{{ $item->Pegawai->nama_pegawai }}</span>, bulan
                     {{ $item->bulan_gaji }}, tahun {{ $item->tahun_gaji }}?</div>
                 <div class="modal-footer">

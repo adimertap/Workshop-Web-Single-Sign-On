@@ -27,7 +27,7 @@
                 <div class="card-header">List Gaji Pokok
                     <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
                         data-target="#Modaltambah">Tambah
-                        Data Gaji</button>
+                        Gaji Pokok</button>
                 </div>
             </div>
             <div class="card-body">
@@ -232,8 +232,8 @@
             <form action="{{ route('gaji-pokok.destroy', $item->id_gaji_pokok) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Gaji Pokok
-                    {{ $item->Jabatan->nama_jabatan }} ?</div>
+                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Gaji Pokok
+                    <b>{{ $item->Jabatan->nama_jabatan }}</b> ?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>

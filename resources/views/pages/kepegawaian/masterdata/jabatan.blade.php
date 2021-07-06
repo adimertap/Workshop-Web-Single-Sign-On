@@ -24,8 +24,7 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Jabatan
-                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
-                        Data Jabatan</button>
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah Jabatan</button>
                 </div>
             </div>
             <div class="card-body">
@@ -189,7 +188,7 @@
             <form action="{{ route('jabatan.destroy', $item->id_jabatan) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Jabatan {{ $item->nama_jabatan }}?</div>
+                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Jabatan <b>{{ $item->nama_jabatan }}</b> ?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>

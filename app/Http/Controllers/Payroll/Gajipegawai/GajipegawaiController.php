@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Payroll\Gajipegawai;
 use App\Http\Controllers\Controller;
 use App\Model\Accounting\Jenistransaksi;
 use App\Model\Inventory\Retur\Retur;
+use App\Model\Kepegawaian\Jabatan;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\Payroll\Detailgaji;
 use App\Model\Payroll\Detailpegawai;
@@ -120,11 +121,12 @@ class GajipegawaiController extends Controller
             'Jabatan.Gajipokok'
         ])->join('tb_kepeg_master_jabatan', 'tb_kepeg_master_pegawai.id_jabatan', 'tb_kepeg_master_jabatan.id_jabatan')
         ->where('nama_jabatan', '!=', 'Owner')->get();
-        // return $pegawai;
+
+        $jabatan = Jabatan::all();
         $tunjangan = Mastertunjangan::all();
         $today = Carbon::now()->format('D, d/m/Y');
 
-        return view('pages.payroll.gajipegawai.revisicreate',['gaji_total' => Gajipegawai::sum('grand_total_gaji')], compact('gaji','pegawai','tunjangan','today','jenis_transaksi'));
+        return view('pages.payroll.gajipegawai.revisicreate',['gaji_total' => Gajipegawai::sum('grand_total_gaji')], compact('gaji','pegawai','tunjangan','today','jenis_transaksi','jabatan'));
     }
 
     public function edit2(Request $request, $id_gaji_pegawai)

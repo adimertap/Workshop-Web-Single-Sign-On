@@ -44,7 +44,6 @@ class MasterdatatunjanganController extends Controller
         $tunjangan->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $tunjangan->nama_tunjangan = $request->nama_tunjangan;
         $tunjangan->jumlah_tunjangan = $request->jumlah_tunjangan;
-        $tunjangan->keterangan = $request->keterangan;
         // $rak=Rak::all()
 
         $tunjangan->save();
@@ -85,7 +84,6 @@ class MasterdatatunjanganController extends Controller
         $tunjangan = Mastertunjangan::findOrFail($id_tunjangan);
         $tunjangan->nama_tunjangan = $request->nama_tunjangan;
         $tunjangan->jumlah_tunjangan = $request->jumlah_tunjangan;
-        $tunjangan->keterangan = $request->keterangan;
         
         $tunjangan->update();
         return redirect()->back()->with('messageberhasil','Data Tunjangan Berhasil diubah');

@@ -306,7 +306,7 @@
             <form action="{{ route('retur.destroy', $item->id_retur) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Retur {{ $item->kode_retur }} pada tanggal
+                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Retur <b>{{ $item->kode_retur }}</b> pada tanggal
                     {{ $item->tanggal_retur }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>

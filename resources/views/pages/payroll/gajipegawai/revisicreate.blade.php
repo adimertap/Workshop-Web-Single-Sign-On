@@ -206,7 +206,7 @@
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Position: activate to sort column ascending"
-                                                            style="width: 80px;">
+                                                            style="width: 100px;">
                                                             Gaji Pokok</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                             rowspan="1" colspan="1"
@@ -221,14 +221,28 @@
                                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
                                                         <td id="nama_pegawai-{{ $item->id_pegawai }}">{{ $item->nama_pegawai}}</td>
                                                         <td id="jabatan-{{ $item->id_pegawai }}">{{ $item->Jabatan->nama_jabatan}}</td>
-                                                       
-                                                        <td id="gajipokok-{{ $item->id_pegawai }}">Rp.{{ number_format($item->Jabatan->Gajipokok->besaran_gaji,2,',','.') }}
+                                                        <td id="gajipokok-{{ $item->id_pegawai }}">
+                                                            @if ($item->Jabatan->Gajipokok == null | $item->Jabatan->Gajipokok == '' )
+                                                                <button class="btn btn-xs btn-primary" type="button" data-toggle="modal"
+                                                                data-target="#Modaltambahgajipokok">Tambah Gaji Pokok</button>
+                                                            @else
+                                                            Rp.{{ number_format($item->Jabatan->Gajipokok->besaran_gaji,2,',','.') }}
+                                                                
+                                                            @endif
+
+                                                        </td>
+                                                        {{-- <td id="gajipokok-{{ $item->id_pegawai }}">Rp.{{ number_format($item->Jabatan->Gajipokok->besaran_gaji,2,',','.') }} --}}
                                                         </td>
                                                         <td>
+                                                            @if ($item->Jabatan->Gajipokok == null | $item->Jabatan->Gajipokok =='')
+                                                                <span class="small">Belum Ada Gaji Pokok</span>
+                                                            @else
                                                             <button id="{{ $item->id_pegawai }}-button" class="btn btn-success btn-xs" type="button" data-toggle="modal"
                                                                 data-target="#Modaltambah-{{ $item->id_pegawai }}">
                                                                 Tambah
                                                             </button>
+                                                            @endif
+                                                            
                                                         </td>
                                                     </tr>
                                                     @empty
@@ -247,85 +261,82 @@
                 <p></p>
             </div>
         </div>
-
-                <div class="card">
-                    <div class="card card-header-actions">
-                        <div class="card-header">
-                            Detail Gaji Pegawai
-                            {{-- <a href="" class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                                data-target="#Modaltambahtunjangan">
-                                Tambah Tunjangan
-                            </a> --}}
-                        </div>
-                        <div class="card-body">
-                            <div class="datatable">
-                                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <table class="table table-bordered table-hover dataTable"
-                                                id="dataTableKonfirmasi" width="100%" cellspacing="0" role="grid"
-                                                aria-describedby="dataTable_info" style="width: 100%;">
-                                                <thead>
-                                                    <tr role="row">
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                            rowspan="1" colspan="1" aria-sort="ascending"
-                                                            aria-label="Name: activate to sort column descending"
-                                                            style="width: 20px;">
-                                                            No</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                            rowspan="1" colspan="1"
-                                                            aria-label="Position: activate to sort column ascending"
-                                                            style="width: 120px;">
-                                                            Nama Pegawai</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                            rowspan="1" colspan="1"
-                                                            aria-label="Position: activate to sort column ascending"
-                                                            style="width: 150px;">
-                                                            Jabatan</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                            rowspan="1" colspan="1"
-                                                            aria-label="Position: activate to sort column ascending"
-                                                            style="width: 150px;">
-                                                            Gaji Pokok</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                            rowspan="1" colspan="1"
-                                                            aria-label="Position: activate to sort column ascending"
-                                                            style="width: 80px;">
-                                                            Total Tunjangan</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                            rowspan="1" colspan="1"
-                                                            aria-label="Position: activate to sort column ascending"
-                                                            style="width: 80px;">
-                                                            Total Gaji</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                            rowspan="1" colspan="1"
-                                                            aria-label="Position: activate to sort column ascending"
-                                                            style="width: 50px;">
-                                                            Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id='konfirmasi'>
-                                                    {{-- @forelse ($gaji->Detailtunjangan as $items)
-                                                    <tr role="row" class="odd">
-                                                        <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
-                                                        <td>{{ $items->nama_tunjangan }}</td>
-                                                        <td>Rp {{ number_format($items->jumlah_tunjangan,2,',','.') }}</td>
-                                                        <td></td>
-                                                    @empty
-                                                        
-                                                    @endforelse --}}
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+        <div class="card">
+            <div class="card card-header-actions">
+                <div class="card-header">
+                    Detail Gaji Pegawai
+                    {{-- <a href="" class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                        data-target="#Modaltambahtunjangan">
+                        Tambah Tunjangan
+                    </a> --}}
+                </div>
+                <div class="card-body">
+                    <div class="datatable">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-bordered table-hover dataTable"
+                                        id="dataTableKonfirmasi" width="100%" cellspacing="0" role="grid"
+                                        aria-describedby="dataTable_info" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                    rowspan="1" colspan="1" aria-sort="ascending"
+                                                    aria-label="Name: activate to sort column descending"
+                                                    style="width: 20px;">
+                                                    No</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Position: activate to sort column ascending"
+                                                    style="width: 150px;">
+                                                    Nama Pegawai</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Position: activate to sort column ascending"
+                                                    style="width: 80px;">
+                                                    Jabatan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Position: activate to sort column ascending"
+                                                    style="width: 150px;">
+                                                    Gaji Pokok</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Position: activate to sort column ascending"
+                                                    style="width: 80px;">
+                                                    Total Tunjangan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Position: activate to sort column ascending"
+                                                    style="width: 80px;">
+                                                    Total Gaji</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Position: activate to sort column ascending"
+                                                    style="width: 50px;">
+                                                    Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id='konfirmasi'>
+                                            {{-- @forelse ($gaji->Detailtunjangan as $items)
+                                            <tr role="row" class="odd">
+                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
+                                                <td>{{ $items->nama_tunjangan }}</td>
+                                                <td>Rp {{ number_format($items->jumlah_tunjangan,2,',','.') }}</td>
+                                                <td></td>
+                                            @empty
+                                                
+                                            @endforelse --}}
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-       
-    
+        </div>
+    </div>
 </main>
 
 @forelse ($pegawai as $items)
@@ -374,10 +385,6 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 180px;">
-                                                Keterangan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 180px;">
                                                 Action</th>
                                         </tr>
                                     </thead>
@@ -390,7 +397,6 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <td class="jumlah_tunjangan">Rp
                                                 {{ number_format($item->jumlah_tunjangan,2,',','.') }}</td>
                                             </td>
-                                            <td class="keterangan">{{ $item->keterangan }}</td>
                                             <td>
                                                 <div class="">
                                                     <input class="checktunjangan" id="customCheck1-{{ $item->id_tunjangan }}" type="checkbox" />
@@ -470,6 +476,69 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="Modaltambahgajipokok" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Gaji Pokok</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('gaji-pokok.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="id_jabatan">Pilih Jabatan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <select class="form-control" name="id_jabatan" id="id_jabatan"
+                            class="form-control @error('id_jabatan') is-invalid @enderror">
+                            <option>Pilih Jabatan</option>
+                            @foreach ($jabatan as $item)
+                            <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}</option>
+                            @endforeach
+                        </select>
+                        @error('id_jabatan')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                    <div class="form-group">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
+                                <label class="small mb-1 mr-1" for="besaran_gaji">Besaran Gaji</label><span class="mr-4 mb-3" style="color: red">*</span>
+                            </div>
+                            <div class="col-12 col-lg-auto text-center text-lg-right">
+                                <div class="small text-lg-right">
+                                    <span class="font-weight-500 text-primary">Nominal : </span>
+                                    <span id="detailbesarangaji"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <input class="form-control" name="besaran_gaji" type="number" id="besaran_gaji"
+                            placeholder="Input Besaran Gaji" value="{{ old('besaran_gaji') }}"
+                            class="form-control @error('besaran_gaji') is-invalid @enderror" />
+                        @error('besaran_gaji')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                </div>
+
+                {{-- Validasi Error --}}
+                @if (count($errors) > 0)
+                @endif
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="Submit">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 
 <template id="template_delete_button">
     <button class="btn btn-danger btn-datatable" onclick="hapusgaji(this)" type="button">
@@ -737,6 +806,17 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     }
 
     $(document).ready(function () {
+
+        $('#besaran_gaji').on('input', function () {
+            var nominal = $(this).val()
+            var nominal_fix = new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(nominal)
+
+            $('#detailbesarangaji').html(nominal_fix);
+        })
+        
         var table_pegawai = $('#dataTablePegawai').DataTable({
             "pageLength": 5,
             "lengthMenu": [

@@ -18,7 +18,6 @@ class Mastertunjangan extends Model
         'id_bengkel',
         'nama_tunjangan',
         'jumlah_tunjangan',
-        'keterangan',
     ];
 
     protected $hidden =[ 

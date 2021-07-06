@@ -135,7 +135,7 @@
             <form action="{{ route('pegawai.destroy', $item->id_pegawai) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pegawai Atas Nama {{ $item->nama_lengkap }}?
+                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Pegawai Atas Nama <b> {{ $item->nama_pegawai }}</b>?
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>

@@ -373,7 +373,7 @@
                                                 <td class="tanggal_rcv">{{ $item->tanggal_rcv }}</td>
                                                 <td class="nama_supplier">{{ $item->Supplier->nama_supplier }}</td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm"
+                                                    <button class="btn btn-success btn-xs"
                                                         onclick="tambahrcv(event, {{ $item->id_rcv }})" type="button"
                                                         data-dismiss="modal">Tambah
                                                     </button>

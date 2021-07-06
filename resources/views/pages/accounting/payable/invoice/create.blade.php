@@ -438,7 +438,7 @@
         }
 
         if (dataform2.length == 0 | tanggal_invoice == '' | tenggat_invoice == '') {
-            var alert = $('#alertsparepartkosong').show()
+                $('#alertsparepartkosong').show()
         } else {
             var data = {
                 _token: _token,
