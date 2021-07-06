@@ -114,9 +114,6 @@
                                 <a class="nav-link" href="{{ route('pitstop.index')}}">
                                     Pit Stop
                                 </a>
-                                <a class="nav-link" href="{{ route('harga-jual.index')}}">
-                                    Harga Jual Sparepart
-                                </a>
                                 <a class="nav-link" href="{{ route('reminder.index')}}">
                                     Reminder
                                 </a>
