@@ -70,10 +70,6 @@
                                                 aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">Merk Kendaraan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Jenis Kendaraan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Actions</th>
                                         </tr>
@@ -84,7 +80,6 @@
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->kode_merk_kendaraan }}</td>
                                             <td>{{ $item->merk_kendaraan }}</td>
-                                            <td>{{ $item->jenis_kendaraan->jenis_kendaraan }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
                                                     data-toggle="modal"
@@ -145,21 +140,6 @@
                             @error('merk_kendaraan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="id_jenis_kendaraan">Jenis Kendaraan</label>
-                            <select class="form-control" name="id_jenis_kendaraan"
-                                class="form-control @error('id_jenis_kendaraan') is-invalid @enderror"
-                                id="id_jenis_kendaraan">
-                                <option>Pilih Jenis</option>
-                                @foreach ($jenis_kendaraan as $item)
-                                <option value="{{ $item->id_jenis_kendaraan }}">
-                                    {{ $item->jenis_kendaraan }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('id_jenis_kendaraan')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
-                        </div>
                     </div>
                     @if (count($errors) > 0)
                     @endif
@@ -201,17 +181,6 @@
                                 value="{{ $item->merk_kendaraan }}" placeholder="Input Merk Kendaraan">
                             @error('merk_kendaraan')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="id_jenis_kendaraan">Jenis Kendaraan</label>
-                            <select class="form-control" name="id_jenis_kendaraan" id="id_jenis_kendaraan">
-                                <option value="{{ $item->jenis_kendaraan->id_jenis_kendaraan }}">
-                                    {{ $item->jenis_kendaraan->jenis_kendaraan }}</option>
-                                @foreach ($jenis_kendaraan as $items)
-                                <option value="{{ $items->id_jenis_kendaraan }}">
-                                    {{ $items->jenis_kendaraan }}</option>
-                                @endforeach
-                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">

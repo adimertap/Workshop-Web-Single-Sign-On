@@ -19,9 +19,8 @@ class MasterDataMerkKendaraanController extends Controller
      */
     public function index()
     {
-        $merk = FrontOfficeMasterDataMerkKendaraan::with(['jenis_kendaraan'])->get();
+        $merk = FrontOfficeMasterDataMerkKendaraan::get();
         // return $merk;
-        $jenis_kendaraan = MasterDataJenisKendaraan::all();
 
         $id = FrontOfficeMasterDataMerkKendaraan::getId();
         foreach ($id as $value);
@@ -31,7 +30,7 @@ class MasterDataMerkKendaraanController extends Controller
 
         $kode_merk_kendaraan = 'MRKKD-' . $idbaru . '/' . $blt;
 
-        return view('pages.frontoffice.masterdata.merk_kendaraan.index', compact('merk', 'jenis_kendaraan', 'kode_merk_kendaraan'));
+        return view('pages.frontoffice.masterdata.merk_kendaraan.index', compact('merk', 'kode_merk_kendaraan'));
     }
 
     /**
@@ -61,7 +60,6 @@ class MasterDataMerkKendaraanController extends Controller
         $kode_merk_kendaraan = 'MRKKD-' . $idbaru . '/' . $blt;
 
         $merkkendaraan = new FrontOfficeMasterDataMerkKendaraan;
-        $merkkendaraan->id_jenis_kendaraan = $request->id_jenis_kendaraan;
         $merkkendaraan->kode_merk_kendaraan = $kode_merk_kendaraan;
         $merkkendaraan->merk_kendaraan = $request->merk_kendaraan;
         $merkkendaraan->id_bengkel = Auth::user()->id_bengkel;
@@ -104,7 +102,6 @@ class MasterDataMerkKendaraanController extends Controller
         $merk = FrontOfficeMasterDataMerkKendaraan::findOrFail($id_merk_kendaraan);
         $merk->kode_merk_kendaraan = $request->kode_merk_kendaraan;
         $merk->merk_kendaraan = $request->merk_kendaraan;
-        $merk->id_jenis_kendaraan = $request->id_jenis_kendaraan;
 
         $merk->update();
         return redirect()->back()->with('messageberhasil', 'Data Merk Kendaraan Berhasil diubah');

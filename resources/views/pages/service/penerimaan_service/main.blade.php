@@ -30,7 +30,6 @@
         <div class="card mb-4">
             <div class="card-header-actions">
                 <div class="card-header"> Form Service Advisor
-                    <a href="{{ route('penerimaanservice.create') }}" class="btn btn-sm btn-primary"> Booking Service</a>
                 </div>
             </div>
             <div class="card-body">
@@ -476,7 +475,7 @@
                         <div class="form-group">
                             <label class="small mb-1" for="harga">Harga</label>
                             <input class="form-control" name="harga" type="text" id="harga"
-                                placeholder="Input Harga Sparepart" value="{{ $item->Kartugudangpenjualan['harga_beli'] }}"></input>
+                                placeholder="Input Harga Sparepart" value="{{ isset($item->Kartugudangpenjualan['harga_beli']) }}"></input>
                         </div>
                     </div>
 

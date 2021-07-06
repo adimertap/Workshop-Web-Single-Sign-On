@@ -31,6 +31,7 @@
                             <thead class="border-bottom">
                                 <tr class="small text-uppercase text-muted">
                                     <th scope="col" colspan="10">List Sparepart</th>
+                                    <th scope="col" colspan="10">Jumlah</th>
                                     <th class="text-right" scope="col">Harga</th>
                                 </tr>
                             </thead>
@@ -40,6 +41,9 @@
                                 <tr class="border-bottom">
                                     <td colspan="10">
                                         <div class="font-weight-bold">{{ $item->nama_sparepart }}</div>
+                                    </td>
+                                    <td colspan="10">
+                                        <div class="font-weight-bold">{{ $item->pivot->jumlah }}</div>
                                     </td>
                                     <td class="text-right font-weight-bold">Rp.
                                         {{ number_format($item->pivot->total_harga,0,',','.') }}</td>

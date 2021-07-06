@@ -10,7 +10,7 @@
                     <div class="col-auto mt-4">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i data-feather="database"></i></div>
-                            Master Data Kendaraan
+                            Master Data Pitstop
                         </h1>
                         <div class="page-header-subtitle">List data jumlah pitstop yang terdapat pada bengkel</div>
                     </div>
