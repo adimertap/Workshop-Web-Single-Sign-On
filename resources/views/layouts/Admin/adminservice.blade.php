@@ -105,7 +105,7 @@
                         <a class="nav-link collapsed" href="{{route('penerimaanservice.create')}}" aria-expanded="false"
                         aria-controls="collapseUtilities">
                         <div class="nav-link-icon">
-                            <i class="fas fa-handshake"></i>
+                            <i class="fas fa-book-open"></i>
                         </div>
                         Booking Service
                     </a>

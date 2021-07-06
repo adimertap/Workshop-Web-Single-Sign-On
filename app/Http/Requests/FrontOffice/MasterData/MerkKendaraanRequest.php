@@ -24,7 +24,6 @@ class MerkKendaraanRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_jenis_kendaraan' => 'required',
             'merk_kendaraan' => 'required|min:3|max:30'
         ];
     }
@@ -32,7 +31,6 @@ class MerkKendaraanRequest extends FormRequest
     public function messages()
     {
         return [
-            'id_jenis_kendaraan.required' => 'Error! Anda Belum Mengisi Jenis Kendaraan',
             'merk_kendaraan.required' => 'Error! Anda Belum Mengisi Merk Kendaraan',
             'merk_kendaraan.min' => 'Error! Character Minimal :min digit',
             'merk_kendaraan.max' => 'Error! Character Maximal :max digit'
