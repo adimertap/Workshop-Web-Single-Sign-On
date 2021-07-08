@@ -3,6 +3,7 @@
 namespace App\Model\Payroll;
 
 use App\Model\Accounting\Jenistransaksi;
+use App\Model\Accounting\Payable\Pajak;
 use App\Model\Kepegawaian\Pegawai;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
@@ -28,7 +29,8 @@ class Gajipegawai extends Model
         'keterangan',
         'status_diterima',
         'status_dana',
-        'status_jurnal'
+        'status_jurnal',
+        'status_pajak'
     ];
 
     protected $hidden =[ 

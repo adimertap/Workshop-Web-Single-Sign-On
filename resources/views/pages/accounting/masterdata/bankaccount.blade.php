@@ -62,7 +62,7 @@
                                                 style="width: 20px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 40px;">Kode Bank</th>
+                                                style="width: 60px;">Kode Bank</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 140px;">Nama Bank</th>
@@ -94,12 +94,12 @@
                                             <td>{{ $item->nomor_rekening }}</td>
                                             <td>{{ $item->alamat_account }}</td>
                                             <td>
-                                                <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
+                                                <a href="" class="btn btn-primary btn-datatable" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modaledit-{{ $item->id_bank_account }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modalhapus-{{ $item->id_bank_account }}">
                                                     <i class="fas fa-trash"></i>

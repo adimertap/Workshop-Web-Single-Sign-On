@@ -8,6 +8,7 @@ use App\Model\Accounting\Payable\Pajak;
 use App\Model\Accounting\Payable\Pajakdetail;
 use App\Model\Accounting\Payable\Pembayaranpajak;
 use App\Model\Kepegawaian\Pegawai;
+use App\Model\Payroll\Gajipegawai;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,10 +26,21 @@ class PajakController extends Controller
             'Pegawai','Jenistransaksi'
         ])->get();
 
+        $jenis_transaksi = Jenistransaksi::all();
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
+        $gaji = Gajipegawai::with('Detailpegawai')->where('grand_total_pph21','>',0)->where('status_pajak','=','Belum Dibayar')->get();
+        // return $gaji;
 
-        return view('pages.accounting.payable.pajak.pajak', compact('pajak','today','tanggal'));
+        $id = Pajak::getId();
+        foreach($id as $value);
+        $idlama = $value->id_pajak;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+
+        $kode_pajak = 'PJK-'.$blt.'/'.$idbaru;
+
+        return view('pages.accounting.payable.pajak.pajak', compact('pajak','today','tanggal','jenis_transaksi','kode_pajak','gaji'));
     }
 
     /**
@@ -38,26 +50,16 @@ class PajakController extends Controller
      */
     public function create()
     {
-
         $pajak = Pajak::with([
             'detailpajak',
         ])->get();
-
         $jenis_transaksi = Jenistransaksi::all();
-        $pegawai = Pegawai::all();
-    
+        $gaji = Gajipegawai::with('Detailpegawai')->get();
 
-        $id = Pajak::getId();
-        foreach($id as $value);
-        $idlama = $value->id_pajak;
-        $idbaru = $idlama + 1;
-        $blt = date('m');
-
-        $kode_pajak = 'PJK-'.$blt.'/'.$idbaru;
-        $id_pajak = $idbaru;
-
-        return view('pages.accounting.payable.pajak.create', compact('id_pajak','jenis_transaksi','pegawai','kode_pajak','pajak')); 
+        return view('pages.accounting.payable.pajak.create', compact('jenis_transaksi','pajak','gaji')); 
     }
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -68,28 +70,59 @@ class PajakController extends Controller
     public function store(Request $request)
     {
 
-        $id = Pajak::getId();
-        foreach($id as $value);
-        $idlama = $value->id_pajak;
-        $idbaru = $idlama + 1;
-        $blt = date('m');
+        if($request->status_pajak == 'Terkait Pegawai'){
+            $gaji = Gajipegawai::where('bulan_gaji',$request->bulan_gaji)->where('tahun_gaji', $request->tahun_gaji)->first();
+            $id_gaji_pegawai = $gaji->id_gaji_pegawai;
+          
+            $pajak = Pajak::create([
+                'id_gaji_pegawai'=>$id_gaji_pegawai,
+                'kode_pajak'=>$request->kode_pajak,
+                'id_jenis_transaksi'=>$request->id_jenis_transaksi,
+                'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel,
+                'id_pegawai' => $request['id_pegawai'] = Auth::user()->Pegawai->id_pegawai,
+                'status_pajak' => $request->status_pajak
+            ]);
+            
+            return $pajak;
 
-        $kode_pajak = 'PJK-'.$blt.'/'.$idbaru;
+        }else if($request->status_pajak == 'Tidak Terkait'){
+            
+            $pajak = Pajak::create([
+                'kode_pajak'=>$request->kode_pajak,
+                'id_jenis_transaksi'=>$request->id_jenis_transaksi,
+                'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel,
+                'id_pegawai' => $request['id_pegawai'] = Auth::user()->Pegawai->id_pegawai,
+                'status_pajak' => $request->status_pajak
+            ]);
+            
+            return $pajak;
 
-        $pajak = new Pajak;
-        $pajak->kode_pajak = $kode_pajak;
-        $pajak->id_jenis_transaksi = $request->id_jenis_transaksi;
-        $pajak->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
-        $pajak->tanggal_bayar = $request->tanggal_bayar;
-        $pajak->deskripsi_pajak = $request->deskripsi_pajak;
-        $pajak->total_pajak = $request->total_pajak;
-        $pajak->status_jurnal = 'Belum Diposting';
-        $pajak->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+        }
 
-        $pajak->save();
+       
+
+        // $id = Pajak::getId();
+        // foreach($id as $value);
+        // $idlama = $value->id_pajak;
+        // $idbaru = $idlama + 1;
+        // $blt = date('m');
+
+        // $kode_pajak = 'PJK-'.$blt.'/'.$idbaru;
+
+        // $pajak = new Pajak;
+        // $pajak->kode_pajak = $kode_pajak;
+        // $pajak->id_jenis_transaksi = $request->id_jenis_transaksi;
+        // $pajak->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
+        // $pajak->tanggal_bayar = $request->tanggal_bayar;
+        // $pajak->deskripsi_pajak = $request->deskripsi_pajak;
+        // $pajak->total_pajak = $request->total_pajak;
+        // $pajak->status_jurnal = 'Belum Diposting';
+        // $pajak->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+
+        // $pajak->save();
         
-        $pajak->detailpajak()->insert($request->pajak);
-        return $request;
+        // $pajak->detailpajak()->insert($request->pajak);
+        // return $request;
     }
 
     /**
@@ -100,7 +133,7 @@ class PajakController extends Controller
      */
     public function show($id_pajak)
     {
-        $pajak = Pajak::with('detailpajak')->findOrFail($id_pajak);
+        $pajak = Pajak::with('detailpajak','gaji','gaji.jenistransaksi')->findOrFail($id_pajak);
 
         return view('pages.accounting.payable.pajak.detail')->with([
             'pajak' => $pajak
@@ -117,14 +150,39 @@ class PajakController extends Controller
     public function edit($id_pajak)
     {
         $pajak = Pajak::with([
-            'detailpajak', 'Jenistransaksi'
-        ])->findOrFail($id_pajak);
+            'Detailpajak','Jenistransaksi','Gaji','Gaji.Jenistransaksi'
+        ])->find($id_pajak);
 
-        // return $pajak;
+        if($pajak->status_pajak == 'Terkait Pegawai'){
 
-        $jenis_transaksi = Jenistransaksi::all();
+            $jenis_transaksi = Jenistransaksi::all();
 
-        return view('pages.accounting.payable.pajak.edit', compact('jenis_transaksi','pajak','id_pajak')); 
+            return view('pages.accounting.payable.pajak.pajakgaji', compact('jenis_transaksi','pajak','id_pajak')); 
+       
+        }elseif($pajak->status_pajak == 'Tidak Terkait'){
+            $jenis_transaksi = Jenistransaksi::all();
+
+            return view('pages.accounting.payable.pajak.edit', compact('jenis_transaksi','pajak','id_pajak')); 
+        }
+    }
+
+    public function editpajak($id_pajak)
+    {
+        $pajak = Pajak::with([
+            'Jenistransaksi','Gaji','Gaji.Jenistransaksi'
+        ])->find($id_pajak);
+
+        return $pajak;
+        // if($pajak->status_pajak == 'Terkait Pegawai'){
+
+        //     $jenis_transaksi = Jenistransaksi::all();
+
+        //     return view('pages.accounting.payable.pajak.pajakgaji', compact('jenis_transaksi','pajak','id_pajak')); 
+        // }elseif($pajak->status_pajak == 'Tidak Terkait'){
+        //     $jenis_transaksi = Jenistransaksi::all();
+
+        //     return view('pages.accounting.payable.pajak.edit', compact('jenis_transaksi','pajak','id_pajak')); 
+        // }
     }
 
     /**
@@ -149,6 +207,26 @@ class PajakController extends Controller
         return $request;
     }
 
+    public function pajakpegawai(Request $request, $id_pajak)
+    {
+        $gaji = Gajipegawai::where('bulan_gaji',$request->bulan_gaji)->where('tahun_gaji', $request->tahun_gaji)->first();
+
+        $pajak = Pajak::find($id_pajak);
+        $pajak->id_jenis_transaksi = $request->id_jenis_transaksi;
+        $pajak->tanggal_bayar = $request->tanggal_bayar;
+        $pajak->deskripsi_pajak = $request->deskripsi_pajak;
+        $pajak->total_pajak = $request->total_pajak;
+        $pajak->update();
+
+        $gaji->status_pajak = 'Sudah Dibayar';
+        $gaji->save();
+        
+
+        return redirect()->route('pajak.index')->with('messageberhasil','Berhasil Menambahkan Pajak Terkait Pegawai');
+    }
+
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -158,10 +236,14 @@ class PajakController extends Controller
     public function destroy($id_pajak)
     {
         $pajak = Pajak::findOrFail($id_pajak);
-        
-        Pajakdetail::where('id_pajak', $id_pajak)->delete();
-        $pajak->delete();
 
+        if($pajak->status_pajak == 'Tidak Terkait'){
+            Pajakdetail::where('id_pajak', $id_pajak)->delete();
+            $pajak->delete();
+        }elseif($pajak->status_pajak == 'Terkait Pegawai'){
+            $pajak->delete();
+        }
+        
         return redirect()->back()->with('messagehapus','Data Pajak Berhasil dihapus');
     }
 }

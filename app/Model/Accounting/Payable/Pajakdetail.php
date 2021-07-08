@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pajakdetail extends Model
 {
-    use SoftDeletes;
+   
 
     protected $table = "tb_accounting_detpajak";
 
@@ -24,7 +24,7 @@ class Pajakdetail extends Model
     protected $hidden =[ 
         'created_at',
         'updated_at',
-        'deleted_at'
+       
     ];
 
     public $timestamps = true;

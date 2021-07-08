@@ -183,6 +183,10 @@
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
+                                            <a href="" class="btn btn-warning btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Cetak Prf">
+                                                <i class="fas fa-print"></i></i>
+                                            </a>
                                             @endif
                                         </td>
                                     </tr>
@@ -388,7 +392,7 @@
                                             <td class="nama_sales">{{ $item->nama_sales }}</td>
                                             <td class="rekening_supplier">{{ $item->rekening_supplier }}</td>
                                             <td>
-                                                <button class="btn btn-success btn-sm"
+                                                <button class="btn btn-success btn-xs"
                                                 onclick="tambahsupplier(event, {{ $item->id_supplier }})" type="button"
                                                 data-dismiss="modal">Tambah
                                             </button>

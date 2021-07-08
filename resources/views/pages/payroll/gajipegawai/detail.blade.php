@@ -157,6 +157,10 @@
                                                     Total Keseluruhan</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
+                                                    style="width: 70px;">
+                                                    Total PPh21</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-label="Position: activate to sort column ascending"
                                                     style="width: 60px;">
                                                     Tunjangan</th>
                                             </tr>
@@ -171,6 +175,7 @@
                                                 <td>Rp {{ number_format($item->Jabatan->Gajipokok->besaran_gaji,2,',','.') }}</td>
                                                 <td>Rp {{ number_format($item->pivot->total_tunjangan,2,',','.') }}</td>
                                                 <td>Rp {{ number_format($item->pivot->total_gaji,2,',','.') }}</td>
+                                                <td>Rp {{ number_format($item->pivot->total_pph21,2,',','.') }}</td>
                                                 <td class="text-center">
                                                     <a href="" class="btn btn-secondary btn-xs" type="button"
                                                         data-toggle="modal"
@@ -191,8 +196,11 @@
                                             <td colspan="1" class="font-weight-500">
                                                 <span>Rp. </span><span>{{ number_format($gaji->grand_total_tunjangan,2,',','.') }}</span>
                                             </td>
-                                            <td colspan="2" class="font-weight-500">
+                                            <td colspan="1" class="font-weight-500">
                                                 <span>Rp. </span><span>{{ number_format($gaji->grand_total_gaji,2,',','.') }}</span>
+                                            </td>
+                                            <td colspan="2" class="font-weight-500">
+                                                <span>Rp. </span><span>{{ number_format($gaji->grand_total_pph21,2,',','.') }}</span>
                                             </td>
                                         </tr>
                                     </table>

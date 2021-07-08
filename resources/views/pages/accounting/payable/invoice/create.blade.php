@@ -12,7 +12,7 @@
                             <div class="page-header-icon" style="color: white"><i
                                     class="fas fa-file-invoice-dollar"></i>
                             </div>
-                            <div class="page-header-subtitle mr-2" style="color: white">Tambah Data Invoice Supplier
+                            <div class="page-header-subtitle mr-2" style="color: white">Edit Data Invoice Supplier
                             </div>
                         </h1>
                         <div class="small">
