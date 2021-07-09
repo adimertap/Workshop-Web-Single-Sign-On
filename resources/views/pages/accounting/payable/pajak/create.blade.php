@@ -190,57 +190,100 @@
             </div>
             <form action="" method="POST" id="form2" class="d-inline">
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label class="small mb-1" for="data_pajak">Data Pajak</label>
-                        <div class="input-group input-group-joined">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-clipboard-list"></i>
-                                </span>
-                            </div>
-                            <input class="form-control" id="data_pajak" type="text" name="data_pajak"
-                                placeholder="Input Data Pajak">
-                        </div>
+                    <div class="alert alert-info small" role="alert">
+                        Pilih Jenis Pajak Terlebih Dahulu!
                     </div>
-                    <div class="form-group">
-                        <div class="row justify-content-between align-items-center">
-                            <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
-                                <label class="small mb-1" for="nilai_pajak">Nominal Pajak</label>
+                    <div class="row mb-1" id="radio1">
+                       
+                            <div class="col-md-6">
+                                <input class="mr-1" value="1" type="radio" name="radio2">Tidak Terkait Pegawai
                             </div>
-                            <div class="col-12 col-lg-auto text-center text-lg-right">
-                                <div class="small text-lg-right">
-                                    <span class="font-weight-500 text-primary">Detail Nominal: </span>
-                                    <span id="detailnominalpajak"></span>
+                            <div class="col-md-6">
+                                <input class="mr-1" value="2" type="radio" name="radio2">Pajak Terkait Pegawai
+                            </div>
+                     
+                       
+                    </div>
+                    <p></p>
+                    
+                    <div id="Tidakterkait">
+                            <div class="form-group">
+                                <label class="small mb-1" for="data_pajak">Data Pajak</label>
+                                <div class="input-group input-group-joined">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" id="data_pajak" type="text" name="data_pajak"
+                                        placeholder="Input Data Pajak">
                                 </div>
                             </div>
-                        </div>
-                        <div class="input-group input-group-joined">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    Rp.
-                                </span>
+                            <div class="form-group">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-left">
+                                        <label class="small mb-1" for="nilai_pajak">Nominal Pajak</label>
+                                    </div>
+                                    <div class="col-12 col-lg-auto text-center text-lg-right">
+                                        <div class="small text-lg-right">
+                                            <span class="font-weight-500 text-primary">Detail Nominal: </span>
+                                            <span id="detailnominalpajak"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group input-group-joined">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            Rp.
+                                        </span>
+                                    </div>
+                                    <input class="form-control" id="nilai_pajak" type="number" name="nilai_pajak"
+                                        placeholder="Input Nominal Pajak">
+                                </div>
                             </div>
-                            <input class="form-control" id="nilai_pajak" type="number" name="nilai_pajak"
-                                placeholder="Input Nominal Pajak">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="keterangan_pajak">Keterangan Pajak</label>
-                        <div class="input-group input-group-joined">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-align-left"></i>
-                                </span>
+                            <div class="form-group">
+                                <label class="small mb-1" for="keterangan_pajak">Keterangan Pajak</label>
+                                <div class="input-group input-group-joined">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-align-left"></i>
+                                        </span>
+                                    </div>
+                                    <textarea class="form-control" id="keterangan_pajak" type="text" name="keterangan_pajak"
+                                        placeholder="Input Keterangan Pajak"></textarea>
+                                </div>
                             </div>
-                            <textarea class="form-control" id="keterangan_pajak" type="text" name="keterangan_pajak"
-                                placeholder="Input Keterangan Pajak"></textarea>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Close</button>
+                                <button class="btn btn-success btn-sm" onclick="tambahpajak(event)" type="button"
+                                    data-dismiss="modal">Tambah Pajak</button>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" onclick="tambahpajak(event)" type="button"
-                        data-dismiss="modal">Tambah</button>
+                   <div id="Terkaitpegawai">
+                        
+                        <div class="form-group">
+                            <label class="small mb-1 mr-1" for="bulan_gaji">Pilih Bulan Gaji</label><span
+                                class="mr-4 mb-3" style="color: red">*</span>
+                            <select name="bulan_gaji" id="bulan_gaji" class="form-control"
+                                class="form-control @error('bulan_gaji') is-invalid @enderror">
+                                <option>Bulan Gaji</option>
+                                <option value="Januari">Januari</option>
+                                <option value="Februari">Februari</option>
+                                <option value="Maret">Maret</option>
+                                <option value="April">April</option>
+                                <option value="Mei">Mei</option>
+                                <option value="Juni">Juni</option>
+                                <option value="Juli">Juli</option>
+                                <option value="Agustus">Agustus</option>
+                                <option value="September">September</option>
+                                <option value="Oktober">Oktober</option>
+                                <option value="November">November</option>
+                                <option value="Desember">Desember</option>
+                            </select>
+                            @error('bulan_gaji')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+                   </div>
                 </div>
             </form>
         </div>
@@ -379,7 +422,13 @@
         }
     }
 
+
+
+
     function tambahpajak(event) {
+
+        
+
         var form = $('#form2')
         var _token = form.find('input[name="_token"]').val()
         var data_pajak = form.find('input[name="data_pajak"]').val()
@@ -423,6 +472,17 @@
     }
 
     $(document).ready(function () {
+        $("#radio1").change(function(){
+            var value = $("input[name='radio2']:checked").val();
+            if(value == 1){
+                $('#Tidakterkait').show()
+            } else{
+                $('#Tidakterkait').hide()
+            }
+        });
+       
+
+
         $('#nilai_pajak').on('input', function () {
             var nominal = $(this).val()
             var nominal_fix = new Intl.NumberFormat('id', {

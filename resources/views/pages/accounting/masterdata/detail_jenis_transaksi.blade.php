@@ -35,7 +35,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label class="small mb-1" for="kode_sparepart">Nama Transaksi</label>
-                            <input class="form-control form-control-sm" id="kode_sparepart" type="text"
+                            <input class="form-control" id="kode_sparepart" type="text"
                                 name="kode_sparepart" value="{{ $jenis_transaksi->nama_transaksi }}" readonly />
                         </div>
                         @if(empty($jenis_transaksi->PenentuanAkun))
@@ -90,7 +90,7 @@
                                 <i class="fas fa-book"></i>
                             </div>
                             <div class="alert-icon-content">
-                                <h5 class="alert-heading" class="small">Akun Info</h5>
+                                <h5 class="alert-heading" class="small">Informasi Akun</h5>
                                 Anda Belum Menginputkan Akun Kredit dan Debet
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                                 <i class="fas fa-book"></i>
                             </div>
                             <div class="alert-icon-content">
-                                <h5 class="alert-heading" class="small">Akun Info</h5>
+                                <h5 class="alert-heading" class="small">Informasi Akun</h5>
                                 Anda Sudah Menginputkan Akun Kredit dan Debet
                             </div>
                         </div>

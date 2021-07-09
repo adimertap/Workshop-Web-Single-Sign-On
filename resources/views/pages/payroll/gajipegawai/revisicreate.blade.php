@@ -145,6 +145,21 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="small mb-1" for="pph21">Total PPh21 Pegawai</label>
+                                <div class="input-group input-group-joined">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-gray-200">
+                                            Rp.
+                                        </span>
+                                    </div>
+                                    <input class="form-control" id="total_pph21" type="text" name="total_pph21"
+                                        placeholder="Keterangan Pembayaran" value="0"
+                                        class="form-control @error('keterangan') is-invalid @enderror" readonly>
+                                    @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
+                                    </div> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="small mb-1" for="keterangan">Keterangan</label>
                                 <textarea class="form-control" id="keterangan" type="text" name="keterangan"
                                     placeholder="Keterangan Pembayaran"
@@ -225,8 +240,7 @@
                                                             @if ($item->Jabatan->Gajipokok == null | $item->Jabatan->Gajipokok == '' )
                                                                 <button class="btn btn-xs btn-primary" type="button" data-toggle="modal"
                                                                 data-target="#Modaltambahgajipokok">Tambah Gaji Pokok</button>
-                                                            @else
-                                                            Rp.{{ number_format($item->Jabatan->Gajipokok->besaran_gaji,2,',','.') }}
+                                                            @else Rp.{{ number_format($item->Jabatan->Gajipokok->besaran_gaji,2,',','.') }}
                                                                 
                                                             @endif
 
@@ -295,21 +309,26 @@
                                                     aria-label="Position: activate to sort column ascending"
                                                     style="width: 80px;">
                                                     Jabatan</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Position: activate to sort column ascending"
                                                     style="width: 150px;">
                                                     Gaji Pokok</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Position: activate to sort column ascending"
                                                     style="width: 80px;">
                                                     Total Tunjangan</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Position: activate to sort column ascending"
                                                     style="width: 80px;">
                                                     Total Gaji</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Position: activate to sort column ascending"
+                                                    style="width: 80px;">
+                                                    Total PPh21</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Position: activate to sort column ascending"
@@ -394,8 +413,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <th scope="row" class="small" class="sorting_1">
                                                 {{ $loop->iteration}}</th>
                                             <td class="nama_tunjangan">{{ $item->nama_tunjangan }}</td>
-                                            <td class="jumlah_tunjangan">Rp
-                                                {{ number_format($item->jumlah_tunjangan,2,',','.') }}</td>
+                                            <td class="jumlah_tunjangan">Rp {{ number_format($item->jumlah_tunjangan,2,',','.') }}</td>
                                             </td>
                                             <td>
                                                 <div class="">
@@ -566,7 +584,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 var tr = $(element).parent().parent().parent()
                 var td = $(tr).find('.jumlah_tunjangan')[0]
                 var jumlah = $(td).html()
-                var splitjumlah = jumlah.split('Rp')[1].replace('.', '').replace(',00', '').trim()
+                var splitjumlah = jumlah.split('Rp')[1].replace('.', '').replace('.', '').replace(',00', '').trim()
                 
                 tunjangan = tunjangan + parseInt(splitjumlah)
             } 
@@ -575,8 +593,10 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         var nama_pegawai = $(`#nama_pegawai-${id_pegawai}`).html()
         var jabatan = $(`#jabatan-${id_pegawai}`).html()
         var gajipokok = $(`#gajipokok-${id_pegawai}`).html()
-        var totalgaji = parseInt(gajipokok.split('Rp.')[1].replace('.', '').replace(',00', '').trim()) + tunjangan
-        
+        console.log(gajipokok)
+        var totalgaji = parseInt(gajipokok.split('Rp.')[1].replace('.', '').replace('.','').replace(',00', '').trim()) + tunjangan
+        console.log(totalgaji)
+
         var table = $('#dataTableKonfirmasi').DataTable()
         var row = $(`#pegawai-${id_pegawai}`).parent().parent()
         table.row(row).remove().draw();
@@ -586,7 +606,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         $('#gaji_diterima').val(jumlahfix)
 
         var totalgajipokok = $('#total_gaji').val()
-        var splitgajipokok = parseInt(gajipokok.split('Rp.')[1].replace('.', '').replace(',00', '').trim())
+        var splitgajipokok = parseInt(gajipokok.split('Rp.')[1].replace('.', '').replace('.', '').replace(',00', '').trim())
         var jumlahfix2 = splitgajipokok + parseInt(totalgajipokok)
 
         $('#total_gaji').val(jumlahfix2)
@@ -595,19 +615,50 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         var jumlahfix3 = tunjangan + parseInt(totaltunjangan)
         $('#total_tunjangan').val(jumlahfix3)
 
+        var pph = 0
+        if(totalgaji > 4500000){
+            var pph21 = totalgaji * 5 
+            var pph21fix = pph21 / 100
 
-        $('#dataTableKonfirmasi').DataTable().row.add([
+            var totalpph21 = $('#total_pph21').val()
+            var jumlahpph21 = pph21fix + parseInt(totalpph21)
+            $('#total_pph21').val(jumlahpph21)
+
+            alert('Berhasil Menambahkan Pegawai dan Tunjangan')
+
+            $('#dataTableKonfirmasi').DataTable().row.add([
             nama_pegawai, `<span id=pegawai-${id_pegawai}>${nama_pegawai}</span>`, jabatan, gajipokok,   new Intl.NumberFormat('id', {
             style: 'currency',
             currency: 'IDR'
-        }).format(tunjangan), 
-        new Intl.NumberFormat('id', {
+            }).format(tunjangan), 
+            new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(totalgaji),
+            new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(pph21fix),
+            ]).draw();
+        }else{
+
+            alert('Berhasil Menambahkan Pegawai dan Tunjangan')
+
+            $('#dataTableKonfirmasi').DataTable().row.add([
+            nama_pegawai, `<span id=pegawai-${id_pegawai}>${nama_pegawai}</span>`, jabatan, gajipokok,   new Intl.NumberFormat('id', {
             style: 'currency',
             currency: 'IDR'
-        }).format(totalgaji)
-        ]).draw();
-        
-        
+            }).format(tunjangan), 
+            new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(totalgaji),
+            new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(pph),
+            ]).draw();
+        }
     }
 
     // function edittunjangan (event,id_pegawai){
@@ -642,6 +693,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         var id_jenis_transaksi = $('#id_jenis_transaksi').val()
         var grand_total_gaji = $('#gaji_diterima').val()
         var grand_total_tunjangan = $('#total_tunjangan').val()
+        var grand_total_pph21 = $('#total_pph21').val()
         var id_bengkel = $('#id_bengkel').text()
         var keterangan = form1.find('textarea[name="keterangan"]').val()
         var _token = form1.find('input[name="_token"]').val()
@@ -657,16 +709,19 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             var id_pegawai = $(span).attr('id')
             var id = id_pegawai.split('pegawai-')[1]
             var tes1 = $($(td).parent().children())
-            var total_tunjangan = $($(td).parent().children()[4]).html().split('Rp')[1].replace('&nbsp;','').replace('.', '').replace(',00', '').trim()
-            var total_gaji = $($(td).parent().children()[5]).html().split('Rp')[1].replace('&nbsp;','').replace('.', '').replace(',00', '').trim()
-
+            var total_tunjangan = $($(td).parent().children()[4]).html().split('Rp')[1].replace('&nbsp;','').replace('.','').replace('.', '').replace(',00', '').trim()
+            var total_gaji = $($(td).parent().children()[5]).html().split('Rp')[1].replace('&nbsp;','').replace('.','').replace('.', '').replace(',00', '').trim()
+            var total_pph21 = $($(td).parent().children()[6]).html().split('Rp')[1].replace('&nbsp;','').replace('.','').replace('.', '').replace(',00', '').trim()
 
             pegawai.push({
                 id_pegawai: id,
                 id_bengkel: id_bengkel,
                 total_tunjangan: total_tunjangan,
-                total_gaji: total_gaji
+                total_gaji: total_gaji,
+                total_pph21: total_pph21
             })
+
+            console.log(pegawai)
 
             var tbody = $(`#tunjangan-${id}`)
             var check = tbody.find('.checktunjangan').each(function(index, element){
@@ -696,6 +751,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 id_jenis_transaksi: id_jenis_transaksi,
                 grand_total_gaji: grand_total_gaji,
                 grand_total_tunjangan: grand_total_tunjangan,
+                grand_total_pph21: grand_total_pph21,
                 keterangan: keterangan,
                 pegawai: pegawai,
                 tunjangan: tunjangan
@@ -786,7 +842,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         // Pengurangan Total Gaji Pokok
         var totalgajipokok = $('#total_gaji').val()
         var gajipokok = $(row2.children()[3]).html()
-        var splitgajipokok = parseInt(totalgajipokok) - parseInt(gajipokok.split('Rp.')[1].replace('.', '').replace(',00', '').trim())
+        var splitgajipokok = parseInt(totalgajipokok) - parseInt(gajipokok.split('Rp.')[1].replace('.', '').replace('.','').replace(',00', '').trim())
         $('#total_gaji').val(splitgajipokok)
 
         // Pengurangan Tunjangan
@@ -794,13 +850,18 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         var tunjangan = $(row2.children()[4]).html()
         var splittunjangan = parseInt(totaltunjangan) - parseInt(tunjangan.split('Rp')[1].replace('&nbsp;','').replace('.', '').replace(',00', '').trim())
         console.log(splittunjangan)
-        
         $('#total_tunjangan').val(splittunjangan)
+
+        var totalpph21 = $('#total_pph21').val()
+        var pph21 = $(row2.children()[6]).html()
+        var splitpph = parseInt(totalpph21) - parseInt(pph21.split('Rp')[1].replace('&nbsp;','').replace('.', '').replace(',00', '').trim())
+        console.log(splitpph)
+        $('#total_pph21').val(splitpph)
  
         // Pengurangan Grand Total Keseluruhan
         var grandtotal = $('#gaji_diterima').val()
         var grand = $(row2.children()[5]).html()
-        var splitgrand = parseInt(grandtotal) - parseInt(grand.split('Rp')[1].replace('&nbsp;','').replace('.', '').replace(',00', '').trim())
+        var splitgrand = parseInt(grandtotal) - parseInt(grand.split('Rp')[1].replace('&nbsp;','').replace('.','').replace('.', '').replace(',00', '').trim())
         console.log(grand)
         $('#gaji_diterima').val(splitgrand)    
     }

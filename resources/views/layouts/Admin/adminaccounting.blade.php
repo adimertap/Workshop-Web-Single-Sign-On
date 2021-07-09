@@ -133,7 +133,7 @@
                                     PRF
                                 </a>
                                 <a class="nav-link " href="{{ route('gaji-accounting.index') }}">
-                                    Gaji Karyawan
+                                    Gaji Pegawai
                                 </a>
                                 <a class="nav-link " href="{{ route('pajak.index') }}">
                                     Pajak

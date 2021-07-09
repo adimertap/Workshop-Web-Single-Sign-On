@@ -4,6 +4,7 @@ namespace App\Model\Accounting\Payable;
 
 use App\Model\Accounting\Jenistransaksi;
 use App\Model\Kepegawaian\Pegawai;
+use App\Model\Payroll\Gajipegawai;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -26,6 +27,8 @@ class Pajak extends Model
         'deskripsi_pajak',
         'status_jurnal',
         'total_pajak',
+        'status_pajak',
+        'id_gaji_pegawai'
     ];
 
     protected $hidden =[ 
@@ -39,6 +42,11 @@ class Pajak extends Model
     public function detailpajak()
     {
         return $this->hasMany(Pajakdetail::class, 'id_pajak', 'id_pajak');
+    }
+
+    public function Gaji()
+    {
+        return $this->hasOne(Gajipegawai::class,'id_gaji_pegawai','id_gaji_pegawai');
     }
 
     public function Pegawai()

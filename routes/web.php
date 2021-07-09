@@ -553,6 +553,11 @@ Route::group(
             ->group(function () {
 
                 Route::resource('pajak', 'PajakController');
+                Route::put('/pajak/pegawai/{id}', 'PajakController@pajakpegawai')
+                    ->name('pajak-pegawai');
+                Route::get('/pajak/{id}/edit', 'PajakController@editpajak')
+                    ->name('pajak-edit');
+                
             });
 
         // Gaji Pegawai Accounting ----------------------------------------------------------------- Gaji Pegawai Accounting  

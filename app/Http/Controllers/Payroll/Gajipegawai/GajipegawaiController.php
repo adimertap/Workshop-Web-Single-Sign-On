@@ -158,6 +158,7 @@ class GajipegawaiController extends Controller
         $gaji->bulan_gaji = $request->bulan_gaji;
         $gaji->grand_total_gaji = $request->grand_total_gaji;
         $gaji->grand_total_tunjangan = $request->grand_total_tunjangan;
+        $gaji->grand_total_pph21 = $request->grand_total_pph21;
         $gaji->keterangan = $request->keterangan;
         $gaji->id_jenis_transaksi = $request->id_jenis_transaksi;
         $gaji->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;

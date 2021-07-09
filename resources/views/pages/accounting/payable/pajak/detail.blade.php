@@ -105,6 +105,54 @@
                             Detail Pembayaran Pajak
                         </div>
                     </div>
+
+                    @if ($pajak->status_pajak == 'Tidak Terkait')
+                        <div class="datatable">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
+                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                        colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 230px;">Data Pajak</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 230px;">Nilai Pajak</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 230px;">Keterangan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($pajak->detailpajak as $detail)
+                                                <tr role="row" class="odd">
+                                                    <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
+                                                    </th>
+                                                    <td>{{ $detail->data_pajak }}</td>
+                                                    <td>Rp. {{ number_format($detail->nilai_pajak,0,',','.') }}</td>
+                                                    <td>{{ $detail->keterangan_pajak }}</td>
+                                                </tr>
+                                                @empty
+                                             
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @elseif ($pajak->status_pajak == 'Terkait Pegawai')
                     <div class="datatable">
                         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
@@ -121,40 +169,38 @@
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Data Pajak</th>
+                                                    style="width: 250px;">Data Pajak</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Nilai Pajak</th>
+                                                    style="width: 100px;">Nilai Pajak</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Keterangan</th>
+                                                    style="width: 70px;">Keterangan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($pajak->detailpajak as $detail)
                                             <tr role="row" class="odd">
-                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
-                                                </th>
-                                                <td>{{ $detail->data_pajak }}</td>
-                                                <td>Rp. {{ number_format($detail->nilai_pajak,0,',','.') }}</td>
-                                                <td>{{ $detail->keterangan_pajak }}</td>
-                                            </tr>
-                                            @empty
-                                            <tr>
-                                                <td colspan="7" class="tex-center">
-                                                    Data Detail Pajak Kosong
-                                                </td>
+                                                <th scope="row" class="small" class="sorting_1">1.</th>
+                                                <td>{{ $pajak->Gaji->Jenistransaksi->nama_transaksi }}, {{ $pajak->Gaji->bulan_gaji }}, {{ $pajak->Gaji->tahun_gaji }}</td>
+                                                <td>Rp. {{ number_format($pajak->Gaji->grand_total_pph21,0,',','.') }}</td>
+                                                <td>{{ $pajak->Gaji->status_pajak }}</td>
                                             </tr>
 
-                                            @endforelse
+
+                                           
+                                            
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endif
+
+
+                   
                 </div>
             </div>
         </div>
