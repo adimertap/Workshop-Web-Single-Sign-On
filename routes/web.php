@@ -636,6 +636,10 @@ Route::group(
                     ->name('keuangan-destroy');
                 Route::post('/tariksaldo', 'KeuanganController@create')
                     ->name('tarik-saldo');
+                Route::get('/sparepart', 'SparepartMarketplaceController@index')
+                    ->name('sparepart-marketplace');
+                 Route::put('/sparepartupdate/{id}', 'SparepartMarketplaceController@update')
+                    ->name('sparepart-marketplace-update');
             });
 
         // PENJUALAN ONLINE ---------------------------------------------------------------------- Penjualan Online
