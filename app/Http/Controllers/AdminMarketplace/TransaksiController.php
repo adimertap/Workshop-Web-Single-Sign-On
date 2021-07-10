@@ -64,6 +64,6 @@ class TransaksiController extends Controller
         }
         $transaksi->update();
         
-        return redirect()->back()->with('messageberhasil','Data Akun Berhasil ditambahkan');
+        return redirect()->back()->with('messageberhasil','Data Berhasil ditambahkan');
     }
 }
