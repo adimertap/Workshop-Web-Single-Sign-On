@@ -1,3 +1,4 @@
+0.
 @extends('layouts.Admin.adminfrontoffice')
 
 @section('content')
@@ -115,6 +116,11 @@
                                                 @endif
 
                                                 @if ($item->status_bayar == 'Belum Bayar')
+                                                <a href="{{ route('cetak-sparepart', $item->id_penjualan_sparepart) }}" class="btn btn-warning btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title=""
+                                                    data-original-title="Cetak Work Order">
+                                                    <i class="fas fa-print"></i></i>
+                                                </a>
                                                 <a href="{{ route('penjualansparepart.edit', $item->id_penjualan_sparepart) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-edit"></i>

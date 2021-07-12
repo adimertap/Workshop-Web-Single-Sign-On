@@ -72,6 +72,7 @@ Route::group(
                 Route::put('/pengerjaan/{id}', 'PelayananServiceController@status')
                     ->name('dikerjakan');
                 Route::get('/cetak-work-order/{id}', 'PelayananServiceController@cetakWorkOrder')->name('cetak-wo');
+                Route::get('/cetak-invoice-sparepart/{id}', 'PenjualanSparepartController@cetakSparepart')->name('cetak-sparepart');
             });
 
         // ------------------------------------------------------------------------
@@ -557,7 +558,6 @@ Route::group(
                     ->name('pajak-pegawai');
                 Route::get('/pajak/{id}/edit', 'PajakController@editpajak')
                     ->name('pajak-edit');
-                
             });
 
         // Gaji Pegawai Accounting ----------------------------------------------------------------- Gaji Pegawai Accounting  
@@ -643,7 +643,7 @@ Route::group(
                     ->name('tarik-saldo');
                 Route::get('/sparepart', 'SparepartMarketplaceController@index')
                     ->name('sparepart-marketplace');
-                 Route::put('/sparepartupdate/{id}', 'SparepartMarketplaceController@update')
+                Route::put('/sparepartupdate/{id}', 'SparepartMarketplaceController@update')
                     ->name('sparepart-marketplace-update');
             });
 

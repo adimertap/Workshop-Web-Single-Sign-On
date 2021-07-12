@@ -116,7 +116,7 @@
                                                 </a>
 
                                                 @if ($item->status == 'dikerjakan')
-                                                <a href="{{ route('cetak-wo', $item->id_service_advisor) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                <a href="{{ route('cetak-wo', $item->id_service_advisor) }}" class="btn btn-warning btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title=""
                                                     data-original-title="Cetak Work Order">
                                                     <i class="fas fa-print"></i></i>
