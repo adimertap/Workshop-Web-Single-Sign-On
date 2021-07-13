@@ -9,7 +9,7 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto mt-4">
                         <h1 class="page-header-title">
-                            <div class="page-header-icon"><i data-feather="shopping-cart"></i></div>
+                            <div class="page-header-icon"><i data-feather="settings"></i></div>
                             Pelayanan Service
                         </h1>
                         <div class="page-header-subtitle">Data Pelayanan Service pada Bengkel</div>
