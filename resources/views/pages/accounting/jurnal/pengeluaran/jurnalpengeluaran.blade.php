@@ -70,7 +70,7 @@
                                                 style="width: 290px;">Keterangan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 50px;">Ref.</th>
+                                                style="width: 30px;">Ref.</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
                                                 style="width: 150px;">Jumlah</th>

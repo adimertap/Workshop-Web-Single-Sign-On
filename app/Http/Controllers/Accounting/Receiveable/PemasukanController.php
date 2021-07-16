@@ -21,12 +21,19 @@ class PemasukanController extends Controller
     public function index()
     {
         $pemasukankasir = LaporanPenjualanSparepart::groupBy('tanggal_laporan','status_jurnal')->selectRaw('SUM(total_tagihan) as grand_total, tanggal_laporan, COUNT(id_laporan) as jumlah_transaksi, status_jurnal')->get();
-        $transaksionline = Transaksi::groupBy('tanggal_transaksi')->selectRaw('SUM(harga_total) as total_harga, tanggal_transaksi, COUNT(id_transaksi_online) as jumlah_transaksi_online')->get(); 
+        $transaksionline = Transaksi::where('transaksi_status','=','Diterima')->groupBy('tanggal_transaksi')->selectRaw('SUM(harga_total) as total_harga, tanggal_transaksi, COUNT(id_transaksi_online) as jumlah_transaksi_online')->get();
+        
         $laporanservice = LaporanService::groupBy('tanggal_laporan','status_jurnal')->selectRaw('SUM(total_tagihan) as tagihan_total, tanggal_laporan, COUNT(id_laporan_service) as jumlah_service, status_jurnal')->get();
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.accounting.receiveable.pemasukan',['total_pemasukan' => LaporanPenjualanSparepart::sum('total_tagihan'), 'total_pemasukan_online' => Transaksi::where('transaksi_status','DIKIRIM')->sum('harga_total'),'total_service' => LaporanService::sum('total_tagihan')], compact('today','tanggal','pemasukankasir','transaksionline','laporanservice'));
+        // $total_pemasukan_online2 = Transaksi::where('transaksi_status','DIKIRIM' || 'transaksi_status', 'DITERIMA')->sum('harga_total');
+        // return $total_pemasukan_online2;
+
+        return view('pages.accounting.receiveable.pemasukan',
+        ['total_pemasukan' => LaporanPenjualanSparepart::sum('total_tagihan'), 
+        'total_pemasukan_online' => Transaksi::where('transaksi_status', 'DITERIMA')->sum('harga_total'),
+        'total_service' => LaporanService::sum('total_tagihan')], compact('today','tanggal','pemasukankasir','transaksionline','laporanservice'));
     }
 
     /**
