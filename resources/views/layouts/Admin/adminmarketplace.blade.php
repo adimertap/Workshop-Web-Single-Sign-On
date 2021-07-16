@@ -103,6 +103,9 @@
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                                 <a class="nav-link" href="{{ route('sparepart-marketplace')}}">
+                                    Sparepart
+                                </a>
                                 <a class="nav-link" href="{{ route('faq')}}">
                                     FAQ
                                 </a>
@@ -112,6 +115,7 @@
                                 <a class="nav-link" href="{{ route('keuangan')}}">
                                     Keuangan
                                 </a>
+                                
                             </nav>
                         </div>
 

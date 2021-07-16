@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\DB;
 class Sparepart extends Model
 {
     protected $table = "tb_inventory_master_sparepart";
-
     protected $primaryKey = 'id_sparepart';
-
     protected $fillable = [
         'id_merk',
         'id_bengkel',
@@ -31,7 +29,8 @@ class Sparepart extends Model
         'stock_min',
         'status_jumlah',
         'status_harga',
-        'berat_sparepart'
+        'berat_sparepart',
+        'harga_market'
     ];
 
     protected $hidden = [

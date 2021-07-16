@@ -175,4 +175,12 @@ class PenjualanSparepartController extends Controller
 
         return redirect()->back()->with('messagehapus', 'Data Penjualan Sparepart Berhasil dihapus');
     }
+
+    public function cetakSparepart($id_penjualan_sparepart)
+    {
+        $cetak_sparepart = PenjualanSparepart::with('Detailsparepart', 'Customer', 'Bengkel', 'Pegawai')->findOrFail($id_penjualan_sparepart);
+        // return $pelayanan;
+        $now = Carbon::now();
+        return view('print.FrontOffice.cetak-sparepart', compact('cetak_sparepart', 'now'));
+    }
 }

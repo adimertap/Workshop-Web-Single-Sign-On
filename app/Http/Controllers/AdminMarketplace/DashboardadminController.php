@@ -118,7 +118,7 @@ class DashboardadminController extends Controller
         $faq->jawaban_faq = $request->jawaban_faq;
       
         $faq->update();
-        return redirect()->back()->with('messageberhasil','Data Merk Berhasil diubah');
+        return redirect()->back()->with('messageberhasil','Data FAQ Berhasil diubah');
     
     }
 

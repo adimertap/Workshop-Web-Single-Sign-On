@@ -66,22 +66,22 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Nama Customer</th>
+                                                style="width: 100px;">Nama Customer</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Total Bayar</th>
+                                                style="width: 150px;">Total Bayar</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Tanggal</th>
+                                                style="width: 150px;">Tanggal</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Status</th>
+                                                style="width: 80px;">Status</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Actions</th>
+                                                style="width: 150px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -115,6 +115,11 @@
                                                 @endif
 
                                                 @if ($item->status_bayar == 'Belum Bayar')
+                                                <a href="{{ route('cetak-sparepart', $item->id_penjualan_sparepart) }}" class="btn btn-warning btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title=""
+                                                    data-original-title="Cetak Work Order">
+                                                    <i class="fas fa-print"></i></i>
+                                                </a>
                                                 <a href="{{ route('penjualansparepart.edit', $item->id_penjualan_sparepart) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-edit"></i>
