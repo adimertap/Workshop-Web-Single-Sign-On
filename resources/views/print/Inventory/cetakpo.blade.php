@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="card-body">
-                        <div class="row justify-content-between align-items-center">
+                        <div class="row justify-content-between align-items-center mb-4">
                             <div class="col-6 text-lg-left" style="line-height: 1rem">
                                 <label class="small font-weight-700">Kepada: </label>
                                 <div class="row">
@@ -127,8 +127,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            
                         </div>
 
                         <div class="col-lg-12" >

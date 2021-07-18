@@ -329,10 +329,9 @@ Route::group(
             ->namespace('Inventory\Kartugudang')
             ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
-                Route::get('/', 'KartugudangController@index')
-                    ->name('Kartu-gudang');
 
                 Route::resource('Kartu-gudang', 'KartugudangController');
+                Route::get('cetak-kartu-gudang/{id}', 'KartugudangController@CetakKartu')->name('cetak-kartu-gudang');
             });
 
 

@@ -109,4 +109,23 @@ class KartugudangController extends Controller
     {
         //
     }
+
+    public function CetakKartu($id_sparepart){
+        $sparepart = Sparepart::findOrFail($id_sparepart);
+        $kartu_gudang = Kartugudang::where('id_sparepart', $id_sparepart)->get();
+
+        $tanggal = Carbon::now()->format('F Y');
+        $now = Carbon::now();
+
+        return view('print.Inventory.cetakkartugudang',[
+            'sparepart' => $sparepart,
+            'kartu_gudang' => $kartu_gudang,
+            'tanggal' => $tanggal,
+            'now' => $now
+            // 'jenis_sparepart' => $jenis_sparepart,
+            // 'merk_sparepart' => $merk_sparepart,
+            // 'konversi' => $konversi,
+            // 'rak' => $rak,
+        ]);
+    }
 }

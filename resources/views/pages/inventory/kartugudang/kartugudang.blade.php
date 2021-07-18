@@ -131,13 +131,13 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('Kartu-gudang.show', $item->id_sparepart) }}"
-                                                class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                class="btn btn-secondary btn-datatable" data-toggle="tooltip" 
                                                 data-placement="top" title="" data-original-title="Sparepart Report">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                data-placement="top" title=""
-                                                data-original-title="Cetak Sparepart Report">
+                                            <a href="{{ route('cetak-kartu-gudang', $item->id_sparepart) }}" 
+                                                class="btn btn-primary btn-datatable" data-toggle="tooltip" target="_blank"
+                                                data-placement="top" title="" data-original-title="Cetak Sparepart Report">
                                                 <i class="fas fa-print"></i></i>
                                             </a>
                                         </td>
