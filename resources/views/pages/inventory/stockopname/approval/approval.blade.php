@@ -108,11 +108,7 @@
                                         </td>
                                     </tr>
                                     @empty
-                                    <tr>
-                                        <td colspan="7" class="tex-center">
-                                            Data Opname Kosong
-                                        </td>
-                                    </tr>
+                                  
                                     @endforelse
                                 </tbody>
                             </table>

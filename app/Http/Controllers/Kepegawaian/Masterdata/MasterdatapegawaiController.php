@@ -25,7 +25,12 @@ class MasterdatapegawaiController extends Controller
         ])->join('tb_kepeg_master_jabatan', 'tb_kepeg_master_pegawai.id_jabatan', 'tb_kepeg_master_jabatan.id_jabatan')
         ->where('nama_jabatan', '!=', 'Owner')->get();
 
-        return view('pages.kepegawaian.masterdata.pegawai.pegawai', compact('pegawai'));
+        $jumlah_pegawai = Pegawai::with([
+            'Jabatan'
+        ])->join('tb_kepeg_master_jabatan', 'tb_kepeg_master_pegawai.id_jabatan', 'tb_kepeg_master_jabatan.id_jabatan')
+        ->where('nama_jabatan', '!=', 'Owner')->count();
+
+        return view('pages.kepegawaian.masterdata.pegawai.pegawai', compact('pegawai','jumlah_pegawai'));
     }
 
     /**

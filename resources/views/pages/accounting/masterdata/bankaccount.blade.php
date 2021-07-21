@@ -107,11 +107,7 @@
                                             </td>
                                         </tr>
                                         @empty
-                                        <tr>
-                                            <td colspan="7" class="tex-center">
-                                                Data Account Kosong
-                                            </td>
-                                        </tr>
+                                       
                                         @endforelse
                                     </tbody>
                                 </table>

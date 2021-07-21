@@ -94,11 +94,7 @@
                                             </td>
                                         </tr>
                                         @empty
-                                        <tr>
-                                            <td colspan="7" class="tex-center">
-                                                Data Merk Sparepart Kosong
-                                            </td>
-                                        </tr>
+                                       
                                         @endforelse
                                     </tbody>
                                 </table>

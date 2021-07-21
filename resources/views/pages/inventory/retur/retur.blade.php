@@ -275,11 +275,7 @@
                                             </td>
                                         </tr>
                                         @empty
-                                        <tr>
-                                            <td colspan="8" class="text-center">
-                                                Data Supplier Kosong
-                                            </td>
-                                        </tr>
+                                       
                                         @endforelse
                                     </tbody>
                                 </table>

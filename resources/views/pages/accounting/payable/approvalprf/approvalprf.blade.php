@@ -108,11 +108,7 @@
                                         </td>
                                     </tr>
                                     @empty
-                                    <tr>
-                                        <td colspan="7" class="text-center">
-                                            Belum Ada Data Pembayaran
-                                        </td>
-                                    </tr>
+                                  
                                     @endforelse
                                 </tbody>
                             </table>

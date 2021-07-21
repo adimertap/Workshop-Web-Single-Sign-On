@@ -22,15 +22,37 @@
         </div>
     </div>
 
+   
+        @if ($sparepart_kosong == 0 | $sparepart_kosong == null)
+        <div class="container">
+            <div class="alert alert-danger alert-icon" role="alert">
+                <div class="alert-icon-aside">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <div class="alert-icon-content">
+                    <h6 class="alert-heading">Informasi Sparepart!</h6>
+                    Anda belum memiliki data sparepart, silahkan menambahkan data sparepart pada menu master data!
+                </div>
+            </div>
+        </div>
+
+        @else
+
+        @endif
+   
+
+
+
     <div class="container">
         <div class="card card-waves mb-4">
             <div class="card-body p-5">
                 <div class="row align-items-center justify-content-between">
                     <div class="col">
                         <h2 class="text-primary">Selamat Datang, {{ Auth::user()->pegawai->nama_pegawai}}!</h2>
-                        <p class="text-gray-700"><b>Bengkel-Kuy </b>menggunakan teknologi web secara online yang memudahkan
+                        <p class="text-gray-700"><b>Bengkel-Kuy </b>menggunakan teknologi web secara online yang
+                            memudahkan
                             Anda untuk memonitor inventory atau persediaan sparepart Anda selama 7x24 jam.</p>
-                        <a class="btn btn-primary btn-sm px-3 py-2" href="">
+                        <a class="btn btn-primary btn-sm px-3 py-2" href="{{ route('sparepart.index') }}">
                             Get Started
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -247,7 +269,7 @@
                 </div>
             </div>
         </div>
-        
+
         <p></p>
     </div>
     <div class="container">

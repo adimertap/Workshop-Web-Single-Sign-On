@@ -60,8 +60,8 @@
                                     <div class="form-group">
                                         <label class="small mb-1 mr-1" for="nama_pegawai">Nama Lengkap</label><span
                                             class="mr-4 mb-3" style="color: red">*</span>
-                                        <input class="form-control" id="nama_pegawai" type="text"
-                                            name="nama_pegawai" placeholder="Input Nama Lengkap" value="{{ old('nama_pegawai') }}"
+                                        <input class="form-control" id="nama_pegawai" type="text" name="nama_pegawai"
+                                            placeholder="Input Nama Lengkap" value="{{ old('nama_pegawai') }}"
                                             class="form-control @error('nama_pegawai') is-invalid @enderror" />
                                         @error('nama_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                         </div> @enderror
@@ -71,25 +71,27 @@
                                             <label class="small mb-1 mr-1" for="nama_panggilan">Nama
                                                 Panggilan</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="nama_panggilan" type="text"
-                                                name="nama_panggilan" placeholder="Input Nama Panggilan" value="{{ old('nama_panggilan') }}"
+                                                name="nama_panggilan" placeholder="Input Nama Panggilan"
+                                                value="{{ old('nama_panggilan') }}"
                                                 class="form-control @error('nama_panggilan') is-invalid @enderror" />
                                             @error('nama_panggilan')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label class="small mb-1 mr-1" for="nik_pegawai">NIK Pegawai</label><span
-                                            class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="nik_pegawai" type="text"
-                                                name="nik_pegawai" placeholder="Input NIK Pegawai" value="{{ old('nik_pegawai') }}"
-                                                class="form-control @error('nik_pegawai') is-invalid @enderror"/>
+                                            <label class="small mb-1 mr-1" for="nik_pegawai">NIK Pegawai</label><small
+                                            class="text-muted">*16 digit</small></label> <span class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="nik_pegawai" type="text" name="nik_pegawai"
+                                                placeholder="Input NIK Pegawai" value="{{ old('nik_pegawai') }}" minlength="16" maxlength="16"
+                                                class="form-control @error('nik_pegawai') is-invalid @enderror" />
                                             @error('nik_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label class="small mb-1 mr-1" for="npwp_pegawai">NPWP</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="npwp_pegawai" type="text"
-                                                name="npwp_pegawai" placeholder="Input NPWP Pegawai" value="{{ old('npwp_pegawai') }}"
+                                            <label class="small mb-1 mr-1" for="npwp_pegawai">NPWP</label><small
+                                            class="text-muted">*16 digit</small></label> <span class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="npwp_pegawai" type="text" minlength="16" maxlength="16"
+                                                name="npwp_pegawai" placeholder="Input NPWP Pegawai"
+                                                value="{{ old('npwp_pegawai') }}"
                                                 class="form-control @error('npwp_pegawai') is-invalid @enderror" />
                                             @error('npwp_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
@@ -99,14 +101,23 @@
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="id_jabatan">Jabatan</label><span
                                                 class="mr-4 mb-3" style="color: red">*</span>
-                                            <select class="form-control" name="id_jabatan" id="id_jabatan" value="{{ old('id_jabatan') }}"
-                                                class="form-control @error('id_jabatan') is-invalid @enderror">
-                                                <option>Pilih Jabatan</option>
-                                                @foreach ($jabatan as $item)
-                                                <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}
-                                                </option>
-                                                @endforeach
-                                            </select>
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-append">
+                                                    <a href="" class="btn btn-sm btn-secondary" type="button"
+                                                        data-toggle="modal" data-target="#Modaljabatan">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                </div>
+                                                <select class="form-control" name="id_jabatan" id="id_jabatan"
+                                                    value="{{ old('id_jabatan') }}"
+                                                    class="form-control @error('id_jabatan') is-invalid @enderror">
+                                                    <option>Pilih Jabatan</option>
+                                                    @foreach ($jabatan as $item)
+                                                    <option value="{{ $item->id_jabatan }}">{{ $item->nama_jabatan }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                             @error('id_jabatan')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
@@ -114,7 +125,8 @@
                                             <label class="small mb-1 mr-1" for="tempat_lahir">Tempat Lahir</label><span
                                                 class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="tempat_lahir" type="text"
-                                                name="tempat_lahir" placeholder="Input Tempat Lahir" value="{{ old('tempat_lahir') }}"
+                                                name="tempat_lahir" placeholder="Input Tempat Lahir"
+                                                value="{{ old('tempat_lahir') }}"
                                                 class="form-control @error('tempat_lahir') is-invalid @enderror" />
                                             @error('tempat_lahir')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
@@ -133,7 +145,8 @@
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="jenis_kelamin">Jenis
                                                 Kelamin</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control" value="{{ old('jenis_kelamin') }}"
+                                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control"
+                                                value="{{ old('jenis_kelamin') }}"
                                                 class="form-control @error('jenis_kelamin') is-invalid @enderror">
                                                 <option value="{{ old('jenis_kelamin')}}"> Pilih Jenis Kelamin</option>
                                                 <option value="Laki-Laki">Laki Laki</option>
@@ -154,7 +167,8 @@
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="agama">Agama</label><span
                                                 class="mr-4 mb-3" style="color: red">*</span>
-                                            <select name="agama" id="agama" class="form-control" value="{{ old('agama') }}"
+                                            <select name="agama" id="agama" class="form-control"
+                                                value="{{ old('agama') }}"
                                                 class="form-control @error('agama') is-invalid @enderror">
                                                 <option value="{{ old('agama')}}"> Pilih Agama</option>
                                                 <option value="Hindu">Hindu</option>
@@ -172,7 +186,8 @@
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="pendidikan_terakhir">Pendidikan
                                                 Terakhir</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select name="pendidikan_terakhir" id="pendidikan_terakhir" class="form-control" value="{{ old('pendidikan_terakhir') }}"
+                                            <select name="pendidikan_terakhir" id="pendidikan_terakhir"
+                                                class="form-control" value="{{ old('pendidikan_terakhir') }}"
                                                 class="form-control @error('pendidikan_terakhir') is-invalid @enderror">
                                                 <option value="{{ old('pendidikan_terakhir')}}">Pilih Pendidikan
                                                     Terakhir</option>
@@ -183,13 +198,15 @@
                                                 <option value="SARJANA">Sarjana</option>
                                                 <option value="PASCA SARJANA">Pasca Sarjana</option>
                                             </select>
-                                            @error('pendidikan_terakhir')<div class="text-danger small mb-1">{{ $message }}
+                                            @error('pendidikan_terakhir')<div class="text-danger small mb-1">
+                                                {{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label class="small mb-1 mr-1" for="tanggal_masuk">Tanggal Masuk</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" name="tanggal_masuk" id="tanggal_masuk" type="date" value="{{ old('tanggal_masuk') }}"
+                                            <label class="small mb-1 mr-1" for="tanggal_masuk">Tanggal
+                                                Masuk</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" name="tanggal_masuk" id="tanggal_masuk"
+                                                type="date" value="{{ old('tanggal_masuk') }}"
                                                 class="form-control @error('tanggal_masuk') is-invalid @enderror" />
                                             @error('tanggal_masuk')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
@@ -217,10 +234,11 @@
                                     </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('pegawai.index') }}" class="btn btn-light" type="button">Kembali</a>
+                                        <a href="{{ route('pegawai.index') }}" class="btn btn-light"
+                                            type="button">Kembali</a>
                                         <button class="btn btn-primary" type="Submit">Submit</button>
                                     </div>
-                                    </form>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -229,5 +247,36 @@
         </div>
     </div>
 </main>
+
+<div class="modal fade" id="Modaljabatan" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Jabatan</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('jabatan.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="nama_jabatan">Nama Jabatan</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <input class="form-control" name="nama_jabatan" type="text" id="nama_jabatan"
+                            placeholder="Input Nama Jabatan" value="{{ old('nama_jabatan') }}" required></input>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="Submit">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @endsection

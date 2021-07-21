@@ -180,11 +180,7 @@
                                         <td>{{ $item->keterangan }}</td>
                                         </tr>
                                         @empty
-                                        <tr>
-                                            <td colspan="8" class="text-center">
-                                                Data Absensi Kosong
-                                            </td>
-                                        </tr>
+                                       
                                         @endforelse
 
                                     </tbody>

@@ -89,11 +89,7 @@
                                             </td>
                                         </tr>
                                         @empty
-                                        <tr>
-                                            <td colspan="7" class="tex-center">
-                                                Data Form of Payment Kosong
-                                            </td>
-                                        </tr>
+                                        
                                         @endforelse
                                     </tbody>
                                 </table>

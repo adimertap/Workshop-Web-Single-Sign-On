@@ -234,7 +234,7 @@
                                         <div class="form-group col-6">
                                             <label class="small mb-1" for="username">Username <small
                                                     class="text-muted">*Min. 6 digit</small></label> <span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input id="username" type="text" 
+                                            <input id="username" type="text"
                                                 class="form-control @error('username') is-invalid @enderror"
                                                 name="username" placeholder="Input Username"
                                                 value="{{ old('username') }}" required autocomplete="username"

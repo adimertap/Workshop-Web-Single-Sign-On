@@ -128,11 +128,7 @@
                                         </td>
                                     </tr>
                                     @empty
-                                    <tr>
-                                        <td colspan="7" class="tex-center">
-                                            Data Pembelian Kosong
-                                        </td>
-                                    </tr>
+                                  
                                     @endforelse
                                 </tbody>
                             </table>

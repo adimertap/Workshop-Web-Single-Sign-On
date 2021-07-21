@@ -316,11 +316,7 @@
                                         </td>
                                     </tr>
                                     @empty
-                                    <tr>
-                                        <td colspan="3" class="text-center">
-                                            Data Pembelian Kosong
-                                        </td>
-                                    </tr>
+                                   
                                     @endforelse
                                 </tbody>
                             </table>

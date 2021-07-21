@@ -206,11 +206,7 @@
                                                 <td>{{ $item->keterangan }}</td>
                                             </tr>
                                             @empty
-                                            <tr>
-                                                <td colspan="7" class="text-center">
-                                                    Anda Belum Melakukan Absensi Pegawai
-                                                </td>
-                                            </tr>
+                                          
                                             @endforelse
                                         </tbody>
                                     </table>

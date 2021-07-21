@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Data Pegawai 
+                            Master Data Pegawai
                         </h1>
                     </div>
                 </div>
@@ -18,6 +18,23 @@
         </div>
     </header>
 </main>
+
+@if ($jumlah_pegawai == 0 | $jumlah_pegawai == null)
+<div class="container-fluid">
+    <div class="alert alert-danger alert-icon" role="alert">
+        <div class="alert-icon-aside">
+            <i class="fas fa-user-plus"></i>
+        </div>
+        <div class="alert-icon-content">
+            <h6 class="alert-heading">Informasi Pegawai!</h6>
+                Anda belum memiliki pegawai, silahkan menambahkan data pegawai!
+        </div>
+    </div>
+</div>
+
+@else
+
+@endif
 {{-- MAIN PAGE CONTENT --}}
 
 <div class="container-fluid">
@@ -57,7 +74,7 @@
                                             colspan="1" aria-sort="ascending"
                                             aria-label="Name: activate to sort column descending" style="width: 10px;">
                                             No</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
                                             style="width: 60px;">NIK</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
@@ -106,11 +123,7 @@
                                         </td>
                                     </tr>
                                     @empty
-                                    <tr>
-                                        <td colspan="7" class="tex-center">
-                                            Data Pegawai Kosong
-                                        </td>
-                                    </tr>
+                                   
                                     @endforelse
                                 </tbody>
                             </table>
@@ -135,7 +148,8 @@
             <form action="{{ route('pegawai.destroy', $item->id_pegawai) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Pegawai Atas Nama <b> {{ $item->nama_pegawai }}</b>?
+                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Pegawai Atas Nama <b>
+                        {{ $item->nama_pegawai }}</b>?
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
