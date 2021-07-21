@@ -131,7 +131,7 @@
                                                 data-toggle="modal" data-target="#Modalhapus-{{ $item->id_pajak }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
-                                            <a href="" class="btn btn-warning btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('cetak-pajak', $item->id_pajak) }}" class="btn btn-warning btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak Data Pajak">
                                                 <i class="fas fa-print"></i></i>
                                             </a>

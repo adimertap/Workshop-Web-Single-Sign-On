@@ -170,7 +170,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
                             <h5>Inventory</h5>
-                            <div class="text-muted">Pengelolaan Persediaan Barang</div>
+                            <div class="text-muted">Pengelolaan Persediaan Sparepart</div>
                         </div>
                         <img class="card-img-top" src="/backend/src/assets/img/freepik/logistic5.png" alt="..."
                             style="width: 5rem;">
@@ -188,7 +188,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
                             <h5>Kepegawaian</h5>
-                            <div class="text-muted">Pengelolaan Human Resources</div>
+                            <div class="text-muted">Pengelolaan Kepegawaian</div>
                         </div>
                         <img class="card-img-top" src="/backend/src/assets/img/freepik/windows-pana.svg" alt="..."
                             style="width: 5rem;">
@@ -225,7 +225,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
                             <h5>Accounting</h5>
-                            <div class="text-muted">Pengelolaan Keuangan Bengkel</div>
+                            <div class="text-muted">Pengelolaan Akuntansi Keuangan</div>
                         </div>
 
                         <img class="card-img-top" src="/backend/src/assets/img/freepik/accounting.svg" alt="..."

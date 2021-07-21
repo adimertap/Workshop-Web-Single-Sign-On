@@ -557,6 +557,7 @@ Route::group(
                     ->name('pajak-pegawai');
                 Route::get('/pajak/{id}/edit', 'PajakController@editpajak')
                     ->name('pajak-edit');
+                 Route::get('cetak-pajak/{id}', 'PajakController@CetakPajak')->name('cetak-pajak');
             });
 
         // Gaji Pegawai Accounting ----------------------------------------------------------------- Gaji Pegawai Accounting  
@@ -600,6 +601,14 @@ Route::group(
             ->middleware(['admin_accounting_gabung', 'verified'])
             ->group(function () {
                 Route::resource('jurnal-penerimaan', 'JurnalPenerimaanController');
+            });
+
+        
+        Route::prefix('Accounting')
+            ->namespace('Accounting\Laporan')
+            ->middleware(['admin_accounting_gabung', 'verified'])
+            ->group(function () {
+                Route::resource('laporan-laba-rugi', 'LaporanLabaRugiController');
             });
 
         // CATATAN ADIM -------------------------------------------------------------------- Catatan Adim

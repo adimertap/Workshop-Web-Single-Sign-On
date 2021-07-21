@@ -73,13 +73,13 @@
                                             No</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 20px;">Kode</th>
+                                            style="width: 50px;">Kode</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 90px;">Supplier</th>
+                                            style="width: 120px;">Supplier</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 100px;">Total Bayar</th>
+                                            style="width: 90px;">Total Bayar</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Start date: activate to sort column ascending"
                                             style="width: 40px;">Status PRF</th>
@@ -88,10 +88,10 @@
                                             style="width: 40px;">Status Bayar</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 40px;">Status Jurnal</th>
+                                            style="width: 30px;">Status Jurnal</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
-                                            style="width: 90px;">Actions</th>
+                                            style="width: 80px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -124,7 +124,7 @@
                                                 Bayar
                                             </a>
                                             @elseif ($item->status_bayar == 'Sudah Dibayar')
-                                            <span class="badge badge-warning">  <i class="fa fa-check mr-1"></i>{{ $item->tanggal_bayar }}
+                                            <span class="badge badge-success">  <i class="fa fa-check mr-1"></i>{{ $item->tanggal_bayar }}
                                             @elseif($item->status_prf == 'Not Approved')
                                             <span class="font-size-300" style="font-size: 12px;">Data diTolak</span>
                                             @else

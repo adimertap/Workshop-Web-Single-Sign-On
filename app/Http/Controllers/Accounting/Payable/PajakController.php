@@ -246,4 +246,22 @@ class PajakController extends Controller
         
         return redirect()->back()->with('messagehapus','Data Pajak Berhasil dihapus');
     }
+
+    public function CetakPajak($id_pajak)
+    {
+
+        $pajak = Pajak::with('detailpajak','Jenistransaksi','Pegawai','Gaji.Detailpegawai')->findOrFail($id_pajak);
+
+        // return $pajak->Gaji;
+
+        if($pajak->status_pajak == 'Terkait Pegawai'){
+            $now = Carbon::now();
+            return view('print.Accounting.cetak-pajak-gaji', compact('pajak','now'));
+        }elseif($pajak->status_pajak == 'Tidak Terkait'){
+            $now = Carbon::now();
+            return view('print.Accounting.cetak-pajak', compact('pajak','now'));
+        };
+
+        
+    }
 }

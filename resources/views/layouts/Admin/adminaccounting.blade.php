@@ -190,7 +190,7 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
-                                <a class="nav-link" href="invoice.html">
+                                <a class="nav-link" href="{{ route('laporan-laba-rugi.index') }}">
                                     Laba Rugi
                                 </a>
                             </nav>
