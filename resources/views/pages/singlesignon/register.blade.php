@@ -64,22 +64,22 @@
                                         <div class="form-group col-6">
                                             <label for="nama_bengkel">Nama Bengkel</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="nama_bengkel" type="text" class="form-control"
-                                                name="nama_bengkel" placeholder="Input Nama Bengkel" autofocus required>
+                                                name="nama_bengkel" placeholder="Input Nama Bengkel" value="{{ old('nama_bengkel') }}" autofocus required>
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="alamat_bengkel">Alamat Bengkel</label>
                                             <input id="alamat_bengkel" type="text" placeholder="Input Alamat Bengkel"
-                                                class="form-control" name="alamat_bengkel">
+                                                class="form-control" name="alamat_bengkel" value="{{ old('alamat_bengkel') }}">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label for="jam_buka_bengkel">Jam Buka Bengkel</label> <span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input id="jam_buka_bengkel" type="time" class="form-control" name="jam_buka_bengkel" >
+                                            <input id="jam_buka_bengkel" type="time" class="form-control" name="jam_buka_bengkel" value="{{ old('jam_buka_bengkel') }}">
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="jam_tutup_bengkel">Jam Tutup Bengkel</label> <span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input id="jam_tutup_bengkel" type="time" class="form-control" name="jam_tutup_bengkel">
+                                            <input id="jam_tutup_bengkel" type="time" class="form-control" name="jam_tutup_bengkel" value="{{ old('jam_tutup_bengkel') }}">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -92,14 +92,14 @@
                                         <div class="form-group col-6">
                                             <label for="nohp_bengkel">No. Telp Bengkel</label> <span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="nohp_bengkel" type="text" class="form-control"
-                                                placeholder="Input No. Telp Bengkel" name="nohp_bengkel" required>
+                                                placeholder="Input No. Telp Bengkel" name="nohp_bengkel"  value="{{ old('nohp_bengkel') }}" required>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label class="small mb-1" for="provinsi">Provinsi</label>
-                                            <select class="form-control" name="provinsi">
+                                            <select class="form-control" name="provinsi" >
                                                 <option value="" holder>Pilih Provinsi</option>
                                                 @foreach ($provinsi as $item)
                                                 <option value="{{ $item->id_provinsi }}">
@@ -134,13 +134,13 @@
                                         <div class="form-group col-6">
                                             <label for="latitude">Latitude Bengkel</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="latitude" name="latitude" type="text" class="form-control"
-                                                placeholder="Input Latitude Bengkel" name="latitude" autofocus required>
+                                                placeholder="Input Latitude Bengkel" name="latitude" value="{{ old('latitude') }}" autofocus required>
                                         </div>
 
                                         <div class="form-group col-6">
                                             <label for="longitude">Longitude Bengkel</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="longitude" name="longitude" type="text" class="form-control"
-                                                placeholder="Input Longitude bengkel" name="longitude" required>
+                                                placeholder="Input Longitude bengkel" name="longitude" value="{{ old('longitude') }}" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -175,20 +175,20 @@
                                             <label class="small mb-1" for="nik_pegawai">NIK Pemilik <small
                                                     class="text-muted">*16 digit</small></label> <span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="nik_pegawai" type="text" class="form-control"
-                                                placeholder="Input NIK Pemilik" name="nik_pegawai" minlength="16" maxlength="16" required>
+                                                placeholder="Input NIK Pemilik" name="nik_pegawai" value="{{ old('nik_pegawai') }}" minlength="16" maxlength="16" required>
                                         </div>
                                         <div class="form-group col-4">
                                             <label class="small mb-1" for="npwp_pegawai">NPWP Pemilik <small
                                                     class="text-muted">*16 digit</small></label>
                                             <input id="npwp_pegawai" type="text" class="form-control"
-                                                placeholder="Input NPWP Pemilik" name="npwp_pegawai" minlength="16" maxlength="16" required>
+                                                placeholder="Input NPWP Pemilik" name="npwp_pegawai" value="{{ old('npwp_pegawai') }}" minlength="16" maxlength="16" required>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="form-group col-4">
                                             <label class="small mb-1 mr-1" for="jenis_kelamin">Jenis Kelamin</label>
-                                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control"
+                                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control" value="{{ old('jenis_kelamin') }}"
                                                 class="form-control @error('jenis_kelamin') is-invalid @enderror">
                                                 <option value="{{ old('jenis_kelamin')}}"> Pilih Jenis Kelamin</option>
                                                 <option value="Laki-Laki">Laki Laki</option>
@@ -199,12 +199,12 @@
                                         </div>
                                         <div class="form-group col-4">
                                             <label class="small mb-1" for="no_telp">No.Telp Pemilik</label> <span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input id="no_telp" type="text" class="form-control"
+                                            <input id="no_telp" type="text" class="form-control" value="{{ old('no_telp') }}"
                                                 placeholder="Input No. Telp Pemilik" name="no_telp" required>
                                         </div>
                                         <div class="form-group col-4">
                                             <label for="alamat">Alamat</label>
-                                            <input id="alamat" type="text" placeholder="Input Alamat"
+                                            <input id="alamat" type="text" placeholder="Input Alamat" value="{{ old('alamat') }}"
                                                 class="form-control" name="alamat">
                                         </div>
                                     </div>
@@ -213,7 +213,7 @@
                                         <div class="form-group col-6">
                                             <label class="small mb-1 mr-1" for="tempat_lahir">Tempat Lahir</label>
                                             <input class="form-control" id="tempat_lahir" type="text"
-                                                name="tempat_lahir" placeholder="Input Tempat Lahir"
+                                                name="tempat_lahir" placeholder="Input Tempat Lahir" value="{{ old('tempat_lahir') }}"
                                                 class="form-control @error('tempat_lahir') is-invalid @enderror" />
                                             @error('tempat_lahir')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
@@ -221,7 +221,7 @@
                                         <div class="form-group col-6">
                                             <label class="small mb-1 mr-1" for="tanggal_lahir">Tanggal Lahir</label>
                                             <input class="form-control" id="tanggal_lahir" type="date"
-                                                name="tanggal_lahir"
+                                                name="tanggal_lahir" value="{{ old('tanggal_lahir') }}"
                                                 class="form-control @error('tanggal_lahir') is-invalid @enderror" />
                                             @error('tanggal_lahir')
                                             <div class="text-danger small mb-1">{{ $message }}
@@ -234,7 +234,7 @@
                                         <div class="form-group col-6">
                                             <label class="small mb-1" for="username">Username <small
                                                     class="text-muted">*Min. 6 digit</small></label> <span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input id="username" type="text"
+                                            <input id="username" type="text" 
                                                 class="form-control @error('username') is-invalid @enderror"
                                                 name="username" placeholder="Input Username"
                                                 value="{{ old('username') }}" required autocomplete="username"
