@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FrontOffice\JenisKendaraanRequest as MasterDataJenisKendaraanRequest;
+use App\Http\Requests\FrontOffice\JenisKendaraanRequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataJenisKendaraan;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +39,7 @@ class MasterDataJenisKendaraanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MasterDataJenisKendaraanRequest $request)
+    public function store(JenisKendaraanRequest $request)
     {
 
         $request['id_bengkel'] = Auth::user()->id_bengkel;
@@ -79,7 +79,7 @@ class MasterDataJenisKendaraanController extends Controller
      * @param  \App\MasterDataJenisKendaraan  $masterDataJenisKendaraan
      * @return \Illuminate\Http\Response
      */
-    public function update(MasterDataJenisKendaraanRequest $request, $id_jenis_kendaraan)
+    public function update(JenisKendaraanRequest $request, $id_jenis_kendaraan)
     {
         $kendaraan = MasterDataJenisKendaraan::findOrFail($id_jenis_kendaraan);
         $kendaraan->jenis_kendaraan = $request->jenis_kendaraan;
