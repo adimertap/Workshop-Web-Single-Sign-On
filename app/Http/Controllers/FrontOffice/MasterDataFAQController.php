@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FrontOffice\MasterData\Faqrequest;
+use App\Http\Requests\FrontOffice\Faqrequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataFAQ;
 

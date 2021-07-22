@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FrontOffice\MasterData\Diskonrequest;
+use App\Http\Requests\FrontOffice\Diskonrequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataDiskon;
 

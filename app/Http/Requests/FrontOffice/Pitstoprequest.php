@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\FrontOffice\MasterData;
+namespace App\Http\Requests\FrontOffice;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class JenisKendaraanRequest extends FormRequest
+class Pitstoprequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class JenisKendaraanRequest extends FormRequest
     public function rules()
     {
         return [
-            'jenis_kendaraan' => 'required'
+            'kode_pitstop' => 'required',
+            'nama_pitstop' => 'required'
         ];
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FrontOffice\MasterData\JenisKendaraanRequest as MasterDataJenisKendaraanRequest;
+use App\Http\Requests\FrontOffice\JenisKendaraanRequest as MasterDataJenisKendaraanRequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataJenisKendaraan;
 use Illuminate\Support\Facades\Auth;

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\FrontOffice\MasterData;
+namespace App\Http\Requests\FrontOffice;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Reminderrequest extends FormRequest
+class JenisPerbaikanrequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class Reminderrequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_reminder' => 'required',
-            'masa_berlaku' => 'required',
-            'km_berlaku' => 'required',
+            'kode_jenis_perbaikan' => 'required',
+            'nama_jenis_perbaikan' => 'required',
+            'group_jenis_perbaikan' => 'required|string|in:Service Ringan,Service Berat',
+            'harga_jenis_perbaikan' => 'required'
         ];
     }
 }

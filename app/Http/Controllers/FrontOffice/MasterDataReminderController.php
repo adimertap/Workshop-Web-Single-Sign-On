@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FrontOffice\MasterData\Reminderrequest;
+use App\Http\Requests\FrontOffice\Reminderrequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataReminder;
 use Illuminate\Support\Facades\Auth;

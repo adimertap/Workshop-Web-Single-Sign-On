@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FrontOffice\MasterData\KendaraanRequest;
+use App\Http\Requests\FrontOffice\KendaraanRequest;
 use App\Model\FrontOffice\MasterDataJenisKendaraan;
 use App\Model\FrontOffice\MasterDataKendaraan;
 use App\Model\FrontOffice\MasterDataMerkKendaraan;

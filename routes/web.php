@@ -57,6 +57,7 @@ Route::group(
                 Route::resource('faq', 'MasterDataFAQController');
                 Route::resource('merk-kendaraan', 'MasterDataMerkKendaraanController');
                 Route::resource('kendaraan', 'MasterDataKendaraanController');
+                Route::resource('harga-jual', 'HargaJualSparepartController');
             });
 
 

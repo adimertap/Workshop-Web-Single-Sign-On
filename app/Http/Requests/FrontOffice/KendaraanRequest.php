@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\FrontOffice\MasterData;
+namespace App\Http\Requests\FrontOffice;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Diskonrequest extends FormRequest
+class KendaraanRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class Diskonrequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_diskon' => 'required',
-            'jumlah_diskon' => 'required',
-            'tanggal_mulai' => 'required',
-            'tanggal_selesai' => 'required',
+            'kode_kendaraan' => 'required',
+            'nama_kendaraan' => 'required',
+            'id_jenis_kendaraan' => 'required',
+            'id_merk_kendaraan' => 'required',
         ];
     }
 }

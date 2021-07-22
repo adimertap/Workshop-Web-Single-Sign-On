@@ -4,7 +4,7 @@ namespace App\Http\Controllers\FrontOffice;
 
 use App\FrontOffice\MasterDataMerkKendaraan;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FrontOffice\MasterData\MerkKendaraanRequest;
+use App\Http\Requests\FrontOffice\MerkKendaraanRequest;
 use App\Model\FrontOffice\MasterDataJenisKendaraan;
 use App\Model\FrontOffice\MasterDataMerkKendaraan as FrontOfficeMasterDataMerkKendaraan;
 use Illuminate\Http\Request;
