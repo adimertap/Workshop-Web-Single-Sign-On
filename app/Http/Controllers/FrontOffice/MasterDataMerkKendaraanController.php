@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\FrontOffice\MasterData;
+namespace App\Http\Controllers\FrontOffice;
 
 use App\FrontOffice\MasterDataMerkKendaraan;
 use App\Http\Controllers\Controller;
