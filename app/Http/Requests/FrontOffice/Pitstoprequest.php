@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\FrontOffice\MasterData;
+namespace App\Http\Requests\FrontOffice;
 
 use Illuminate\Foundation\Http\FormRequest;
 

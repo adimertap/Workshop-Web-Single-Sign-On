@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\FrontOffice\MasterData;
+namespace App\Http\Requests\FrontOffice;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Faqrequest extends FormRequest
+class Diskonrequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,10 @@ class Faqrequest extends FormRequest
     public function rules()
     {
         return [
-            'pertanyaan_faq' => 'required',
-            'jawaban_faq' => 'required',
+            'nama_diskon' => 'required',
+            'jumlah_diskon' => 'required',
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
         ];
     }
 }

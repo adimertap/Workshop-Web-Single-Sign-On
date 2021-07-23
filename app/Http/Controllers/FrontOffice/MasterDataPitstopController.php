@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\FrontOffice\Masterdata;
+namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FrontOffice\MasterData\Pitstoprequest;
+use App\Http\Requests\FrontOffice\Pitstoprequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataPitstop;
 use Illuminate\Support\Facades\Auth;

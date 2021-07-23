@@ -46,7 +46,7 @@ Route::group(
 
         // MASTER DATA JENIS KENDARAAN
         Route::prefix('frontoffice')
-            ->namespace('FrontOffice\Masterdata')
+            ->namespace('FrontOffice')
             ->middleware(['admin_front_office', 'verified'])
             ->group(function () {
                 Route::resource('jenis-kendaraan', 'MasterDataJenisKendaraanController');
@@ -557,7 +557,7 @@ Route::group(
                     ->name('pajak-pegawai');
                 Route::get('/pajak/{id}/edit', 'PajakController@editpajak')
                     ->name('pajak-edit');
-                 Route::get('cetak-pajak/{id}', 'PajakController@CetakPajak')->name('cetak-pajak');
+                Route::get('cetak-pajak/{id}', 'PajakController@CetakPajak')->name('cetak-pajak');
             });
 
         // Gaji Pegawai Accounting ----------------------------------------------------------------- Gaji Pegawai Accounting  
@@ -603,7 +603,7 @@ Route::group(
                 Route::resource('jurnal-penerimaan', 'JurnalPenerimaanController');
             });
 
-        
+
         Route::prefix('Accounting')
             ->namespace('Accounting\Laporan')
             ->middleware(['admin_accounting_gabung', 'verified'])

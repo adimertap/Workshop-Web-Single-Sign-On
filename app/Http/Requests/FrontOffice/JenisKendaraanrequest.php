@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\FrontOffice\MasterData;
+namespace App\Http\Requests\FrontOffice;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class JenisKendaraanRequest extends FormRequest
+class JenisKendaraanrequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
