@@ -72,11 +72,10 @@
                                                 {{ $loop->iteration}}</th>
                                             <td>{{ $item->nama_transaksi }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('jenis-transaksi.show', $item->id_jenis_transaksi) }}" class="btn btn-secondary btn-xs" data-toggle="tooltip"
+                                                {{-- <a href="{{ route('jenis-transaksi.show', $item->id_jenis_transaksi) }}" class="btn btn-secondary btn-xs" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Set Debet & Kredit">
-                                                    {{-- <i class="fas fa-eye"></i> --}}
                                                     Set Akun
-                                                </a>
+                                                </a> --}}
                                                 <a href="" class="btn btn-primary btn-datatable" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modaledit-{{ $item->id_jenis_transaksi }}">

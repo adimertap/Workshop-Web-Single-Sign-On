@@ -124,7 +124,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                     <div class="col-lg-12">
                         <div class="datatable">
@@ -180,27 +180,26 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer p-4 p-lg-5 border-top-0 bg-white mt-5">
-                    <div class="row">
-                        <div class="mx-auto col-9 text-center d-flex justify-content-between">
-                            <div class="mb-4">
 
-                            </div>
-                            <div class="mb-4">
-                                {{ date('j F, Y', strtotime($now)) }}
-                                <div class="h6 mb-0">Staff Akuntan</div>
-                                <div class="small mt-10">{{ $pajak->Pegawai->nama_pegawai }}</div>
+                    <div class="card-footer p-4 p-lg-5 border-top-0 bg-white mt-5">
+                        <div class="row">
+                            <div class="mx-auto col-9 text-center d-flex justify-content-between">
+                                <div class="mb-4">
+
+                                </div>
+                                <div class="mb-4">
+                                    {{ date('j F, Y', strtotime($now)) }}
+                                    <div class="h6 mb-0">Staff Akuntan</div>
+                                    <div class="small mt-10">{{ $pajak->Pegawai->nama_pegawai }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-    </div>
+        </div>
     </main>
-    </div>
-    </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>

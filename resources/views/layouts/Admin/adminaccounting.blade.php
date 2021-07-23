@@ -99,9 +99,6 @@
                         </a>
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('masterdataakun') }}">
-                                    Set Akun
-                                </a>
                                 <a class="nav-link" href="{{ route('jenis-transaksi.index') }}">
                                     Jenis Transaksi
                                 </a>
