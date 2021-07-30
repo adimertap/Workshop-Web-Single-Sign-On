@@ -29,9 +29,12 @@
                 </div>
                 @else
                 <div class="card-header ">Saldo = Rp. {{ $saldo }}
-                    <a href="" class="btn btn-danger btn-datatable  mr-2" type="button" data-toggle="modal"
-                        data-target="#Modaltambah">Tarik Saldo
-                    </a>
+                    @if ( $saldo  > 0)
+                        <a href="" class="btn btn-danger btn-datatable  mr-2" type="button" data-toggle="modal"
+                            data-target="#Modaltambah">Tarik Saldo
+                        </a>
+                    @endif
+
                 </div>
                 @endif
 
@@ -221,17 +224,15 @@
 <button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open
     Modal</button>
 @endif
-<script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
 <script src="{{ asset('assets/select2.js') }}"></script>
 
 {{-- Script Open Modal Callback --}}
 <script>
     $(document).ready(function () {
         $('#validasierror').click();
-        	KTSelect2.init();
+        KTSelect2.init();
 
     });
 
