@@ -23,24 +23,23 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                @if ($keuangan)
-                    
+                @if ($keuangan->first()->status)
                     @if ($keuangan->first()->status == 'PENDING')
-                <div class="card-header ">Saldo = Rp. {{ $saldo }}
-                    <a href="#" class="btn btn-sm btn-primary"> Penarikan dalam Proses</a>
-                </div>
-                @else
-                <div class="card-header ">Saldo = Rp. {{ $saldo }}
-                    @if ( $saldo  > 0)
+                    <div class="card-header ">Saldo = Rp. {{ $saldo }}
+                        <a href="#" class="btn btn-sm btn-primary"> Penarikan dalam Proses</a>
+                    </div>
+                    @else
+                    <div class="card-header ">Saldo = Rp. {{ $saldo }}
+                        @if ( $saldo > 0)
                         <a href="" class="btn btn-danger btn-datatable  mr-2" type="button" data-toggle="modal"
                             data-target="#Modaltambah">Tarik Saldo
                         </a>
-                    @endif
+                        @endif
 
-                </div>
+                    </div>
+                    @endif
                 @endif
-                @endif
-                
+
 
             </div>
             <div class="card-body">
@@ -203,12 +202,12 @@
                     <div class="form-group">
                         <label class="small mr-1" for="no_rekening">No Rekening</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
-                        <input class="form-control" name="no_rekening" type="text" id="no_rekening" required/>
+                        <input class="form-control" name="no_rekening" type="text" id="no_rekening" required />
                     </div>
                     <div class="form-group">
                         <label class="small mr-1" for="nama_rekening">Nama Bank</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
-                        <input class="form-control" name="nama_rekening" type="text" id="nama_rekening" required/>
+                        <input class="form-control" name="nama_rekening" type="text" id="nama_rekening" required />
                     </div>
 
                 </div>
