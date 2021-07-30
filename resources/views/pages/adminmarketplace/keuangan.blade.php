@@ -23,7 +23,7 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                @if ($keuangan->first()->status)
+                @if ($keuangan != NULL)
                     @if ($keuangan->first()->status == 'PENDING')
                     <div class="card-header ">Saldo = Rp. {{ $saldo }}
                         <a href="#" class="btn btn-sm btn-primary"> Penarikan dalam Proses</a>
