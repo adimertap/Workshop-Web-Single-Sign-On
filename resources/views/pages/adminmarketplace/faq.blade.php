@@ -155,7 +155,7 @@
                     <div class="form-group">
                         <label class="small mr-1" for="merk_sparepart">Jawaban</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="jawaban_faq" type="text" id="jawaban_faq"
-                            value="{{ $item->jawaban_faq }}" />
+                            value="{{ $item->jawaban_faq }}" required/>
                     </div>
                     
                 </div>

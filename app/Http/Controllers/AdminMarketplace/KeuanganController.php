@@ -19,13 +19,16 @@ class KeuanganController extends Controller
 
         $penjualan = Transaksi::selectRaw('SUM(harga_total) as qt')->where('transaksi_status', 'DITERIMA')
         ->groupBy('id_bengkel')->where('id_bengkel', Auth::user()->id_bengkel)->first();
+        $pengiriman = Transaksi::selectRaw('SUM(harga_pengiriman) as qt')->where('transaksi_status', 'DITERIMA')
+        ->groupBy('id_bengkel')->where('id_bengkel', Auth::user()->id_bengkel)->first();
+
 
         // $keuangan_credit = Keuangan::get();
         if($penjualan){
             if($penarikan){
-                $saldo = $penjualan->qt - $penarikan->qt;
+                $saldo = $penjualan->qt + $pengiriman->qt - $penarikan->qt;
             }else{
-                $saldo = $penjualan->qt;
+                $saldo = $penjualan->qt + $pengiriman->qt ;
             }
         }else{
             $saldo = 0;
@@ -36,6 +39,7 @@ class KeuanganController extends Controller
         // $keuangan_debet = Keuangan::where('id_bengkel', Auth::user()->id_bengkel)->where('status', 'DEBET')->get();
         // $uang = $keuangan_debet - $keuangan_credit;
 
+        // return $keuangan;
         return view('pages.adminmarketplace.keuangan',
             ['saldo' => $saldo, 
             'bank'=>$bank,
@@ -59,5 +63,14 @@ class KeuanganController extends Controller
         
         return redirect()->back()->with('messageberhasil','Pengajuan Penarikan Saldo Berhasil');
     
+    }
+     public function destroy($id_keuangan)
+    {
+        $item = Keuangan::findOrFail($id_keuangan);
+        $item->delete();
+
+         return redirect()->route('keuangan')
+            ->with('messageberhasil','Data Penarikan Berhasil DiHapus');
+   
     }
 }

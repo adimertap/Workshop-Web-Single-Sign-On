@@ -23,24 +23,30 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                @if ($keuangan != NULL)
-                    @if ($keuangan->first()->status == 'PENDING')
-                    <div class="card-header ">Saldo = Rp. {{ $saldo }}
-                        <a href="#" class="btn btn-sm btn-primary"> Penarikan dalam Proses</a>
-                    </div>
+                <div class="card-header ">Saldo = Rp. {{ $saldo }}
+                    @if (isset($keuangan->first()->status))
+                        @if ($keuangan->first()->status != 'PENDING' && $saldo > 0)
+                            <a href="" class="btn btn-danger btn-datatable  mr-2" type="button" data-toggle="modal"
+                                data-target="#Modaltambah">Tarik Saldo
+                            </a>
+                        @else
+                            @if ($saldo > 0)
+                                                            <a href="#" class="btn btn-sm btn-primary"> Penarikan dalam Proses</a>
+
+
+                            @endif
+
+                        @endif
                     @else
-                    <div class="card-header ">Saldo = Rp. {{ $saldo }}
-                        @if ( $saldo > 0)
-                        <a href="" class="btn btn-danger btn-datatable  mr-2" type="button" data-toggle="modal"
-                            data-target="#Modaltambah">Tarik Saldo
-                        </a>
+                        @if ($saldo > 0)
+                            <a href="" class="btn btn-danger btn-datatable  mr-2" type="button" data-toggle="modal"
+                                data-target="#Modaltambah">Tarik Saldo
+                            </a>
                         @endif
 
-                    </div>
                     @endif
-                @endif
 
-
+                </div>
             </div>
             <div class="card-body">
                 <div class="datatable">
@@ -118,7 +124,7 @@
                                                     <i class="fas fa-trash"></i>
                                                 </a>
 
-                                                <div class="modal fade" id="Modalhapus-{{ $item->id_fo_faq }}"
+                                                <div class="modal fade" id="Modalhapus-{{ $item->id_keuangan }}"
                                                     tabindex="-1" role="dialog"
                                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
