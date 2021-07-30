@@ -145,7 +145,6 @@
                                                     </div>
                                                 </div>
                                                 @endif
-
                                             </td>
                                         </tr>
                                         @empty
@@ -188,7 +187,7 @@
                     </div>
 
                     <div class="form-group">
-                        <select class="form-control select2" id="kt_select2_1" name="nama_bank">
+                        <select class="form-control select2" id="kt_select2_1" name="nama_bank" required>
                             <option value="" holder>Pilih Bank</option>
                             @foreach ($bank as $item)
                             <option value="{{ $item->id_bank }}">
@@ -200,12 +199,12 @@
                     <div class="form-group">
                         <label class="small mr-1" for="no_rekening">No Rekening</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
-                        <input class="form-control" name="no_rekening" type="text" id="no_rekening" />
+                        <input class="form-control" name="no_rekening" type="text" id="no_rekening" required/>
                     </div>
                     <div class="form-group">
                         <label class="small mr-1" for="nama_rekening">Nama Bank</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
-                        <input class="form-control" name="nama_rekening" type="text" id="nama_rekening" />
+                        <input class="form-control" name="nama_rekening" type="text" id="nama_rekening" required/>
                     </div>
 
                 </div>
