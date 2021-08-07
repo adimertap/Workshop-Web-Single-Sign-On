@@ -95,7 +95,7 @@ class MasterdatafopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Foprequest $request, $id_fop)
+    public function update(Request $request, $id_fop)
     {
         $fop = Fop::findOrFail($id_fop);
         $fop->nama_fop = $request->nama_fop;

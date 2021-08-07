@@ -180,7 +180,7 @@
                         <div class="form-group">
                             <label class="small mb-1 mr-1" for="nama_tunjangan">Nama Tunjangan</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" name="nama_tunjangan" type="text" id="nama_tunjangan"
-                                value="{{ $item->nama_tunjangan }}"></input>
+                                value="{{ $item->nama_tunjangan }}" required></input>
                         </div>
                         <div class="form-group">
                             <div class="row justify-content-between align-items-center">
@@ -196,7 +196,7 @@
                                 </div>
                             </div>
                             <input class="form-control edit_tunjangan" name="jumlah_tunjangan" type="number" id="jumlah_tunjangan_edit"
-                                value="{{ $item->jumlah_tunjangan}}"></input>
+                                value="{{ $item->jumlah_tunjangan}}" required></input>
                            
                         </div>
                     </div>

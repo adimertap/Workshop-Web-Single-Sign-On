@@ -83,16 +83,6 @@
                                         <label class="small">: {{ $invoice->Supplier->nama_supplier }} </label>
                                     </div>
                                 </div>
-                                {{-- <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="d-flex flex-column font-weight-bold">
-                                            <label class="small line-height-normal"> Alamat </label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <label class="small">: {{ $po->Supplier->alamat_supplier }} </label>
-                                    </div>
-                                </div> --}}
                             </div>
 
                             {{-- KANAN --}}
@@ -190,29 +180,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer p-4 p-lg-5 border-top-0 bg-white">
+                    {{-- <div class="mt-10"></div> --}}
+                    <div class="card-footer p-8 p-lg-10 mt-5 border-top-0 bg-white">
                         <div class="row">
                             <div class="mx-auto col-9 text-center d-flex justify-content-between">
-                                <div class="mb-4">
-                                    
+                               
+                                <div class="mb-10">
+                                  
+                                    <div class="h6 mb-0">Supplier</div>
+                                    <div class="small mt-10">{{ $invoice->Supplier->nama_supplier }}</div>
                                 </div>
                                 <div class="mb-4">
                                     {{ date('j F, Y', strtotime($now)) }}
                                     <div class="h6 mb-0">Staff Akuntan</div>
                                     <div class="small mt-10">{{ $invoice->Pegawai->nama_pegawai }}</div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-lg-12">
-                                <!-- Invoice - additional notes-->
-                                <div class="small text-muted text-uppercase font-weight-700 mb-2">Keterangan</div>
-                                <div class="small mb-0">Purchase Order telah disetujui oleh pemilik bengkel dan akan diteruskan kepada supplier
-                                    <br>~ Seluruh pengiriman barang yang dilakukan supplier harus disertakan Faktur dan Kwitansi
-                                    <br>~ Barang akan kami kembalikan apabila tidak sesuai pesanan
-                                    <br>~ No Purchase Order harus dicantumkan dalam Faktur dan Kwitansi
-                                    <br>~ Bila pengiriman barang akan dilaksanakan secara bertahap, 
-                                    <br>setiap pengiriman barang harap disertakan photocopy Purchase Order
                                 </div>
                             </div>
                         </div>

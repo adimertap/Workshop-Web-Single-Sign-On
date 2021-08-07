@@ -186,13 +186,13 @@
                     <div class="form-group">
                         <label class="small mr-1" for="jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="jenis_sparepart" type="text" id="jenis_sparepart"
-                            value="{{ $item->jenis_sparepart }}"  class="form-control @error('jenis_sparepart') is-invalid @enderror">
+                            value="{{ $item->jenis_sparepart }}"  class="form-control @error('jenis_sparepart') is-invalid @enderror" required>
                             @error('jenis_sparepart')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="fungsi">Fungsi</label><span class="mr-4 mb-3" style="color: red">*</span>
-                        <select name="fungsi" id="fungsi" class="form-control">
+                        <select name="fungsi" id="fungsi" class="form-control" required>
                             <option value="{{ $item->fungsi }}">{{ $item->fungsi }}</option>
                             <option value="MOBIL">Mobil</option>
                             <option value="MOTOR">Motor</option>

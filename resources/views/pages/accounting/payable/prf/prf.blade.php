@@ -177,15 +177,21 @@
                                                     data-toggle="modal" data-target="#Modalhapus-{{ $item->id_prf }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
-                                           @else
+                                           @elseif ($item->status_prf == 'Approved' and $item->status_bayar == 'Sudah Dibayar' and $item->status_jurnal == 'Belum Diposting'|| $item->status_jurnal =='Sudah Diposting')
                                             <a href="{{ route('prf.show', $item->id_prf) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="" class="btn btn-warning btn-datatable" data-toggle="tooltip"
+                                            <a href="{{ route('cetak-prf', $item->id_prf) }}" target="_blank" class="btn btn-warning btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak Prf">
                                                 <i class="fas fa-print"></i></i>
+                                            </a>
+                                            @else
+                                            <a href="{{ route('prf.show', $item->id_prf) }}"
+                                                class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Detail">
+                                                <i class="fa fa-eye"></i>
                                             </a>
                                             @endif
                                         </td>

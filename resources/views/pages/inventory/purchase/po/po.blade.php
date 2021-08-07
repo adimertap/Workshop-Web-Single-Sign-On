@@ -24,7 +24,26 @@
     </div>
 </main>
 
+@if ($pocount == '' | $pocount == 0)
+
+@else
 <div class="container-fluid">
+    <div class="alert alert-primary alert-icon" role="alert">
+        <div class="alert-icon-aside">
+            <i class="fas fa-share-square"></i>
+        </div>
+        <div class="alert-icon-content">
+            <h6 class="alert-heading">Informasi Purchase Order!</h6>
+            Terdapat <span class="text-primary font-weight-bold">{{ $pocount }}</span> data purhcase order yang perlu
+            dikirim ke Supplier
+        </div>
+    </div>
+</div>
+@endif
+
+
+<div class="container-fluid">
+
     <div class="card mb-4">
         <div class="card card-header-actions">
             <div class="card-header ">List Pembelian
@@ -132,34 +151,42 @@
                                                         </span>
                                         </td>
                                         <td class="text-center">
-                                            @if($item->approve_po == 'Pending' and $item->approve_ap == 'Pending' and $item->status == 'Pending')
-                                                <span class="font-size-300" style="font-size: 11px;">Menunggu
-                                                    Approval...</span>
-                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Pending' and $item->status == 'Pending')
-                                                <span class="font-size-300" style="font-size: 11px;">Menunggu
-                                                    Approval...</span>
+                                            @if($item->approve_po == 'Pending' and $item->approve_ap == 'Pending' and
+                                            $item->status == 'Pending')
+                                            <span class="font-size-300" style="font-size: 11px;">Menunggu
+                                                Approval...</span>
+                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Pending'
+                                            and $item->status == 'Pending')
+                                            <span class="font-size-300" style="font-size: 11px;">Menunggu
+                                                Approval...</span>
                                             @elseif($item->approve_po == 'Not Approved' and $item->status == 'Pending')
-                                                <span class="font-size-300" style="font-size: 11px;">Data diTolak</span>
-                                            @elseif($item->approve_po == 'Approved' and $item->approve_ap == 'Approved' and $item->status == 'Pending')
-                                                <a href="{{ route('cetak-po', $item->id_po) }}" target="_blank" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Cetak PO">
-                                                    <i class="fas fa-print"></i></i>
-                                                </a>
-                                                <a href="" class="btn btn-dark btn-datatable" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modalkirimsupplier-{{ $item->id_po }}">
-                                                    <i class="fas fa-share-square"></i>
-                                                </a>
-                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Approved' and $item->status == 'Dikirim')
-                                                <a href="{{ route('cetak-po', $item->id_po) }}" target="_blank" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                            <span class="font-size-300" style="font-size: 11px;">Data diTolak</span>
+                                            @elseif($item->approve_po == 'Approved' and $item->approve_ap == 'Approved'
+                                            and $item->status == 'Pending')
+                                            <a href="{{ route('cetak-po', $item->id_po) }}" target="_blank"
+                                                class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak PO">
                                                 <i class="fas fa-print"></i></i>
-                                                </a>
-                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Approved' and $item->status == 'Diterima')
-                                                <a href="{{ route('cetak-po', $item->id_po) }}" target="_blank" class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                            </a>
+                                            <a href="" class="btn btn-dark btn-datatable" type="button"
+                                                data-toggle="modal"
+                                                data-target="#Modalkirimsupplier-{{ $item->id_po }}">
+                                                <i class="fas fa-share-square"></i>
+                                            </a>
+                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Approved'
+                                            and $item->status == 'Dikirim')
+                                            <a href="{{ route('cetak-po', $item->id_po) }}" target="_blank"
+                                                class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Cetak PO">
                                                 <i class="fas fa-print"></i></i>
-                                                </a>
+                                            </a>
+                                            @elseif ($item->approve_po == 'Approved' and $item->approve_ap == 'Approved'
+                                            and $item->status == 'Diterima')
+                                            <a href="{{ route('cetak-po', $item->id_po) }}" target="_blank"
+                                                class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Cetak PO">
+                                                <i class="fas fa-print"></i></i>
+                                            </a>
                                             @else
                                             <span>
                                                 @endif
@@ -174,24 +201,37 @@
                                             </a>
 
                                             @if($item->approve_po == 'Pending')
-                                                <a href="{{ route('purchase-order.edit',$item->id_po) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
+                                            <a href="{{ route('purchase-order.edit',$item->id_po) }}"
+                                                class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
                                             @elseif($item->approve_po == 'Not Approved')
-                                                <a href="{{ route('purchase-order.edit', $item->id_po) }}" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            @elseif($item->approve_po == 'Approved')
+                                            <a href="{{ route('purchase-order.edit', $item->id_po) }}"
+                                                class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                            @elseif($item->approve_po == 'Approved' && $item->approve_ap == 'Not
+                                            Approved')
+                                            <a href="{{ route('purchase-order.edit', $item->id_po) }}"
+                                                class="btn btn-primary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                data-toggle="modal" data-target="#Modalhapus-{{ $item->id_po }}">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+
                                             </a>
                                             @else
                                             <span>
@@ -200,7 +240,7 @@
                                         </td>
                                     </tr>
                                     @empty
-                                
+
                                     @endforelse
                                 </tbody>
                             </table>
@@ -227,7 +267,8 @@
             <form action="{{ route('purchase-order.destroy', $item->id_po) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Pembelian pada Supplier <b>{{ $item->Supplier->nama_supplier }}</b> dengan kode <b>{{ $item->kode_po }}</b> pada tanggal
+                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Pembelian pada Supplier
+                    <b>{{ $item->Supplier->nama_supplier }}</b> dengan kode <b>{{ $item->kode_po }}</b> pada tanggal
                     {{ $item->tanggal_po }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -254,7 +295,8 @@
             </div>
             <form action="{{ route('po-status-kirim', $item->id_po) }}?status=Dikirim" method="POST" class="d-inline">
                 @csrf
-                <div class="modal-body text-center">Pengiriman Data Pembelian pada supplier <b>{{ $item->Supplier->nama_supplier }}</b>
+                <div class="modal-body text-center">Pengiriman Data Pembelian pada supplier
+                    <b>{{ $item->Supplier->nama_supplier }}</b>
                     dengan kode <b>{{ $item->kode_po }}</b> pada tanggal
                     {{ $item->tanggal_po }}</div>
                 <div class="modal-footer ">
@@ -305,7 +347,8 @@
                                 placeholder="Input Tanggal Pembelian" value="{{ old('tanggal_po') }}">
                             <div class="small" id="alerttanggal" style="display:none">
                                 <span class="font-weight-500 text-danger">Error! Tanggal Belum Terisi!</span>
-                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                <button class="close" type="button" onclick="$(this).parent().hide()"
+                                    aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
@@ -327,7 +370,8 @@
                             </div>
                             <div class="small" id="alertsupplier" style="display:none">
                                 <span class="font-weight-500 text-danger">Error! Anda Belum Memilih Supplier!</span>
-                                <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                                <button class="close" type="button" onclick="$(this).parent().hide()"
+                                    aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
@@ -445,7 +489,7 @@
 
         if (tanggal_po == 0 | tanggal_po == '') {
             $('#alerttanggal').show()
-        }else if (nama_supplier == 0 | nama_supplier =='')
+        } else if (nama_supplier == 0 | nama_supplier == '')
             $('#alertsupplier').show()
         else {
             $.ajax({

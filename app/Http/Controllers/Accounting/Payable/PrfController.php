@@ -246,4 +246,16 @@ class PrfController extends Controller
         $item->save();
         return redirect()->back()->with('messagekirim','Data PRF Berhasil dibayarkan');
     }
+
+    public function Cetakprf($id_prf){
+        $prf = Prf::with('Detailprf.Detailinvoice','Jenistransaksi','FOP','Akunbank','Supplier','Supplier.InvoicePayable.Detailinvoice','Supplier.InvoicePayable')->findOrFail($id_prf);
+
+        
+
+        $now = Carbon::now();
+        return view('print.Accounting.cetak-prf')->with([
+            'prf' => $prf,
+            'now' => $now
+        ]);
+    }
 }

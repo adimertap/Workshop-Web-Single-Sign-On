@@ -154,7 +154,7 @@
                     <div class="form-group">
                         <label class="small mb-1 mr-1" for="nama_kemasan">Kemasan</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_kemasan" type="text" id="nama_kemasan"
-                            value="{{ $item->nama_kemasan }}"></input>
+                            value="{{ $item->nama_kemasan }}" required></input>
                     </div>
                 </div>
                 <div class="modal-footer">

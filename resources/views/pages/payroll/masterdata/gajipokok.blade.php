@@ -197,7 +197,7 @@
                             </div>
                         </div>
                         <input class="form-control edit_gaji" name="besaran_gaji" type="number" id="besaran_gaji"
-                            value="{{ $item->besaran_gaji}}"  class="form-control @error('besaran_gaji') is-invalid @enderror"></input>
+                            value="{{ $item->besaran_gaji}}"  class="form-control @error('besaran_gaji') is-invalid @enderror" required></input>
                             @error('besaran_gaji')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror 
                     </div>

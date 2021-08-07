@@ -530,6 +530,7 @@ Route::group(
                     ->name('prf-bayar');
                 Route::get('/prf/{id_prf}/edit2', 'PrfController@edit2')
                     ->name('prf-edit');
+                Route::get('cetak-prf/{id}', 'PrfController@Cetakprf')->name('cetak-prf');
             });
 
         // Approval Prf ----------------------------------------------------------------- Approval PRF

@@ -22,6 +22,7 @@ class DashboardaccountingController extends Controller
     {
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
+        $now = Carbon::now();
 
         return view('pages.accounting.dashboard.dashboardaccounting',
         ['hutang_supplier' => InvoicePayable::where('status_prf','Belum Dibuat')->sum('total_pembayaran'),

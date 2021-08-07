@@ -187,7 +187,7 @@
                     </div>
                     <div class="form-group">
                         <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
-                        <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart">
+                        <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart" required>
                             <option value="{{ $item->jenissparepart->id_jenis_sparepart }}">
                                 {{ $item->jenissparepart->jenis_sparepart }}</option>
                             @foreach ($jenis_sparepart as $items)
@@ -199,7 +199,7 @@
                     <div class="form-group">
                         <label class="small mr-1" for="merk_sparepart">Merk Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
-                            value="{{ $item->merk_sparepart }}"  class="form-control @error('merk_sparepart') is-invalid @enderror"></input>
+                            value="{{ $item->merk_sparepart }}"  class="form-control @error('merk_sparepart') is-invalid @enderror" required></input>
                             @error('merk_sparepart')<div class="text-danger small mb-1">{{ $message }}
                         </div> @enderror
                     </div>

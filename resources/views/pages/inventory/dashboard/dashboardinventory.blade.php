@@ -51,7 +51,10 @@
                         <h2 class="text-primary">Selamat Datang, {{ Auth::user()->pegawai->nama_pegawai}}!</h2>
                         <p class="text-gray-700"><b>Bengkel-Kuy </b>menggunakan teknologi web secara online yang
                             memudahkan
-                            Anda untuk memonitor inventory atau persediaan sparepart Anda selama 7x24 jam.</p>
+                            Anda untuk memonitor inventory atau persediaan sparepart Anda selama 7x24 jam.
+                        </p>
+
+                        @if ($sparepart_kosong == 0 | $sparepart_kosong == null)
                         <a class="btn btn-primary btn-sm px-3 py-2" href="{{ route('sparepart.index') }}">
                             Get Started
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -61,6 +64,18 @@
                                 <polyline points="12 5 19 12 12 19"></polyline>
                             </svg>
                         </a>
+                        @else
+                        <a class="btn btn-primary btn-sm px-3 py-2" href="{{ route('purchase-order.index') }}">
+                            Get Started
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-arrow-right ml-1">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                        @endif
+                       
                     </div>
                     <div class="col d-none d-lg-block mt-xxl-n5"><img class="img-fluid px-xl-4 mt-xxl-n6"
                             style="width: 23rem;" src="/backend/src/assets/img/freepik/logistic5.png"></div>

@@ -83,7 +83,7 @@ class MasterdatajenissparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Jenisspareparteditrequest $request, $id_jenis_sparepart)
+    public function update(Request $request, $id_jenis_sparepart)
     {
         $jenissparepart = Jenissparepart::findOrFail($id_jenis_sparepart);
         $jenissparepart->fungsi = $request->fungsi;

@@ -27,6 +27,9 @@ class PurchaseorderController extends Controller
             'Supplier','Pegawai'
         ])->get();
 
+        $pokirim = PO::where('status','=','Pending')->get();
+        $pocount = PO::where('status','=','Pending')->count();
+
         $id = PO::getId();
         foreach($id as $value);
         $idlama = $value->id_po;
@@ -39,7 +42,7 @@ class PurchaseorderController extends Controller
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.inventory.purchase.po.po', compact('po','today','tanggal','kode_po','supplier'));
+        return view('pages.inventory.purchase.po.po', compact('po','today','tanggal','kode_po','supplier','pokirim','pocount'));
     }
 
     /**
@@ -138,7 +141,7 @@ class PurchaseorderController extends Controller
         
         $po = PO::findOrFail($id_po);
 
-        if($po->approve_po == 'Not Approved' && $po->approve_ap == 'Pending'){
+        if($po->approve_po == 'Not Approved' && $po->approve_ap == 'Pending' || $po->approve_po == 'Not Approved' && $po->approve_ap == 'Not Approved' || $po->approve_po == 'Not Approved' && $po->approve_ap == 'Approved' || $po->approve_po == 'Approved' && $po->approve_ap == 'Not Approved'){
             $po->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
             $po->kode_po = $request->kode_po;
             $po->tanggal_po = $request->tanggal_po;

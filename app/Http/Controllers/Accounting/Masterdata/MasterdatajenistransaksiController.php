@@ -88,7 +88,7 @@ class MasterdatajenistransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Jenistransaksirequest $request, $id_jenis_transaksi)
+    public function update(Request $request, $id_jenis_transaksi)
     {
         $jenis_transaksi = Jenistransaksi::findOrFail($id_jenis_transaksi);
         $jenis_transaksi->nama_transaksi = $request->nama_transaksi;

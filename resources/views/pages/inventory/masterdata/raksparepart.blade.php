@@ -185,11 +185,11 @@
                     <div class="form-group">
                         <label class="small mb-1 mr-1" for="nama_rak">Nama Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" name="nama_rak" type="text" id="nama_rak"
-                            value="{{ $item->nama_rak }}"></input>
+                            value="{{ $item->nama_rak }}" required></input>
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="jenis_rak">Jenis Rak</label>
-                        <select name="jenis_rak" id="jenis_rak" class="form-control">
+                        <select name="jenis_rak" id="jenis_rak" class="form-control" required>
                             <option value="{{ $item->jenis_rak }}">{{ $item->jenis_rak }}</option>
                             <option value="Fast Moving">Fast Moving</option>
                             <option value="Slow Moving">Slow Moving</option>

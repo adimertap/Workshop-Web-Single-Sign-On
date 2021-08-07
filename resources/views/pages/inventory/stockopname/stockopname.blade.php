@@ -100,6 +100,7 @@
                                                 {{--  --}}
                                         </td>
                                         <td>
+                                            @if ($item->approve == 'Not Approved' | $item->approve == 'Pending')
                                             <a href="{{ route('Opname.show', $item->id_opname) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Detail">
@@ -113,6 +114,14 @@
                                                 data-toggle="modal" data-target="#Modalhapus-{{ $item->id_opname }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
+                                            @elseif ($item->approve == 'Approved')
+                                            <a href="{{ route('Opname.show', $item->id_opname) }}"
+                                                class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Detail">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            @endif
+                                          
                                         </td>
                                     </tr>
                                     @empty
