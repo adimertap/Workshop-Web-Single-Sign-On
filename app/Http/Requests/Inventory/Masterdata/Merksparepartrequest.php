@@ -25,7 +25,7 @@ class Merksparepartrequest extends FormRequest
     {
         return [
             'id_jenis_sparepart' => 'required|exists:tb_inventory_master_jenis_sparepart,id_jenis_sparepart',
-    	    'merk_sparepart' => 'required|unique:tb_inventory_master_merk_sparepart,merk_sparepart|min:3|max:30'
+    	    'merk_sparepart' => 'required|min:3|max:30'
         ];
     }
 
@@ -34,7 +34,6 @@ class Merksparepartrequest extends FormRequest
         return [
             'id_jenis_sparepart.required' => 'Error! Anda Belum Mengisi Jenis Sparepart',
             'merk_sparepart.required' => 'Error! Anda Belum Mengisi Merk Sparepart',
-            'merk_sparepart.unique' => 'Error! Merk Sparepart Sudah Ada',
             'merk_sparepart.min' => 'Error! Character Minimal :min digit',
             'merk_sparepart.max' => 'Error! Character Maximal :max digit'
         ];

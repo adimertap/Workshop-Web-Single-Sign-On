@@ -25,7 +25,7 @@ class SupplierRequest extends FormRequest
     {
         return [
             // 'kode_supplier' => 'required',
-            'nama_supplier'  => 'required|unique:tb_inventory_master_supplier,nama_supplier|min:4|max:20',
+            'nama_supplier'  => 'required|min:4|max:20',
             'telephone'  => 'required|min:11|max:15',
             'alamat_supplier'  => 'required|min:10|max:40',
             'rekening_supplier'  => 'required|min:5',
@@ -39,7 +39,6 @@ class SupplierRequest extends FormRequest
     {
         return [
             'nama_supplier.required' => 'Error! Anda Belum Mengisi Nama Supplier',
-            'nama_supplier.unique' => 'Error! Nama Supplier Sudah Ada',
             'nama_supplier.min' => 'Error! Character Minimal :min digit',
             'nama_supplier.max' => 'Error! Character Maximal :max digit',
 

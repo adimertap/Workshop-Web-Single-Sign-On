@@ -24,7 +24,7 @@ class Jenissparepartrequest extends FormRequest
     public function rules()
     {
         return [
-            'jenis_sparepart' => 'required|unique:tb_inventory_master_jenis_sparepart,jenis_sparepart|min:3|max:30',
+            'jenis_sparepart' => 'required|min:3|max:30',
             'fungsi' => 'required|string|in:MOTOR,MOBIL',
         ];
     }
@@ -33,7 +33,6 @@ class Jenissparepartrequest extends FormRequest
     {
         return [
             'jenis_sparepart.required' => 'Error! Anda Belum Mengisi Jenis Sparepart',
-            'jenis_sparepart.unique' => 'Error! Jenis Sparepart Sudah Ada',
             'jenis_sparepart.min' => 'Error! Character Minimal :min digit',
             'jenis_sparepart.max' => 'Error! Character Maximal :max digit',
             'fungsi.required' => 'Error! Anda Belum Memilih Fungsi Jenis Sparepart',
