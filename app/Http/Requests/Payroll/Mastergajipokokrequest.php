@@ -24,7 +24,7 @@ class Mastergajipokokrequest extends FormRequest
     public function rules()
     {
         return [
-            'id_jabatan' => 'required|unique:tb_payroll_master_gaji_pokok,id_jabatan',
+            'id_jabatan' => 'required',
             'besaran_gaji' => 'required|min:4',
         ];
     }
@@ -32,7 +32,7 @@ class Mastergajipokokrequest extends FormRequest
     public function messages()
     {
         return [
-            'id_jabatan.unique' => 'Error! Jabatan sudah terisi',
+            'id_jabatan.required' => 'Error! Anda Belum Memilih Jabatan',
             'besaran_gaji.required' => 'Error! Anda Belum Mengisi Besaran Gaji',
             'besaran_gaji.min' => 'Error! Nominal Minimal :min digit'
             

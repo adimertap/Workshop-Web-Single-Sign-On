@@ -28,7 +28,7 @@ class PurchaseorderController extends Controller
         ])->get();
 
         $pokirim = PO::where('status','=','Pending')->get();
-        $pocount = PO::where('status','=','Pending')->count();
+        $pocount = PO::where('status','=','Pending')->where('approve_po','=','Approved')->where('approve_ap','=','Approved')->count();
 
         $id = PO::getId();
         foreach($id as $value);

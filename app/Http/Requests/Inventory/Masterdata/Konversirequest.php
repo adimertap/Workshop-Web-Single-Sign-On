@@ -32,7 +32,6 @@ class Konversirequest extends FormRequest
     {
         return [
             'satuan.required' => 'Error! Anda Belum Mengisi Konversi Satuan',
-            'satuan.unique' => 'Error! Konversi Satuan Sudah Ada',
             'satuan.min' => 'Error! Character Minimal :min digit',
             'satuan.max' => 'Error! Character Maximal :max digit',
         ];

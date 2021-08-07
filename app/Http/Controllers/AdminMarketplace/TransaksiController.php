@@ -53,7 +53,7 @@ class TransaksiController extends Controller
                 $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir - $item->jumlah_produk;
     
                 if($kartugudangterakhir == null)
-                $kartu_gudang->saldo_akhir =  $sparepart->stock - $item->jumlah_produk;
+                $kartu_gudang->saldo_akhir =  $item->jumlah_produk;
 
                 $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
                 $kartu_gudang->kode_transaksi = $transaksi->code_transaksi;

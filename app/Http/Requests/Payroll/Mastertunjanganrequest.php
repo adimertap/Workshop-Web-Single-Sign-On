@@ -24,7 +24,7 @@ class Mastertunjanganrequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_tunjangan' => 'required|unique:tb_payroll_master_tunjangan,nama_tunjangan',
+            'nama_tunjangan' => 'required',
             'jumlah_tunjangan' => 'required|min:3|max:12',
         ];
     }
@@ -32,7 +32,6 @@ class Mastertunjanganrequest extends FormRequest
     public function messages()
     {
         return [
-            'nama_tunjangan.unique' => 'Error! Nama Tunjangan sudah ada',
             'nama_tunjangan.required' => 'Error! Anda Belum Mengisi Nama Tunjangan',
             'jumlah_tunjangan.required' => 'Error! Anda Belum Mengisi Jumlah Tunjangan',
             'jumlah_tunjangan.min' => 'Error! Nominal Minimal :min digit',

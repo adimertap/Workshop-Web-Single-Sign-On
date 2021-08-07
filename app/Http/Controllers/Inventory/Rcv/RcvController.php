@@ -175,7 +175,7 @@ class RcvController extends Controller
             $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir +  $item['qty_rcv'];
 
             if($kartugudangterakhir == null)
-            $kartu_gudang->saldo_akhir =  $sparepart->stock + $item['qty_rcv'];
+            $kartu_gudang->saldo_akhir = $item['qty_rcv'];
 
             $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_masuk + $item['qty_rcv'];
             $kartu_gudang->harga_beli = $kartu_gudang->harga_beli + $item['harga_diterima'];

@@ -94,7 +94,7 @@ class PenjualanSparepartController extends Controller
                 $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir - $item['jumlah'];
 
             if ($kartugudangterakhir == null)
-                $kartu_gudang->saldo_akhir =  $sparepart->stock - $item['jumlah'];
+                $kartu_gudang->saldo_akhir =  $item['jumlah'];
 
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item['jumlah'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;

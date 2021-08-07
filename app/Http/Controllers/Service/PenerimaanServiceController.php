@@ -131,7 +131,7 @@ class PenerimaanServiceController extends Controller
                 $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir - $item1['jumlah'];
 
             if ($kartugudangterakhir == null)
-                $kartu_gudang->saldo_akhir =  $sparepart->stock - $item1['jumlah'];
+                $kartu_gudang->saldo_akhir =  $item1['jumlah'];
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item1['jumlah'];
             $kartu_gudang->harga_beli = $kartu_gudang->harga + $item1['harga'];
             $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
@@ -197,7 +197,7 @@ class PenerimaanServiceController extends Controller
                 $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir - $item1['jumlah'];
 
             if ($kartugudangterakhir == null)
-                $kartu_gudang->saldo_akhir =  $sparepart->stock - $item1['jumlah'];
+                $kartu_gudang->saldo_akhir = $item1['jumlah'];
 
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item1['jumlah'];
             $kartu_gudang->harga_beli = $kartu_gudang->harga + $item1['harga'];

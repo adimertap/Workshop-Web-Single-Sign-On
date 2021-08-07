@@ -117,19 +117,19 @@
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 40px;">Kode</th>
+                                                        style="width: 30px;">Kode</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 85px;">Sparepart</th>
+                                                        style="width: 170px;">Sparepart</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Start date: activate to sort column ascending"
-                                                        style="width: 50px;">Merk Sparepart</th>
+                                                        style="width: 40px;">Merk</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Salary: activate to sort column ascending"
-                                                        style="width: 60px;">Jumlah dipesan</th>
+                                                        style="width: 20px;">Jumlah dipesan</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Salary: activate to sort column ascending"

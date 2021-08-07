@@ -24,7 +24,7 @@ class Foprequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_fop' => 'required|unique:tb_accounting_master_fop,nama_fop|min:3|max:30'
+            'nama_fop' => 'required|min:3|max:30'
         ];
     }
 
@@ -32,7 +32,6 @@ class Foprequest extends FormRequest
     {
         return [
             'nama_fop.required' => 'Error! Anda Belum Mengisi Nama Form of Payment',
-            'nama_fop.unique' => 'Error! Form of Payment Sudah Ada',
             'nama_fop.min' => 'Error! Character Minimal :min digit',
             'nama_fop.max' => 'Error! Character Maximal :max digit',
         ];
