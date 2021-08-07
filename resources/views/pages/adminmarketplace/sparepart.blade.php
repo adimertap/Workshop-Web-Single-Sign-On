@@ -115,15 +115,15 @@
                                                                     <label class="small mr-1"
                                                                         for="berat_sparepart">Berat Sparepart </label><span
                                                                         class="mr-4 mb-3" style="color: red">* dalam gram</span>
-                                                                    <input class="form-control" name="berat_sparepart" type="text"
-                                                                        id="berat_sparepart" value="{{ $item->berat_sparepart }}" />
+                                                                    <input class="form-control" name="berat_sparepart" type="number"
+                                                                        id="berat_sparepart" value="{{ $item->berat_sparepart }}" required/>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="small mr-1"
                                                                         for="harga_sparepart">Harga Sparepart</label><span
                                                                         class="mr-4 mb-3" style="color: red">*</span>
-                                                                    <input class="form-control" name="harga_market" type="text"
-                                                                        id="berat_sparepart" value="{{ $item->harga_market }}" />
+                                                                    <input class="form-control" name="harga_market" type="number"
+                                                                        id="berat_sparepart" value="{{ $item->harga_market }}" required />
                                                                 </div>
                                                         </div>
                                                         <div class="modal-footer">

@@ -160,7 +160,7 @@
                             <label class="small mr-1" for="merk_sparepart">Resi</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
                             <input class="form-control" name="resi" type="text" id="jawaban_faq"
-                                value="{{ $item->resi }}" />
+                                value="{{ $item->resi }}" required/>
                         </div>
 
                     </div>

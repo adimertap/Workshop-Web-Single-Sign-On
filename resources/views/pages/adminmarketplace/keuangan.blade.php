@@ -23,18 +23,30 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                @if ($keuangan->first()->status == 'PENDING')
                 <div class="card-header ">Saldo = Rp. {{ $saldo }}
-                    <a href="#" class="btn btn-sm btn-primary"> Penarikan dalam Proses</a>
-                </div>
-                @else
-                <div class="card-header ">Saldo = Rp. {{ $saldo }}
-                    <a href="" class="btn btn-danger btn-datatable  mr-2" type="button" data-toggle="modal"
-                        data-target="#Modaltambah">Tarik Saldo
-                    </a>
-                </div>
-                @endif
+                    @if (isset($keuangan->first()->status))
+                        @if ($keuangan->first()->status != 'PENDING' && $saldo > 0)
+                            <a href="" class="btn btn-danger btn-datatable  mr-2" type="button" data-toggle="modal"
+                                data-target="#Modaltambah">Tarik Saldo
+                            </a>
+                        @else
+                            @if ($saldo > 0)
+                                                            <a href="#" class="btn btn-sm btn-primary"> Penarikan dalam Proses</a>
 
+
+                            @endif
+
+                        @endif
+                    @else
+                        @if ($saldo > 0)
+                            <a href="" class="btn btn-danger btn-datatable  mr-2" type="button" data-toggle="modal"
+                                data-target="#Modaltambah">Tarik Saldo
+                            </a>
+                        @endif
+
+                    @endif
+
+                </div>
             </div>
             <div class="card-body">
                 <div class="datatable">
@@ -112,7 +124,7 @@
                                                     <i class="fas fa-trash"></i>
                                                 </a>
 
-                                                <div class="modal fade" id="Modalhapus-{{ $item->id_fo_faq }}"
+                                                <div class="modal fade" id="Modalhapus-{{ $item->id_keuangan }}"
                                                     tabindex="-1" role="dialog"
                                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -142,7 +154,6 @@
                                                     </div>
                                                 </div>
                                                 @endif
-
                                             </td>
                                         </tr>
                                         @empty
@@ -185,7 +196,7 @@
                     </div>
 
                     <div class="form-group">
-                        <select class="form-control select2" id="kt_select2_1" name="nama_bank">
+                        <select class="form-control select2" id="kt_select2_1" name="nama_bank" required>
                             <option value="" holder>Pilih Bank</option>
                             @foreach ($bank as $item)
                             <option value="{{ $item->id_bank }}">
@@ -197,12 +208,12 @@
                     <div class="form-group">
                         <label class="small mr-1" for="no_rekening">No Rekening</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
-                        <input class="form-control" name="no_rekening" type="text" id="no_rekening" />
+                        <input class="form-control" name="no_rekening" type="text" id="no_rekening" required />
                     </div>
                     <div class="form-group">
                         <label class="small mr-1" for="nama_rekening">Nama Bank</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
-                        <input class="form-control" name="nama_rekening" type="text" id="nama_rekening" />
+                        <input class="form-control" name="nama_rekening" type="text" id="nama_rekening" required />
                     </div>
 
                 </div>
@@ -221,17 +232,15 @@
 <button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open
     Modal</button>
 @endif
-<script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
 <script src="{{ asset('assets/select2.js') }}"></script>
 
 {{-- Script Open Modal Callback --}}
 <script>
     $(document).ready(function () {
         $('#validasierror').click();
-        	KTSelect2.init();
+        KTSelect2.init();
 
     });
 
