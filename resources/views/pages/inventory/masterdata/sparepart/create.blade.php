@@ -41,7 +41,7 @@
                         <div class="wizard-step-icon">2</div>
                         <div class="wizard-step-text">
                             <div class="wizard-step-text-name">Detail Foto </div>
-                            <div class="wizard-step-text-details">Formulir Detail Identitas</div>
+                            <div class="wizard-step-text-details">Formulir Detail Marketplace</div>
                         </div>
                     </a>
 
@@ -234,7 +234,8 @@
                                 <h5 class="card-title">Marketplace Info</h5>
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label class="small mb-1" for="berat_sparepart">Berat Sparepart</label>
+                                        <label class="small mb-1" for="berat_sparepart">Berat Sparepart</label><small
+                                        class="text-muted">*gram</small>
                                         <input class="form-control" name="berat_sparepart" id="berat_sparepart"
                                             placeholder="Input Berat Sparepart" value="{{ old('berat_sparepart') }}"
                                             class="form-control @error('berat_sparepart') is-invalid @enderror"></input>

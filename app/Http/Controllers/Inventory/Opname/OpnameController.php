@@ -118,13 +118,28 @@ class OpnameController extends Controller
      */
     public function update(Request $request, $id_opname)
     {
+
         $opname = Opname::find($id_opname);
-        $opname->tanggal_opname = $request->tanggal_opname;
+        if($opname->approve == 'Not Approved'){
+            $opname->tanggal_opname = $request->tanggal_opname;
+            $opname->approve = 'Pending';
 
-        $opname->update();
-        $opname->Detailsparepart()->sync($request->sparepart);
+            $opname->update();
+            $opname->Detailsparepart()->sync($request->sparepart);
 
-        return $request;
+            return $request;
+        }else{
+            $opname->tanggal_opname = $request->tanggal_opname;
+
+            $opname->update();
+            $opname->Detailsparepart()->sync($request->sparepart);
+    
+            return $request;
+        }
+
+
+
+       
     }
 
     /**

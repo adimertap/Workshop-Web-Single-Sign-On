@@ -110,6 +110,7 @@ class MasterdatasparepartController extends Controller
         $sparepart->id_kemasan = $request->id_kemasan;
         $sparepart->berat_sparepart = $request->berat_sparepart;
         $sparepart->status_jumlah = 'Habis';
+        $sparepart->keterangan = $request->keterangan;
         $sparepart->slug = Str::slug($request->nama_sparepart);
         $sparepart->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $sparepart->save();
@@ -188,6 +189,7 @@ class MasterdatasparepartController extends Controller
         $sparepart->stock_min = $request->stock_min;
         $sparepart->id_kemasan = $request->id_kemasan;
         $sparepart->berat_sparepart = $request->berat_sparepart;
+        $sparepart->keterangan = $request->keterangan;
 
         // $sparepart->update();
         // $data = $request->all();
@@ -206,8 +208,6 @@ class MasterdatasparepartController extends Controller
     public function destroy($id_sparepart)
     {
         $sparepart = Sparepart::findOrFail($id_sparepart);
-
-        Hargasparepart::where('id_sparepart', $id_sparepart)->delete();
         Gallery::where('id_sparepart', $id_sparepart)->delete();
         $sparepart->delete();
 

@@ -83,7 +83,8 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label class="small mb-1" for="berat_sparepart">Berat Sparepart</label>
+                            <label class="small mb-1" for="berat_sparepart">Berat Sparepart</label><small
+                            class="text-muted">*gram</small>
                             <input class="form-control form-control-sm" id="berat_sparepart" type="text"
                                 name="berat_sparepart" value="{{ $sparepart->berat_sparepart }}" readonly />
                         </div>

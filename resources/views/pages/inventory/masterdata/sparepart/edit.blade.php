@@ -134,7 +134,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-4">
-                                            <label class="small mb-1 mr-1" for="berat_sparepart">Berat Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <label class="small mb-1 mr-1" for="berat_sparepart">Berat Sparepart</label><small
+                                            class="text-muted">*gram</small><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="berat_sparepart" type="text" name="berat_sparepart"
                                                 value="{{ $item->berat_sparepart }}" class="form-control @error('berat_sparepart') is-invalid @enderror" />
                                                 @error('berat_sparepart')<div class="text-danger small mb-1">{{ $message }}

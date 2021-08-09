@@ -8,10 +8,10 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Kepegawaian System</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css" rel="stylesheet">    
+
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css" rel="stylesheet">
     <link href="{{ asset('backend/dist/css/styles.css')}}" rel="stylesheet" />
-    
+
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
     <link rel="shortcut icon" href="{{ asset('logo.png') }}">
@@ -85,7 +85,7 @@
 
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
-                      
+
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
                         <div class="sidenav-menu-heading">Master Data</div>
@@ -111,6 +111,22 @@
                         <div class="sidenav-menu-heading">Aktivitas Pegawai</div>
 
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                            data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
+                            Jadwal Pegawai
+                            <div class="sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down">
+                                </i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
+                                <a class="nav-link" href="{{ route('jadwal-pegawai.index') }}">
+                                    Atur Jadwal
+                                </a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-business-time"></i></div>
                             Absensi Pegawai
@@ -127,21 +143,7 @@
                             </nav>
                         </div>
 
-                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                            data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
-                            Jadwal Pegawai
-                            <div class="sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down">
-                                </i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
-                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
-                                <a class="nav-link" href="{{ route('jadwal-pegawai.index') }}">
-                                    Atur Jadwal
-                                </a>
-                            </nav>
-                        </div>
+
 
 
 

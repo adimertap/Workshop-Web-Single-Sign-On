@@ -120,6 +120,10 @@
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
+                                            <a href="" class="btn btn-danger btn-datatable" type="button"
+                                            data-toggle="modal" data-target="#Modalhapus-{{ $item->id_opname }}">
+                                            <i class="fas fa-trash"></i>
+                                            </a>
                                             @endif
                                           
                                         </td>
