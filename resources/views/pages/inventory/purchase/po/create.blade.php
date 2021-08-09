@@ -386,7 +386,7 @@
                         <label class="small mb-1" for="harga_diterima">Harga Satuan</label>
                         <input class="form-control harga_diterima" name="harga_diterima" type="number"
                             id="harga_diterima" placeholder="Input Harga Beli diterima"
-                            value="{{ $item->harga_satuan !=  null ? $item->harga_satuan : array_key_exists($item->Kartugudangterakhir['harga_beli']) }}"></input>
+                            value="{{ $item->harga_satuan !=  null ? $item->harga_satuan : $item->Kartugudangterakhir['harga_beli'] }}"></input>
                         <div class="small text-primary">Detail Harga
                             <span id="detailhargaditerima" class="detailhargaditerima">
                                 @if ($item->Kartugudangterakhir == '')
