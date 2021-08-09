@@ -178,7 +178,6 @@
                                                     </td>
                                                     <td colspan="2" class="grand_total text-center font-weight-500">
                                                         <span>Rp. </span><span id="totalpajak">{{ $pajak->total_pajak ?? 0 }}</span>
-                                                        {{-- {{ $item->harga_satuan !=  null ? $item->harga_satuan : isset($item->Kartugudangterakhir['harga_beli']) }} --}}
                                                 </tr>
                                             </table>
                                         </div>
