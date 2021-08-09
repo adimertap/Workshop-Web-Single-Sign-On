@@ -2,8 +2,38 @@
 
 @section('content')
 <main>
-    <div class="container mt-5">
-        <!-- Custom page header alternative example-->
+
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container">
+            <div class="page-header-content pt-4">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-4">
+                        <h1 class="page-header-title">
+                            Dashboard Inventory
+                        </h1>
+                        <div class="small">
+                            <span class="font-weight-500">{{ $today }}</span>
+                            · Tanggal {{ $tanggal_tahun }} · <span id="clock">12:16 PM</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-auto mt-4">
+                        <div class="small">
+                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                            Bengkel
+                            <span class="font-weight-500">{{ Auth::user()->bengkel->nama_bengkel}}</span>
+                            <hr>
+                            </hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+    {{-- <div class="container mt-5">
+        
         <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
             <div class="mr-4 mb-3 mb-sm-0">
                 <h1 class="mb-0">Dashboard Inventory</h1>
@@ -20,7 +50,7 @@
                 </hr>
             </div>
         </div>
-    </div>
+    </div> --}}
 
    
         @if ($sparepart_kosong == 0 | $sparepart_kosong == null)
@@ -43,7 +73,7 @@
 
 
 
-    <div class="container">
+    <div class="container mt-n10">
         <div class="card card-waves mb-4">
             <div class="card-body p-5">
                 <div class="row align-items-center justify-content-between">

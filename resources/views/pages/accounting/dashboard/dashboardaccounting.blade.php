@@ -2,8 +2,38 @@
 
 @section('content')
 <main>
-    <div class="container mt-5">
-        <!-- Custom page header alternative example-->
+
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container">
+            <div class="page-header-content pt-4">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-4">
+                        <h1 class="page-header-title">
+                            Dashboard Accounting
+                        </h1>
+                        <div class="small">
+                            <span class="font-weight-500">{{ $today }}</span>
+                            · Tanggal {{ $tanggal }} · <span id="clock">12:16 PM</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-auto mt-4">
+                        <div class="small">
+                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                            Bengkel
+                            <span class="font-weight-500">{{ Auth::user()->bengkel->nama_bengkel}}</span>
+                            <hr>
+                            </hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+
+    {{-- <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
             <div class="mr-4 mb-3 mb-sm-0">
                 <h1 class="mb-0">Dashboard Accounting</h1>
@@ -21,9 +51,9 @@
             </div>
         </div>
     </div>
-</main>
+</main> --}}
 <!-- Main page content-->
-<div class="container-fluid">
+<div class="container-fluid mt-n10">
     <div class="card card-waves h-100">
         <div class="card-body h-100 d-flex flex-column justify-content-center py-5 py-xl-4">
             <div class="row align-items-center">
@@ -248,8 +278,8 @@
             </div>
         </div>
     </div>
-
 </div>
+</main>
 
 
 

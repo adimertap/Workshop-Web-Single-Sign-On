@@ -54,6 +54,7 @@ class PembayaranServiceController extends Controller
     public function show($id_service_advisor)
     {
         $pembayaran_service = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_perbaikan', 'bengkel')->findOrFail($id_service_advisor);
+        
         // return $pembayaran_service;
         return view('pages.pointofsales.pembayaran.invoice_service', compact('pembayaran_service'));
     }

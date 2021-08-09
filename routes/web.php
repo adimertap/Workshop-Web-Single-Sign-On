@@ -123,7 +123,9 @@ Route::group(
             ->middleware(['admin_kasir', 'verified'])
             ->group(function () {
                 Route::resource('pembayaranservice', 'PembayaranServiceController');
+                
                 Route::resource('pembayaransparepart', 'PembayaranSparepartController');
+                Route::get('cetak-pembayaran-penjualan/{id}', 'PembayaranSparepartController@CetakPembayaran')->name('cetak-pembayaran-penjualan');
             });
 
 
@@ -133,6 +135,7 @@ Route::group(
             ->middleware(['admin_kasir', 'verified'])
             ->group(function () {
                 Route::resource('laporanservice', 'LaporanServiceController');
+                Route::get('cetak-pembayaran-service/{id}', 'LaporanServiceController@CetakPembayaran')->name('cetak-pembayaran-service');
                 Route::resource('laporansparepart', 'LaporanSparepartController');
             });
 
