@@ -49,7 +49,11 @@ class LaporanSparepartController extends Controller
      */
     public function show($id)
     {
-        //
+        $laporan = LaporanPenjualanSparepart::with([
+            'penjualan_sparepart.detailsparepart'
+        ])->find($id);
+
+        return view('pages.pointofsales.laporan.detail_laporan_sparepart',compact('laporan'));
     }
 
     /**

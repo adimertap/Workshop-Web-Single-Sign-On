@@ -73,6 +73,10 @@
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">Harga</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -85,6 +89,13 @@
                                             <td>Rp.
                                                 {{ number_format($item->penerimaan_service->total_bayar,0,',','.') }}
                                             </td>
+                                            <td>
+                                                <a href="{{ route('laporanservice.show', $item->id_laporan_service) }}"
+                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail Laporan">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            </td>
+                                           
                                         </tr>
                                         @empty
 

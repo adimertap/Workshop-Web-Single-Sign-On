@@ -269,6 +269,7 @@
                     date: date,
                 },
                 success: function (response) {
+                    
                     alert('Berhasil Menambahkan Jadwal')
 
                     var form1 = $('#form1')
@@ -296,11 +297,11 @@
                             {"data": "nama_pegawai"},
                             {"data": "nama_jabatan"},
                             {"data": "tanggal_jadwal",render:function(data, type, row, meta){
-                                console.log(row)
+                                // console.log(row)
                                 if (data == null){
-                                    return `<button class="btn btn-secondary btn-xs" onclick="masuk(event,${row.id_pegawai},'${date.dateStr}')">Masuk</button>`
+                                    return `<button class="btn btn-secondary btn-xs" onclick="masuk(event,${row.id_pegawai},'${date}')">Masuk</button>`
                                 }else{
-                                    return `<button class="btn btn-danger btn-xs" onclick="libur(event, ${row.id_pegawai},'${date.dateStr}')"><i class="fas fa-trash"></i></button>`
+                                    return `<button class="btn btn-danger btn-xs" onclick="libur(event, ${row.id_pegawai},'${date}')"><i class="fas fa-trash"></i></button>`
                                 } 
                             }},
                             
@@ -353,11 +354,11 @@
                             {"data": "nama_pegawai"},
                             {"data": "nama_jabatan"},
                             {"data": "tanggal_jadwal",render:function(data, type, row, meta){
-                                console.log(row)
+                                // console.log(row)
                                 if (data == null){
-                                    return `<button class="btn btn-secondary btn-xs" onclick="masuk(event,${row.id_pegawai},'${date.dateStr}')">Masuk</button>`
+                                    return `<button class="btn btn-secondary btn-xs" onclick="masuk(event,${row.id_pegawai},'${date}')">Masuk</button>`
                                 }else{
-                                    return `<button class="btn btn-danger btn-xs" onclick="libur(event, ${row.id_pegawai},'${date.dateStr}')"><i class="fas fa-trash"></i></button>`
+                                    return `<button class="btn btn-danger btn-xs" onclick="libur(event, ${row.id_pegawai},'${date}')"><i class="fas fa-trash"></i></button>`
                                 } 
                             }},
                             

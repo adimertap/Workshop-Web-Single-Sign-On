@@ -48,7 +48,14 @@ class LaporanServiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $service = LaporanService::with([
+            'penerimaan_service.detail_sparepart', 'penerimaan_service.detail_perbaikan','pegawai','penerimaan_service','penerimaan_service.customer_bengkel'
+        ])->find($id);
+
+        return view('pages.pointofsales.laporan.detail_laporan',compact('service'));
+
+        
+        
     }
 
     /**
