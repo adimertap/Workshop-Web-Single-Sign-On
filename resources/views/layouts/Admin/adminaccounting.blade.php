@@ -38,19 +38,41 @@
         </div>
         <ul class="navbar-nav align-items-center ml-auto">
             <li class="nav-item dropdown no-caret mr-2 dropdown-user">
+                @if (Auth::user()->Pegawai->jenis_kelamin == 'Laki-Laki')
+
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
-                    href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"><img class="img-fluid"
-                        src="/backend/src/assets/img/freepik/profiles/profile-6.png" /></a>
+                href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"><img class="img-fluid"
+                    src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
+                </a>
                 <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
+                aria-labelledby="navbarDropdownUserImage">
+                <h6 class="dropdown-header d-flex align-items-center">
+                    <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
+                    <div class="dropdown-user-details">
+                        <div class="dropdown-user-details-name">{{ Auth::user()->pegawai->nama_pegawai }}</div>
+                        <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
+                    </div>
+                </h6>
+
+
+                @elseif (Auth::user()->Pegawai->jenis_kelamin == 'Perempuan')
+
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
+                href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"><img class="img-fluid"
+                    src="/backend/src/assets/img/freepik/profiles/profile-5.png" /></a>
+                    <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
                     aria-labelledby="navbarDropdownUserImage">
                     <h6 class="dropdown-header d-flex align-items-center">
-                        <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
+                        <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-5.png" />
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-details-name">{{ Auth::user()->pegawai->nama_pegawai }}</div>
                             <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
                         </div>
                     </h6>
+                
+                @endif
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('dashboardsso') }}">
                         <div class="dropdown-item-icon"><i data-feather="columns"></i></div>

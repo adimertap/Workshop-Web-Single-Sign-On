@@ -24,8 +24,15 @@
                 <div class="card mb-4">
                     <div class="card-header">Profile</div>
                     <div class="card-body text-center">
+
+                        @if ($item->jenis_kelamin == 'Laki-Laki')
+                        <img class="img-account-profile rounded-circle mb-2" src="/backend/src/assets/img/freepik/profiles/profile-6.png" alt="">
+                        @elseif ($item->jenis_kelamin == 'Perempuan')
                         <img class="img-account-profile rounded-circle mb-2"
-                            src="/backend/src/assets/img/freepik/profiles/profile-6.png" alt="">
+                            src="/backend/src/assets/img/freepik/profiles/profile-5.png" alt="">
+                        @endif
+
+                        
                         <div class="small font-italic text-muted mb-4">Profile Pegawai</div>
                         <div class="font-weight-500 text-primary">{{ $item->nama_pegawai }}</div>
                         <span class="small text-muted line-height-normal">{{ $item->nama_panggilan }} · {{ $item->jabatan->nama_jabatan }}</span>
