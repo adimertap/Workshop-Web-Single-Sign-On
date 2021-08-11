@@ -30,7 +30,7 @@ class NewOrderService extends Notification
             // Markdown supported.
             ->content("Halo " . Auth::user()->pegawai->nama_pegawai .
                 "!\nAda Penerimaan *Service* Baru! \n*Kode Service* " . $notifiable->kode_sa .
-                "\n*Customer* " . $notifiable->customer->nama_customer .
+                "\n*Customer* " . $notifiable->customer_bengkel->nama_customer .
                 "\n*Total Bayar* " . $notifiable->total_bayar)
 
             ->button('Lihat Pesanan', 'bengkel-kuy.com/frontoffice/pelayananservice');
