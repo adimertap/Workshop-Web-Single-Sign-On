@@ -123,7 +123,7 @@ Route::group(
             ->middleware(['admin_kasir', 'verified'])
             ->group(function () {
                 Route::resource('pembayaranservice', 'PembayaranServiceController');
-                
+
                 Route::resource('pembayaransparepart', 'PembayaranSparepartController');
                 Route::get('cetak-pembayaran-penjualan/{id}', 'PembayaranSparepartController@CetakPembayaran')->name('cetak-pembayaran-penjualan');
             });
@@ -157,6 +157,7 @@ Route::group(
             ->middleware(['owner', 'verified'])
             ->group(function () {
                 Route::resource('manajemen-user', 'ManajemenUserController');
+                Route::resource('manajemen-akses', 'ManajemenHakAksesController');
             });
 
         // MODUL INVENTORY ------------------------------------------------------------------------------------ INVENTORY
