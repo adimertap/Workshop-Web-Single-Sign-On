@@ -8,7 +8,7 @@ use NotificationChannels\Telegram\TelegramChannel;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
-class NewOrderService extends Notification
+class NewMerk extends Notification
 {
     use Queueable;
 
@@ -28,10 +28,7 @@ class NewOrderService extends Notification
             // Optional recipient user id.
             ->to('436339064')
             // Markdown supported.
-            ->content("Halo Bengkel" . Auth::user()->bengkel->nama_bengkel .
-                "!\nAda Penerimaan *Service* Baru! \n*Kode Service* " . $notifiable->kode_sa .
-                "\n*Customer* " . $notifiable->customer_bengkel->nama_customer .
-                "\n*Total Bayar* " . $notifiable->total_bayar)
+            ->content("Halo")
 
             ->button('Lihat Pesanan', 'bengkel-kuy.com/frontoffice/pelayananservice');
     }

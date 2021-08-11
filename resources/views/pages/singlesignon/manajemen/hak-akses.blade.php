@@ -25,7 +25,8 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Hak Akses
-                    <a href="" class="btn btn-sm btn-primary"> Tambah Hak Akses</a>
+                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#Modaltambah">
+                        Tambah Hak Akses</button>
                 </div>
             </div>
             <div class="card-body">
@@ -61,7 +62,11 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 40px;">Nama Hak Akses</th>
+                                                style="width: 40px;">Nama Role</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 40px;">Akses Aplikasi</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 15px;">Actions</th>
@@ -73,8 +78,7 @@
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->nama_hak_akses }}</td>
                                             <td>
-                                                <a href=""
-                                                    class="btn btn-primary btn-datatable" type="button">
+                                                <a href="" class="btn btn-primary btn-datatable" type="button">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable" type="button"
@@ -100,115 +104,56 @@
         </div>
     </div>
 
-    {{-- MODAL DELETE --}}
-    {{-- @forelse ($users as $item)
-    <div class="modal fade" id="Modalhapus-{{ $item->id }}" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
+    <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Hak Akses Baru</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('manajamen-akses.destroy', $item->id) }}" method="POST" class="d-inline">
+                <form action="{{ route('merk-kendaraan.store') }}" method="POST">
                     @csrf
-                    @method('delete')
-                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Hak Akses dengan Username
-                        {{ $item->username }}?
+                    <div class="modal-body">
+                        <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                        <hr>
+                        </hr>
+                        <div class="form-group">
+                            <label class="small mb-1" for="nama_role">Nama Role</label>
+                            <input class="form-control" name="nama_role" type="text" id="nama_role"
+                                placeholder="Input Role" value="">
+                        </div>
+                        <hr>
+                        
                     </div>
+                    @if (count($errors) > 0)
+                    @endif
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                        <button class="btn btn-primary" type="Submit">Tambah</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    @empty
 
-    @endforelse --}}
 </main>
 
-{{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
-{{-- <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah User</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <form action="{{ route('manajamen-akses.store') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
-                    <hr>
-                    </hr>
-                    <div class="form-group">
-                        <label class="small mb-1" for="jenis_kendaraan">Nama Pegawai<span style="color: red">*</span>
-                        </label>
-                        <input class="form-control" name="jenis_kendaraan" type="text" id="jenis_kendaraan"
-                            placeholder="Input Nama Pegawai" value="{{ old('jenis_kendaraan') }}"
-                            class="form-control @error('jenis_kendaraan') is-invalid @enderror">
-                        @error('jenis_kendaraan')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
-                    </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="username">Username</label>
-                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"
-                            name="username" placeholder="Input Username" value="{{ old('username') }}" required
-                            autocomplete="username" autofocus>
+{{-- Callback Modal Jika Validasi Error --}}
+@if (count($errors) > 0)
+<button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open
+    Modal</button>
+@endif
 
-                        @error('username')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" placeholder="Input Email" value="{{ old('email') }}" required
-                            autocomplete="email">
+{{-- Script Open Modal Callback --}}
+<script>
+    $(document).ready(function () {
+        $('#validasierror').click();
+    });
 
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="d-block">Password</label>
-                        <input id="password" type="password"
-                            class="form-control @error('password') is-invalid @enderror" placeholder="Input Password"
-                            name="password" required autocomplete="new-password">
-
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="password-confirm" class="d-block">Password Confirmation</label>
-                        <input id="password-confirm" type="password" class="form-control"
-                            placeholder="Konfirmasi Password" name="password_confirmation" required
-                            autocomplete="new-password">
-                    </div>
-                </div>
-                @if (count($errors) > 0)
-                @endif
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="Submit">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div> --}}
-
+</script>
 
 @endsection

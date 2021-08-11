@@ -110,7 +110,7 @@
 
 <div class="container mt-n4">
     <div class="row">
-        @if(Auth::user()->role == 'admin_front_office' || Auth::user()->role == 'owner')
+        @if(Auth::user()->hasRole('Aplikasi Front Office') || Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
             <a class="card lift h-100" href="{{ route('dashboardfrontoffice') }}">
@@ -127,7 +127,7 @@
             </a>
         </div>
         @endif
-        @if (Auth::user()->role == 'admin_service_advisor' || Auth::user()->role == 'admin_service_instructor' ||
+        @if (Auth::user()->hasRole('Aplikasi Service Advisor') || Auth::user()->hasRole('Aplikasi Service Instructor') ||
         Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 2-->
@@ -146,7 +146,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->role == 'admin_kasir' || Auth::user()->role == 'owner')
+        @if (Auth::user()->hasRole('Aplikasi Point of Sales') || Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardpointofsales') }}">
@@ -164,7 +164,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->role == 'admin_marketplace' || Auth::user()->role == 'owner')
+        @if (Auth::user()->hasRole('Aplikasi Marketplace') || Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardmarketplace') }}">
@@ -186,8 +186,8 @@
 {{-- BARIS 2 --}}
 <div class="container">
     <div class="row">
-        @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'admin_purchasing' || Auth::user()->role ==
-        'owner' || Auth::user()->role == 'admin_accounting')
+        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->role ==
+        'owner' || Auth::user()->hasRole('Aplikasi Accounting'))
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
             <a class="card lift h-100" href="{{ route('dashboardinventory') }}">
@@ -241,7 +241,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'admin_accounting' ||
+        @if (Auth::user()->hasRole('Aplikasi Accounting') ||
         Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->

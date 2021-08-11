@@ -5,6 +5,8 @@ namespace App;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
 use App\Model\SingleSignOn\ManajemenRole;
+use App\Model\SingleSignOn\Role;
+use App\Model\SingleSignOn\RoleUser;
 use App\Scopes\OwnershipScope;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -55,14 +57,27 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Pegawai::class, 'id_pegawai', 'id_pegawai');
     }
 
-    public function role()
+    public function roleType()
     {
-        return $this->belongsTo(ManajemenRole::class, 'id_role', 'id_role');
+        return $this->belongsToMany(Role::class, 'tb_det_role_user', 'id_user', 'id_role');
     }
+
 
     public function scopeOwnership($query)
     {
         return $query->where('id_bengkel', '=', Auth::user()->id_bengkel);
+    }
+
+    public function hasRole($inputRole)
+    {
+        $roles = $this->roleType;
+
+        foreach ($roles as $role) {
+            if ($role->role == $inputRole) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public function getRoleNameAttribute()

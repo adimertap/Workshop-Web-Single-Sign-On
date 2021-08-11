@@ -43,59 +43,56 @@
                 @if (Auth::user()->Pegawai->jenis_kelamin == 'Laki-Laki')
 
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
-                href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false"><img class="img-fluid"
-                    src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
+                    href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false"><img class="img-fluid"
+                        src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
-                aria-labelledby="navbarDropdownUserImage">
-                <h6 class="dropdown-header d-flex align-items-center">
-                    <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
-                    <div class="dropdown-user-details">
-                        <div class="dropdown-user-details-name">{{ Auth::user()->pegawai->nama_pegawai }}</div>
-                        <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
-                    </div>
-                </h6>
-
-
-                @elseif (Auth::user()->Pegawai->jenis_kelamin == 'Perempuan')
-
-                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
-                href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false"><img class="img-fluid"
-                    src="/backend/src/assets/img/freepik/profiles/profile-5.png" /></a>
-                    <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
                     aria-labelledby="navbarDropdownUserImage">
                     <h6 class="dropdown-header d-flex align-items-center">
-                        <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-5.png" />
+                        <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-details-name">{{ Auth::user()->pegawai->nama_pegawai }}</div>
                             <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
                         </div>
                     </h6>
-                
-                @endif
 
 
+                    @elseif (Auth::user()->Pegawai->jenis_kelamin == 'Perempuan')
 
-               
-               
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('password.edit') }}">
-                        <div class="dropdown-item-icon"><i data-feather="key"></i></div>
-                        Ganti Password
-                    </a>
+                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
+                        href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><img class="img-fluid"
+                            src="/backend/src/assets/img/freepik/profiles/profile-5.png" /></a>
+                    <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
+                        aria-labelledby="navbarDropdownUserImage">
+                        <h6 class="dropdown-header d-flex align-items-center">
+                            <img class="dropdown-user-img"
+                                src="/backend/src/assets/img/freepik/profiles/profile-5.png" />
+                            <div class="dropdown-user-details">
+                                <div class="dropdown-user-details-name">{{ Auth::user()->pegawai->nama_pegawai }}</div>
+                                <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
+                            </div>
+                        </h6>
 
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        @endif
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('password.edit') }}">
+                            <div class="dropdown-item-icon"><i data-feather="key"></i></div>
+                            Ganti Password
+                        </a>
+
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                        <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                        Logout
-                    </a>
+                            <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                            Logout
+                        </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
             </li>
         </ul>
     </nav>
@@ -125,9 +122,6 @@
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                                 <a class="nav-link" href="{{ route('manajemen-user.index')}}">
                                     Pengguna
-                                </a>
-                                <a class="nav-link" href="{{ route('manajemen-akses.index')}}">
-                                    Hak Akses
                                 </a>
                             </nav>
                         </div>

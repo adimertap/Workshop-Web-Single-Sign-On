@@ -10,6 +10,7 @@ use App\Model\SingleSignOn\Bengkel;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardFrontOfficeController extends Controller
 {

@@ -16,7 +16,7 @@ class isAdminGudang
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() && Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'owner') {
+        if (Auth::user() && Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->role == 'owner') {
             return $next($request);
         }
         abort(403);
