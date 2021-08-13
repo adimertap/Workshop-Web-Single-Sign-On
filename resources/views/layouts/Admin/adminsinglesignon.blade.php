@@ -149,8 +149,8 @@
                 {{-- USER ROLE Side Bar --}}
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
-                        <div class="sidenav-footer-subtitle">User Role:</div>
-                        <div class="sidenav-footer-title">{{ Auth::user()->role_name }}</div>
+                        <div class="sidenav-footer-subtitle">Jabatan :</div>
+                        <div class="sidenav-footer-title">{{ Auth::user()->pegawai->jabatan->nama_jabatan }}</div>
                     </div>
                 </div>
             </nav>
