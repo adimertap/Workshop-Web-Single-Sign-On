@@ -28,8 +28,8 @@ class NewOrderSparepart extends Notification
             // Optional recipient user id.
             ->to('436339064')
             // Markdown supported.
-            ->content("Halo Bengkel" . Auth::user()->bengkel->nama_bengkel .
-                "!\nAda Penjualan *Spare Part* Baru! \n*Kode Penjualan* " . $notifiable->kode_penjualan .
+            ->content("Halo Bengkel " . Auth::user()->bengkel->nama_bengkel .
+                "!\nAda Penjualan *Spare Part* Baru \n*Kode Penjualan* " . $notifiable->kode_penjualan .
                 "\n*Customer* " . $notifiable->customer->nama_customer .
                 "\n*Total Bayar* " . $notifiable->total_bayar)
 

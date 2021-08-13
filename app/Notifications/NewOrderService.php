@@ -28,12 +28,12 @@ class NewOrderService extends Notification
             // Optional recipient user id.
             ->to('436339064')
             // Markdown supported.
-            ->content("Halo Bengkel" . Auth::user()->bengkel->nama_bengkel .
-                "!\nAda Penerimaan *Service* Baru! \n*Kode Service* " . $notifiable->kode_sa .
+            ->content("Halo Bengkel " . Auth::user()->bengkel->nama_bengkel .
+                "!\nAda Penerimaan *Service* Baru \n*Kode Service* " . $notifiable->kode_sa .
                 "\n*Customer* " . $notifiable->customer_bengkel->nama_customer .
                 "\n*Total Bayar* " . $notifiable->total_bayar)
 
-            ->button('Lihat Pesanan', 'bengkel-kuy.com/frontoffice/pelayananservice');
+            ->button('Lihat Service', 'bengkel-kuy.com/frontoffice/pelayananservice');
     }
 
     public function toArray($notifiable)
