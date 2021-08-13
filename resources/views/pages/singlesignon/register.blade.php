@@ -46,7 +46,7 @@
                         class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
                         <div class="login-brand">
                             <img src="../image/favicon.png" alt="logo" width="60" class="">
-                            <h5 class="mt-3">Aplikasi E-Bengkel Terintegrasi</h5>
+                            <h5 class="mt-3">Aplikasi E-Bengkel Terintegrasi Terintegrasi</h5>
                         </div>
 
                         <div class="card card-primary">

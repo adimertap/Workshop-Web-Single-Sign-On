@@ -29,7 +29,7 @@
                         class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                         <div class="login-brand">
                             <img src="../logo.png" alt="logo" width="60" class="">
-                            <h5 class="mt-3">Aplikasi E-Bengkel Terintegrasi</h5>
+                            <h5 class="mt-3">Aplikasi E-Bengkel Terintegrasi Terintegrasi</h5>
                         </div>
 
                         <div class="card card-primary">
