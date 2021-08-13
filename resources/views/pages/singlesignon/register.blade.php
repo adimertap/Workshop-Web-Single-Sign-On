@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Register - BengkelKuy</title>
+    <title>Register E-Bengkel</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -46,7 +46,7 @@
                         class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
                         <div class="login-brand">
                             <img src="../image/favicon.png" alt="logo" width="60" class="">
-                            <h5 class="mt-3">Aplikasi E-Bengkel Terintegrasi Terintegrasi</h5>
+                            <h5 class="mt-3">Aplikasi E-Bengkel Terintegrasi</h5>
                         </div>
 
                         <div class="card card-primary">
@@ -294,7 +294,7 @@
 
 
                                 <div class="simple-footer">
-                                    Copyright &copy; BengkelKuy 2021
+                                    Copyright &copy; 2021 Aplikasi E-Bengkel Terintegrasi
                                 </div>
 
                             </div>
