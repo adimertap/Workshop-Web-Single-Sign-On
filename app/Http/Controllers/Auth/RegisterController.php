@@ -12,6 +12,7 @@ use App\Provinsi;
 use App\Kabupaten;
 use App\KabupatenBaru;
 use App\KecamatanBaru;
+use App\Model\Kepegawaian\Jabatan;
 use App\ProvinsiBaru;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -96,6 +97,11 @@ class RegisterController extends Controller
             'logo_bengkel' => $name_file
         ]);
 
+        $jabatan = Jabatan::create([
+            'id_bengkel' => $bengkel->id_bengkel,
+            'nama_jabatan' => 'owner'
+        ]);
+
         $pegawai = Pegawai::create([
             'nama_pegawai' => $data['name'],
             'nama_panggilan' => $data['username'],
@@ -108,7 +114,7 @@ class RegisterController extends Controller
             'npwp_pegawai' => $data['npwp_pegawai'],
             'jenis_kelamin' => $data['jenis_kelamin'],
             'id_bengkel' => $bengkel->id_bengkel,
-            'id_jabatan' => 4
+            'id_jabatan' => $jabatan->id_jabatan
         ]);
 
         $user =  User::create([
