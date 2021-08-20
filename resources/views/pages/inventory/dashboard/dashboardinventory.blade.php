@@ -39,37 +39,37 @@
                 <h1 class="mb-0">Dashboard Inventory</h1>
                 <div class="small">
                     <span class="font-weight-500 text-primary">{{ $today }}</span>
-                    · Tanggal {{ $tanggal_tahun }} · <span id="clock">12:16 PM</span>
-                </div>
-            </div>
-            <div class="small">
-                <i class="fa fa-cogs" aria-hidden="true"></i>
-                Bengkel
-                <span class="font-weight-500 text-primary">{{ Auth::user()->bengkel->nama_bengkel}}</span>
-                <hr>
-                </hr>
-            </div>
-        </div>
+    · Tanggal {{ $tanggal_tahun }} · <span id="clock">12:16 PM</span>
+    </div>
+    </div>
+    <div class="small">
+        <i class="fa fa-cogs" aria-hidden="true"></i>
+        Bengkel
+        <span class="font-weight-500 text-primary">{{ Auth::user()->bengkel->nama_bengkel}}</span>
+        <hr>
+        </hr>
+    </div>
+    </div>
     </div> --}}
 
-   
-        @if ($sparepart_kosong == 0 | $sparepart_kosong == null)
-        <div class="container">
-            <div class="alert alert-danger alert-icon" role="alert">
-                <div class="alert-icon-aside">
-                    <i class="fas fa-cog"></i>
-                </div>
-                <div class="alert-icon-content">
-                    <h6 class="alert-heading">Informasi Sparepart!</h6>
-                    Anda belum memiliki data sparepart, silahkan menambahkan data sparepart pada menu master data!
-                </div>
+
+    @if ($sparepart_kosong == 0 | $sparepart_kosong == null)
+    <div class="container">
+        <div class="alert alert-danger alert-icon" role="alert">
+            <div class="alert-icon-aside">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="alert-icon-content">
+                <h6 class="alert-heading">Informasi Sparepart!</h6>
+                Anda belum memiliki data sparepart, silahkan menambahkan data sparepart pada menu master data!
             </div>
         </div>
+    </div>
 
-        @else
+    @else
 
-        @endif
-   
+    @endif
+
 
 
 
@@ -79,7 +79,7 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col">
                         <h2 class="text-primary">Selamat Datang, {{ Auth::user()->pegawai->nama_pegawai}}!</h2>
-                        <p class="text-gray-700"><b>Bengkel-Kuy </b>menggunakan teknologi web secara online yang
+                        <p class="text-gray-700"><b>Aplikasi E-Bengkel </b>menggunakan teknologi web secara online yang
                             memudahkan
                             Anda untuk memonitor inventory atau persediaan sparepart Anda selama 7x24 jam.
                         </p>
@@ -105,7 +105,7 @@
                             </svg>
                         </a>
                         @endif
-                       
+
                     </div>
                     <div class="col d-none d-lg-block mt-xxl-n5"><img class="img-fluid px-xl-4 mt-xxl-n6"
                             style="width: 23rem;" src="/backend/src/assets/img/freepik/logistic5.png"></div>

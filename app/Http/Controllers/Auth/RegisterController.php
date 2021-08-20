@@ -99,7 +99,7 @@ class RegisterController extends Controller
 
         $jabatan = Jabatan::create([
             'id_bengkel' => $bengkel->id_bengkel,
-            'nama_jabatan' => 'owner'
+            'nama_jabatan' => 'Owner'
         ]);
 
         $pegawai = Pegawai::create([
