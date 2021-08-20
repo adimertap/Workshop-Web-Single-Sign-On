@@ -105,7 +105,7 @@
 
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
-                        @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'admin_purchasing' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->->hasRole('Aplikasi Purchasing') || Auth::user()->role == 'owner')
                         <div class="sidenav-menu-heading">Dashboard</div>
                         <a class="nav-link" href="{{ route('dashboardinventory')}}">
                             <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
@@ -113,7 +113,7 @@
                         </a>
                         @endif
 
-                        @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->role == 'owner')
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
                         <div class="sidenav-menu-heading">Master Data</div>
@@ -152,7 +152,7 @@
                         </div>
                         @endif
 
-                        @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->role == 'owner')
                         <div class="sidenav-menu-heading">Inventory System</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
@@ -178,7 +178,7 @@
                         </div>
                         @endif
 
-                        @if (Auth::user()->role == 'admin_purchasing' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->role == 'owner')
                         <div class="sidenav-menu-heading">Purchasing</div>
                             <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                                 data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -197,7 +197,7 @@
                             </div>
                         @endif
 
-                        @if (Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->role == 'owner')
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
                             <div class="nav-link-icon"><i class="fas fa-box-open"></i></div>
@@ -218,7 +218,7 @@
                         </div>
                         @endif
 
-                        @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->role == 'owner')
                         {{-- MANAJEMEN ASET --}}
                         {{-- Manajemen Aset Side Bar --}}
                         <div class="sidenav-menu-heading">Approval</div>
@@ -241,7 +241,7 @@
                                     Stock Opname
                                 </a>
                                 @endif
-                                @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'owner')
+                                @if (Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->role == 'owner')
                                 <a class="nav-link " href="{{ route('approval-po-ap.index') }}">
                                     Purchase Order AP
                                 </a>
