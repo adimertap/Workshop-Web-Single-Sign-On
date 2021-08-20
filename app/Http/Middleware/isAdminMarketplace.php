@@ -16,7 +16,7 @@ class isAdminMarketplace
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() && Auth::user()->role == 'admin_marketplace' || Auth::user()->role == 'owner') {
+        if (Auth::user() && Auth::user()->hasRole('Aplikasi Marketplace') || Auth::user()->role == 'owner') {
             return $next($request);
         }
         abort(403);

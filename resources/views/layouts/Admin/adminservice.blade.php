@@ -115,7 +115,7 @@
 
                         {{-- Service Advisor --}}
                         {{-- Service Advisor --}}
-                        @if (Auth::user()->role == 'admin_service_advisor' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Service Advisor') || Auth::user()->role == 'owner')
                         <div class="sidenav-menu-heading">Service Advisor</div>
                         <a class="nav-link collapsed" href="{{route('penerimaanservice.index')}}" aria-expanded="false"
                             aria-controls="collapseUtilities">
@@ -133,7 +133,7 @@
                     </a>
                         @endif
 
-                        @if (Auth::user()->role == 'admin_service_instructor' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Service Instructor') || Auth::user()->role == 'owner')
                         {{-- FRONTOFFICE SYSTEM --}}
                         <div class="sidenav-menu-heading">Service System</div>
 
@@ -167,8 +167,8 @@
                 {{-- USER ROLE Side Bar --}}
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
-                        <div class="sidenav-footer-subtitle">User Role:</div>
-                        <div class="sidenav-footer-title">{{ Auth::user()->role_name }}</div>
+                        <div class="sidenav-footer-subtitle">Jabatan :</div>
+                        <div class="sidenav-footer-title">{{ Auth::user()->pegawai->jabatan->nama_jabatan }}</div>
                     </div>
                 </div>
             </nav>
@@ -186,7 +186,7 @@
             <footer class="footer mt-auto footer-light">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12 text-center">Copyright &copy; 2021 BengkelKuy</div>
+                        <div class="col-md-12 text-center">Copyright &copy; 2021 Aplikasi E-Bengkel Terintegrasi</div>
                     </div>
                 </div>
             </footer>

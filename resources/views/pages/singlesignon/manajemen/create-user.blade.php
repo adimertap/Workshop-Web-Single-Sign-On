@@ -51,7 +51,7 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-12">
                                             <label class="small mb-1 mr-1" for="id_pegawai">Nama Pegawai</label><span
                                                 class="mr-4 mb-3" style="color: red">*</span>
                                             <div class="input-group input-group-joined">
@@ -69,37 +69,19 @@
                                                 {{ $message }}
                                             </div> @enderror
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="role">Role</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
-                                            <select name="role" id="role" class="form-control"
-                                                class="form-control @error('role') is-invalid @enderror">
-                                                <option value="{{ old('role')}}"> Pilih Role</option>
-                                                <option value="owner">Owner</option>
-                                                <option value="admin_front_office">Admin Front Office</option>
-                                                <option value="admin_service_advisor">Admin Service Advisor</option>
-                                                <option value="admin_service_instructor">Admin Service Instructor
-                                                </option>
-                                                <option value="admin_kasir">Admin Kasir</option>
-                                                <option value="admin_gudang">Admin Gudang</option>
-                                                <option value="admin_purchasing">Admin Purchasing</option>
-                                                <option value="admin_accounting">Admin Accounting</option>
-                                                <option value="admin_marketplace">Admin Marketplace</option>
-                                            </select>
-                                            @error('role')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="username">Username</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="username" type="text"
-                                                name="username" placeholder="Input Username"/>
+                                            <label class="small mb-1 mr-1" for="username">Username</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="username" type="text" name="username"
+                                                placeholder="Input Username" />
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="email">Email</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="email" type="email"
-                                                name="email" placeholder="Input Email"/>
+                                            <label class="small mb-1 mr-1" for="email">Email</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="email" type="email" name="email"
+                                                placeholder="Input Email" />
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -121,6 +103,16 @@
                                             <input id="password-confirm" type="password" class="form-control"
                                                 placeholder="Konfirmasi Password" name="password_confirmation" required
                                                 autocomplete="new-password">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <label class="small">Pilih Aplikasi yang Tersedia!</label>
+                                        <br>
+                                        <div class="form-group ml-3">
+                                            @foreach ($role as $item)
+                                            <input type="checkbox" name="role[]" value="{{ $item->id_role }}">
+                                            <label for="role[]"> {{ $item->role }}</label><br>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <hr class="my-4" />

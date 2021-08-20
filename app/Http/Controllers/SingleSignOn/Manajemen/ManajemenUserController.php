@@ -5,6 +5,8 @@ namespace App\Http\Controllers\SingleSignOn\Manajemen;
 use App\Http\Controllers\Controller;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\ManajemenUser;
+use App\Model\SingleSignOn\Role;
+use App\Model\SingleSignOn\RoleUser;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,8 +36,9 @@ class ManajemenUserController extends Controller
     {
         $pegawai = Pegawai::all();
         $users = User::all();
+        $role = Role::all();
 
-        return view('pages.singlesignon.manajemen.create-user', compact('pegawai', 'users'));
+        return view('pages.singlesignon.manajemen.create-user', compact('pegawai', 'users', 'role'));
     }
 
     /**
@@ -46,11 +49,21 @@ class ManajemenUserController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+        // return $request->role;
         $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
+        $data['role'] = null;
 
-        User::create($data);
+        $user = User::create($data);
+
+        foreach ($request->role as $item) {
+            RoleUser::create([
+                'id_user' => $user->id,
+                'id_role' => (int)$item
+            ]);
+        }
         return redirect()->route('manajemen-user.index')->with('messageberhasil', 'Data Pengguna Berhasil ditambahkan');
     }
 

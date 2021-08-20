@@ -45,11 +45,11 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="d-flex flex-column font-weight-bold">
-                                    <label class="small text-muted line-height-normal">Role
+                                    <label class="small text-muted line-height-normal">Jabatan
                                 </div>
                             </div>
                             <div class="col">
-                                <label class="small text-muted line-height-normal">: {{ Auth::user()->role_name }}
+                                <label class="small text-muted line-height-normal">: {{ Auth::user()->pegawai->jabatan->nama_jabatan }}
                             </div>
                         </div>
                         <div class="row">

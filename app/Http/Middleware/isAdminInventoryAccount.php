@@ -16,7 +16,7 @@ class isAdminInventoryAccount
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() && Auth::user()->role == 'admin_gudang' || Auth::user()->role == 'admin_purchasing' || Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'owner') {
+        if (Auth::user() && Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->role == 'owner') {
             return $next($request);
         }
         abort(403);

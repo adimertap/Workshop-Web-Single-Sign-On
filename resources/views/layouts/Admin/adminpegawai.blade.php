@@ -176,8 +176,8 @@
                 {{-- USER ROLE Side Bar --}}
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
-                        <div class="sidenav-footer-subtitle">User Role:</div>
-                        <div class="sidenav-footer-title">{{ Auth::user()->role_name }}</div>
+                        <div class="sidenav-footer-subtitle">Jabatan :</div>
+                        <div class="sidenav-footer-title">{{ Auth::user()->pegawai->jabatan->nama_jabatan }}</div>
                     </div>
                 </div>
             </nav>
@@ -195,7 +195,7 @@
             <footer class="footer mt-auto footer-light">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12 text-center">Copyright &copy; 2021 BengkelKuy</div>
+                        <div class="col-md-12 text-center">Copyright &copy; 2021 Aplikasi E-Bengkel Terintegrasi</div>
                     </div>
                 </div>
             </footer>

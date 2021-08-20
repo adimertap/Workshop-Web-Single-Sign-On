@@ -12,10 +12,13 @@ use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 
 class PenerimaanService extends Model
 {
+    use Notifiable;
+
     protected $table = "tb_service_advisor";
 
     protected $primaryKey = 'id_service_advisor';

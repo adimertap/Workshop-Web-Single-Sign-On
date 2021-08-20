@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login - BengkelKuy</title>
+    <title>Login E-Bengkel</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="simple-footer">
-                        Copyright &copy; BengkelKuy 2021
+                        Copyright &copy; 2021 Aplikasi E-Bengkel Terintegrasi
                     </div>
                 </div>
             </div>

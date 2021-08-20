@@ -4,6 +4,7 @@ namespace App\Model\FrontOffice;
 
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 
 class MasterDataMerkKendaraan extends Model

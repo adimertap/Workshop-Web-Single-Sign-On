@@ -16,7 +16,7 @@ class isAdminFrontOffice
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() && Auth::user()->role == 'admin_front_office' || Auth::user()->role == 'owner') {
+        if (Auth::user() && Auth::user()->hasRole('Aplikasi Front Office') || Auth::user()->role == 'owner') {
             return $next($request);
         }
         abort(403);

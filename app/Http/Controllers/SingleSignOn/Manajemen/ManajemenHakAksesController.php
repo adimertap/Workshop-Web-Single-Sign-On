@@ -15,7 +15,8 @@ class ManajemenHakAksesController extends Controller
      */
     public function index()
     {
-        return view('pages.singlesignon.manajemen.hak_akses');
+        $hak_akses = ManajemenHakAkses::all();
+        return view('pages.singlesignon.manajemen.hak-akses', compact('hak_akses'));
     }
 
     /**
