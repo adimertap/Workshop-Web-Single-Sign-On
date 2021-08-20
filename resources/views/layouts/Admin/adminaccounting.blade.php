@@ -27,7 +27,8 @@
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="{{ route('dashboardaccounting')}}"> <i class="fas fa-hand-holding-usd mr-3"></i>Accounting System</a>
+        <a class="navbar-brand" href="{{ route('dashboardaccounting')}}"> <i
+                class="fas fa-hand-holding-usd mr-3"></i>Accounting System</a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
                 data-feather="menu"></i></button>
 
@@ -41,54 +42,54 @@
                 @if (Auth::user()->Pegawai->jenis_kelamin == 'Laki-Laki')
 
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
-                href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false"><img class="img-fluid"
-                    src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
+                    href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false"><img class="img-fluid"
+                        src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
-                aria-labelledby="navbarDropdownUserImage">
-                <h6 class="dropdown-header d-flex align-items-center">
-                    <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
-                    <div class="dropdown-user-details">
-                        <div class="dropdown-user-details-name">{{ Auth::user()->pegawai->nama_pegawai }}</div>
-                        <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
-                    </div>
-                </h6>
-
-
-                @elseif (Auth::user()->Pegawai->jenis_kelamin == 'Perempuan')
-
-                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
-                href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false"><img class="img-fluid"
-                    src="/backend/src/assets/img/freepik/profiles/profile-5.png" /></a>
-                    <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
                     aria-labelledby="navbarDropdownUserImage">
                     <h6 class="dropdown-header d-flex align-items-center">
-                        <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-5.png" />
+                        <img class="dropdown-user-img" src="/backend/src/assets/img/freepik/profiles/profile-6.png" />
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-details-name">{{ Auth::user()->pegawai->nama_pegawai }}</div>
                             <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
                         </div>
                     </h6>
-                
-                @endif
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('dashboardsso') }}">
-                        <div class="dropdown-item-icon"><i data-feather="columns"></i></div>
-                        Dashboard SSO
-                    </a>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                        <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                        Logout
-                    </a> 
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </div>
+
+                    @elseif (Auth::user()->Pegawai->jenis_kelamin == 'Perempuan')
+
+                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
+                        href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><img class="img-fluid"
+                            src="/backend/src/assets/img/freepik/profiles/profile-5.png" /></a>
+                    <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
+                        aria-labelledby="navbarDropdownUserImage">
+                        <h6 class="dropdown-header d-flex align-items-center">
+                            <img class="dropdown-user-img"
+                                src="/backend/src/assets/img/freepik/profiles/profile-5.png" />
+                            <div class="dropdown-user-details">
+                                <div class="dropdown-user-details-name">{{ Auth::user()->pegawai->nama_pegawai }}</div>
+                                <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
+                            </div>
+                        </h6>
+
+                        @endif
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('dashboardsso') }}">
+                            <div class="dropdown-item-icon"><i data-feather="columns"></i></div>
+                            Dashboard SSO
+                        </a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                            Logout
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
             </li>
         </ul>
     </nav>
@@ -109,7 +110,7 @@
                             Dashboard
                         </a>
 
-                        @if (Auth::user()->role == 'owner' || Auth::user()->role == 'admin_accounting')
+                        @if (Auth::user()->role == 'owner' || Auth::user()->hasRole('Aplikasi Accounting'))
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
                         <div class="sidenav-menu-heading">Master Data</div>
@@ -136,7 +137,7 @@
 
 
                         <div class="sidenav-menu-heading">Account</div>
-                        @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->role == 'owner')
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="nav-link-icon"><i class="fas fa-wallet"></i></div>
@@ -164,7 +165,7 @@
                         </div>
                         @endif
 
-                        @if (Auth::user()->role == 'admin_accounting' || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->role == 'owner')
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
                             <div class="nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
@@ -180,7 +181,7 @@
                                 </a>
                             </nav>
                         </div>
-                        @endif
+
 
                         <div class="sidenav-menu-heading">Jurnal dan Laporan</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
@@ -197,7 +198,7 @@
                                 <a class="nav-link " href="{{ route('jurnal-penerimaan.index') }}">
                                     Jurnal Penerimaan
                                 </a>
-                            </nav>
+                                </av>
                         </div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -215,6 +216,7 @@
                             </nav>
                         </div>
 
+                        @endif
                     </div>
                 </div>
                 {{-- USER ROLE Side Bar --}}

@@ -105,7 +105,7 @@
 
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
-                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->->hasRole('Aplikasi Purchasing') || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->role == 'owner')
                         <div class="sidenav-menu-heading">Dashboard</div>
                         <a class="nav-link" href="{{ route('dashboardinventory')}}">
                             <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
