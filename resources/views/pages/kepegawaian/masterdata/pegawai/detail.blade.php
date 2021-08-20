@@ -57,7 +57,7 @@
                                 aria-labelledby="wizard1-tab">
                                 <div class="row justify-content-center">
                                     <div class="col-xxl-6 col-xl-10">
-                                        <h5 class="card-title">Formulir Pegawai</h5>
+                                        <h5 class="card-title">Detail Pegawai</h5>
                                         @if(session('messageberhasil'))
                                         <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
                                             {{ session('messageberhasil') }}

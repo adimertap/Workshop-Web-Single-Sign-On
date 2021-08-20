@@ -132,15 +132,21 @@ class GajipegawaiController extends Controller
     public function edit2(Request $request, $id_gaji_pegawai)
     {
         $gaji = Gajipegawai::with([
-            'Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan'
+            'Detailpegawai','Detailpegawai.Jabatan.Gajipokok','Detailtunjangan'
         ])->find($id_gaji_pegawai);
 
+        $pegawai = Pegawai::with([
+            'Jabatan.Gajipokok'
+        ])->join('tb_kepeg_master_jabatan', 'tb_kepeg_master_pegawai.id_jabatan', 'tb_kepeg_master_jabatan.id_jabatan')
+        ->where('nama_jabatan', '!=', 'Owner')->get();
+
+        $jabatan = Jabatan::all();
         $jenis_transaksi = Jenistransaksi::all();
         $seluruhpegawai = Pegawai::all();
         $tunjangan = Mastertunjangan::all();
         $today = Carbon::now()->format('D, d/m/Y');
 
-        return view('pages.payroll.gajipegawai.edit',['gaji_total' => Gajipegawai::sum('gaji_diterima')], compact('gaji','seluruhpegawai','tunjangan','today','jenis_transaksi'));
+        return view('pages.payroll.gajipegawai.edit',['gaji_total' => Gajipegawai::sum('grand_total_gaji')], compact('gaji','seluruhpegawai','tunjangan','today','jenis_transaksi','jabatan','pegawai'));
     }
 
 
@@ -210,8 +216,8 @@ class GajipegawaiController extends Controller
 
     public function CetakSlip($id_gaji_pegawai)
     {
-        $gaji = Gajipegawai::with('Pegawai','Pegawai.Jabatan.Gajipokok','Pegawai.absensi','Detailtunjangan')
-        ->findOrFail($id_gaji_pegawai);
+        $gaji = Gajipegawai::with('Detailpegawai','Detailpegawai.Jabatan.Gajipokok','Detailtunjangan','Detailpegawai.Detailtunjangan')
+        ->find($id_gaji_pegawai);
         
         $now = Carbon::now();
         return view('print.Payroll.cetakslip', compact('gaji','now'));

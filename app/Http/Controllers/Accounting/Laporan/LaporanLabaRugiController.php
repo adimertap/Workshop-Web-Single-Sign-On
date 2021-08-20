@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Accounting\Laporan;
 
 use App\Http\Controllers\Controller;
+use App\Model\Accounting\Jurnal\Jurnalpengeluaran;
 use App\Model\Accounting\Laporanlabarugi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,14 +15,28 @@ class LaporanLabaRugiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $laporan = Laporanlabarugi::all();
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
         $tahun_periode = Carbon::now()->format('Y');
 
-        return view('pages.accounting.laporan.laporanlabarugi', compact('laporan','today','tanggal','tahun_periode'));
+
+        // Pengelompokan
+        $jurnalpengeluaran = Jurnalpengeluaran::with([
+            'Jenistransaksi',
+        ]);
+        if($request->from){
+            $jurnalpengeluaran->where('tanggal_jurnal', '>=', $request->from);
+        }
+        if($request->to){
+            $jurnalpengeluaran->where('tanggal_jurnal', '<=', $request->to);
+        }
+
+        $jurnalpengeluaran = $jurnalpengeluaran->get();
+
+        return view('pages.accounting.laporan.laporanlabarugi', compact('laporan','today','tanggal','tahun_periode','jurnalpengeluaran'));
         
     }
 

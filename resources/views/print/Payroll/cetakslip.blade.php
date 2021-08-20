@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Cetak Slip Gaji {{ $gaji->Pegawai->nama_pegawai }}</title>
+    <title>Cetak Slip Gaji {{ $gaji->bulan_gaji }}, {{ $gaji->tahun_gaji }}</title>
     <link href="{{ url('backend/dist/css/styles.css')}}" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}">
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
@@ -27,6 +27,7 @@
 <body >
     <div>
         <main>
+            @forelse ($gaji->Detailpegawai as $item)
             <div class="container col-lg-6 mt-5">
                 <div class="card invoice">
                     <div class="card-header border-bottom-0 bg-gradient-light-to-secondary text-white-50">
@@ -40,14 +41,18 @@
                             </div>
                             <div class="col-5 text-right">
                                 <div class="h3 text-primary">Slip Gaji</div>
-                                <span class="text-dark">{{ $gaji->Pegawai->nama_pegawai }}</span>
+                                <span class="text-dark">Pembayaran Gaji Pegawai</span>
                                 <br>
-                                <span class="text-dark">Tahun {{ $gaji->tahun_gaji }}, Bulan {{ $gaji->bulan_gaji }}</span>
+                                {{-- <span class="text-dark">Tahun {{ $gaji->tahun_gaji }}, Bulan {{ $gaji->bulan_gaji }}</span> --}}
                             </div>
                         </div>
                     </div>
+            @empty
+                
+            @endforelse
+           
 
-                    <div class="card-body">
+                    {{-- <div class="card-body">
                         <div class="row justify-content-between align-items-center">
                             <div class="col-6 text-lg-left" style="line-height: 1rem">
                                 <label class="small font-weight-700">Kepada: </label>
@@ -113,38 +118,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {{--  --}}
-                                                    {{-- @forelse ($po->Detailsparepart as $detail)
-                                                    <tr role="row" class="odd">
-                                                        <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
-                                                        </th>
-                                                        <td >{{ $detail->nama_sparepart }}</td>
-                                                        <td class="text-center">{{ $detail->Merksparepart->merk_sparepart }}</td>
-                                                        <td class="text-center">{{ $detail->pivot->qty }}</td>
-                                                        <td class="text-center">{{ $detail->Kemasan->nama_kemasan }}</td>
-                                                        <td class="text-center">Rp.
-                                                            {{ number_format($detail->pivot->harga_satuan,2,',','.') }}
-                                                        </td>
-                                                        <td class="text-center">Rp.
-                                                            {{ number_format($detail->pivot->total_harga,2,',','.') }}
-                                                        </td>
-                                                    </tr>
-                                                    @empty
-                                                    <tr>
-                                                        <td colspan="7" class="text-center">
-                                                            Data Sparepart Kosong
-                                                        </td>
-                                                    </tr>
-                                                    @endforelse
-                                                    <tr>
-                                                        <hr>
-                                                    <td colspan="6" class="text-center font-weight-500">
-                                                        Grand Total
-                                                    </td>
-                                                    <td class="text-center">
-                                                        Rp.{{ number_format($po->grand_total,2,',','.') }}
-                                                    </td>
-                                                    </tr> --}}
+                                                   
                                                 </tbody>
                                             </table>
                                         </div>
@@ -152,8 +126,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer p-4 p-lg-5 border-top-0 bg-white">
+                    </div> --}}
+                    {{-- <div class="card-footer p-4 p-lg-5 border-top-0 bg-white">
                         <div class="row">
                             <div class="mx-auto col-9 text-center d-flex justify-content-between">
                                 <div class="mb-4">
@@ -179,7 +153,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>

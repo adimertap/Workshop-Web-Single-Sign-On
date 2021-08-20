@@ -108,7 +108,7 @@
                                         </span>
                                     </div>
                                     <input class="form-control" id="total_gaji" type="text" name="gaji_diterima"
-                                        placeholder="Keterangan Pembayaran" value="0"
+                                        placeholder="Keterangan Pembayaran" value="{{ $gaji->grand_total_gaji !=  null ? $gaji->grand_total_gaji : $gaji->grand_total_gaji }}"
                                         class="form-control @error('keterangan') is-invalid @enderror" readonly>
                                     @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
                                     </div> @enderror
