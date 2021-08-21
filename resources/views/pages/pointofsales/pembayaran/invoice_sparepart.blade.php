@@ -310,7 +310,7 @@
             url: '/pos/pembayaransparepart/' + id_penjualan_sparepart,
             data: data,
             success: function (response) {
-                window.location.href = '/pos/pembayaransparepart',
+                window.location.href = '/pos/invoice-service/' + id_penjualan_sparepart,
                 // console.log(response)
                 alert('Pembayaran telah berhasil')
             },

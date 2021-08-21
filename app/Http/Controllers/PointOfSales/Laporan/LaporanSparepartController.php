@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PointOfSales\Laporan;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PointOfSales\Pembayaran\PembayaranSparepartController;
 use App\Model\PointOfSales\LaporanPenjualanSparepart;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LaporanSparepartController extends Controller
@@ -88,5 +89,16 @@ class LaporanSparepartController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function CetakInvoice($id)
+    {
+        $laporan = LaporanPenjualanSparepart::with([
+            'penjualan_sparepart.detailsparepart','penjualan_sparepart.Customer','penjualan_sparepart.Pegawai','penjualan_sparepart'
+        ])->find($id);
+        $now = Carbon::now();
+
+        return view('print.POS.cetak-invoice-sparepart',compact('laporan','now'));
+
     }
 }

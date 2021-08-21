@@ -57,7 +57,7 @@
                             <label class="small mb-1" for="tanggal">Tanggal
                             </label>
                             <input class="form-control" id="tanggal" type="date" name="tanggal"
-                                placeholder="Masukkan Tanggal" value="{{ $penjualan->tanggal }}" readonly />
+                                placeholder="Masukkan Tanggal" value="{{ $penjualan->tanggal }}" />
                         </div>
                     </div>
                     <div class="form-row">
@@ -126,19 +126,12 @@
                                     <tbody>
                                         @forelse ($sparepart as $item)
                                         <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
-                                            <th scope="row" class="small" class="sorting_1">
-                                                {{ $loop->iteration}}</th>
-                                            <td class="kode_sparepart">
-                                                {{ $item->kode_sparepart }}</td>
-                                            <td class="nama_sparepart">
-                                                {{ $item->nama_sparepart }}</td>
-                                            <td class="jenis_sparepart">
-                                                {{ $item->Jenissparepart->jenis_sparepart }}
-                                            </td>
-                                            <td class="merk_sparepart">
-                                                {{ $item->Merksparepart->merk_sparepart }}</td>
-                                            <td class="satuan">{{ $item->Konversi->satuan }}
-                                            </td>
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td class="kode_sparepart">{{ $item->kode_sparepart }}</td>
+                                            <td class="nama_sparepart">{{ $item->nama_sparepart }}</td>
+                                            <td class="jenis_sparepart">{{ $item->Jenissparepart->jenis_sparepart }}</td>
+                                            <td class="merk_sparepart">{{ $item->Merksparepart->merk_sparepart }}</td>
+                                            <td class="satuan">{{ $item->Konversi->satuan }}</td>
                                             <td class="stock">{{ $item->stock }}</td>
                                             <td>
                                                 <button id="{{ $item->kode_sparepart }}-button"
@@ -235,37 +228,20 @@
                                     <tbody id='konfirmasi'>
                                         @forelse ($penjualan->detailsparepart as $item)
                                         <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
-                                            <th scope="row" class="small" class="sorting_1">
-                                                {{ $loop->iteration}}</th>
-                                            <td class="kode_sparepart">
-                                                {{ $item->kode_sparepart }}</td>
-                                            <td class="nama_sparepart">
-                                                {{ $item->nama_sparepart }}</td>
-                                            <td class="jenis_sparepart">
-                                                {{ $item->Jenissparepart->jenis_sparepart }}
-                                            </td>
-                                            <td class="merk_sparepart">
-                                                {{ $item->Merksparepart->merk_sparepart }}</td>
-                                            <td class="satuan">{{ $item->Konversi->satuan }}
-                                            </td>
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td class="kode_sparepart"><span id="{{ $item->kode_sparepart }}"> {{ $item->kode_sparepart }}</span></td>
+                                            <td class="nama_sparepart">{{ $item->nama_sparepart }}</td>
+                                            <td class="jenis_sparepart">{{ $item->Jenissparepart->jenis_sparepart }}</td>
+                                            <td class="merk_sparepart">{{ $item->Merksparepart->merk_sparepart }}</td>
+                                            <td class="satuan">{{ $item->Konversi->satuan }}</td>
                                             <td class="stock">{{ $item->pivot->harga }}</td>
                                             <td class="stock">{{ $item->pivot->jumlah }}</td>
                                             <td class="stock">{{ $item->pivot->total_harga }}</td>
                                             <td>
-                                                <button id="{{ $item->kode_sparepart }}-button"
-                                                    class="btn btn-success btn-datatable" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modaltambah-{{ $item->id_sparepart }}">
-                                                    <i class="fas fa-plus"></i>
-                                                </button>
                                             </td>
                                         </tr>
                                         @empty
-                                        <tr>
-                                            <td colspan="7" class="tex-center">
-                                                Data Sparepart Kosong
-                                            </td>
-                                        </tr>
+                                        
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -382,40 +358,40 @@
 </div>
 
 {{-- MODAL TAMBAH SPAREPART --}}
-@forelse ($sparepart as $item)
-<div class="modal fade" id="Modaltambah-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-primary-soft">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Jumlah Pesanan</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="small mb-1" for="jumlah">Masukan Quantity Pesanan</label>
-                        <input class="form-control" name="jumlah" type="text" id="jumlah"
-                            placeholder="Input Jumlah Pesanan" value="{{ old('jumlah') }}"></input>
-                    </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="harga">Harga</label>
-                        <input class="form-control" name="harga" type="text" id="harga"
-                            placeholder="Input Jumlah Pesanan"
-                            value="{{ isset($item->Kartugudangpenjualan['harga_beli']) }}"></input>
-                    </div>
+@forelse ($sparepart as $items)
+    <div class="modal fade" id="Modaltambah-{{ $items->id_sparepart }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary-soft">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Jumlah Pesanan</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
                 </div>
+                <form action="" method="POST" id="form-{{ $items->id_sparepart }}" class="d-inline">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="small mb-1" for="jumlah">Masukan Quantity Pesanan</label>
+                            <input class="form-control" name="jumlah" type="text" id="jumlah"
+                                placeholder="Input Jumlah Pesanan" value="{{ $items->jumlah }}"></input>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="harga">Harga</label>
+                            <input class="form-control" name="harga" type="text" id="harga"
+                                placeholder="Input Jumlah Pesanan"
+                                value="{{ $items->Kartugudangpenjualan['harga_beli'] }}"></input>
+                        </div>
+                    </div>
 
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" onclick="konfirmsparepart(event, {{ $item->id_sparepart }})"
-                        type="button" data-dismiss="modal">Tambah</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-success" onclick="konfirmsparepart(event, {{ $item->id_sparepart }})"
+                            type="button" data-dismiss="modal">Tambah</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 @empty
 @endforelse
 

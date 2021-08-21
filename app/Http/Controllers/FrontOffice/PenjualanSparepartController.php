@@ -140,7 +140,18 @@ class PenjualanSparepartController extends Controller
         $customer = CustomerBengkel::all();
         $sparepart = Sparepart::with('Kartugudangpenjualan')->where('stock', '>', 0)->get();
         $today = Carbon::today();
-        $penjualan = PenjualanSparepart::with('Detailsparepart', 'Customer')->findOrFail($id_penjualan_sparepart);
+        $penjualan = PenjualanSparepart::with('Detailsparepart', 'Customer','Detailsparepart.kartugudangpenjualan')->findOrFail($id_penjualan_sparepart);
+
+       
+
+        // for($i = 0;  $i < count($penjualan->Detailsparepart); $i++ ){
+        //     for($j = 0;  $j < count($penjualan->Supplier->Sparepart); $j++ ){
+        //        if ($retur->Detailretur[$i]->id_sparepart == $retur->Supplier->Sparepart[$j]->id_sparepart ){
+        //         $retur->Supplier->Sparepart[$j]->qty_retur = $retur->Detailretur[$i]->pivot->qty_retur;
+        //         $retur->Supplier->Sparepart[$j]->keterangan = $retur->Detailretur[$i]->pivot->keterangan;
+        //        };
+        //     }
+        // }
 
         return view('pages.frontoffice.penjualan_sparepart.edit')->with([
             'penjualan' => $penjualan,

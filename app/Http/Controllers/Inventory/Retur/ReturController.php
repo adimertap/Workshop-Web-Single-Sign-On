@@ -76,6 +76,8 @@ class ReturController extends Controller
     {
         $retur = Retur::with('Rcv.Detailrcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur')->findOrFail($id_retur);
 
+        
+
         return view('pages.inventory.retur.detail')->with([
             'retur' => $retur
         ]);
@@ -92,6 +94,8 @@ class ReturController extends Controller
         $retur = Retur::with([
             'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur'
         ])->find($id);
+
+        // return $retur;
         
         $id = Retur::getId();
         foreach($id as $value);

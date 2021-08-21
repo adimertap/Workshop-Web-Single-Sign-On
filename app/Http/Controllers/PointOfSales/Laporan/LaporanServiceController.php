@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PointOfSales\Laporan;
 
 use App\Http\Controllers\Controller;
 use App\Model\PointOfSales\LaporanService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LaporanServiceController extends Controller
@@ -94,12 +95,12 @@ class LaporanServiceController extends Controller
 
     public function CetakPembayaran($id)
     {
-        $service = LaporanService::with([
+        $laporan = LaporanService::with([
             'penerimaan_service.detail_sparepart', 'penerimaan_service.detail_perbaikan','pegawai','penerimaan_service','penerimaan_service.customer_bengkel'
         ])->find($id);
-        
+        $now = Carbon::now();
 
-        return view('pages.pointofsales.laporan.detail_laporan',compact('service'));
+        return view('print.POS.cetak-invoice-service',compact('laporan','now'));
 
         
         

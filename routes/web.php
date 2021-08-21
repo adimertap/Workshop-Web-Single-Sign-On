@@ -135,8 +135,9 @@ Route::group(
             ->middleware(['admin_kasir', 'verified'])
             ->group(function () {
                 Route::resource('laporanservice', 'LaporanServiceController');
-                Route::get('cetak-pembayaran-service/{id}', 'LaporanServiceController@CetakPembayaran')->name('cetak-pembayaran-service');
+                Route::get('invoice-service/{id}', 'LaporanServiceController@CetakPembayaran')->name('cetak-invoice-service');
                 Route::resource('laporansparepart', 'LaporanSparepartController');
+                Route::get('invoice-sparepart/{id}', 'LaporanSparepartController@CetakInvoice')->name('cetak-invoice-sparepart');
             });
 
         // ------------------------------------------------------------------------
