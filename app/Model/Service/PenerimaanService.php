@@ -12,12 +12,15 @@ use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 
 class PenerimaanService extends Model
 {
     use Notifiable;
+
+    use SoftDeletes;
 
     protected $table = "tb_service_advisor";
 
@@ -27,9 +30,11 @@ class PenerimaanService extends Model
         'id_kendaraan', 'date', 'id_customer_bengkel', 'id_bengkel', 'keluhan_kendaraan', 'id_jenis_perbaikan', 'id_sparepart', 'id_pegawai', 'waktu_estimasi', 'id_mekanik', 'status'
     ];
 
-    protected $hidden = [];
+    protected $hidden = [
+        'deleted_at'
+    ];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected static function booted()
     {
@@ -47,8 +52,6 @@ class PenerimaanService extends Model
             ]
         ];
     }
-
-
 
     public function bengkel()
     {

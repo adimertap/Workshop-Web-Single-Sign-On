@@ -48,9 +48,12 @@ class PengerjaanServiceController extends Controller
      * @param  \App\PengerjaanService  $pengerjaanService
      * @return \Illuminate\Http\Response
      */
-    public function show(PengerjaanService $pengerjaanService)
+    public function show($id_service_advisor)
     {
-        //
+        $pelayanan = PenerimaanService::with('kendaraan', 'customer_bengkel', 'mekanik','pitstop', 'detail_sparepart.Merksparepart','detail_sparepart.Jenissparepart',
+        'detail_sparepart', 'detail_perbaikan', 'bengkel')->find($id_service_advisor);
+
+        return view('pages.service.pengerjaan_service.show',compact('pelayanan'));
     }
 
     /**
@@ -61,7 +64,7 @@ class PengerjaanServiceController extends Controller
      */
     public function edit(PengerjaanService $pengerjaanService)
     {
-        //
+        
     }
 
     /**

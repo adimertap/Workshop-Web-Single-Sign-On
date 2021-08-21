@@ -63,9 +63,12 @@ class PelayananServiceController extends Controller
      * @param  \App\PelayananService  $pelayananService
      * @return \Illuminate\Http\Response
      */
-    public function show(PelayananService $pelayananService)
+    public function show($id_service_advisor)
     {
-        //
+        $pelayanan = PenerimaanService::with('kendaraan', 'customer_bengkel', 'mekanik','pitstop', 'detail_sparepart.Merksparepart','detail_sparepart.Jenissparepart',
+        'detail_sparepart', 'detail_perbaikan', 'bengkel')->find($id_service_advisor);
+        
+        return view('pages.frontoffice.pelayanan_service.show',compact('pelayanan'));
     }
 
     /**
@@ -110,13 +113,14 @@ class PelayananServiceController extends Controller
      * @param  \App\PelayananService  $pelayananService
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PenerimaanService $id_service_advisor)
+    public function destroy($id_service_advisor)
     {
         $pelayanan = PenerimaanService::findOrFail($id_service_advisor);
-        $pelayanan = DetailPenerimaanServiceJasa::where('id_service_advisor', $id_service_advisor);
-        $pelayanan = DetailPenerimaanServiceSparepart::where('id_service_advisor', $id_service_advisor);
+        DetailPenerimaanServiceJasa::where('id_service_advisor', $id_service_advisor)->delete();
+        DetailPenerimaanServiceSparepart::where('id_service_advisor', $id_service_advisor)->delete();
 
         $pelayanan->delete();
+        // return $pelayanan;
 
         return redirect()->back()->with('messagehapus', 'Data Pelayanan Service Berhasil dihapus');
     }

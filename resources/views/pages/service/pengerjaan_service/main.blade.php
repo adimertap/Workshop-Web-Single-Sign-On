@@ -105,7 +105,7 @@
 
                                             </td>
                                             <td>
-                                                <a href="" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                <a href="{{ route('pengerjaanservice.show', $item->id_service_advisor) }}" class="btn btn-secondary btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" data-original-title="Detail">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
