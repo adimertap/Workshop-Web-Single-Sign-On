@@ -111,7 +111,7 @@
                                                 </a>
 
                                                 @if ($item->status == 'dikerjakan')
-                                                <a href="" class="btn btn-primary btn-datatable ml-1"
+                                                <a href="{{ route('pengerjaanservice.edit', $item->id_service_advisor) }}" class="btn btn-primary btn-datatable ml-1"
                                                     data-toggle="tooltip" data-placement="top"
                                                     data-original-title="Edit">
                                                     <i class="fas fa-edit"></i>

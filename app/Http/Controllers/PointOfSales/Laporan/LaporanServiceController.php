@@ -99,7 +99,7 @@ class LaporanServiceController extends Controller
         ])->find($id);
         
 
-        return view('pages.pointofsales.laporan.detail_laporan',compact('service'));
+        return view('print.POS.cetak-invoice-service',compact('service'));
 
         
         

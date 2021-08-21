@@ -89,4 +89,14 @@ class LaporanSparepartController extends Controller
     {
         //
     }
+
+    public function CetakInvoice($id)
+    {
+        $laporan = LaporanPenjualanSparepart::with([
+            'penjualan_sparepart.detailsparepart'
+        ])->find($id);
+
+        return view('print.POS.cetak-invoice-sparepart',compact('laporan'));
+
+    }
 }
