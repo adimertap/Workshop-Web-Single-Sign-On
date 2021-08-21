@@ -183,11 +183,11 @@
             <footer class="footer mt-auto footer-light">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6 small">Copyright &copy; BengkelKuy 2021</div>
+                        <div class="col-md-6 small">Copyright &copy; 2021 Aplikasi E-Bengkel</div>
                         <div class="col-md-6 text-md-right small">
                             <a href="#!">Privacy Policy</a>
                             &middot;
-                            <a href="#!">BengkelKuy</a>
+                            <a href="#!">Aplikasi E-Bengkel</a>
                         </div>
                     </div>
                 </div>

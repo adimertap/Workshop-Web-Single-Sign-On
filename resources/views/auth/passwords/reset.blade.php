@@ -10,7 +10,7 @@
                         {{ __('Reset Password') }}
                     </div>
                     <div>
-                        BengkelKuy
+                        Aplikasi E-Bengkel
                     </div>
                 </div>
 

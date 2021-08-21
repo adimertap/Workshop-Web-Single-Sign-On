@@ -39,7 +39,7 @@
     {{-- <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
         <div class="small ml-3">
             <i class="fa fa-cogs" aria-hidden="true"></i>
-            BengkelKuy
+            Aplikasi E-Bengkel
         </div>
         </form>
     </nav> --}}
