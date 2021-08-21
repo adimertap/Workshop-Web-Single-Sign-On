@@ -26,7 +26,7 @@
 <body >
     <div>
         <main>
-            {{-- <div class="container col-lg-8 mt-5">
+            <div class="container col-lg-8 mt-5">
               
 
                 <div class="card invoice">
@@ -42,8 +42,8 @@
                             </div>
                             <div class="col-5 text-right">
                              
-                                <div class="h3 text-primary">Purchase Order</div>
-                                <span class="text-dark">{{ $po->kode_po }}</span>
+                                <div class="h3 text-primary">Invoice Penjualan Sparepart</div>
+                               
                                 <br>
                                 <span class="text-dark">{{ $now }}</span>
                             </div>
@@ -53,45 +53,44 @@
                     <div class="card-body">
                         <div class="row justify-content-between align-items-center mb-4">
                             <div class="col-6 text-lg-left" style="line-height: 1rem">
-                                <label class="small font-weight-700">Kepada: </label>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="d-flex flex-column font-weight-bold">
-                                            <label class="small font-weight-500"> Supplier </label>
+                                            <label class="small font-weight-500"> Kode Penjualan </label>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label class="small font-weight-500">: {{ $po->Supplier->nama_supplier }} </label>
+                                        <label class="small font-weight-500">: {{ $laporan->penjualan_sparepart->kode_penjualan }} </label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="d-flex flex-column font-weight-bold">
-                                            <label class="small"> No. Telp </label>
+                                            <label class="small"> Customer </label>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label class="small">: {{ $po->Supplier->telephone }} </label>
+                                        <label class="small">: {{ $laporan->penjualan_sparepart->Customer->nama_customer }} </label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="d-flex flex-column font-weight-bold">
-                                            <label class="small">Email </label>
+                                            <label class="small">Tanggal Penjualan</label>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label class="small">: {{ $po->Supplier->email }} </label>
+                                        <label class="small">: {{ $laporan->penjualan_sparepart->tanggal }} </label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="d-flex flex-column font-weight-bold">
-                                            <label class="small line-height-normal"> Alamat </label>
+                                            <label class="small line-height-normal"> Status </label>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label class="small">: {{ $po->Supplier->alamat_supplier }} </label>
+                                        <label class="small">: {{ $laporan->penjualan_sparepart->status_bayar }} </label>
                                     </div>
                                 </div>
                             </div>
@@ -99,37 +98,57 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="font-weight-bold">
-                                            <label class="small">Kode PO </label>
+                                            <label class="small">Tanggal Invoice </label>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label class="small">: {{ $po->kode_po }} </label>
+                                        <label class="small">: {{ $laporan->tanggal_laporan }} </label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="font-weight-bold">
-                                            <label class="small "> Pegawai </label>
+                                            <label class="small "> Total Tagihan </label>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label class="small">: {{ $po->Pegawai->nama_pegawai }} </label>
+                                        <label class="small">: Rp.{{ number_format( $laporan->total_tagihan,2,',','.') }}</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="font-weight-bold">
-                                            <label class="small"> Tanggal PO </label>
+                                            <label class="small"> Diskon </label>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label class="smal">: {{ $po->tanggal_po }} </label> 
+                                        <label class="small">: Rp.{{ number_format( $laporan->diskon,2,',','.') }}</label> 
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="font-weight-bold">
+                                            <label class="small"> Nominal Bayar </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label class="small">: Rp.{{ number_format( $laporan->nominal_bayar,2,',','.') }}</label> 
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="font-weight-bold">
+                                            <label class="small"> Kembalian </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label class="small">: Rp.{{ number_format( $laporan->kembalian,2,',','.') }} </label> 
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-12" >
+                        <div class="col-lg-12 text-center" >
                             <div class="datatable" >
                                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                     <div class="row">
@@ -139,37 +158,29 @@
                                                 <thead>
                                                     <tr role="row">
                                                         <th class="text-center" style="width: 20px;">No</th>
-                                                        <th class="text-center" style="width: 80px;">Sparepart</th>
-                                                        <th class="text-center" style="width: 80px;">Merk</th>
-                                                        <th class="text-center" style="width: 20px;">Qty</th>
-                                                        <th class="text-center" style="width: 20px;">Kemasan</th>
-                                                        <th class="text-center" style="width: 30px;">Harga</th>
-                                                        <th class="text-center" style="width: 80px;">Total</th>
+                                                        <th class="text-center" style="width: 150px;">Sparepart</th>
+                                                        <th class="text-center" style="width: 150px;">Merk</th>
+                                                        <th class="text-center" style="width: 60px;">Qty</th>
+                                                        <th class="text-center" style="width: 90px;">Harga</th>
+                                                        <th class="text-center" style="width: 100px;">Total</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {{--  --}}
-                                                    {{-- @forelse ($po->Detailsparepart as $detail)
+                                                   
+                                                    @forelse ($laporan->penjualan_sparepart->detailsparepart as $detail)
                                                     <tr role="row" class="odd">
                                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                         </th>
                                                         <td >{{ $detail->nama_sparepart }}</td>
                                                         <td class="text-center">{{ $detail->Merksparepart->merk_sparepart }}</td>
-                                                        <td class="text-center">{{ $detail->pivot->qty }}</td>
-                                                        <td class="text-center">{{ $detail->Kemasan->nama_kemasan }}</td>
-                                                        <td class="text-center">Rp.
-                                                            {{ number_format($detail->pivot->harga_satuan,2,',','.') }}
+                                                        <td class="text-center">{{ $detail->pivot->jumlah }}</td>
+                                                        <td class="text-center">Rp.{{ number_format($detail->pivot->harga,2,',','.') }}
                                                         </td>
-                                                        <td class="text-center">Rp.
-                                                            {{ number_format($detail->pivot->total_harga,2,',','.') }}
+                                                        <td class="text-center">Rp.{{ number_format($detail->pivot->total_harga,2,',','.') }}
                                                         </td>
                                                     </tr>
                                                     @empty
-                                                    <tr>
-                                                        <td colspan="7" class="text-center">
-                                                            Data Sparepart Kosong
-                                                        </td>
-                                                    </tr>
+                                                   
                                                     @endforelse
                                                     <tr>
                                                         <hr>
@@ -177,7 +188,7 @@
                                                         Grand Total
                                                     </td>
                                                     <td class="text-center">
-                                                        Rp.{{ number_format($po->grand_total,2,',','.') }}
+                                                        Rp.{{ number_format($laporan->penjualan_sparepart->total_bayar,2,',','.') }}
                                                     </td>
                                                     </tr>
                                                 </tbody>
@@ -196,28 +207,15 @@
                                 </div>
                                 <div class="mb-4">
                                   
-                                    <div class="h6 mb-0">Staff Purchasing</div>
-                                    <div class="small mt-10">{{ $po->Pegawai->nama_pegawai }}</div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-lg-12">
-                     
-                                <div class="small text-muted text-uppercase font-weight-700 mb-2">Keterangan</div>
-                                <div class="small mb-0">Purchase Order telah disetujui oleh pemilik bengkel dan akan diteruskan kepada supplier
-                                    <br>~ Seluruh pengiriman barang yang dilakukan supplier harus disertakan Faktur dan Kwitansi
-                                    <br>~ Barang akan kami kembalikan apabila tidak sesuai pesanan
-                                    <br>~ No Purchase Order harus dicantumkan dalam Faktur dan Kwitansi
-                                    <br>~ Bila pengiriman barang akan dilaksanakan secara bertahap, 
-                                    <br>setiap pengiriman barang harap disertakan photocopy Purchase Order
+                                    <div class="h6 mb-0">Staff </div>
+                                    <div class="small mt-10">{{ $laporan->Pegawai->nama_pegawai }}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                 </div>
-            </div> --}}
+            </div>
         </main>
     </div>
     </div>
