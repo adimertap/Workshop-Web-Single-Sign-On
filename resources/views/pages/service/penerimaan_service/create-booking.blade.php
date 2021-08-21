@@ -517,7 +517,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-primary" type="button"
-                        onclick="kirimfrontoffice(event,{{ $sparepart }},{{ $jasa_perbaikan }},{{ $idbaru }})">Ya!Sudah</button>
+                        onclick="kirimfrontoffice(event,{{ $sparepart }},{{ $jasa_perbaikan }},{{ $idbaru }})">Ya Sudah!</button>
                 </div>
             </div>
         </div>
