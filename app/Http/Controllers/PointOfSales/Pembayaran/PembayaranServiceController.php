@@ -102,7 +102,7 @@ class PembayaranServiceController extends Controller
         $jurnal->tanggal_jurnal = Carbon::now();
         $jurnal->kode_transaksi = $status_selesai->kode_sa;
         $jurnal->tanggal_transaksi = $status_selesai->date;
-        $jurnal->ref = $status_selesai->kode_sa;
+        $jurnal->ref = '-';
         $jurnal->keterangan = 'Pendapatan Service';
         $jurnal->grand_total = $status_selesai->total_bayar;
         $jurnal->jenis_jurnal = 'Transaksi Service';

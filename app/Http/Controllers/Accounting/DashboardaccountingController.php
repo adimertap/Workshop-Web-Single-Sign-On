@@ -28,7 +28,7 @@ class DashboardaccountingController extends Controller
         ['hutang_supplier' => InvoicePayable::where('status_prf','Belum Dibuat')->sum('total_pembayaran'),
         'pendapatan_penjualan' => LaporanPenjualanSparepart::sum('total_tagihan'),
         'pendapatan_service' => LaporanService::sum('total_tagihan'),
-        'pendapatan_marketplace' => Transaksi::sum('harga_total'),
+        'pendapatan_marketplace' => Transaksi::where('transaksi_status','DITERIMA')->sum('harga_total'),
         'invoice' => InvoicePayable::count(),
         'invoice_prf_belum' => InvoicePayable::where('status_prf','Belum Dibuat')->count(),
         'invoice_prf_sudah' => InvoicePayable::where('status_prf','Sudah Dibuat')->count(),

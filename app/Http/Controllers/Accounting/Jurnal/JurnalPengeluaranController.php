@@ -87,7 +87,7 @@ class JurnalPengeluaranController extends Controller
         $jurnal->tanggal_jurnal = Carbon::now();
         $jurnal->kode_transaksi = $invoice->kode_invoice;
         $jurnal->tanggal_transaksi = $invoice->tanggal_invoice;
-        $jurnal->ref = $invoice->kode_invoice;
+        $jurnal->ref = '-';
         $jurnal->keterangan = $invoice->deskripsi_invoice;
         $jurnal->grand_total = $invoice->total_pembayaran;
         $jurnal->jenis_jurnal = 'Invoice_Payable';
@@ -110,7 +110,7 @@ class JurnalPengeluaranController extends Controller
         $jurnal->tanggal_jurnal = Carbon::now();
         $jurnal->kode_transaksi = $pajak->kode_pajak;
         $jurnal->tanggal_transaksi = $pajak->tanggal_bayar;
-        $jurnal->ref = $pajak->kode_pajak;
+        $jurnal->ref = '-';
         $jurnal->keterangan = $pajak->deskripsi_pajak;
         $jurnal->grand_total = $pajak->total_pajak;
         $jurnal->jenis_jurnal = 'Pajak';
@@ -133,7 +133,7 @@ class JurnalPengeluaranController extends Controller
         $jurnal->tanggal_jurnal = Carbon::now();
         $jurnal->kode_transaksi = $prf->kode_prf;
         $jurnal->tanggal_transaksi = $prf->tanggal_bayar;
-        $jurnal->ref = $prf->kode_prf;
+        $jurnal->ref = '-';
         $jurnal->keterangan = $prf->keperluan_prf;
         $jurnal->grand_total = $prf->grand_total;
         $jurnal->jenis_jurnal = 'Prf';

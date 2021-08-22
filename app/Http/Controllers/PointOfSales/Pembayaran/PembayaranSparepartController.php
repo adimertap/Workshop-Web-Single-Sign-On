@@ -102,7 +102,7 @@ class PembayaranSparepartController extends Controller
         $jurnal->tanggal_jurnal = Carbon::now();
         $jurnal->kode_transaksi = $status->kode_penjualan;
         $jurnal->tanggal_transaksi = $status->tanggal;
-        $jurnal->ref = $status->kode_penjualan;
+        $jurnal->ref = '-';
         $jurnal->keterangan = 'Pendapatan Penjualan Sparepart';
         $jurnal->grand_total = $status->total_bayar;
         $jurnal->jenis_jurnal = 'Transaksi Penjualan Sparepart';
