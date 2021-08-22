@@ -8,7 +8,6 @@ use App\Model\FrontOffice\CustomerBengkel;
 use App\Model\FrontOffice\DetailPenjualanSparepart;
 use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Sparepart;
-use App\Notifications\NewOrderSparepart;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -110,7 +109,6 @@ class PenjualanSparepartController extends Controller
         $penjualan->save();
         $penjualan->Detailsparepart()->sync($request->sparepart);
 
-        // $penjualan->notify(new NewOrderSparepart());
         // return $request;
         return response()->json($request);
     }
