@@ -60,9 +60,6 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 300px;">Jenis Transaksi</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
