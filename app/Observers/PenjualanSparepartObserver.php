@@ -26,7 +26,6 @@ class PenjualanSparepartObserver
      */
     public function updated(PenjualanSparepart $penjualanSparepart)
     {
-        //
     }
 
     /**
@@ -37,7 +36,6 @@ class PenjualanSparepartObserver
      */
     public function deleted(PenjualanSparepart $penjualanSparepart)
     {
-        //
     }
 
     /**
