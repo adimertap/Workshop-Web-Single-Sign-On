@@ -22,8 +22,8 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Jenis Transaksi
-                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
-                        data-target="#Modaltambah">Tambah Jenis Transaksi</button>
+                    {{-- <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
+                        data-target="#Modaltambah">Tambah Jenis Transaksi</button> --}}
                 </div>
             </div>
             <div class="card-body">
@@ -60,9 +60,6 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
                                                 style="width: 300px;">Jenis Transaksi</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -71,12 +68,12 @@
                                             <th scope="row" class="small" class="sorting_1">
                                                 {{ $loop->iteration}}</th>
                                             <td>{{ $item->nama_transaksi }}</td>
-                                            <td class="text-center">
+                                           
                                                 {{-- <a href="{{ route('jenis-transaksi.show', $item->id_jenis_transaksi) }}" class="btn btn-secondary btn-xs" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Set Debet & Kredit">
                                                     Set Akun
                                                 </a> --}}
-                                                <a href="" class="btn btn-primary btn-datatable" type="button"
+                                                {{-- <a href="" class="btn btn-primary btn-datatable" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modaledit-{{ $item->id_jenis_transaksi }}">
                                                     <i class="fas fa-edit"></i>
@@ -85,8 +82,8 @@
                                                     data-toggle="modal"
                                                     data-target="#Modalhapus-{{ $item->id_jenis_transaksi }}">
                                                     <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
+                                                </a> --}}
+                                           
                                         </tr>
                                         @empty
                                        

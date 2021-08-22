@@ -16,7 +16,6 @@ class Jenistransaksi extends Model
 
     protected $fillable = [
         'nama_transaksi',
-        'id_bengkel',
     ];
 
     protected $hidden =[ 
@@ -35,20 +34,4 @@ class Jenistransaksi extends Model
         return $this->hasOne(PenentuanAkun::class,'id_jenis_transaksi','id_jenis_transaksi');
     }
 
-    
-
-    // public function PenentuanAkun()
-    // {
-    //     return $this->hasOne(Akun::class, 'id_akun');
-    // }
-
-    // public function PasanganAkun()
-    // {
-    //     return $this->hasOne(Akun::class, 'id_akun', 'id_pasangan_akun');
-    // }
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
 }
