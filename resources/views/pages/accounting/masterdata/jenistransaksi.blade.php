@@ -22,8 +22,8 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Jenis Transaksi
-                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
-                        data-target="#Modaltambah">Tambah Jenis Transaksi</button>
+                    {{-- <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
+                        data-target="#Modaltambah">Tambah Jenis Transaksi</button> --}}
                 </div>
             </div>
             <div class="card-body">
@@ -76,7 +76,7 @@
                                                     data-placement="top" title="" data-original-title="Set Debet & Kredit">
                                                     Set Akun
                                                 </a> --}}
-                                                <a href="" class="btn btn-primary btn-datatable" type="button"
+                                                {{-- <a href="" class="btn btn-primary btn-datatable" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modaledit-{{ $item->id_jenis_transaksi }}">
                                                     <i class="fas fa-edit"></i>
@@ -85,7 +85,7 @@
                                                     data-toggle="modal"
                                                     data-target="#Modalhapus-{{ $item->id_jenis_transaksi }}">
                                                     <i class="fas fa-trash"></i>
-                                                </a>
+                                                </a> --}}
                                             </td>
                                         </tr>
                                         @empty
