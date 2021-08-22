@@ -32,7 +32,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         PenjualanSparepart::observe(PenjualanSparepartObserver::class);
-        // MasterDataMerkKendaraan::observe(MerkKendaraanObserver::class);
         PenerimaanService::observe(PenerimaanServiceObserver::class);
     }
 }

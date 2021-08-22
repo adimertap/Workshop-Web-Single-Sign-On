@@ -323,7 +323,7 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary" type="button"
-                    onclick="tambahretur(event,{{ $retur->Supplier->Sparepart }},{{ $retur->id_retur }})">Ya!Sudah</button>
+                    onclick="tambahretur(event,{{ $retur->Supplier->Sparepart }},{{ $retur->id_retur }})">Ya Sudah!</button>
             </div>
         </div>
     </div>

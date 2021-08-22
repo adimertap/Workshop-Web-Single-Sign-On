@@ -310,7 +310,7 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary" onclick="submit(event,{{ $pajak }}, {{ $id_pajak }})"
-                    type="button">Ya!Sudah</button>
+                    type="button">Ya Sudah!</button>
             </div>
         </div>
     </div>

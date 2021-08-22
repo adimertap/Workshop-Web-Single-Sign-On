@@ -110,6 +110,7 @@ class PenjualanSparepartController extends Controller
         $penjualan->save();
         $penjualan->Detailsparepart()->sync($request->sparepart);
 
+        // $penjualan->notify(new NewOrderSparepart());
         // return $request;
         return response()->json($request);
     }
@@ -140,9 +141,9 @@ class PenjualanSparepartController extends Controller
         $customer = CustomerBengkel::all();
         $sparepart = Sparepart::with('Kartugudangpenjualan')->where('stock', '>', 0)->get();
         $today = Carbon::today();
-        $penjualan = PenjualanSparepart::with('Detailsparepart', 'Customer','Detailsparepart.kartugudangpenjualan')->findOrFail($id_penjualan_sparepart);
+        $penjualan = PenjualanSparepart::with('Detailsparepart', 'Customer', 'Detailsparepart.kartugudangpenjualan')->findOrFail($id_penjualan_sparepart);
 
-       
+
 
         // for($i = 0;  $i < count($penjualan->Detailsparepart); $i++ ){
         //     for($j = 0;  $j < count($penjualan->Supplier->Sparepart); $j++ ){

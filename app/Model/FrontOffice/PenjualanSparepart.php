@@ -2,13 +2,13 @@
 
 namespace App\Model\FrontOffice;
 
+use Illuminate\Notifications\Notifiable;
 use App\Model\Inventory\Sparepart;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 
 class PenjualanSparepart extends Model

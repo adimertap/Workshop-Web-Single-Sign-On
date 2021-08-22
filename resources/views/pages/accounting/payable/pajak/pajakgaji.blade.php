@@ -210,7 +210,7 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary" 
-                    type="submit">Ya!Sudah</button>
+                    type="submit">Ya Sudah!</button>
             </div>
         </div>
     </div>

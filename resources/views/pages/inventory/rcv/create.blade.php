@@ -369,7 +369,7 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary" type="button"
-                    onclick="tambahrcv(event,{{ $rcv->PO->Detailsparepart }},{{ $rcv->id_rcv }})">Ya!Sudah</button>
+                    onclick="tambahrcv(event,{{ $rcv->PO->Detailsparepart }},{{ $rcv->id_rcv }})">Ya Sudah!</button>
             </div>
         </div>
     </div>
