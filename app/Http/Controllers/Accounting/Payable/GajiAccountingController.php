@@ -42,6 +42,15 @@ class GajiAccountingController extends Controller
         
     }
 
+    public function setStatusPerBulanTahun($id_gaji_pegawai)
+    {
+        $item = Gajipegawai::find($id_gaji_pegawai);
+        $item->status_dana = 'Dana Telah Diberikan';
+        $item->save();
+
+        return redirect()->back()->with('messagebayar','Proses Pencairan Dana Berhasil Dilakukan');
+    }
+
     public function postingjurnal( $id_gaji_pegawai){
 
         $gajipegawai = Gajipegawai::find($id_gaji_pegawai);

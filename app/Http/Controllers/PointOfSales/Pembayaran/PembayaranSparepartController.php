@@ -108,9 +108,6 @@ class PembayaranSparepartController extends Controller
         $jurnal->jenis_jurnal = 'Transaksi Penjualan Sparepart';
         $jurnal->save();
 
-
-
-
         return $request;
     }
 

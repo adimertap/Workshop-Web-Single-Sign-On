@@ -205,14 +205,7 @@ class GajipegawaiController extends Controller
         return redirect()->route('gaji-pegawai.index')->with('messagebayar','Slip Gaji Pegawai berhasil Dibayarkan');
     }
 
-    public function setStatusPerBulanTahun($id_gaji_pegawai)
-    {
-        $item = Gajipegawai::find($id_gaji_pegawai);
-        $item->status_dana = 'Dana Telah Diberikan';
-        $item->save();
-
-        return redirect()->back()->with('messagebayar','Proses Pencairan Dana Berhasil Dilakukan');
-    }
+   
 
     public function CetakSlip($id_gaji_pegawai)
     {
