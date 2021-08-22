@@ -68,7 +68,7 @@
                                             <th scope="row" class="small" class="sorting_1">
                                                 {{ $loop->iteration}}</th>
                                             <td>{{ $item->nama_transaksi }}</td>
-                                            <td class="text-center">
+                                           
                                                 {{-- <a href="{{ route('jenis-transaksi.show', $item->id_jenis_transaksi) }}" class="btn btn-secondary btn-xs" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Set Debet & Kredit">
                                                     Set Akun
@@ -83,7 +83,7 @@
                                                     data-target="#Modalhapus-{{ $item->id_jenis_transaksi }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a> --}}
-                                            </td>
+                                           
                                         </tr>
                                         @empty
                                        
