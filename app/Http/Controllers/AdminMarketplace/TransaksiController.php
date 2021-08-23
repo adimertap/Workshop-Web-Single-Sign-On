@@ -59,6 +59,7 @@ class TransaksiController extends Controller
                 $kartu_gudang->kode_transaksi = $transaksi->code_transaksi;
                 $kartu_gudang->tanggal_transaksi = $transaksi->created_at;
                 $kartu_gudang->jenis_kartu = 'Online';
+                $kartu_gudang->harga_beli = $sparepart->harga_market;
                 $kartu_gudang->save();
             }
         }
