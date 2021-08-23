@@ -32,7 +32,6 @@ class LaporanPenjualanSparepart extends Model
         return $this->belongsTo(PenjualanSparepart::class, 'id_penjualan_sparepart');
     }
 
-
     public function pegawai()
     {
         return $this->belongsTo(Pegawai::class, 'id_pegawai');

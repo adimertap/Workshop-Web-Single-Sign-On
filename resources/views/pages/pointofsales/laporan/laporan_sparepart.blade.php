@@ -93,7 +93,7 @@
                                                     <i class="fa fa-eye"></i>
                                                 </a>
                                                 <a href="{{ route('cetak-invoice-sparepart', $item->id_laporan) }}"
-                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail Laporan">
+                                                    class="btn btn-warning btn-datatable" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail Laporan">
                                                     <i class="fa fa-print"></i>
                                                 </a>
                                             </td>

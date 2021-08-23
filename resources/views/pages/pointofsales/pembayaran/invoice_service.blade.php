@@ -338,7 +338,7 @@
             url: '/pos/pembayaranservice/' + id_service_advisor,
             data: data,
             success: function (response) {
-                    window.location.href = '/pos/cetak-pembayaran-service/' + id_service_advisor,
+                    window.location.href = '/pos/laporanservice/',
                     // console.log(response)
                     alert('Pembayaran telah berhasil')
             },

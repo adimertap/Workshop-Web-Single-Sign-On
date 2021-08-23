@@ -96,6 +96,7 @@ class LaporanSparepartController extends Controller
         $laporan = LaporanPenjualanSparepart::with([
             'penjualan_sparepart.detailsparepart','penjualan_sparepart.Customer','penjualan_sparepart.Pegawai','penjualan_sparepart'
         ])->find($id);
+
         $now = Carbon::now();
 
         return view('print.POS.cetak-invoice-sparepart',compact('laporan','now'));

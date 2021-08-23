@@ -235,10 +235,10 @@
                                                         </th>
                                                         <td >{{ $details->nama_sparepart }}</td>
                                                         <td class="text-center">{{ $details->Merksparepart->merk_sparepart }}</td>
-                                                        <td class="text-center">{{ $detail->pivot->jumlah }}</td>
-                                                        <td class="text-center">Rp.{{ number_format($detail->pivot->harga,2,',','.') }}
+                                                        <td class="text-center">{{ $details->pivot->jumlah }}</td>
+                                                        <td class="text-center">Rp.{{ number_format($details->pivot->harga,2,',','.') }}
                                                         </td>
-                                                        <td class="text-center">Rp.{{ number_format($detail->pivot->total_harga,2,',','.') }}
+                                                        <td class="text-center">Rp.{{ number_format($details->pivot->total_harga,2,',','.') }}
                                                         </td>
                                                     </tr>
                                                     @empty

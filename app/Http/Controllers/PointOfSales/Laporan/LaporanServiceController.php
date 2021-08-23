@@ -16,7 +16,7 @@ class LaporanServiceController extends Controller
      */
     public function index()
     {
-        $laporan = LaporanService::with(['penerimaan_service.customer_bengkel', 'pegawai'])->get();
+        $laporan = LaporanService::with(['penerimaan_service.customer_bengkel', 'pegawai'])->orderBy('id_laporan_service','DESC')->get();
         return view('pages.pointofsales.laporan.laporan_service', compact('laporan'));
     }
 
@@ -98,6 +98,7 @@ class LaporanServiceController extends Controller
         $laporan = LaporanService::with([
             'penerimaan_service.detail_sparepart', 'penerimaan_service.detail_perbaikan','pegawai','penerimaan_service','penerimaan_service.customer_bengkel'
         ])->find($id);
+
         $now = Carbon::now();
 
         return view('print.POS.cetak-invoice-service',compact('laporan','now'));
