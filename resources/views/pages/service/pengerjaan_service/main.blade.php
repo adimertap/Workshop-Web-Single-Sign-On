@@ -91,8 +91,8 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$item->kode_sa}}</td>
-                                            <td>{{$item->kendaraan->nama_kendaraan}}</td>
                                             <td>{{$item->customer_bengkel->nama_customer}}</td>
+                                            <td>{{$item->kendaraan->nama_kendaraan}}</td>
                                             <td>{{ $item->pitstop? $item->pitstop->nama_pitstop:"-" }}</td>
                                             <td>{{$item->mekanik->nama_pegawai}}</td>
                                             <td>{{$item->date}}</td>
