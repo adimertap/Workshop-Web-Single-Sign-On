@@ -98,7 +98,7 @@ class PembayaranServiceController extends Controller
 
         $jurnal = new Jurnalpenerimaan;
         $jurnal->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
-        $jurnal->id_jenis_transaksi = '8';
+        $jurnal->id_jenis_transaksi = '10';
         $jurnal->tanggal_jurnal = Carbon::now();
         $jurnal->kode_transaksi = $status_selesai->kode_sa;
         $jurnal->tanggal_transaksi = $status_selesai->date;
