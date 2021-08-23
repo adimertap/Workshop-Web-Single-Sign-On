@@ -121,12 +121,15 @@
                                                             {{ $item->status_prf }}
                                                         </span>
                                             </td>
-                                            <td>@if($item->status_jurnal == 'Belum Diposting')
+                                            <td>@if($item->status_jurnal == 'Belum Diposting' && $item->status_prf == 'Belum Dibuat')
                                                 <a href="" class="btn btn-danger btn-xs" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modaljurnal-{{ $item->id_payable_invoice }}">
                                                     Posting?
                                                 </a>
+                                                @elseif ($item->status_jurnal == 'Belum Diposting' && $item->status_prf == 'Telah Dibuat')
+                                                    <span class="small"> - </span>
+
                                                 @elseif ($item->status_jurnal == 'Sudah Diposting')
                                                 <span class="badge badge-secondary">{{ $item->status_jurnal }}</span>
                                                 @else
