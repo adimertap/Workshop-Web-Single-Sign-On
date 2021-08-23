@@ -60,7 +60,7 @@ class GajiAccountingController extends Controller
         $jurnal->tanggal_jurnal = Carbon::now();
         $jurnal->tanggal_transaksi = $gajipegawai->updated_at;
         $jurnal->kode_transaksi = $gajipegawai->bulan_gaji;
-        $jurnal->ref = $gajipegawai->bulan_gaji;
+        $jurnal->ref = '-';
         $jurnal->keterangan = $gajipegawai->bulan_gaji;
         $jurnal->grand_total = $gajipegawai->grand_total_gaji;
         $jurnal->id_jenis_transaksi = $gajipegawai->id_jenis_transaksi;
