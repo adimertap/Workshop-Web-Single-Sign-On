@@ -17,7 +17,7 @@ class LaporanSparepartController extends Controller
      */
     public function index()
     {
-        $laporan = LaporanPenjualanSparepart::with(['penjualan_sparepart.customer', 'pegawai'])->get();
+        $laporan = LaporanPenjualanSparepart::with(['penjualan_sparepart.customer', 'pegawai'])->orderBy('id_laporan', 'DESC')->get();
         return view('pages.pointofsales.laporan.laporan_sparepart', compact('laporan'));
     }
 
@@ -54,7 +54,7 @@ class LaporanSparepartController extends Controller
             'penjualan_sparepart.detailsparepart'
         ])->find($id);
 
-        return view('pages.pointofsales.laporan.detail_laporan_sparepart',compact('laporan'));
+        return view('pages.pointofsales.laporan.detail_laporan_sparepart', compact('laporan'));
     }
 
     /**
@@ -94,12 +94,11 @@ class LaporanSparepartController extends Controller
     public function CetakInvoice($id)
     {
         $laporan = LaporanPenjualanSparepart::with([
-            'penjualan_sparepart.detailsparepart','penjualan_sparepart.Customer','penjualan_sparepart.Pegawai','penjualan_sparepart'
+            'penjualan_sparepart.detailsparepart', 'penjualan_sparepart.Customer', 'penjualan_sparepart.Pegawai', 'penjualan_sparepart'
         ])->find($id);
 
         $now = Carbon::now();
 
-        return view('print.POS.cetak-invoice-sparepart',compact('laporan','now'));
-
+        return view('print.POS.cetak-invoice-sparepart', compact('laporan', 'now'));
     }
 }
