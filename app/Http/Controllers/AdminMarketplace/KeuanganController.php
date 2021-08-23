@@ -35,7 +35,7 @@ class KeuanganController extends Controller
         }
         $bank = Bank::get();
 
-        $keuangan = Keuangan::where('id_bengkel', Auth::user()->id_bengkel)->orderBy('id_keuangan', 'DESC')->get();
+        $keuangan = Keuangan::with(["Bank"])->where('id_bengkel', Auth::user()->id_bengkel)->orderBy('id_keuangan', 'DESC')->get();
         // $keuangan_debet = Keuangan::where('id_bengkel', Auth::user()->id_bengkel)->where('status', 'DEBET')->get();
         // $uang = $keuangan_debet - $keuangan_credit;
 
