@@ -37,9 +37,4 @@ class Jenissparepart extends Model
         return $this->hasMany(Merksparepart::class, 'id_merk','id_merk');
     }
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
-
 }

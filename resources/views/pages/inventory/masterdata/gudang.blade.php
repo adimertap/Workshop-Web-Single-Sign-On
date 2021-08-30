@@ -1,6 +1,7 @@
 @extends('layouts.Admin.admininventory')
 
 @section('content')
+
 {{-- HEADER --}}
 <main>
     <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
@@ -10,7 +11,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Rak Bengkel
+                            Master Data Gudang
                         </h1>
                     </div>
                 </div>
@@ -19,16 +20,19 @@
     </header>
 
     {{-- MAIN PAGE CONTENT --}}
+
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header">List Rak
-                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#Modaltambah">
-                        Tambah Rak</button>
+                <div class="card-header">List Gudang
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
+                        data-target="#Modaltambah">Tambah
+                        Gudang</button>
                 </div>
             </div>
             <div class="card-body">
                 <div class="datatable">
+
                     @if(session('messageberhasil'))
                     <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
                         {{ session('messageberhasil') }}
@@ -45,7 +49,7 @@
                         </button>
                     </div>
                     @endif
-                    {{-- SHOW ENTRIES --}}
+
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
@@ -56,45 +60,41 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 5px;">No</th>
+                                                style="width: 30px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 170px;">Gudang</th>
+                                                style="width: 80px;">Kode Gudang</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 110px;">Kode Rak</th>
+                                                style="width: 150px;">Nama Gudang</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 180px;">Nama Rak</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 150px;">Jenis Rak</th>
+                                                style="width: 200px;">Alamat Gudang</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 100px;">Actions</th>
+                                                style="width: 77px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($rak as $item)
+                                        @forelse ($gudang as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                            <td>{{ $item->gudang->nama_gudang }}</td>
-                                            <td>{{ $item->kode_rak }}</td>
-                                            <td>{{ $item->nama_rak }}</td>
-                                            <td>{{ $item->jenis_rak }}</td>
+                                            <td>{{ $item->kode_gudang }}</td>
+                                            <td>{{ $item->nama_gudang }}</td>
+                                            <td>{{ $item->alamat_gudang }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_rak }}">
+                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_gudang }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_rak }}">
+                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_gudang }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
                                         </tr>
                                         @empty
-                                      
+                                       
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -107,67 +107,38 @@
     </div>
 </main>
 
-
-{{-- MODAL TAMBAH --}}
+{{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
 <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah Rak</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Gudang</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('rak.store') }}" method="POST">
+            <form action="{{ route('gudang.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1" for="kode_rak">Kode Rak</label>
-                        <input class="form-control" name="kode_rak" type="text" id="kode_rak"
-                            placeholder="Input Kode Rak" value="{{ $kode_rak }}" readonly>
+                        <label class="small mb-1" for="kode_gudang">Kode Gudang</label>
+                        <input class="form-control" name="kode_gudang" type="text" id="kode_gudang"
+                            placeholder="Input Kode Gudang" value="{{ $kode_gudang }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="id_gudang">Lokasi Gudang</label><span class="mr-4 mb-3" style="color: red">*</span>
-                        <select class="form-control" name="id_gudang"
-                            class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
-                            id="id_gudang">
-                            <option>Pilih Lokasi Gudang</option>
-                            @foreach ($gudang as $gudangs)
-                            <option value="{{ $gudangs->id_gudang }}">{{ $gudangs->nama_gudang }}
-                            </option>
-                            @endforeach
-                        </select>
-                        @error('id_gudang')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
+                        <label class="small mb-1 mr-1" for="nama_gudang">Nama Gudang</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="nama_gudang" type="text" id="nama_gudang"
+                            placeholder="Input Nama Gudang" value="{{ old('nama_gudang') }}" required>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="nama_rak">Nama Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
-                        <input class="form-control" name="nama_rak" type="text" id="nama_rak"
-                            placeholder="Input Nama Rak" value="{{ old('nama_rak') }}"
-                            class="form-control @error('nama_rak') is-invalid @enderror"></input>
-                        @error('nama_rak')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
-                    </div>
-                    <div class="form-group">
-                        <label class="small mb-1 mr-1" for="jenis_rak">Jenis Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
-                        <select name="jenis_rak" id="jenis_rak" class="form-control"
-                            class="form-control @error('jenis_rak') is-invalid @enderror">
-                            <option value="{{ old('jenis_rak')}}"> Pilih Jenis Rak</option>
-                            <option value="Fast Moving">Fast Moving</option>
-                            <option value="Slow Moving">Slow Moving</option>
-                            <option value="Sales">Sales</option>
-                        </select>
-                        @error('jenis_rak')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
+                        <label class="small mb-1 mr-1" for="alamat_gudang">Alamat Gudang</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <textarea class="form-control" name="alamat_gudang" type="text" id="alamat_gudang"
+                            placeholder="Input Alamat Gudang" value="{{ old('alamat_gudang') }}" required></textarea>
                     </div>
                 </div>
-
-                {{-- Validasi Error --}}
-                @if (count($errors) > 0)
-                @endif
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-primary" type="Submit">Tambah</button>
@@ -177,18 +148,18 @@
     </div>
 </div>
 
-{{-- MODAL EDIT --}}
-@forelse ($rak as $item)
-<div class="modal fade" id="Modaledit-{{ $item->id_rak }}" data-backdrop="static" tabindex="-1" role="dialog"
+{{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
+@forelse ($gudang as $item)
+<div class="modal fade" id="Modaledit-{{ $item->id_gudang }}" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Rak</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Gudang</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('rak.update', $item->id_rak) }}" method="POST">
+            <form action="{{ route('gudang.update',$item->id_gudang) }}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="modal-body">
@@ -196,39 +167,24 @@
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="kode_rak">Kode Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
-                        <input class="form-control" name="kode_rak" type="text" id="kode_rak"
-                            value="{{ $item->kode_rak }}" readonly>
+                        <label class="small" for="kode_gudang">Kode Gudang</label>
+                        <input class="form-control" name="kode_gudang" type="text" id="kode_gudang"
+                            value="{{ $item->kode_gudang }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="id_gudang">Lokasi Gudang</label><span class="mr-4 mb-3" style="color: red">*</span>
-                        <select class="form-control" name="id_gudang" id="id_gudang" required>
-                            <option value="{{ $item->gudang->id_gudang }}">
-                                {{ $item->gudang->nama_gudang }}</option>
-                            @foreach ($gudang as $items)
-                            <option value="{{ $items->id_gudang }}">
-                                {{ $items->nama_gudang }}</option>
-                            @endforeach
-                        </select>
+                        <label class="small mr-1" for="nama_gudang">Nama Gudang</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="nama_gudang" type="text" id="nama_gudang"
+                            value="{{ $item->nama_gudang }}" required>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="nama_rak">Nama Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
-                        <input class="form-control" name="nama_rak" type="text" id="nama_rak"
-                            value="{{ $item->nama_rak }}" required></input>
-                    </div>
-                    <div class="form-group">
-                        <label class="small mb-1" for="jenis_rak">Jenis Rak</label>
-                        <select name="jenis_rak" id="jenis_rak" class="form-control" required>
-                            <option value="{{ $item->jenis_rak }}">{{ $item->jenis_rak }}</option>
-                            <option value="Fast Moving">Fast Moving</option>
-                            <option value="Slow Moving">Slow Moving</option>
-                            <option value="Sales">Sales</option>
-                        </select>
+                        <label class="small mr-1" for="alamat_gudang">Alamat Gudang</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="alamat_gudang" type="text" id="alamat_gudang"
+                            value="{{ $item->alamat_gudang }}" required>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="Submit">Ubah</button>
+                    <button class="btn btn-primary" type="submit">Ubah</button>
                 </div>
             </form>
         </div>
@@ -238,9 +194,9 @@
 
 @endforelse
 
-{{-- MODAL DELETE --}}
-@forelse ($rak as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id_rak }}" tabindex="-1" role="dialog"
+{{-- MODAL DELETE ------------------------------------------------------------------------------}}
+@forelse ($gudang as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_gudang }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -249,10 +205,10 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('rak.destroy', $item->id_rak) }}" method="POST" class="d-inline">
+            <form action="{{ route('gudang.destroy', $item->id_gudang) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Merk {{ $item->nama_rak }}?</div>
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Gudang {{ $item->nama_gudang }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>
@@ -261,25 +217,11 @@
         </div>
     </div>
 </div>
-
 @empty
 
 @endforelse
 
 </main>
 
-{{-- Callback Modal Jika Validasi Error --}}
-@if (count($errors) > 0)
-<button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open
-    Modal</button>
-@endif
-
-{{-- Script Open Modal Callback --}}
-<script>
-    $(document).ready(function () {
-        $('#validasierror').click();
-    });
-
-</script>
 
 @endsection

@@ -19,10 +19,38 @@
     </header>
 
     <div class="container-fluid">
+        <div class="card card-waves mb-4">
+            <div class="card-body p-5">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col">
+                        <h2 class="text-primary">Pengajuan Nama Suku Cadang</h2>
+                        <p class="text-gray-700">Anda ingin menambahkan suku cadang yang tidak terdaftar? Anda dapat melakukan 
+                            pengajuan nama suku cadang dengan klik <b>tombol pengajuan</b>.
+                        </p>
+                        <a class="btn btn-primary btn-sm px-3 py-2" href="{{ route('sparepart.create') }}">
+                            Ajukan Nama Suku Cadang
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-arrow-right ml-1">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="col d-none d-lg-block mt-xxl-n5 ml-15">
+                        <img class="img-fluid px-xl-4 mt-xxl-n6"
+                            style="width: 10rem;" src="/backend/src/assets/img/freepik/tambahdata.png">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header ">List Sparepart
-                    <a href="{{ route('sparepart.create') }}" class="btn btn-sm btn-primary"> Tambah Sparepart</a>
+                  
                 </div>
             </div>
             <div class="card-body ">
@@ -70,15 +98,22 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
                                                 style="width: 20px;">Satuan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            {{-- <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 20px;">Min Stock </th>
+                                                style="width: 20px;">Min Stock </th> --}}
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
                                                 style="width: 20px;">Kemasan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Salary: activate to sort column ascending"
+                                                style="width: 20px;">Jenis Barang</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Salary: activate to sort column ascending"
+                                                style="width: 20px;">Lifetime</th>
+                                          
+                                            {{-- <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 80px;">Actions</th>
+                                                style="width: 80px;">Actions</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -90,9 +125,11 @@
                                             <td>{{ $item->Jenissparepart->jenis_sparepart }}</td>
                                             <td>{{ $item->Merksparepart->merk_sparepart }}</td>
                                             <td>{{ $item->Konversi->satuan }}</td>
-                                            <td class ="text-center">{{ $item->stock_min}}</td>
+                                            {{-- <td class ="text-center">{{ $item->stock_min}}</td> --}}
                                             <td>{{ $item->Kemasan->nama_kemasan}}</td>
-                                            <td>
+                                            <td>{{ $item->jenis_barang}}</td>
+                                            <td>{{ $item->lifetime}}</td>
+                                            {{-- <td>
                                                 <a href="{{ route('sparepart.gallery', $item->id_sparepart) }}"
                                                     class="btn btn-secondary btn-datatable" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail Sparepart dan Foto">
                                                     <i class="fa fa-eye"></i>
@@ -106,7 +143,7 @@
                                                     data-target="#Modalhapus-{{ $item->id_sparepart }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                         @empty
                                        

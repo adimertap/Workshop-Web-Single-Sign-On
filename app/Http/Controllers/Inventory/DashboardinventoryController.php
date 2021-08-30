@@ -31,8 +31,9 @@ class DashboardinventoryController extends Controller
             'opname_today' => Opname::whereDate('tanggal_opname', Carbon::today())->count(),
             'retur' => Retur::count(),
             'retur_today' => Retur::whereDate('tanggal_retur', Carbon::today())->count(),
-            'sparepart_akan_habis' => Sparepart::where('status_jumlah', 'Kurang')->count(),
-            'sparepart_habis' => Sparepart::where('status_jumlah', 'Habis')->count(),
+            // REVISI 3 DIBAWAH
+            'sparepart_akan_habis' => Sparepart::where('status_sparepart', 'Aktif')->count(),
+            'sparepart_habis' => Sparepart::where('status_sparepart', 'Aktif')->count(),
             'sparepart_kosong' => Sparepart::count(),
 
 

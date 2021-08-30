@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-cog"></i></div>
-                            Pengajuan Tambah Data Sparepart
+                            Tambah Data Sparepart
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
@@ -23,7 +23,6 @@
     </header>
 
 
-
     <div class="container">
         <div class="card">
             <div class="card-header border-bottom">
@@ -33,8 +32,16 @@
                         aria-controls="wizard1" aria-selected="true">
                         <div class="wizard-step-icon"><i class="fas fa-plus"></i></div>
                         <div class="wizard-step-text">
-                            <div class="wizard-step-text-name">Formulir Pengajuan</div>
-                            <div class="wizard-step-text-details">Lengkapi formulir sparepart</div>
+                            <div class="wizard-step-text-name">Formulir Sparepart</div>
+                            <div class="wizard-step-text-details">Lengkapi formulir berikut</div>
+                        </div>
+                    </a>
+                    <a class="nav-item nav-link" id="wizard2-tab" href="#wizard2" data-toggle="tab" role="tab"
+                        aria-controls="wizard2" aria-selected="true">
+                        <div class="wizard-step-icon">2</div>
+                        <div class="wizard-step-text">
+                            <div class="wizard-step-text-name">Detail Foto </div>
+                            <div class="wizard-step-text-details">Formulir Detail Marketplace</div>
                         </div>
                     </a>
 
@@ -76,7 +83,13 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="id_jenis_sparepart">Pilih Jenis
                                                 Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                          
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-append">
+                                                    <a href="" class="btn btn-sm btn-secondary" type="button"
+                                                        data-toggle="modal" data-target="#Modaljenis">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                </div>
                                                 <select class="form-control" name="id_jenis_sparepart"
                                                     id="id_jenis_sparepart"
                                                     class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
@@ -87,7 +100,7 @@
                                                     </option>
                                                     @endforeach
                                                 </select>
-                                         
+                                            </div>
                                             @error('id_jenis_sparepart')<div class="text-danger small mb-1">
                                                 {{ $message }}
                                             </div> @enderror
@@ -95,11 +108,18 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="merk">Merk Sparepart</label><span
                                                 class="mr-4 mb-3" style="color: red">*</span>
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-append">
+                                                    <a href="" class="btn btn-sm btn-secondary" type="button"
+                                                        data-toggle="modal" data-target="#Modalmerk">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                </div>
                                                 <select class="form-control" name="id_merk" id="id_merk"
                                                     class="form-control @error('id_merk') is-invalid @enderror">
                                                     <option value="" holder>Pilih Merk</option>
                                                 </select>
-                                                <span class="small" style="font-size: 13px" style="color: rgb(117, 114, 114)">(Pilih jenis sparepart terlebih dahulu)</span>
+                                            </div>
                                             @error('id_merk')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
@@ -108,7 +128,13 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="id_konversi">Konversi
                                                 Satuan</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-append">
+                                                    <a href="" class="btn btn-sm btn-secondary" type="button"
+                                                        data-toggle="modal" data-target="#Modalkonversi">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                </div>
                                                 <select class="form-control" name="id_konversi" id="id_konversi"
                                                     class="form-control @error('id_konversi') is-invalid @enderror">
                                                     <option>Pilih Satuan</option>
@@ -117,13 +143,54 @@
                                                     </option>
                                                     @endforeach
                                                 </select>
-                                           
+                                            </div>
                                             @error('id_konversi')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1 mr-1" for="id_rak">Tempat Rak</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-append">
+                                                    <a href="" class="btn btn-sm btn-secondary" type="button"
+                                                        data-toggle="modal" data-target="#Modalrak">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                </div>
+                                                <select class="form-control" name="id_rak" id="id_rak"
+                                                    class="form-control @error('id_rak') is-invalid @enderror">
+                                                    <option>Pilih Rak</option>
+                                                    @foreach ($rak as $item)
+                                                    <option value="{{ $item->id_rak }}">{{ $item->nama_rak }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1 mr-1" for="stock_min">Stock Minimum</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="stock_min" type="number" name="stock_min"
+                                                placeholder="Input Nama Sparepart" value="{{ old('stock_min') }}""
+                                                class=" form-control @error('stock_min') is-invalid @enderror" />
+                                            @error('stock_min')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="id_kemasan">Kemasan</label><span
                                                 class="mr-4 mb-3" style="color: red">*</span>
+                                            <div class="input-group input-group-joined">
+                                                <div class="input-group-append">
+                                                    <a href="" class="btn btn-sm btn-secondary" type="button"
+                                                        data-toggle="modal" data-target="#Modalkemasan">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                </div>
                                                 <select class="form-control" name="id_kemasan" id="id_kemasan"
                                                     class="form-control @error('id_kemasan') is-invalid @enderror">
                                                     <option>Pilih Kemasan</option>
@@ -132,35 +199,13 @@
                                                     </option>
                                                     @endforeach
                                                 </select>
+                                            </div>
                                             @error('id_kemasan')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
+                                        
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="lifetime">Lifetime</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select name="lifetime" id="lifetime" class="form-control"
-                                                class="form-control @error('lifetime') is-invalid @enderror">
-                                                <option value="{{ old('lifetime')}}"> Pilih Lifetime</option>
-                                                <option value="Long">Long</option>
-                                                <option value="Short">Short</option>
-                                            </select>
-                                            @error('lifetime')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="jenis_barang">Jenis Barang</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select name="jenis_barang" id="jenis_barang" class="form-control"
-                                                class="form-control @error('jenis_barang') is-invalid @enderror">
-                                                <option value="{{ old('jenis_barang')}}"> Pilih Jenis Barang</option>
-                                                <option value="Lokal">Lokal</option>
-                                                <option value="Import">Import</option>
-                                            </select>
-                                            @error('jenis_barang')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
-                                        </div>
-                                    </div>
-                                    {{-- <div class="form-group">
+                                    <div class="form-group">
                                         <label class="small mb-1 mr-1" for="id_supplier">Pilih Supplier Asal</label><span class="mr-4 mb-3"
                                             style="color: red">*</span>
                                         <select class="form-control" name="id_supplier" id="id_supplier"
@@ -172,18 +217,17 @@
                                         </select>
                                         @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
                                         </div> @enderror
-                                    </div> --}}
+                                    </div>
                                     <hr class="my-4" />
                                     <div class="d-flex justify-content-between">
                                         <a href="{{ route('sparepart.index') }}" class="btn btn-light">Kembali</a>
-                                        <button class="btn btn-primary" type="Submit">Ajukan!</button>
+                                        <button class="btn btn-primary">Next</button>
                                     </div>
-                                </form>
                             </div>
                         </div>
                     </div>
 
-                    {{-- <div class="tab-pane py-5 py-xl-5 fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
+                    <div class="tab-pane py-5 py-xl-5 fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
                         <div class="row justify-content-center">
                             <div class="col-xxl-6 col-xl-8">
                                 <h3 class="text-primary">Step 2</h3>
@@ -222,10 +266,10 @@
                                     <a href="{{ route('sparepart.index') }}" class="btn btn-light">Kembali</a>
                                     <button class="btn btn-primary" type="Submit">Submit</button>
                                 </div>
-                               
+                                </form>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -362,6 +406,57 @@
                 @if (count($errors) > 0)
                 @endif
 
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="Submit">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Modalrak" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Rak</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('rak.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="nama_rak">Nama Rak</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <input class="form-control" name="nama_rak" type="text" id="nama_rak"
+                            placeholder="Input Nama Rak" value="{{ old('nama_rak') }}"
+                            class="form-control @error('nama_rak') is-invalid @enderror"></input>
+                        @error('nama_rak')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="jenis_rak">Jenis Rak</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <select name="jenis_rak" id="jenis_rak" class="form-control"
+                            class="form-control @error('jenis_rak') is-invalid @enderror">
+                            <option value="{{ old('jenis_rak')}}"> Pilih Jenis Rak</option>
+                            <option value="Fast Moving">Fast Moving</option>
+                            <option value="Slow Moving">Slow Moving</option>
+                            <option value="Sales">Sales</option>
+                        </select>
+                        @error('jenis_rak')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                </div>
+
+                {{-- Validasi Error --}}
+                @if (count($errors) > 0)
+                @endif
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-primary" type="Submit">Tambah</button>

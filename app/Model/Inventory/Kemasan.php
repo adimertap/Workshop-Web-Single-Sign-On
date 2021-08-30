@@ -26,9 +26,4 @@ class Kemasan extends Model
     ];
 
     public $timestamps = true;
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
 }

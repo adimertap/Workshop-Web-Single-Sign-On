@@ -245,6 +245,14 @@ Route::group(
             ->group(function () {
                 Route::resource('kemasan', 'MasterdatakemasanController');
             });
+        
+        Route::prefix('inventory')
+            ->namespace('Inventory\Masterdata')
+            ->middleware(['admin_gudang', 'verified'])
+            ->group(function () {
+                Route::resource('gudang', 'MasterdatagudangController');
+            });
+
 
 
         // PURCHASE ORDER ---------------------------------------------------------------- Purchase Order

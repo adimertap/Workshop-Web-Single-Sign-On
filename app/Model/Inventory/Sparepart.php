@@ -13,24 +13,19 @@ use Illuminate\Support\Facades\DB;
 class Sparepart extends Model
 {
     protected $table = "tb_inventory_master_sparepart";
+
     protected $primaryKey = 'id_sparepart';
+    
     protected $fillable = [
         'id_merk',
-        'id_bengkel',
         'id_jenis_sparepart',
         'id_konversi',
-        'id_rak',
         'id_kemasan',
-        'id_supplier',
         'kode_sparepart',
         'nama_sparepart',
-        'keterangan',
-        'stock',
-        'stock_min',
-        'status_jumlah',
-        'status_harga',
-        'berat_sparepart',
-        'harga_market'
+        'status_sparepart',
+        'lifetime',
+        'jenis_barang'
     ];
 
     protected $hidden = [
@@ -52,10 +47,10 @@ class Sparepart extends Model
         return $this->belongsTo(Merksparepart::class, 'id_merk', 'id_merk')->withTrashed();
     }
 
-    public function Supplier()
-    {
-        return $this->belongsTo(Supplier::class, 'id_supplier', 'id_supplier')->withTrashed();
-    }
+    // public function Supplier()
+    // {
+    //     return $this->belongsTo(Supplier::class, 'id_supplier', 'id_supplier')->withTrashed();
+    // }
 
     public function Konversi()
     {
@@ -67,50 +62,50 @@ class Sparepart extends Model
         return $this->belongsTo(Kemasan::class, 'id_kemasan', 'id_kemasan')->withTrashed();
     }
 
-    public function Rak()
-    {
-        return $this->belongsTo(Rak::class, 'id_rak', 'id_rak')->withTrashed();
-    }
+    // public function Rak()
+    // {
+    //     return $this->belongsTo(Rak::class, 'id_rak', 'id_rak')->withTrashed();
+    // }
 
-    public function Gallery()
-    {
-        return $this->hasMany(Gallery::class, 'id_sparepart');
-    }
+    // public function Gallery()
+    // {
+    //     return $this->hasMany(Gallery::class, 'id_sparepart');
+    // }
 
-    public function PO()
-    {
-        return $this->belongsToMany(PO::class, 'tb_inventory_detpo', 'id_sparepart', 'id_po');
-    }
+    // public function PO()
+    // {
+    //     return $this->belongsToMany(PO::class, 'tb_inventory_detpo', 'id_sparepart', 'id_po');
+    // }
 
-    public function Opname()
-    {
-        return $this->belongsToMany(Opname::class, 'tb_inventory_detopname', 'id_sparepart', 'id_opname');
-    }
+    // public function Opname()
+    // {
+    //     return $this->belongsToMany(Opname::class, 'tb_inventory_detopname', 'id_sparepart', 'id_opname');
+    // }
 
-    public function Kartugudang()
-    {
-        return $this->hasMany(Kartugudang::class, 'id_sparepart', 'id_sparepart');
-    }
+    // public function Kartugudang()
+    // {
+    //     return $this->hasMany(Kartugudang::class, 'id_sparepart', 'id_sparepart');
+    // }
 
-    public function Kartugudangsaldoakhir()
-    {
-        return $this->hasOne(Kartugudang::class, 'id_sparepart', 'id_sparepart')->orderBy('updated_at', 'DESC');;
-    }
+    // public function Kartugudangsaldoakhir()
+    // {
+    //     return $this->hasOne(Kartugudang::class, 'id_sparepart', 'id_sparepart')->orderBy('updated_at', 'DESC');;
+    // }
 
     public function Kartugudangterakhir()
     {
         return $this->hasOne(Kartugudang::class, 'id_sparepart', 'id_sparepart')->where('jenis_kartu', 'Receiving')->orderBy('updated_at', 'DESC');
     }
 
-    public function Kartugudangservice()
-    {
-        return $this->hasOne(Kartugudang::class, 'id_sparepart', 'id_sparepart')->where('jenis_kartu', 'Service')->orderBy('updated_at', 'DESC');
-    }
+    // public function Kartugudangservice()
+    // {
+    //     return $this->hasOne(Kartugudang::class, 'id_sparepart', 'id_sparepart')->where('jenis_kartu', 'Service')->orderBy('updated_at', 'DESC');
+    // }
 
-    public function Kartugudangpenjualan()
-    {
-        return $this->hasOne(Kartugudang::class, 'id_sparepart', 'id_sparepart')->where('jenis_kartu', 'Penjualan')->orderBy('updated_at', 'DESC');
-    }
+    // public function Kartugudangpenjualan()
+    // {
+    //     return $this->hasOne(Kartugudang::class, 'id_sparepart', 'id_sparepart')->where('jenis_kartu', 'Penjualan')->orderBy('updated_at', 'DESC');
+    // }
 
 
     public static function getId()
@@ -122,10 +117,5 @@ class Sparepart extends Model
                 'id_sparepart' => 0
             ]
         ];
-    }
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
     }
 }

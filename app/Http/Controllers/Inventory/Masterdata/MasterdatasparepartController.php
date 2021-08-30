@@ -33,8 +33,8 @@ class MasterdatasparepartController extends Controller
     {
 
         $sparepart = Sparepart::with([
-            'Jenissparepart', 'Merksparepart', 'Konversi', 'Gallery', 'Rak', 'Kemasan'
-        ])->get();
+            'Jenissparepart', 'Merksparepart', 'Konversi', 'Kemasan'
+        ])->where('status_sparepart','=','Aktif')->get();
 
         return view('pages.inventory.masterdata.sparepart.sparepart', compact('sparepart'));
     }
@@ -49,10 +49,7 @@ class MasterdatasparepartController extends Controller
         $jenis_sparepart = Jenissparepart::all();
         $merk_sparepart = Merksparepart::all();
         $konversi = Konversi::all();
-        $gallery = Gallery::all();
         $kemasan = Kemasan::all();
-        $rak = Rak::all();
-        $supplier = Supplier::all();
 
         $id = Sparepart::getId();
         foreach ($id as $value);

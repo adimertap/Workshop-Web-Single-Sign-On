@@ -27,6 +27,7 @@ class Rakrequest extends FormRequest
             // 'kode_rak' => 'required',
             'nama_rak' => 'required|min:3|max:30',
             'jenis_rak' => 'required|string|in:Fast Moving,Slow Moving,Sales',
+            'id_gudang' => 'required'
         ];
     }
 
@@ -38,6 +39,7 @@ class Rakrequest extends FormRequest
             'nama_rak.max' => 'Error! Character Maximal :max digit',
 
             'jenis_rak.required' => 'Error! Anda Belum Memilih Jenis Rak',
+            'id_gudang.required' => 'Error! Anda Belum Memilih Lokasi Gudang',
         ];
     }
 }

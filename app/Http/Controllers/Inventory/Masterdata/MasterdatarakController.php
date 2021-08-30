@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inventory\Masterdata;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Masterdata\Rakrequest as MasterdataRakrequest;
 use App\Http\Requests\Inventory\Rakrequest;
+use App\Model\Inventory\Gudang;
 use App\Model\Inventory\Rak;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,16 +20,18 @@ class MasterdatarakController extends Controller
     public function index()
     {
         // 
-        $rak = Rak::get();
+        $rak = Rak::with('gudang')->get();
+        $gudang = Gudang::get();
+
         $id = Rak::getId();
         foreach($id as $value);
         $idlama = $value->id_rak;
         $idbaru = $idlama + 1;
-        $blt = date('m');
+        $idbengkel = Auth::user()->id_bengkel;
 
-        $kode_rak = 'RKSP-'.$blt.'/'.$idbaru;
+        $kode_rak = 'RKSP-'.$idbengkel.'/'.$idbaru;
         
-        return view('pages.inventory.masterdata.raksparepart', compact('rak','kode_rak'));
+        return view('pages.inventory.masterdata.raksparepart', compact('rak','kode_rak','gudang'));
         
     }
 
@@ -50,19 +53,20 @@ class MasterdatarakController extends Controller
      */
     public function store(MasterdataRakrequest $request)
     {
-        $id = Rak::getId();
-        foreach($id as $value);
-        $idlama = $value->id_rak;
-        $idbaru = $idlama + 1;
-        $blt = date('m');
+        // $id = Rak::getId();
+        // foreach($id as $value);
+        // $idlama = $value->id_rak;
+        // $idbaru = $idlama + 1;
+        // $blt = date('m');
 
-        $kode_rak = 'RKSP-'.$blt.'/'.$idbaru;
+        // $kode_rak = 'RKSP-'.$blt.'/'.$idbaru;
 
         $rak = new Rak;
-        $rak->kode_rak = $kode_rak;
+        $rak->kode_rak = $request->kode_rak;
         $rak->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
         $rak->nama_rak = $request->nama_rak;
         $rak->jenis_rak = $request->jenis_rak;
+        $rak->id_gudang = $request->id_gudang;
         $rak->save();
 
         return redirect()->back()->with('messageberhasil','Data Rak Berhasil ditambahkan');
@@ -104,6 +108,7 @@ class MasterdatarakController extends Controller
         $rak->kode_rak = $request->kode_rak;
         $rak->nama_rak = $request->nama_rak;
         $rak->jenis_rak = $request->jenis_rak;
+        $rak->id_gudang = $request->id_gudang;
         
         $rak->save();
         return redirect()->back()->with('messageberhasil','Data Rak Berhasil diubah');

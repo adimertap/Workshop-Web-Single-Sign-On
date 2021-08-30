@@ -27,8 +27,4 @@ class Konversi extends Model
 
     public $timestamps = false;
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
 }

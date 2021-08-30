@@ -139,14 +139,17 @@
                                 <a class="nav-link" href="{{ route('supplier.index')}}">
                                     Supplier
                                 </a>
-                                <a class="nav-link" href="{{ route('rak.index')}}">
-                                    Rak
-                                </a>
                                 <a class="nav-link" href="{{ route('konversi.index')}}">
                                     Konversi
                                 </a>
                                 <a class="nav-link" href="{{ route('kemasan.index')}}">
                                     Kemasan
+                                </a>
+                                <a class="nav-link" href="{{ route('gudang.index')}}">
+                                    Gudang
+                                </a>
+                                <a class="nav-link" href="{{ route('rak.index')}}">
+                                    Rak
                                 </a>
                             </nav>
                         </div>
