@@ -111,7 +111,7 @@
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->updated_at }}</td>
                                             <td>{{ $item->jumlah}}</td>
-                                            <td>{{ $item->nama_bank}}</td>
+                                            <td>{{ $item->Bank->nama_bank}}</td>
                                             <td>{{ $item->no_rekening}}</td>
                                             <td>{{ $item->nama_rekening}}</td>
                                             <td>{{ $item->status}}</td>
