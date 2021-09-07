@@ -113,7 +113,7 @@
         @if(Auth::user()->hasRole('Aplikasi Front Office') || Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
-            <a class="card lift h-100" href="{{ route('dashboardfrontoffice') }}">
+            <a class="card lift h-100" href="https://pos.bengkel-kuy.com/sso">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
