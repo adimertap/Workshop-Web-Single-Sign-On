@@ -19,10 +19,6 @@ use Illuminate\Http\Request as RequestSession;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/test', function (RequestSession $request) {
-    $data = $request->session()->all();
-    dd($data);
-});
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/', 'Auth\LoginController@login')->name('login');
 
