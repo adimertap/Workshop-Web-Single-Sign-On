@@ -150,7 +150,7 @@ Route::group(
         // DASHBOARD
         Route::prefix('sso')
             ->namespace('SingleSignOn')
-            //->middleware(['verified'])
+            ->middleware(['verified'])
             ->group(function () {
                 Route::get('/', 'DashboardSSOController@index')
                     ->name('dashboardsso');
