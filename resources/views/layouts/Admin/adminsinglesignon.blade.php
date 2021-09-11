@@ -150,7 +150,8 @@
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">Jabatan :</div>
-                        <div class="sidenav-footer-title">{{ Auth::user()->pegawai->jabatan->nama_jabatan }}</div>
+                        <div class="sidenav-footer-title"></div>
+                        {{-- {{ Auth::user()->pegawai->jabatan->nama_jabatan }} --}}
                     </div>
                 </div>
             </nav>
