@@ -1,7 +1,9 @@
 <?php
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request as RequestSession;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
-
+Route::get('/test', function (RequestSession $request) {
+    $data = $request->session()->all();
+    dd($data);
+});
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/', 'Auth\LoginController@login')->name('login');
 
@@ -145,7 +150,7 @@ Route::group(
         // DASHBOARD
         Route::prefix('sso')
             ->namespace('SingleSignOn')
-            ->middleware(['verified'])
+            //->middleware(['verified'])
             ->group(function () {
                 Route::get('/', 'DashboardSSOController@index')
                     ->name('dashboardsso');
@@ -245,7 +250,7 @@ Route::group(
             ->group(function () {
                 Route::resource('kemasan', 'MasterdatakemasanController');
             });
-        
+
         Route::prefix('inventory')
             ->namespace('Inventory\Masterdata')
             ->middleware(['admin_gudang', 'verified'])

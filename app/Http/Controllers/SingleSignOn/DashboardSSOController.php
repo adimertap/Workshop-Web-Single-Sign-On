@@ -14,14 +14,17 @@ class DashboardSSOController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $today = Carbon::now()->isoFormat('dddd');
-        $tanggal_tahun = Carbon::now()->format('j F Y');
-        // $data = $request->session()->all();
-        // dd($data);
+        $get_session = $request->session()->get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d');
+        if ($request->session()->has($get_session)) {
+            $today = Carbon::now()->isoFormat('dddd');
+            $tanggal_tahun = Carbon::now()->format('j F Y');
+            //$data = $request->session()->all();
+            //dd($data);
 
-        return view('pages.singlesignon.dashboard.dashboardsso', compact('today', 'tanggal_tahun'));
+            return view('pages.singlesignon.dashboard.dashboardsso', compact('today', 'tanggal_tahun'));
+        }
     }
 
     /**
