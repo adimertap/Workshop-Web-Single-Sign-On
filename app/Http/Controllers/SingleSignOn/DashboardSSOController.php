@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\SingleSignOn;
 
-use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class DashboardSSOController extends Controller
 {
@@ -13,8 +14,9 @@ class DashboardSSOController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal_tahun = Carbon::now()->format('j F Y');
 

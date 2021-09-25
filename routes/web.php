@@ -1,7 +1,9 @@
 <?php
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request as RequestSession;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes(['verify' => true]);
-
 
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/', 'Auth\LoginController@login')->name('login');
@@ -245,7 +246,7 @@ Route::group(
             ->group(function () {
                 Route::resource('kemasan', 'MasterdatakemasanController');
             });
-        
+
         Route::prefix('inventory')
             ->namespace('Inventory\Masterdata')
             ->middleware(['admin_gudang', 'verified'])

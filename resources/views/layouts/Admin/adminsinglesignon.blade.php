@@ -33,7 +33,8 @@
         <div class="small">
             <i class="fa fa-cogs" aria-hidden="true"></i>
             Bengkel
-            <span class="font-weight-500 text-primary">{{ Auth::user()->bengkel->nama_bengkel}}</span>
+            <span class="font-weight-500 text-primary"></span>
+            {{-- {{ Auth::user()->bengkel->nama_bengkel}} --}}
         </div>
         </form>
         <ul class="navbar-nav align-items-center ml-auto">
@@ -150,7 +151,8 @@
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">Jabatan :</div>
-                        <div class="sidenav-footer-title">{{ Auth::user()->pegawai->jabatan->nama_jabatan }}</div>
+                        <div class="sidenav-footer-title"></div>
+                        {{-- {{ Auth::user()->pegawai->jabatan->nama_jabatan }} --}}
                     </div>
                 </div>
             </nav>

@@ -20,7 +20,8 @@
                         <div class="small">
                             <i class="fa fa-cogs" aria-hidden="true"></i>
                             Bengkel
-                            <span class="font-weight-500">{{ Auth::user()->bengkel->nama_bengkel}}</span>
+                            <span class="font-weight-500"></span>
+                            {{-- {{ Auth::user()->bengkel->nama_bengkel}} --}}
                             <hr>
                             </hr>
                         </div>
@@ -113,7 +114,7 @@
         @if(Auth::user()->hasRole('Aplikasi Front Office') || Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
-            <a class="card lift h-100" href="{{ route('dashboardfrontoffice') }}">
+            <a class="card lift h-100" href="">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
@@ -149,7 +150,7 @@
         @if (Auth::user()->hasRole('Aplikasi Point of Sales') || Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
-            <a class="card lift h-100" href="{{ route('dashboardpointofsales') }}">
+            <a class="card lift h-100" href="https://pos.bengkel-kuy.com/">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
