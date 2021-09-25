@@ -13,6 +13,7 @@ use App\Kabupaten;
 use App\KabupatenBaru;
 use App\KecamatanBaru;
 use App\Model\Kepegawaian\Jabatan;
+use App\Model\SingleSignOn\JenisBengkel;
 use App\ProvinsiBaru;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -94,7 +95,8 @@ class RegisterController extends Controller
             'id_desa' => $data['id_desa'],
             'jam_buka_bengkel' => date('H:i:s', strtotime($data['jam_buka_bengkel'])),
             'jam_tutup_bengkel' => date('H:i:s', strtotime($data['jam_tutup_bengkel'])),
-            'logo_bengkel' => $name_file
+            'logo_bengkel' => $name_file,
+            'id_jenis_bengkel' => $data['id_jenis_bengkel']
         ]);
 
         $jabatan = Jabatan::create([
@@ -133,9 +135,12 @@ class RegisterController extends Controller
     public function showRegisterForm()
     {
         $provinsi = ProvinsiBaru::all();
+        $jenis_bengkel = JenisBengkel::get();
+        
 
         return view('pages.singlesignon.register', [
-            'provinsi' => $provinsi
+            'provinsi' => $provinsi,
+            'jenis_bengkel' => $jenis_bengkel
         ]);
     }
 

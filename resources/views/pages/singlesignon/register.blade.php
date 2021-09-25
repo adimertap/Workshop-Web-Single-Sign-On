@@ -73,11 +73,21 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-6">
+                                        <div class="form-group col-4">
+                                            <label class="small mb-1" for="id_jenis_bengkel">Jenis Bengkel</label>
+                                            <select class="form-control" name="id_jenis_bengkel" >
+                                                <option value="" holder>Pilih Jenis Bengkel</option>
+                                                @foreach ($jenis_bengkel as $itemz)
+                                                <option value="{{ $itemz->id_jenis_bengkel }}">
+                                                    {{ $itemz->nama_jenis_bengkel }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-4">
                                             <label for="jam_buka_bengkel">Jam Buka Bengkel</label> <span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="jam_buka_bengkel" type="time" class="form-control" name="jam_buka_bengkel" value="{{ old('jam_buka_bengkel') }}">
                                         </div>
-                                        <div class="form-group col-6">
+                                        <div class="form-group col-4">
                                             <label for="jam_tutup_bengkel">Jam Tutup Bengkel</label> <span class="mr-4 mb-3" style="color: red">*</span>
                                             <input id="jam_tutup_bengkel" type="time" class="form-control" name="jam_tutup_bengkel" value="{{ old('jam_tutup_bengkel') }}">
                                         </div>
