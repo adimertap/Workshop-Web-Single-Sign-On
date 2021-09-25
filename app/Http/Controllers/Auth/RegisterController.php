@@ -99,10 +99,6 @@ class RegisterController extends Controller
             'id_jenis_bengkel' => $data['id_jenis_bengkel']
         ]);
 
-        $jabatan = Jabatan::create([
-            'id_bengkel' => $bengkel->id_bengkel,
-            'nama_jabatan' => 'Owner'
-        ]);
 
         $pegawai = Pegawai::create([
             'nama_pegawai' => $data['name'],
@@ -116,7 +112,7 @@ class RegisterController extends Controller
             'npwp_pegawai' => $data['npwp_pegawai'],
             'jenis_kelamin' => $data['jenis_kelamin'],
             'id_bengkel' => $bengkel->id_bengkel,
-            'id_jabatan' => $jabatan->id_jabatan
+            'id_jabatan' => '1'
         ]);
 
         $user =  User::create([
