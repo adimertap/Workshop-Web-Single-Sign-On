@@ -23,10 +23,15 @@ class Bengkel extends Model
         'jam_buka_bengkel',
         'jam_tutup_bengkel',
         'id_kabupaten',
-        'id_desa'
+        'id_desa',
+        'id_jenis_bengkel',
     ];
 
     public $timestamps = false;
+
+    public function Jenisbengkel(){
+        return $this->belongsTo(JenisBengkel::class,'id_jenis_bengkel','id_jenis_bengkel');
+    }
 
     protected static function booted()
     {
