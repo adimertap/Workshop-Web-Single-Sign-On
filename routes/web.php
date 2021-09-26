@@ -16,6 +16,15 @@ use Illuminate\Http\Request as RequestSession;
 |
 */
 
+// Route::group(['domain' => '{subdomain}.bengkel.test'], function ($subdomain) {
+//     return $subdomain;
+// });
+
+Route::domain('{domain}.bengkel.test')->group(function () {
+    Route::get('/', function () {
+        dd('pos');
+    });
+});
 
 Auth::routes(['verify' => true]);
 
@@ -110,6 +119,8 @@ Route::group(
         // ------------------------------------------------------------------------
         // MODUL POS
         // DASHBOARD
+
+
         Route::prefix('pos')
             ->namespace('PointOfSales')
             ->middleware(['admin_kasir', 'verified'])
@@ -131,6 +142,7 @@ Route::group(
 
 
         // PEMBAYARAN PENJUALAN SPAREPART
+
         Route::prefix('pos')
             ->namespace('PointOfSales\Laporan')
             ->middleware(['admin_kasir', 'verified'])
@@ -140,6 +152,7 @@ Route::group(
                 Route::resource('laporansparepart', 'LaporanSparepartController');
                 Route::get('invoice-sparepart/{id}', 'LaporanSparepartController@CetakInvoice')->name('cetak-invoice-sparepart');
             });
+
 
         // ------------------------------------------------------------------------
         // MODUL SSO
