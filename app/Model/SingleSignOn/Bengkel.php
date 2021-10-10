@@ -29,12 +29,8 @@ class Bengkel extends Model
 
     public $timestamps = false;
 
-    public function Jenisbengkel(){
-        return $this->belongsTo(JenisBengkel::class,'id_jenis_bengkel','id_jenis_bengkel');
-    }
-
-    protected static function booted()
+    public function Jenisbengkel()
     {
-        static::addGlobalScope(new OwnershipScope);
+        return $this->belongsTo(JenisBengkel::class, 'id_jenis_bengkel', 'id_jenis_bengkel');
     }
 }

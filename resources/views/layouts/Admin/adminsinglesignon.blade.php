@@ -24,7 +24,7 @@
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="{{ route('dashboardinventory')}}">
+        <a class="navbar-brand" href="https://sso.bengkel-kuy.com/sso">
             <i class="fas fa-users mr-2"></i>
             Single Sign On System
         </a>
@@ -34,7 +34,7 @@
             <i class="fa fa-cogs" aria-hidden="true"></i>
             Bengkel
             <span class="font-weight-500 text-primary"></span>
-            {{-- {{ Auth::user()->bengkel->nama_bengkel}} --}}
+            {{ Auth::user()->bengkel->nama_bengkel}}
         </div>
         </form>
         <ul class="navbar-nav align-items-center ml-auto">
@@ -152,7 +152,7 @@
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">Jabatan :</div>
                         <div class="sidenav-footer-title"></div>
-                        {{-- {{ Auth::user()->pegawai->jabatan->nama_jabatan }} --}}
+                        {{ Auth::user()->pegawai->jabatan->nama_jabatan }}
                     </div>
                 </div>
             </nav>
