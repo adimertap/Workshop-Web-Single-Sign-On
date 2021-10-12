@@ -209,7 +209,7 @@
         @if (Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 2-->
-            <a class="card lift h-100" href="https://employee.bengkel-kuy.com/kepegawaian">
+            <a class="card lift h-100" href="https://employee.bengkel-kuy.com/kepegawaian/masterdatapegawai">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
@@ -227,7 +227,7 @@
         @if (Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
-            <a class="card lift h-100" href="https://payroll.bengkel-kuy.com/payroll">
+            <a class="card lift h-100" href="https://payroll.bengkel-kuy.com/payroll/gaji-pegawai">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
