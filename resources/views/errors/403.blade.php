@@ -28,7 +28,7 @@
                                     alt="" />
                                 <p class="lead">Anda tidak memiliki akses ke halaman ini.
                                 </p>
-                                <a class="text-arrow-icon" href="{{ route('dashboardsso') }}">
+                                <a class="text-arrow-icon" href="https://sso.bengkel-kuy.com/sso">
                                     <i class="ml-0 mr-1" data-feather="arrow-left"></i>
                                     Kembali ke Dashboard SSO
                                 </a>
