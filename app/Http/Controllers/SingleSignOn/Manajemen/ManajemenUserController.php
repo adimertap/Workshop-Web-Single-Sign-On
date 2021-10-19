@@ -126,6 +126,9 @@ class ManajemenUserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        Role::where('id', $id)->delete();
+        RoleUser::where('id', $id)->delete();
+
         $user->delete();
 
         return redirect()->back()->with('messagehapus', 'Data Pengguna Berhasil dihapus');

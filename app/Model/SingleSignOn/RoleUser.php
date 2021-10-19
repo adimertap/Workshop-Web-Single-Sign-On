@@ -8,8 +8,9 @@ class RoleUser extends Model
 {
     protected $table = 'tb_det_role_user';
 
-    protected $primaryKey = 'id_role_user';
-    protected $guarded = [];
+    protected $primaryKey = 'id_det_role_user';
+
+    protected $fillable = ['id_role', 'id_user'];
 
     public $timestamps = false;
 
