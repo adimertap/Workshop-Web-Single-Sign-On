@@ -20,8 +20,7 @@ class DetailPenerimaanServiceSparepart extends Model
         'id_sparepart',
         'jumlah',
         'harga',
-        'total_harga',
-        'id_bengkel'
+        'total_harga'
     ];
 
     protected $hidden = [
@@ -36,10 +35,5 @@ class DetailPenerimaanServiceSparepart extends Model
     public function penerimaan_sparepart()
     {
         return $this->belongsTo(PenerimaanService::class, 'id_service_advisor', 'id_service_advisor');
-    }
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
     }
 }

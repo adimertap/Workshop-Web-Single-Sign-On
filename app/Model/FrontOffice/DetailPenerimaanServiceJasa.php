@@ -20,8 +20,7 @@ class DetailPenerimaanServiceJasa extends Model
     protected $fillable = [
         'id_service_advisor',
         'id_jenis_perbaikan',
-        'total_harga',
-        'id_bengkel'
+        'total_harga'
     ];
 
     protected $hidden = [
@@ -36,10 +35,5 @@ class DetailPenerimaanServiceJasa extends Model
     public function penerimaan_jasa()
     {
         return $this->belongsTo(PenerimaanService::class, 'id_service_advisor', 'id_service_advisor');
-    }
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
     }
 }

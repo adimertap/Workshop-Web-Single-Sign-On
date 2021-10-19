@@ -59,10 +59,19 @@ class PengerjaanServiceController extends Controller
      */
     public function show($id_service_advisor)
     {
-        $pelayanan = PenerimaanService::with('kendaraan', 'customer_bengkel', 'mekanik','pitstop', 'detail_sparepart.Merksparepart','detail_sparepart.Jenissparepart',
-        'detail_sparepart', 'detail_perbaikan', 'bengkel')->find($id_service_advisor);
+        $pelayanan = PenerimaanService::with(
+            'kendaraan',
+            'customer_bengkel',
+            'mekanik',
+            'pitstop',
+            'detail_sparepart.Merksparepart',
+            'detail_sparepart.Jenissparepart',
+            'detail_sparepart',
+            'detail_perbaikan',
+            'bengkel'
+        )->find($id_service_advisor);
 
-        return view('pages.service.pengerjaan_service.show',compact('pelayanan'));
+        return view('pages.service.pengerjaan_service.show', compact('pelayanan'));
     }
 
     /**
@@ -73,8 +82,17 @@ class PengerjaanServiceController extends Controller
      */
     public function edit(Request $request, $id_service_advisor)
     {
-        $service_advisor = PenerimaanService::with('kendaraan', 'customer_bengkel', 'mekanik','pitstop', 'detail_sparepart.Merksparepart','detail_sparepart.Jenissparepart',
-        'detail_sparepart', 'detail_perbaikan', 'bengkel')->find($id_service_advisor);
+        $service_advisor = PenerimaanService::with(
+            'kendaraan',
+            'customer_bengkel',
+            'mekanik',
+            'pitstop',
+            'detail_sparepart.Merksparepart',
+            'detail_sparepart.Jenissparepart',
+            'detail_sparepart',
+            'detail_perbaikan',
+            'bengkel'
+        )->find($id_service_advisor);
         $kendaraan = MasterDataKendaraan::all();
         $customer_bengkel = CustomerBengkel::all();
         $sparepart = Sparepart::with('Kartugudangpenjualan')->where('stock', '>', 0)->get();
@@ -98,11 +116,11 @@ class PengerjaanServiceController extends Controller
     public function update(Request $request, $id_service_advisor)
     {
         $service = PenerimaanService::find($id_service_advisor);
-       
 
-        
+
+
         $service->status =  'selesai_service';
-        
+
 
         $service->update();
 
