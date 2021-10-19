@@ -20,7 +20,9 @@ class ManajemenUserController extends Controller
      */
     public function index()
     {
-        $user = User::ownership()->get();
+
+
+        $user = User::ownership()->where('role', '!=', 'owner')->get();
         $pegawai = Pegawai::all();
         $users = User::all();
 
