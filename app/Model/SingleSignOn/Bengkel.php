@@ -25,6 +25,7 @@ class Bengkel extends Model
         'id_kabupaten',
         'id_desa',
         'id_jenis_bengkel',
+        'status_bayar'
     ];
 
     public $timestamps = false;
