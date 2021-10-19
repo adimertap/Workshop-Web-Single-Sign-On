@@ -7,15 +7,15 @@
         <div class="container mb-4">
             <div class="page-header-content pt-4">
                 <div class="row align-items-center justify-content-between">
+                    {{-- @if(Auth::user()->bengkel->status_bayar == 'belum_bayar') --}}
+                    <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
+                        Bengkel belum melakukan pembayaran
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    {{-- @endif --}}
                     <div class="col-auto mt-4">
-                        {{-- @if(Auth::user()->bengkel->status_bayar == 'belum_bayar') --}}
-                            <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
-                                Bengkel belum melakukan pembayaran
-                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                        {{-- @endif --}}
                         <h1 class="page-header-title">
                             Dashboard Bengkel
                         </h1>
@@ -101,7 +101,8 @@
     <div class="alert alert-primary alert-dismissible fade show" role="alert">
         <h4 class="alert-heading">Halo, {{ Auth::user()->pegawai->nama_pegawai }}</h4>
         Seluruh panduan penggunaan sistem dapat diakses pada link <a class="alert-link"
-            href="https://drive.google.com/file/d/1TUVXBCzFcM1WM6ZsRfnXLoP61i3-nC07/view?usp=sharing" target="_blank">User Guide</a>
+            href="https://drive.google.com/file/d/1TUVXBCzFcM1WM6ZsRfnXLoP61i3-nC07/view?usp=sharing"
+            target="_blank">User Guide</a>
     </div>
 </div>
 
@@ -124,7 +125,8 @@
             </a>
         </div>
         @endif
-        @if (Auth::user()->hasRole('Aplikasi Service Advisor') || Auth::user()->hasRole('Aplikasi Service Instructor') ||
+        @if (Auth::user()->hasRole('Aplikasi Service Advisor') || Auth::user()->hasRole('Aplikasi Service Instructor')
+        ||
         Auth::user()->role == 'owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 2-->
@@ -183,7 +185,8 @@
 {{-- BARIS 2 --}}
 <div class="container">
     <div class="row">
-        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->role ==
+        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->hasRole('Aplikasi Purchasing') ||
+        Auth::user()->role ==
         'owner' || Auth::user()->hasRole('Aplikasi Accounting'))
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
