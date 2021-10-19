@@ -8,6 +8,14 @@
             <div class="page-header-content pt-4">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto mt-4">
+                        @if(Auth::user()->status_bayar == 'lunas')
+                            <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
+                                Bengkel belum melakukan pembayaran
+                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                        @endif
                         <h1 class="page-header-title">
                             Dashboard Bengkel
                         </h1>
@@ -30,18 +38,6 @@
             </div>
         </div>
     </header>
-    {{-- <div class="container mt-4">
-        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
-            <div class="mr-4 mb-3 mb-sm-0">
-                <h1 class="mb-0">Dashboard Bengkel</h1>
-                <div class="small">
-                    <span class="font-weight-500 text-primary">{{ $today }}</span>
-                    · Tanggal {{ $tanggal_tahun }} · <span id="clock">12:16 PM</span>
-                </div>
-
-            </div>
-        </div>
-    </div> --}}
 </main>
 
 <script>
