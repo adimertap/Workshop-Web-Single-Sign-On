@@ -8,14 +8,14 @@
             <div class="page-header-content pt-4">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto mt-4">
-                        @if(Auth::user()->bengkel->status_bayar == 'belum_bayar')
+                        {{-- @if(Auth::user()->bengkel->status_bayar == 'belum_bayar') --}}
                             <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
                                 Bengkel belum melakukan pembayaran
                                 <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                        @endif
+                        {{-- @endif --}}
                         <h1 class="page-header-title">
                             Dashboard Bengkel
                         </h1>
