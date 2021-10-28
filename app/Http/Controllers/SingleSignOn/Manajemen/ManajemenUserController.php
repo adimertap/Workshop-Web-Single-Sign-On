@@ -22,7 +22,7 @@ class ManajemenUserController extends Controller
     {
 
 
-        $user = User::ownership()->where('role', '!=', 'owner')->get();
+        // $user = User::ownership()->where('role', '!=', 'owner')->get();
         $pegawai = Pegawai::all();
         $users = User::all();
 
