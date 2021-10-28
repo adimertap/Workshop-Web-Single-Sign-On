@@ -76,7 +76,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($user as $item)
+                                        @forelse ($users as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->pegawai->nama_pegawai }}</td>
