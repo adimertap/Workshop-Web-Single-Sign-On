@@ -26,7 +26,7 @@ class ManajemenUserController extends Controller
         $pegawai = Pegawai::all();
         $users = User::all();
 
-        return view('pages.singlesignon.manajemen.user', compact('user', 'pegawai', 'users'));
+        return view('pages.singlesignon.manajemen.user', compact('pegawai', 'users'));
     }
 
     /**
