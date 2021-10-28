@@ -20,13 +20,13 @@ class ManajemenUserController extends Controller
      */
     public function index()
     {
-
+        $user = User::ownership()->get();
 
         // $user = User::ownership()->where('role', '!=', 'owner')->get();
         $pegawai = Pegawai::all();
         $users = User::all();
 
-        return view('pages.singlesignon.manajemen.user', compact('pegawai', 'users'));
+        return view('pages.singlesignon.manajemen.user', compact('user', 'pegawai', 'users'));
     }
 
     /**
