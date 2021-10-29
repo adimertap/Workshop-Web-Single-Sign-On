@@ -6,7 +6,7 @@
     <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
         <div class="container mb-4">
             <div class="page-header-content pt-4">
-                @if(Auth::user()->bengkel->status_bayar == "belum_bayar")
+                {{-- @if(Auth::user()->bengkel->status_bayar == "belum_bayar")
                     <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
                         Bengkel belum melakukan pembayaran <a href="" class="alert-link" style="font-weight: bold">Bayar Sekarang</a>
                         <button class="close" type="button" data-dismiss="alert" aria-label="Close">
@@ -14,7 +14,7 @@
                         </button>
                     </div>
                     @else
-                @endif
+                @endif --}}
                 <div class="row align-items-center justify-content-between">
                     
                     <div class="col-auto mt-4">
