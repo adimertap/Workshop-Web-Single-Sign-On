@@ -54,6 +54,7 @@ Route::group(
                 Route::get('/', 'DashboardSSOController@index')
                     ->name('dashboardsso');
                 Route::resource('profile', 'ProfileController');
+                Route::get('/midtrans', 'PaymentBengkelController@success')->name('payment');
             });
 
         // MANAJEMEN ROLE
@@ -66,3 +67,9 @@ Route::group(
             });
     }
 );
+
+// Midtrans
+Route::post('/midtrans/callback', 'MidtransController@notificationHandler');
+Route::get('/midtrans/finish', 'MidtransController@finishRedirect');
+Route::get('/midtrans/unfinish', 'MidtransController@unfinishRedirect');
+Route::get('/midtrans/error', 'MidtransController@errorRedirect');
