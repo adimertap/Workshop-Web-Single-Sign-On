@@ -12,7 +12,7 @@ use PhpParser\Node\Stmt\TryCatch;
 
 class PaymentBengkelController extends Controller
 {
-    public function success(Request $request, $id)
+    public function payment(Request $request, $id)
     {
         // set konfigurasi midtrans
         Config::$serverKey = config('midtrans.serverKey');
@@ -25,7 +25,7 @@ class PaymentBengkelController extends Controller
         // array dikirim ke midtrans
         $midtrans_params = [
             'transaction_details' => [
-                'order_id' => 'TEST-' . $bengkel->id,
+                'order_id' => 'TEST-' . $bengkel->id_bengkel,
                 'gross_amount' => 100000,
             ],
             'customer_details' => [
