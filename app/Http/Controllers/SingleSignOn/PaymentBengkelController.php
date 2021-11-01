@@ -25,7 +25,7 @@ class PaymentBengkelController extends Controller
         // array dikirim ke midtrans
         $midtrans_params = [
             'transaction_details' => [
-                'order_id' => 'TEST-' . rand(2),
+                'order_id' => 'TEST-1',
                 'gross_amount' => 100000,
             ],
             'customer_details' => [
