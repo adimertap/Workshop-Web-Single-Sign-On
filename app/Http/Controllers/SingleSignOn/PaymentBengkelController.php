@@ -25,11 +25,11 @@ class PaymentBengkelController extends Controller
         // array dikirim ke midtrans
         $midtrans_params = [
             'transaction_details' => [
-                'order_id' => 'TEST-' . $bengkel->id_bengkel,
+                'order_id' => 'TEST-' . rand(2),
                 'gross_amount' => 100000,
             ],
             'customer_details' => [
-                'first_name' => $bengkel->nama_bengkel,
+                'first_name' => 'coba',
                 // 'email' => $bengkel->user->email
             ],
             'enable_payments' => ['gopay'],
