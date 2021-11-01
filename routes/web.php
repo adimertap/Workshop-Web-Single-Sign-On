@@ -54,7 +54,7 @@ Route::group(
                 Route::get('/', 'DashboardSSOController@index')
                     ->name('dashboardsso');
                 Route::resource('profile', 'ProfileController');
-                Route::get('/midtrans/{id}', 'PaymentBengkelController@payment')->name('payment');
+                Route::get('/midtrans', 'PaymentBengkelController@payment')->name('payment');
             });
 
         // MANAJEMEN ROLE
