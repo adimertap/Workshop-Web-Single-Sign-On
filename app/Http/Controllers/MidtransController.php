@@ -26,7 +26,7 @@ class MidtransController extends Controller
         $status = $notification->transaction_status;
         $type = $notification->payment_type;
         $fraud = $notification->fraud_status;
-        $id_bengkel = $notification->id_bengkel;
+        $id_bengkel = $notification->order_id;
 
         // Cari transaksi berdasarkan id
         $bengkel = Bengkel::findOrFail($id_bengkel);
