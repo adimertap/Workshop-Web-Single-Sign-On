@@ -13,22 +13,22 @@ class MidtransController extends Controller
 {
     public function notificationHandler(Request $request)
     {
-        // Set konfigurasi Midtrans
-        Config::$serverKey = config('midtrans.serverKey');
-        Config::$isProduction = config('midtrans.isProduction');
-        Config::$isSanitized = config('midtrans.isSanitized');
-        Config::$is3ds = config('midtrans.is3ds');
+        // // Set konfigurasi Midtrans
+        // Config::$serverKey = config('midtrans.serverKey');
+        // Config::$isProduction = config('midtrans.isProduction');
+        // Config::$isSanitized = config('midtrans.isSanitized');
+        // Config::$is3ds = config('midtrans.is3ds');
 
-        // Buat instance midtrans notification
-        $notification = new Notification();;
+        // // Buat instance midtrans notification
+        // $notification = new Notification();;
 
-        // Assign ke variabel untuk memudahkan config
-        $status = $notification->transaction_status;
-        $type = $notification->payment_type;
-        $fraud = $notification->fraud_status;
+        // // Assign ke variabel untuk memudahkan config
+        // $status = $notification->transaction_status;
+        // $type = $notification->payment_type;
+        // $fraud = $notification->fraud_status;
 
-        // Cari transaksi berdasarkan id
-        $bengkel = Bengkel::where(Auth::user()->id_bengkel);
+        // // Cari transaksi berdasarkan id
+        // $bengkel = Bengkel::where(Auth::user()->id_bengkel);
 
         // // Handle notification status Midtrans
         // if ($status == 'capture') {
