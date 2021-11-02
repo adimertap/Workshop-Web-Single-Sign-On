@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Model\SingleSignOn\Bengkel;
+use App\Model\SingleSignOn\PaymentBengkel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Midtrans\Config;
@@ -26,34 +27,33 @@ class MidtransController extends Controller
         $status = $notification->transaction_status;
         $type = $notification->payment_type;
         $fraud = $notification->fraud_status;
-        $id_bengkel = $notification->order_id;
+        $id_payment_bengkel = $notification->order_id;
 
-        // Cari transaksi berdasarkan id
-        $bengkel = Bengkel::findOrFail($id_bengkel);
+        $payment_bengkel = PaymentBengkel::findOrFail($id_payment_bengkel);
 
         // Handle notification status Midtrans
         if ($status == 'capture') {
             if ($type == 'credit_card') {
                 if ($fraud == 'challenge') {
-                    $bengkel->status_bayar = 'belum_bayar';
+                    $payment_bengkel->status = 'belum_bayar';
                 } else {
-                    $bengkel->status_bayar = 'lunas';
+                    $payment_bengkel->status = 'lunas';
                 }
             }
         } else if ($status == 'settlement') {
-            $bengkel->status_bayar = 'lunas';
+            $payment_bengkel->status = 'lunas';
         } else if ($status == 'pending') {
-            $bengkel->status_bayar = 'lunas';
+            $payment_bengkel->status = 'belum_bayar';
         } else if ($status == 'deny') {
-            $bengkel->status_bayar = 'belum_bayar';
+            $payment_bengkel->status = 'belum_bayar';
         } else if ($status == 'expired') {
-            $bengkel->status_bayar = 'belum_bayar';
+            $payment_bengkel->status = 'belum_bayar';
         } else if ($status == 'cancel') {
-            $bengkel->status_bayar = 'belum_bayar';
+            $payment_bengkel->status = 'belum_bayar';
         }
 
         // Simpan Transaksi
-        $bengkel->save();
+        $payment_bengkel->save();
 
         // return ('ok');
     }
