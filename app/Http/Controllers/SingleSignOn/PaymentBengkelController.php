@@ -31,7 +31,7 @@ class PaymentBengkelController extends Controller
             ],
             'customer_details' => [
                 'first_name' => Auth::user()->bengkel->nama_bengkel,
-                'address' => Auth::user()->bengkel->alamat_bengkel,
+                'phone' => Auth::user()->bengkel->nohp_bengkel,
                 // 'email' => $bengkel->user->email
             ],
             'enable_payments' => ['gopay'],
