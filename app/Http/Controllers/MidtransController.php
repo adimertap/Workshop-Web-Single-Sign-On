@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SingleSignOn;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Model\SingleSignOn\Bengkel;

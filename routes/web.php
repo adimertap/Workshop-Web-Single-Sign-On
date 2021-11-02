@@ -69,7 +69,7 @@ Route::group(
 );
 
 // Midtrans
-Route::post('/midtrans/callback', 'MidtransController@notificationHandler')->namespace('SingleSignOn');
-Route::get('/midtrans/finish', 'MidtransController@finishRedirect')->namespace('SingleSignOn');
-Route::get('/midtrans/unfinish', 'MidtransController@unfinishRedirect')->namespace('SingleSignOn');
-Route::get('/midtrans/error', 'MidtransController@errorRedirect')->namespace('SingleSignOn');
+Route::post('/midtrans/callback', 'MidtransController@notificationHandler');
+Route::get('/midtrans/finish', 'MidtransController@finishRedirect');
+Route::get('/midtrans/unfinish', 'MidtransController@unfinishRedirect');
+Route::get('/midtrans/error', 'MidtransController@errorRedirect');
