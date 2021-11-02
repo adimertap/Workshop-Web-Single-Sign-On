@@ -20,16 +20,12 @@ class MidtransController extends Controller
         Config::$is3ds = config('midtrans.is3ds');
 
         // Buat instance midtrans notification
-        $notification = new Notification();
-
-        // Pecah Order ID
-        $order = explode('-', $notification->order_id);
+        $notification = new Notification();;
 
         // Assign ke variabel untuk memudahkan config
         $status = $notification->transaction_status;
         $type = $notification->payment_type;
         $fraud = $notification->fraud_status;
-        $order_id = $order[1];
 
         // Cari transaksi berdasarkan id
         $bengkel = Bengkel::where(Auth::user()->id_bengkel);
@@ -46,13 +42,13 @@ class MidtransController extends Controller
         } else if ($status == 'settlement') {
             $bengkel->status_bayar = 'lunas';
         } else if ($status == 'pending') {
-            $bengkel->status_bayar = 'belum_bayar';
+            $bengkel->status_bayar = 'lunas';
         } else if ($status == 'deny') {
-            $bengkel->status_bayar = 'belum_bayar';
+            $bengkel->status_bayar = 'lunas';
         } else if ($status == 'expired') {
-            $bengkel->status_bayar = 'belum_bayar';
+            $bengkel->status_bayar = 'lunas';
         } else if ($status == 'cancel') {
-            $bengkel->status_bayar = 'belum_bayar';
+            $bengkel->status_bayar = 'lunas';
         }
 
         // Simpan Transaksi
