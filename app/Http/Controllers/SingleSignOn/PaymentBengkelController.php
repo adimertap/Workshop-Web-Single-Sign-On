@@ -30,7 +30,7 @@ class PaymentBengkelController extends Controller
                 'gross_amount' => 100000,
             ],
             'customer_details' => [
-                'id_bengkel'  => Auth::user()->bengkel->id_bengkel,
+                'id_bengkel'  => Auth::user()->id_bengkel,
                 'first_name' => Auth::user()->bengkel->nama_bengkel,
                 'phone' => Auth::user()->bengkel->nohp_bengkel,
                 // 'email' => $bengkel->user->email
