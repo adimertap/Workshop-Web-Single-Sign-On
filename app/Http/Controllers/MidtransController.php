@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Model\SingleSignOn\Bengkel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Midtrans\Config;
 use Midtrans\Notification;
 
@@ -31,27 +32,27 @@ class MidtransController extends Controller
         $order_id = $order[1];
 
         // Cari transaksi berdasarkan id
-        $bengkel = Bengkel::findOrFail($order_id);
+        $bengkel = Bengkel::where(Auth::user()->id_bengkel);
 
         // Handle notification status Midtrans
         if ($status == 'capture') {
             if ($type == 'credit_card') {
                 if ($fraud == 'challenge') {
-                    $bengkel->payment_status = 'CHALLENGE';
+                    $bengkel->status_bayar = 'lunas';
                 } else {
-                    $bengkel->payment_status = 'SUCCESS';
+                    $bengkel->status_bayar = 'lunas';
                 }
             }
         } else if ($status == 'settlement') {
-            $bengkel->payment_status = 'SUCCESS';
+            $bengkel->status_bayar = 'lunas';
         } else if ($status == 'pending') {
-            $bengkel->payment_status = 'PENDING';
+            $bengkel->status_bayar = 'belum_bayar';
         } else if ($status == 'deny') {
-            $bengkel->payment_status = 'FAILED';
+            $bengkel->status_bayar = 'belum_bayar';
         } else if ($status == 'expired') {
-            $bengkel->payment_status = 'EXPIRED';
+            $bengkel->status_bayar = 'belum_bayar';
         } else if ($status == 'cancel') {
-            $bengkel->payment_status = 'CANCEL';
+            $bengkel->status_bayar = 'belum_bayar';
         }
 
         // Simpan Transaksi
