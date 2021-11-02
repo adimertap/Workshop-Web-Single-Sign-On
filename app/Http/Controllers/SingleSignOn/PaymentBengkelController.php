@@ -29,7 +29,8 @@ class PaymentBengkelController extends Controller
                 'gross_amount' => 100000,
             ],
             'customer_details' => [
-                'first_name' => 'coba',
+                'first_name' => $bengkel->nama_bengkel,
+                'address' => $bengkel->alamat_bengkel,
                 // 'email' => $bengkel->user->email
             ],
             'enable_payments' => ['gopay'],
