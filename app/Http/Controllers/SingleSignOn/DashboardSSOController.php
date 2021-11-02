@@ -21,7 +21,7 @@ class DashboardSSOController extends Controller
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal_tahun = Carbon::now()->format('j F Y');
 
-        $payment_bengkel = PaymentBengkel::where('id_bengkel', '=', Auth::user()->bengkel->id_bengkel)->latest();
+        $payment_bengkel = PaymentBengkel::where('id_bengkel', Auth::user()->bengkel->id_bengkel)->latest();
         return $payment_bengkel;
 
         return view('pages.singlesignon.dashboard.dashboardsso', compact('today', 'tanggal_tahun'));
