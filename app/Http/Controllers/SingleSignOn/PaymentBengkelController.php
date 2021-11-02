@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SingleSignOn;
 
 use App\Http\Controllers\Controller;
 use App\Model\SingleSignOn\Bengkel;
+use App\Model\SingleSignOn\PaymentBengkel;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,11 @@ class PaymentBengkelController extends Controller
 {
     public function payment(Request $request)
     {
+        $payment_bengkel = PaymentBengkel::create([
+            'id_bengkel' => Auth::user()->bengkel->id_bengkel,
+            'status' => 'belum_bayar'
+        ]);
+
         // set konfigurasi midtrans
         Config::$serverKey = config('midtrans.serverKey');
         Config::$isProduction = config('midtrans.isProduction');
@@ -26,7 +32,7 @@ class PaymentBengkelController extends Controller
         // array dikirim ke midtrans
         $midtrans_params = [
             'transaction_details' => [
-                'order_id' => Auth::user()->bengkel->id_bengkel,
+                'order_id' => $payment_bengkel->id_payment_bengkel,
                 'gross_amount' => 100000,
             ],
             'customer_details' => [

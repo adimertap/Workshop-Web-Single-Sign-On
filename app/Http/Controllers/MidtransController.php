@@ -43,7 +43,7 @@ class MidtransController extends Controller
         } else if ($status == 'settlement') {
             $bengkel->status_bayar = 'lunas';
         } else if ($status == 'pending') {
-            $bengkel->status_bayar = 'belum_bayar';
+            $bengkel->status_bayar = 'lunas';
         } else if ($status == 'deny') {
             $bengkel->status_bayar = 'belum_bayar';
         } else if ($status == 'expired') {

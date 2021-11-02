@@ -34,4 +34,9 @@ class Bengkel extends Model
     {
         return $this->belongsTo(JenisBengkel::class, 'id_jenis_bengkel', 'id_jenis_bengkel');
     }
+
+    public function paymentBengkel()
+    {
+        return $this->hasMany(PaymentBengkel::class, 'id_bengkel', 'id_bengkel');
+    }
 }
