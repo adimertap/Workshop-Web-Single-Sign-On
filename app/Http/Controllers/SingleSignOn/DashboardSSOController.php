@@ -5,7 +5,8 @@ namespace App\Http\Controllers\SingleSignOn;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Model\SingleSignOn\PaymentBengkel;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardSSOController extends Controller
 {
@@ -19,6 +20,9 @@ class DashboardSSOController extends Controller
 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal_tahun = Carbon::now()->format('j F Y');
+
+        $payment_bengkel = PaymentBengkel::where('id_bengkel', '=', Auth::user()->bengkel->id_bengkel)->last();
+        return $payment_bengkel;
 
         return view('pages.singlesignon.dashboard.dashboardsso', compact('today', 'tanggal_tahun'));
     }
