@@ -13,48 +13,48 @@ class MidtransController extends Controller
 {
     public function notificationHandler(Request $request)
     {
-        // // Set konfigurasi Midtrans
-        // Config::$serverKey = config('midtrans.serverKey');
-        // Config::$isProduction = config('midtrans.isProduction');
-        // Config::$isSanitized = config('midtrans.isSanitized');
-        // Config::$is3ds = config('midtrans.is3ds');
+        // Set konfigurasi Midtrans
+        Config::$serverKey = config('midtrans.serverKey');
+        Config::$isProduction = config('midtrans.isProduction');
+        Config::$isSanitized = config('midtrans.isSanitized');
+        Config::$is3ds = config('midtrans.is3ds');
 
-        // // Buat instance midtrans notification
-        // $notification = new Notification();;
+        // Buat instance midtrans notification
+        $notification = new Notification();;
 
-        // // Assign ke variabel untuk memudahkan config
-        // $status = $notification->transaction_status;
-        // $type = $notification->payment_type;
-        // $fraud = $notification->fraud_status;
+        // Assign ke variabel untuk memudahkan config
+        $status = $notification->transaction_status;
+        $type = $notification->payment_type;
+        $fraud = $notification->fraud_status;
 
-        // // Cari transaksi berdasarkan id
-        // $bengkel = Bengkel::where(Auth::user()->id_bengkel);
+        // Cari transaksi berdasarkan id
+        $bengkel = $notification->id_bengkel;
 
-        // // Handle notification status Midtrans
-        // if ($status == 'capture') {
-        //     if ($type == 'credit_card') {
-        //         if ($fraud == 'challenge') {
-        //             $bengkel->status_bayar = 'lunas';
-        //         } else {
-        //             $bengkel->status_bayar = 'lunas';
-        //         }
-        //     }
-        // } else if ($status == 'settlement') {
-        //     $bengkel->status_bayar = 'lunas';
-        // } else if ($status == 'pending') {
-        //     $bengkel->status_bayar = 'lunas';
-        // } else if ($status == 'deny') {
-        //     $bengkel->status_bayar = 'lunas';
-        // } else if ($status == 'expired') {
-        //     $bengkel->status_bayar = 'lunas';
-        // } else if ($status == 'cancel') {
-        //     $bengkel->status_bayar = 'lunas';
-        // }
+        // Handle notification status Midtrans
+        if ($status == 'capture') {
+            if ($type == 'credit_card') {
+                if ($fraud == 'challenge') {
+                    $bengkel->status_bayar = 'lunas';
+                } else {
+                    $bengkel->status_bayar = 'lunas';
+                }
+            }
+        } else if ($status == 'settlement') {
+            $bengkel->status_bayar = 'lunas';
+        } else if ($status == 'pending') {
+            $bengkel->status_bayar = 'lunas';
+        } else if ($status == 'deny') {
+            $bengkel->status_bayar = 'lunas';
+        } else if ($status == 'expired') {
+            $bengkel->status_bayar = 'lunas';
+        } else if ($status == 'cancel') {
+            $bengkel->status_bayar = 'lunas';
+        }
 
-        // // Simpan Transaksi
-        // $bengkel->save();
+        // Simpan Transaksi
+        $bengkel->save();
 
-        return ('ok');
+        // return ('ok');
     }
 
     public function finishRedirect(Request $request)
