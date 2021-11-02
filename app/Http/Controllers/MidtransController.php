@@ -30,29 +30,31 @@ class MidtransController extends Controller
         // Cari transaksi berdasarkan id
         $bengkel = Bengkel::where(Auth::user()->id_bengkel);
 
-        // Handle notification status Midtrans
-        if ($status == 'capture') {
-            if ($type == 'credit_card') {
-                if ($fraud == 'challenge') {
-                    $bengkel->status_bayar = 'lunas';
-                } else {
-                    $bengkel->status_bayar = 'lunas';
-                }
-            }
-        } else if ($status == 'settlement') {
-            $bengkel->status_bayar = 'lunas';
-        } else if ($status == 'pending') {
-            $bengkel->status_bayar = 'lunas';
-        } else if ($status == 'deny') {
-            $bengkel->status_bayar = 'lunas';
-        } else if ($status == 'expired') {
-            $bengkel->status_bayar = 'lunas';
-        } else if ($status == 'cancel') {
-            $bengkel->status_bayar = 'lunas';
-        }
+        // // Handle notification status Midtrans
+        // if ($status == 'capture') {
+        //     if ($type == 'credit_card') {
+        //         if ($fraud == 'challenge') {
+        //             $bengkel->status_bayar = 'lunas';
+        //         } else {
+        //             $bengkel->status_bayar = 'lunas';
+        //         }
+        //     }
+        // } else if ($status == 'settlement') {
+        //     $bengkel->status_bayar = 'lunas';
+        // } else if ($status == 'pending') {
+        //     $bengkel->status_bayar = 'lunas';
+        // } else if ($status == 'deny') {
+        //     $bengkel->status_bayar = 'lunas';
+        // } else if ($status == 'expired') {
+        //     $bengkel->status_bayar = 'lunas';
+        // } else if ($status == 'cancel') {
+        //     $bengkel->status_bayar = 'lunas';
+        // }
 
-        // Simpan Transaksi
-        $bengkel->save();
+        // // Simpan Transaksi
+        // $bengkel->save();
+
+        return ('ok');
     }
 
     public function finishRedirect(Request $request)
