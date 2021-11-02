@@ -35,7 +35,7 @@ class MidtransController extends Controller
         if ($status == 'capture') {
             if ($type == 'credit_card') {
                 if ($fraud == 'challenge') {
-                    $bengkel->status_bayar = 'lunas';
+                    $bengkel->status_bayar = 'belum_bayar';
                 } else {
                     $bengkel->status_bayar = 'lunas';
                 }
@@ -43,13 +43,13 @@ class MidtransController extends Controller
         } else if ($status == 'settlement') {
             $bengkel->status_bayar = 'lunas';
         } else if ($status == 'pending') {
-            $bengkel->status_bayar = 'lunas';
+            $bengkel->status_bayar = 'belum_bayar';
         } else if ($status == 'deny') {
-            $bengkel->status_bayar = 'lunas';
+            $bengkel->status_bayar = 'belum_bayar';
         } else if ($status == 'expired') {
-            $bengkel->status_bayar = 'lunas';
+            $bengkel->status_bayar = 'belum_bayar';
         } else if ($status == 'cancel') {
-            $bengkel->status_bayar = 'lunas';
+            $bengkel->status_bayar = 'belum_bayar';
         }
 
         // Simpan Transaksi
