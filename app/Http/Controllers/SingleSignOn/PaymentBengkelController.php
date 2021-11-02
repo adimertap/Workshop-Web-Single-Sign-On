@@ -26,11 +26,11 @@ class PaymentBengkelController extends Controller
         // array dikirim ke midtrans
         $midtrans_params = [
             'transaction_details' => [
+                'id_bengkel'  => Auth::user()->bengkel->id_bengkel,
                 'order_id' => 'MIDTRANS-' . rand(1000, 10000),
                 'gross_amount' => 100000,
             ],
             'customer_details' => [
-                'id_bengkel'  => Auth::user()->id_bengkel,
                 'first_name' => Auth::user()->bengkel->nama_bengkel,
                 'phone' => Auth::user()->bengkel->nohp_bengkel,
                 // 'email' => $bengkel->user->email
