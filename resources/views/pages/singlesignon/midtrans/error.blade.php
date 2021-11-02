@@ -31,7 +31,7 @@
                         <div class="col-lg-6">
                             <div class="text-center mt-4">
                                 <img class="img-fluid p-4"
-                                    src="/backend/src/assets/img/freepik/404-error-with-a-cute-animal-pana.svg" alt="">
+                                    src="/backend/src/assets/img/error.jpg" alt="">
                                 <p class="lead">Pembayaran Anda Error!</p>
                                 <a class="text-arrow-icon" href="https://sso.bengkel-kuy.com/sso">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
