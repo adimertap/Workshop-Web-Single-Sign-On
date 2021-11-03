@@ -64,7 +64,7 @@ Route::group(
             ->group(function () {
                 Route::resource('manajemen-user', 'ManajemenUserController');
                 Route::resource('manajemen-akses', 'ManajemenHakAksesController');
-                Route::resource('manajemen-cabang', 'ManajamenCabangController');
+                Route::resource('manajemen-cabang', 'ManajemenCabangController');
             });
     }
 );
