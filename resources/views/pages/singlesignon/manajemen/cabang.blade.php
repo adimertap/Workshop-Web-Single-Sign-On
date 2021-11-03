@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    {{-- MODAL DELETE --}}
+    {{-- MODAL DELETE
     @forelse ($cabangs as $item)
     <div class="modal fade" id="Modalhapus-{{ $item->id_cabang }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -133,7 +133,7 @@
 
     @empty
 
-    @endforelse
+    @endforelse --}}
 </main>
 
 @endsection
