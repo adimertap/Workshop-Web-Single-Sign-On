@@ -45,29 +45,90 @@
                         aria-labelledby="wizard1-tab">
                         <div class="row justify-content-center">
                             <div class="col-xxl-6 col-xl-9">
-                                
+
                                 <form action="{{ route('manajemen-cabang.store') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <h5 class="card-title">Input Data Cabang</h5>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <div class="form-group col-6">
-                                                <label class="small mb-1 mr-1" for="nama_cabang">Nama Cabang</label><span class="mr-4 mb-3"
-                                                    style="color: red">*</span>
+                                            <div class="form-group col-md-6">
+                                                <label class="small mb-1 mr-1" for="nama_cabang">Nama
+                                                    Cabang</label><span class="mr-4 mb-3" style="color: red">*</span>
                                                 <input id="nama_cabang" type="text" class="form-control"
                                                     name="nama_cabang" placeholder="Input Nama Cabang"
                                                     value="{{ old('nama_cabang') }}" autofocus required>
                                             </div>
-                                            <div class="form-group col-6">
+                                            <div class="form-group col-md-6">
                                                 <label class="small mb-1 mr-1" for="alamat_cabang">Alamat Cabang</label>
-                                                <input id="alamat_cabang" type="text"
-                                                    placeholder="Input Alamat Bengkel" class="form-control"
-                                                    name="alamat_cabang" value="{{ old('alamat_cabang') }}">
+                                                <input id="alamat_cabang" type="text" placeholder="Input Alamat Bengkel"
+                                                    class="form-control" name="alamat_cabang"
+                                                    value="{{ old('alamat_cabang') }}">
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-6">
+                                                    <label class="small mb-1" for="provinsi">Provinsi</label>
+                                                    <select class="form-control" name="provinsi">
+                                                        <option value="" holder>Pilih Provinsi</option>
+                                                        @foreach ($provinsi as $item)
+                                                        <option value="{{ $item->id_provinsi }}">
+                                                            {{ $item->name }}</option>
+                                                        @endforeach
+
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <label class="small mb-1" for="kabupaten">Kabupaten/Kota</label>
+                                                    <select class="form-control" name="id_kabupaten">
+                                                        <option value="" holder>Pilih Kabupaten/Kota</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-6">
+                                                    <label class="small mb-1" for="kecamatan">Kecamatan</label>
+                                                    <select class="form-control" name="id_kecamatan">
+                                                        <option value="" holder>Pilih Kecamatan</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <label class="small mb-1" for="desa">Desa</label>
+                                                    <select class="form-control" name="id_desa">
+                                                        <option value="" holder>Pilih Desa</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-6">
+                                                    <label for="latitude">Latitude Bengkel</label><span
+                                                        class="mr-4 mb-3" style="color: red">*</span>
+                                                    <input id="latitude" name="latitude" type="text"
+                                                        class="form-control" placeholder="Input Latitude Bengkel"
+                                                        name="latitude" value="{{ old('latitude') }}" autofocus
+                                                        required>
+                                                </div>
+
+                                                <div class="form-group col-6">
+                                                    <label for="longitude">Longitude Bengkel</label><span
+                                                        class="mr-4 mb-3" style="color: red">*</span>
+                                                    <input id="longitude" name="longitude" type="text"
+                                                        class="form-control" placeholder="Input Longitude bengkel"
+                                                        name="longitude" value="{{ old('longitude') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col">
+                                                    <small class="text-muted">Silahkan klik peta untuk menentukan lokasi
+                                                        (latitude dan longitude) bengkel</small>
+                                                    <div id="mapid">
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <br><hr>
+                                    <hr>
                                     <h5 class="card-title">Input Data Kepala Cabang</h5>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
@@ -132,6 +193,155 @@
 <script>
     $(document).ready(function () {
         $('#validasierror').click();
+    });
+
+</script>
+
+<script type="text/javascript">
+    var BengkelIcon = L.icon({
+        iconUrl: 'assets/bengkel.png',
+        iconSize: [35, 35],
+        iconAnchore: [22, 94],
+        popupAnchore: [-3, -76]
+    });
+    $(document).ready(function () {
+        map = L.map('mapid').fitWorld();
+        L.tileLayer(
+            'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                maxZoom: 18,
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1,
+                accessToken: 'pk.eyJ1IjoiYXJ0YW5pbGExNSIsImEiOiJja29hN2IxeW0weWRlMm9zMnA3eTlmem04In0.O2Mk0N3OYzJ40NXBuOCevQ'
+            }).addTo(map);
+
+        function onLocationFound(e) {
+
+            map.flyTo(e.latlng, 15)
+            L.marker(e.latlng).addTo(map)
+                .bindPopup("Anda berada disini!").openPopup();
+
+        }
+
+        function onLocationError(e) {
+            alert(e.message);
+        }
+
+        map.on('locationfound', onLocationFound);
+        map.on('locationerror', onLocationError);
+
+        map.locate({
+            setView: true,
+            maxZoom: 15
+        });
+
+        var mark;
+        map.on('click', function (e) {
+            if (mark) { // check
+                map.removeLayer(mark); // remove
+            }
+            mark = new L.Marker(e.latlng, {
+                icon: BengkelIcon
+            }).addTo(map);
+            var coord = e.latlng;
+            var lat = coord.lat;
+            var lng = coord.lng;
+            $("#latitude").val(lat);
+            $("#longitude").val(lng);
+
+
+        });
+    });
+
+    $(document).ready(function () {
+        $('select[name="provinsi"]').on('change', function () {
+            var cityId = $(this).val();
+            if (cityId) {
+                $.ajax({
+                    url: 'getkabupaten/' + cityId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="id_kabupaten"]').empty();
+                        $('select[name="id_kecamatan"]').empty();
+                        $('select[name="id_desa"]').empty();
+                        $('select[name="id_kabupaten"]').append(
+                            '<option value="" holder>Pilih Kabupaten/Kota</option>');
+                        $('select[name="id_kecamatan"]').append(
+                            '<option value="" holder>Pilih Kecamatan</option>');
+                        $('select[name="id_desa"]').append(
+                            '<option value="" holder>Pilih Desa</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="id_kabupaten"]').append(
+                                '<option value="' +
+                                key + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('select[name="id_kabupaten"]').empty();
+            }
+        });
+
+    });
+
+    $(document).ready(function () {
+        $('select[name="id_kabupaten"]').on('change', function () {
+            var cityId = $(this).val();
+            if (cityId) {
+                $.ajax({
+                    url: 'getkecamatan/' + cityId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="id_kecamatan"]').empty();
+                        $('select[name="id_desa"]').empty();
+
+                        $('select[name="id_kecamatan"]').append(
+                            '<option value="" holder>Pilih Kecamatan</option>'
+                        );
+                        $('select[name="id_desa"]').append(
+                            '<option value="" holder>Pilih Desa</option>')
+
+                        $.each(data, function (key, value) {
+                            $('select[name="id_kecamatan"]').append(
+                                '<option value="' +
+                                key + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('select[name="id_kecamatan"]').empty();
+            }
+        });
+
+    });
+
+    $(document).ready(function () {
+        $('select[name="id_kecamatan"]').on('change', function () {
+            var cityId = $(this).val();
+            if (cityId) {
+                $.ajax({
+                    url: 'getdesa/' + cityId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="id_desa"]').empty();
+                        $('select[name="id_desa"]').append(
+                            '<option value="" holder>Pilih Desa</option>')
+                        $.each(data, function (key, value) {
+                            $('select[name="id_desa"]').append(
+                                '<option value="' +
+                                key + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('select[name="id_desa"]').empty();
+            }
+        });
+
     });
 
 </script>

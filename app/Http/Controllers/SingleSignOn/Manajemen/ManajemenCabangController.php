@@ -58,6 +58,7 @@ class ManajemenCabangController extends Controller
         $cabang = new Cabang;
         $cabang->nama_cabang = $request->nama_cabang;
         $cabang->alamat_cabang = $request->alamat_cabang;
+        $cabang->id_desa = $request->id_desa;
         $cabang->save();
 
         return redirect()->route('manajemen-cabang.index')->with('messageberhasil', 'Data Cabang Berhasil ditambahkan');
