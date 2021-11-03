@@ -33,6 +33,7 @@ class ManajemenCabangController extends Controller
         $pegawai = Pegawai::all();
         $users = User::all();
         $role = Role::all();
+
         $provinsi = ProvinsiBaru::all();
 
         return view('pages.singlesignon.manajemen.create-cabang', compact('pegawai', 'users', 'role', 'provinsi'));
@@ -56,6 +57,17 @@ class ManajemenCabangController extends Controller
                 'id_role' => (int)$item
             ]);
         }
+
+        $pegawai = new Pegawai;
+        $pegawai->nama_pegawai = $request->nama_pegawai;
+        $pegawai->nama_panggilan = $request->nama_panggilan;
+        $pegawai->tempat_lahir = $request->tempat_lahir;
+        $pegawai->tanggal_lahir = $request->tanggal_lahir;
+        $pegawai->nik_pegawai = $request->nik_pegawai;
+        $pegawai->npwp_pegawai = $request->npwp_pegawai;
+        $pegawai->jenis_kelamin = $request->jenis_kelamin;
+        $pegawai->id_jabatan = '38';
+        $pegawai->save();
 
         $cabang = new Cabang;
         $cabang->nama_cabang = $request->nama_cabang;
