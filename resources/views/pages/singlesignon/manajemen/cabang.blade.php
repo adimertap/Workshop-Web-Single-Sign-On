@@ -83,7 +83,7 @@
                                                     <i class="fas fa-edit"></i>
                                                 </a> --}}
                                                 <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id }}">
+                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_cabang }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
