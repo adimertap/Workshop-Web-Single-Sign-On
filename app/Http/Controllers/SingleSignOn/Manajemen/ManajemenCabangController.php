@@ -51,4 +51,13 @@ class ManajemenCabangController extends Controller
         $desa = DesaBaru::where('id_kecamatan', '=', $id)->pluck('name', 'id_desa');
         return json_encode($desa);
     }
+
+    public function destroy($id_cabang)
+    {
+        $cabang = Cabang::findOrFail($id_cabang);
+
+        $cabang->delete();
+
+        return redirect()->back()->with('messagehapus', 'Data Cabang Berhasil dihapus');
+    }
 }
