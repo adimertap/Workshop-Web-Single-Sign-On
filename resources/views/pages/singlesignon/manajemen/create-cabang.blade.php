@@ -52,19 +52,23 @@
                                     <h5 class="card-title">Input Data Cabang</h5>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <div class="form-group col-md-6">
-                                                <label class="small mb-1 mr-1" for="nama_cabang">Nama
-                                                    Cabang</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                                <input id="nama_cabang" type="text" class="form-control"
-                                                    name="nama_cabang" placeholder="Input Nama Cabang"
-                                                    value="{{ old('nama_cabang') }}" autofocus required>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="small mb-1" for="nama_cabang">Nama
+                                                        Cabang</label><span class="mr-4 mb-3"
+                                                        style="color: red">*</span>
+                                                    <input id="nama_cabang" type="text" class="form-control"
+                                                        name="nama_cabang" placeholder="Input Nama Cabang"
+                                                        value="{{ old('nama_cabang') }}" autofocus required>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="small mb-1" for="alamat_cabang">Alamat Cabang</label>
+                                                    <input id="alamat_cabang" type="text"
+                                                        placeholder="Input Alamat Bengkel" class="form-control"
+                                                        name="alamat_cabang" value="{{ old('alamat_cabang') }}">
+                                                </div>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="small mb-1 mr-1" for="alamat_cabang">Alamat Cabang</label>
-                                                <input id="alamat_cabang" type="text" placeholder="Input Alamat Bengkel"
-                                                    class="form-control" name="alamat_cabang"
-                                                    value="{{ old('alamat_cabang') }}">
-                                            </div>
+
                                             <div class="row">
                                                 <div class="form-group col-6">
                                                     <label class="small mb-1" for="provinsi">Provinsi</label>
