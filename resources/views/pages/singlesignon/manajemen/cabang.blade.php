@@ -106,8 +106,8 @@
     </div>
 
     {{-- MODAL DELETE --}}
-    @forelse ($users as $item)
-    <div class="modal fade" id="Modalhapus-{{ $item->id }}" tabindex="-1" role="dialog"
+    @forelse ($cabangs as $item)
+    <div class="modal fade" id="Modalhapus-{{ $item->id_cabang }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -116,11 +116,11 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('manajemen-cabang.destroy', $item->id) }}" method="POST" class="d-inline">
+                <form action="{{ route('manajemen-cabang.destroy', $item->id_cabang) }}" method="POST" class="d-inline">
                     @csrf
                     @method('delete')
                     <div class="modal-body">Apakah Anda Yakin Menghapus Data Pengguna dengan Cabang
-                        {{ $item->username }}?
+                        {{ $item->nama_cabang }}?
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
