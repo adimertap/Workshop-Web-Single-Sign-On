@@ -124,6 +124,9 @@
                                 <a class="nav-link" href="{{ route('manajemen-user.index')}}">
                                     Pengguna
                                 </a>
+                                <a class="nav-link" href="{{ route('manajemen-cabang.index')}}">
+                                    Cabang
+                                </a>
                             </nav>
                         </div>
                         @endif

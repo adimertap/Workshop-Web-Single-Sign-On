@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SingleSignOn;
+namespace App\Http\Controllers\SingleSignOn\Manajemen;
 
 use App\DesaBaru;
 use App\Http\Controllers\Controller;
