@@ -14,6 +14,7 @@ use App\KabupatenBaru;
 use App\KecamatanBaru;
 use App\Model\Kepegawaian\Jabatan;
 use App\Model\SingleSignOn\JenisBengkel;
+use App\Model\SingleSignOn\PaymentBengkel;
 use App\ProvinsiBaru;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -97,6 +98,11 @@ class RegisterController extends Controller
             'jam_tutup_bengkel' => date('H:i:s', strtotime($data['jam_tutup_bengkel'])),
             'logo_bengkel' => $name_file,
             'id_jenis_bengkel' => $data['id_jenis_bengkel']
+        ]);
+
+        $payment = PaymentBengkel::create([
+            'status' => 'belum_bayar',
+            'id_bengkel' => $bengkel->id_bengkel,
         ]);
 
 
