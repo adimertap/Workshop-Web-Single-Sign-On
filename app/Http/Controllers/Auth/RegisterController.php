@@ -112,7 +112,8 @@ class RegisterController extends Controller
             'npwp_pegawai' => $data['npwp_pegawai'],
             'jenis_kelamin' => $data['jenis_kelamin'],
             'id_bengkel' => $bengkel->id_bengkel,
-            'id_jabatan' => '1'
+            'id_jabatan' => '1',
+            'id_ptkp' => '1',
         ]);
 
         $user =  User::create([
@@ -132,7 +133,7 @@ class RegisterController extends Controller
     {
         $provinsi = ProvinsiBaru::all();
         $jenis_bengkel = JenisBengkel::get();
-        
+
 
         return view('pages.singlesignon.register', [
             'provinsi' => $provinsi,

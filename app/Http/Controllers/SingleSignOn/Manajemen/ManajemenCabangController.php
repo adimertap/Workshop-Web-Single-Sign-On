@@ -44,11 +44,26 @@ class ManajemenCabangController extends Controller
         $data = $request->all();
         $data['role'] = null;
 
+        $pegawai = new Pegawai;
+        $pegawai->id_bengkel =  Auth::user()->id_bengkel;
+        $pegawai->nama_pegawai = $request->nama_pegawai;
+        $pegawai->nama_panggilan = $request->username;
+        $pegawai->tempat_lahir = $request->tempat_lahir;
+        $pegawai->tanggal_lahir = $request->tanggal_lahir;
+        $pegawai->nik_pegawai = $request->nik_pegawai;
+        $pegawai->npwp_pegawai = $request->npwp_pegawai;
+        $pegawai->npwp_pegawai = $request->no_telp;
+        $pegawai->jenis_kelamin = $request->jenis_kelamin;
+        $pegawai->id_jabatan = '38';
+        $pegawai->id_ptkp = '1';
+        $pegawai->save();
+
         $user = new User;
         $user->username = $request->username;
         $user->password = bcrypt($request->password);
         $user->email = $request->email;
         $user->id_bengkel =  Auth::user()->id_bengkel;
+        $user->id_pegawai = $pegawai->id_pegawai;
         $user->save();
 
         foreach ($request->role as $item) {
@@ -58,21 +73,11 @@ class ManajemenCabangController extends Controller
             ]);
         }
 
-        $pegawai = new Pegawai;
-        $pegawai->nama_pegawai = $request->nama_pegawai;
-        $pegawai->nama_panggilan = $request->nama_panggilan;
-        $pegawai->tempat_lahir = $request->tempat_lahir;
-        $pegawai->tanggal_lahir = $request->tanggal_lahir;
-        $pegawai->nik_pegawai = $request->nik_pegawai;
-        $pegawai->npwp_pegawai = $request->npwp_pegawai;
-        $pegawai->jenis_kelamin = $request->jenis_kelamin;
-        $pegawai->id_jabatan = '38';
-        $pegawai->save();
-
         $cabang = new Cabang;
         $cabang->nama_cabang = $request->nama_cabang;
         $cabang->alamat_cabang = $request->alamat_cabang;
         $cabang->id_desa = $request->id_desa;
+        $cabang->id_bengkel =  Auth::user()->id_bengkel;
         $cabang->save();
 
         return redirect()->route('manajemen-cabang.index')->with('messageberhasil', 'Data Cabang Berhasil ditambahkan');

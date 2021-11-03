@@ -135,11 +135,11 @@
                         <h5 class="card-title">Input Data Kepala Cabang</h5>
                         <div class="row">
                             <div class="form-group col-4">
-                                <label class="small mb-1" for="name">Nama</label><span class="mr-4 mb-3"
+                                <label class="small mb-1" for="nama_pegawai">Nama</label><span class="mr-4 mb-3"
                                     style="color: red">*</span>
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name') }}" required placeholder="Input Nama Pemilik"
-                                    autocomplete="name" autofocus required>
+                                <input id="nama_pegawai" type="text" class="form-control @error('nama_pegawai') is-invalid @enderror"
+                                    name="nama_pegawai" value="{{ old('nama_pegawai') }}" required placeholder="Input Nama Pemilik"
+                                    autocomplete="nama_pegawai" autofocus required>
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -273,6 +273,25 @@
     });
 
 </script>
+
+<script>
+        $(function () {
+            $("input[name='no_telp']").on('input', function (e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+        });
+        $(function () {
+            $("input[name='nik_pegawai']").on('input', function (e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+        });
+        $(function () {
+            $("input[name='npwp_pegawai']").on('input', function (e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+        });
+
+    </script>
 
 {{-- <script type="text/javascript">
     var BengkelIcon = L.icon({
