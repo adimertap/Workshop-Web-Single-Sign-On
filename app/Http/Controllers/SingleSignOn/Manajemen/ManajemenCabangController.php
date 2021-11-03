@@ -9,8 +9,10 @@ use App\KecamatanBaru;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Cabang;
 use App\Model\SingleSignOn\Role;
+use App\Model\SingleSignOn\RoleUser;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ManajemenCabangController extends Controller
 {
@@ -32,6 +34,33 @@ class ManajemenCabangController extends Controller
         $role = Role::all();
 
         return view('pages.singlesignon.manajemen.create-cabang', compact('pegawai', 'users', 'role'));
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        $data['role'] = null;
+
+        $user = new User;
+        $user->username = $request->username;
+        $user->password = bcrypt($request->password);
+        $user->email = $request->email;
+        $user->id_bengkel =  Auth::user()->id_bengkel;
+        $user->save();
+
+        foreach ($request->role as $item) {
+            RoleUser::create([
+                'id_user' => $user->id,
+                'id_role' => (int)$item
+            ]);
+        }
+
+        $cabang = new Cabang;
+        $cabang->nama_cabang = $request->nama_cabang;
+        $cabang->alamat_cabang = $request->alamat_cabang;
+        $cabang->save();
+
+        return redirect()->route('manajemen-cabang.index')->with('messageberhasil', 'Data Cabang Berhasil ditambahkan');
     }
 
     public function kabupaten_baru($id)

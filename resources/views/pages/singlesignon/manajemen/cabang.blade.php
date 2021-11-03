@@ -91,7 +91,7 @@
                                         @empty
                                         <tr>
                                             <td colspan="7" class="text-center">
-                                                Data Pengguna Kosong
+                                                Data Cabang Kosong
                                             </td>
                                         </tr>
                                         @endforelse
