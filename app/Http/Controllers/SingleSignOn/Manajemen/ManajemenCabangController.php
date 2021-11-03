@@ -10,6 +10,7 @@ use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Cabang;
 use App\Model\SingleSignOn\Role;
 use App\Model\SingleSignOn\RoleUser;
+use App\ProvinsiBaru;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,8 +33,9 @@ class ManajemenCabangController extends Controller
         $pegawai = Pegawai::all();
         $users = User::all();
         $role = Role::all();
+        $provinsi = ProvinsiBaru::all();
 
-        return view('pages.singlesignon.manajemen.create-cabang', compact('pegawai', 'users', 'role'));
+        return view('pages.singlesignon.manajemen.create-cabang', compact('pegawai', 'users', 'role', 'provinsi'));
     }
 
     public function store(Request $request)
