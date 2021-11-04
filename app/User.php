@@ -62,7 +62,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Role::class, 'tb_det_role_user', 'id_user', 'id_role');
     }
 
-
     public function scopeOwnership($query)
     {
         return $query->where('id_bengkel', '=', Auth::user()->id_bengkel);
