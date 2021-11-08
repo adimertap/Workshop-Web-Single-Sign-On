@@ -83,10 +83,10 @@
                                             <td>{{ $item->username }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>
-                                                <a href="{{ route('manajemen-user.edit', $item->id) }}"
+                                                {{-- <a href="{{ route('manajemen-user.edit', $item->id) }}"
                                                     class="btn btn-primary btn-datatable" type="button">
                                                     <i class="fas fa-edit"></i>
-                                                </a>
+                                                </a> --}}
                                                 <a href="" class="btn btn-danger btn-datatable" type="button"
                                                     data-toggle="modal" data-target="#Modalhapus-{{ $item->id }}">
                                                     <i class="fas fa-trash"></i>
