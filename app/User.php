@@ -72,7 +72,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $roles = $this->roleType;
 
         foreach ($roles as $role) {
-            if ($role->role == $inputRole) {
+            if ($role->nama_aplikasi == $inputRole) {
                 return true;
             }
         }
