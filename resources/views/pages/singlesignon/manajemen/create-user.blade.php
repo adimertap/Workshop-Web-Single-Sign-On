@@ -110,8 +110,8 @@
                                         <br>
                                         <div class="form-group ml-3">
                                             @foreach ($role as $item)
-                                            <input type="checkbox" name="role[]" value="{{ $item->id_role }}">
-                                            <label for="role[]"> {{ $item->role }}</label><br>
+                                            <input type="checkbox" name="role[]" value="{{ $item->id_sso_aplikasi }}">
+                                            <label for="role[]"> {{ $item->nama_aplikasi }}</label><br>
                                             @endforeach
                                         </div>
                                     </div>
