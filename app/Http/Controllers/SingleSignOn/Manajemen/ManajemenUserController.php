@@ -63,7 +63,7 @@ class ManajemenUserController extends Controller
         foreach ($request->role as $item) {
             RoleUser::create([
                 'id_user' => $user->id,
-                'id_role' => (int)$item
+                'id_sso_aplikasi' => (int)$item
             ]);
         }
         return redirect()->route('manajemen-user.index')->with('messageberhasil', 'Data Pengguna Berhasil ditambahkan');
