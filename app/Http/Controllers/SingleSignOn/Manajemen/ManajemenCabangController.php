@@ -69,7 +69,7 @@ class ManajemenCabangController extends Controller
         foreach ($request->role as $item) {
             RoleUser::create([
                 'id_user' => $user->id,
-                'id_role' => (int)$item
+                'id_sso_aplikasi' => (int)$item
             ]);
         }
 
