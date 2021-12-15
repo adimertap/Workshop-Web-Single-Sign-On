@@ -102,9 +102,9 @@
 <div class="container mt-n15">
     <div class="alert alert-primary alert-dismissible fade show" role="alert">
         <h4 class="alert-heading">Halo, {{ Auth::user()->pegawai->nama_pegawai }}</h4>
-        Seluruh panduan penggunaan sistem dapat diakses pada link <u class="alert-link"
+        Seluruh panduan penggunaan sistem dapat diakses pada link <a class="alert-link"
             href="https://drive.google.com/file/d/1Dq69B9a7PQHW_RdcTqiTuNE1kt_5BuqZ/view?usp=sharing"
-            target="_blank">User Guide</u>
+            target="_blank">User Guide</a>
     </div>
 </div>
 
