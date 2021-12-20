@@ -31,4 +31,5 @@ class Cabang extends Model
     {
         return $query->where('id_bengkel', '=', Auth::user()->id_bengkel);
     }
+    
 }

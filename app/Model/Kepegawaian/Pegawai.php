@@ -5,6 +5,7 @@ namespace App\Model\Kepegawaian;
 use App\Model\Payroll\Detailtunjangan;
 use App\Model\Payroll\Mastergajipokok;
 use App\Model\Payroll\Mastertunjangan;
+use App\Model\SingleSignOn\Cabang;
 use App\Scopes\OwnershipScope;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -36,7 +37,8 @@ class Pegawai extends Model
         'agama',
         'pendidikan_terakhir',
         'tanggal_masuk',
-        'id_bengkel'
+        'id_bengkel',
+        'id_cabang'
     ];
 
     protected $hidden = [];
@@ -46,6 +48,11 @@ class Pegawai extends Model
     public function jabatan()
     {
         return $this->belongsTo(Jabatan::class, 'id_jabatan', 'id_jabatan');
+    }
+
+    public function cabang()
+    {
+        return $this->belongsTo(Cabang::class, 'id_cabang', 'id_cabang');
     }
 
     public function Detailtunjangan()
