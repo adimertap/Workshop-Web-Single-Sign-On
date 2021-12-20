@@ -213,7 +213,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
+        @if (Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner' || Auth::user()->pegawai->jabatan->nama_jabatan == 'Kepala Cabang')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 2-->
             <a class="card lift h-100" href="https://employee.bengkel-kuy.com/kepegawaian/masterdatapegawai">
@@ -231,7 +231,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner' || Auth::user()->pegawai->jabatan->nama_jabatan == 'Kepala Cabang')
+        @if (Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="https://payroll.bengkel-kuy.com/payroll/gaji-pegawai">
