@@ -33,7 +33,7 @@
                             <span class="font-weight-500"></span>
                             {{ Auth::user()->bengkel->nama_bengkel}}
 
-                            {{ Auth::user()->pegawai->nama_pegawai }}
+                            {{ Auth::user()->pegawai->cabang->nama_cabang }}
                 
                             {{ Auth::user()->bengkel->cabang->nama_cabang }}
                             
