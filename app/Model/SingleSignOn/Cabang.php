@@ -16,8 +16,6 @@ class Cabang extends Model
     protected $fillable = [
         'nama_cabang',
         'id_bengkel',
-        'latitude',
-        'longitude',
         'alamat_cabang',
         'id_desa',
     ];
