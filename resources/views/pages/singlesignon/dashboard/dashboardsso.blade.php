@@ -33,12 +33,12 @@
                             <span class="font-weight-500"></span>
                             {{ Auth::user()->bengkel->nama_bengkel}}
 
+                            @if (Auth::user()->pegawai->cabang != null)
                             {{ Auth::user()->pegawai->cabang->nama_cabang }}
-                
-                            {{ Auth::user()->bengkel->cabang->nama_cabang }}
-                            
+                            @else
 
-                          
+                            @endif
+
                             <hr>
                             </hr>
                         </div>
