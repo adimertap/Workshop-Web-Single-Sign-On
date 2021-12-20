@@ -44,23 +44,6 @@ class ManajemenCabangController extends Controller
         $data = $request->all();
         $data['role'] = null;
 
-       
-
-        $user = new User;
-        $user->username = $request->username;
-        $user->password = bcrypt($request->password);
-        $user->email = $request->email;
-        $user->id_bengkel =  Auth::user()->id_bengkel;
-        $user->id_pegawai = $pegawai->id_pegawai;
-        $user->save();
-
-        foreach ($request->role as $item) {
-            RoleUser::create([
-                'id_user' => $user->id,
-                'id_sso_aplikasi' => (int)$item
-            ]);
-        }
-
         $cabang = new Cabang;
         $cabang->nama_cabang = $request->nama_cabang;
         $cabang->alamat_cabang = $request->alamat_cabang;
@@ -82,6 +65,21 @@ class ManajemenCabangController extends Controller
         $pegawai->id_ptkp = '1';
         $pegawai->id_cabang = $cabang->id_cabang;
         $pegawai->save();
+
+        $user = new User;
+        $user->username = $request->username;
+        $user->password = bcrypt($request->password);
+        $user->email = $request->email;
+        $user->id_bengkel =  Auth::user()->id_bengkel;
+        $user->id_pegawai = $pegawai->id_pegawai;
+        $user->save();
+
+        foreach ($request->role as $item) {
+            RoleUser::create([
+                'id_user' => $user->id,
+                'id_sso_aplikasi' => (int)$item
+            ]);
+        }
 
         return redirect()->route('manajemen-cabang.index')->with('messageberhasil', 'Data Cabang Berhasil ditambahkan');
     }
