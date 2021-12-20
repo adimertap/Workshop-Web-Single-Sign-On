@@ -32,7 +32,13 @@
                             Bengkel
                             <span class="font-weight-500"></span>
                             {{ Auth::user()->bengkel->nama_bengkel}}
+                            @if (Auth::user()->bengkel->cabang == '')
+                                
+                            @else
                             {{ Auth::user()->bengkel->cabang->nama_cabang }}
+                            @endif
+
+                          
                             <hr>
                             </hr>
                         </div>
