@@ -47,6 +47,6 @@ class Bengkel extends Model
 
     public function cabang()
     {
-        return $this->hasMany(Cabang::class, 'id_bengkel', 'id_bengkel');
+        return $this->belongsTo(Cabang::class, 'id_bengkel', 'id_bengkel');
     }
 }
