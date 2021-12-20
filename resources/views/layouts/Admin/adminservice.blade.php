@@ -115,7 +115,7 @@
 
                         {{-- Service Advisor --}}
                         {{-- Service Advisor --}}
-                        @if (Auth::user()->hasRole('Aplikasi Service Advisor') || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Service Advisor') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
                         <div class="sidenav-menu-heading">Service Advisor</div>
                         <a class="nav-link collapsed" href="{{route('penerimaanservice.index')}}" aria-expanded="false"
                             aria-controls="collapseUtilities">
@@ -133,7 +133,7 @@
                     </a>
                         @endif
 
-                        @if (Auth::user()->hasRole('Aplikasi Service Instructor') || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Service Instructor') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
                         {{-- FRONTOFFICE SYSTEM --}}
                         <div class="sidenav-menu-heading">Service System</div>
 

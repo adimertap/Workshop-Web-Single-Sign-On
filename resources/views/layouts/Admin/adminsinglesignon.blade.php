@@ -109,7 +109,7 @@
 
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
-                        @if (Auth::user()->role == 'owner')
+                        @if (Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
                         <div class="sidenav-menu-heading">Manajemen</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">

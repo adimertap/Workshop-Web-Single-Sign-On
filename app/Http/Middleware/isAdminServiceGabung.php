@@ -16,7 +16,7 @@ class isAdminServiceGabung
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() && Auth::user()->hasRole('Aplikasi Service Advisor') || Auth::user()->hasRole('Aplikasi Service Instructor') || Auth::user()->role == 'owner') {
+        if (Auth::user() && Auth::user()->hasRole('Aplikasi Service Advisor') || Auth::user()->hasRole('Aplikasi Service Instructor') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner') {
             return $next($request);
         }
         abort(403);

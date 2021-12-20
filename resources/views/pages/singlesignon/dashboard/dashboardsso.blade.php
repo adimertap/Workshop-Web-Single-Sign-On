@@ -117,7 +117,7 @@
 
 <div class="container mt-n4">
     <div class="row">
-        @if(Auth::user()->hasRole('Aplikasi Front Office') || Auth::user()->role == 'owner')
+        @if(Auth::user()->hasRole('Aplikasi Front Office') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
             <a class="card lift h-100" href="https://front-office.bengkel-kuy.com/frontoffice">
@@ -136,7 +136,7 @@
         @endif
         @if (Auth::user()->hasRole('Aplikasi Service Advisor') || Auth::user()->hasRole('Aplikasi Service Instructor')
         ||
-        Auth::user()->role == 'owner')
+        Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 2-->
             <a class="card lift h-100" href="https://service.bengkel-kuy.com/service">
@@ -154,7 +154,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->hasRole('Aplikasi Point of Sales') || Auth::user()->role == 'owner')
+        @if (Auth::user()->hasRole('Aplikasi Point of Sales') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="https://pos.bengkel-kuy.com/pos">
@@ -172,7 +172,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->hasRole('Aplikasi Marketplace') || Auth::user()->role == 'owner')
+        @if (Auth::user()->hasRole('Aplikasi Marketplace') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="https://marketplace.bengkel-kuy.com/AdminMarketplace">
@@ -195,8 +195,7 @@
 <div class="container">
     <div class="row">
         @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->hasRole('Aplikasi Purchasing') ||
-        Auth::user()->role ==
-        'owner' || Auth::user()->hasRole('Aplikasi Accounting'))
+        Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner' || Auth::user()->hasRole('Aplikasi Accounting'))
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
             <a class="card lift h-100" href="https://inventory.bengkel-kuy.com/inventory">
@@ -214,7 +213,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->role == 'owner')
+        @if (Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner' || Auth::user()->pegawai->jabatan->nama_jabatan == 'Kepala Cabang')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 2-->
             <a class="card lift h-100" href="https://employee.bengkel-kuy.com/kepegawaian/masterdatapegawai">
@@ -232,7 +231,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->role == 'owner')
+        @if (Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="https://payroll.bengkel-kuy.com/payroll/gaji-pegawai">
@@ -251,7 +250,7 @@
         @endif
 
         @if (Auth::user()->hasRole('Aplikasi Accounting') ||
-        Auth::user()->role == 'owner')
+        Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="https://accounting.bengkel-kuy.com/accounting">
