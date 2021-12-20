@@ -105,7 +105,7 @@
 
                         {{-- DASHBOARD --}}
                         {{-- Dashboard Side Bar--}}
-                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
                         <div class="sidenav-menu-heading">Dashboard</div>
                         <a class="nav-link" href="{{ route('dashboardinventory')}}">
                             <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
@@ -113,7 +113,7 @@
                         </a>
                         @endif
 
-                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
                         {{-- MASTER DATA --}}
                         {{-- Master Data Side Bar --}}
                         <div class="sidenav-menu-heading">Master Data</div>
@@ -155,7 +155,7 @@
                         </div>
                         @endif
 
-                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
                         <div class="sidenav-menu-heading">Inventory System</div>
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
@@ -181,7 +181,7 @@
                         </div>
                         @endif
 
-                        @if (Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
                         <div class="sidenav-menu-heading">Purchasing</div>
                             <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                                 data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -200,7 +200,7 @@
                             </div>
                         @endif
 
-                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                             data-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
                             <div class="nav-link-icon"><i class="fas fa-box-open"></i></div>
@@ -221,7 +221,7 @@
                         </div>
                         @endif
 
-                        @if (Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->role == 'owner')
+                        @if (Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
                         {{-- MANAJEMEN ASET --}}
                         {{-- Manajemen Aset Side Bar --}}
                         <div class="sidenav-menu-heading">Approval</div>
@@ -236,7 +236,7 @@
                         @endif
                         <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
-                                @if (Auth::user()->role == 'owner')
+                                @if (Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
                                 <a class="nav-link" href="{{ route('approval-po.index') }}">
                                     Purchase Order
                                 </a>
@@ -244,7 +244,7 @@
                                     Stock Opname
                                 </a>
                                 @endif
-                                @if (Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->role == 'owner')
+                                @if (Auth::user()->hasRole('Aplikasi Accounting') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
                                 <a class="nav-link " href="{{ route('approval-po-ap.index') }}">
                                     Purchase Order AP
                                 </a>

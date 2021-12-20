@@ -16,7 +16,7 @@ class isAdminPurchasing
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() && Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->role == 'owner') {
+        if (Auth::user() && Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner') {
             return $next($request);
         }
         abort(403);

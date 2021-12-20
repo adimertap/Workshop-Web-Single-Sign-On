@@ -16,7 +16,7 @@ class isAdminServiceAdvisor
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() && Auth::user()->hasRole('Aplikasi Service Advisor') || Auth::user()->role == 'owner' || Auth::user()->role == 'admin_service_instructor') {
+        if (Auth::user() && Auth::user()->hasRole('Aplikasi Service Advisor') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner' || Auth::user()->role == 'admin_service_instructor') {
             return $next($request);
         }
         abort(403);
