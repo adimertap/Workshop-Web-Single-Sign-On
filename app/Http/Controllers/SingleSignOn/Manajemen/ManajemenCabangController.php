@@ -44,19 +44,7 @@ class ManajemenCabangController extends Controller
         $data = $request->all();
         $data['role'] = null;
 
-        $pegawai = new Pegawai;
-        $pegawai->id_bengkel =  Auth::user()->id_bengkel;
-        $pegawai->nama_pegawai = $request->nama_pegawai;
-        $pegawai->nama_panggilan = $request->username;
-        $pegawai->tempat_lahir = $request->tempat_lahir;
-        $pegawai->tanggal_lahir = $request->tanggal_lahir;
-        $pegawai->nik_pegawai = $request->nik_pegawai;
-        $pegawai->npwp_pegawai = $request->npwp_pegawai;
-        $pegawai->npwp_pegawai = $request->no_telp;
-        $pegawai->jenis_kelamin = $request->jenis_kelamin;
-        $pegawai->id_jabatan = '38';
-        $pegawai->id_ptkp = '1';
-        $pegawai->save();
+       
 
         $user = new User;
         $user->username = $request->username;
@@ -79,6 +67,21 @@ class ManajemenCabangController extends Controller
         $cabang->id_desa = $request->id_desa;
         $cabang->id_bengkel =  Auth::user()->id_bengkel;
         $cabang->save();
+
+        $pegawai = new Pegawai;
+        $pegawai->id_bengkel =  Auth::user()->id_bengkel;
+        $pegawai->nama_pegawai = $request->nama_pegawai;
+        $pegawai->nama_panggilan = $request->username;
+        $pegawai->tempat_lahir = $request->tempat_lahir;
+        $pegawai->tanggal_lahir = $request->tanggal_lahir;
+        $pegawai->nik_pegawai = $request->nik_pegawai;
+        $pegawai->npwp_pegawai = $request->npwp_pegawai;
+        $pegawai->npwp_pegawai = $request->no_telp;
+        $pegawai->jenis_kelamin = $request->jenis_kelamin;
+        $pegawai->id_jabatan = '38';
+        $pegawai->id_ptkp = '1';
+        $pegawai->id_cabang = $cabang->id_cabang;
+        $pegawai->save();
 
         return redirect()->route('manajemen-cabang.index')->with('messageberhasil', 'Data Cabang Berhasil ditambahkan');
     }
