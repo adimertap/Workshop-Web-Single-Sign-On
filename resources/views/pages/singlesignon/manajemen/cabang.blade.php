@@ -87,7 +87,7 @@
                                                     type="button" style="color: white">
                                                     Akses Cabang
                                                 </a>
-                                                <a href="" class="btn btn-danger px-2 btn-datatable" type="button"
+                                                <a href="" class="btn btn-danger px-5 btn-datatable" type="button"
                                                     data-toggle="modal" data-target="#Modalhapus-{{ $item->id_cabang }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
