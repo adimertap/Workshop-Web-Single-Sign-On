@@ -82,6 +82,11 @@
                                                     class="btn btn-primary btn-datatable" type="button">
                                                     <i class="fas fa-edit"></i>
                                                 </a> --}}
+                                                <a data-target=""
+                                                    data-toggle="modal" class="btn btn-success btn-sm mt-1 px-4"
+                                                    type="button" style="color: white">
+                                                    Akses Cabang
+                                                </a>
                                                 <a href="" class="btn btn-danger btn-datatable" type="button"
                                                     data-toggle="modal" data-target="#Modalhapus-{{ $item->id_cabang }}">
                                                     <i class="fas fa-trash"></i>
