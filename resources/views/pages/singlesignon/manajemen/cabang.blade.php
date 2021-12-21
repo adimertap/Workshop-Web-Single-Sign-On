@@ -83,7 +83,7 @@
                                                     <i class="fas fa-edit"></i>
                                                 </a> --}}
                                                 <a data-target=""
-                                                    data-toggle="modal" class="btn btn-success btn-sm mt-1 px-4"
+                                                    data-toggle="modal" class="btn btn-success btn-sm mt-1 px-1"
                                                     type="button" style="color: white">
                                                     Akses Cabang
                                                 </a>
