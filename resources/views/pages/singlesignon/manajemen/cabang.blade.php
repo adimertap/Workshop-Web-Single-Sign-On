@@ -78,7 +78,11 @@
                                             <td>{{ $item->nama_cabang }}</td>
                                             <td>{{ $item->alamat_cabang }}</td>
                                             <td>
-                                                
+                                                <a href="" class="btn-xs btn-success" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modalkonfirmasi-{{ $item->id_cabang }}">
+                                                    Akses Cabang
+                                                </a>
                                                 <a href="{{ route('manajemen-cabang.update', $item->id_cabang) }}" class="btn-xs btn-success py-3" type="button">
                                                     Akses Cabang
                                                 </a>
@@ -104,6 +108,33 @@
             </div>
         </div>
     </div>
+
+    @forelse ($cabang as $item)
+<div class="modal fade" id="Modalkonfirmasi-{{ $item->id_cabang }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success-soft">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Akses Cabang</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('set-cabang', $item->id_cabang) }}" method="POST" class="d-inline">
+                @csrf
+                <div class="modal-body">
+                   
+                    <div class="form-group">Apakah Anda Yakin Menuju {{ $item->nama_cabang }}?</div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Ya! Yakin</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+@endforelse
 
     {{-- MODAL DELETE
     @forelse ($cabangs as $item)

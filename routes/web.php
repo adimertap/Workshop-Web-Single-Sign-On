@@ -65,6 +65,8 @@ Route::group(
                 Route::resource('manajemen-user', 'ManajemenUserController');
                 Route::resource('manajemen-akses', 'ManajemenHakAksesController');
                 Route::resource('manajemen-cabang', 'ManajemenCabangController');
+                Route::post('Cabang/{id_cabang}/set-cabang', 'ManajemenCabangController@setcabang')
+                    ->name('set-cabang');
             });
     }
 );
