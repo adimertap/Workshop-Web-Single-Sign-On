@@ -78,15 +78,10 @@
                                             <td>{{ $item->nama_cabang }}</td>
                                             <td>{{ $item->alamat_cabang }}</td>
                                             <td>
-                                                <form action="{{ route('manajemen-cabang.update', $item->id_cabang) }}" method="POST"
-                                                    enctype="multipart/form-data">
-                                                    @method('PUT')
-                                                    @csrf
-                                                    <a href="{{ route('manajemen-cabang.update', $item->id_cabang) }}" class="btn-xs btn-success py-3" type="button">
-                                                        Akses Cabang
-                                                    </a>
-                                                </form>
                                                 
+                                                <a href="{{ route('manajemen-cabang.show', $item->id_cabang) }}" class="btn-xs btn-success py-3" type="button">
+                                                    Akses Cabang
+                                                </a>
                                                 <a href="" class="btn btn-danger py-3 btn-datatable" type="button"
                                                     data-toggle="modal" data-target="#Modalhapus-{{ $item->id_cabang }}">
                                                     <i class="fas fa-trash"></i>

@@ -83,7 +83,7 @@ class ManajemenCabangController extends Controller
         return redirect()->route('manajemen-cabang.index')->with('messageberhasil', 'Data Cabang Berhasil ditambahkan');
     }
 
-    public function update($id_cabang){
+    public function show($id_cabang){
 
         $pegawai = Pegawai::where('id_pegawai','=', Auth::user()->pegawai->id_pegawai)->get();
         $pegawai->id_cabang = $id_cabang;
