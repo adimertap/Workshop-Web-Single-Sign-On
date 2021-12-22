@@ -149,7 +149,7 @@
                         </a>
                         <hr>
                         @if (Auth::user()->pegawai->cabang != null)
-                        <a class="nav-link"  data-toggle="modal" href="" data-target="#Modalkonfirmasi-{{ $item->id_cabang }}">
+                        <a class="nav-link"  data-toggle="modal" href="" data-target="#Modalkonfirmasi-{{ Auth::user()->pegawai->cabang->id_cabang }}">
                             <div class="nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                             Kembali ke Pusat
                         </a>
