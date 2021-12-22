@@ -98,7 +98,7 @@ class ManajemenCabangController extends Controller
     }
 
     public function setcabang($id){
-        $pegawai = Pegawai::where('id_pegawai','=', Auth::user()->pegawai->id_pegawai)->get();
+        $pegawai = Pegawai::where('id_pegawai','=', Auth::user()->pegawai->id_pegawai)->first();
         $pegawai->id_cabang = $id;
 
         $pegawai->save();
