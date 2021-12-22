@@ -149,7 +149,7 @@
                         </a>
                         <hr>
                         @if (Auth::user()->pegawai->cabang != null)
-                        <a class="nav-link"  data-toggle="modal" href="" data-target="#Modalkonfirmasi-{{ Auth::user()->pegawai->cabang->id_cabang }}">
+                        <a class="nav-link"  data-toggle="modal" href="" data-target="#Modalkonfirmasi">
                             <div class="nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                             Kembali ke Pusat
                         </a>
@@ -170,8 +170,8 @@
             </nav>
         </div>
 
-        @forelse ($cabang as $item)
-        <div class="modal fade" id="Modalkonfirmasi-{{ $item->id_cabang }}" tabindex="-1" role="dialog"
+       
+        <div class="modal fade" id="Modalkonfirmasi" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -180,7 +180,7 @@
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
-                    <form action="{{ route('set-pusat', $item->id_cabang) }}" method="POST" class="d-inline">
+                    <form action="{{ route('set-pusat') }}" method="POST" class="d-inline">
                         @csrf
                         <div class="modal-body">
                            
@@ -194,8 +194,7 @@
                 </div>
             </div>
         </div>
-        @empty
-        @endforelse
+        
 
 
         <div id="layoutSidenav_content">
