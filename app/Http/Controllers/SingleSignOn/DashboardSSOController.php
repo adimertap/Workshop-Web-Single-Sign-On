@@ -99,6 +99,7 @@ class DashboardSSOController extends Controller
     public function setpusat(){
         $pegawai = Pegawai::where('id_cabang','=', Auth::user()->pegawai->cabang->id_cabang)->first();
         $pegawai->id_cabang = null;
+        $pegawai->status_cabang = 'Tidak Pegawai Cabang';
 
         $pegawai->save();
         return redirect()->route('dashboardsso');
