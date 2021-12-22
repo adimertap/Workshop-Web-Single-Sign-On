@@ -91,7 +91,7 @@ class ManajemenCabangController extends Controller
         $pegawai->save();
         return redirect()->route('dashboardsso');
     }   
-    
+
     public function show($id){
 
     }

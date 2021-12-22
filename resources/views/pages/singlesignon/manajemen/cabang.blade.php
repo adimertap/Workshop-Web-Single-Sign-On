@@ -79,7 +79,7 @@
                                             <td>{{ $item->alamat_cabang }}</td>
                                             <td>
                                                 
-                                                <a href="{{ route('manajemen-cabang.show', $item->id_cabang) }}" class="btn-xs btn-success py-3" type="button">
+                                                <a href="{{ route('manajemen-cabang.update', $item->id_cabang) }}" class="btn-xs btn-success py-3" type="button">
                                                     Akses Cabang
                                                 </a>
                                                 <a href="" class="btn btn-danger py-3 btn-datatable" type="button"
