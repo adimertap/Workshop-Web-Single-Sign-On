@@ -97,7 +97,7 @@ class DashboardSSOController extends Controller
     }
 
     public function setpusat($id){
-        $pegawai = Pegawai::where('id_cabang','=', Auth::user()->pegawai->cabang->id_cabang)->first();
+        $pegawai = Pegawai::where('id_cabang','=', $id)->first();
         $pegawai->id_cabang = null;
 
         $pegawai->save();
