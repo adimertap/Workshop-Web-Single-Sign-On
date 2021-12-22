@@ -82,9 +82,7 @@
                                                     class="btn btn-primary btn-datatable" type="button">
                                                     <i class="fas fa-edit"></i>
                                                 </a> --}}
-                                                <a data-target=""
-                                                    data-toggle="modal" class="btn btn-success btn-sm px-1"
-                                                    type="button" style="color: white">
+                                                <a href="{{ route('manajemen-cabang.update', $item->id_cabang) }}" class="btn-xs btn-success py-3" type="button">
                                                     Akses Cabang
                                                 </a>
                                                 <a href="" class="btn btn-danger py-3 btn-datatable" type="button"

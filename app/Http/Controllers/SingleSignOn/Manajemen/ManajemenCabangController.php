@@ -33,7 +33,6 @@ class ManajemenCabangController extends Controller
         $pegawai = Pegawai::all();
         $users = User::all();
         $role = Role::all();
-
         $provinsi = ProvinsiBaru::all();
 
         return view('pages.singlesignon.manajemen.create-cabang', compact('pegawai', 'users', 'role', 'provinsi'));
@@ -84,6 +83,15 @@ class ManajemenCabangController extends Controller
         return redirect()->route('manajemen-cabang.index')->with('messageberhasil', 'Data Cabang Berhasil ditambahkan');
     }
 
+    public function update($id_cabang){
+
+        $pegawai = Pegawai::where('id_pegawai','=', Auth::user()->pegawai->id_pegawai)->get();
+        $pegawai->id_cabang = $id_cabang;
+
+        $pegawai->update();
+        return redirect()->route('dashboardsso');
+    }   
+
     public function kabupaten_baru($id)
     {
         $kabupaten = KabupatenBaru::where('id_provinsi', '=', $id)->pluck('name', 'id_kabupaten');
@@ -105,7 +113,6 @@ class ManajemenCabangController extends Controller
     public function destroy($id_cabang)
     {
         $cabang = Cabang::findOrFail($id_cabang);
-
         $cabang->delete();
 
         return redirect()->back()->with('messagehapus', 'Data Cabang Berhasil dihapus');

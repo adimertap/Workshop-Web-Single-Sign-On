@@ -38,7 +38,6 @@
                             @else
 
                             @endif
-
                             <hr>
                             </hr>
                         </div>
