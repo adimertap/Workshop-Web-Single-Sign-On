@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SingleSignOn;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Cabang;
 use App\Model\SingleSignOn\PaymentBengkel;
 use Illuminate\Support\Facades\Auth;
