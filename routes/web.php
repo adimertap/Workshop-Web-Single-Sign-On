@@ -55,7 +55,7 @@ Route::group(
                     ->name('dashboardsso');
                 Route::resource('profile', 'ProfileController');
                 Route::get('/midtrans', 'PaymentBengkelController@payment')->name('payment');
-                Route::post('/{id_cabang}/set-pusat', 'DashboardSSOController@setpusat')
+                Route::post('/set-pusat', 'DashboardSSOController@setpusat')
                     ->name('set-pusat');
             });
 
