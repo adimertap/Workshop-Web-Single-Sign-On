@@ -83,7 +83,7 @@ class ManajemenCabangController extends Controller
         return redirect()->route('manajemen-cabang.index')->with('messageberhasil', 'Data Cabang Berhasil ditambahkan');
     }
 
-    public function show($id_cabang){
+    public function update($id_cabang){
 
         $pegawai = Pegawai::where('id_pegawai','=', Auth::user()->pegawai->id_pegawai)->get();
         $pegawai->id_cabang = $id_cabang;
@@ -91,6 +91,10 @@ class ManajemenCabangController extends Controller
         $pegawai->save();
         return redirect()->route('dashboardsso');
     }   
+    
+    public function show($id){
+
+    }
 
     public function kabupaten_baru($id)
     {
