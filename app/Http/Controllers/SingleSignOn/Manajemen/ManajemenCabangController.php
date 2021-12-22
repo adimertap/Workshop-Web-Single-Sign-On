@@ -87,6 +87,7 @@ class ManajemenCabangController extends Controller
 
         $pegawai = Pegawai::where('id_pegawai','=', Auth::user()->pegawai->id_pegawai)->get();
         $pegawai->id_cabang = $id_cabang;
+        return $pegawai;
 
         $pegawai->update();
         return redirect()->route('dashboardsso');
