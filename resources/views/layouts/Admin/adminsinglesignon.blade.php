@@ -147,6 +147,15 @@
                             <div class="nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                             Logout
                         </a>
+                        <hr>
+                        @if (Auth::user()->pegawai->cabang != null)
+                        <a class="nav-link"  data-toggle="modal" href="" data-target="#Modalkonfirmasi-{{ $item->id_cabang }}">
+                            <div class="nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                            Kembali ke Pusat
+                        </a>
+                        @else
+
+                        @endif
                     </div>
                 </div>
 
@@ -160,6 +169,33 @@
                 </div>
             </nav>
         </div>
+
+        @forelse ($cabang as $item)
+        <div class="modal fade" id="Modalkonfirmasi-{{ $item->id_cabang }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-success-soft">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Akses Cabang</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <form action="{{ route('set-pusat', $item->id_cabang) }}" method="POST" class="d-inline">
+                        @csrf
+                        <div class="modal-body">
+                           
+                            <div class="form-group">Apakah Anda Yakin Menuju Pusat?</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                            <button class="btn btn-success" type="submit">Ya! Yakin</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @empty
+        @endforelse
 
 
         <div id="layoutSidenav_content">

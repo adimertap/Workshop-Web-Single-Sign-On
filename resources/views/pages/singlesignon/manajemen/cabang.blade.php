@@ -83,9 +83,6 @@
                                                     data-target="#Modalkonfirmasi-{{ $item->id_cabang }}">
                                                     Akses Cabang
                                                 </a>
-                                                <a href="{{ route('manajemen-cabang.update', $item->id_cabang) }}" class="btn-xs btn-success py-3" type="button">
-                                                    Akses Cabang
-                                                </a>
                                                 <a href="" class="btn btn-danger py-3 btn-datatable" type="button"
                                                     data-toggle="modal" data-target="#Modalhapus-{{ $item->id_cabang }}">
                                                     <i class="fas fa-trash"></i>

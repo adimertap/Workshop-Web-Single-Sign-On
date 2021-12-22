@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SingleSignOn;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\SingleSignOn\Cabang;
 use App\Model\SingleSignOn\PaymentBengkel;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,11 +21,12 @@ class DashboardSSOController extends Controller
 
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal_tahun = Carbon::now()->format('j F Y');
+        $cabang = Cabang::where('id_bengkel', Auth::user()->bengkel->id_bengkel)->get();
 
         $payment_bengkel = PaymentBengkel::where('id_bengkel', Auth::user()->bengkel->id_bengkel)->orderBy('id_payment_bengkel', 'DESC')->first();
         
 
-        return view('pages.singlesignon.dashboard.dashboardsso', compact('today', 'tanggal_tahun', 'payment_bengkel'));
+        return view('pages.singlesignon.dashboard.dashboardsso', compact('today', 'tanggal_tahun', 'payment_bengkel','cabang'));
     }
 
     /**
@@ -91,5 +93,13 @@ class DashboardSSOController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function setpusat($id){
+        $pegawai = Pegawai::where('id_cabang','=', Auth::user()->pegawai->cabang->id_cabang)->first();
+        $pegawai->id_cabang = null;
+
+        $pegawai->save();
+        return redirect()->route('dashboardsso');
     }
 }
