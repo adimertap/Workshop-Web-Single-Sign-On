@@ -12,7 +12,8 @@
                             <div class="page-header-icon"><i data-feather="database"></i></div>
                             Manajemen Data Cabang
                         </h1>
-                        <div class="page-header-subtitle">List data cabang Bengkel {{ Auth::user()->bengkel->nama_bengkel }} yang terdaftar</div>
+                        <div class="page-header-subtitle">List data cabang Bengkel
+                            {{ Auth::user()->bengkel->nama_bengkel }} yang terdaftar</div>
                     </div>
                 </div>
             </div>
@@ -78,13 +79,16 @@
                                             <td>{{ $item->nama_cabang }}</td>
                                             <td>{{ $item->alamat_cabang }}</td>
                                             <td>
-                                                <a href="" class="btn-xs btn-success" type="button"
-                                                    data-toggle="modal"
+                                                @if (Auth::user()->pegawai->cabang == null)
+                                                <a href="" class="btn-xs btn-success" type="button" data-toggle="modal"
                                                     data-target="#Modalkonfirmasi-{{ $item->id_cabang }}">
                                                     Akses Cabang
                                                 </a>
+                                                @endif
+
                                                 <a href="" class="btn btn-danger py-3 btn-datatable" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_cabang }}">
+                                                    data-toggle="modal"
+                                                    data-target="#Modalhapus-{{ $item->id_cabang }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -107,56 +111,56 @@
     </div>
 
     @forelse ($cabang as $item)
-<div class="modal fade" id="Modalkonfirmasi-{{ $item->id_cabang }}" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-success-soft">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Akses Cabang</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <form action="{{ route('set-cabang', $item->id_cabang) }}" method="POST" class="d-inline">
-                @csrf
-                <div class="modal-body">
-                   
-                    <div class="form-group">Apakah Anda Yakin Menuju {{ $item->nama_cabang }}?</div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="submit">Ya! Yakin</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-@empty
-@endforelse
-
-    {{-- MODAL DELETE
-    @forelse ($cabangs as $item)
-    <div class="modal fade" id="Modalhapus-{{ $item->id_cabang }}" tabindex="-1" role="dialog"
+    <div class="modal fade" id="Modalkonfirmasi-{{ $item->id_cabang }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                <div class="modal-header bg-success-soft">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Akses Cabang</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('manajemen-cabang.destroy', $item->id_cabang) }}" method="POST" class="d-inline">
+                <form action="{{ route('set-cabang', $item->id_cabang) }}" method="POST" class="d-inline">
                     @csrf
-                    @method('delete')
-                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Pengguna dengan Cabang
-                        {{ $item->nama_cabang }}?
+                    <div class="modal-body">
+
+                        <div class="form-group">Apakah Anda Yakin Menuju {{ $item->nama_cabang }}?</div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                        <button class="btn btn-success" type="submit">Ya! Yakin</button>
                     </div>
                 </form>
             </div>
         </div>
+    </div>
+    @empty
+    @endforelse
+
+    {{-- MODAL DELETE
+    @forelse ($cabangs as $item)
+    <div class="modal fade" id="Modalhapus-{{ $item->id_cabang }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('manajemen-cabang.destroy', $item->id_cabang) }}" method="POST" class="d-inline">
+                @csrf
+                @method('delete')
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pengguna dengan Cabang
+                    {{ $item->nama_cabang }}?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
     </div>
 
     @empty
