@@ -86,7 +86,7 @@
                                                 </a>
                                                 @endif
 
-                                                <a href="" class="btn btn-danger py-3 btn-datatable" type="button"
+                                                <a href="" class="btn btn-danger py-2 btn-datatable" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modalhapus-{{ $item->id_cabang }}">
                                                     <i class="fas fa-trash"></i>
