@@ -80,13 +80,13 @@
                                             <td>{{ $item->alamat_cabang }}</td>
                                             <td>
                                                 @if (Auth::user()->pegawai->cabang == null)
-                                                <a href="" class="btn-xs btn-success" type="button" data-toggle="modal"
+                                                <a href="" class="btn-xs py-3 btn-success" type="button" data-toggle="modal"
                                                     data-target="#Modalkonfirmasi-{{ $item->id_cabang }}">
                                                     Akses Cabang
                                                 </a>
                                                 @endif
 
-                                                <a href="" class="btn btn-danger py-3 btn-datatable" type="button"
+                                                <a href="" class="btn-xs btn-danger py-3 btn-datatable" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modalhapus-{{ $item->id_cabang }}">
                                                     <i class="fas fa-trash"></i>
