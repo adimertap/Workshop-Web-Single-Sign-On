@@ -176,7 +176,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-success-soft">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Akses Cabang</h5>
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Akses Pusat</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
