@@ -148,7 +148,7 @@
                             Logout
                         </a>
                         <hr>
-                        @if (Auth::user()->pegawai->cabang != null)
+                        @if (Auth::user()->pegawai->cabang != null && Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
                         <a class="nav-link"  data-toggle="modal" href="" data-target="#Modalkonfirmasi">
                             <div class="nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                             Kembali ke Pusat
