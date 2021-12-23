@@ -277,6 +277,98 @@
 
 </script>
 
+<script>
+    $(document).ready(function () {
+            $('select[name="provinsi"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'getkabupaten/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_kabupaten"]').empty();
+                            $('select[name="id_kecamatan"]').empty();
+                            $('select[name="id_desa"]').empty();
+                            $('select[name="id_kabupaten"]').append(
+                                '<option value="" holder>Pilih Kabupaten/Kota</option>');
+                            $('select[name="id_kecamatan"]').append(
+                                '<option value="" holder>Pilih Kecamatan</option>');
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>');
+                            $.each(data, function (key, value) {
+                                $('select[name="id_kabupaten"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_kabupaten"]').empty();
+                }
+            });
+
+        });
+
+        $(document).ready(function () {
+            $('select[name="id_kabupaten"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'getkecamatan/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_kecamatan"]').empty();
+                            $('select[name="id_desa"]').empty();
+
+                            $('select[name="id_kecamatan"]').append(
+                                '<option value="" holder>Pilih Kecamatan</option>'
+                            );
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>')
+
+                            $.each(data, function (key, value) {
+                                $('select[name="id_kecamatan"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_kecamatan"]').empty();
+                }
+            });
+
+        });
+
+        $(document).ready(function () {
+            $('select[name="id_kecamatan"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'getdesa/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_desa"]').empty();
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>')
+                            $.each(data, function (key, value) {
+                                $('select[name="id_desa"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_desa"]').empty();
+                }
+            });
+
+        });
+</script>
+
 {{-- <script type="text/javascript">
     var BengkelIcon = L.icon({
         iconUrl: 'assets/bengkel.png',
