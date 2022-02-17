@@ -69,6 +69,9 @@ Route::group(
                 Route::resource('manajemen-cabang', 'ManajemenCabangController');
                 Route::post('Cabang/{id_cabang}/set-cabang', 'ManajemenCabangController@setcabang')
                     ->name('set-cabang');
+                Route::get("manajemen-cabang/getkabupaten/{id}", "ManajemenCabangController@kabupaten_baru");
+                Route::get("manajemen-cabang/getkecamatan/{id}", "ManajemenCabangController@kecamatan_baru");
+                Route::get("manajemen-cabang/getdesa/{id}", "ManajemenCabangController@desa_baru");
             });
     }
 );

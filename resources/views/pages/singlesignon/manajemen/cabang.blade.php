@@ -80,7 +80,7 @@
                                             <td>{{ $item->alamat_cabang }}</td>
                                             <td>
                                                 @if (Auth::user()->pegawai->cabang == null)
-                                                <a href="" class="btn-xs btn-success" type="button" data-toggle="modal"
+                                                <a href="" class="btn-xs py-2 btn-success" type="button" data-toggle="modal"
                                                     data-target="#Modalkonfirmasi-{{ $item->id_cabang }}">
                                                     Akses Cabang
                                                 </a>

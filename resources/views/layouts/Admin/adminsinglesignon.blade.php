@@ -33,8 +33,15 @@
         <div class="small">
             <i class="fa fa-cogs" aria-hidden="true"></i>
             Bengkel
-            <span class="font-weight-500 text-primary"></span>
+            <span class="font-weight-500 text-primary">
             {{ Auth::user()->bengkel->nama_bengkel}}
+
+            @if (Auth::user()->pegawai->cabang != null)
+            {{ Auth::user()->pegawai->cabang->nama_cabang }}
+            @else
+
+            @endif
+            </span>
         </div>
         </form>
         <ul class="navbar-nav align-items-center ml-auto">
@@ -148,8 +155,9 @@
                             Logout
                         </a>
                         <hr>
-                        @if (Auth::user()->pegawai->cabang != null)
-                        <a class="nav-link"  data-toggle="modal" href="" data-target="#Modalkonfirmasi">
+                        @if (Auth::user()->pegawai->cabang != null && Auth::user()->pegawai->jabatan->nama_jabatan ==
+                        'Owner')
+                        <a class="nav-link" data-toggle="modal" href="" data-target="#Modalkonfirmasi">
                             <div class="nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                             Kembali ke Pusat
                         </a>
@@ -170,20 +178,20 @@
             </nav>
         </div>
 
-       
+
         <div class="modal fade" id="Modalkonfirmasi" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-success-soft">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Akses Cabang</h5>
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Akses Pusat</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
                     <form action="{{ route('set-pusat') }}" method="POST" class="d-inline">
                         @csrf
                         <div class="modal-body">
-                           
+
                             <div class="form-group">Apakah Anda Yakin Menuju Pusat?</div>
                         </div>
                         <div class="modal-footer">
@@ -194,7 +202,7 @@
                 </div>
             </div>
         </div>
-        
+
 
 
         <div id="layoutSidenav_content">

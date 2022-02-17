@@ -35,7 +35,12 @@ class ManajemenCabangController extends Controller
         $role = Role::all();
         $provinsi = ProvinsiBaru::all();
 
-        return view('pages.singlesignon.manajemen.create-cabang', compact('pegawai', 'users', 'role', 'provinsi'));
+        return view('pages.singlesignon.manajemen.create-cabang', [
+            'provinsi' => $provinsi,
+            'users' => $users,
+            'role' => $role,
+            'pegawai' => $pegawai
+        ]);
     }
 
     public function store(Request $request)
@@ -83,23 +88,24 @@ class ManajemenCabangController extends Controller
         return redirect()->route('manajemen-cabang.index')->with('messageberhasil', 'Data Cabang Berhasil ditambahkan');
     }
 
-    public function update($id_cabang){
-       
-        $pegawai = Pegawai::where('id_pegawai','=', Auth::user()->pegawai->id_pegawai)->get();
+    public function update($id_cabang)
+    {
+        $pegawai = Pegawai::where('id_pegawai', '=', Auth::user()->pegawai->id_pegawai)->get();
         $pegawai->id_cabang = $id_cabang;
         $pegawai->status_cabang = 'Pegawai Cabang';
-        
+
 
         $pegawai->update();
         return redirect()->route('dashboardsso');
-    }   
-
-    public function show($id){
-
     }
 
-    public function setcabang($id){
-        $pegawai = Pegawai::where('id_pegawai','=', Auth::user()->pegawai->id_pegawai)->first();
+    public function show($id)
+    {
+    }
+
+    public function setcabang($id)
+    {
+        $pegawai = Pegawai::where('id_pegawai', '=', Auth::user()->pegawai->id_pegawai)->first();
         $pegawai->id_cabang = $id;
 
         $pegawai->save();

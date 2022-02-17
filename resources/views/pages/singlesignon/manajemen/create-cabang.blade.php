@@ -69,203 +69,190 @@
                                                 </div>
                                             </div>
 
-                                            {{-- <div class="row">
+                                            <div class="row">
                                                 <div class="form-group col-6">
                                                     <label class="small mb-1" for="provinsi">Provinsi</label>
                                                     <select class="form-control" name="provinsi">
                                                         <option value="" holder>Pilih Provinsi</option>
                                                         @foreach ($provinsi as $item)
                                                         <option value="{{ $item->id_provinsi }}">
-                                            {{ $item->name }}</option>
-                                            @endforeach
+                                                            {{ $item->name }}</option>
+                                                        @endforeach
 
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label class="small mb-1" for="kabupaten">Kabupaten/Kota</label>
-                                            <select class="form-control" name="id_kabupaten">
-                                                <option value="" holder>Pilih Kabupaten/Kota</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <label class="small mb-1" for="kabupaten">Kabupaten/Kota</label>
+                                                    <select class="form-control" name="id_kabupaten">
+                                                        <option value="" holder>Pilih Kabupaten/Kota</option>
+                                                    </select>
+                                                </div>
+                                            </div>
 
-                                    <div class="row">
-                                        <div class="form-group col-6">
-                                            <label class="small mb-1" for="kecamatan">Kecamatan</label>
-                                            <select class="form-control" name="id_kecamatan">
-                                                <option value="" holder>Pilih Kecamatan</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label class="small mb-1" for="desa">Desa</label>
-                                            <select class="form-control" name="id_desa">
-                                                <option value="" holder>Pilih Desa</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-6">
-                                            <label for="latitude">Latitude Bengkel</label><span class="mr-4 mb-3"
-                                                style="color: red">*</span>
-                                            <input id="latitude" name="latitude" type="text" class="form-control"
-                                                placeholder="Input Latitude Bengkel" name="latitude"
-                                                value="{{ old('latitude') }}" autofocus required>
-                                        </div>
-
-                                        <div class="form-group col-6">
-                                            <label for="longitude">Longitude Bengkel</label><span class="mr-4 mb-3"
-                                                style="color: red">*</span>
-                                            <input id="longitude" name="longitude" type="text" class="form-control"
-                                                placeholder="Input Longitude bengkel" name="longitude"
-                                                value="{{ old('longitude') }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <small class="text-muted">Silahkan klik peta untuk menentukan lokasi
-                                                (latitude dan longitude) bengkel</small>
-                                            <div id="mapid">
-
+                                            <div class="row">
+                                                <div class="form-group col-6">
+                                                    <label class="small mb-1" for="kecamatan">Kecamatan</label>
+                                                    <select class="form-control" name="id_kecamatan">
+                                                        <option value="" holder>Pilih Kecamatan</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <label class="small mb-1" for="desa">Desa</label>
+                                                    <select class="form-control" name="id_desa">
+                                                        <option value="" holder>Pilih Desa</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div> --}}
-                            </div>
-                        </div>
-                        <hr>
-                        <h5 class="card-title">Input Data Kepala Cabang</h5>
-                        <div class="row">
-                            <div class="form-group col-4">
-                                <label class="small mb-1" for="nama_pegawai">Nama</label><span class="mr-4 mb-3"
-                                    style="color: red">*</span>
-                                <input id="nama_pegawai" type="text" class="form-control @error('nama_pegawai') is-invalid @enderror"
-                                    name="nama_pegawai" value="{{ old('nama_pegawai') }}" required placeholder="Input Nama Pemilik"
-                                    autocomplete="nama_pegawai" autofocus required>
+                                    </div>
+                                    <hr>
+                                    <h5 class="card-title">Input Data Kepala Cabang</h5>
+                                    <div class="row">
+                                        <div class="form-group col-4">
+                                            <label class="small mb-1" for="nama_pegawai">Nama</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <input id="nama_pegawai" type="text"
+                                                class="form-control @error('nama_pegawai') is-invalid @enderror"
+                                                name="nama_pegawai" value="{{ old('nama_pegawai') }}" required
+                                                placeholder="Input Nama Pemilik" autocomplete="nama_pegawai" autofocus
+                                                required>
 
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                            <div class="form-group col-4">
-                                <label class="small mb-1" for="nik_pegawai">NIK Pemilik <small class="text-muted">*16
-                                        digit</small></label> <span class="mr-4 mb-3" style="color: red">*</span>
-                                <input id="nik_pegawai" type="text" class="form-control" placeholder="Input NIK Pemilik"
-                                    name="nik_pegawai" value="{{ old('nik_pegawai') }}" minlength="16" maxlength="16"
-                                    required>
-                            </div>
-                            <div class="form-group col-4">
-                                <label class="small mb-1" for="npwp_pegawai">NPWP Pemilik <small class="text-muted">*16
-                                        digit</small></label>
-                                <input id="npwp_pegawai" type="text" class="form-control"
-                                    placeholder="Input NPWP Pemilik" name="npwp_pegawai"
-                                    value="{{ old('npwp_pegawai') }}" minlength="16" maxlength="16" required>
-                            </div>
-                        </div>
+                                            @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label class="small mb-1" for="nik_pegawai">NIK Pemilik <small
+                                                    class="text-muted">*16
+                                                    digit</small></label> <span class="mr-4 mb-3"
+                                                style="color: red">*</span>
+                                            <input id="nik_pegawai" type="text" class="form-control"
+                                                placeholder="Input NIK Pemilik" name="nik_pegawai"
+                                                value="{{ old('nik_pegawai') }}" minlength="16" maxlength="16" required>
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label class="small mb-1" for="npwp_pegawai">NPWP Pemilik <small
+                                                    class="text-muted">*16
+                                                    digit</small></label>
+                                            <input id="npwp_pegawai" type="text" class="form-control"
+                                                placeholder="Input NPWP Pemilik" name="npwp_pegawai"
+                                                value="{{ old('npwp_pegawai') }}" minlength="16" maxlength="16"
+                                                required>
+                                        </div>
+                                    </div>
 
-                        <div class="row">
-                            <div class="form-group col-4">
-                                <label class="small mb-1 mr-1" for="jenis_kelamin">Jenis Kelamin</label>
-                                <select name="jenis_kelamin" id="jenis_kelamin" class="form-control"
-                                    value="{{ old('jenis_kelamin') }}"
-                                    class="form-control @error('jenis_kelamin') is-invalid @enderror">
-                                    <option value="{{ old('jenis_kelamin')}}"> Pilih Jenis Kelamin</option>
-                                    <option value="Laki-Laki">Laki Laki</option>
-                                    <option value="Perempuan">Perempuan</option>
-                                </select>
-                                @error('jenis_kelamin')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-                            <div class="form-group col-4">
-                                <label class="small mb-1" for="no_telp">No.Telp Pemilik</label> <span class="mr-4 mb-3"
-                                    style="color: red">*</span>
-                                <input id="no_telp" type="text" class="form-control" value="{{ old('no_telp') }}"
-                                    placeholder="Input No. Telp Pemilik" name="no_telp" required>
-                            </div>
-                            <div class="form-group col-4">
-                                <label for="alamat">Alamat</label>
-                                <input id="alamat" type="text" placeholder="Input Alamat" value="{{ old('alamat') }}"
-                                    class="form-control" name="alamat">
-                            </div>
-                        </div>
+                                    <div class="row">
+                                        <div class="form-group col-4">
+                                            <label class="small mb-1 mr-1" for="jenis_kelamin">Jenis Kelamin</label>
+                                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control"
+                                                value="{{ old('jenis_kelamin') }}"
+                                                class="form-control @error('jenis_kelamin') is-invalid @enderror">
+                                                <option value="{{ old('jenis_kelamin')}}"> Pilih Jenis Kelamin</option>
+                                                <option value="Laki-Laki">Laki Laki</option>
+                                                <option value="Perempuan">Perempuan</option>
+                                            </select>
+                                            @error('jenis_kelamin')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label class="small mb-1" for="no_telp">No.Telp Pemilik</label> <span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <input id="no_telp" type="text" class="form-control"
+                                                value="{{ old('no_telp') }}" placeholder="Input No. Telp Pemilik"
+                                                name="no_telp" required>
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label for="alamat">Alamat</label>
+                                            <input id="alamat" type="text" placeholder="Input Alamat"
+                                                value="{{ old('alamat') }}" class="form-control" name="alamat">
+                                        </div>
+                                    </div>
 
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label class="small mb-1 mr-1" for="tempat_lahir">Tempat Lahir</label>
-                                <input class="form-control" id="tempat_lahir" type="text" name="tempat_lahir"
-                                    placeholder="Input Tempat Lahir" value="{{ old('tempat_lahir') }}"
-                                    class="form-control @error('tempat_lahir') is-invalid @enderror" />
-                                @error('tempat_lahir')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-                            <div class="form-group col-6">
-                                <label class="small mb-1 mr-1" for="tanggal_lahir">Tanggal Lahir</label>
-                                <input class="form-control" id="tanggal_lahir" type="date" name="tanggal_lahir"
-                                    value="{{ old('tanggal_lahir') }}"
-                                    class="form-control @error('tanggal_lahir') is-invalid @enderror" />
-                                @error('tanggal_lahir')
-                                <div class="text-danger small mb-1">{{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label class="small mb-1 mr-1" for="username">Username</label><span class="mr-4 mb-3"
-                                    style="color: red">*</span>
-                                <input class="form-control" id="username" type="text" name="username"
-                                    placeholder="Input Username" />
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label class="small mb-1 mr-1" for="email">Email</label><span class="mr-4 mb-3"
-                                    style="color: red">*</span>
-                                <input class="form-control" id="email" type="email" name="email"
-                                    placeholder="Input Email" />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-6">
-                                <label for="password" class="d-block">Password</label>
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror"
-                                    placeholder="Input Password" name="password" required autocomplete="new-password">
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label class="small mb-1 mr-1" for="tempat_lahir">Tempat Lahir</label>
+                                            <input class="form-control" id="tempat_lahir" type="text"
+                                                name="tempat_lahir" placeholder="Input Tempat Lahir"
+                                                value="{{ old('tempat_lahir') }}"
+                                                class="form-control @error('tempat_lahir') is-invalid @enderror" />
+                                            @error('tempat_lahir')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="small mb-1 mr-1" for="tanggal_lahir">Tanggal Lahir</label>
+                                            <input class="form-control" id="tanggal_lahir" type="date"
+                                                name="tanggal_lahir" value="{{ old('tanggal_lahir') }}"
+                                                class="form-control @error('tanggal_lahir') is-invalid @enderror" />
+                                            @error('tanggal_lahir')
+                                            <div class="text-danger small mb-1">{{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1 mr-1" for="username">Username</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="username" type="text" name="username"
+                                                placeholder="Input Username" />
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="small mb-1 mr-1" for="email">Email</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="email" type="email" name="email"
+                                                placeholder="Input Email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label for="password" class="d-block">Password</label>
+                                            <input id="password" type="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                placeholder="Input Password" name="password" required
+                                                autocomplete="new-password">
 
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="password-confirm" class="d-block">Password Confirmation</label>
+                                            <input id="password-confirm" type="password" class="form-control"
+                                                placeholder="Konfirmasi Password" name="password_confirmation" required
+                                                autocomplete="new-password">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <label class="small">Pilih Aplikasi yang Tersedia!</label>
+                                        <br>
+                                        <div class="form-group ml-3">
+                                            @foreach ($role as $item)
+                                            <input type="checkbox" name="role[]" value="{{ $item->id_sso_aplikasi }}">
+                                            <label for="role[]"> {{ $item->nama_aplikasi }}</label><br>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <hr class="my-4" />
+                                    <div class="d-flex justify-content-between">
+                                        <a href="{{ route('manajemen-cabang.index') }}"
+                                            class="btn btn-light">Kembali</a>
+                                        <button class="btn btn-primary" type="Submit">Simpan</button>
+                                    </div>
                             </div>
-                            <div class="form-group col-6">
-                                <label for="password-confirm" class="d-block">Password Confirmation</label>
-                                <input id="password-confirm" type="password" class="form-control"
-                                    placeholder="Konfirmasi Password" name="password_confirmation" required
-                                    autocomplete="new-password">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <label class="small">Pilih Aplikasi yang Tersedia!</label>
-                            <br>
-                            <div class="form-group ml-3">
-                                @foreach ($role as $item)
-                                <input type="checkbox" name="role[]" value="{{ $item->id_sso_aplikasi }}">
-                                <label for="role[]"> {{ $item->nama_aplikasi }}</label><br>
-                                @endforeach
-                            </div>
-                        </div>
-                        <hr class="my-4" />
-                        <div class="d-flex justify-content-between">
-                            <a href="{{ route('manajemen-cabang.index') }}" class="btn btn-light">Kembali</a>
-                            <button class="btn btn-primary" type="Submit">Simpan</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
 </main>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 <script>
     $(document).ready(function () {
@@ -275,23 +262,115 @@
 </script>
 
 <script>
-        $(function () {
-            $("input[name='no_telp']").on('input', function (e) {
-                $(this).val($(this).val().replace(/[^0-9]/g, ''));
-            });
+    $(function () {
+        $("input[name='no_telp']").on('input', function (e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
         });
-        $(function () {
-            $("input[name='nik_pegawai']").on('input', function (e) {
-                $(this).val($(this).val().replace(/[^0-9]/g, ''));
-            });
+    });
+    $(function () {
+        $("input[name='nik_pegawai']").on('input', function (e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
         });
-        $(function () {
-            $("input[name='npwp_pegawai']").on('input', function (e) {
-                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+    });
+    $(function () {
+        $("input[name='npwp_pegawai']").on('input', function (e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+            $('select[name="provinsi"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'getkabupaten/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_kabupaten"]').empty();
+                            $('select[name="id_kecamatan"]').empty();
+                            $('select[name="id_desa"]').empty();
+                            $('select[name="id_kabupaten"]').append(
+                                '<option value="" holder>Pilih Kabupaten/Kota</option>');
+                            $('select[name="id_kecamatan"]').append(
+                                '<option value="" holder>Pilih Kecamatan</option>');
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>');
+                            $.each(data, function (key, value) {
+                                $('select[name="id_kabupaten"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_kabupaten"]').empty();
+                }
             });
+
         });
 
-    </script>
+        $(document).ready(function () {
+            $('select[name="id_kabupaten"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'getkecamatan/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_kecamatan"]').empty();
+                            $('select[name="id_desa"]').empty();
+
+                            $('select[name="id_kecamatan"]').append(
+                                '<option value="" holder>Pilih Kecamatan</option>'
+                            );
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>')
+
+                            $.each(data, function (key, value) {
+                                $('select[name="id_kecamatan"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_kecamatan"]').empty();
+                }
+            });
+
+        });
+
+        $(document).ready(function () {
+            $('select[name="id_kecamatan"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'getdesa/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_desa"]').empty();
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>')
+                            $.each(data, function (key, value) {
+                                $('select[name="id_desa"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_desa"]').empty();
+                }
+            });
+
+        });
+</script>
 
 {{-- <script type="text/javascript">
     var BengkelIcon = L.icon({
