@@ -33,7 +33,7 @@ class NewOrderService extends Notification
                 "\n*Customer* " . $notifiable->customer_bengkel->nama_customer .
                 "\n*Total Bayar* " . $notifiable->total_bayar)
 
-            ->button('Lihat Service', 'bengkel-kuy.com/frontoffice/pelayananservice');
+            ->button('Lihat Service', 'e-bengkelku.com/frontoffice/pelayananservice');
     }
 
     public function toArray($notifiable)

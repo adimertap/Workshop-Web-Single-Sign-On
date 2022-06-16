@@ -33,7 +33,7 @@ class NewOrderSparepart extends Notification
                 "\n*Customer* " . $notifiable->customer->nama_customer .
                 "\n*Total Bayar* " . $notifiable->total_bayar)
 
-            ->button('Lihat Pesanan', 'bengkel-kuy.com/frontoffice/penjualansparepart');
+            ->button('Lihat Pesanan', 'e-bengkelku.com/frontoffice/penjualansparepart');
     }
 
     public function toArray($notifiable)

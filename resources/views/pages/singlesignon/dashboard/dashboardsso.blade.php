@@ -119,7 +119,7 @@
         @if(Auth::user()->hasRole('Aplikasi Front Office') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
-            <a class="card lift h-100" href="https://front-office.bengkel-kuy.com/frontoffice">
+            <a class="card lift h-100" href="https://front-office.e-bengkelku.com/frontoffice">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
@@ -138,7 +138,7 @@
         Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 2-->
-            <a class="card lift h-100" href="https://service.bengkel-kuy.com/service">
+            <a class="card lift h-100" href="https://service.e-bengkelku.com/service">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
@@ -156,7 +156,7 @@
         @if (Auth::user()->hasRole('Aplikasi Point of Sales') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
-            <a class="card lift h-100" href="https://pos.bengkel-kuy.com/pos">
+            <a class="card lift h-100" href="https://pos.e-bengkelku.com/pos">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
@@ -174,7 +174,7 @@
         @if (Auth::user()->hasRole('Aplikasi Marketplace') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
-            <a class="card lift h-100" href="https://marketplace.bengkel-kuy.com/AdminMarketplace">
+            <a class="card lift h-100" href="https://marketplace.e-bengkelku.com/AdminMarketplace">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
@@ -197,7 +197,7 @@
         Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner' || Auth::user()->hasRole('Aplikasi Accounting'))
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
-            <a class="card lift h-100" href="https://inventory.bengkel-kuy.com/inventory">
+            <a class="card lift h-100" href="https://inventory.e-bengkelku.com/inventory">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
@@ -215,7 +215,7 @@
         @if (Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner' || Auth::user()->pegawai->jabatan->nama_jabatan == 'Kepala Cabang')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 2-->
-            <a class="card lift h-100" href="https://employee.bengkel-kuy.com/kepegawaian/masterdatapegawai">
+            <a class="card lift h-100" href="https://employee.e-bengkelku.com/kepegawaian/masterdatapegawai">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
@@ -233,7 +233,7 @@
         @if (Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
-            <a class="card lift h-100" href="https://payroll.bengkel-kuy.com/payroll/gaji-pegawai">
+            <a class="card lift h-100" href="https://payroll.e-bengkelku.com/payroll/gaji-pegawai">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
@@ -252,7 +252,7 @@
         Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
-            <a class="card lift h-100" href="https://accounting.bengkel-kuy.com/accounting">
+            <a class="card lift h-100" href="https://accounting.e-bengkelku.com/accounting">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">

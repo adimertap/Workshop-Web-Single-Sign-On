@@ -24,7 +24,7 @@
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="https://sso.bengkel-kuy.com/sso">
+        <a class="navbar-brand" href="https://e-bengkelku.com/sso">
             <i class="fas fa-users mr-2"></i>
             Single Sign On System
         </a>

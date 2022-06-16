@@ -33,7 +33,7 @@
                                 <img class="img-fluid p-4"
                                     src="/backend/src/assets/img/freepik/404-error-with-a-cute-animal-pana.svg" alt="">
                                 <p class="lead">URL yang anda masukkan salah!</p>
-                                <a class="text-arrow-icon" href="https://sso.bengkel-kuy.com/sso">
+                                <a class="text-arrow-icon" href="https://e-bengkelku.com/sso">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" class="feather feather-arrow-left ml-0 mr-1">

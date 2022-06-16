@@ -40,7 +40,7 @@ class Handler extends ExceptionHandler
             app('sentry')->captureException($exception);
         }
 
-        parent::report($exception);
+        report($exception);
     }
 
     /**
@@ -61,6 +61,6 @@ class Handler extends ExceptionHandler
         }
 
 
-        return parent::render($request, $exception);
+        return render($request, $exception);
     }
 }
