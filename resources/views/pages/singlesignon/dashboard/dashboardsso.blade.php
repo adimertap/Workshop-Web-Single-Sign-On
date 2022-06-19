@@ -106,6 +106,7 @@
 </div>
 @endif
 <div class="container mt-n15">
+
     <div class="alert alert-primary alert-dismissible fade show" role="alert">
         <h4 class="alert-heading">Halo, {{ Auth::user()->pegawai->nama_pegawai }}</h4>
         Seluruh panduan penggunaan sistem dapat diakses pada link <a class="alert-link"
@@ -174,7 +175,7 @@
         @if (Auth::user()->hasRole('Aplikasi Marketplace') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
-            <a class="card lift h-100" href="https://marketplace.e-bengkelku.com/AdminMarketplace">
+            <a class="card lift h-100" href="https://admin.e-bengkelku.com/AdminMarketplace">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
