@@ -119,7 +119,7 @@
         @if(Auth::user()->hasRole('Aplikasi Front Office') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
-            <a class="card lift h-100" href="https://front-office.e-bengkelku.com/frontoffice">
+            <a class="card lift h-100" href="https://fo.e-bengkelku.com/frontoffice">
                 <div class="card-body d-flex justify-content-center flex-column">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-3">
